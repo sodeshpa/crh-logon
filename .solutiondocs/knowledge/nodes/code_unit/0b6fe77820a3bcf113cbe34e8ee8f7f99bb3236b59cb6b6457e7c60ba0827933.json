@@ -1,0 +1,21 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T11:29:38.590104Z",
+  "id": "code_unit:logon-webservices-client-src-test-integration-com-crh-logon-websevices-clients-logontoldstestcase.java",
+  "name": "LogonToLDSTestCase.java",
+  "properties": {
+    "file_path": "logon-webservices-client/src/test/integration/com/crh/logon/websevices/clients/LogonToLDSTestCase.java",
+    "language": "Java",
+    "loc": 80,
+    "metrics": {
+      "loc": 80
+    },
+    "unit_type": "file"
+  },
+  "qualified_name": "logon-webservices-client/src/test/integration/com/crh/logon/websevices/clients/LogonToLDSTestCase.java",
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "code_unit",
+  "updated_at": "2026-11-24T11:29:38.590104Z"
+}

@@ -1,0 +1,20 @@
+{
+  "applicability": {
+    "source_revision": "9177d647b7762fabf042bad054f64e82808053b35d5107b26e40895bcc209e52"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 0.95,
+  "created_at": "2026-11-24T09:53:30.031918Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:cfg-617ce13da6cf19fc33f5945f4dde68ba74b4bf38ef0fb14102ad115f36b3af0c"
+  ],
+  "id": "claim:d512fdca06d815d1c1222f4a7563a22660748198a7a331c58775811f806b5ec3",
+  "predicate": "defined_in",
+  "record_kind": "claim",
+  "revision": 1,
+  "status": "candidate",
+  "subject": "setting:config-build-nightly-properties--externallog4jconfigpath",
+  "updated_at": "2026-11-24T09:53:30.031918Z",
+  "value": "config/build-nightly.properties"
+}

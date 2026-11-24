@@ -1,0 +1,28 @@
+{
+  "applicability": {
+    "source_revision": "b65484483903039583cc2f1b36a492bb8d134609"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T09:49:36.164007Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:deps-9a0c4dbb67e707288a80"
+  ],
+  "id": "claim:deps-a9231f9088729b431f68f8c6",
+  "predicate": "declared_coordinates",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-common",
+  "status": "candidate",
+  "subject": "dependency:ant-jar-ch.adnovum.jcan-jcan-log-1.8.3.0",
+  "updated_at": "2026-11-24T09:49:36.164007Z",
+  "value": {
+    "ecosystem": "ant-jar",
+    "group": "ch.adnovum.jcan",
+    "name": "jcan-log",
+    "note": "AdNovum framework jar; version from config/build.properties (external jpository)",
+    "scope": "compile",
+    "version": "1.8.3.0"
+  }
+}

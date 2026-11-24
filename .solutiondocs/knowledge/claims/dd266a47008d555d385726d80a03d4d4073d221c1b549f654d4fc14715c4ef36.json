@@ -1,0 +1,21 @@
+{
+  "applicability": {
+    "source_revision": "1282b3223731fb684487dd0219d1e20310b5f666cd522dd707a91e2969483034"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T10:27:28.875935Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:dsa-3a1bb5f05bb07e24dca37888dbdb7ba8ef5173ee"
+  ],
+  "id": "claim:dsa-832fa5b7c8b3edf9967d918f257772b743a63e09",
+  "predicate": "path",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-webservices",
+  "status": "candidate",
+  "subject": "api_endpoint:materialnormnotification-material-norm-notification-put",
+  "updated_at": "2026-11-24T10:27:28.875935Z",
+  "value": "/logon/webservices/services/MaterialNormNotificationImport"
+}

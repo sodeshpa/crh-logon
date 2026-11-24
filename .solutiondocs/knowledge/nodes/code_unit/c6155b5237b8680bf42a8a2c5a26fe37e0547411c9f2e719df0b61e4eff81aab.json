@@ -1,0 +1,21 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T10:03:24.312910Z",
+  "id": "code_unit:logon-cust-web-src-main-java-com-crh-logon-cust-web-forms-webbestellung-dummyfields.java",
+  "name": "DummyFields.java",
+  "properties": {
+    "file_path": "logon-cust-web/src/main/java/com/crh/logon/cust/web/forms/webbestellung/DummyFields.java",
+    "language": "Java",
+    "loc": 89,
+    "metrics": {
+      "loc": 89
+    },
+    "unit_type": "file"
+  },
+  "qualified_name": "logon-cust-web/src/main/java/com/crh/logon/cust/web/forms/webbestellung/DummyFields.java",
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "code_unit",
+  "updated_at": "2026-11-24T10:03:24.312910Z"
+}

@@ -1,0 +1,416 @@
+{
+  "issues": [],
+  "deliverables": {
+    "expected": 0,
+    "actual": 0,
+    "files": []
+  },
+  "status": "in-progress",
+  "agentName": "automated-knowledge-extraction",
+  "phase": "initialization",
+  "createdAt": "2026-11-24T09:41:40.0860318Z",
+  "lastUpdate": "2026-11-24T11:22:13+00:00",
+  "tasks": [
+    {
+      "status": "completed",
+      "retryCount": 0,
+      "name": "phase-0-init",
+      "id": "phase-0-init",
+      "completedAt": "2026-11-24T09:41:40+00:00"
+    },
+    {
+      "status": "completed",
+      "retryCount": 0,
+      "name": "phase-0-repo-layout",
+      "id": "phase-0-repo-layout",
+      "completedAt": "2026-11-24T09:41:41+00:00"
+    },
+    {
+      "status": "completed",
+      "retryCount": 0,
+      "name": "phase-0-manifest",
+      "id": "phase-0-manifest",
+      "startedAt": "2026-11-24T09:41:51+00:00",
+      "completedAt": "2026-11-24T09:42:50+00:00"
+    },
+    {
+      "status": "completed",
+      "retryCount": 0,
+      "name": "phase-0-routing",
+      "id": "phase-0-routing",
+      "completedAt": "2026-11-24T09:43:00+00:00"
+    },
+    {
+      "status": "completed",
+      "retryCount": 0,
+      "name": "phase-0-components",
+      "id": "phase-0-components",
+      "startedAt": "2026-11-24T09:43:01+00:00",
+      "completedAt": "2026-11-24T09:43:16+00:00"
+    },
+    {
+      "status": "completed",
+      "retryCount": 0,
+      "name": "phase-0-grammar-setup",
+      "id": "phase-0-grammar-setup",
+      "startedAt": "2026-11-24T09:43:41+00:00",
+      "completedAt": "2026-11-24T09:45:32+00:00"
+    },
+    {
+      "status": "completed",
+      "retryCount": 0,
+      "name": "phase-0-lsp-setup",
+      "id": "phase-0-lsp-setup",
+      "startedAt": "2026-11-24T09:43:41+00:00",
+      "completedAt": "2026-11-24T09:45:32+00:00"
+    },
+    {
+      "status": "completed",
+      "retryCount": 0,
+      "name": "phase-0-external-sources",
+      "id": "phase-0-external-sources",
+      "completedAt": "2026-11-24T09:45:41+00:00"
+    },
+    {
+      "id": "phase-1-file-system",
+      "name": "File system",
+      "status": "in-progress",
+      "startedAt": "2026-11-24T09:43:42+00:00"
+    },
+    {
+      "id": "phase-1-git-history",
+      "name": "Git history",
+      "status": "completed",
+      "startedAt": "2026-11-24T09:43:42+00:00",
+      "completedAt": "2026-11-24T09:48:16+00:00"
+    },
+    {
+      "id": "phase-1-config-infra",
+      "name": "Config & infra",
+      "status": "completed",
+      "startedAt": "2026-11-24T09:43:42+00:00",
+      "completedAt": "2026-11-24T10:15:28+00:00"
+    },
+    {
+      "id": "phase-1-dependencies",
+      "name": "Dependencies",
+      "status": "completed",
+      "startedAt": "2026-11-24T09:43:42+00:00",
+      "completedAt": "2026-11-24T10:06:51+00:00"
+    },
+    {
+      "id": "phase-1-dependency-vulnerabilities",
+      "name": "Dependency vulnerabilities",
+      "status": "completed",
+      "startedAt": "2026-11-24T10:06:51+00:00",
+      "completedAt": "2026-11-24T10:31:24+00:00"
+    },
+    {
+      "id": "phase-1-data-api-specs",
+      "name": "Data & API specs",
+      "status": "completed",
+      "startedAt": "2026-11-24T09:43:43+00:00",
+      "completedAt": "2026-11-24T11:22:13+00:00"
+    },
+    {
+      "id": "phase-2-code-structure--s1",
+      "name": "Code structure s1",
+      "status": "not-started"
+    },
+    {
+      "id": "phase-2-integration--s1",
+      "name": "Integration s1",
+      "status": "not-started"
+    },
+    {
+      "id": "phase-2-performance--s1",
+      "name": "Performance s1",
+      "status": "not-started"
+    },
+    {
+      "id": "phase-3-business-semantics--s1",
+      "name": "Business semantics s1",
+      "status": "not-started"
+    },
+    {
+      "id": "phase-3-quality-semantics--s1",
+      "name": "Quality semantics s1",
+      "status": "not-started"
+    },
+    {
+      "id": "phase-2-code-structure--s2",
+      "name": "Code structure s2",
+      "status": "not-started"
+    },
+    {
+      "id": "phase-2-integration--s2",
+      "name": "Integration s2",
+      "status": "not-started"
+    },
+    {
+      "id": "phase-2-performance--s2",
+      "name": "Performance s2",
+      "status": "not-started"
+    },
+    {
+      "id": "phase-3-business-semantics--s2",
+      "name": "Business semantics s2",
+      "status": "not-started"
+    },
+    {
+      "id": "phase-3-quality-semantics--s2",
+      "name": "Quality semantics s2",
+      "status": "not-started"
+    },
+    {
+      "id": "phase-2-code-structure--s3",
+      "name": "Code structure s3",
+      "status": "not-started"
+    },
+    {
+      "id": "phase-2-integration--s3",
+      "name": "Integration s3",
+      "status": "not-started"
+    },
+    {
+      "id": "phase-2-performance--s3",
+      "name": "Performance s3",
+      "status": "not-started"
+    },
+    {
+      "id": "phase-3-business-semantics--s3",
+      "name": "Business semantics s3",
+      "status": "not-started"
+    },
+    {
+      "id": "phase-3-quality-semantics--s3",
+      "name": "Quality semantics s3",
+      "status": "not-started"
+    },
+    {
+      "id": "phase-2-code-structure--s4",
+      "name": "Code structure s4",
+      "status": "not-started"
+    },
+    {
+      "id": "phase-2-integration--s4",
+      "name": "Integration s4",
+      "status": "not-started"
+    },
+    {
+      "id": "phase-2-performance--s4",
+      "name": "Performance s4",
+      "status": "not-started"
+    },
+    {
+      "id": "phase-3-business-semantics--s4",
+      "name": "Business semantics s4",
+      "status": "not-started"
+    },
+    {
+      "id": "phase-3-quality-semantics--s4",
+      "name": "Quality semantics s4",
+      "status": "not-started"
+    },
+    {
+      "id": "phase-2-code-structure--s5",
+      "name": "Code structure s5",
+      "status": "not-started"
+    },
+    {
+      "id": "phase-2-integration--s5",
+      "name": "Integration s5",
+      "status": "not-started"
+    },
+    {
+      "id": "phase-2-performance--s5",
+      "name": "Performance s5",
+      "status": "not-started"
+    },
+    {
+      "id": "phase-3-business-semantics--s5",
+      "name": "Business semantics s5",
+      "status": "not-started"
+    },
+    {
+      "id": "phase-3-quality-semantics--s5",
+      "name": "Quality semantics s5",
+      "status": "not-started"
+    },
+    {
+      "id": "phase-2-code-structure--s6",
+      "name": "Code structure s6",
+      "status": "not-started"
+    },
+    {
+      "id": "phase-2-integration--s6",
+      "name": "Integration s6",
+      "status": "not-started"
+    },
+    {
+      "id": "phase-2-performance--s6",
+      "name": "Performance s6",
+      "status": "not-started"
+    },
+    {
+      "id": "phase-2-ui-surface--s6",
+      "name": "UI surface s6",
+      "status": "not-started"
+    },
+    {
+      "id": "phase-3-business-semantics--s6",
+      "name": "Business semantics s6",
+      "status": "not-started"
+    },
+    {
+      "id": "phase-3-quality-semantics--s6",
+      "name": "Quality semantics s6",
+      "status": "not-started"
+    },
+    {
+      "id": "phase-2-code-structure--s7",
+      "name": "Code structure s7",
+      "status": "not-started"
+    },
+    {
+      "id": "phase-2-integration--s7",
+      "name": "Integration s7",
+      "status": "not-started"
+    },
+    {
+      "id": "phase-2-performance--s7",
+      "name": "Performance s7",
+      "status": "not-started"
+    },
+    {
+      "id": "phase-2-ui-surface--s7",
+      "name": "UI surface s7",
+      "status": "not-started"
+    },
+    {
+      "id": "phase-3-business-semantics--s7",
+      "name": "Business semantics s7",
+      "status": "not-started"
+    },
+    {
+      "id": "phase-3-quality-semantics--s7",
+      "name": "Quality semantics s7",
+      "status": "not-started"
+    },
+    {
+      "id": "phase-2-code-structure--s8",
+      "name": "Code structure s8",
+      "status": "not-started"
+    },
+    {
+      "id": "phase-2-integration--s8",
+      "name": "Integration s8",
+      "status": "not-started"
+    },
+    {
+      "id": "phase-2-performance--s8",
+      "name": "Performance s8",
+      "status": "not-started"
+    },
+    {
+      "id": "phase-2-ui-surface--s8",
+      "name": "UI surface s8",
+      "status": "not-started"
+    },
+    {
+      "id": "phase-3-business-semantics--s8",
+      "name": "Business semantics s8",
+      "status": "not-started"
+    },
+    {
+      "id": "phase-3-quality-semantics--s8",
+      "name": "Quality semantics s8",
+      "status": "not-started"
+    },
+    {
+      "id": "phase-2-data-access",
+      "name": "Data access",
+      "status": "not-started"
+    },
+    {
+      "id": "coverage-validation",
+      "name": "Coverage validation",
+      "status": "not-started"
+    },
+    {
+      "id": "phase-4-cross-cutting",
+      "name": "Cross-cutting",
+      "status": "not-started"
+    },
+    {
+      "id": "phase-5-gap-analysis",
+      "name": "Gap analysis",
+      "status": "not-started"
+    },
+    {
+      "id": "phase-6-extraction",
+      "name": "External extraction",
+      "status": "skipped",
+      "completedAt": "2026-11-24T09:45:42+00:00"
+    },
+    {
+      "id": "phase-6-merge",
+      "name": "External merge",
+      "status": "skipped",
+      "completedAt": "2026-11-24T09:45:42+00:00"
+    },
+    {
+      "id": "phase-5-completeness",
+      "name": "Completeness scoring",
+      "status": "not-started"
+    },
+    {
+      "id": "phase-5-summary-report",
+      "name": "Summary report",
+      "status": "not-started"
+    }
+  ],
+  "analysisMode": "domain",
+  "totalTokensEstimate": 22400000,
+  "analysableFiles": 5116,
+  "shards": {
+    "s1": [
+      "logon-persistence"
+    ],
+    "s2": [
+      "logon-simulator"
+    ],
+    "s3": [
+      "logon-business"
+    ],
+    "s4": [
+      "logon-webservices"
+    ],
+    "s5": [
+      "logon-common"
+    ],
+    "s6": [
+      "logon-order-web"
+    ],
+    "s7": [
+      "etc",
+      "logon-admin-web",
+      "logon-cust-web",
+      "logon-init-web",
+      "logon-pdf-generator",
+      "logon-test-load",
+      "logon-webservices-pws-incoming"
+    ],
+    "s8": [
+      "ansible",
+      "logon-ansible",
+      "logon-common-web",
+      "logon-security",
+      "logon-terminal-web",
+      "logon-webservices-client",
+      "logon-webservices-mop-incoming",
+      "logon-webservices-oc-incoming",
+      "pkg"
+    ]
+  }
+}

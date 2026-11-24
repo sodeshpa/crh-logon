@@ -1,0 +1,17 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:49:36.164007Z",
+  "id": "evidence:deps-3c8f31c5ab25342d0905",
+  "locator": {
+    "file": "C:\\Users\\sodeshpa\\.copilot\\repos\\copilot-worktrees\\crh-logon\\sodeshpa-improved-telegram\\logon-common-web\\build-deps.xml",
+    "section": "dependency ch.adnovum.jcan-log:${jcan-log.adntrace.name}"
+  },
+  "method": "dependency-manifest",
+  "observed_at": "2026-11-24T09:48:25+00:00",
+  "record_kind": "evidence",
+  "revision": 1,
+  "source_id": "source_artifact:deps-logon-common-web-build-deps.xml",
+  "source_revision": "be3a33af02166ca8601a64136b686e4141c2ee53",
+  "status": "active",
+  "updated_at": "2026-11-24T09:49:36.164007Z"
+}

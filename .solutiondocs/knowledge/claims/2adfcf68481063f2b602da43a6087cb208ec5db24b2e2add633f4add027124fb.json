@@ -1,0 +1,21 @@
+{
+  "applicability": {
+    "source_revision": "f0319b7f1fa2ac8b05f0bc2cbf001eceaa03677eb829c7419fb7413f61391f69"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T10:18:07.792802Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:dsa-38ccca4c8af77fe47fcbeb14a9ab4b2a7fcf7a8b"
+  ],
+  "id": "claim:dsa-b5d9adab2185e5a8b3ac0374a011d351b56c023f",
+  "predicate": "data_type",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-webservices",
+  "status": "candidate",
+  "subject": "data_field:sdn-documentitempartnerinfor-0-teltx",
+  "updated_at": "2026-11-24T10:18:07.792802Z",
+  "value": "varchar2(25 char)"
+}

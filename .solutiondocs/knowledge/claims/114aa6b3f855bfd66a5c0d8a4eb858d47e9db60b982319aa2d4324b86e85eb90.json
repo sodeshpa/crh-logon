@@ -1,0 +1,24 @@
+{
+  "applicability": {
+    "source_revision": "c4799b3dfcf94ee66c921f340bda20c43e31a979"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 0.95,
+  "created_at": "2026-11-24T09:47:21.032770Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:fs-3431f99400eda5b2f1380913"
+  ],
+  "id": "claim:fs-rel-3431f99400eda5b2f1380913",
+  "predicate": "contains",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:etc",
+  "status": "candidate",
+  "subject": "relationship:fs-contains-3431f99400eda5b2f1380913",
+  "updated_at": "2026-11-24T09:47:21.032770Z",
+  "value": {
+    "container": "component:etc",
+    "file_path": "etc/tools/exportInitialData.sh"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "applicability": {
+    "source_revision": "04891f0df96c5dd9998254418041d3c2fdcb394a"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T09:49:36.164007Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:deps-a8374b16660a3c5c4eb2"
+  ],
+  "id": "claim:deps-4497fc4dce2e3174bc2a839b",
+  "predicate": "declared_coordinates",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-webservices",
+  "status": "candidate",
+  "subject": "dependency:maven-org.jboss.as-jboss-as-ejb-client-bom-7.2.0.final",
+  "updated_at": "2026-11-24T09:49:36.164007Z",
+  "value": {
+    "ecosystem": "maven",
+    "group": "org.jboss.as",
+    "name": "jboss-as-ejb-client-bom",
+    "note": "maven scope=test; type=pom (BOM)",
+    "scope": "test",
+    "version": "7.2.0.Final"
+  }
+}

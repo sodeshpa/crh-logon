@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "claim_ids": [
+    "claim:6081f4625347388c21788d888a257c223c9be95824b2f8ed164da096b1f388ae"
+  ],
+  "created_at": "2026-11-24T09:43:07.964638Z",
+  "from": "application:sodeshpa-improved-telegram",
+  "id": "relationship:024ef9482aea965bc37b4484c415356a34b5a675a6d48a9237ee48d05d21b38f",
+  "properties": {},
+  "record_kind": "relationship",
+  "revision": 1,
+  "status": "active",
+  "to": "component:ansible",
+  "type": "contains",
+  "updated_at": "2026-11-24T09:43:07.964638Z"
+}

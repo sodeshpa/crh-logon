@@ -1,0 +1,21 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:48:25.227887Z",
+  "id": "code_unit:logon-admin-web-src-test-integration-com-crh-logon-terminal-web-pages-terminalquantitypage.java",
+  "name": "TerminalQuantityPage.java",
+  "properties": {
+    "file_path": "logon-admin-web/src/test/integration/com/crh/logon/terminal/web/pages/TerminalQuantityPage.java",
+    "language": "Java",
+    "loc": 47,
+    "metrics": {
+      "loc": 47
+    },
+    "unit_type": "file"
+  },
+  "qualified_name": "logon-admin-web/src/test/integration/com/crh/logon/terminal/web/pages/TerminalQuantityPage.java",
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "code_unit",
+  "updated_at": "2026-11-24T09:48:25.227887Z"
+}

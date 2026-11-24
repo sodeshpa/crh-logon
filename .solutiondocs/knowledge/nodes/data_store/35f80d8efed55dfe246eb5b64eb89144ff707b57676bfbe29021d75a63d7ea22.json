@@ -1,0 +1,20 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T10:04:21.856768Z",
+  "id": "data_store:logon-sap-staging-area",
+  "name": "Logon SAP staging area (schema ulgnsap)",
+  "properties": {
+    "engine": "Oracle",
+    "entity_count": 183,
+    "extraction_source": "ddl_file",
+    "metadata": {
+      "dsa:ddl_entity_count": 183
+    },
+    "store_type": "relational"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "data_store",
+  "updated_at": "2026-11-24T10:04:21.856768Z"
+}

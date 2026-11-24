@@ -1,0 +1,20 @@
+{
+  "applicability": {
+    "source_revision": "241e27bbbfcfdad1de49649fc90fecf1ee67169ba0b00f5f111e5797c6292870"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 0.95,
+  "created_at": "2026-11-24T09:51:52.064424Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:cfg-f2d6929501bc72687ec5c12131e3d3cc1ae707b6f7af155b288d05bdd65d2bf9"
+  ],
+  "id": "claim:258e20162ed1205c644b37b444980905e0fac3925c7a664e7915cd483f023146",
+  "predicate": "purpose",
+  "record_kind": "claim",
+  "revision": 1,
+  "status": "candidate",
+  "subject": "config_item:config-settings-tmpl-xml",
+  "updated_at": "2026-11-24T09:51:52.064424Z",
+  "value": "Maven settings template"
+}

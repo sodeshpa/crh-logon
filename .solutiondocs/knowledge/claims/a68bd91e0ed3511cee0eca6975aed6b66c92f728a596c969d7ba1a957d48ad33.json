@@ -1,0 +1,28 @@
+{
+  "applicability": {
+    "source_revision": "b65484483903039583cc2f1b36a492bb8d134609"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T09:49:36.164007Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:deps-cfab070fec0d2339f0c1"
+  ],
+  "id": "claim:deps-a8da54d3fd5fa660e05fc0b5",
+  "predicate": "declared_coordinates",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-common",
+  "status": "candidate",
+  "subject": "dependency:ant-jar-commons-collections-commons-collections-3.2.2",
+  "updated_at": "2026-11-24T09:49:36.164007Z",
+  "value": {
+    "ecosystem": "ant-jar",
+    "group": "commons-collections",
+    "name": "commons-collections",
+    "note": "ant property commons-collections.jar -> ${MPOSITORY_DIR}/commons-collections/commons-collections/3.2.2/commons-collections-3.2.2.jar (resolved from external jpository/mpository; not bundled in repo)",
+    "scope": "compile",
+    "version": "3.2.2"
+  }
+}

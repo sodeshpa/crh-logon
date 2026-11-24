@@ -1,0 +1,24 @@
+{
+  "applicability": {
+    "source_revision": "c4799b3dfcf94ee66c921f340bda20c43e31a979"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 0.95,
+  "created_at": "2026-11-24T10:36:58.132094Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:fs-0c00103c73ddb001df7550f6"
+  ],
+  "id": "claim:fs-rel-0c00103c73ddb001df7550f6",
+  "predicate": "contains",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-persistence",
+  "status": "candidate",
+  "subject": "relationship:fs-contains-0c00103c73ddb001df7550f6",
+  "updated_at": "2026-11-24T10:36:58.132094Z",
+  "value": {
+    "container": "component:logon-persistence",
+    "file_path": "logon-persistence/etc/sql/patch/patch_update_data_with_encoding_issue.sql"
+  }
+}

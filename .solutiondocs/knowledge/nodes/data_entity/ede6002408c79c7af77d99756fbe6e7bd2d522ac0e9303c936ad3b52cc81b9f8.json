@@ -1,0 +1,17 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T10:20:23.597113Z",
+  "id": "data_entity:vlgnc-rep-sap-bw-export",
+  "name": "VLGNC_REP_SAP_BW_EXPORT",
+  "properties": {
+    "entity_type": "view",
+    "materialised": false,
+    "purpose": "View for report SAP BW export.",
+    "schema": "ulgn"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "data_entity",
+  "updated_at": "2026-11-24T10:20:23.597113Z"
+}

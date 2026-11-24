@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:59:54.408851Z",
+  "id": "source_artifact:dsa-logon-persistence-etc-sql-objs-sql",
+  "name": "objs.sql",
+  "properties": {
+    "location": "logon-persistence/etc/sql/objs.sql",
+    "revision": "7df0b730e28a6c436431ec87d2225bf63b67bd63b11eda4e02462f59a9e8a545",
+    "source_type": "ddl_sql"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "source_artifact",
+  "updated_at": "2026-11-24T09:59:54.408851Z"
+}

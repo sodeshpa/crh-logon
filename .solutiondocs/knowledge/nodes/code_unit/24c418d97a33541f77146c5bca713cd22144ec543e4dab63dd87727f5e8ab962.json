@@ -1,0 +1,21 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:48:04.382718Z",
+  "id": "code_unit:logon-admin-web-src-test-integration-com-crh-logon-admin-web-masterdata-road-trailertest.java",
+  "name": "TrailerTest.java",
+  "properties": {
+    "file_path": "logon-admin-web/src/test/integration/com/crh/logon/admin/web/masterdata/road/TrailerTest.java",
+    "language": "Java",
+    "loc": 145,
+    "metrics": {
+      "loc": 145
+    },
+    "unit_type": "file"
+  },
+  "qualified_name": "logon-admin-web/src/test/integration/com/crh/logon/admin/web/masterdata/road/TrailerTest.java",
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "code_unit",
+  "updated_at": "2026-11-24T09:48:04.382718Z"
+}

@@ -1,0 +1,27 @@
+{
+  "applicability": {
+    "source_revision": "c4799b3dfcf94ee66c921f340bda20c43e31a979"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 0.95,
+  "created_at": "2026-11-24T09:49:05.830186Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:fs-e7aad4a7d9d60933983dc441"
+  ],
+  "id": "claim:fs-e7aad4a7d9d60933983dc441",
+  "predicate": "file_inventory",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-business",
+  "status": "candidate",
+  "subject": "code_unit:logon-business-src-main-java-com-crh-logon-business-ordercreation-dto-orderdeliveryminmaxdatedto.java",
+  "updated_at": "2026-11-24T09:49:05.830186Z",
+  "value": {
+    "estimated_tokens": 428,
+    "file_path": "logon-business/src/main/java/com/crh/logon/business/ordercreation/dto/OrderDeliveryMinMaxDateDTO.java",
+    "language": "Java",
+    "loc": 66,
+    "size_bytes": 1713
+  }
+}

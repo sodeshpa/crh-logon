@@ -1,0 +1,21 @@
+{
+  "applicability": {
+    "source_revision": "568fb62cc499bfcb716fdd4168d2266a10e7b88cc4eb3607d9b68efd621fe86d"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T10:20:23.597113Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:dsa-bc2f7d8bb0b5b8bbdedf5e914ec033c2f1e04aba"
+  ],
+  "id": "claim:dsa-e9d797b5d4ec588b5d1d27381dcd58769aea4663",
+  "predicate": "entity_type",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-persistence",
+  "status": "candidate",
+  "subject": "data_entity:vlgnc-rep-o-per-route-carrier",
+  "updated_at": "2026-11-24T10:20:23.597113Z",
+  "value": "view"
+}

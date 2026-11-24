@@ -1,0 +1,18 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:47:32.738904Z",
+  "id": "evidence:fs-74ddee6e44376e626e001fb8",
+  "locator": {
+    "file": "logon-admin-web/src/main/java/com/crh/logon/admin/web/beans/WagonDetailBuildBean.java",
+    "line_end": 187,
+    "line_start": 1
+  },
+  "method": "file-system",
+  "observed_at": "2026-11-24T09:46:55Z",
+  "record_kind": "evidence",
+  "revision": 1,
+  "source_id": "source_artifact:fs-logon-admin-web-tree",
+  "source_revision": "c4799b3dfcf94ee66c921f340bda20c43e31a979",
+  "status": "active",
+  "updated_at": "2026-11-24T09:47:32.738904Z"
+}

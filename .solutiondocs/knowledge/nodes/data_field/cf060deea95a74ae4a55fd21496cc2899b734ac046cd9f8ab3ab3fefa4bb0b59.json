@@ -1,0 +1,19 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T10:18:07.792802Z",
+  "id": "data_field:tlgnc-demand-plan-sap-material-id",
+  "name": "SAP_MATERIAL_ID",
+  "properties": {
+    "constraints": [
+      "NOT NULL"
+    ],
+    "data_type": "number(12)",
+    "nullable": false,
+    "primary_key": false
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "data_field",
+  "updated_at": "2026-11-24T10:18:07.792802Z"
+}

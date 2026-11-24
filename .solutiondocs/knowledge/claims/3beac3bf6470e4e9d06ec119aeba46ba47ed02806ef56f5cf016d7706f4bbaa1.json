@@ -1,0 +1,21 @@
+{
+  "applicability": {
+    "source_revision": "f0319b7f1fa2ac8b05f0bc2cbf001eceaa03677eb829c7419fb7413f61391f69"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T10:24:05.985709Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:dsa-bba0a2e33ce30236f43153a5c55c07c019a078df"
+  ],
+  "id": "claim:dsa-0eff4c7262c2f6347182537469cc149243e867b0",
+  "predicate": "entity_type",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-webservices",
+  "status": "candidate",
+  "subject": "data_entity:vn-vendormastercompanycodete-0",
+  "updated_at": "2026-11-24T10:24:05.985709Z",
+  "value": "table"
+}

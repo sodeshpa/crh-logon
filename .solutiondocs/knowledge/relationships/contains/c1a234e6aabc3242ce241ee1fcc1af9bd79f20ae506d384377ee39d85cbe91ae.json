@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "claim_ids": [
+    "claim:fc004721651aa208991efeccee9da2cb4af277dab0aa0b45860d79244b2c5ee6"
+  ],
+  "created_at": "2026-11-24T09:53:30.031918Z",
+  "from": "config_item:config-build-dev-properties",
+  "id": "relationship:contains-13d1353fcdbd17581faa06001e28b488a7026ee7",
+  "properties": {},
+  "record_kind": "relationship",
+  "revision": 1,
+  "status": "active",
+  "to": "setting:config-build-dev-properties--mockup-ffax-host-pwd",
+  "type": "contains",
+  "updated_at": "2026-11-24T09:53:30.031918Z"
+}

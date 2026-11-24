@@ -1,0 +1,21 @@
+{
+  "applicability": {
+    "source_revision": "b5abb52a69eec84f813c10936c98d6f1835abf5e24191a2b7d8e38dcbd8463de"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T10:27:28.875935Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:dsa-5d04b995f8f2e2a52d47575e3648be388f8e3557"
+  ],
+  "id": "claim:dsa-bbb7b88fb49eaadb6f1f1e6ae329954ece07003d",
+  "predicate": "contract_type",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-webservices-client",
+  "status": "candidate",
+  "subject": "integration_point:external-service-ecmservice",
+  "updated_at": "2026-11-24T10:27:28.875935Z",
+  "value": "WSDL"
+}

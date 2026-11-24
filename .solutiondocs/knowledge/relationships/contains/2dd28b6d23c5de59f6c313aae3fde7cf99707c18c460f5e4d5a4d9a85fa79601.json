@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "claim_ids": [
+    "claim:dsa-0de7b27258928a1022349c8bd027cde816715c1b"
+  ],
+  "created_at": "2026-11-24T11:07:07.476264Z",
+  "from": "data_store:logon-main-database",
+  "id": "relationship:dsa-9166410a27c1bcb6b93d5ea2d9ef45eb4b34b7e1",
+  "properties": {},
+  "record_kind": "relationship",
+  "revision": 1,
+  "status": "active",
+  "to": "data_entity:vlgns-soldship-sarea-flex-srch",
+  "type": "contains",
+  "updated_at": "2026-11-24T11:07:07.476264Z"
+}

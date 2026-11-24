@@ -1,0 +1,21 @@
+{
+  "applicability": {
+    "source_revision": "7df0b730e28a6c436431ec87d2225bf63b67bd63b11eda4e02462f59a9e8a545"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 0.95,
+  "created_at": "2026-11-24T10:04:21.856768Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:dsa-278531be763d33c4faaabec4012a7abfa5d9685d"
+  ],
+  "id": "claim:dsa-310d1860a5e66429e6b9bf0e333e26c575e81ca5",
+  "predicate": "engine",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-persistence",
+  "status": "candidate",
+  "subject": "data_store:logon-main-database",
+  "updated_at": "2026-11-24T10:04:21.856768Z",
+  "value": "Oracle"
+}

@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "claim_ids": [
+    "claim:dsa-d4b5face53f9bbff759cf7e8f3fd789ad1342ba4"
+  ],
+  "created_at": "2026-11-24T11:07:07.476264Z",
+  "from": "component:logon-webservices-pws-incoming",
+  "id": "relationship:dsa-bb2022b3f67f6e70aa2b312798605df95d3a5fdb",
+  "properties": {},
+  "record_kind": "relationship",
+  "revision": 1,
+  "status": "active",
+  "to": "api_endpoint:logonldsinterface-services-releaseassignment",
+  "type": "exposes",
+  "updated_at": "2026-11-24T11:07:07.476264Z"
+}

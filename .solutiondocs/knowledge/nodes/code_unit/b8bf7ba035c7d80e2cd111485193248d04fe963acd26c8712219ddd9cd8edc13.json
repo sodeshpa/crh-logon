@@ -1,0 +1,21 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:58:39.080022Z",
+  "id": "code_unit:logon-common-web-src-main-java-com-crh-logon-web-filters-sessionidfilter.java",
+  "name": "SessionIdFilter.java",
+  "properties": {
+    "file_path": "logon-common-web/src/main/java/com/crh/logon/web/filters/SessionIdFilter.java",
+    "language": "Java",
+    "loc": 115,
+    "metrics": {
+      "loc": 115
+    },
+    "unit_type": "file"
+  },
+  "qualified_name": "logon-common-web/src/main/java/com/crh/logon/web/filters/SessionIdFilter.java",
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "code_unit",
+  "updated_at": "2026-11-24T09:58:39.080022Z"
+}

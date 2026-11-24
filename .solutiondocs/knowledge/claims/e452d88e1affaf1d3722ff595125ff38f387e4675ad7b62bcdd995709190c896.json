@@ -1,0 +1,21 @@
+{
+  "applicability": {
+    "source_revision": "18db66278cdc479af763421612835a123b82c9e2a90131924b7011c3237e5521"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T10:18:07.792802Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:dsa-57c760d02c3e00a7a29fda8074f4ff167e4bd690"
+  ],
+  "id": "claim:dsa-4e6c10d6038871989138cabcd2496a26d375ba63",
+  "predicate": "data_type",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-persistence",
+  "status": "candidate",
+  "subject": "data_field:tlgnt-outputdocs-to-delete-pdf-outputdoc-id",
+  "updated_at": "2026-11-24T10:18:07.792802Z",
+  "value": "number"
+}

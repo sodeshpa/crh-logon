@@ -1,0 +1,21 @@
+{
+  "applicability": {
+    "source_revision": "6981b2e2dff253abee6843e2e68358c046549c60e5f561693c7ca156e2fb08a5"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T10:27:28.875935Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:dsa-23fc3b89b81f445bd1cca46389415d6996a9ca83"
+  ],
+  "id": "claim:dsa-b8d866f7e3774f764af78456862f231c68999127",
+  "predicate": "method",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-webservices",
+  "status": "candidate",
+  "subject": "api_endpoint:businesspartnernotification-business-partner-notification-put",
+  "updated_at": "2026-11-24T10:27:28.875935Z",
+  "value": "POST"
+}

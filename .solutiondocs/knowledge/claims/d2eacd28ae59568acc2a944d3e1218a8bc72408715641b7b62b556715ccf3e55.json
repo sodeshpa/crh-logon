@@ -1,0 +1,21 @@
+{
+  "applicability": {
+    "source_revision": "328519ff5ba8be824180ef08da421109f9ff86ed34952a9592f791c2e61a0590"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T10:20:23.597113Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:dsa-e62d503a22a33740bf42bd462c10f8649f34c1ec"
+  ],
+  "id": "claim:dsa-be67ade0f4c627468cc57672e15dde01a31c0400",
+  "predicate": "entity_type",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-persistence",
+  "status": "candidate",
+  "subject": "data_entity:vlgns-stagingarea-mnn-new",
+  "updated_at": "2026-11-24T10:20:23.597113Z",
+  "value": "view"
+}

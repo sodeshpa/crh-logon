@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:59:54.408851Z",
+  "id": "source_artifact:dsa-logon-persistence-etc-sql-update-planning-mat-sarea-sql",
+  "name": "update_planning_mat_sarea.sql",
+  "properties": {
+    "location": "logon-persistence/etc/sql/update_planning_mat_sarea.sql",
+    "revision": "d428990444609b5e52f0d70dc7c76c30cd3263599327b0c4876b8a2324d86f99",
+    "source_type": "ddl_sql"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "source_artifact",
+  "updated_at": "2026-11-24T09:59:54.408851Z"
+}

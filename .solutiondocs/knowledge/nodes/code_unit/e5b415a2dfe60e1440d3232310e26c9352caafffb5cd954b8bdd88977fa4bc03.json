@@ -1,0 +1,18 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T10:24:05.985709Z",
+  "id": "code_unit:logon-persistence-plsql-upsert-planning-contract-items",
+  "name": "upsert_planning_contract_items",
+  "properties": {
+    "file_path": "logon-persistence/etc/sql/upsert_planning_contract_items.sql",
+    "language": "PL/SQL",
+    "line_start": 1,
+    "signature": "procedure upsert_planning_contract_items(i_sales_area_id in number default null) is",
+    "unit_type": "function"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "code_unit",
+  "updated_at": "2026-11-24T10:24:05.985709Z"
+}

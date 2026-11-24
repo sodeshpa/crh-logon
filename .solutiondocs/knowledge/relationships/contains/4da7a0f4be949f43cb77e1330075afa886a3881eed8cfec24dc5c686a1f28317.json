@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "claim_ids": [
+    "claim:4c3a159c7adc992c7eed367e71829f4b79e747159871cf4392dc41ad17c893b8"
+  ],
+  "created_at": "2026-11-24T09:53:30.031918Z",
+  "from": "config_item:config-build-properties",
+  "id": "relationship:contains-90355712d8a80f4f24aa51b5abd9e6deae61eed4",
+  "properties": {},
+  "record_kind": "relationship",
+  "revision": 1,
+  "status": "active",
+  "to": "setting:config-build-properties--jboss-ssl-keystore-pass",
+  "type": "contains",
+  "updated_at": "2026-11-24T09:53:30.031918Z"
+}

@@ -1,0 +1,28 @@
+{
+  "applicability": {
+    "source_revision": "a0b5cdb2d32c0698faadbe11ec6f8006d55d7765"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T09:49:36.164007Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:deps-10c2c3bc0aee6e23afbe"
+  ],
+  "id": "claim:deps-f6245869b7017df488cc485a",
+  "predicate": "declared_coordinates",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-order-web",
+  "status": "candidate",
+  "subject": "dependency:maven-dom4j-dom4j-1.6.1",
+  "updated_at": "2026-11-24T09:49:36.164007Z",
+  "value": {
+    "ecosystem": "maven",
+    "group": "dom4j",
+    "name": "dom4j",
+    "note": "maven scope=compile",
+    "scope": "compile",
+    "version": "1.6.1"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "applicability": {
+    "source_revision": "c4799b3dfcf94ee66c921f340bda20c43e31a979"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 0.95,
+  "created_at": "2026-11-24T10:32:46.275408Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:fs-4bf473782f4ad226d2112be3"
+  ],
+  "id": "claim:fs-rel-4bf473782f4ad226d2112be3",
+  "predicate": "contains",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-persistence",
+  "status": "candidate",
+  "subject": "relationship:fs-contains-4bf473782f4ad226d2112be3",
+  "updated_at": "2026-11-24T10:32:46.275408Z",
+  "value": {
+    "container": "component:logon-persistence",
+    "file_path": "logon-persistence/etc/sql/fbnl_testdata/tlgns_sap_vendor.sql"
+  }
+}

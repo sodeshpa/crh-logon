@@ -1,0 +1,24 @@
+{
+  "applicability": {
+    "source_revision": "c4799b3dfcf94ee66c921f340bda20c43e31a979"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 0.95,
+  "created_at": "2026-11-24T11:27:07.998697Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:fs-89e7e082e7180f3d06da006f"
+  ],
+  "id": "claim:fs-rel-89e7e082e7180f3d06da006f",
+  "predicate": "contains",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-persistence",
+  "status": "candidate",
+  "subject": "relationship:fs-contains-89e7e082e7180f3d06da006f",
+  "updated_at": "2026-11-24T11:27:07.998697Z",
+  "value": {
+    "container": "component:logon-persistence",
+    "file_path": "logon-persistence/src/main/java/com/crh/logon/persistence/entities/views/TableInfoEntity.java"
+  }
+}

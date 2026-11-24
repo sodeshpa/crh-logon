@@ -1,0 +1,21 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T10:01:22.932656Z",
+  "id": "code_unit:logon-common-web-src-main-webapp-js-ext-ux-ext.element.loadscriptsynchronously.js",
+  "name": "Ext.Element.LoadScriptSynchronously.js",
+  "properties": {
+    "file_path": "logon-common-web/src/main/webapp/js/ext-ux/Ext.Element.LoadScriptSynchronously.js",
+    "language": "JavaScript/TypeScript",
+    "loc": 64,
+    "metrics": {
+      "loc": 64
+    },
+    "unit_type": "file"
+  },
+  "qualified_name": "logon-common-web/src/main/webapp/js/ext-ux/Ext.Element.LoadScriptSynchronously.js",
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "code_unit",
+  "updated_at": "2026-11-24T10:01:22.932656Z"
+}

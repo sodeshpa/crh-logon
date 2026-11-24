@@ -1,0 +1,24 @@
+{
+  "applicability": {
+    "source_revision": "c4799b3dfcf94ee66c921f340bda20c43e31a979"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 0.95,
+  "created_at": "2026-11-24T10:30:58.828557Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:fs-69f8013d5051942b4f0cb907"
+  ],
+  "id": "claim:fs-rel-69f8013d5051942b4f0cb907",
+  "predicate": "contains",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-persistence",
+  "status": "candidate",
+  "subject": "relationship:fs-contains-69f8013d5051942b4f0cb907",
+  "updated_at": "2026-11-24T10:30:58.828557Z",
+  "value": {
+    "container": "component:logon-persistence",
+    "file_path": "logon-persistence/etc/sql/adza_testdata/contracts_adn_aggregate_and_landfill_customer.sql"
+  }
+}

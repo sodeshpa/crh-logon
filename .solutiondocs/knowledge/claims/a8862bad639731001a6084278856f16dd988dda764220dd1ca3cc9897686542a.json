@@ -1,0 +1,24 @@
+{
+  "applicability": {
+    "source_revision": "c4799b3dfcf94ee66c921f340bda20c43e31a979"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 0.95,
+  "created_at": "2026-11-24T10:25:45.372030Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:fs-cc34bac914ffe07b67457ca9"
+  ],
+  "id": "claim:fs-rel-cc34bac914ffe07b67457ca9",
+  "predicate": "contains",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-order-web",
+  "status": "candidate",
+  "subject": "relationship:fs-contains-cc34bac914ffe07b67457ca9",
+  "updated_at": "2026-11-24T10:25:45.372030Z",
+  "value": {
+    "container": "component:logon-order-web",
+    "file_path": "logon-order-web/src/main/webapp/WEB-INF/jsp/itrack/ITrackReportingTile.jsp"
+  }
+}

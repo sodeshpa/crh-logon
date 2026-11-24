@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "claim_ids": [
+    "claim:dsa-6c4748f5ad7c287d2bfc3adb24b4f0046ce119e5"
+  ],
+  "created_at": "2026-11-24T10:34:49.573274Z",
+  "from": "data_entity:mn-materialgeneraldata",
+  "id": "relationship:dsa-c46341a5693bdefdc951d13cc6d0638008bfdccf",
+  "properties": {},
+  "record_kind": "relationship",
+  "revision": 1,
+  "status": "active",
+  "to": "data_field:mn-materialgeneraldata-laeng",
+  "type": "contains",
+  "updated_at": "2026-11-24T10:34:49.573274Z"
+}

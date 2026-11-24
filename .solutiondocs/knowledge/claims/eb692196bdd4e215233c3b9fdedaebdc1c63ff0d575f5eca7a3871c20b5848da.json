@@ -1,0 +1,21 @@
+{
+  "applicability": {
+    "source_revision": "946f42389985a9547d4b7fcc434732cf8cd2170e9a7d896f96957adc9f239502"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T10:24:05.985709Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:dsa-775365e496e34220ce6e381713f5b949ed9b559c"
+  ],
+  "id": "claim:dsa-05dbb065c7228229187415a69dea39140fe2d653",
+  "predicate": "plsql_procedure",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-persistence",
+  "status": "candidate",
+  "subject": "code_unit:logon-persistence-plsql-fetch-truck-changes-for-dispo",
+  "updated_at": "2026-11-24T10:24:05.985709Z",
+  "value": "FETCH_TRUCK_CHANGES_FOR_DISPO"
+}

@@ -1,0 +1,22 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:51:52.064424Z",
+  "id": "config_item:etc-roles-properties",
+  "name": "etc/roles.properties",
+  "properties": {
+    "contains_secrets": false,
+    "environment_specific": false,
+    "environments": [
+      "dev"
+    ],
+    "file_path": "etc/roles.properties",
+    "format": "properties",
+    "purpose": "security",
+    "version_controlled": true
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "config_item",
+  "updated_at": "2026-11-24T09:51:52.064424Z"
+}

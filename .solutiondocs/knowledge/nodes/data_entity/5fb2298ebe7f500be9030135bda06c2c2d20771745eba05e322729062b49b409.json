@@ -1,0 +1,17 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T10:20:23.597113Z",
+  "id": "data_entity:vlgns-util-sapmatdesc-missing",
+  "name": "VLGNS_UTIL_SAPMATDESC_MISSING",
+  "properties": {
+    "entity_type": "view",
+    "materialised": false,
+    "purpose": "Utility/Support view to show SAP materials with incomplete (not in all languages) descriptions. View is not used by the application itself.",
+    "schema": "ulgn"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "data_entity",
+  "updated_at": "2026-11-24T10:20:23.597113Z"
+}

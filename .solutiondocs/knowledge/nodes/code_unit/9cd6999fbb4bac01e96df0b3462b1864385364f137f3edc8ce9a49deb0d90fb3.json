@@ -1,0 +1,21 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T11:29:38.590104Z",
+  "id": "code_unit:logon-terminal-web-src-main-webapp-web-inf-jsp-terminalmainlayout.jsp",
+  "name": "TerminalMainLayout.jsp",
+  "properties": {
+    "file_path": "logon-terminal-web/src/main/webapp/WEB-INF/jsp/TerminalMainLayout.jsp",
+    "language": "Web/Template",
+    "loc": 106,
+    "metrics": {
+      "loc": 106
+    },
+    "unit_type": "file"
+  },
+  "qualified_name": "logon-terminal-web/src/main/webapp/WEB-INF/jsp/TerminalMainLayout.jsp",
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "code_unit",
+  "updated_at": "2026-11-24T11:29:38.590104Z"
+}

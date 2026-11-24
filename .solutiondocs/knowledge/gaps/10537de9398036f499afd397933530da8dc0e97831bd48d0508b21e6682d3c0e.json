@@ -1,0 +1,20 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T10:29:11.973190Z",
+  "domain": "security",
+  "evidence_ids": [
+    "evidence:dva-assessment-attempt"
+  ],
+  "gap_type": "documentable",
+  "id": "gap:dva-no-advisory-source",
+  "knowledge_gap_type": "unknown_unknown",
+  "owner_ids": [],
+  "priority": "P1",
+  "prompt": "Dependency vulnerability assessment is not_assessed overall: no installed auditor, local advisory database, or approved advisory endpoint was available, so no CVE/GHSA matching was performed for any of the inventoried dependencies. Absence of findings must not be read as absence of risk. Provide an approved scanner/advisory source (or an offline advisory DB) and rerun the advisory refresh.",
+  "record_kind": "gap",
+  "revision": 1,
+  "scope_id": "application:sodeshpa-improved-telegram",
+  "status": "open",
+  "subject": "application:sodeshpa-improved-telegram",
+  "updated_at": "2026-11-24T10:29:11.973190Z"
+}

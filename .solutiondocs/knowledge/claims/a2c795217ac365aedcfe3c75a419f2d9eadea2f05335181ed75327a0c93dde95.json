@@ -1,0 +1,27 @@
+{
+  "applicability": {
+    "source_revision": "c4799b3dfcf94ee66c921f340bda20c43e31a979"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 0.95,
+  "created_at": "2026-11-24T10:13:04.549760Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:fs-d14f6863ffa0189fefeb1b2b"
+  ],
+  "id": "claim:fs-d14f6863ffa0189fefeb1b2b",
+  "predicate": "file_inventory",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-order-web",
+  "status": "candidate",
+  "subject": "code_unit:logon-order-web-src-main-java-com-crh-logon-order-web-forms-auftrag-orderdetailform.java",
+  "updated_at": "2026-11-24T10:13:04.549760Z",
+  "value": {
+    "estimated_tokens": 19935,
+    "file_path": "logon-order-web/src/main/java/com/crh/logon/order/web/forms/auftrag/OrderDetailForm.java",
+    "language": "Java",
+    "loc": 2253,
+    "size_bytes": 79743
+  }
+}

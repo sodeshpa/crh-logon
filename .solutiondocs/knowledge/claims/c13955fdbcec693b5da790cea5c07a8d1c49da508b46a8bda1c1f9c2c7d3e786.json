@@ -1,0 +1,21 @@
+{
+  "applicability": {
+    "source_revision": "f0319b7f1fa2ac8b05f0bc2cbf001eceaa03677eb829c7419fb7413f61391f69"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T10:20:23.597113Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:dsa-869ee0414fcf29e8e17a2a93829d49d4697dea0a"
+  ],
+  "id": "claim:dsa-b7016b27f50c530e6278484e911594c9e1c8032a",
+  "predicate": "data_type",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-webservices",
+  "status": "candidate",
+  "subject": "data_field:vn-vendoraddressesmmssmd-werks",
+  "updated_at": "2026-11-24T10:20:23.597113Z",
+  "value": "varchar2(6 char)"
+}

@@ -1,0 +1,27 @@
+{
+  "applicability": {
+    "source_revision": "c4799b3dfcf94ee66c921f340bda20c43e31a979"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 0.95,
+  "created_at": "2026-11-24T11:27:07.998697Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:fs-c2ae79cafa45ca411f199bea"
+  ],
+  "id": "claim:fs-c2ae79cafa45ca411f199bea",
+  "predicate": "file_inventory",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-security",
+  "status": "candidate",
+  "subject": "code_unit:logon-security-src-main-java-com-crh-logon-security-auth-loginmoduleutil.java",
+  "updated_at": "2026-11-24T11:27:07.998697Z",
+  "value": {
+    "estimated_tokens": 552,
+    "file_path": "logon-security/src/main/java/com/crh/logon/security/auth/LoginModuleUtil.java",
+    "language": "Java",
+    "loc": 78,
+    "size_bytes": 2208
+  }
+}

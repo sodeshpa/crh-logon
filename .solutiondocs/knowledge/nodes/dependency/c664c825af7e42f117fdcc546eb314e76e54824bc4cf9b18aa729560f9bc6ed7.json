@@ -1,0 +1,17 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:49:36.164007Z",
+  "id": "dependency:ant-jar-com.yahoo.platform.yui-yuicompressor-2.4.2",
+  "name": "yuicompressor",
+  "properties": {
+    "dependency_type": "library",
+    "scope": "build",
+    "version": "2.4.2"
+  },
+  "qualified_name": "com.yahoo.platform.yui:yuicompressor@2.4.2",
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "dependency",
+  "updated_at": "2026-11-24T09:49:36.164007Z"
+}

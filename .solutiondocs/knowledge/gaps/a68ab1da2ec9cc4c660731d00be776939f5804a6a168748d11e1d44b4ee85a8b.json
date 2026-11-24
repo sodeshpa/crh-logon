@@ -1,0 +1,19 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:57:53.123932Z",
+  "domain": "build_devops",
+  "evidence_ids": [
+    "evidence:deps-7e8cdb0ec574eb8f1e5b"
+  ],
+  "gap_type": "documentable",
+  "id": "gap:deps-no-lockfile-transitive",
+  "knowledge_gap_type": "unknown_unknown",
+  "owner_ids": [],
+  "priority": "P2",
+  "prompt": "No lock files or resolved dependency trees exist in the repository (Maven resolution via aal-maven with external settings.xml/mpository). Transitive dependency inventory and effective resolved versions are unknown; resolve via the build framework or an offline Maven repository snapshot.",
+  "record_kind": "gap",
+  "revision": 1,
+  "status": "open",
+  "subject": "application:sodeshpa-improved-telegram",
+  "updated_at": "2026-11-24T09:57:53.123932Z"
+}

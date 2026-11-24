@@ -1,0 +1,15 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T10:18:07.792802Z",
+  "id": "data_entity:tlgnt-order-items-to-delete",
+  "name": "TLGNT_ORDER_ITEMS_TO_DELETE",
+  "properties": {
+    "entity_type": "table",
+    "schema": "ulgn"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "data_entity",
+  "updated_at": "2026-11-24T10:18:07.792802Z"
+}

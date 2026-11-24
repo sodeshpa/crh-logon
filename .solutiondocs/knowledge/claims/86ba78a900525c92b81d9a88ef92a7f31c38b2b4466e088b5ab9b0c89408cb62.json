@@ -1,0 +1,30 @@
+{
+  "applicability": {
+    "domain": "organisation",
+    "extraction_phase": 1,
+    "source_revision": "c4799b3dfcf94ee66c921f340bda20c43e31a979"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 0.85,
+  "created_at": "2026-11-24T09:46:43.269899Z",
+  "derivation": "heuristic",
+  "evidence_ids": [
+    "evidence:git-history-authors",
+    "evidence:git-history-files"
+  ],
+  "id": "claim:git-history-bus-factor-logon-persistence",
+  "predicate": "bus_factor",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-persistence",
+  "status": "candidate",
+  "subject": "component:logon-persistence",
+  "updated_at": "2026-11-24T09:46:43.269899Z",
+  "value": {
+    "basis": "sole git author; history flattened to import commit",
+    "bus_factor": 1,
+    "knowledge_concentration_pct": 100,
+    "primary_expert": "actor:sodeshpa",
+    "tracked_files": 1956
+  }
+}

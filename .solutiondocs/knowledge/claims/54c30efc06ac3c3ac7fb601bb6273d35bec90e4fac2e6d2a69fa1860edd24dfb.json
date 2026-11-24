@@ -1,0 +1,21 @@
+{
+  "applicability": {
+    "source_revision": "6905466de23e2cbdff868bc569617b4119b57645d1c166c121eff6d0ed96ed40"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T10:27:28.875935Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:dsa-9679a8dc8357a25e5ef78ed6e1201443e0aae366"
+  ],
+  "id": "claim:dsa-ff201f9318dfd91754e69a93f93ca70694890661",
+  "predicate": "method",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-webservices-client",
+  "status": "candidate",
+  "subject": "api_endpoint:sirocco20-submitmtwappush",
+  "updated_at": "2026-11-24T10:27:28.875935Z",
+  "value": "POST"
+}

@@ -1,0 +1,21 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T10:22:30.890929Z",
+  "id": "code_unit:logon-order-web-src-main-webapp-web-inf-jsp-auftrag-orderspecialpopupclose.jsp",
+  "name": "OrderSpecialPopupClose.jsp",
+  "properties": {
+    "file_path": "logon-order-web/src/main/webapp/WEB-INF/jsp/auftrag/OrderSpecialPopupClose.jsp",
+    "language": "Web/Template",
+    "loc": 21,
+    "metrics": {
+      "loc": 21
+    },
+    "unit_type": "file"
+  },
+  "qualified_name": "logon-order-web/src/main/webapp/WEB-INF/jsp/auftrag/OrderSpecialPopupClose.jsp",
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "code_unit",
+  "updated_at": "2026-11-24T10:22:30.890929Z"
+}

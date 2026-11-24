@@ -1,0 +1,21 @@
+{
+  "applicability": {
+    "source_revision": "0db519bcc23d4b847662a26d59e471f8227e79492e44c5b1694df2641f149ab1"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T10:20:23.597113Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:dsa-ab1aae2b13691a2a41e20759a5989bf37b5bea34"
+  ],
+  "id": "claim:dsa-eb9762b8c12c5426056d62681f12c5d6fa425d83",
+  "predicate": "entity_type",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-persistence",
+  "status": "candidate",
+  "subject": "data_entity:vlgnc-demand-plan-ship-sold",
+  "updated_at": "2026-11-24T10:20:23.597113Z",
+  "value": "view"
+}

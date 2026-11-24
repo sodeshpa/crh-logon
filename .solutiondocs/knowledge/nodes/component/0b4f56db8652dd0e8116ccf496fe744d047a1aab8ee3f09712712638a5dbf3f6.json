@@ -1,0 +1,42 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:43:07.964638Z",
+  "id": "component:logon-webservices-pws-incoming",
+  "name": "logon-webservices-pws-incoming",
+  "properties": {
+    "build_files": [],
+    "estimated_tokens": 182684,
+    "files": 24,
+    "folder": "logon-webservices-pws-incoming",
+    "metrics": {
+      "loc": 13439
+    },
+    "source_files": 3,
+    "source_root": "logon-webservices-pws-incoming",
+    "tech_stack": {
+      "languages": [
+        {
+          "name": "Config",
+          "percentage": 42.42
+        },
+        {
+          "name": "Other",
+          "percentage": 30.58
+        },
+        {
+          "name": "Java",
+          "percentage": 26.62
+        },
+        {
+          "name": "Script",
+          "percentage": 0.37
+        }
+      ]
+    }
+  },
+  "record_kind": "node",
+  "revision": 2,
+  "status": "active",
+  "type": "component",
+  "updated_at": "2026-11-24T13:43:36.779345Z"
+}

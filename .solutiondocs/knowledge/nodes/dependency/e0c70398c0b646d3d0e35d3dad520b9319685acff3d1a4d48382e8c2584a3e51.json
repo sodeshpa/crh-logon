@@ -1,0 +1,17 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:49:36.164007Z",
+  "id": "dependency:ant-jar-org.jvnet.hyperjaxb3-hyperjaxb3-tools-0.2.ga",
+  "name": "hyperjaxb3-tools",
+  "properties": {
+    "dependency_type": "library",
+    "scope": "build",
+    "version": "0.2.GA"
+  },
+  "qualified_name": "org.jvnet.hyperjaxb3:hyperjaxb3-tools@0.2.GA",
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "dependency",
+  "updated_at": "2026-11-24T09:49:36.164007Z"
+}

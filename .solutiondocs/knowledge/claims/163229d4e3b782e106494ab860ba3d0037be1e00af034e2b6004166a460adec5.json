@@ -1,0 +1,21 @@
+{
+  "applicability": {
+    "source_revision": "a14299be71dbf5dcffeb7bccd20d9591ff62471441062cb4930a7b875603afd1"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T10:24:05.985709Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:dsa-97d9b7bc7a0721968788ef4a177b109f71794fad"
+  ],
+  "id": "claim:dsa-5880ecc8e11d0fd63d959ad7ede7bb0f0d88f742",
+  "predicate": "plsql_package",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-persistence",
+  "status": "candidate",
+  "subject": "code_unit:logon-persistence-plsql-initialize-common-division",
+  "updated_at": "2026-11-24T10:24:05.985709Z",
+  "value": "INITIALIZE_COMMON_DIVISION"
+}

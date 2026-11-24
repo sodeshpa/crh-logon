@@ -1,0 +1,30 @@
+{
+  "applicability": {
+    "source_revision": "b65484483903039583cc2f1b36a492bb8d134609"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 0.95,
+  "created_at": "2026-11-24T09:57:53.123932Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:deps-bf1a39885507bc5a4022"
+  ],
+  "id": "claim:deps-b38c0e81f0271be3ce9dd525",
+  "predicate": "tech_stack.frameworks",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-persistence",
+  "status": "candidate",
+  "subject": "component:logon-persistence",
+  "updated_at": "2026-11-24T09:57:53.123932Z",
+  "value": [
+    {
+      "name": "Hibernate ORM/EntityManager",
+      "version": "4.2.1.Final"
+    },
+    {
+      "name": "JPA 2.0 API",
+      "version": "1.0.1.Final"
+    }
+  ]
+}

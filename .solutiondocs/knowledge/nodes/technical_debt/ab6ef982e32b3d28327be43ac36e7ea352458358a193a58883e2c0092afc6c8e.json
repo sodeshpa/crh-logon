@@ -1,0 +1,27 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:57:53.123932Z",
+  "id": "technical_debt:deps-legacy-eol-ansible-python-pins",
+  "name": "Outdated pinned Ansible toolchain (Python 2-era packages)",
+  "properties": {
+    "business_impact": "Pinned Python packages are old (requirements include Python 2 backports) and need review for supported versions.",
+    "category": "operability",
+    "effort_size": "M",
+    "extracted_indicators": [
+      "ansible==2.8.6",
+      "PyYAML==3.13",
+      "paramiko==2.4.2",
+      "cryptography==2.3.1",
+      "enum34/ipaddress backports"
+    ],
+    "resolution_approach": null,
+    "severity": "medium",
+    "title": "Outdated pinned Ansible toolchain (Python 2-era packages)"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "scope_id": "application:sodeshpa-improved-telegram",
+  "status": "active",
+  "type": "technical_debt",
+  "updated_at": "2026-11-24T09:57:53.123932Z"
+}

@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:59:54.408851Z",
+  "id": "source_artifact:dsa-logon-persistence-etc-sql-auto-init-shipto-sarea-restr-pkg-sql",
+  "name": "auto_init_shipto_sarea_restr_pkg.sql",
+  "properties": {
+    "location": "logon-persistence/etc/sql/auto_init_shipto_sarea_restr_pkg.sql",
+    "revision": "0506f02c4b3ceadf37936f3684e7ca2a77d41b11097a95b1d93e3cb3ae614980",
+    "source_type": "ddl_sql"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "source_artifact",
+  "updated_at": "2026-11-24T09:59:54.408851Z"
+}

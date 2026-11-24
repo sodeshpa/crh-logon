@@ -1,0 +1,28 @@
+{
+  "applicability": {
+    "source_revision": "37b08712370e807afefb95e7d140e3bd6101e15d"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T09:49:36.164007Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:deps-0f402574815d90065606"
+  ],
+  "id": "claim:deps-ccb59339900ee11ae530728a",
+  "predicate": "declared_coordinates",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-business",
+  "status": "candidate",
+  "subject": "dependency:maven-com.fasterxml.jackson.datatype-jackson-datatype-jsr310-2.10.4",
+  "updated_at": "2026-11-24T09:49:36.164007Z",
+  "value": {
+    "ecosystem": "maven",
+    "group": "com.fasterxml.jackson.datatype",
+    "name": "jackson-datatype-jsr310",
+    "note": "maven scope=compile",
+    "scope": "compile",
+    "version": "2.10.4"
+  }
+}

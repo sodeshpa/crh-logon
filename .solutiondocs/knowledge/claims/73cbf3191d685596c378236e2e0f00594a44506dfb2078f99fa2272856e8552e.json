@@ -1,0 +1,21 @@
+{
+  "applicability": {
+    "source_revision": "568fb62cc499bfcb716fdd4168d2266a10e7b88cc4eb3607d9b68efd621fe86d"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T10:20:23.597113Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:dsa-e3cfd9d20cb7a1d05c6abe57254e2a82110e9078"
+  ],
+  "id": "claim:dsa-e8492da70913af0ea68a839699a781f6acaf7687",
+  "predicate": "entity_type",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-persistence",
+  "status": "candidate",
+  "subject": "data_entity:vlgnc-rep-order-per-plant-mat",
+  "updated_at": "2026-11-24T10:20:23.597113Z",
+  "value": "view"
+}

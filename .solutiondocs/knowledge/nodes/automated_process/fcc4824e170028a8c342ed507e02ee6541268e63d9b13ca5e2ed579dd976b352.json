@@ -1,0 +1,17 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:51:52.064424Z",
+  "id": "automated_process:logon-update-planning-mat-sarea",
+  "name": "update_planning_mat_sarea",
+  "properties": {
+    "process_type": "scheduled_task",
+    "schedule": "59 59 23 31 12 ? 2099",
+    "source_location": "etc/logon-dev.properties",
+    "trigger": "schedule"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "automated_process",
+  "updated_at": "2026-11-24T09:51:52.064424Z"
+}

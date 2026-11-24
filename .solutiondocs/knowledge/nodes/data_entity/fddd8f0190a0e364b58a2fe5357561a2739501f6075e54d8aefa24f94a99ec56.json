@@ -1,0 +1,17 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T10:20:23.597113Z",
+  "id": "data_entity:vlgns-sap-financial-data",
+  "name": "VLGNS_SAP_FINANCIAL_DATA",
+  "properties": {
+    "entity_type": "view",
+    "materialised": false,
+    "purpose": "Provides payer and billto data for a (soldto, shipto) pair used in the order taking and dispokarte screen",
+    "schema": "ulgn"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "data_entity",
+  "updated_at": "2026-11-24T10:20:23.597113Z"
+}

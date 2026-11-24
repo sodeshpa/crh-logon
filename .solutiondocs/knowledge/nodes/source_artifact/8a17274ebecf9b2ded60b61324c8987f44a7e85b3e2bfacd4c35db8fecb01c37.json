@@ -1,0 +1,19 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:59:54.408851Z",
+  "id": "source_artifact:dsa-logon-webservices-etc-wsdl-vehiclenotification-wsdl",
+  "name": "VehicleNotification.wsdl",
+  "properties": {
+    "location": "logon-webservices/etc/wsdl/VehicleNotification.wsdl",
+    "metadata": {
+      "dsa:target_namespace": "http://logon.intranet-che/logon"
+    },
+    "revision": "b28282959a8e1b0f3e57ebe06a232e309ec35c5f02a76e822027ca1a80a0a5ad",
+    "source_type": "wsdl"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "source_artifact",
+  "updated_at": "2026-11-24T09:59:54.408851Z"
+}

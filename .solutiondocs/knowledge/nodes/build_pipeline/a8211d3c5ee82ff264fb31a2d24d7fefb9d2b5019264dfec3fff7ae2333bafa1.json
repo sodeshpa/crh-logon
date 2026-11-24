@@ -1,0 +1,36 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:51:52.064424Z",
+  "id": "build_pipeline:logon-test-build",
+  "name": "Logon Ant test build",
+  "properties": {
+    "build_system": {
+      "build_steps": [
+        {
+          "name": "test-unit"
+        },
+        {
+          "name": "test-integration"
+        },
+        {
+          "name": "test-pmd"
+        },
+        {
+          "name": "test-load"
+        },
+        {
+          "name": "test-pda-workflow"
+        }
+      ],
+      "config_files": [
+        "build-test.xml"
+      ],
+      "tool": "Apache Ant"
+    }
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "build_pipeline",
+  "updated_at": "2026-11-24T09:51:52.064424Z"
+}

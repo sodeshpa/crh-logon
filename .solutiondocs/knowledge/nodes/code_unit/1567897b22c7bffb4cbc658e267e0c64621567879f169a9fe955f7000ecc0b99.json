@@ -1,0 +1,18 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T10:24:05.985709Z",
+  "id": "code_unit:logon-persistence-plsql-log-ids-to-delete",
+  "name": "log_ids_to_delete",
+  "properties": {
+    "file_path": "logon-persistence/etc/sql/bulk_delete_orders.sql",
+    "language": "PL/SQL",
+    "line_start": 63,
+    "signature": "procedure log_ids_to_delete(i_order_number in number)",
+    "unit_type": "function"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "code_unit",
+  "updated_at": "2026-11-24T10:24:05.985709Z"
+}

@@ -1,0 +1,18 @@
+{
+  "agentName": "extract-config-infra",
+  "phase": "phase-1",
+  "status": "completed",
+  "lastUpdate": "2026-11-24T10:10:00Z",
+  "tasks": [{"id": "phase-1-config-infra", "status": "completed"}],
+  "deliverables": {
+    "records_published": {"batch-1": 385, "batch-2": 436},
+    "node_ids": {
+      "build_pipeline": ["build_pipeline:logon-ant-master-build", "build_pipeline:logon-container-deploy", "build_pipeline:logon-test-build", "build_pipeline:logon-ansible-int-deploy", "build_pipeline:build-node-provisioning"],
+      "configuration": ["configuration:logon-build-and-runtime"],
+      "platform_service": ["platform_service:oracle-database", "platform_service:jboss-eap", "platform_service:hornetq-jms", "platform_service:smtp-mail-session", "platform_service:spnego-negotiation", "platform_service:sonarqube-analysis"]
+    },
+    "counts": {"config_item": 25, "setting": 107, "secret_settings": 53, "automated_process": 15, "source_artifact": 32},
+    "work_files": [".solutiondocs/.docgen/work-config-infra/gen.py", "batch-1.json", "batch-2.json"]
+  },
+  "issues": ["reconcile not run for new source artifacts (graph lock contention); kw validate passed"]
+}

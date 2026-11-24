@@ -1,0 +1,17 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:49:36.164007Z",
+  "id": "dependency:external-distribution-org.jboss.security-jboss-negotiation-2.0.3.sp3-brew",
+  "name": "jboss-negotiation",
+  "properties": {
+    "dependency_type": "library",
+    "scope": "runtime",
+    "version": "2.0.3.SP3-brew"
+  },
+  "qualified_name": "org.jboss.security:jboss-negotiation@2.0.3.SP3-brew",
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "dependency",
+  "updated_at": "2026-11-24T09:49:36.164007Z"
+}

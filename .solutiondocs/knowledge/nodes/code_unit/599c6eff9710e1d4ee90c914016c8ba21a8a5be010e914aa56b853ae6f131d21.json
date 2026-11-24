@@ -1,0 +1,21 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T11:27:07.998697Z",
+  "id": "code_unit:logon-simulator-etc-testclient-run-soapui.sh",
+  "name": "run-soapui.sh",
+  "properties": {
+    "file_path": "logon-simulator/etc/testclient/run-soapui.sh",
+    "language": "Script",
+    "loc": 4,
+    "metrics": {
+      "loc": 4
+    },
+    "unit_type": "file"
+  },
+  "qualified_name": "logon-simulator/etc/testclient/run-soapui.sh",
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "code_unit",
+  "updated_at": "2026-11-24T11:27:07.998697Z"
+}

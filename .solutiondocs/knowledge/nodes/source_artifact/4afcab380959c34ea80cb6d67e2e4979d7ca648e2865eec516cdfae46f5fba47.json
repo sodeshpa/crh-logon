@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:59:54.408851Z",
+  "id": "source_artifact:dsa-logon-persistence-etc-sql-patch-old-lh-patches-from-2-6-1-create-table-tlgnc-shipto-sarea-rest-maint-sql",
+  "name": "create_table_tlgnc_shipto_sarea_rest_maint.sql",
+  "properties": {
+    "location": "logon-persistence/etc/sql/patch/old_lh_patches/from_2.6.1/create_table_tlgnc_shipto_sarea_rest_maint.sql",
+    "revision": "d55bbe008f23f321f0d5b8a506375217a3e947830933e0561530f770c9f475cc",
+    "source_type": "ddl_sql"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "source_artifact",
+  "updated_at": "2026-11-24T09:59:54.408851Z"
+}

@@ -1,0 +1,24 @@
+{
+  "applicability": {
+    "source_revision": "c4799b3dfcf94ee66c921f340bda20c43e31a979"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 0.95,
+  "created_at": "2026-11-24T11:27:07.998697Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:fs-79a7c7b1953a992de8e72bfd"
+  ],
+  "id": "claim:fs-rel-79a7c7b1953a992de8e72bfd",
+  "predicate": "contains",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-security",
+  "status": "candidate",
+  "subject": "relationship:fs-contains-79a7c7b1953a992de8e72bfd",
+  "updated_at": "2026-11-24T11:27:07.998697Z",
+  "value": {
+    "container": "component:logon-security",
+    "file_path": "logon-security/src/main/java/com/crh/logon/security/utils/PasswordUtil.java"
+  }
+}

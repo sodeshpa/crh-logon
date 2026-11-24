@@ -1,0 +1,19 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:53:30.031918Z",
+  "id": "setting:config-build-properties--redirect-to-https-terminal",
+  "name": "redirect_to_https.terminal",
+  "properties": {
+    "default_value": "false",
+    "is_connection_string": false,
+    "is_secret": false,
+    "key": "redirect_to_https.terminal",
+    "source_file": "config/build.properties",
+    "value_type": "boolean"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "setting",
+  "updated_at": "2026-11-24T09:53:30.031918Z"
+}

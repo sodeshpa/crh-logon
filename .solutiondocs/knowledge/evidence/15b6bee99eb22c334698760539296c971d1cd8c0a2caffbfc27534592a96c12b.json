@@ -1,0 +1,17 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:49:36.164007Z",
+  "id": "evidence:deps-0c2636e74447f0c9e67a",
+  "locator": {
+    "file": "C:\\Users\\sodeshpa\\.copilot\\repos\\copilot-worktrees\\crh-logon\\sodeshpa-improved-telegram\\config\\build.properties",
+    "section": "line 157 JCAN_SECTOKEN_HOME"
+  },
+  "method": "dependency-manifest",
+  "observed_at": "2026-11-24T09:48:25+00:00",
+  "record_kind": "evidence",
+  "revision": 1,
+  "source_id": "source_artifact:deps-config-build.properties",
+  "source_revision": "880ff571c6531bdd2b51360ac4c8128795063f96",
+  "status": "active",
+  "updated_at": "2026-11-24T09:49:36.164007Z"
+}

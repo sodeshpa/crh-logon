@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "claim_ids": [
+    "claim:dsa-f5ba13ff2898311424adc3a7a89b34586ebcc3a0"
+  ],
+  "created_at": "2026-11-24T10:41:22.508413Z",
+  "from": "data_entity:vehn-vehiclemasterdata",
+  "id": "relationship:dsa-fb66304a90eb05b9bd14f290525473480f2fcbd7",
+  "properties": {},
+  "record_kind": "relationship",
+  "revision": 1,
+  "status": "active",
+  "to": "data_field:vehn-vehiclemasterdata-eqtyp",
+  "type": "contains",
+  "updated_at": "2026-11-24T10:41:22.508413Z"
+}

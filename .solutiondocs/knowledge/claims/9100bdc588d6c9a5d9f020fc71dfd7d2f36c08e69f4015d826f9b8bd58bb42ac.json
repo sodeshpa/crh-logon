@@ -1,0 +1,21 @@
+{
+  "applicability": {
+    "source_revision": "0db519bcc23d4b847662a26d59e471f8227e79492e44c5b1694df2641f149ab1"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T10:20:23.597113Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:dsa-68f7a3b879b6876ff4dbf38ba4afc63917aaf04d"
+  ],
+  "id": "claim:dsa-1e4172d8531db91754ae3cc4f1e7e7062f5a5c56",
+  "predicate": "entity_type",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-persistence",
+  "status": "candidate",
+  "subject": "data_entity:vlgnc-sap-mat-mixdesign",
+  "updated_at": "2026-11-24T10:20:23.597113Z",
+  "value": "view"
+}

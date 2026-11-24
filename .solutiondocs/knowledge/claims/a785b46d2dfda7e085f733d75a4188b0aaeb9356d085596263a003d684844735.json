@@ -1,0 +1,21 @@
+{
+  "applicability": {
+    "source_revision": "5141456baa77f69f624f019942820e5716c112913ef0524f03c8de0d0418f2ac"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T10:18:07.792802Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:dsa-013943f4350bbc4cb477600998cfafcf329d860f"
+  ],
+  "id": "claim:dsa-09b2c5914044f1168fc4ed040891f3320f427c7f",
+  "predicate": "data_type",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-webservices",
+  "status": "candidate",
+  "subject": "data_field:tlgnr-sapimpstatus-tx-sapimpstatus-cd",
+  "updated_at": "2026-11-24T10:18:07.792802Z",
+  "value": "DECIMAL(2)"
+}

@@ -1,0 +1,21 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:57:00.770446Z",
+  "id": "code_unit:logon-common-web-etc-guiproto-tabs-tab2.html",
+  "name": "tab2.html",
+  "properties": {
+    "file_path": "logon-common-web/etc/guiproto/tabs/tab2.html",
+    "language": "Web/Template",
+    "loc": 447,
+    "metrics": {
+      "loc": 447
+    },
+    "unit_type": "file"
+  },
+  "qualified_name": "logon-common-web/etc/guiproto/tabs/tab2.html",
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "code_unit",
+  "updated_at": "2026-11-24T09:57:00.770446Z"
+}

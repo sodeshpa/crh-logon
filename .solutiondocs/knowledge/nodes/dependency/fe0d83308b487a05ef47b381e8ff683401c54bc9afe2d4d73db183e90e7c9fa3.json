@@ -1,0 +1,17 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:49:36.164007Z",
+  "id": "dependency:maven-javax.enterprise-cdi-api-1.0-sp1",
+  "name": "cdi-api",
+  "properties": {
+    "dependency_type": "library",
+    "scope": "compile",
+    "version": "1.0-SP1"
+  },
+  "qualified_name": "javax.enterprise:cdi-api@1.0-SP1",
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "dependency",
+  "updated_at": "2026-11-24T09:49:36.164007Z"
+}

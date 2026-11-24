@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "claim_ids": [
+    "claim:dsa-7c16d12c27fec67900020ed8f12ea332a62c3a2f"
+  ],
+  "created_at": "2026-11-24T10:39:20.993948Z",
+  "from": "data_entity:mn-materialvaluation",
+  "id": "relationship:dsa-def6b66ac18cf92d1e2b938651b67d31448e3a63",
+  "properties": {},
+  "record_kind": "relationship",
+  "revision": 1,
+  "status": "active",
+  "to": "data_field:mn-materialvaluation-hrkft",
+  "type": "contains",
+  "updated_at": "2026-11-24T10:39:20.993948Z"
+}

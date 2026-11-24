@@ -1,0 +1,20 @@
+{
+  "applicability": {
+    "source_revision": "630f4b2c2e5362fb851a82a9b60a0953a3ba42fd84510b1cb23cfb09577bcc60"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 0.95,
+  "created_at": "2026-11-24T09:51:52.064424Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:cfg-d2e3e3db00da55b3348228a763c829bf5ddf7ff8f045f799a2f9629cc0bf40a2"
+  ],
+  "id": "claim:82fd76204f581b8d8bfc51ddf7083aed9d7c2a5df9dc9baf1b6ef7f6378293ac",
+  "predicate": "references",
+  "record_kind": "claim",
+  "revision": 1,
+  "status": "candidate",
+  "subject": "configuration:logon-build-and-runtime",
+  "target": "config_item:logon-business-src-main-resources-meta-inf-persistence-xml",
+  "updated_at": "2026-11-24T09:51:52.064424Z"
+}

@@ -1,0 +1,21 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:59:54.408851Z",
+  "id": "source_artifact:dsa-logon-webservices-etc-xsd-original-vehiclenotification-xsd",
+  "name": "VehicleNotification.xsd",
+  "properties": {
+    "location": "logon-webservices/etc/xsd/original/VehicleNotification.xsd",
+    "metadata": {
+      "dsa:complex_type_count": 8,
+      "dsa:simple_type_count": 45,
+      "dsa:top_level_element_count": 53
+    },
+    "revision": "28ccf221a1a505dd8779edb0271307249b035360a311809d6a6df9601002ac05",
+    "source_type": "xsd"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "source_artifact",
+  "updated_at": "2026-11-24T09:59:54.408851Z"
+}

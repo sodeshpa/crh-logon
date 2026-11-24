@@ -1,0 +1,28 @@
+{
+  "applicability": {
+    "source_revision": "b65484483903039583cc2f1b36a492bb8d134609"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T09:49:36.164007Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:deps-1b0700c4d49b4f67e03e"
+  ],
+  "id": "claim:deps-b310a07e11b8c71cafaa2867",
+  "predicate": "declared_coordinates",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "application:sodeshpa-improved-telegram",
+  "status": "candidate",
+  "subject": "dependency:ant-jar-com.ostermiller-ostermillerutils-1.07.00",
+  "updated_at": "2026-11-24T09:49:36.164007Z",
+  "value": {
+    "ecosystem": "ant-jar",
+    "group": "com.ostermiller",
+    "name": "ostermillerutils",
+    "note": "ant property ostermillerutils.jar -> ${OSTERMILLER_HOME}/ostermillerutils_1_07_00.jar (resolved from external jpository/mpository; not bundled in repo)",
+    "scope": "compile",
+    "version": "1.07.00"
+  }
+}

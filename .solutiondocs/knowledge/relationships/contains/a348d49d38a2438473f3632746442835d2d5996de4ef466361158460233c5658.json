@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "claim_ids": [
+    "claim:dsa-bd53397483262725f27cfaf0fd8b5cf142f31605"
+  ],
+  "created_at": "2026-11-24T11:07:07.476264Z",
+  "from": "component:logon-persistence",
+  "id": "relationship:dsa-90e7719c44e7a8a17575cb0573027458fd8d7e4d",
+  "properties": {},
+  "record_kind": "relationship",
+  "revision": 1,
+  "status": "active",
+  "to": "code_unit:logon-persistence-plsql-update-sequence-start-number",
+  "type": "contains",
+  "updated_at": "2026-11-24T11:07:07.476264Z"
+}

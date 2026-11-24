@@ -1,0 +1,17 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:49:36.164007Z",
+  "id": "dependency:external-distribution-ch.adnovum.jcan-jcan-sectoken-1.2.5.0",
+  "name": "jcan-sectoken",
+  "properties": {
+    "dependency_type": "library",
+    "scope": "compile",
+    "version": "1.2.5.0"
+  },
+  "qualified_name": "ch.adnovum.jcan:jcan-sectoken@1.2.5.0",
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "dependency",
+  "updated_at": "2026-11-24T09:49:36.164007Z"
+}

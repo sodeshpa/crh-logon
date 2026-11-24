@@ -1,0 +1,17 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T10:20:23.597113Z",
+  "id": "data_entity:vlgnc-sdo-onetime-data",
+  "name": "VLGNC_SDO_ONETIME_DATA",
+  "properties": {
+    "entity_type": "view",
+    "materialised": false,
+    "purpose": "View on one-time shipto/soldto addresses stored in single-delivery orders, to be used when cloning an order in Call Center. (Extending VLGNC_ORDER_CREATE for this is not a good idea because we do not need this information when listing orders, but only when cloning.)",
+    "schema": "ulgn"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "data_entity",
+  "updated_at": "2026-11-24T10:20:23.597113Z"
+}

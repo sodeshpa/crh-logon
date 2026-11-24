@@ -1,0 +1,17 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:49:36.164007Z",
+  "id": "dependency:ant-jar-com.aspose-aspose.words-13.9.0.0",
+  "name": "Aspose.Words",
+  "properties": {
+    "dependency_type": "library",
+    "scope": "compile",
+    "version": "13.9.0.0"
+  },
+  "qualified_name": "com.aspose:Aspose.Words@13.9.0.0",
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "dependency",
+  "updated_at": "2026-11-24T09:49:36.164007Z"
+}

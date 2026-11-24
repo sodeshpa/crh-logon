@@ -1,0 +1,25 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T10:27:28.875935Z",
+  "id": "api_endpoint:logonldsinterface-notifications-deleteloadorder",
+  "name": "deleteLoadOrder",
+  "properties": {
+    "method": "POST",
+    "path": "/LogonLDSInterface",
+    "protocol": "SOAP",
+    "request_schema": {
+      "title": "deleteLoadOrderRequest",
+      "type": "object"
+    },
+    "response_schema": {
+      "title": "deleteLoadOrderResponse",
+      "type": "object"
+    }
+  },
+  "qualified_name": "LogonLDSInterfacePort.deleteLoadOrder",
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "api_endpoint",
+  "updated_at": "2026-11-24T10:27:28.875935Z"
+}

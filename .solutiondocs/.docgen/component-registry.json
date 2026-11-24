@@ -1,0 +1,260 @@
+{
+  "$schema": "component-registry",
+  "generated_at": "2026-11-24T09:43:01+00:00",
+  "method": "top-level-directory",
+  "ownership_rule": "A file belongs to the component with the longest matching source_root; files under no source_root are application-scoped.",
+  "components": [
+    {
+      "id": "component:ansible",
+      "name": "ansible",
+      "folder": "ansible",
+      "source_root": "ansible",
+      "build_files": [],
+      "files": 8,
+      "source_files": 1,
+      "estimated_tokens": 462
+    },
+    {
+      "id": "component:etc",
+      "name": "etc",
+      "folder": "etc",
+      "source_root": "etc",
+      "build_files": [],
+      "files": 54,
+      "source_files": 11,
+      "estimated_tokens": 24577
+    },
+    {
+      "id": "component:logon-admin-web",
+      "name": "logon-admin-web",
+      "folder": "logon-admin-web",
+      "source_root": "logon-admin-web",
+      "build_files": [],
+      "files": 561,
+      "source_files": 479,
+      "estimated_tokens": 792364
+    },
+    {
+      "id": "component:logon-ansible",
+      "name": "logon-ansible",
+      "folder": "logon-ansible",
+      "source_root": "logon-ansible",
+      "build_files": [],
+      "files": 28,
+      "source_files": 14,
+      "estimated_tokens": 6485
+    },
+    {
+      "id": "component:logon-business",
+      "name": "logon-business",
+      "folder": "logon-business",
+      "source_root": "logon-business",
+      "build_files": [],
+      "files": 809,
+      "source_files": 751,
+      "estimated_tokens": 2073586
+    },
+    {
+      "id": "component:logon-common",
+      "name": "logon-common",
+      "folder": "logon-common",
+      "source_root": "logon-common",
+      "build_files": [],
+      "files": 168,
+      "source_files": 122,
+      "estimated_tokens": 1639272
+    },
+    {
+      "id": "component:logon-common-web",
+      "name": "logon-common-web",
+      "folder": "logon-common-web",
+      "source_root": "logon-common-web",
+      "build_files": [],
+      "files": 259,
+      "source_files": 211,
+      "estimated_tokens": 547815
+    },
+    {
+      "id": "component:logon-cust-web",
+      "name": "logon-cust-web",
+      "folder": "logon-cust-web",
+      "source_root": "logon-cust-web",
+      "build_files": [],
+      "files": 60,
+      "source_files": 31,
+      "estimated_tokens": 91594
+    },
+    {
+      "id": "component:logon-init-web",
+      "name": "logon-init-web",
+      "folder": "logon-init-web",
+      "source_root": "logon-init-web",
+      "build_files": [],
+      "files": 24,
+      "source_files": 3,
+      "estimated_tokens": 15475
+    },
+    {
+      "id": "component:logon-order-web",
+      "name": "logon-order-web",
+      "folder": "logon-order-web",
+      "source_root": "logon-order-web",
+      "build_files": [],
+      "files": 500,
+      "source_files": 464,
+      "estimated_tokens": 1221949
+    },
+    {
+      "id": "component:logon-pdf-generator",
+      "name": "logon-pdf-generator",
+      "folder": "logon-pdf-generator",
+      "source_root": "logon-pdf-generator",
+      "build_files": [],
+      "files": 44,
+      "source_files": 34,
+      "estimated_tokens": 26709
+    },
+    {
+      "id": "component:logon-persistence",
+      "name": "logon-persistence",
+      "folder": "logon-persistence",
+      "source_root": "logon-persistence",
+      "build_files": [],
+      "files": 1903,
+      "source_files": 1089,
+      "estimated_tokens": 8696155
+    },
+    {
+      "id": "component:logon-security",
+      "name": "logon-security",
+      "folder": "logon-security",
+      "source_root": "logon-security",
+      "build_files": [],
+      "files": 21,
+      "source_files": 11,
+      "estimated_tokens": 26639
+    },
+    {
+      "id": "component:logon-simulator",
+      "name": "logon-simulator",
+      "folder": "logon-simulator",
+      "source_root": "logon-simulator",
+      "build_files": [],
+      "files": 32,
+      "source_files": 4,
+      "estimated_tokens": 2402283
+    },
+    {
+      "id": "component:logon-terminal-web",
+      "name": "logon-terminal-web",
+      "folder": "logon-terminal-web",
+      "source_root": "logon-terminal-web",
+      "build_files": [],
+      "files": 77,
+      "source_files": 48,
+      "estimated_tokens": 81510
+    },
+    {
+      "id": "component:logon-test-load",
+      "name": "logon-test-load",
+      "folder": "logon-test-load",
+      "source_root": "logon-test-load",
+      "build_files": [],
+      "files": 41,
+      "source_files": 24,
+      "estimated_tokens": 47556
+    },
+    {
+      "id": "component:logon-webservices",
+      "name": "logon-webservices",
+      "folder": "logon-webservices",
+      "source_root": "logon-webservices",
+      "build_files": [],
+      "files": 306,
+      "source_files": 138,
+      "estimated_tokens": 1639465
+    },
+    {
+      "id": "component:logon-webservices-client",
+      "name": "logon-webservices-client",
+      "folder": "logon-webservices-client",
+      "source_root": "logon-webservices-client",
+      "build_files": [],
+      "files": 100,
+      "source_files": 31,
+      "estimated_tokens": 334799
+    },
+    {
+      "id": "component:logon-webservices-mop-incoming",
+      "name": "logon-webservices-mop-incoming",
+      "folder": "logon-webservices-mop-incoming",
+      "source_root": "logon-webservices-mop-incoming",
+      "build_files": [],
+      "files": 27,
+      "source_files": 5,
+      "estimated_tokens": 105821
+    },
+    {
+      "id": "component:logon-webservices-oc-incoming",
+      "name": "logon-webservices-oc-incoming",
+      "folder": "logon-webservices-oc-incoming",
+      "source_root": "logon-webservices-oc-incoming",
+      "build_files": [],
+      "files": 15,
+      "source_files": 2,
+      "estimated_tokens": 47295
+    },
+    {
+      "id": "component:logon-webservices-pws-incoming",
+      "name": "logon-webservices-pws-incoming",
+      "folder": "logon-webservices-pws-incoming",
+      "source_root": "logon-webservices-pws-incoming",
+      "build_files": [],
+      "files": 24,
+      "source_files": 3,
+      "estimated_tokens": 182684
+    },
+    {
+      "id": "component:pkg",
+      "name": "pkg",
+      "folder": "pkg",
+      "source_root": "pkg",
+      "build_files": [],
+      "files": 16,
+      "source_files": 3,
+      "estimated_tokens": 24271
+    }
+  ],
+  "application_scope": [
+    {
+      "path": ".",
+      "kind": "other",
+      "files": 8,
+      "estimated_tokens": 2339647
+    },
+    {
+      "path": "config",
+      "kind": "other",
+      "files": 9,
+      "estimated_tokens": 9761
+    },
+    {
+      "path": "container",
+      "kind": "other",
+      "files": 6,
+      "estimated_tokens": 20741
+    },
+    {
+      "path": "logon-application",
+      "kind": "other",
+      "files": 14,
+      "estimated_tokens": 9849
+    },
+    {
+      "path": "test",
+      "kind": "other",
+      "files": 2,
+      "estimated_tokens": 11376
+    }
+  ]
+}

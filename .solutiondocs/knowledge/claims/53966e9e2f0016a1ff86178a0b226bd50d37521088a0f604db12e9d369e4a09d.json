@@ -1,0 +1,28 @@
+{
+  "applicability": {
+    "source_revision": "939012d3fcd67d1e63ca671d1f5b77ea2e27613c"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T09:49:36.164007Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:deps-200b86ab8a7aedb94caf"
+  ],
+  "id": "claim:deps-b60960a9b77cb36a0de9c36d",
+  "predicate": "declared_coordinates",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-security",
+  "status": "candidate",
+  "subject": "dependency:maven-org.jboss.security-jboss-negotiation-spnego-2.2.2.final",
+  "updated_at": "2026-11-24T09:49:36.164007Z",
+  "value": {
+    "ecosystem": "maven",
+    "group": "org.jboss.security",
+    "name": "jboss-negotiation-spnego",
+    "note": "maven scope=provided (container-provided; mapped to compile)",
+    "scope": "compile",
+    "version": "2.2.2.Final"
+  }
+}

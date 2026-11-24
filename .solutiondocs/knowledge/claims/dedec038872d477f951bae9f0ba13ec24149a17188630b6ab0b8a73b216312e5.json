@@ -1,0 +1,21 @@
+{
+  "applicability": {
+    "source_revision": "f0319b7f1fa2ac8b05f0bc2cbf001eceaa03677eb829c7419fb7413f61391f69"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T10:06:43.126484Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:dsa-792555375a2fdc2b19b4bde2254a5333b9a50526"
+  ],
+  "id": "claim:dsa-9ca39ab1707b88e8ea607bcb62ab794350747df9",
+  "predicate": "data_type",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-webservices",
+  "status": "candidate",
+  "subject": "data_field:mn-europeanarticlenumber-msgfn",
+  "updated_at": "2026-11-24T10:06:43.126484Z",
+  "value": "varchar2(3 char)"
+}

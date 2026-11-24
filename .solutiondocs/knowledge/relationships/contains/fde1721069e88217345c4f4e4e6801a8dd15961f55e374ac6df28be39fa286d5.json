@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "claim_ids": [
+    "claim:fs-rel-a2866777ed17834389c069ec"
+  ],
+  "created_at": "2026-11-24T09:57:00.770446Z",
+  "from": "component:logon-common-web",
+  "id": "relationship:fs-contains-a2866777ed17834389c069ec",
+  "properties": {},
+  "record_kind": "relationship",
+  "revision": 1,
+  "status": "active",
+  "to": "code_unit:logon-common-web-etc-guiproto-live_karte.html",
+  "type": "contains",
+  "updated_at": "2026-11-24T09:57:00.770446Z"
+}

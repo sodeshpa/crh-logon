@@ -1,0 +1,17 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:49:36.164007Z",
+  "id": "evidence:deps-f6e51a221c0e45e7f477",
+  "locator": {
+    "file": "C:\\Users\\sodeshpa\\.copilot\\repos\\copilot-worktrees\\crh-logon\\sodeshpa-improved-telegram\\ansible\\roles\\buildnode\\tasks\\main.yml",
+    "section": "yum package firefox-52.2.0"
+  },
+  "method": "dependency-manifest",
+  "observed_at": "2026-11-24T09:48:25+00:00",
+  "record_kind": "evidence",
+  "revision": 1,
+  "source_id": "source_artifact:deps-ansible-roles-buildnode-tasks-main.yml",
+  "source_revision": "78e9e77b09f7cd30237790b91f202a951e3b729c",
+  "status": "active",
+  "updated_at": "2026-11-24T09:49:36.164007Z"
+}

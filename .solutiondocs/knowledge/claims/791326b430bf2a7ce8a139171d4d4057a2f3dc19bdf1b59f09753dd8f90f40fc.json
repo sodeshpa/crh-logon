@@ -1,0 +1,28 @@
+{
+  "applicability": {
+    "source_revision": "37b08712370e807afefb95e7d140e3bd6101e15d"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T09:49:36.164007Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:deps-90a09b7b0dc6db212242"
+  ],
+  "id": "claim:deps-97b6058c37cf9911df4f4bbf",
+  "predicate": "declared_coordinates",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-business",
+  "status": "candidate",
+  "subject": "dependency:maven-io.swagger-swagger-annotations-1.6.2",
+  "updated_at": "2026-11-24T09:49:36.164007Z",
+  "value": {
+    "ecosystem": "maven",
+    "group": "io.swagger",
+    "name": "swagger-annotations",
+    "note": "maven scope=compile",
+    "scope": "compile",
+    "version": "1.6.2"
+  }
+}

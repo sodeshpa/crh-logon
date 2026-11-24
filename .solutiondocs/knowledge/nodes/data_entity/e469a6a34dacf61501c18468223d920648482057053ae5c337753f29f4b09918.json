@@ -1,0 +1,15 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T10:08:37.052779Z",
+  "id": "data_entity:mn-materialorigin",
+  "name": "MN_MATERIALORIGIN",
+  "properties": {
+    "entity_type": "table",
+    "schema": "ulgnsap"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "data_entity",
+  "updated_at": "2026-11-24T10:08:37.052779Z"
+}

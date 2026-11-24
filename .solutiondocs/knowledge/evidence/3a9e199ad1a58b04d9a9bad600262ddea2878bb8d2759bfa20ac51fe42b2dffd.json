@@ -1,0 +1,18 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T10:32:46.275408Z",
+  "id": "evidence:fs-01f2b27661b2eea13b167651",
+  "locator": {
+    "file": "logon-persistence/etc/sql/initialdata/tlgnc_maint_rhythm.sql",
+    "line_end": 131,
+    "line_start": 1
+  },
+  "method": "file-system",
+  "observed_at": "2026-11-24T09:46:55Z",
+  "record_kind": "evidence",
+  "revision": 1,
+  "source_id": "source_artifact:fs-logon-persistence-tree",
+  "source_revision": "c4799b3dfcf94ee66c921f340bda20c43e31a979",
+  "status": "active",
+  "updated_at": "2026-11-24T10:32:46.275408Z"
+}

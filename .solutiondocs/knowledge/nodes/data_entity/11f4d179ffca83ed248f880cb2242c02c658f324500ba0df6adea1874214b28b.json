@@ -1,0 +1,17 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T10:20:23.597113Z",
+  "id": "data_entity:vlgnc-mat-plant-missing",
+  "name": "VLGNC_MAT_PLANT_MISSING",
+  "properties": {
+    "entity_type": "view",
+    "materialised": false,
+    "purpose": "View to show not yet assigned TLGNS_SAP_MATERIAL entries which are contined in TLGNS_SAP_MATERIAL_PLANT but not in TLGNC_MAT_PLANT.",
+    "schema": "ulgn"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "data_entity",
+  "updated_at": "2026-11-24T10:20:23.597113Z"
+}

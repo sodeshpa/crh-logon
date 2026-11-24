@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:59:54.408851Z",
+  "id": "source_artifact:dsa-logon-persistence-etc-sql-refdata-tlgnr-sap-payment-method-sql",
+  "name": "tlgnr_sap_payment_method.sql",
+  "properties": {
+    "location": "logon-persistence/etc/sql/refdata/tlgnr_sap_payment_method.sql",
+    "revision": "031590d1d32e19ebcb0504fbc04c5f6fa0ecfb44287ecf87fb739b2306757f6c",
+    "source_type": "ddl_sql"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "source_artifact",
+  "updated_at": "2026-11-24T09:59:54.408851Z"
+}

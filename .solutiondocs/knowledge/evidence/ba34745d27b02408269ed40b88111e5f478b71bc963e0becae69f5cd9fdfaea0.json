@@ -1,0 +1,18 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T10:36:58.132094Z",
+  "id": "evidence:fs-9b2888932c38b4002c30536f",
+  "locator": {
+    "file": "logon-persistence/etc/sql/patch/templates/update_adnovum_initial_and_testdata.sql",
+    "line_end": 44,
+    "line_start": 1
+  },
+  "method": "file-system",
+  "observed_at": "2026-11-24T09:46:55Z",
+  "record_kind": "evidence",
+  "revision": 1,
+  "source_id": "source_artifact:fs-logon-persistence-tree",
+  "source_revision": "c4799b3dfcf94ee66c921f340bda20c43e31a979",
+  "status": "active",
+  "updated_at": "2026-11-24T10:36:58.132094Z"
+}

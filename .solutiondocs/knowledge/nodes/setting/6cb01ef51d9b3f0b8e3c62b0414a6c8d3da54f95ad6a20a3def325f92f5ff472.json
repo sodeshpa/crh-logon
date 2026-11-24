@@ -1,0 +1,19 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:53:30.031918Z",
+  "id": "setting:config-build-properties--login-domain-int",
+  "name": "login.domain.int",
+  "properties": {
+    "default_value": "SPNEGO",
+    "is_connection_string": false,
+    "is_secret": false,
+    "key": "login.domain.int",
+    "source_file": "config/build.properties",
+    "value_type": "string"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "setting",
+  "updated_at": "2026-11-24T09:53:30.031918Z"
+}

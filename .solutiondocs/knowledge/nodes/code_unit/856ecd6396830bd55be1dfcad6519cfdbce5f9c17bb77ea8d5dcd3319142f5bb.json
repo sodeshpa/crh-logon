@@ -1,0 +1,21 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T11:29:38.590104Z",
+  "id": "code_unit:logon-test-load-scripts-usecases_w_cache-u_order_search.py",
+  "name": "u_order_search.py",
+  "properties": {
+    "file_path": "logon-test-load/scripts/usecases_w_cache/u_order_search.py",
+    "language": "Python",
+    "loc": 153,
+    "metrics": {
+      "loc": 153
+    },
+    "unit_type": "file"
+  },
+  "qualified_name": "logon-test-load/scripts/usecases_w_cache/u_order_search.py",
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "code_unit",
+  "updated_at": "2026-11-24T11:29:38.590104Z"
+}

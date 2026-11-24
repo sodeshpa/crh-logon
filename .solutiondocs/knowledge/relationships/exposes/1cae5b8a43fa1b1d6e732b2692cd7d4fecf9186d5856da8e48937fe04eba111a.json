@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "claim_ids": [
+    "claim:dsa-8f903e9c82710c82a7b68215c1b0e7385f6b8e83"
+  ],
+  "created_at": "2026-11-24T11:07:07.476264Z",
+  "from": "integration_point:external-service-ffax",
+  "id": "relationship:dsa-e57d259fffaf26ac3653a571508ccbb30debc970",
+  "properties": {},
+  "record_kind": "relationship",
+  "revision": 1,
+  "status": "active",
+  "to": "api_endpoint:ffax-sendjob",
+  "type": "exposes",
+  "updated_at": "2026-11-24T11:07:07.476264Z"
+}

@@ -1,0 +1,21 @@
+{
+  "applicability": {
+    "source_revision": "f0319b7f1fa2ac8b05f0bc2cbf001eceaa03677eb829c7419fb7413f61391f69"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T10:20:23.597113Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:dsa-acbb9c64cbb0b35a08191c81071c44a2019034b5"
+  ],
+  "id": "claim:dsa-b5f13edddf03e49c2c282eece526e4cb79e0ae6c",
+  "predicate": "data_type",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-webservices",
+  "status": "candidate",
+  "subject": "data_field:vn-vendorcompanycodedatasmd-guzte",
+  "updated_at": "2026-11-24T10:20:23.597113Z",
+  "value": "varchar2(4 char)"
+}

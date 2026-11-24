@@ -1,0 +1,19 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:59:54.408851Z",
+  "id": "source_artifact:dsa-logon-webservices-client-etc-wsdl-archiveorder-wsdl",
+  "name": "ArchiveOrder.wsdl",
+  "properties": {
+    "location": "logon-webservices-client/etc/wsdl/ArchiveOrder.wsdl",
+    "metadata": {
+      "dsa:target_namespace": "http://tempuri.org/"
+    },
+    "revision": "b5abb52a69eec84f813c10936c98d6f1835abf5e24191a2b7d8e38dcbd8463de",
+    "source_type": "wsdl"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "source_artifact",
+  "updated_at": "2026-11-24T09:59:54.408851Z"
+}

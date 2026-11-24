@@ -1,0 +1,28 @@
+{
+  "applicability": {
+    "source_revision": "880ff571c6531bdd2b51360ac4c8128795063f96"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T09:49:36.164007Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:deps-2a417c222a87ec864d7e"
+  ],
+  "id": "claim:deps-09530acd8f379ca29420b3a1",
+  "predicate": "declared_coordinates",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "application:sodeshpa-improved-telegram",
+  "status": "candidate",
+  "subject": "dependency:external-distribution-commons-dbcp-commons-dbcp-1.2.1",
+  "updated_at": "2026-11-24T09:49:36.164007Z",
+  "value": {
+    "ecosystem": "external-distribution",
+    "group": "commons-dbcp",
+    "name": "commons-dbcp",
+    "note": "COMMONS_DBCP_HOME",
+    "scope": "compile",
+    "version": "1.2.1"
+  }
+}

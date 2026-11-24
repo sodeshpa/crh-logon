@@ -1,0 +1,22 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:51:52.064424Z",
+  "id": "config_item:logon-ansible-group-vars-tmpl-logonebm1",
+  "name": "logon-ansible/group_vars_tmpl/logonebm1",
+  "properties": {
+    "contains_secrets": false,
+    "environment_specific": false,
+    "environments": [
+      "int"
+    ],
+    "file_path": "logon-ansible/group_vars_tmpl/logonebm1",
+    "format": "yaml",
+    "purpose": "deployment",
+    "version_controlled": true
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "config_item",
+  "updated_at": "2026-11-24T09:51:52.064424Z"
+}

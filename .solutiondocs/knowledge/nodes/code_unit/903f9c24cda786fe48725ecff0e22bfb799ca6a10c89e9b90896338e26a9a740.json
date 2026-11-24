@@ -1,0 +1,21 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T11:32:18.902642Z",
+  "id": "code_unit:logon-webservices-src-main-java-com-crh-logon-persistence-entities-sapdata-materialsalesdata.java",
+  "name": "MaterialSalesData.java",
+  "properties": {
+    "file_path": "logon-webservices/src/main/java/com/crh/logon/persistence/entities/sapdata/MaterialSalesData.java",
+    "language": "Java",
+    "loc": 2203,
+    "metrics": {
+      "loc": 2203
+    },
+    "unit_type": "file"
+  },
+  "qualified_name": "logon-webservices/src/main/java/com/crh/logon/persistence/entities/sapdata/MaterialSalesData.java",
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "code_unit",
+  "updated_at": "2026-11-24T11:32:18.902642Z"
+}

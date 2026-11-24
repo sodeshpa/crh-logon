@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:59:54.408851Z",
+  "id": "source_artifact:dsa-logon-persistence-etc-sql-patch-patch-load-order-sequences-c2-sql",
+  "name": "patch_load_order_sequences_c2.sql",
+  "properties": {
+    "location": "logon-persistence/etc/sql/patch/patch_load_order_sequences_c2.sql",
+    "revision": "541bac58d190e415fcdafdf162bcbfc13ae24ea32605d5de53b791a56a5f6c9e",
+    "source_type": "ddl_sql"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "source_artifact",
+  "updated_at": "2026-11-24T09:59:54.408851Z"
+}

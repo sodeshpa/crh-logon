@@ -1,0 +1,21 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:57:00.770446Z",
+  "id": "code_unit:logon-common-web-etc-guiproto-web_bestellung_lose.html",
+  "name": "web_bestellung_lose.html",
+  "properties": {
+    "file_path": "logon-common-web/etc/guiproto/web_bestellung_lose.html",
+    "language": "Web/Template",
+    "loc": 349,
+    "metrics": {
+      "loc": 349
+    },
+    "unit_type": "file"
+  },
+  "qualified_name": "logon-common-web/etc/guiproto/web_bestellung_lose.html",
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "code_unit",
+  "updated_at": "2026-11-24T09:57:00.770446Z"
+}

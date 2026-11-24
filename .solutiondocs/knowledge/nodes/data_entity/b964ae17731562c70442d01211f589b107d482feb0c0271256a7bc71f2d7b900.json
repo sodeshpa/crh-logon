@@ -1,0 +1,17 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T10:20:23.597113Z",
+  "id": "data_entity:vlgnc-oc-get-orders-view",
+  "name": "VLGNC_OC_GET_ORDERS_VIEW",
+  "properties": {
+    "entity_type": "view",
+    "materialised": false,
+    "purpose": "View for orders sent in response for OC getOrders method.",
+    "schema": "ulgn"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "data_entity",
+  "updated_at": "2026-11-24T10:20:23.597113Z"
+}

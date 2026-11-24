@@ -1,0 +1,21 @@
+{
+  "applicability": {
+    "source_revision": "946f42389985a9547d4b7fcc434732cf8cd2170e9a7d896f96957adc9f239502"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T10:24:05.985709Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:dsa-88397e1be3e4fe24433ddb0fe724129826cfc111"
+  ],
+  "id": "claim:dsa-040c068911d0f3388e563e2e078c7bef419a41ad",
+  "predicate": "plsql_function",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-persistence",
+  "status": "candidate",
+  "subject": "code_unit:logon-persistence-plsql-getrolesstring",
+  "updated_at": "2026-11-24T10:24:05.985709Z",
+  "value": "getRolesString"
+}

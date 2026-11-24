@@ -1,0 +1,21 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T10:13:04.549760Z",
+  "id": "code_unit:logon-order-web-src-main-java-com-crh-logon-order-web-actions-dispo-lkwpopupaction.java",
+  "name": "LKWPopupAction.java",
+  "properties": {
+    "file_path": "logon-order-web/src/main/java/com/crh/logon/order/web/actions/dispo/LKWPopupAction.java",
+    "language": "Java",
+    "loc": 123,
+    "metrics": {
+      "loc": 123
+    },
+    "unit_type": "file"
+  },
+  "qualified_name": "logon-order-web/src/main/java/com/crh/logon/order/web/actions/dispo/LKWPopupAction.java",
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "code_unit",
+  "updated_at": "2026-11-24T10:13:04.549760Z"
+}

@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:49:36.164007Z",
+  "id": "source_artifact:deps-logon-security-build-deps.xml",
+  "name": "logon-security/build-deps.xml",
+  "properties": {
+    "location": "C:\\Users\\sodeshpa\\.copilot\\repos\\copilot-worktrees\\crh-logon\\sodeshpa-improved-telegram\\logon-security\\build-deps.xml",
+    "revision": "939012d3fcd67d1e63ca671d1f5b77ea2e27613c",
+    "source_type": "build_manifest"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "source_artifact",
+  "updated_at": "2026-11-24T09:49:36.164007Z"
+}

@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "claim_ids": [
+    "claim:fs-rel-b6adc2d6a9b3a70ecd669c5c"
+  ],
+  "created_at": "2026-11-24T10:25:45.372030Z",
+  "from": "component:logon-order-web",
+  "id": "relationship:fs-contains-b6adc2d6a9b3a70ecd669c5c",
+  "properties": {},
+  "record_kind": "relationship",
+  "revision": 1,
+  "status": "active",
+  "to": "code_unit:logon-order-web-src-main-webapp-web-inf-jsp-bimodalrailcarmonitoring-bimodalrailcarmonitoringresultsparttile.jsp",
+  "type": "contains",
+  "updated_at": "2026-11-24T10:25:45.372030Z"
+}

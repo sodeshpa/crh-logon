@@ -1,0 +1,17 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T10:04:21.856768Z",
+  "id": "evidence:dsa-24942209d1975de802362b6c169109a6d75730ee",
+  "locator": {
+    "file": "logon-persistence/etc/sql/custom_views.sql",
+    "line": 7148
+  },
+  "method": "ddl-parse",
+  "observed_at": "2026-11-24T09:49:32Z",
+  "record_kind": "evidence",
+  "revision": 1,
+  "source_id": "source_artifact:dsa-logon-persistence-etc-sql-custom-views-sql",
+  "source_revision": "0db519bcc23d4b847662a26d59e471f8227e79492e44c5b1694df2641f149ab1",
+  "status": "active",
+  "updated_at": "2026-11-24T10:04:21.856768Z"
+}

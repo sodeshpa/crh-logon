@@ -1,0 +1,44 @@
+{
+  "applicability": {
+    "source_revision": "c2f096c377bafac62102650ab6980e51bbfad6bc"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 0.9,
+  "created_at": "2026-11-24T10:29:11.973190Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:dva-assessment-attempt"
+  ],
+  "id": "claim:dva-assessment-4dabb0224a4da172",
+  "predicate": "dependency_vulnerability_assessment",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-init-web",
+  "status": "candidate",
+  "subject": "component:logon-init-web",
+  "updated_at": "2026-11-24T10:29:11.973190Z",
+  "value": {
+    "advisory_source": null,
+    "assessed_at": "2026-11-24T10:20:06+00:00",
+    "database_freshness": "unknown",
+    "dependency_ids": [
+      "dependency:maven-ch.adnovum.jcan-log--jcan-log.adntrace.name--1.8.3.0",
+      "dependency:maven-org.jboss.spec.javax.ejb-jboss-ejb-api_3.1_spec-1.0.2.final"
+    ],
+    "direct_dependency_count": 2,
+    "ecosystem": "maven",
+    "finding_count": 0,
+    "interpretation": "zero findings recorded because no assessment ran; this is not evidence of absence of vulnerabilities",
+    "limitations": [
+      "No approved ecosystem auditor (npm audit, pip-audit, OSV-Scanner, OWASP Dependency-Check, trivy/grype, dotnet) applicable or installed for these ecosystems",
+      "No local OSV/GHSA/NVD advisory database or existing CI scanner report found; advisory database freshness unknown",
+      "No engagement-approved advisory endpoint established; private inventory not sent to external services",
+      "No lockfile or resolved dependency tree: transitive dependencies not covered",
+      "Direct declared coordinates only; many Ant jars originate from an external jpository"
+    ],
+    "outcome": "not_assessed",
+    "reachability_exploitability": "not assessed",
+    "scanner": null,
+    "transitive_coverage": "none"
+  }
+}

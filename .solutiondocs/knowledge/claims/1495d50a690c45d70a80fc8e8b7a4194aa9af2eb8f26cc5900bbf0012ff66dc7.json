@@ -1,0 +1,27 @@
+{
+  "applicability": {
+    "source_revision": "c4799b3dfcf94ee66c921f340bda20c43e31a979"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 0.95,
+  "created_at": "2026-11-24T09:54:50.032192Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:fs-6914b66785baa49e6c4f90fb"
+  ],
+  "id": "claim:fs-6914b66785baa49e6c4f90fb",
+  "predicate": "file_inventory",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-business",
+  "status": "candidate",
+  "subject": "code_unit:logon-business-src-main-java-com-crh-logon-business-stores-domain-archivinglogstore.java",
+  "updated_at": "2026-11-24T09:54:50.032192Z",
+  "value": {
+    "estimated_tokens": 593,
+    "file_path": "logon-business/src/main/java/com/crh/logon/business/stores/domain/ArchivingLogStore.java",
+    "language": "Java",
+    "loc": 67,
+    "size_bytes": 2372
+  }
+}

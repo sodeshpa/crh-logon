@@ -1,0 +1,21 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T10:25:45.372030Z",
+  "id": "code_unit:logon-order-web-src-main-webapp-web-inf-jsp-bestellung-singledeliveryorderpopup1tile.jsp",
+  "name": "SingleDeliveryOrderPopup1Tile.jsp",
+  "properties": {
+    "file_path": "logon-order-web/src/main/webapp/WEB-INF/jsp/bestellung/SingleDeliveryOrderPopup1Tile.jsp",
+    "language": "Web/Template",
+    "loc": 167,
+    "metrics": {
+      "loc": 167
+    },
+    "unit_type": "file"
+  },
+  "qualified_name": "logon-order-web/src/main/webapp/WEB-INF/jsp/bestellung/SingleDeliveryOrderPopup1Tile.jsp",
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "code_unit",
+  "updated_at": "2026-11-24T10:25:45.372030Z"
+}

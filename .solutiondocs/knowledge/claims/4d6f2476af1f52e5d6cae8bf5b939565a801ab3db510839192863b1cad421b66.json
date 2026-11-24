@@ -1,0 +1,28 @@
+{
+  "applicability": {
+    "source_revision": "880ff571c6531bdd2b51360ac4c8128795063f96"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T09:49:36.164007Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:deps-c5e3c1cf4532799b9a02"
+  ],
+  "id": "claim:deps-8731d55b423ec40085d2190f",
+  "predicate": "declared_coordinates",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "application:sodeshpa-improved-telegram",
+  "status": "candidate",
+  "subject": "dependency:external-distribution-org.apache.ftpserver-apache-ftpserver-1.0.2",
+  "updated_at": "2026-11-24T09:49:36.164007Z",
+  "value": {
+    "ecosystem": "external-distribution",
+    "group": "org.apache.ftpserver",
+    "name": "apache-ftpserver",
+    "note": "APACHE_FTPSERVER_HOME",
+    "scope": "test",
+    "version": "1.0.2"
+  }
+}

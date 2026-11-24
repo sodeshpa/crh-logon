@@ -1,0 +1,21 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:58:39.080022Z",
+  "id": "code_unit:logon-common-web-src-main-java-com-crh-logon-web-utils-checkboxdropdownentity.java",
+  "name": "CheckboxDropdownEntity.java",
+  "properties": {
+    "file_path": "logon-common-web/src/main/java/com/crh/logon/web/utils/CheckboxDropdownEntity.java",
+    "language": "Java",
+    "loc": 90,
+    "metrics": {
+      "loc": 90
+    },
+    "unit_type": "file"
+  },
+  "qualified_name": "logon-common-web/src/main/java/com/crh/logon/web/utils/CheckboxDropdownEntity.java",
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "code_unit",
+  "updated_at": "2026-11-24T09:58:39.080022Z"
+}

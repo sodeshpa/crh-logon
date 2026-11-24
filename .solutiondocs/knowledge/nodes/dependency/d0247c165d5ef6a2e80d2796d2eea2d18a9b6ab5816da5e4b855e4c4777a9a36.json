@@ -1,0 +1,17 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:49:36.164007Z",
+  "id": "dependency:maven-ch.adnovum.jcan-log--jcan-log.adntrace.name--1.8.3.0",
+  "name": "${jcan-log.adntrace.name}",
+  "properties": {
+    "dependency_type": "library",
+    "scope": "compile",
+    "version": "1.8.3.0"
+  },
+  "qualified_name": "ch.adnovum.jcan-log:${jcan-log.adntrace.name}@1.8.3.0",
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "dependency",
+  "updated_at": "2026-11-24T09:49:36.164007Z"
+}

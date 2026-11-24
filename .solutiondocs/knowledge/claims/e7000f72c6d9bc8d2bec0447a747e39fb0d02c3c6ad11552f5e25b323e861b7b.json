@@ -1,0 +1,21 @@
+{
+  "applicability": {
+    "source_revision": "f0319b7f1fa2ac8b05f0bc2cbf001eceaa03677eb829c7419fb7413f61391f69"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T10:11:18.546676Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:dsa-a1deee33f86820e2c519d4ef4745b62606093060"
+  ],
+  "id": "claim:dsa-5ff96d20c2dfa864ac364496d1db4c06fa62f063",
+  "predicate": "entity_type",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-webservices",
+  "status": "candidate",
+  "subject": "data_entity:mn-materialplantdata-materia-1",
+  "updated_at": "2026-11-24T10:11:18.546676Z",
+  "value": "table"
+}

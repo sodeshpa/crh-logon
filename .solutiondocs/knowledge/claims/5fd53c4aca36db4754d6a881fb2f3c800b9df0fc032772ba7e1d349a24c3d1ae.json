@@ -1,0 +1,27 @@
+{
+  "applicability": {
+    "source_revision": "c4799b3dfcf94ee66c921f340bda20c43e31a979"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 0.95,
+  "created_at": "2026-11-24T09:58:39.080022Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:fs-a2767da9e769bc05a5cb8986"
+  ],
+  "id": "claim:fs-a2767da9e769bc05a5cb8986",
+  "predicate": "file_inventory",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-common-web",
+  "status": "candidate",
+  "subject": "code_unit:logon-common-web-src-main-webapp-error500.jsp",
+  "updated_at": "2026-11-24T09:58:39.080022Z",
+  "value": {
+    "estimated_tokens": 29,
+    "file_path": "logon-common-web/src/main/webapp/error500.jsp",
+    "language": "Web/Template",
+    "loc": 3,
+    "size_bytes": 116
+  }
+}

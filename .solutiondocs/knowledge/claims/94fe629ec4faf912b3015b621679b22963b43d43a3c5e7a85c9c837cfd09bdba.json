@@ -1,0 +1,21 @@
+{
+  "applicability": {
+    "source_revision": "511118dbe8def23c0b193b737ce0774da92a6073f0b3f2025981240fece13c29"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T10:24:05.985709Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:dsa-a0da0dcad0e8e2b44c3ec2e608a5f988f0609eee"
+  ],
+  "id": "claim:dsa-97e72ef57220c1706a27bc2d9920bd4de075ef13",
+  "predicate": "plsql_function",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-persistence",
+  "status": "candidate",
+  "subject": "code_unit:logon-persistence-plsql-is-order-removable",
+  "updated_at": "2026-11-24T10:24:05.985709Z",
+  "value": "is_order_removable"
+}

@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "claim_ids": [
+    "claim:dsa-7451bbc9c942031fe9d774856ef66cae90598ee1"
+  ],
+  "created_at": "2026-11-24T10:41:22.508413Z",
+  "from": "data_store:logon-main-database",
+  "id": "relationship:dsa-5fb63867227344a1582e01b4e1ab2d406990d092",
+  "properties": {},
+  "record_kind": "relationship",
+  "revision": 1,
+  "status": "active",
+  "to": "data_entity:vlgnc-location-stations-in-use",
+  "type": "contains",
+  "updated_at": "2026-11-24T10:41:22.508413Z"
+}

@@ -1,0 +1,21 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:54:50.032192Z",
+  "id": "code_unit:logon-business-src-test-integration-com-crh-logon-business-services-interfaces-sapcontracttestdataservice.java",
+  "name": "SapContractTestDataService.java",
+  "properties": {
+    "file_path": "logon-business/src/test/integration/com/crh/logon/business/services/interfaces/SapContractTestDataService.java",
+    "language": "Java",
+    "loc": 36,
+    "metrics": {
+      "loc": 36
+    },
+    "unit_type": "file"
+  },
+  "qualified_name": "logon-business/src/test/integration/com/crh/logon/business/services/interfaces/SapContractTestDataService.java",
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "code_unit",
+  "updated_at": "2026-11-24T09:54:50.032192Z"
+}

@@ -1,0 +1,21 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:54:50.032192Z",
+  "id": "code_unit:logon-business-src-main-java-com-crh-logon-business-stores-dictionaries-outputdocumenttypestore.java",
+  "name": "OutputDocumentTypeStore.java",
+  "properties": {
+    "file_path": "logon-business/src/main/java/com/crh/logon/business/stores/dictionaries/OutputDocumentTypeStore.java",
+    "language": "Java",
+    "loc": 39,
+    "metrics": {
+      "loc": 39
+    },
+    "unit_type": "file"
+  },
+  "qualified_name": "logon-business/src/main/java/com/crh/logon/business/stores/dictionaries/OutputDocumentTypeStore.java",
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "code_unit",
+  "updated_at": "2026-11-24T09:54:50.032192Z"
+}

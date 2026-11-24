@@ -1,0 +1,17 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:49:36.164007Z",
+  "id": "dependency:ant-jar-eviware-ext-xmlbeans-1.2",
+  "name": "ext-xmlbeans",
+  "properties": {
+    "dependency_type": "library",
+    "scope": "test",
+    "version": "1.2"
+  },
+  "qualified_name": "eviware:ext-xmlbeans@1.2",
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "dependency",
+  "updated_at": "2026-11-24T09:49:36.164007Z"
+}

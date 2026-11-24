@@ -1,0 +1,21 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T11:29:38.590104Z",
+  "id": "code_unit:logon-webservices-pws-incoming-src-main-java-com-crh-logon-pws-webservices-pwseventconsumer.java",
+  "name": "PWSEventConsumer.java",
+  "properties": {
+    "file_path": "logon-webservices-pws-incoming/src/main/java/com/crh/logon/pws/webservices/PWSEventConsumer.java",
+    "language": "Java",
+    "loc": 448,
+    "metrics": {
+      "loc": 448
+    },
+    "unit_type": "file"
+  },
+  "qualified_name": "logon-webservices-pws-incoming/src/main/java/com/crh/logon/pws/webservices/PWSEventConsumer.java",
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "code_unit",
+  "updated_at": "2026-11-24T11:29:38.590104Z"
+}

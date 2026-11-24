@@ -1,0 +1,17 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T10:20:23.597113Z",
+  "id": "data_entity:vlgnc-shipping-stat",
+  "name": "VLGNC_SHIPPING_STAT",
+  "properties": {
+    "entity_type": "view",
+    "materialised": false,
+    "purpose": "Contains necessary information for fetching statistics on terminal screen.",
+    "schema": "ulgn"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "data_entity",
+  "updated_at": "2026-11-24T10:20:23.597113Z"
+}

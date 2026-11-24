@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:59:54.408851Z",
+  "id": "source_artifact:dsa-logon-webservices-etc-entities-11-create-reftables-sql",
+  "name": "11_create_reftables.sql",
+  "properties": {
+    "location": "logon-webservices/etc/entities/11_create_reftables.sql",
+    "revision": "5141456baa77f69f624f019942820e5716c112913ef0524f03c8de0d0418f2ac",
+    "source_type": "ddl_sql"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "source_artifact",
+  "updated_at": "2026-11-24T09:59:54.408851Z"
+}

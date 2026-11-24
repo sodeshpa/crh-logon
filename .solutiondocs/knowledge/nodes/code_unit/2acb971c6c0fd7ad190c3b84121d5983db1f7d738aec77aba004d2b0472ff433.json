@@ -1,0 +1,21 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:48:25.227887Z",
+  "id": "code_unit:logon-ansible-files-unzip-packages.ps1",
+  "name": "unzip-packages.ps1",
+  "properties": {
+    "file_path": "logon-ansible/files/unzip-packages.ps1",
+    "language": "Script",
+    "loc": 34,
+    "metrics": {
+      "loc": 34
+    },
+    "unit_type": "file"
+  },
+  "qualified_name": "logon-ansible/files/unzip-packages.ps1",
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "code_unit",
+  "updated_at": "2026-11-24T09:48:25.227887Z"
+}

@@ -1,0 +1,21 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:58:39.080022Z",
+  "id": "code_unit:logon-common-web-src-main-java-com-crh-logon-web-beans-pwdpolicybean.java",
+  "name": "PwdPolicyBean.java",
+  "properties": {
+    "file_path": "logon-common-web/src/main/java/com/crh/logon/web/beans/PwdPolicyBean.java",
+    "language": "Java",
+    "loc": 414,
+    "metrics": {
+      "loc": 414
+    },
+    "unit_type": "file"
+  },
+  "qualified_name": "logon-common-web/src/main/java/com/crh/logon/web/beans/PwdPolicyBean.java",
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "code_unit",
+  "updated_at": "2026-11-24T09:58:39.080022Z"
+}

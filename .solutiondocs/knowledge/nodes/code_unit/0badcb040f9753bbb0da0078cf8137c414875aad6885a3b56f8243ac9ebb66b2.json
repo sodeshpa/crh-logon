@@ -1,0 +1,21 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T11:29:38.590104Z",
+  "id": "code_unit:logon-webservices-oc-incoming-src-main-java-com-crh-logon-logon_oc_interface-webservices-logonocinterfaceconsumer.java",
+  "name": "LogonOCInterfaceConsumer.java",
+  "properties": {
+    "file_path": "logon-webservices-oc-incoming/src/main/java/com/crh/logon/logon_oc_interface/webservices/LogonOCInterfaceConsumer.java",
+    "language": "Java",
+    "loc": 973,
+    "metrics": {
+      "loc": 973
+    },
+    "unit_type": "file"
+  },
+  "qualified_name": "logon-webservices-oc-incoming/src/main/java/com/crh/logon/logon_oc_interface/webservices/LogonOCInterfaceConsumer.java",
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "code_unit",
+  "updated_at": "2026-11-24T11:29:38.590104Z"
+}

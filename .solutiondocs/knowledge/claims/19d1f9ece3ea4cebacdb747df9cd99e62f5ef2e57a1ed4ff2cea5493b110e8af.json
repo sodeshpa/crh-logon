@@ -1,0 +1,28 @@
+{
+  "applicability": {
+    "source_revision": "c2f096c377bafac62102650ab6980e51bbfad6bc"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T09:49:36.164007Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:deps-a3b80472f46d949d0f8f"
+  ],
+  "id": "claim:deps-1349a310d4b51212023c27b1",
+  "predicate": "declared_coordinates",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-admin-web",
+  "status": "candidate",
+  "subject": "dependency:maven-javax.mail-mail-1.4.4",
+  "updated_at": "2026-11-24T09:49:36.164007Z",
+  "value": {
+    "ecosystem": "maven",
+    "group": "javax.mail",
+    "name": "mail",
+    "note": "maven scope=provided (container-provided; mapped to compile)",
+    "scope": "compile",
+    "version": "1.4.4"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "applicability": {
+    "source_revision": "c4799b3dfcf94ee66c921f340bda20c43e31a979"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 0.95,
+  "created_at": "2026-11-24T11:10:40.240238Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:fs-c4677ddbb866565fdb8acfb9"
+  ],
+  "id": "claim:fs-c4677ddbb866565fdb8acfb9",
+  "predicate": "file_inventory",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-persistence",
+  "status": "candidate",
+  "subject": "code_unit:logon-persistence-src-main-java-ch-nevis-gdi-jpa-filter-inexpression.java",
+  "updated_at": "2026-11-24T11:10:40.240238Z",
+  "value": {
+    "estimated_tokens": 1047,
+    "file_path": "logon-persistence/src/main/java/ch/nevis/gdi/jpa/filter/InExpression.java",
+    "language": "Java",
+    "loc": 163,
+    "size_bytes": 4190
+  }
+}

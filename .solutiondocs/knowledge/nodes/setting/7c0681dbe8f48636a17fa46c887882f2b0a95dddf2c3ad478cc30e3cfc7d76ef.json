@@ -1,0 +1,18 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:53:30.031918Z",
+  "id": "setting:etc-logon-nightly-properties--providerurl",
+  "name": "providerurl",
+  "properties": {
+    "is_connection_string": false,
+    "is_secret": false,
+    "key": "providerurl",
+    "source_file": "etc/logon-nightly.properties",
+    "value_type": "string"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "setting",
+  "updated_at": "2026-11-24T09:53:30.031918Z"
+}

@@ -1,0 +1,111 @@
+{
+    "created_at":  "2026-11-24T09:40:43.3311943Z",
+    "additional_context":  {
+                               "free_text":  "",
+                               "stakeholder_notes":  "",
+                               "technology_notes":  "",
+                               "known_constraints":  ""
+                           },
+    "engagement_id":  "b48e4e68-d2b7-4570-9f84-5277cce3b580",
+    "updated_at":  "2026-11-24T09:40:43.3311943Z",
+    "phases":  {
+                   "validate":  false,
+                   "modernization_strategy":  false,
+                   "decide":  false,
+                   "transform":  false,
+                   "elicit":  true,
+                   "part3_documentation":  true,
+                   "design":  false,
+                   "modernization_decision":  false,
+                   "evolve":  false
+               },
+    "ast_parsing":  "available",
+    "scenario":  "knowledge-elicitation-documents",
+    "repo_layout":  {
+                        "repos":  [
+                                      "."
+                                  ],
+                        "mode":  "single-repo"
+                    },
+    "intent":  "custom",
+    "ast_parsing_preview":  {
+                                "files_heuristic_total":  0,
+                                "python3_available":  true,
+                                "files_ast_total":  2584,
+                                "languages":  [
+                                                  {
+                                                      "files":  2500,
+                                                      "extensions":  [
+                                                                         ".java"
+                                                                     ],
+                                                      "language":  "java",
+                                                      "tier":  "full-ast"
+                                                  },
+                                                  {
+                                                      "files":  84,
+                                                      "extensions":  [
+                                                                         ".js"
+                                                                     ],
+                                                      "language":  "javascript",
+                                                      "tier":  "full-ast"
+                                                  }
+                                              ]
+                            },
+    "focus_area":  "full",
+    "external_sources":  {
+                             "gitlab":  {
+                                            "expected":  false,
+                                            "setup_confirmed":  false
+                                        },
+                             "confluence":  {
+                                                "expected":  false,
+                                                "setup_confirmed":  false
+                                            },
+                             "jira":  {
+                                          "expected":  false,
+                                          "setup_confirmed":  false
+                                      },
+                             "azure_devops":  {
+                                                  "expected":  false,
+                                                  "setup_confirmed":  false
+                                              },
+                             "github":  {
+                                            "expected":  false,
+                                            "setup_confirmed":  false
+                                        }
+                         },
+    "knowledge_backend":  "file",
+    "custom_templates":  {
+                             "path":  "",
+                             "mode":  "supplement",
+                             "enabled":  false
+                         },
+    "extract_status":  "pending",
+    "parallelism":  {
+                        "max_subagents":  8
+                    },
+    "document_groups":  {
+                            "business_workflows":  true,
+                            "quality":  true,
+                            "operations":  true,
+                            "architecture":  true,
+                            "root_summaries":  true,
+                            "implementation":  true,
+                            "business":  true,
+                            "modernization":  true
+                        },
+    "lsp_setup":  {
+                      "languages":  [
+                                        {
+                                            "status":  "skipped",
+                                            "server":  "jdtls",
+                                            "language":  "java"
+                                        },
+                                        {
+                                            "status":  "skipped",
+                                            "server":  "typescript-language-server",
+                                            "language":  "javascript"
+                                        }
+                                    ]
+                  }
+}

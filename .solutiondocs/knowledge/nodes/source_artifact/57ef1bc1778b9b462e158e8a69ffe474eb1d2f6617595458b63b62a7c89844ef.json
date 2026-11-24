@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:51:52.064424Z",
+  "id": "source_artifact:cfg-logon-ansible-ansible-cfg",
+  "name": "logon-ansible/ansible.cfg",
+  "properties": {
+    "location": "logon-ansible/ansible.cfg",
+    "revision": "6d5bfdbee91507584106cdf50c6dc527b7a6819b276791317de27565ef61988c",
+    "source_type": "config_file"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "source_artifact",
+  "updated_at": "2026-11-24T09:51:52.064424Z"
+}

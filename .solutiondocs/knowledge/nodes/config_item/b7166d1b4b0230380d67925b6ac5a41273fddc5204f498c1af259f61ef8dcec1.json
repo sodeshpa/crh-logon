@@ -1,0 +1,22 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:51:52.064424Z",
+  "id": "config_item:config-build-dev-properties",
+  "name": "config/build-dev.properties",
+  "properties": {
+    "contains_secrets": true,
+    "environment_specific": true,
+    "environments": [
+      "dev"
+    ],
+    "file_path": "config/build-dev.properties",
+    "format": "properties",
+    "purpose": "build",
+    "version_controlled": true
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "config_item",
+  "updated_at": "2026-11-24T09:51:52.064424Z"
+}

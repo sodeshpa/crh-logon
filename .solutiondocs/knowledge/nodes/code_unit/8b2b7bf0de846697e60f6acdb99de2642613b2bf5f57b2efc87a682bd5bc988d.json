@@ -1,0 +1,18 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T10:24:05.985709Z",
+  "id": "code_unit:logon-persistence-plsql-delete-invalid-restrictions",
+  "name": "DELETE_INVALID_RESTRICTIONS",
+  "properties": {
+    "file_path": "logon-persistence/etc/sql/delete_invalid_restrictions_pkg.sql",
+    "language": "PL/SQL",
+    "line_start": 1,
+    "signature": "PACKAGE DELETE_INVALID_RESTRICTIONS AS",
+    "unit_type": "module"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "code_unit",
+  "updated_at": "2026-11-24T10:24:05.985709Z"
+}

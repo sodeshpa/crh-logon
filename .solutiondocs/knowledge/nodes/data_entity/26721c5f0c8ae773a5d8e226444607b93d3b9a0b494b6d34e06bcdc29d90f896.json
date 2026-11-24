@@ -1,0 +1,17 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T10:20:23.597113Z",
+  "id": "data_entity:vlgnc-pda-device-carrier",
+  "name": "VLGNC_PDA_DEVICE_CARRIER",
+  "properties": {
+    "entity_type": "view",
+    "materialised": false,
+    "purpose": "Used to display the list of pda devices, together with the carriers to wich the pda device is assigned.",
+    "schema": "ulgn"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "data_entity",
+  "updated_at": "2026-11-24T10:20:23.597113Z"
+}

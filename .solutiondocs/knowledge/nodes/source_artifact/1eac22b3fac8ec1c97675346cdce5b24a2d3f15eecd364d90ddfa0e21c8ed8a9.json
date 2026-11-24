@@ -1,0 +1,21 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:59:54.408851Z",
+  "id": "source_artifact:dsa-logon-common-etc-gdi-xml2beans-in-input-parallel-rail-xsd",
+  "name": "parallel_rail.xsd",
+  "properties": {
+    "location": "logon-common/etc/gdi/xml2beans_in/input/parallel_rail.xsd",
+    "metadata": {
+      "dsa:complex_type_count": 11,
+      "dsa:simple_type_count": 1,
+      "dsa:top_level_element_count": 0
+    },
+    "revision": "9d18dc59210b6c6ae05280f75a72bc32d2465f7eb0c705e496bff7b3288a29a4",
+    "source_type": "xsd"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "source_artifact",
+  "updated_at": "2026-11-24T09:59:54.408851Z"
+}

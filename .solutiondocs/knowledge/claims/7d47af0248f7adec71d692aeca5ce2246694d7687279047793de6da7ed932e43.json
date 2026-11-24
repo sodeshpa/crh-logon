@@ -1,0 +1,20 @@
+{
+  "applicability": {
+    "source_revision": "835a759be272a6abbd645545e719f82e399587e9c871bf57721aff5012c1fdb1"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 0.95,
+  "created_at": "2026-11-24T09:51:52.064424Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:cfg-a386ae51d332ee596ca1500113bcc01aec8fd86c08c7db3a48c94943f243f40c"
+  ],
+  "id": "claim:6609976b9a9df7074204c51ae3be7e973d94da316eb8454e0e75b0dfe1021972",
+  "predicate": "provisioning_tool",
+  "record_kind": "claim",
+  "revision": 1,
+  "status": "candidate",
+  "subject": "build_pipeline:build-node-provisioning",
+  "updated_at": "2026-11-24T09:51:52.064424Z",
+  "value": "Ansible"
+}

@@ -1,0 +1,24 @@
+{
+  "applicability": {
+    "source_revision": "c4799b3dfcf94ee66c921f340bda20c43e31a979"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 0.95,
+  "created_at": "2026-11-24T11:29:38.590104Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:fs-46e6fa26861bcdeb28c68b7d"
+  ],
+  "id": "claim:fs-rel-46e6fa26861bcdeb28c68b7d",
+  "predicate": "contains",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-webservices-client",
+  "status": "candidate",
+  "subject": "relationship:fs-contains-46e6fa26861bcdeb28c68b7d",
+  "updated_at": "2026-11-24T11:29:38.590104Z",
+  "value": {
+    "container": "component:logon-webservices-client",
+    "file_path": "logon-webservices-client/src/main/java/com/crh/logon/webservices/clients/LogonToFFax.java"
+  }
+}

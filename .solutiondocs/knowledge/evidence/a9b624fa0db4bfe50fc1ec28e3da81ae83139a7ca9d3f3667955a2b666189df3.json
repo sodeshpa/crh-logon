@@ -1,0 +1,17 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:49:36.164007Z",
+  "id": "evidence:deps-be917457caeeeb27e351",
+  "locator": {
+    "file": "C:\\Users\\sodeshpa\\.copilot\\repos\\copilot-worktrees\\crh-logon\\sodeshpa-improved-telegram\\logon-business\\build-deps.xml",
+    "section": "dependency org.jboss.arquillian.junit:arquillian-junit-container"
+  },
+  "method": "dependency-manifest",
+  "observed_at": "2026-11-24T09:48:25+00:00",
+  "record_kind": "evidence",
+  "revision": 1,
+  "source_id": "source_artifact:deps-logon-business-build-deps.xml",
+  "source_revision": "37b08712370e807afefb95e7d140e3bd6101e15d",
+  "status": "active",
+  "updated_at": "2026-11-24T09:49:36.164007Z"
+}

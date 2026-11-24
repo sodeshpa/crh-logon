@@ -1,0 +1,21 @@
+{
+  "applicability": {
+    "source_revision": "0db519bcc23d4b847662a26d59e471f8227e79492e44c5b1694df2641f149ab1"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T10:20:23.597113Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:dsa-524c3c13d83ba85f2475285aa5d2586ceb65cb83"
+  ],
+  "id": "claim:dsa-c921d61ec8de7f3bf092c59386440c7377c934a1",
+  "predicate": "entity_type",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-persistence",
+  "status": "candidate",
+  "subject": "data_entity:vlgnc-simpveh-ord-item-mat",
+  "updated_at": "2026-11-24T10:20:23.597113Z",
+  "value": "view"
+}

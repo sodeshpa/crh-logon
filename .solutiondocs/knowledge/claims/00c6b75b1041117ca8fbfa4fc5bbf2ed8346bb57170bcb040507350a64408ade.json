@@ -1,0 +1,21 @@
+{
+  "applicability": {
+    "source_revision": "db07c1ac5b5d7926d1b683b5c755cbfa159f46c6689deadd5c0e0125cc6df921"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T10:24:05.985709Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:dsa-0adff51a63808f7a4bdcd8e88639d3f0e1472ee6"
+  ],
+  "id": "claim:dsa-29971bc88b0e4693005e193cb4a828777284b8ef",
+  "predicate": "plsql_procedure",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-persistence",
+  "status": "candidate",
+  "subject": "code_unit:logon-persistence-plsql-merge-incoterm-deliv-type-bs",
+  "updated_at": "2026-11-24T10:24:05.985709Z",
+  "value": "merge_incoterm_deliv_type_bs"
+}

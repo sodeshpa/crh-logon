@@ -1,0 +1,29 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:51:52.064424Z",
+  "id": "build_pipeline:logon-ansible-int-deploy",
+  "name": "Logon Ansible INT deployment",
+  "properties": {
+    "ci_cd_pipeline": {
+      "config_file": "logon-ansible/install-INT1.sh",
+      "platform": "Ansible (WinRM playbooks) with shell wrappers",
+      "stages": [
+        {
+          "name": "init-variables.sh"
+        },
+        {
+          "name": "logonebmdb2.play"
+        },
+        {
+          "name": "logonebm1/2.play"
+        }
+      ],
+      "trigger": "manual"
+    }
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "build_pipeline",
+  "updated_at": "2026-11-24T09:51:52.064424Z"
+}

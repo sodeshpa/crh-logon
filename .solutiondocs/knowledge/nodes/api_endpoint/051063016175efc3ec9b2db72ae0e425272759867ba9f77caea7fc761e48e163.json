@@ -1,0 +1,43 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T10:27:28.875935Z",
+  "id": "api_endpoint:openapi-itrack-getunloadsfortarget",
+  "name": "getUnloadsForTarget",
+  "properties": {
+    "auth_method": "basic_user_password(basic)",
+    "auth_required": true,
+    "method": "GET",
+    "path": "/api/crh/v1/unloads",
+    "protocol": "REST",
+    "request_schema": {
+      "properties": {
+        "fromTime": {
+          "type": "string"
+        },
+        "targetId": {
+          "type": "string"
+        },
+        "toTime": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "response_codes": [
+      200,
+      400,
+      401,
+      403,
+      404,
+      500
+    ],
+    "versioning": {
+      "version": "1.0"
+    }
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "api_endpoint",
+  "updated_at": "2026-11-24T10:27:28.875935Z"
+}

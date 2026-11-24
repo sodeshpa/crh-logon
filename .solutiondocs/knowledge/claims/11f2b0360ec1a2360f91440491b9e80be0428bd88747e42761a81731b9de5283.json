@@ -1,0 +1,21 @@
+{
+  "applicability": {
+    "source_revision": "0db519bcc23d4b847662a26d59e471f8227e79492e44c5b1694df2641f149ab1"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T10:20:23.597113Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:dsa-707acc9566dfe2fb00b89be6b0dfbb02b2877a41"
+  ],
+  "id": "claim:dsa-d81cfa5b227049d2d929b3b64da6002468a9047b",
+  "predicate": "entity_type",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-persistence",
+  "status": "candidate",
+  "subject": "data_entity:vlgnc-container-monitoring",
+  "updated_at": "2026-11-24T10:20:23.597113Z",
+  "value": "view"
+}

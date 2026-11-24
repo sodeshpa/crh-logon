@@ -1,0 +1,28 @@
+{
+  "applicability": {
+    "source_revision": "7317311dce4f5cc45b1f7532834bebebdcd2d20c"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T09:49:36.164007Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:deps-d907c16143c8b95fc192"
+  ],
+  "id": "claim:deps-d7f113679f4d405388662cef",
+  "predicate": "declared_coordinates",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-common",
+  "status": "candidate",
+  "subject": "dependency:maven-joda-time-joda-time-2.10",
+  "updated_at": "2026-11-24T09:49:36.164007Z",
+  "value": {
+    "ecosystem": "maven",
+    "group": "joda-time",
+    "name": "joda-time",
+    "note": "maven scope=compile",
+    "scope": "compile",
+    "version": "2.10"
+  }
+}

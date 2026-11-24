@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:51:52.064424Z",
+  "id": "source_artifact:cfg-etc-log4j-xml",
+  "name": "etc/log4j.xml",
+  "properties": {
+    "location": "etc/log4j.xml",
+    "revision": "4fe720adca0af9ef04ec059aadb6c3187dfd6078e3828ad5dd14d4f38f510158",
+    "source_type": "config_file"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "source_artifact",
+  "updated_at": "2026-11-24T09:51:52.064424Z"
+}

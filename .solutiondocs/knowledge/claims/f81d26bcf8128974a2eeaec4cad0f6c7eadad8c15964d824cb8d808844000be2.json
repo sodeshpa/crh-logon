@@ -1,0 +1,21 @@
+{
+  "applicability": {
+    "source_revision": "0db519bcc23d4b847662a26d59e471f8227e79492e44c5b1694df2641f149ab1"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T10:20:23.597113Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:dsa-ad21a06391a9555ea0ffa5437007508c3719dc1e"
+  ],
+  "id": "claim:dsa-15ef22f4088f2bafc5bc14eb3d3868656d747a4b",
+  "predicate": "entity_type",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-persistence",
+  "status": "candidate",
+  "subject": "data_entity:vlgns-sap-vendor-staging-area",
+  "updated_at": "2026-11-24T10:20:23.597113Z",
+  "value": "view"
+}

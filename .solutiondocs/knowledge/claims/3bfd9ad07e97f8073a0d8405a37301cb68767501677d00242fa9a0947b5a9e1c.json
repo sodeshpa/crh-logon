@@ -1,0 +1,21 @@
+{
+  "applicability": {
+    "source_revision": "0db519bcc23d4b847662a26d59e471f8227e79492e44c5b1694df2641f149ab1"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T10:20:23.597113Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:dsa-865950eb119dd13ae00c9ff76098000f49bc7fe9"
+  ],
+  "id": "claim:dsa-311696f5a73028c29dfac27a5269b69d0fe9eef1",
+  "predicate": "entity_type",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-persistence",
+  "status": "candidate",
+  "subject": "data_entity:vlgnc-rail-distance",
+  "updated_at": "2026-11-24T10:20:23.597113Z",
+  "value": "view"
+}

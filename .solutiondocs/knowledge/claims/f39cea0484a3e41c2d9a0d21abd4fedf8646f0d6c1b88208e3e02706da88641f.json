@@ -1,0 +1,28 @@
+{
+  "applicability": {
+    "source_revision": "37b08712370e807afefb95e7d140e3bd6101e15d"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T09:49:36.164007Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:deps-be917457caeeeb27e351"
+  ],
+  "id": "claim:deps-e2db9af4f8d873c4ce7e2511",
+  "predicate": "declared_coordinates",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-business",
+  "status": "candidate",
+  "subject": "dependency:maven-org.jboss.arquillian.junit-arquillian-junit-container-1.1.1.final",
+  "updated_at": "2026-11-24T09:49:36.164007Z",
+  "value": {
+    "ecosystem": "maven",
+    "group": "org.jboss.arquillian.junit",
+    "name": "arquillian-junit-container",
+    "note": "maven scope=test",
+    "scope": "test",
+    "version": "1.1.1.Final"
+  }
+}

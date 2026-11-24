@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:51:52.064424Z",
+  "id": "source_artifact:cfg-etc-login-config-xml",
+  "name": "etc/login-config.xml",
+  "properties": {
+    "location": "etc/login-config.xml",
+    "revision": "ec0019a38556cd3f7360f7cb4f4d1ef9a2f648dbc4fe691c8bf04f4d6c7c31ad",
+    "source_type": "config_file"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "source_artifact",
+  "updated_at": "2026-11-24T09:51:52.064424Z"
+}

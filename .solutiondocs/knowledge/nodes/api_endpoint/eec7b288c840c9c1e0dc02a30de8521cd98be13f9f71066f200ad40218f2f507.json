@@ -1,0 +1,90 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T10:27:28.875935Z",
+  "id": "api_endpoint:openapi-heremap-routing-calculateroutes",
+  "name": "calculateRoutes",
+  "properties": {
+    "auth_method": "apiKey(apiKey), bearerAuth(bearer)",
+    "auth_required": true,
+    "method": "GET",
+    "path": "/routes",
+    "protocol": "REST",
+    "request_schema": {
+      "properties": {
+        "X-Request-ID": {
+          "type": "string"
+        },
+        "alternatives": {
+          "type": "string"
+        },
+        "avoid": {
+          "type": "string"
+        },
+        "departureTime": {
+          "type": "string"
+        },
+        "destination": {
+          "type": "string"
+        },
+        "ev": {
+          "type": "string"
+        },
+        "exclude": {
+          "type": "string"
+        },
+        "lang": {
+          "type": "string"
+        },
+        "origin": {
+          "type": "string"
+        },
+        "pedestrian[speed]": {
+          "type": "string"
+        },
+        "return": {
+          "type": "string"
+        },
+        "routingMode": {
+          "type": "string"
+        },
+        "scooter": {
+          "type": "string"
+        },
+        "spans": {
+          "type": "string"
+        },
+        "transportMode": {
+          "type": "string"
+        },
+        "truck": {
+          "type": "string"
+        },
+        "units": {
+          "type": "string"
+        },
+        "vehicle": {
+          "type": "string"
+        },
+        "via": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "response_codes": [
+      200,
+      400,
+      401,
+      403,
+      500
+    ],
+    "versioning": {
+      "version": "8.16.0"
+    }
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "api_endpoint",
+  "updated_at": "2026-11-24T10:27:28.875935Z"
+}

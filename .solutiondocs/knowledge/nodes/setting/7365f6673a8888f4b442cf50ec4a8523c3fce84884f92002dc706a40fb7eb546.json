@@ -1,0 +1,19 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:53:30.031918Z",
+  "id": "setting:config-build-properties--release",
+  "name": "RELEASE",
+  "properties": {
+    "default_value": "1",
+    "is_connection_string": false,
+    "is_secret": false,
+    "key": "RELEASE",
+    "source_file": "config/build.properties",
+    "value_type": "number"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "setting",
+  "updated_at": "2026-11-24T09:53:30.031918Z"
+}

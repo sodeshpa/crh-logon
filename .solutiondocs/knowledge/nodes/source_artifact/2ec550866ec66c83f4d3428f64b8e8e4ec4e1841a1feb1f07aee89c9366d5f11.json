@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:51:52.064424Z",
+  "id": "source_artifact:cfg-etc-users-properties",
+  "name": "etc/users.properties",
+  "properties": {
+    "location": "etc/users.properties",
+    "revision": "6ef4d3feda3d36ff44938366b0247675529996cbbeae8459822856baccd0e8d1",
+    "source_type": "config_file"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "source_artifact",
+  "updated_at": "2026-11-24T09:51:52.064424Z"
+}

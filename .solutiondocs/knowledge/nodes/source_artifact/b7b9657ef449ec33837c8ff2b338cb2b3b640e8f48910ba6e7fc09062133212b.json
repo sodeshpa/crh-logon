@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:51:52.064424Z",
+  "id": "source_artifact:cfg-ansible-ansible-cfg",
+  "name": "ansible/ansible.cfg",
+  "properties": {
+    "location": "ansible/ansible.cfg",
+    "revision": "d0a8f657530bde9299f10685f72ae52d313e4e2f8cdd855e135067e3fe4c5b1b",
+    "source_type": "config_file"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "source_artifact",
+  "updated_at": "2026-11-24T09:51:52.064424Z"
+}

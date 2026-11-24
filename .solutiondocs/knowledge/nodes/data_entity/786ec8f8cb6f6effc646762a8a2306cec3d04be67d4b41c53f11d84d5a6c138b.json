@@ -1,0 +1,17 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T10:20:23.597113Z",
+  "id": "data_entity:vlgnc-require-freezing-list",
+  "name": "VLGNC_REQUIRE_FREEZING_LIST",
+  "properties": {
+    "entity_type": "view",
+    "materialised": false,
+    "purpose": "Orders that require to be re-frozen after being updated by SAP netprice import (a first-time freeze is not triggered this way)",
+    "schema": "ulgn"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "data_entity",
+  "updated_at": "2026-11-24T10:20:23.597113Z"
+}

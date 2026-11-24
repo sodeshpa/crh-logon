@@ -1,0 +1,24 @@
+{
+  "applicability": {
+    "source_revision": "c4799b3dfcf94ee66c921f340bda20c43e31a979"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 0.95,
+  "created_at": "2026-11-24T11:32:18.902642Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:fs-45fe9a4a0404e9aeafba7f0e"
+  ],
+  "id": "claim:fs-rel-45fe9a4a0404e9aeafba7f0e",
+  "predicate": "contains",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-webservices",
+  "status": "candidate",
+  "subject": "relationship:fs-contains-45fe9a4a0404e9aeafba7f0e",
+  "updated_at": "2026-11-24T11:32:18.902642Z",
+  "value": {
+    "container": "component:logon-webservices",
+    "file_path": "logon-webservices/src/main/java/com/crh/logon/persistence/entities/sapdata/VendorDataSMD.java"
+  }
+}

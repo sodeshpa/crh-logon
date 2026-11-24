@@ -1,0 +1,17 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:49:36.164007Z",
+  "id": "dependency:maven-com.pd4ml-pd4ml-3.9.0",
+  "name": "pd4ml",
+  "properties": {
+    "dependency_type": "library",
+    "scope": "compile",
+    "version": "3.9.0"
+  },
+  "qualified_name": "com.pd4ml:pd4ml@3.9.0",
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "dependency",
+  "updated_at": "2026-11-24T09:49:36.164007Z"
+}

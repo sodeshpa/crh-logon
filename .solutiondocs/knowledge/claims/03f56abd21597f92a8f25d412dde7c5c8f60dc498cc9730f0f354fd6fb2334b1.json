@@ -1,0 +1,27 @@
+{
+  "applicability": {
+    "source_revision": "c4799b3dfcf94ee66c921f340bda20c43e31a979"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 0.95,
+  "created_at": "2026-11-24T09:58:39.080022Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:fs-b359741edf1a174b34ab854c"
+  ],
+  "id": "claim:fs-b359741edf1a174b34ab854c",
+  "predicate": "file_inventory",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-common-web",
+  "status": "candidate",
+  "subject": "code_unit:logon-common-web-src-main-java-com-crh-logon-web-filters-sessionidfilter.java",
+  "updated_at": "2026-11-24T09:58:39.080022Z",
+  "value": {
+    "estimated_tokens": 945,
+    "file_path": "logon-common-web/src/main/java/com/crh/logon/web/filters/SessionIdFilter.java",
+    "language": "Java",
+    "loc": 115,
+    "size_bytes": 3782
+  }
+}

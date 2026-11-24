@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:46:43.269899Z",
+  "id": "actor:sodeshpa",
+  "name": "sodeshpa",
+  "properties": {
+    "contact_method": null,
+    "role": "software_engineer"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "scope_id": "application:sodeshpa-improved-telegram",
+  "status": "active",
+  "type": "actor",
+  "updated_at": "2026-11-24T09:46:43.269899Z"
+}

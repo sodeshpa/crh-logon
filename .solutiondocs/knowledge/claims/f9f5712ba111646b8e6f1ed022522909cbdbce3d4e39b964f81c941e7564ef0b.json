@@ -1,0 +1,21 @@
+{
+  "applicability": {
+    "source_revision": "0db519bcc23d4b847662a26d59e471f8227e79492e44c5b1694df2641f149ab1"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T10:20:23.597113Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:dsa-cad0d0fa21bace7938765d4b89c3665f2989547a"
+  ],
+  "id": "claim:dsa-5ea4c830d90877c5f1989f547bb9e890fada787d",
+  "predicate": "entity_type",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-persistence",
+  "status": "candidate",
+  "subject": "data_entity:vlgnc-credit-note-proposals",
+  "updated_at": "2026-11-24T10:20:23.597113Z",
+  "value": "view"
+}

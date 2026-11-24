@@ -1,0 +1,17 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:51:52.064424Z",
+  "id": "automated_process:logon-rfid-object-label-cleanup",
+  "name": "rfid_object_label_cleanup",
+  "properties": {
+    "process_type": "scheduled_task",
+    "schedule": "0 0 1 * * ?",
+    "source_location": "etc/logon-dev.properties",
+    "trigger": "schedule"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "automated_process",
+  "updated_at": "2026-11-24T09:51:52.064424Z"
+}

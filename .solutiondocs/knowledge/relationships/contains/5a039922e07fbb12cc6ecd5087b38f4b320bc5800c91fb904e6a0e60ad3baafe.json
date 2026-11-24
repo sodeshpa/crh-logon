@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "claim_ids": [
+    "claim:fs-rel-d6e233b1045b38c9bfd5de59"
+  ],
+  "created_at": "2026-11-24T10:25:45.372030Z",
+  "from": "component:logon-order-web",
+  "id": "relationship:fs-contains-d6e233b1045b38c9bfd5de59",
+  "properties": {},
+  "record_kind": "relationship",
+  "revision": 1,
+  "status": "active",
+  "to": "code_unit:logon-order-web-src-main-webapp-web-inf-jsp-dispokarte-editansprechpartner.jsp",
+  "type": "contains",
+  "updated_at": "2026-11-24T10:25:45.372030Z"
+}

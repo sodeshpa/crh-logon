@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "claim_ids": [
+    "claim:dsa-e6fbb9f6e86653125e5c7100b88880539c6853b8"
+  ],
+  "created_at": "2026-11-24T10:41:22.508413Z",
+  "from": "data_store:logon-main-database",
+  "id": "relationship:dsa-a5a529f65506cab826b859f30cf34c115e3b94eb",
+  "properties": {},
+  "record_kind": "relationship",
+  "revision": 1,
+  "status": "active",
+  "to": "data_entity:vlgnc-bimodal-rail-order",
+  "type": "contains",
+  "updated_at": "2026-11-24T10:41:22.508413Z"
+}

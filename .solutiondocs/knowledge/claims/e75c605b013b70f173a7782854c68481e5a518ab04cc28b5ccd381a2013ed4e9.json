@@ -1,0 +1,24 @@
+{
+  "applicability": {
+    "source_revision": "c4799b3dfcf94ee66c921f340bda20c43e31a979"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 0.95,
+  "created_at": "2026-11-24T09:47:21.032770Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:fs-0fa000b45e8c816d8431de8a"
+  ],
+  "id": "claim:fs-rel-0fa000b45e8c816d8431de8a",
+  "predicate": "contains",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-admin-web",
+  "status": "candidate",
+  "subject": "relationship:fs-contains-0fa000b45e8c816d8431de8a",
+  "updated_at": "2026-11-24T09:47:21.032770Z",
+  "value": {
+    "container": "component:logon-admin-web",
+    "file_path": "logon-admin-web/src/main/java/com/crh/logon/admin/web/actions/masterdata/DispocardViewAction.java"
+  }
+}

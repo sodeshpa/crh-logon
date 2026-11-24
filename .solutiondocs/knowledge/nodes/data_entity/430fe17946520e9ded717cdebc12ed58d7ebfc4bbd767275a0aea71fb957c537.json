@@ -1,0 +1,17 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T10:20:23.597113Z",
+  "id": "data_entity:vlgns-soldship-flex-srch",
+  "name": "VLGNS_SOLDSHIP_FLEX_SRCH",
+  "properties": {
+    "entity_type": "view",
+    "materialised": false,
+    "purpose": "View to search for Soldto/Shipto in Dispokarte in a flexible way: \"stadion 8050\" will search both name AND postal_code at the same time, etc.",
+    "schema": "ulgn"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "data_entity",
+  "updated_at": "2026-11-24T10:20:23.597113Z"
+}

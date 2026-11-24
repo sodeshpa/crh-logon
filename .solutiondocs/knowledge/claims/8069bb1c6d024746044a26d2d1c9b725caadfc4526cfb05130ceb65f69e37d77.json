@@ -1,0 +1,21 @@
+{
+  "applicability": {
+    "source_revision": "afe009ff037e2826d26b80ffcfe44a3c02c09d0d20d06962edd08d6247add5a4"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T10:24:05.985709Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:dsa-a5c7699c8daa68fe1cb9e0698ce88249361cbf41"
+  ],
+  "id": "claim:dsa-79697ce75a47e31adb75a6baa91c7338bbb3e10e",
+  "predicate": "plsql_procedure",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-persistence",
+  "status": "candidate",
+  "subject": "code_unit:logon-persistence-plsql-insert-cont-wagon",
+  "updated_at": "2026-11-24T10:24:05.985709Z",
+  "value": "insert_cont_wagon"
+}

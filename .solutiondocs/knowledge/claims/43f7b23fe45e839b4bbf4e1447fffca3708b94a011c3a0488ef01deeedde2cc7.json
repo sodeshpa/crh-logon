@@ -1,0 +1,29 @@
+{
+  "applicability": {
+    "source_revision": "76918543364cbb797a1e45866d8b4164d306656a"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 0.8,
+  "created_at": "2026-11-24T09:57:53.123932Z",
+  "derivation": "heuristic",
+  "evidence_ids": [
+    "evidence:deps-b08675d0f1ba4183c701"
+  ],
+  "id": "claim:deps-c14c3a72fb676b54c5949789",
+  "predicate": "obsolescence_basis",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "application:sodeshpa-improved-telegram",
+  "status": "candidate",
+  "subject": "technical_debt:deps-inconsistent-dependency-versions",
+  "updated_at": "2026-11-24T09:57:53.123932Z",
+  "value": {
+    "eol_status": "unknown",
+    "indicators": [
+      "log4j 1.2.16 (properties.xml, simulator) vs 1.2.8 (logon-application)",
+      "okhttp 3.14.9 and 2.7.5 appear only as commented alternatives",
+      "ojdbc6 and ojdbc8 both declared"
+    ],
+    "note": "Heuristic EOL classification from declared versions; not a CVE assessment"
+  }
+}

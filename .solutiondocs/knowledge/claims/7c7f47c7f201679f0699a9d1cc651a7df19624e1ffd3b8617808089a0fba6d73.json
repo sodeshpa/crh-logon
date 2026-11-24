@@ -1,0 +1,21 @@
+{
+  "applicability": {
+    "source_revision": "48d1680392e463cd5975109155beffde70e9181397a37e46f3ea16ab43f19b79"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T10:24:05.985709Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:dsa-97cc21601bfc74d4077a1a018a0b9f3d9332c320"
+  ],
+  "id": "claim:dsa-44cc7461f88e5860ba3dedadd52a36ff61ea7d98",
+  "predicate": "plsql_function",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-persistence",
+  "status": "candidate",
+  "subject": "code_unit:logon-persistence-plsql-is-different-varchar2",
+  "updated_at": "2026-11-24T10:24:05.985709Z",
+  "value": "is_different_varchar2"
+}

@@ -1,0 +1,19 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:57:53.123932Z",
+  "domain": "build_devops",
+  "evidence_ids": [
+    "evidence:deps-5233970c35c8a6edf6f0"
+  ],
+  "gap_type": "documentable",
+  "id": "gap:deps-adntrace-artifact-name",
+  "knowledge_gap_type": "unknown_unknown",
+  "owner_ids": [],
+  "priority": "P3",
+  "prompt": "The property jcan-log.adntrace.name (artifactId of ch.adnovum.jcan-log dependency, version 1.8.3.0) is not defined in this repository; the exact artifact coordinates are unresolved.",
+  "record_kind": "gap",
+  "revision": 1,
+  "status": "open",
+  "subject": "component:logon-business",
+  "updated_at": "2026-11-24T09:57:53.123932Z"
+}

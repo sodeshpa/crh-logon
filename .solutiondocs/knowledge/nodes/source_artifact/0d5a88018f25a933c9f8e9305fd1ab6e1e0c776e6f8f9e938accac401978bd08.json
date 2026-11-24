@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:59:54.408851Z",
+  "id": "source_artifact:dsa-logon-persistence-etc-sql-upsert-planning-contract-items-sql",
+  "name": "upsert_planning_contract_items.sql",
+  "properties": {
+    "location": "logon-persistence/etc/sql/upsert_planning_contract_items.sql",
+    "revision": "9f37af0b2e75539d722a078bc6a04f1fd300b7240da653756fdd971227ae709e",
+    "source_type": "ddl_sql"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "source_artifact",
+  "updated_at": "2026-11-24T09:59:54.408851Z"
+}

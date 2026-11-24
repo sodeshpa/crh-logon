@@ -1,0 +1,21 @@
+{
+  "applicability": {
+    "source_revision": "5a7cca714c7a8cad4ab079e87c62fc21ee33762b285cdeade00c39a7da279924"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T10:24:05.985709Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:dsa-6b694ce860e24776381c6baa152d56f6e746138e"
+  ],
+  "id": "claim:dsa-7e788fa654303bc6483e6e44f759dbcee9df4335",
+  "predicate": "plsql_package",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-persistence",
+  "status": "candidate",
+  "subject": "code_unit:logon-persistence-plsql-delete-invalid-restrictions",
+  "updated_at": "2026-11-24T10:24:05.985709Z",
+  "value": "DELETE_INVALID_RESTRICTIONS"
+}

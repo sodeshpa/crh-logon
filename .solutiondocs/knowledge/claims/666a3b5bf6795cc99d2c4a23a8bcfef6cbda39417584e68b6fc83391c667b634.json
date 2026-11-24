@@ -1,0 +1,21 @@
+{
+  "applicability": {
+    "source_revision": "f0319b7f1fa2ac8b05f0bc2cbf001eceaa03677eb829c7419fb7413f61391f69"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T10:11:18.546676Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:dsa-d78d8e21a32a64fee65fc2900acf22a29f873c8f"
+  ],
+  "id": "claim:dsa-7578c32c118cbecfd4c903e6dcc9589f537104aa",
+  "predicate": "data_type",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-webservices",
+  "status": "candidate",
+  "subject": "data_field:mn-materialtotalconsumption-ertag",
+  "updated_at": "2026-11-24T10:11:18.546676Z",
+  "value": "varchar2(8 char)"
+}

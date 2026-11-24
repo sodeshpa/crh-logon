@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "claim_ids": [
+    "claim:dsa-3e55fac6575894df5778a12b7d9bff44f870c368"
+  ],
+  "created_at": "2026-11-24T10:39:20.993948Z",
+  "from": "data_store:logon-sap-staging-area",
+  "id": "relationship:dsa-dcbce51b7f7b589a199414ca3dff1eb2b630a7e0",
+  "properties": {},
+  "record_kind": "relationship",
+  "revision": 1,
+  "status": "active",
+  "to": "data_entity:mn-materialtransferprice",
+  "type": "contains",
+  "updated_at": "2026-11-24T10:39:20.993948Z"
+}

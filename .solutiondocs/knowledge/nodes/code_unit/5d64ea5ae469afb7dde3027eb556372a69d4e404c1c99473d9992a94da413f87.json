@@ -1,0 +1,21 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:50:06.925075Z",
+  "id": "code_unit:logon-business-src-main-java-com-crh-logon-business-services-impl-carrierservicebean.java",
+  "name": "CarrierServiceBean.java",
+  "properties": {
+    "file_path": "logon-business/src/main/java/com/crh/logon/business/services/impl/CarrierServiceBean.java",
+    "language": "Java",
+    "loc": 675,
+    "metrics": {
+      "loc": 675
+    },
+    "unit_type": "file"
+  },
+  "qualified_name": "logon-business/src/main/java/com/crh/logon/business/services/impl/CarrierServiceBean.java",
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "code_unit",
+  "updated_at": "2026-11-24T09:50:06.925075Z"
+}

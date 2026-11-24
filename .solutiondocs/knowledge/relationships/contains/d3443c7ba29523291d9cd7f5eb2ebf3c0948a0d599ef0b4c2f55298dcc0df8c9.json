@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "claim_ids": [
+    "claim:fs-rel-df70478463b6cefdc2568b2a"
+  ],
+  "created_at": "2026-11-24T09:47:21.032770Z",
+  "from": "component:logon-admin-web",
+  "id": "relationship:fs-contains-df70478463b6cefdc2568b2a",
+  "properties": {},
+  "record_kind": "relationship",
+  "revision": 1,
+  "status": "active",
+  "to": "code_unit:logon-admin-web-src-main-java-com-crh-logon-admin-web-actions-masterdata-shippingpointrfidpopupentryaction.java",
+  "type": "contains",
+  "updated_at": "2026-11-24T09:47:21.032770Z"
+}

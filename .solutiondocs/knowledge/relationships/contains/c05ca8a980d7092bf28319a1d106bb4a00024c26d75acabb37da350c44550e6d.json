@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "claim_ids": [
+    "claim:fs-rel-c9717f2de56acc3205ad406e"
+  ],
+  "created_at": "2026-11-24T10:22:30.890929Z",
+  "from": "component:logon-order-web",
+  "id": "relationship:fs-contains-c9717f2de56acc3205ad406e",
+  "properties": {},
+  "record_kind": "relationship",
+  "revision": 1,
+  "status": "active",
+  "to": "code_unit:logon-order-web-src-main-webapp-web-inf-jsp-auftrag-orderdetail-materialtabitem.jsp",
+  "type": "contains",
+  "updated_at": "2026-11-24T10:22:30.890929Z"
+}

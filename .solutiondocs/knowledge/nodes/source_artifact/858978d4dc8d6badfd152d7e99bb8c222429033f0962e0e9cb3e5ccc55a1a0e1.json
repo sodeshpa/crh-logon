@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:59:54.408851Z",
+  "id": "source_artifact:dsa-logon-persistence-etc-sql-refdata-tlgnr-silo-verif-type-sql",
+  "name": "tlgnr_silo_verif_type.sql",
+  "properties": {
+    "location": "logon-persistence/etc/sql/refdata/tlgnr_silo_verif_type.sql",
+    "revision": "0745139a2b016bd2580937d00062f9ae0406d05f227a19ffc0de8a478c2f6356",
+    "source_type": "ddl_sql"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "source_artifact",
+  "updated_at": "2026-11-24T09:59:54.408851Z"
+}

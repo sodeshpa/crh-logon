@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "claim_ids": [
+    "claim:5d5942e1a861d8face3e97d08d329e7d657b361a19c259195f179c5e8b059c22"
+  ],
+  "created_at": "2026-11-24T09:53:30.031918Z",
+  "from": "config_item:etc-logon-nightly-properties",
+  "id": "relationship:contains-80992dc22c22f3c93b5bda14f56e8b8a73b248d2",
+  "properties": {},
+  "record_kind": "relationship",
+  "revision": 1,
+  "status": "active",
+  "to": "setting:etc-logon-nightly-properties--devmode",
+  "type": "contains",
+  "updated_at": "2026-11-24T09:53:30.031918Z"
+}

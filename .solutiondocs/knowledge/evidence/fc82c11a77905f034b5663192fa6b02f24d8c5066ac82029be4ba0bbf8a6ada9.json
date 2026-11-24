@@ -1,0 +1,17 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T10:04:21.856768Z",
+  "id": "evidence:dsa-96cad264879e2ebdf926a8a1a6b2244814b076a2",
+  "locator": {
+    "file": "logon-webservices-client/etc/wsdl/LOGONMessageServer.wsdl",
+    "line": 29
+  },
+  "method": "api-spec-parse",
+  "observed_at": "2026-11-24T09:49:32Z",
+  "record_kind": "evidence",
+  "revision": 1,
+  "source_id": "source_artifact:dsa-logon-webservices-client-etc-wsdl-logonmessageserver-wsdl",
+  "source_revision": "a48014ba9da33936cda23f3255547e9b35dd1d35335fc384080052d766abe13c",
+  "status": "active",
+  "updated_at": "2026-11-24T10:04:21.856768Z"
+}

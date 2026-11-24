@@ -1,0 +1,34 @@
+{
+  "applicability": {
+    "source_revision": "37b08712370e807afefb95e7d140e3bd6101e15d"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T09:57:53.123932Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:deps-00cd9a6f995052b8b7d1"
+  ],
+  "id": "claim:deps-f4de02f9409bc948b97b7c5d",
+  "predicate": "tech_stack.frameworks",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-business",
+  "status": "candidate",
+  "subject": "component:logon-business",
+  "updated_at": "2026-11-24T09:57:53.123932Z",
+  "value": [
+    {
+      "name": "Apache Kafka client",
+      "version": "2.6.0"
+    },
+    {
+      "name": "Jackson",
+      "version": "2.10.4"
+    },
+    {
+      "name": "Gson / gson-fire (OpenAPI generated client)",
+      "version": "2.8.6"
+    }
+  ]
+}

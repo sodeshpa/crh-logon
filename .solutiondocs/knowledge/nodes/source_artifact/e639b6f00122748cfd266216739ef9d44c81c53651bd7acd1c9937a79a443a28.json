@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:59:54.408851Z",
+  "id": "source_artifact:dsa-logon-persistence-etc-sql-refdata-tlgnr-shippingpoint-type-sql",
+  "name": "tlgnr_shippingpoint_type.sql",
+  "properties": {
+    "location": "logon-persistence/etc/sql/refdata/tlgnr_shippingpoint_type.sql",
+    "revision": "269c404004e12ada720d89a4576b294d723ef239ffbcba75465c7ba998ab2f02",
+    "source_type": "ddl_sql"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "source_artifact",
+  "updated_at": "2026-11-24T09:59:54.408851Z"
+}

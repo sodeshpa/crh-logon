@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "claim_ids": [
+    "claim:dsa-e38163723e770d7b92937e1691aacef5d2c663f8"
+  ],
+  "created_at": "2026-11-24T11:07:07.476264Z",
+  "from": "integration_point:itrack-restful-api-idata-telematics",
+  "id": "relationship:dsa-a29013bea42a58cfb92bc76c0f941ceb0f0678d5",
+  "properties": {},
+  "record_kind": "relationship",
+  "revision": 1,
+  "status": "active",
+  "to": "api_endpoint:openapi-itrack-getalltargets",
+  "type": "exposes",
+  "updated_at": "2026-11-24T11:07:07.476264Z"
+}

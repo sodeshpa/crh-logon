@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:47:12.923213Z",
+  "id": "source_artifact:fs-logon-admin-web-tree",
+  "name": "File tree: logon-admin-web",
+  "properties": {
+    "location": "C:\\Users\\sodeshpa\\.copilot\\repos\\copilot-worktrees\\crh-logon\\sodeshpa-improved-telegram\\logon-admin-web",
+    "revision": "c4799b3dfcf94ee66c921f340bda20c43e31a979",
+    "source_type": "directory_tree"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "source_artifact",
+  "updated_at": "2026-11-24T09:47:12.923213Z"
+}

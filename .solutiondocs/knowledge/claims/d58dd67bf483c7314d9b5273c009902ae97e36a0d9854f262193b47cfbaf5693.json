@@ -1,0 +1,21 @@
+{
+  "applicability": {
+    "source_revision": "eac7420cdb0dda3e05c199bd98fd372310a5add1d734d31d1c54422a3bcf3d46"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T10:27:28.875935Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:dsa-aac15b2fbb7bd81e058e80c696dbc4198e4cd2cb"
+  ],
+  "id": "claim:dsa-f76937744a98ec55adc85539525f458d6506e4ab",
+  "predicate": "contract_type",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-webservices-client",
+  "status": "candidate",
+  "subject": "integration_point:external-service-dx1-java-instance-pricesimulation-out",
+  "updated_at": "2026-11-24T10:27:28.875935Z",
+  "value": "WSDL"
+}

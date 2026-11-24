@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:59:54.408851Z",
+  "id": "source_artifact:dsa-logon-persistence-etc-sql-stored-procedures-sql",
+  "name": "stored_procedures.sql",
+  "properties": {
+    "location": "logon-persistence/etc/sql/stored_procedures.sql",
+    "revision": "946f42389985a9547d4b7fcc434732cf8cd2170e9a7d896f96957adc9f239502",
+    "source_type": "ddl_sql"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "source_artifact",
+  "updated_at": "2026-11-24T09:59:54.408851Z"
+}

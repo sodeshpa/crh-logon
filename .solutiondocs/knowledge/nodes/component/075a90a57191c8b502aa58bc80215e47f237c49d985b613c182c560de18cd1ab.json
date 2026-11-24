@@ -1,0 +1,38 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:43:07.964638Z",
+  "id": "component:ansible",
+  "name": "ansible",
+  "properties": {
+    "build_files": [],
+    "estimated_tokens": 462,
+    "files": 8,
+    "folder": "ansible",
+    "metrics": {
+      "loc": 79
+    },
+    "source_files": 1,
+    "source_root": "ansible",
+    "tech_stack": {
+      "languages": [
+        {
+          "name": "Other",
+          "percentage": 67.09
+        },
+        {
+          "name": "Config",
+          "percentage": 22.78
+        },
+        {
+          "name": "Script",
+          "percentage": 10.13
+        }
+      ]
+    }
+  },
+  "record_kind": "node",
+  "revision": 3,
+  "status": "active",
+  "type": "component",
+  "updated_at": "2026-11-24T13:43:36.779345Z"
+}

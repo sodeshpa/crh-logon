@@ -1,0 +1,21 @@
+{
+  "applicability": {
+    "source_revision": "f0319b7f1fa2ac8b05f0bc2cbf001eceaa03677eb829c7419fb7413f61391f69"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 0.95,
+  "created_at": "2026-11-24T10:04:21.856768Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:dsa-51b86b432d137947afa2507fc1dd041a20dab11e"
+  ],
+  "id": "claim:dsa-29238cb754e8fa106c94b42476e6b66195031356",
+  "predicate": "engine",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-webservices",
+  "status": "candidate",
+  "subject": "data_store:logon-sap-staging-area",
+  "updated_at": "2026-11-24T10:04:21.856768Z",
+  "value": "Oracle"
+}

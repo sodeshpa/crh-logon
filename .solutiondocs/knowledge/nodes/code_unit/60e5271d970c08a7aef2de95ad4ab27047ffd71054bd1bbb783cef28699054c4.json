@@ -1,0 +1,21 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:52:44.268067Z",
+  "id": "code_unit:logon-business-src-main-java-com-crh-logon-business-services-utils-containermonitoringwrapper.java",
+  "name": "ContainerMonitoringWrapper.java",
+  "properties": {
+    "file_path": "logon-business/src/main/java/com/crh/logon/business/services/utils/ContainerMonitoringWrapper.java",
+    "language": "Java",
+    "loc": 109,
+    "metrics": {
+      "loc": 109
+    },
+    "unit_type": "file"
+  },
+  "qualified_name": "logon-business/src/main/java/com/crh/logon/business/services/utils/ContainerMonitoringWrapper.java",
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "code_unit",
+  "updated_at": "2026-11-24T09:52:44.268067Z"
+}

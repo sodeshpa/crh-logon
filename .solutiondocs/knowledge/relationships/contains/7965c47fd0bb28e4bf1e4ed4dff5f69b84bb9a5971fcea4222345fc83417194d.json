@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "claim_ids": [
+    "claim:dsa-1d4995440c07e2af67bd1bf6ebc38617df5af532"
+  ],
+  "created_at": "2026-11-24T10:39:20.993948Z",
+  "from": "data_entity:mn-materialtaxclassification",
+  "id": "relationship:dsa-5711a80d8eda307a9f2499c0db8dcdcaf89c8c48",
+  "properties": {},
+  "record_kind": "relationship",
+  "revision": 1,
+  "status": "active",
+  "to": "data_field:mn-materialtaxclassification-taty8",
+  "type": "contains",
+  "updated_at": "2026-11-24T10:39:20.993948Z"
+}

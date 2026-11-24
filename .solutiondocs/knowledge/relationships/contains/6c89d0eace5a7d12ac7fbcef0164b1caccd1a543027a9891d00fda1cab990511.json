@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "claim_ids": [
+    "claim:dsa-03f51b48dc0bc111fba3d660b955084d93f1ddeb"
+  ],
+  "created_at": "2026-11-24T10:41:22.508413Z",
+  "from": "data_store:logon-main-database",
+  "id": "relationship:dsa-8b91a9c62ae51a6c44b96f1d24b8e7f0a3316902",
+  "properties": {},
+  "record_kind": "relationship",
+  "revision": 1,
+  "status": "active",
+  "to": "data_entity:vlgnc-truck-revenue-plan-mat",
+  "type": "contains",
+  "updated_at": "2026-11-24T10:41:22.508413Z"
+}

@@ -1,0 +1,21 @@
+{
+  "applicability": {
+    "source_revision": "9f39bd0b9fb527d488c9de6bbdb0d14a21c2d6eb6ee5a7781885856f8974c818"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T10:24:05.985709Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:dsa-19b5c7b1087958ca95d4ee641f1660672e297e2b"
+  ],
+  "id": "claim:dsa-3dc81b26d94c4b66cc7e844ed6f4774b71cc49ef",
+  "predicate": "plsql_procedure",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-persistence",
+  "status": "candidate",
+  "subject": "code_unit:logon-persistence-plsql-create-sequence-rename",
+  "updated_at": "2026-11-24T10:24:05.985709Z",
+  "value": "create_sequence_rename"
+}

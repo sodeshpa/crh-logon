@@ -1,0 +1,21 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:47:21.032770Z",
+  "id": "code_unit:etc-tools-devenv_rsync.sh",
+  "name": "devenv_rsync.sh",
+  "properties": {
+    "file_path": "etc/tools/devenv_rsync.sh",
+    "language": "Script",
+    "loc": 146,
+    "metrics": {
+      "loc": 146
+    },
+    "unit_type": "file"
+  },
+  "qualified_name": "etc/tools/devenv_rsync.sh",
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "code_unit",
+  "updated_at": "2026-11-24T09:47:21.032770Z"
+}

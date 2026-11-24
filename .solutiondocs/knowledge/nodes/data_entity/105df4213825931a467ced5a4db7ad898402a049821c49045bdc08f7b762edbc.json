@@ -1,0 +1,17 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T10:20:23.597113Z",
+  "id": "data_entity:vlgnc-contract-item-qty",
+  "name": "VLGNC_CONTRACT_ITEM_QTY",
+  "properties": {
+    "entity_type": "view",
+    "materialised": false,
+    "purpose": "View on contract items created for calculation of the sum quantity of all order items (delivered, loaded, ordered) used by LRQ 303.0 - Advance Payment Solution",
+    "schema": "ulgn"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "data_entity",
+  "updated_at": "2026-11-24T10:20:23.597113Z"
+}

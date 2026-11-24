@@ -1,0 +1,17 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T10:20:23.597113Z",
+  "id": "data_entity:vlgnc-rail-repair",
+  "name": "VLGNC_RAIL_REPAIR",
+  "properties": {
+    "entity_type": "view",
+    "materialised": false,
+    "purpose": "rail repair order listing for BW-Instandhaltung",
+    "schema": "ulgn"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "data_entity",
+  "updated_at": "2026-11-24T10:20:23.597113Z"
+}

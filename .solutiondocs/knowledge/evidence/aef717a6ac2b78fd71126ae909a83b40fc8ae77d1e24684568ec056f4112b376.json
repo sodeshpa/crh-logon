@@ -1,0 +1,17 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:51:52.064424Z",
+  "id": "evidence:cfg-a386ae51d332ee596ca1500113bcc01aec8fd86c08c7db3a48c94943f243f40c",
+  "locator": {
+    "file": "ansible/buildnode.yml",
+    "section": "file"
+  },
+  "method": "config-file",
+  "observed_at": "2026-11-24T09:49:25Z",
+  "record_kind": "evidence",
+  "revision": 1,
+  "source_id": "source_artifact:cfg-ansible-buildnode-yml",
+  "source_revision": "835a759be272a6abbd645545e719f82e399587e9c871bf57721aff5012c1fdb1",
+  "status": "active",
+  "updated_at": "2026-11-24T09:51:52.064424Z"
+}

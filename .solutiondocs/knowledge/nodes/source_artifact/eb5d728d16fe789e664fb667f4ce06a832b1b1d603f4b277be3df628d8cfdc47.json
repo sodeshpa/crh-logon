@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T10:29:11.973190Z",
+  "id": "source_artifact:dva-assessment-attempt",
+  "name": "Dependency vulnerability assessment attempt (tool/advisory availability check)",
+  "properties": {
+    "location": "C:\\Users\\sodeshpa\\.copilot\\repos\\copilot-worktrees\\crh-logon\\sodeshpa-improved-telegram\\.solutiondocs\\.docgen\\dependency-vulnerability-analysis.json",
+    "revision": "c2f096c377bafac62102650ab6980e51bbfad6bc",
+    "source_type": "assessment_report"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "source_artifact",
+  "updated_at": "2026-11-24T10:29:11.973190Z"
+}

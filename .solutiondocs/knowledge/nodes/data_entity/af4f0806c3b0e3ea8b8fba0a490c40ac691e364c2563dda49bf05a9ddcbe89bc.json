@@ -1,0 +1,17 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T10:20:23.597113Z",
+  "id": "data_entity:vlgnc-common-sarea-map",
+  "name": "VLGNC_COMMON_SAREA_MAP",
+  "properties": {
+    "entity_type": "view",
+    "materialised": false,
+    "purpose": "Auxiliary view which provides better access to tlgnr_sarea_dependency (without defaults)",
+    "schema": "ulgn"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "data_entity",
+  "updated_at": "2026-11-24T10:20:23.597113Z"
+}

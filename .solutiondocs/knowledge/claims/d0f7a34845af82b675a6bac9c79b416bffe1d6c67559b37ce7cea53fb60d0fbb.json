@@ -1,0 +1,21 @@
+{
+  "applicability": {
+    "source_revision": "2f67355299bd269b3fcd1423b811f3a4e99cd848a80b034f97543578e3266285"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T10:27:28.875935Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:dsa-c2a7422a8cb12a5bde45a832a52a4a728edf91ed"
+  ],
+  "id": "claim:dsa-856f9578e38e67d3b79bcd3234f089184b52c702",
+  "predicate": "protocol",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-webservices-pws-incoming",
+  "status": "candidate",
+  "subject": "api_endpoint:logonldsinterface-services-addservicematerialstoorder",
+  "updated_at": "2026-11-24T10:27:28.875935Z",
+  "value": "SOAP"
+}

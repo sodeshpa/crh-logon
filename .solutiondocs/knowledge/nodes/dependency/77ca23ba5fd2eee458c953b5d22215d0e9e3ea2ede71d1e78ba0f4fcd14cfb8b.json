@@ -1,0 +1,17 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:49:36.164007Z",
+  "id": "dependency:pip-x-jinja2-2.10",
+  "name": "Jinja2",
+  "properties": {
+    "dependency_type": "library",
+    "scope": "build",
+    "version": "2.10"
+  },
+  "qualified_name": "Jinja2@2.10",
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "dependency",
+  "updated_at": "2026-11-24T09:49:36.164007Z"
+}

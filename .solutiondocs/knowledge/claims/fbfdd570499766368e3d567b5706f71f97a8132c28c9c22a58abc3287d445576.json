@@ -1,0 +1,24 @@
+{
+  "applicability": {
+    "source_revision": "c4799b3dfcf94ee66c921f340bda20c43e31a979"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 0.95,
+  "created_at": "2026-11-24T10:30:58.828557Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:fs-bb5cc4e709b0e86818f2e5fc"
+  ],
+  "id": "claim:fs-rel-bb5cc4e709b0e86818f2e5fc",
+  "predicate": "contains",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-order-web",
+  "status": "candidate",
+  "subject": "relationship:fs-contains-bb5cc4e709b0e86818f2e5fc",
+  "updated_at": "2026-11-24T10:30:58.828557Z",
+  "value": {
+    "container": "component:logon-order-web",
+    "file_path": "logon-order-web/src/test/unit/com/crh/logon/order/web/utils/railexport/RailDataProviderTest.java"
+  }
+}

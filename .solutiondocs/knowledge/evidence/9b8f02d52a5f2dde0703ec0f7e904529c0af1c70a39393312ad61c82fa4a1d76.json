@@ -1,0 +1,17 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:57:53.123932Z",
+  "id": "evidence:deps-b08675d0f1ba4183c701",
+  "locator": {
+    "file": "C:\\Users\\sodeshpa\\.copilot\\repos\\copilot-worktrees\\crh-logon\\sodeshpa-improved-telegram\\logon-application\\properties.xml",
+    "section": "log4j.jar property"
+  },
+  "method": "dependency-manifest",
+  "observed_at": "2026-11-24T09:52:38+00:00",
+  "record_kind": "evidence",
+  "revision": 1,
+  "source_id": "source_artifact:deps-logon-application-properties.xml",
+  "source_revision": "76918543364cbb797a1e45866d8b4164d306656a",
+  "status": "active",
+  "updated_at": "2026-11-24T09:57:53.123932Z"
+}

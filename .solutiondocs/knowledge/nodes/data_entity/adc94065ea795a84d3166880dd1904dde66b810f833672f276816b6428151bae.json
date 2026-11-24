@@ -1,0 +1,17 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T10:20:23.597113Z",
+  "id": "data_entity:vlgnc-simpveh-load-order-item",
+  "name": "VLGNC_SIMPVEH_LOAD_ORDER_ITEM",
+  "properties": {
+    "entity_type": "view",
+    "materialised": false,
+    "purpose": "Lists all loadable order items for orders assigned to simple vehicles",
+    "schema": "ulgn"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "data_entity",
+  "updated_at": "2026-11-24T10:20:23.597113Z"
+}

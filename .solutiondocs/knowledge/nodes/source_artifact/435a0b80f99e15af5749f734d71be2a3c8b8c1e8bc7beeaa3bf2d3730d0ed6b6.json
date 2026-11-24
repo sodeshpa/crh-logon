@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:51:52.064424Z",
+  "id": "source_artifact:cfg-logon-ansible-build-logon-sh",
+  "name": "logon-ansible/build-logon.sh",
+  "properties": {
+    "location": "logon-ansible/build-logon.sh",
+    "revision": "2b5e9be99552872602ab3145da2551c39b9f9e527443d17d815d56ae044618b5",
+    "source_type": "config_file"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "source_artifact",
+  "updated_at": "2026-11-24T09:51:52.064424Z"
+}

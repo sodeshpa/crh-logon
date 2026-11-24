@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "claim_ids": [
+    "claim:8d659274229eb49df01e147fe2647233c79a616ba0894a1bdd3fda8ca64cb3db"
+  ],
+  "created_at": "2026-11-24T09:51:52.064424Z",
+  "from": "configuration:logon-build-and-runtime",
+  "id": "relationship:references-5adc55bcb05ba87026ce0ca225efa2a02291cb02",
+  "properties": {},
+  "record_kind": "relationship",
+  "revision": 1,
+  "status": "active",
+  "to": "config_item:logon-ansible-ansible-cfg",
+  "type": "references",
+  "updated_at": "2026-11-24T09:51:52.064424Z"
+}

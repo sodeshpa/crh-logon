@@ -1,0 +1,17 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T10:20:23.597113Z",
+  "id": "data_entity:vlgnc-shipto-sarea-detail",
+  "name": "VLGNC_SHIPTO_SAREA_DETAIL",
+  "properties": {
+    "entity_type": "view",
+    "materialised": false,
+    "purpose": "Basically the same data as tlgnc_shipto_sarea_restr (restrictions of a shipto-salesarea), but including the material names in all languages.",
+    "schema": "ulgn"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "data_entity",
+  "updated_at": "2026-11-24T10:20:23.597113Z"
+}

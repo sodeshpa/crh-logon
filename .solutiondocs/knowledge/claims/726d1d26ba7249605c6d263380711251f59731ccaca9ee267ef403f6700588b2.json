@@ -1,0 +1,27 @@
+{
+  "applicability": {
+    "source_revision": "c4799b3dfcf94ee66c921f340bda20c43e31a979"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 0.95,
+  "created_at": "2026-11-24T11:27:07.998697Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:fs-834107f71c6dbfb451d4c9fe"
+  ],
+  "id": "claim:fs-834107f71c6dbfb451d4c9fe",
+  "predicate": "file_inventory",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-persistence",
+  "status": "candidate",
+  "subject": "code_unit:logon-persistence-src-main-java-com-crh-logon-persistence-entities-views-usertypeviewentity.java",
+  "updated_at": "2026-11-24T11:27:07.998697Z",
+  "value": {
+    "estimated_tokens": 880,
+    "file_path": "logon-persistence/src/main/java/com/crh/logon/persistence/entities/views/UserTypeViewEntity.java",
+    "language": "Java",
+    "loc": 129,
+    "size_bytes": 3523
+  }
+}

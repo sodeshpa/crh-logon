@@ -1,0 +1,17 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T10:27:28.875935Z",
+  "id": "integration_point:external-service-fsms",
+  "name": "External service FSms",
+  "properties": {
+    "contract_type": "WSDL",
+    "endpoint": "http://localhost/ofmawsvc3/ffsms.asmx",
+    "protocol": "SOAP",
+    "type": "external_api"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "integration_point",
+  "updated_at": "2026-11-24T10:27:28.875935Z"
+}

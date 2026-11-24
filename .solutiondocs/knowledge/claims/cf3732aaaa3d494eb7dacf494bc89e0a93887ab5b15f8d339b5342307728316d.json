@@ -1,0 +1,21 @@
+{
+  "applicability": {
+    "source_revision": "5da6e972ca1dc7f256719ba5142ff15a4390d0a852e08a6e7d6431014c33aab3"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T10:27:28.875935Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:dsa-41f5388c8a58d9da46b90d51c1d60093154ddc64"
+  ],
+  "id": "claim:dsa-50d1898a9f481aa5013564a2e7cff9167c6b65fc",
+  "predicate": "path",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-business",
+  "status": "candidate",
+  "subject": "api_endpoint:openapi-itrack-getodometerreadings",
+  "updated_at": "2026-11-24T10:27:28.875935Z",
+  "value": "/api/crh/v1/odometerReadings"
+}

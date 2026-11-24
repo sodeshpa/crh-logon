@@ -1,0 +1,21 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T10:27:28.875935Z",
+  "id": "api_endpoint:dx1-java-instance-shipmentdocument-out-shipmentdocument-out",
+  "name": "ShipmentDocument_Out",
+  "properties": {
+    "method": "POST",
+    "path": "/XISOAPAdapter/MessageServlet",
+    "protocol": "SOAP",
+    "request_schema": {
+      "title": "xmln.ShipmentDocumentCreation",
+      "type": "object"
+    }
+  },
+  "qualified_name": "ShipmentDocument_Out.ShipmentDocument_Out",
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "api_endpoint",
+  "updated_at": "2026-11-24T10:27:28.875935Z"
+}

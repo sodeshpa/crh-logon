@@ -1,0 +1,21 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:49:05.830186Z",
+  "id": "code_unit:logon-business-src-main-java-com-crh-logon-business-services-eventbeans-in-logon_lds_interface-cancelloadingrequesthandler.java",
+  "name": "CancelLoadingRequestHandler.java",
+  "properties": {
+    "file_path": "logon-business/src/main/java/com/crh/logon/business/services/eventbeans/in/logon_lds_interface/CancelLoadingRequestHandler.java",
+    "language": "Java",
+    "loc": 54,
+    "metrics": {
+      "loc": 54
+    },
+    "unit_type": "file"
+  },
+  "qualified_name": "logon-business/src/main/java/com/crh/logon/business/services/eventbeans/in/logon_lds_interface/CancelLoadingRequestHandler.java",
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "code_unit",
+  "updated_at": "2026-11-24T09:49:05.830186Z"
+}

@@ -1,0 +1,19 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:53:30.031918Z",
+  "id": "setting:config-build-properties--build-logon-ext",
+  "name": "build-logon-ext",
+  "properties": {
+    "default_value": "true",
+    "is_connection_string": false,
+    "is_secret": false,
+    "key": "build-logon-ext",
+    "source_file": "config/build.properties",
+    "value_type": "boolean"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "setting",
+  "updated_at": "2026-11-24T09:53:30.031918Z"
+}

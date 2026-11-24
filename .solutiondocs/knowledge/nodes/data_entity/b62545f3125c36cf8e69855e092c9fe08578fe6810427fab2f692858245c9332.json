@@ -1,0 +1,24 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T10:08:37.052779Z",
+  "id": "data_entity:mn-materialgeneraldata-mater-5",
+  "name": "MN_MATERIALGENERALDATA_MATER_5",
+  "properties": {
+    "entity_type": "table",
+    "indexes": [
+      {
+        "columns": [
+          "CHILD_MN_MATERIALDATAPERWARE_0"
+        ],
+        "name": "MN_MATERIALGENERALDATA_MATER_5_UQ1",
+        "unique": true
+      }
+    ],
+    "schema": "ulgnsap"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "data_entity",
+  "updated_at": "2026-11-24T10:08:37.052779Z"
+}

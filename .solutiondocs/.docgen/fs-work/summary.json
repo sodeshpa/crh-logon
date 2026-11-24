@@ -1,0 +1,1013 @@
+{
+ "application:sodeshpa-improved-telegram": {
+  "files": 39,
+  "loc": 245665,
+  "languages": [
+   {
+    "name": "Other",
+    "percentage": 98.01
+   },
+   {
+    "name": "Config",
+    "percentage": 1.99
+   }
+  ],
+  "langfiles": {
+   "Other": 11,
+   "Config": 28
+  },
+  "layers": {
+   "config": 9
+  },
+  "naming": {
+   "PascalCase": 2,
+   "kebab-case": 11,
+   "snake_case": 9
+  }
+ },
+ "component:ansible": {
+  "files": 8,
+  "loc": 79,
+  "languages": [
+   {
+    "name": "Other",
+    "percentage": 67.09
+   },
+   {
+    "name": "Config",
+    "percentage": 22.78
+   },
+   {
+    "name": "Script",
+    "percentage": 10.13
+   }
+  ],
+  "langfiles": {
+   "Other": 4,
+   "Script": 1,
+   "Config": 3
+  },
+  "layers": {},
+  "naming": {
+   "PascalCase": 1,
+   "kebab-case": 1
+  }
+ },
+ "component:etc": {
+  "files": 54,
+  "loc": 2620,
+  "languages": [
+   {
+    "name": "Config",
+    "percentage": 40.57
+   },
+   {
+    "name": "Other",
+    "percentage": 28.59
+   },
+   {
+    "name": "Script",
+    "percentage": 14.62
+   },
+   {
+    "name": "Python",
+    "percentage": 13.85
+   },
+   {
+    "name": "Web/Template",
+    "percentage": 2.37
+   }
+  ],
+  "langfiles": {
+   "Config": 16,
+   "Other": 27,
+   "Script": 4,
+   "Python": 4,
+   "Web/Template": 3
+  },
+  "layers": {},
+  "naming": {
+   "camelCase": 11,
+   "snake_case": 12,
+   "kebab-case": 3,
+   "test_files": 1
+  }
+ },
+ "component:logon-admin-web": {
+  "files": 561,
+  "loc": 91616,
+  "languages": [
+   {
+    "name": "Java",
+    "percentage": 65.4
+   },
+   {
+    "name": "Web/Template",
+    "percentage": 26.42
+   },
+   {
+    "name": "JavaScript/TypeScript",
+    "percentage": 4.53
+   },
+   {
+    "name": "Config",
+    "percentage": 3.06
+   },
+   {
+    "name": "Other",
+    "percentage": 0.58
+   }
+  ],
+  "langfiles": {
+   "Other": 11,
+   "Config": 71,
+   "Java": 314,
+   "Web/Template": 146,
+   "JavaScript/TypeScript": 19
+  },
+  "layers": {
+   "util": 4,
+   "utils": 7
+  },
+  "naming": {
+   "kebab-case": 23,
+   "PascalCase": 519,
+   "snake_case": 3,
+   "camelCase": 1,
+   "test_files": 53
+  }
+ },
+ "component:logon-ansible": {
+  "files": 28,
+  "loc": 665,
+  "languages": [
+   {
+    "name": "Script",
+    "percentage": 60.75
+   },
+   {
+    "name": "Other",
+    "percentage": 39.25
+   }
+  ],
+  "langfiles": {
+   "Other": 14,
+   "Script": 14
+  },
+  "layers": {},
+  "naming": {
+   "kebab-case": 13
+  }
+ },
+ "component:logon-business": {
+  "files": 809,
+  "loc": 223979,
+  "languages": [
+   {
+    "name": "Java",
+    "percentage": 94.73
+   },
+   {
+    "name": "Config",
+    "percentage": 3.74
+   },
+   {
+    "name": "Other",
+    "percentage": 1.53
+   }
+  ],
+  "langfiles": {
+   "Other": 33,
+   "Config": 25,
+   "Java": 751
+  },
+  "layers": {
+   "dto": 30,
+   "controllers": 2,
+   "services": 531,
+   "utils": 154,
+   "domain": 46,
+   "views": 6,
+   "entities": 4
+  },
+  "naming": {
+   "kebab-case": 6,
+   "PascalCase": 766,
+   "snake_case": 13,
+   "test_files": 53
+  }
+ },
+ "component:logon-common-web": {
+  "files": 259,
+  "loc": 59402,
+  "languages": [
+   {
+    "name": "Web/Template",
+    "percentage": 31.59
+   },
+   {
+    "name": "JavaScript/TypeScript",
+    "percentage": 24.92
+   },
+   {
+    "name": "Java",
+    "percentage": 23.04
+   },
+   {
+    "name": "Other",
+    "percentage": 19.0
+   },
+   {
+    "name": "Config",
+    "percentage": 1.11
+   },
+   {
+    "name": "Ruby",
+    "percentage": 0.34
+   }
+  ],
+  "langfiles": {
+   "Other": 30,
+   "Config": 18,
+   "Web/Template": 81,
+   "JavaScript/TypeScript": 39,
+   "Ruby": 1,
+   "Java": 90
+  },
+  "layers": {
+   "dto": 1,
+   "filters": 13,
+   "utils": 24,
+   "handlers": 3,
+   "listeners": 2,
+   "validators": 6
+  },
+  "naming": {
+   "kebab-case": 13,
+   "snake_case": 60,
+   "PascalCase": 142,
+   "camelCase": 3,
+   "test_files": 1
+  }
+ },
+ "component:logon-common": {
+  "files": 168,
+  "loc": 97962,
+  "languages": [
+   {
+    "name": "Other",
+    "percentage": 83.23
+   },
+   {
+    "name": "Java",
+    "percentage": 15.26
+   },
+   {
+    "name": "Config",
+    "percentage": 1.51
+   }
+  ],
+  "langfiles": {
+   "Other": 32,
+   "Config": 14,
+   "Java": 122
+  },
+  "layers": {
+   "utils": 34
+  },
+  "naming": {
+   "kebab-case": 4,
+   "PascalCase": 133,
+   "snake_case": 7,
+   "test_files": 6
+  }
+ },
+ "component:logon-cust-web": {
+  "files": 60,
+  "loc": 9842,
+  "languages": [
+   {
+    "name": "Java",
+    "percentage": 51.11
+   },
+   {
+    "name": "Web/Template",
+    "percentage": 27.76
+   },
+   {
+    "name": "Config",
+    "percentage": 13.58
+   },
+   {
+    "name": "JavaScript/TypeScript",
+    "percentage": 6.53
+   },
+   {
+    "name": "Other",
+    "percentage": 1.02
+   }
+  ],
+  "langfiles": {
+   "Other": 5,
+   "Config": 24,
+   "Java": 18,
+   "Web/Template": 12,
+   "JavaScript/TypeScript": 1
+  },
+  "layers": {
+   "filters": 1,
+   "utils": 4
+  },
+  "naming": {
+   "kebab-case": 18,
+   "PascalCase": 30,
+   "snake_case": 1
+  }
+ },
+ "component:logon-init-web": {
+  "files": 24,
+  "loc": 1519,
+  "languages": [
+   {
+    "name": "Config",
+    "percentage": 53.19
+   },
+   {
+    "name": "Java",
+    "percentage": 40.36
+   },
+   {
+    "name": "Other",
+    "percentage": 6.45
+   }
+  ],
+  "langfiles": {
+   "Other": 4,
+   "Config": 17,
+   "Java": 3
+  },
+  "layers": {
+   "listeners": 2
+  },
+  "naming": {
+   "kebab-case": 12,
+   "PascalCase": 3
+  }
+ },
+ "component:logon-order-web": {
+  "files": 500,
+  "loc": 137732,
+  "languages": [
+   {
+    "name": "Java",
+    "percentage": 51.87
+   },
+   {
+    "name": "Web/Template",
+    "percentage": 31.82
+   },
+   {
+    "name": "JavaScript/TypeScript",
+    "percentage": 13.52
+   },
+   {
+    "name": "Config",
+    "percentage": 1.42
+   },
+   {
+    "name": "Other",
+    "percentage": 1.37
+   }
+  ],
+  "langfiles": {
+   "Other": 12,
+   "Config": 24,
+   "Java": 246,
+   "Web/Template": 199,
+   "JavaScript/TypeScript": 19
+  },
+  "layers": {
+   "dto": 6,
+   "utils": 38,
+   "filters": 1
+  },
+  "naming": {
+   "kebab-case": 27,
+   "PascalCase": 442,
+   "camelCase": 8,
+   "snake_case": 1,
+   "test_files": 6
+  }
+ },
+ "component:logon-pdf-generator": {
+  "files": 44,
+  "loc": 3559,
+  "languages": [
+   {
+    "name": "Java",
+    "percentage": 73.05
+   },
+   {
+    "name": "Config",
+    "percentage": 21.72
+   },
+   {
+    "name": "Other",
+    "percentage": 5.23
+   }
+  ],
+  "langfiles": {
+   "Other": 5,
+   "Config": 5,
+   "Java": 34
+  },
+  "layers": {
+   "util": 3
+  },
+  "naming": {
+   "kebab-case": 1,
+   "PascalCase": 35
+  }
+ },
+ "component:logon-persistence": {
+  "files": 1903,
+  "loc": 666655,
+  "languages": [
+   {
+    "name": "Java",
+    "percentage": 42.39
+   },
+   {
+    "name": "Other",
+    "percentage": 31.18
+   },
+   {
+    "name": "SQL",
+    "percentage": 23.2
+   },
+   {
+    "name": "Config",
+    "percentage": 3.16
+   },
+   {
+    "name": "Script",
+    "percentage": 0.08
+   }
+  ],
+  "langfiles": {
+   "Other": 177,
+   "Config": 637,
+   "Script": 4,
+   "SQL": 372,
+   "Java": 713
+  },
+  "layers": {
+   "views": 452,
+   "config": 3,
+   "dao": 4,
+   "util": 4,
+   "dto": 1,
+   "entities": 659,
+   "utils": 4
+  },
+  "naming": {
+   "kebab-case": 3,
+   "PascalCase": 714,
+   "snake_case": 1082,
+   "camelCase": 4
+  }
+ },
+ "component:logon-security": {
+  "files": 21,
+  "loc": 3245,
+  "languages": [
+   {
+    "name": "Java",
+    "percentage": 82.96
+   },
+   {
+    "name": "Config",
+    "percentage": 15.72
+   },
+   {
+    "name": "Other",
+    "percentage": 1.33
+   }
+  ],
+  "langfiles": {
+   "Other": 5,
+   "Config": 5,
+   "Java": 11
+  },
+  "layers": {
+   "utils": 3
+  },
+  "naming": {
+   "kebab-case": 3,
+   "PascalCase": 11,
+   "snake_case": 1
+  }
+ },
+ "component:logon-simulator": {
+  "files": 32,
+  "loc": 182491,
+  "languages": [
+   {
+    "name": "Config",
+    "percentage": 99.89
+   },
+   {
+    "name": "Java",
+    "percentage": 0.09
+   },
+   {
+    "name": "Other",
+    "percentage": 0.02
+   },
+   {
+    "name": "Script",
+    "percentage": 0.0
+   }
+  ],
+  "langfiles": {
+   "Other": 8,
+   "Config": 20,
+   "Script": 2,
+   "Java": 2
+  },
+  "layers": {},
+  "naming": {
+   "kebab-case": 12,
+   "PascalCase": 7,
+   "test_files": 1
+  }
+ },
+ "component:logon-terminal-web": {
+  "files": 77,
+  "loc": 8592,
+  "languages": [
+   {
+    "name": "Java",
+    "percentage": 44.3
+   },
+   {
+    "name": "Web/Template",
+    "percentage": 35.0
+   },
+   {
+    "name": "Config",
+    "percentage": 15.34
+   },
+   {
+    "name": "JavaScript/TypeScript",
+    "percentage": 3.24
+   },
+   {
+    "name": "Other",
+    "percentage": 2.13
+   }
+  ],
+  "langfiles": {
+   "Other": 6,
+   "Config": 23,
+   "Java": 22,
+   "Web/Template": 20,
+   "JavaScript/TypeScript": 6
+  },
+  "layers": {
+   "filters": 1,
+   "utils": 1
+  },
+  "naming": {
+   "kebab-case": 18,
+   "PascalCase": 47,
+   "snake_case": 1
+  }
+ },
+ "component:logon-test-load": {
+  "files": 41,
+  "loc": 6084,
+  "languages": [
+   {
+    "name": "Other",
+    "percentage": 42.34
+   },
+   {
+    "name": "Python",
+    "percentage": 37.66
+   },
+   {
+    "name": "Config",
+    "percentage": 19.41
+   },
+   {
+    "name": "Script",
+    "percentage": 0.59
+   }
+  ],
+  "langfiles": {
+   "Other": 9,
+   "Script": 4,
+   "Config": 8,
+   "Python": 20
+  },
+  "layers": {},
+  "naming": {
+   "snake_case": 26,
+   "kebab-case": 5,
+   "test_files": 1
+  }
+ },
+ "component:logon-webservices-client": {
+  "files": 100,
+  "loc": 30745,
+  "languages": [
+   {
+    "name": "Other",
+    "percentage": 48.56
+   },
+   {
+    "name": "Java",
+    "percentage": 26.59
+   },
+   {
+    "name": "Config",
+    "percentage": 24.84
+   },
+   {
+    "name": "Script",
+    "percentage": 0.01
+   }
+  ],
+  "langfiles": {
+   "Other": 33,
+   "Config": 36,
+   "Script": 2,
+   "Java": 29
+  },
+  "layers": {
+   "util": 1
+  },
+  "naming": {
+   "kebab-case": 2,
+   "PascalCase": 34,
+   "snake_case": 43,
+   "camelCase": 1
+  }
+ },
+ "component:logon-webservices-mop-incoming": {
+  "files": 27,
+  "loc": 7574,
+  "languages": [
+   {
+    "name": "Config",
+    "percentage": 85.27
+   },
+   {
+    "name": "Java",
+    "percentage": 11.9
+   },
+   {
+    "name": "Other",
+    "percentage": 2.79
+   },
+   {
+    "name": "Script",
+    "percentage": 0.05
+   }
+  ],
+  "langfiles": {
+   "Other": 9,
+   "Config": 13,
+   "Script": 2,
+   "Java": 3
+  },
+  "layers": {
+   "util": 1
+  },
+  "naming": {
+   "kebab-case": 2,
+   "snake_case": 6,
+   "PascalCase": 4,
+   "camelCase": 2
+  }
+ },
+ "component:logon-webservices-oc-incoming": {
+  "files": 15,
+  "loc": 3962,
+  "languages": [
+   {
+    "name": "Other",
+    "percentage": 37.66
+   },
+   {
+    "name": "Config",
+    "percentage": 36.52
+   },
+   {
+    "name": "Java",
+    "percentage": 24.56
+   },
+   {
+    "name": "Script",
+    "percentage": 1.26
+   }
+  ],
+  "langfiles": {
+   "Other": 4,
+   "Config": 9,
+   "Java": 1,
+   "Script": 1
+  },
+  "layers": {},
+  "naming": {
+   "kebab-case": 1,
+   "snake_case": 4,
+   "PascalCase": 1,
+   "camelCase": 2
+  }
+ },
+ "component:logon-webservices-pws-incoming": {
+  "files": 24,
+  "loc": 13439,
+  "languages": [
+   {
+    "name": "Config",
+    "percentage": 42.42
+   },
+   {
+    "name": "Other",
+    "percentage": 30.58
+   },
+   {
+    "name": "Java",
+    "percentage": 26.62
+   },
+   {
+    "name": "Script",
+    "percentage": 0.37
+   }
+  ],
+  "langfiles": {
+   "Other": 10,
+   "Config": 11,
+   "Java": 2,
+   "Script": 1
+  },
+  "layers": {},
+  "naming": {
+   "kebab-case": 1,
+   "snake_case": 7,
+   "PascalCase": 2,
+   "camelCase": 3
+  }
+ },
+ "component:logon-webservices": {
+  "files": 306,
+  "loc": 181516,
+  "languages": [
+   {
+    "name": "Java",
+    "percentage": 55.4
+   },
+   {
+    "name": "Other",
+    "percentage": 42.94
+   },
+   {
+    "name": "Config",
+    "percentage": 1.41
+   },
+   {
+    "name": "SQL",
+    "percentage": 0.25
+   },
+   {
+    "name": "Script",
+    "percentage": 0.0
+   }
+  ],
+  "langfiles": {
+   "Other": 143,
+   "Config": 25,
+   "SQL": 7,
+   "Script": 2,
+   "Java": 129
+  },
+  "layers": {
+   "entities": 116,
+   "services": 5,
+   "utils": 2
+  },
+  "naming": {
+   "kebab-case": 4,
+   "snake_case": 19,
+   "PascalCase": 150,
+   "camelCase": 13
+  }
+ },
+ "component:pkg": {
+  "files": 16,
+  "loc": 1983,
+  "languages": [
+   {
+    "name": "Config",
+    "percentage": 86.13
+   },
+   {
+    "name": "Other",
+    "percentage": 7.56
+   },
+   {
+    "name": "Script",
+    "percentage": 6.3
+   }
+  ],
+  "langfiles": {
+   "Other": 5,
+   "Config": 8,
+   "Script": 3
+  },
+  "layers": {
+   "config": 4
+  },
+  "naming": {
+   "PascalCase": 1,
+   "camelCase": 3,
+   "snake_case": 1,
+   "kebab-case": 2
+  }
+ },
+ "_large": [
+  [
+   "ChangeLog.legacy",
+   2311725
+  ],
+  [
+   "logon-simulator/etc/soapui/integration-tests/integration-tests-soapui-project.xml",
+   1741697
+  ],
+  [
+   "logon-persistence/etc/sql/testdata/tlgns_sap_bp_sarea.sql",
+   1576680
+  ],
+  [
+   "logon-common/etc/litdict/LitDict.global",
+   1417418
+  ],
+  [
+   "logon-simulator/etc/soapui/manual-tests/manual-tests-soapui-project.xml",
+   306999
+  ],
+  [
+   "logon-persistence/etc/sql/testdata/tlgns_sap_bp_pf_shipto.sql",
+   290981
+  ],
+  [
+   "logon-persistence/etc/sql/refdata/tlgnr_damagecode.sql",
+   248325
+  ],
+  [
+   "logon-simulator/etc/soapui/cs-outgoing/project.xml",
+   244022
+  ],
+  [
+   "logon-persistence/etc/sql/testdata/tlgns_sap_bp_pf_billto.sql",
+   190358
+  ],
+  [
+   "logon-persistence/etc/sql/refdata/images/printing_testpage.ps",
+   183178
+  ],
+  [
+   "logon-persistence/etc/csv/deletebp/delete_bp_lp1.csv",
+   175971
+  ],
+  [
+   "logon-business/src/main/java/com/crh/logon/business/services/impl/OrderServiceBean.java",
+   143243
+  ],
+  [
+   "logon-persistence/etc/csv/deletebp/delete_bp_lq1.csv",
+   137819
+  ],
+  [
+   "logon-persistence/etc/sql/loadtestdata/vendor_carrier_porg_300_ADNV.sql",
+   115687
+  ],
+  [
+   "logon-persistence/etc/sql/loadtestdata/vendor_carrier_porg_300_ZZZV.sql",
+   115687
+  ],
+  [
+   "logon-webservices/etc/wsdl/MaterialNotification.wsdl",
+   102051
+  ],
+  [
+   "logon-persistence/etc/sql/custom_views.sql",
+   101661
+  ],
+  [
+   "logon-persistence/src/main/java/com/crh/logon/persistence/entities/frozen/OrderFinalEntity.java",
+   99218
+  ],
+  [
+   "logon-persistence/etc/csv/cl1_initialdata/wagon.csv",
+   92479
+  ],
+  [
+   "logon-webservices/etc/xsd/MaterialNotification.xsd",
+   86368
+  ],
+  [
+   "logon-persistence/etc/csv/loadtestdata/user_person_driver_role.csv",
+   85214
+  ],
+  [
+   "logon-persistence/etc/sql/refdata/tlgnr_currency.sql",
+   76501
+  ],
+  [
+   "logon-persistence/etc/sql/refdata/tlgnr_text.sql",
+   74461
+  ],
+  [
+   "logon-persistence/etc/sql/refdata/tlgnr_sap_payment_method.sql",
+   74282
+  ],
+  [
+   "logon-persistence/etc/csv/cities_initialdata/sorg_tx.csv",
+   71954
+  ],
+  [
+   "logon-webservices-client/etc/wsdl/wsi/log.xml",
+   63486
+  ],
+  [
+   "logon-webservices-mop-incoming/src/main/resources/wsi/log.xml",
+   63486
+  ],
+  [
+   "logon-webservices-pws-incoming/src/main/resources/wsi/log.xml",
+   63486
+  ],
+  [
+   "logon-webservices/etc/xsd/original/MaterialNotification.xsd",
+   62509
+  ],
+  [
+   "logon-persistence/etc/csv/testdata/user_person_driver_role.csv",
+   60189
+  ],
+  [
+   "logon-business/src/main/java/com/crh/logon/business/services/impl/DispoServiceBean.java",
+   59401
+  ],
+  [
+   "logon-webservices/src/main/java/com/crh/logon/persistence/entities/sapdata/MaterialPlantData.java",
+   57993
+  ],
+  [
+   "logon-persistence/etc/csv/cl1_initialdata/rail_distance.csv",
+   57303
+  ],
+  [
+   "logon-order-web/src/main/webapp/js/dispo2.js",
+   56958
+  ],
+  [
+   "logon-persistence/etc/sql/refdata/tlgnr_sap_country.sql",
+   56501
+  ],
+  [
+   "logon-webservices/etc/wsdl/VendorNotification.wsdl",
+   55672
+  ],
+  [
+   "logon-persistence/src/main/java/com/crh/logon/persistence/entities/frozen/OrderItemFinalEntity.java",
+   53533
+  ],
+  [
+   "logon-persistence/src/main/java/com/crh/logon/persistence/entities/views/RepOrderListCommEntity.java",
+   53440
+  ],
+  [
+   "logon-persistence/etc/csv/cl2_initialdata/sorg_tx.csv",
+   53245
+  ],
+  [
+   "logon-persistence/src/main/java/com/crh/logon/persistence/entities/views/RepSapBwExportEntity.java",
+   53187
+  ],
+  [
+   "logon-business/src/main/java/com/crh/logon/business/services/impl/SapOutgoingDataServiceBean.java",
+   52008
+  ],
+  [
+   "logon-persistence/etc/sql/testdata/tlgns_sap_material_description.sql",
+   50190
+  ]
+ ],
+ "_units": 3479,
+ "_rev": "c4799b3dfcf94ee66c921f340bda20c43e31a979"
+}

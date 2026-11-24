@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "claim_ids": [
+    "claim:dsa-d229b696f92ad99844c09e531656e7d804705c37"
+  ],
+  "created_at": "2026-11-24T10:34:49.573274Z",
+  "from": "data_entity:mn-materialgeneraldata",
+  "id": "relationship:dsa-58d349f9b78c6db2c54cd3f4ef3b80ce9a8da6de",
+  "properties": {},
+  "record_kind": "relationship",
+  "revision": 1,
+  "status": "active",
+  "to": "data_field:mn-materialgeneraldata-etifo",
+  "type": "contains",
+  "updated_at": "2026-11-24T10:34:49.573274Z"
+}

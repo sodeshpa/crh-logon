@@ -1,0 +1,17 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T10:27:28.875935Z",
+  "id": "integration_point:external-service-sirocco20",
+  "name": "External service Sirocco20",
+  "properties": {
+    "contract_type": "WSDL",
+    "endpoint": "http://siroccotest.interactive3g.com:9091/SiroccoGateway/services/Sirocco20",
+    "protocol": "SOAP",
+    "type": "external_api"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "integration_point",
+  "updated_at": "2026-11-24T10:27:28.875935Z"
+}

@@ -1,0 +1,28 @@
+{
+  "applicability": {
+    "source_revision": "37b08712370e807afefb95e7d140e3bd6101e15d"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T09:49:36.164007Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:deps-2206d8aec73c37792678"
+  ],
+  "id": "claim:deps-95ddd51e0fa9037c59fdd7c9",
+  "predicate": "declared_coordinates",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-business",
+  "status": "candidate",
+  "subject": "dependency:maven-org.apache.kafka-kafka-clients-2.6.0",
+  "updated_at": "2026-11-24T09:49:36.164007Z",
+  "value": {
+    "ecosystem": "maven",
+    "group": "org.apache.kafka",
+    "name": "kafka-clients",
+    "note": "maven scope=compile",
+    "scope": "compile",
+    "version": "2.6.0"
+  }
+}

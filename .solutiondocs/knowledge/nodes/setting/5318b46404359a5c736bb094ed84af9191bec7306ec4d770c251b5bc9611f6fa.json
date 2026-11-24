@@ -1,0 +1,18 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:53:30.031918Z",
+  "id": "setting:config-build-dev-properties--db-connection-schema-owner-pwd",
+  "name": "db.connection.schema_owner_pwd",
+  "properties": {
+    "is_connection_string": false,
+    "is_secret": true,
+    "key": "db.connection.schema_owner_pwd",
+    "source_file": "config/build-dev.properties",
+    "value_type": "string"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "setting",
+  "updated_at": "2026-11-24T09:53:30.031918Z"
+}

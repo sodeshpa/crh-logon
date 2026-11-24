@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:49:36.164007Z",
+  "id": "source_artifact:deps-ansible-roles-buildnode-tasks-main.yml",
+  "name": "ansible/roles/buildnode/tasks/main.yml",
+  "properties": {
+    "location": "C:\\Users\\sodeshpa\\.copilot\\repos\\copilot-worktrees\\crh-logon\\sodeshpa-improved-telegram\\ansible\\roles\\buildnode\\tasks\\main.yml",
+    "revision": "78e9e77b09f7cd30237790b91f202a951e3b729c",
+    "source_type": "dependency_manifest"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "source_artifact",
+  "updated_at": "2026-11-24T09:49:36.164007Z"
+}

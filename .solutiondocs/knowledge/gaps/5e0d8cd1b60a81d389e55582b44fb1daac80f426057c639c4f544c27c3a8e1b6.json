@@ -1,0 +1,19 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:57:53.123932Z",
+  "domain": "build_devops",
+  "evidence_ids": [
+    "evidence:deps-aea952b806c7c78ed740"
+  ],
+  "gap_type": "documentable",
+  "id": "gap:deps-external-jpository-libs",
+  "knowledge_gap_type": "unknown_unknown",
+  "owner_ids": [],
+  "priority": "P2",
+  "prompt": "Most third-party jars (Struts, Spring, Axis2, POI, jcan-*, etc.) come from an external jpository (EXT_PROJ_DIR) not in this repository; actual jar contents, bundled transitive libraries and checksums are not verifiable from source.",
+  "record_kind": "gap",
+  "revision": 1,
+  "status": "open",
+  "subject": "application:sodeshpa-improved-telegram",
+  "updated_at": "2026-11-24T09:57:53.123932Z"
+}

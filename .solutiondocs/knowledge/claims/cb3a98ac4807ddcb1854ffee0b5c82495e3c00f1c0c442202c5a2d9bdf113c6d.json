@@ -1,0 +1,20 @@
+{
+  "applicability": {
+    "source_revision": "943596f27347b6bef2127c5f01685146915ded837c48f947698d5ca31f2c0aff"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 0.95,
+  "created_at": "2026-11-24T09:51:52.064424Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:cfg-e55d7d955275a8014aafa8befc0347a94e52fc22f5647e49709c2b8b3b018f9d"
+  ],
+  "id": "claim:743d340c446f3f10764d3dfad2d9837c0bd3ade577e3044ef53d8073aa45b099",
+  "predicate": "purpose",
+  "record_kind": "claim",
+  "revision": 1,
+  "status": "candidate",
+  "subject": "config_item:container-properties-xml",
+  "updated_at": "2026-11-24T09:51:52.064424Z",
+  "value": "Container-specific Ant properties"
+}

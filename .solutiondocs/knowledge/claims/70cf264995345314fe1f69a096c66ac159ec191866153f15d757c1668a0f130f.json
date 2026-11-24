@@ -1,0 +1,20 @@
+{
+  "applicability": {
+    "source_revision": "9177d647b7762fabf042bad054f64e82808053b35d5107b26e40895bcc209e52"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 0.9,
+  "created_at": "2026-11-24T09:53:30.031918Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:cfg-617ce13da6cf19fc33f5945f4dde68ba74b4bf38ef0fb14102ad115f36b3af0c"
+  ],
+  "id": "claim:f433c986f539bb3fe99d2139d5b33f15cb9852f805cb5c42ac668d4e0480c687",
+  "predicate": "defined_in",
+  "record_kind": "claim",
+  "revision": 1,
+  "status": "candidate",
+  "subject": "setting:config-build-nightly-properties--db-user-root-password",
+  "updated_at": "2026-11-24T09:53:30.031918Z",
+  "value": "config/build-nightly.properties"
+}

@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:49:36.164007Z",
+  "id": "source_artifact:deps-logon-order-web-build-deps.xml",
+  "name": "logon-order-web/build-deps.xml",
+  "properties": {
+    "location": "C:\\Users\\sodeshpa\\.copilot\\repos\\copilot-worktrees\\crh-logon\\sodeshpa-improved-telegram\\logon-order-web\\build-deps.xml",
+    "revision": "a0b5cdb2d32c0698faadbe11ec6f8006d55d7765",
+    "source_type": "build_manifest"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "source_artifact",
+  "updated_at": "2026-11-24T09:49:36.164007Z"
+}

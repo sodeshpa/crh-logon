@@ -1,0 +1,21 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:57:00.770446Z",
+  "id": "code_unit:logon-common-web-src-main-java-com-crh-logon-taglib-fmt-messagesupport.java",
+  "name": "MessageSupport.java",
+  "properties": {
+    "file_path": "logon-common-web/src/main/java/com/crh/logon/taglib/fmt/MessageSupport.java",
+    "language": "Java",
+    "loc": 296,
+    "metrics": {
+      "loc": 296
+    },
+    "unit_type": "file"
+  },
+  "qualified_name": "logon-common-web/src/main/java/com/crh/logon/taglib/fmt/MessageSupport.java",
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "code_unit",
+  "updated_at": "2026-11-24T09:57:00.770446Z"
+}

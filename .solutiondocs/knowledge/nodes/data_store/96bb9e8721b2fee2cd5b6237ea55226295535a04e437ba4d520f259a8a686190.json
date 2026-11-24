@@ -1,0 +1,24 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T10:04:21.856768Z",
+  "id": "data_store:logon-main-database",
+  "name": "Logon main database (Oracle schema)",
+  "properties": {
+    "engine": "Oracle",
+    "entity_count": 248,
+    "extraction_source": "ddl_file",
+    "metadata": {
+      "dsa:data_only_sql_files": 221,
+      "dsa:ddl_entity_count": 248,
+      "dsa:index_statements": 15,
+      "dsa:plsql_unit_count": 71,
+      "dsa:sequence_count": 31
+    },
+    "store_type": "relational"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "data_store",
+  "updated_at": "2026-11-24T10:04:21.856768Z"
+}

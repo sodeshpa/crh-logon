@@ -1,0 +1,28 @@
+{
+  "applicability": {
+    "source_revision": "b65484483903039583cc2f1b36a492bb8d134609"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T09:49:36.164007Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:deps-fab110c3b156e5a38709"
+  ],
+  "id": "claim:deps-eef49846184b6d796a30cad6",
+  "predicate": "declared_coordinates",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "application:sodeshpa-improved-telegram",
+  "status": "candidate",
+  "subject": "dependency:ant-jar-javax.xml.bind-jaxb-api-2.1",
+  "updated_at": "2026-11-24T09:49:36.164007Z",
+  "value": {
+    "ecosystem": "ant-jar",
+    "group": "javax.xml.bind",
+    "name": "jaxb-api",
+    "note": "ant property jaxb-api.jar -> ${HYPERJAXB3_HOME}/dist-src/lib/jaxb-api-2.1.jar (resolved from external jpository/mpository; not bundled in repo)",
+    "scope": "compile",
+    "version": "2.1"
+  }
+}

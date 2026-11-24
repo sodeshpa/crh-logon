@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:59:54.408851Z",
+  "id": "source_artifact:dsa-logon-persistence-etc-sql-refdata-tlgnr-billto-ruletype-sql",
+  "name": "tlgnr_billto_ruletype.sql",
+  "properties": {
+    "location": "logon-persistence/etc/sql/refdata/tlgnr_billto_ruletype.sql",
+    "revision": "bff86279a86dbd5021cc77b74c72313d0e8040fef7c913d886537631a053a56d",
+    "source_type": "ddl_sql"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "source_artifact",
+  "updated_at": "2026-11-24T09:59:54.408851Z"
+}

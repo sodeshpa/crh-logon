@@ -1,0 +1,28 @@
+{
+  "generated_at": "2026-11-24T15:14:17+05:30",
+  "phase": "phase-0-lsp-setup",
+  "mode": "copilot-cli",
+  "languages": [
+    {
+      "language": "java",
+      "server": "jdtls",
+      "status": "skipped",
+      "available": false,
+      "reason": "user-configured skip (.engagement-config.json lsp_setup.languages status=skipped); hard exclusion, nothing installed or prompted"
+    },
+    {
+      "language": "javascript",
+      "status": "skipped",
+      "available": false,
+      "reason": "user-configured skip (.engagement-config.json lsp_setup.languages status=skipped); hard exclusion, nothing installed or prompted"
+    }
+  ],
+  "operation_readiness": {
+    "definition": "not available",
+    "references": "not available",
+    "call_hierarchy": "not available",
+    "document_symbols": "not available",
+    "workspace_symbols": "not available"
+  },
+  "fallback": "Use grep/glob/tree-sitter or text-based analysis"
+}

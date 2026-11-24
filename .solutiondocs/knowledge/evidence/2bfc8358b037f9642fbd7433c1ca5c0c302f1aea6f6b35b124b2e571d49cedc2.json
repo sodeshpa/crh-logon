@@ -1,0 +1,18 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T10:36:58.132094Z",
+  "id": "evidence:fs-d4048c0f275b1f11b93589a9",
+  "locator": {
+    "file": "logon-persistence/etc/sql/patch/old_lh_patches/from_2.6.3/patch_2.6.3_to_2.6.4.sql",
+    "line_end": 232,
+    "line_start": 1
+  },
+  "method": "file-system",
+  "observed_at": "2026-11-24T09:46:55Z",
+  "record_kind": "evidence",
+  "revision": 1,
+  "source_id": "source_artifact:fs-logon-persistence-tree",
+  "source_revision": "c4799b3dfcf94ee66c921f340bda20c43e31a979",
+  "status": "active",
+  "updated_at": "2026-11-24T10:36:58.132094Z"
+}

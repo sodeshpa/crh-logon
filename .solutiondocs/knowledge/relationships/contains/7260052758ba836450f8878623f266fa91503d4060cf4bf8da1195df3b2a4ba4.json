@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "claim_ids": [
+    "claim:dsa-66002f6b27ceefeb7b939b778af1155b21e2efbf"
+  ],
+  "created_at": "2026-11-24T11:07:07.476264Z",
+  "from": "component:logon-persistence",
+  "id": "relationship:dsa-cb22efbe2e4914c20e0649c5cdb1fcad6920eb29",
+  "properties": {},
+  "record_kind": "relationship",
+  "revision": 1,
+  "status": "active",
+  "to": "code_unit:logon-persistence-plsql-get-minutes-to-timeline",
+  "type": "contains",
+  "updated_at": "2026-11-24T11:07:07.476264Z"
+}

@@ -1,0 +1,21 @@
+{
+  "applicability": {
+    "source_revision": "f0319b7f1fa2ac8b05f0bc2cbf001eceaa03677eb829c7419fb7413f61391f69"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T10:15:23.919223Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:dsa-54bb50cad43f68510d18f2bd40c96d419b453b67"
+  ],
+  "id": "claim:dsa-1071dd64f30a4c7572321d273e58af67e9312d3b",
+  "predicate": "data_type",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-webservices",
+  "status": "candidate",
+  "subject": "data_field:mn-materialunplannedconsumpt-0-msgfn",
+  "updated_at": "2026-11-24T10:15:23.919223Z",
+  "value": "varchar2(3 char)"
+}

@@ -1,0 +1,24 @@
+{
+  "applicability": {
+    "source_revision": "c4799b3dfcf94ee66c921f340bda20c43e31a979"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 0.95,
+  "created_at": "2026-11-24T11:29:38.590104Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:fs-bc2d9bccfda1116bde0cec3a"
+  ],
+  "id": "claim:fs-rel-bc2d9bccfda1116bde0cec3a",
+  "predicate": "contains",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-webservices-client",
+  "status": "candidate",
+  "subject": "relationship:fs-contains-bc2d9bccfda1116bde0cec3a",
+  "updated_at": "2026-11-24T11:29:38.590104Z",
+  "value": {
+    "container": "component:logon-webservices-client",
+    "file_path": "logon-webservices-client/src/main/java/com/crh/logon/webservices/clients/LogonToMop.java"
+  }
+}

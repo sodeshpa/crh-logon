@@ -1,0 +1,21 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T11:29:38.590104Z",
+  "id": "code_unit:logon-webservices-client-src-main-java-com-crh-logon-webservices-clients-beans-ecmservice-pdfdata.java",
+  "name": "PdfData.java",
+  "properties": {
+    "file_path": "logon-webservices-client/src/main/java/com/crh/logon/webservices/clients/beans/ecmservice/PdfData.java",
+    "language": "Java",
+    "loc": 62,
+    "metrics": {
+      "loc": 62
+    },
+    "unit_type": "file"
+  },
+  "qualified_name": "logon-webservices-client/src/main/java/com/crh/logon/webservices/clients/beans/ecmservice/PdfData.java",
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "code_unit",
+  "updated_at": "2026-11-24T11:29:38.590104Z"
+}

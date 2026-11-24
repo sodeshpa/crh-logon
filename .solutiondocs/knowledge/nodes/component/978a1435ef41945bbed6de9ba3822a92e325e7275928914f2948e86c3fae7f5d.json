@@ -1,0 +1,42 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:43:07.964638Z",
+  "id": "component:logon-simulator",
+  "name": "logon-simulator",
+  "properties": {
+    "build_files": [],
+    "estimated_tokens": 2402283,
+    "files": 32,
+    "folder": "logon-simulator",
+    "metrics": {
+      "loc": 182491
+    },
+    "source_files": 4,
+    "source_root": "logon-simulator",
+    "tech_stack": {
+      "languages": [
+        {
+          "name": "Config",
+          "percentage": 99.89
+        },
+        {
+          "name": "Java",
+          "percentage": 0.09
+        },
+        {
+          "name": "Other",
+          "percentage": 0.02
+        },
+        {
+          "name": "Script",
+          "percentage": 0.0
+        }
+      ]
+    }
+  },
+  "record_kind": "node",
+  "revision": 2,
+  "status": "active",
+  "type": "component",
+  "updated_at": "2026-11-24T13:43:36.779345Z"
+}

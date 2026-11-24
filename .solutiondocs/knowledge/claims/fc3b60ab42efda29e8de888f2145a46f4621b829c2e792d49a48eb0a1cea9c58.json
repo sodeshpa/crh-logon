@@ -1,0 +1,24 @@
+{
+  "applicability": {
+    "source_revision": "c4799b3dfcf94ee66c921f340bda20c43e31a979"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 0.95,
+  "created_at": "2026-11-24T09:50:06.925075Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:fs-af41ffa08deeceaa1ad0c1ad"
+  ],
+  "id": "claim:fs-rel-af41ffa08deeceaa1ad0c1ad",
+  "predicate": "contains",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-business",
+  "status": "candidate",
+  "subject": "relationship:fs-contains-af41ffa08deeceaa1ad0c1ad",
+  "updated_at": "2026-11-24T09:50:06.925075Z",
+  "value": {
+    "container": "component:logon-business",
+    "file_path": "logon-business/src/main/java/com/crh/logon/business/services/eventbeans/in/mop/WaitingOnShippingpointRequestHandler.java"
+  }
+}

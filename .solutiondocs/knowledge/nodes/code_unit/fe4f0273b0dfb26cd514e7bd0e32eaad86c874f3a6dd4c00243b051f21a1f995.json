@@ -1,0 +1,21 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T10:03:24.312910Z",
+  "id": "code_unit:logon-init-web-src-main-java-com-crh-logon-init-web-listeners-log4jconfigurationlistener.java",
+  "name": "Log4jConfigurationListener.java",
+  "properties": {
+    "file_path": "logon-init-web/src/main/java/com/crh/logon/init/web/listeners/Log4jConfigurationListener.java",
+    "language": "Java",
+    "loc": 81,
+    "metrics": {
+      "loc": 81
+    },
+    "unit_type": "file"
+  },
+  "qualified_name": "logon-init-web/src/main/java/com/crh/logon/init/web/listeners/Log4jConfigurationListener.java",
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "code_unit",
+  "updated_at": "2026-11-24T10:03:24.312910Z"
+}

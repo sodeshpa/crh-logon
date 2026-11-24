@@ -1,0 +1,17 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T10:20:23.597113Z",
+  "id": "data_entity:vlgns-sap-material-plant-sarea",
+  "name": "VLGNS_SAP_MATERIAL_PLANT_SAREA",
+  "properties": {
+    "entity_type": "view",
+    "materialised": false,
+    "purpose": "View containing all sap material plant entries basically with the connected sales area table in order to be able to filter for the sales area id and therefore only consider those, which are valid in the sales area.Used by supply and production plant dropdowns on order taking sources, and validation.",
+    "schema": "ulgn"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "data_entity",
+  "updated_at": "2026-11-24T10:20:23.597113Z"
+}

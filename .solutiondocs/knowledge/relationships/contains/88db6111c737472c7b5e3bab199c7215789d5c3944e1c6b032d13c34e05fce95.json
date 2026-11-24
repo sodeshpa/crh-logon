@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "claim_ids": [
+    "claim:dsa-6044d45fd4469ee7e66dd43c43522415783486c9"
+  ],
+  "created_at": "2026-11-24T10:39:20.993948Z",
+  "from": "data_entity:mn-materialunitmeasure",
+  "id": "relationship:dsa-5fef2c062d47a31b0b493b8a563f6c01ee17767e",
+  "properties": {},
+  "record_kind": "relationship",
+  "revision": 1,
+  "status": "active",
+  "to": "data_field:mn-materialunitmeasure-gewei",
+  "type": "contains",
+  "updated_at": "2026-11-24T10:39:20.993948Z"
+}

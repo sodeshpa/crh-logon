@@ -1,0 +1,19 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:59:54.408851Z",
+  "id": "source_artifact:dsa-logon-webservices-etc-wsdl-materialnormnotification-wsdl",
+  "name": "MaterialNormNotification.wsdl",
+  "properties": {
+    "location": "logon-webservices/etc/wsdl/MaterialNormNotification.wsdl",
+    "metadata": {
+      "dsa:target_namespace": "http://logon.intranet-che/logon"
+    },
+    "revision": "1282b3223731fb684487dd0219d1e20310b5f666cd522dd707a91e2969483034",
+    "source_type": "wsdl"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "source_artifact",
+  "updated_at": "2026-11-24T09:59:54.408851Z"
+}

@@ -1,0 +1,21 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T11:27:07.998697Z",
+  "id": "code_unit:logon-persistence-src-main-java-com-crh-logon-persistence-entities-views-sapsoldbillsareasrchentity.java",
+  "name": "SapSoldBillSareaSrchEntity.java",
+  "properties": {
+    "file_path": "logon-persistence/src/main/java/com/crh/logon/persistence/entities/views/SapSoldBillSareaSrchEntity.java",
+    "language": "Java",
+    "loc": 401,
+    "metrics": {
+      "loc": 401
+    },
+    "unit_type": "file"
+  },
+  "qualified_name": "logon-persistence/src/main/java/com/crh/logon/persistence/entities/views/SapSoldBillSareaSrchEntity.java",
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "code_unit",
+  "updated_at": "2026-11-24T11:27:07.998697Z"
+}

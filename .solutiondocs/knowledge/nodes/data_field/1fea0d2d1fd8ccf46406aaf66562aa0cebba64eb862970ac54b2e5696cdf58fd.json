@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T10:04:21.856768Z",
+  "id": "data_field:bpn-mastercustomerbankdetails-xezer",
+  "name": "XEZER",
+  "properties": {
+    "data_type": "varchar2(1 char)",
+    "nullable": true,
+    "primary_key": false
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "data_field",
+  "updated_at": "2026-11-24T10:04:21.856768Z"
+}

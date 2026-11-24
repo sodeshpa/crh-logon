@@ -1,0 +1,28 @@
+{
+  "applicability": {
+    "source_revision": "b65484483903039583cc2f1b36a492bb8d134609"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T09:49:36.164007Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:deps-b674c535a5c66899fa8e"
+  ],
+  "id": "claim:deps-a3bc5abe81b8976d83348beb",
+  "predicate": "declared_coordinates",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-business",
+  "status": "candidate",
+  "subject": "dependency:ant-jar-com.oracle-ojdbc6-11.2.0.1.0",
+  "updated_at": "2026-11-24T09:49:36.164007Z",
+  "value": {
+    "ecosystem": "ant-jar",
+    "group": "com.oracle",
+    "name": "ojdbc6",
+    "note": "ant property oracle.jar -> ${ORACLE_HOME}/dist-bin/ojdbc6.jar (resolved from external jpository/mpository; not bundled in repo)",
+    "scope": "runtime",
+    "version": "11.2.0.1.0"
+  }
+}

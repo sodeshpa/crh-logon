@@ -1,0 +1,17 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:49:36.164007Z",
+  "id": "dependency:ant-jar-org.apache.xmlbeans-xmlbeans-xbean--2.4.0",
+  "name": "xmlbeans (xbean)",
+  "properties": {
+    "dependency_type": "library",
+    "scope": "compile",
+    "version": "2.4.0"
+  },
+  "qualified_name": "org.apache.xmlbeans:xmlbeans (xbean)@2.4.0",
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "dependency",
+  "updated_at": "2026-11-24T09:49:36.164007Z"
+}

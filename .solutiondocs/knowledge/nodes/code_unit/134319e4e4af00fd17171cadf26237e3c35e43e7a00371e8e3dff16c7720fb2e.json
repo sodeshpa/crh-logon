@@ -1,0 +1,21 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T11:29:38.590104Z",
+  "id": "code_unit:logon-test-load-bin-start_proxy.sh",
+  "name": "start_proxy.sh",
+  "properties": {
+    "file_path": "logon-test-load/bin/start_proxy.sh",
+    "language": "Script",
+    "loc": 7,
+    "metrics": {
+      "loc": 7
+    },
+    "unit_type": "file"
+  },
+  "qualified_name": "logon-test-load/bin/start_proxy.sh",
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "code_unit",
+  "updated_at": "2026-11-24T11:29:38.590104Z"
+}

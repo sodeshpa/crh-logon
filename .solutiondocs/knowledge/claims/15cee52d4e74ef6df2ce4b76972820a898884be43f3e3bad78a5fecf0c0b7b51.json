@@ -1,0 +1,21 @@
+{
+  "applicability": {
+    "source_revision": "ebda8577e3b949e2a4c48b2bce20411f95b8faf032424a524748ffe2a15e11da"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T10:24:05.985709Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:dsa-7e14f8a9c457ba2ec651044412c9e2d57b53b6ba"
+  ],
+  "id": "claim:dsa-1ed942948ccb5ad711a744354d887053a444d483",
+  "predicate": "plsql_package",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-persistence",
+  "status": "candidate",
+  "subject": "code_unit:logon-persistence-plsql-sapimport-vehn",
+  "updated_at": "2026-11-24T10:24:05.985709Z",
+  "value": "sapimport_vehn"
+}

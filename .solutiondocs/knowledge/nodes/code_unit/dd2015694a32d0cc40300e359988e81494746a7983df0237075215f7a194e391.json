@@ -1,0 +1,21 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T10:03:24.312910Z",
+  "id": "code_unit:logon-order-web-src-main-java-com-crh-logon-order-web-actions-bestellung-bestellungshiptoentryaction.java",
+  "name": "BestellungShipToEntryAction.java",
+  "properties": {
+    "file_path": "logon-order-web/src/main/java/com/crh/logon/order/web/actions/bestellung/BestellungShipToEntryAction.java",
+    "language": "Java",
+    "loc": 157,
+    "metrics": {
+      "loc": 157
+    },
+    "unit_type": "file"
+  },
+  "qualified_name": "logon-order-web/src/main/java/com/crh/logon/order/web/actions/bestellung/BestellungShipToEntryAction.java",
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "code_unit",
+  "updated_at": "2026-11-24T10:03:24.312910Z"
+}

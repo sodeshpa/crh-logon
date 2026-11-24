@@ -1,0 +1,20 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:59:54.408851Z",
+  "id": "source_artifact:dsa-logon-business-etc-openapi-itrack-json",
+  "name": "openapi-itrack.json",
+  "properties": {
+    "location": "logon-business/etc/openapi-itrack.json",
+    "metadata": {
+      "dsa:api_version": "1.0",
+      "dsa:openapi_version": "3.0.1"
+    },
+    "revision": "5da6e972ca1dc7f256719ba5142ff15a4390d0a852e08a6e7d6431014c33aab3",
+    "source_type": "openapi"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "source_artifact",
+  "updated_at": "2026-11-24T09:59:54.408851Z"
+}

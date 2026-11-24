@@ -1,0 +1,21 @@
+{
+  "applicability": {
+    "source_revision": "568fb62cc499bfcb716fdd4168d2266a10e7b88cc4eb3607d9b68efd621fe86d"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T10:20:23.597113Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:dsa-bc9a174bbe4d6d4641a268bc8c91b58de3d781dc"
+  ],
+  "id": "claim:dsa-3f8fc1d4b79588a6e2cc60b630c309099a5bdd08",
+  "predicate": "entity_type",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-persistence",
+  "status": "candidate",
+  "subject": "data_entity:vlgnc-rep-sales-per-mat",
+  "updated_at": "2026-11-24T10:20:23.597113Z",
+  "value": "view"
+}

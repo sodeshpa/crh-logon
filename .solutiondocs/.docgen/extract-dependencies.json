@@ -1,0 +1,37 @@
+﻿{
+    "agentName":  "extract-dependencies",
+    "lastUpdate":  "2026-11-24T15:35:29.9260571+05:30",
+    "createdAt":  "2026-11-24T15:35:29.9200080+05:30",
+    "completedAt":  "2026-11-24T15:35:29.9260571+05:30",
+    "phase":  1,
+    "issues":  [
+                   {
+                       "text":  "No lockfiles/transitive tree; external jpository jars unverifiable; jcan-log adntrace artifact name unresolved; no license/latest_version data; EOL debt heuristic",
+                       "severity":  "P3"
+                   }
+               ],
+    "status":  "completed",
+    "tasks":  [
+                  {
+                      "id":  "phase-1-dependencies",
+                      "status":  "completed"
+                  }
+              ],
+    "deliverables":  {
+                         "expected":  [
+                                          "dependency inventory"
+                                      ],
+                         "actual":  [
+                                        "146 dependency nodes (dependency:*)",
+                                        "source_artifact:deps-*",
+                                        "technical_debt:deps-* (5)",
+                                        "gap:deps-* (4)",
+                                        "depends_on relationships",
+                                        "claims/evidence (method dependency-manifest)"
+                                    ],
+                         "files":  [
+                                       ".solutiondocs/.docgen/deps-work/deps-batch.json",
+                                       ".solutiondocs/.docgen/deps-work/deps-batch2.json"
+                                   ]
+                     }
+}

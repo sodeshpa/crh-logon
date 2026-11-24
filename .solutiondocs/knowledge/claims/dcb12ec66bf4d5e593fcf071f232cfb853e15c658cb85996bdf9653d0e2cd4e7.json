@@ -1,0 +1,189 @@
+{
+  "applicability": {
+    "source_revision": "c4799b3dfcf94ee66c921f340bda20c43e31a979"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T13:43:36.779345Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:fs-summary-application-sodeshpa-improved-telegram"
+  ],
+  "id": "claim:fs-application-sodeshpa-improved-telegram-files-over-50k-tokens",
+  "predicate": "files_over_50k_tokens",
+  "record_kind": "claim",
+  "revision": 1,
+  "status": "candidate",
+  "subject": "application:sodeshpa-improved-telegram",
+  "updated_at": "2026-11-24T13:43:36.779345Z",
+  "value": [
+    {
+      "estimated_tokens": 2311725,
+      "path": "ChangeLog.legacy"
+    },
+    {
+      "estimated_tokens": 1741697,
+      "path": "logon-simulator/etc/soapui/integration-tests/integration-tests-soapui-project.xml"
+    },
+    {
+      "estimated_tokens": 1576680,
+      "path": "logon-persistence/etc/sql/testdata/tlgns_sap_bp_sarea.sql"
+    },
+    {
+      "estimated_tokens": 1417418,
+      "path": "logon-common/etc/litdict/LitDict.global"
+    },
+    {
+      "estimated_tokens": 306999,
+      "path": "logon-simulator/etc/soapui/manual-tests/manual-tests-soapui-project.xml"
+    },
+    {
+      "estimated_tokens": 290981,
+      "path": "logon-persistence/etc/sql/testdata/tlgns_sap_bp_pf_shipto.sql"
+    },
+    {
+      "estimated_tokens": 248325,
+      "path": "logon-persistence/etc/sql/refdata/tlgnr_damagecode.sql"
+    },
+    {
+      "estimated_tokens": 244022,
+      "path": "logon-simulator/etc/soapui/cs-outgoing/project.xml"
+    },
+    {
+      "estimated_tokens": 190358,
+      "path": "logon-persistence/etc/sql/testdata/tlgns_sap_bp_pf_billto.sql"
+    },
+    {
+      "estimated_tokens": 183178,
+      "path": "logon-persistence/etc/sql/refdata/images/printing_testpage.ps"
+    },
+    {
+      "estimated_tokens": 175971,
+      "path": "logon-persistence/etc/csv/deletebp/delete_bp_lp1.csv"
+    },
+    {
+      "estimated_tokens": 143243,
+      "path": "logon-business/src/main/java/com/crh/logon/business/services/impl/OrderServiceBean.java"
+    },
+    {
+      "estimated_tokens": 137819,
+      "path": "logon-persistence/etc/csv/deletebp/delete_bp_lq1.csv"
+    },
+    {
+      "estimated_tokens": 115687,
+      "path": "logon-persistence/etc/sql/loadtestdata/vendor_carrier_porg_300_ADNV.sql"
+    },
+    {
+      "estimated_tokens": 115687,
+      "path": "logon-persistence/etc/sql/loadtestdata/vendor_carrier_porg_300_ZZZV.sql"
+    },
+    {
+      "estimated_tokens": 102051,
+      "path": "logon-webservices/etc/wsdl/MaterialNotification.wsdl"
+    },
+    {
+      "estimated_tokens": 101661,
+      "path": "logon-persistence/etc/sql/custom_views.sql"
+    },
+    {
+      "estimated_tokens": 99218,
+      "path": "logon-persistence/src/main/java/com/crh/logon/persistence/entities/frozen/OrderFinalEntity.java"
+    },
+    {
+      "estimated_tokens": 92479,
+      "path": "logon-persistence/etc/csv/cl1_initialdata/wagon.csv"
+    },
+    {
+      "estimated_tokens": 86368,
+      "path": "logon-webservices/etc/xsd/MaterialNotification.xsd"
+    },
+    {
+      "estimated_tokens": 85214,
+      "path": "logon-persistence/etc/csv/loadtestdata/user_person_driver_role.csv"
+    },
+    {
+      "estimated_tokens": 76501,
+      "path": "logon-persistence/etc/sql/refdata/tlgnr_currency.sql"
+    },
+    {
+      "estimated_tokens": 74461,
+      "path": "logon-persistence/etc/sql/refdata/tlgnr_text.sql"
+    },
+    {
+      "estimated_tokens": 74282,
+      "path": "logon-persistence/etc/sql/refdata/tlgnr_sap_payment_method.sql"
+    },
+    {
+      "estimated_tokens": 71954,
+      "path": "logon-persistence/etc/csv/cities_initialdata/sorg_tx.csv"
+    },
+    {
+      "estimated_tokens": 63486,
+      "path": "logon-webservices-client/etc/wsdl/wsi/log.xml"
+    },
+    {
+      "estimated_tokens": 63486,
+      "path": "logon-webservices-mop-incoming/src/main/resources/wsi/log.xml"
+    },
+    {
+      "estimated_tokens": 63486,
+      "path": "logon-webservices-pws-incoming/src/main/resources/wsi/log.xml"
+    },
+    {
+      "estimated_tokens": 62509,
+      "path": "logon-webservices/etc/xsd/original/MaterialNotification.xsd"
+    },
+    {
+      "estimated_tokens": 60189,
+      "path": "logon-persistence/etc/csv/testdata/user_person_driver_role.csv"
+    },
+    {
+      "estimated_tokens": 59401,
+      "path": "logon-business/src/main/java/com/crh/logon/business/services/impl/DispoServiceBean.java"
+    },
+    {
+      "estimated_tokens": 57993,
+      "path": "logon-webservices/src/main/java/com/crh/logon/persistence/entities/sapdata/MaterialPlantData.java"
+    },
+    {
+      "estimated_tokens": 57303,
+      "path": "logon-persistence/etc/csv/cl1_initialdata/rail_distance.csv"
+    },
+    {
+      "estimated_tokens": 56958,
+      "path": "logon-order-web/src/main/webapp/js/dispo2.js"
+    },
+    {
+      "estimated_tokens": 56501,
+      "path": "logon-persistence/etc/sql/refdata/tlgnr_sap_country.sql"
+    },
+    {
+      "estimated_tokens": 55672,
+      "path": "logon-webservices/etc/wsdl/VendorNotification.wsdl"
+    },
+    {
+      "estimated_tokens": 53533,
+      "path": "logon-persistence/src/main/java/com/crh/logon/persistence/entities/frozen/OrderItemFinalEntity.java"
+    },
+    {
+      "estimated_tokens": 53440,
+      "path": "logon-persistence/src/main/java/com/crh/logon/persistence/entities/views/RepOrderListCommEntity.java"
+    },
+    {
+      "estimated_tokens": 53245,
+      "path": "logon-persistence/etc/csv/cl2_initialdata/sorg_tx.csv"
+    },
+    {
+      "estimated_tokens": 53187,
+      "path": "logon-persistence/src/main/java/com/crh/logon/persistence/entities/views/RepSapBwExportEntity.java"
+    },
+    {
+      "estimated_tokens": 52008,
+      "path": "logon-business/src/main/java/com/crh/logon/business/services/impl/SapOutgoingDataServiceBean.java"
+    },
+    {
+      "estimated_tokens": 50190,
+      "path": "logon-persistence/etc/sql/testdata/tlgns_sap_material_description.sql"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "applicability": {
+    "source_revision": "bfb95ef31bbf2794f761d28ad1833171b894b297d485241e33f90eeb278fb274"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T10:27:28.875935Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:dsa-37c09e24da9b44ad14229e7f1b066659692aed79"
+  ],
+  "id": "claim:dsa-23674f21247fda4b27b2d4df23ad4eef0b1c5c93",
+  "predicate": "path",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-webservices-client",
+  "status": "candidate",
+  "subject": "api_endpoint:dx1-java-instance-deliverydocument-out-deliverydocument-async",
+  "updated_at": "2026-11-24T10:27:28.875935Z",
+  "value": "/XISOAPAdapter/MessageServlet"
+}

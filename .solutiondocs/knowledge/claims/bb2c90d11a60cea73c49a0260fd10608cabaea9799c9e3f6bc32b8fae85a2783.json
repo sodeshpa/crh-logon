@@ -1,0 +1,24 @@
+{
+  "applicability": {
+    "source_revision": "c4799b3dfcf94ee66c921f340bda20c43e31a979"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 0.95,
+  "created_at": "2026-11-24T10:30:58.828557Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:fs-1d0d0028dc5345800c6ffbba"
+  ],
+  "id": "claim:fs-rel-1d0d0028dc5345800c6ffbba",
+  "predicate": "contains",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-pdf-generator",
+  "status": "candidate",
+  "subject": "relationship:fs-contains-1d0d0028dc5345800c6ffbba",
+  "updated_at": "2026-11-24T10:30:58.828557Z",
+  "value": {
+    "container": "component:logon-pdf-generator",
+    "file_path": "logon-pdf-generator/src/main/java/com/crh/logon/pdf/templating/DocumentValue.java"
+  }
+}

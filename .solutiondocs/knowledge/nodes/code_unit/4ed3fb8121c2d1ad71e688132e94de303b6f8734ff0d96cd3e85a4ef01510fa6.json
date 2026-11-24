@@ -1,0 +1,21 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T10:25:45.372030Z",
+  "id": "code_unit:logon-order-web-src-main-webapp-web-inf-jsp-dispo-lkwpopuperrortile.jsp",
+  "name": "LKWPopupErrorTile.jsp",
+  "properties": {
+    "file_path": "logon-order-web/src/main/webapp/WEB-INF/jsp/dispo/LKWPopupErrorTile.jsp",
+    "language": "Web/Template",
+    "loc": 20,
+    "metrics": {
+      "loc": 20
+    },
+    "unit_type": "file"
+  },
+  "qualified_name": "logon-order-web/src/main/webapp/WEB-INF/jsp/dispo/LKWPopupErrorTile.jsp",
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "code_unit",
+  "updated_at": "2026-11-24T10:25:45.372030Z"
+}

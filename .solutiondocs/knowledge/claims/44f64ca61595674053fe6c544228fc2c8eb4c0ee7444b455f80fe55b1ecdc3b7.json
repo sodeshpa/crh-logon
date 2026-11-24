@@ -1,0 +1,27 @@
+{
+  "applicability": {
+    "source_revision": "c4799b3dfcf94ee66c921f340bda20c43e31a979"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 0.95,
+  "created_at": "2026-11-24T11:17:52.393263Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:fs-e609cb7ae5b318e08adcadb5"
+  ],
+  "id": "claim:fs-e609cb7ae5b318e08adcadb5",
+  "predicate": "file_inventory",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-persistence",
+  "status": "candidate",
+  "subject": "code_unit:logon-persistence-src-main-java-com-crh-logon-persistence-entities-refdata-simplevehicletypebsentity.java",
+  "updated_at": "2026-11-24T11:17:52.393263Z",
+  "value": {
+    "estimated_tokens": 2356,
+    "file_path": "logon-persistence/src/main/java/com/crh/logon/persistence/entities/refdata/SimpleVehicleTypeBsEntity.java",
+    "language": "Java",
+    "loc": 266,
+    "size_bytes": 9424
+  }
+}

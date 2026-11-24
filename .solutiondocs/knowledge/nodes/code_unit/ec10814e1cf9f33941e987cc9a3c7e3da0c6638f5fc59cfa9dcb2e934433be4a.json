@@ -1,0 +1,21 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T11:29:38.590104Z",
+  "id": "code_unit:logon-webservices-src-ext-java-com-crh-logon-xjc-hyperjaxb3-namingext.java",
+  "name": "NamingExt.java",
+  "properties": {
+    "file_path": "logon-webservices/src/ext/java/com/crh/logon/xjc/hyperjaxb3/NamingExt.java",
+    "language": "Java",
+    "loc": 201,
+    "metrics": {
+      "loc": 201
+    },
+    "unit_type": "file"
+  },
+  "qualified_name": "logon-webservices/src/ext/java/com/crh/logon/xjc/hyperjaxb3/NamingExt.java",
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "code_unit",
+  "updated_at": "2026-11-24T11:29:38.590104Z"
+}

@@ -1,0 +1,25 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T10:04:21.856768Z",
+  "id": "data_entity:bpn-businesspartnernotificat-0",
+  "name": "BPN_BUSINESSPARTNERNOTIFICAT_0",
+  "properties": {
+    "entity_type": "table",
+    "indexes": [
+      {
+        "columns": [
+          "SAPIMPSTATUSCD"
+        ],
+        "name": "I_BPN_NOTIFICATION_STATUS",
+        "unique": false
+      }
+    ],
+    "purpose": "Main table of SAP business partner import (staging area). Added on behalf of LRQ 042 Logon EBM.",
+    "schema": "ulgnsap"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "data_entity",
+  "updated_at": "2026-11-24T10:04:21.856768Z"
+}

@@ -1,0 +1,28 @@
+{
+  "applicability": {
+    "source_revision": "880ff571c6531bdd2b51360ac4c8128795063f96"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T09:49:36.164007Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:deps-3990f068f5dc8bb9d014"
+  ],
+  "id": "claim:deps-dd6e06231500f030b1012060",
+  "predicate": "declared_coordinates",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "application:sodeshpa-improved-telegram",
+  "status": "candidate",
+  "subject": "dependency:external-distribution-org.jboss-jboss-eap-6.4.21",
+  "updated_at": "2026-11-24T09:49:36.164007Z",
+  "value": {
+    "ecosystem": "external-distribution",
+    "group": "org.jboss",
+    "name": "jboss-eap",
+    "note": "JBOSS_EAP_VERSION=6.4.21 (container.type=jboss7; JBoss EAP zip)",
+    "scope": "runtime",
+    "version": "6.4.21"
+  }
+}

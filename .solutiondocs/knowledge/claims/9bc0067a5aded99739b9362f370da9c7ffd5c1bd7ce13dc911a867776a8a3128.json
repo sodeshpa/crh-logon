@@ -1,0 +1,24 @@
+{
+  "applicability": {
+    "source_revision": "c4799b3dfcf94ee66c921f340bda20c43e31a979"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 0.95,
+  "created_at": "2026-11-24T11:27:07.998697Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:fs-a9f3bcd26bb11a776c92b3dd"
+  ],
+  "id": "claim:fs-rel-a9f3bcd26bb11a776c92b3dd",
+  "predicate": "contains",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-persistence",
+  "status": "candidate",
+  "subject": "relationship:fs-contains-a9f3bcd26bb11a776c92b3dd",
+  "updated_at": "2026-11-24T11:27:07.998697Z",
+  "value": {
+    "container": "component:logon-persistence",
+    "file_path": "logon-persistence/src/main/java/com/crh/logon/persistence/entities/views/ShippBimodalRoadRailEntity.java"
+  }
+}

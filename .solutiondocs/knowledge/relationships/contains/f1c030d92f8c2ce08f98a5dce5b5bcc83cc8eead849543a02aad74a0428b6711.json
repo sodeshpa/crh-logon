@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "claim_ids": [
+    "claim:dsa-37f6887410962725ca25bcc45604b34866d7309d"
+  ],
+  "created_at": "2026-11-24T10:34:49.573274Z",
+  "from": "data_entity:mn-materialforecastparameter",
+  "id": "relationship:dsa-7c18202a94eccc30ed753b87c9619dae14c9d9e9",
+  "properties": {},
+  "record_kind": "relationship",
+  "revision": 1,
+  "status": "active",
+  "to": "data_field:mn-materialforecastparameter-epsil",
+  "type": "contains",
+  "updated_at": "2026-11-24T10:34:49.573274Z"
+}

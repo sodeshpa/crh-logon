@@ -1,0 +1,17 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:57:53.123932Z",
+  "id": "evidence:deps-647f0377159c26d496ca",
+  "locator": {
+    "file": "C:\\Users\\sodeshpa\\.copilot\\repos\\copilot-worktrees\\crh-logon\\sodeshpa-improved-telegram\\build.xml",
+    "section": "root Ant build (imports aal-maven, aal-environment)"
+  },
+  "method": "dependency-manifest",
+  "observed_at": "2026-11-24T09:52:38+00:00",
+  "record_kind": "evidence",
+  "revision": 1,
+  "source_id": "source_artifact:deps-build.xml",
+  "source_revision": "b1120be99e257c106d30b35abdb833f7080404ba",
+  "status": "active",
+  "updated_at": "2026-11-24T09:57:53.123932Z"
+}

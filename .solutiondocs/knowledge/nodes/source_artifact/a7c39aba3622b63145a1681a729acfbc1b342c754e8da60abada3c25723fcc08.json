@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:59:54.408851Z",
+  "id": "source_artifact:dsa-logon-webservices-etc-entities-30-create-text-views-sql",
+  "name": "30_create_text_views.sql",
+  "properties": {
+    "location": "logon-webservices/etc/entities/30_create_text_views.sql",
+    "revision": "cd04ced916320a61ad539609c139c5dd20c2e3e7efd8898d2700875a884ecdc4",
+    "source_type": "ddl_sql"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "source_artifact",
+  "updated_at": "2026-11-24T09:59:54.408851Z"
+}

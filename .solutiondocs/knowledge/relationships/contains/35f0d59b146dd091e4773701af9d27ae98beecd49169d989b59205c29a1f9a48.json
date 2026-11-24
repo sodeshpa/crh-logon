@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "claim_ids": [
+    "claim:dsa-ef03e650aa57bc27303f7f8e6cf064636e504fd2"
+  ],
+  "created_at": "2026-11-24T10:41:22.508413Z",
+  "from": "data_store:logon-main-database",
+  "id": "relationship:dsa-632748929c62554ce12e3ed82ee163392e712163",
+  "properties": {},
+  "record_kind": "relationship",
+  "revision": 1,
+  "status": "active",
+  "to": "data_entity:vlgnc-railcar-opt-open-orders",
+  "type": "contains",
+  "updated_at": "2026-11-24T10:41:22.508413Z"
+}

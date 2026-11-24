@@ -1,0 +1,28 @@
+{
+  "applicability": {
+    "source_revision": "be3a33af02166ca8601a64136b686e4141c2ee53"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T09:49:36.164007Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:deps-3c8f31c5ab25342d0905"
+  ],
+  "id": "claim:deps-a01dd02837a799060546b4e7",
+  "predicate": "declared_coordinates",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-common-web",
+  "status": "candidate",
+  "subject": "dependency:maven-ch.adnovum.jcan-log--jcan-log.adntrace.name--1.8.3.0",
+  "updated_at": "2026-11-24T09:49:36.164007Z",
+  "value": {
+    "ecosystem": "maven",
+    "group": "ch.adnovum.jcan-log",
+    "name": "${jcan-log.adntrace.name}",
+    "note": "maven scope=provided (container-provided; mapped to compile); artifactId property ${jcan-log.adntrace.name} not defined in repository (external build-framework property)",
+    "scope": "compile",
+    "version": "1.8.3.0"
+  }
+}

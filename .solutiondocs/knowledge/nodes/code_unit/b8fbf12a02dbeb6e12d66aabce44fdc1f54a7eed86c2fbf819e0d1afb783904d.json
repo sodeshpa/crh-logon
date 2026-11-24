@@ -1,0 +1,21 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T11:32:18.902642Z",
+  "id": "code_unit:pkg-logonjboss-etc-pkg_template-config-templates-standalone.conf.bat",
+  "name": "standalone.conf.bat",
+  "properties": {
+    "file_path": "pkg/logonjboss/etc/pkg_template/config/templates/standalone.conf.bat",
+    "language": "Script",
+    "loc": 4,
+    "metrics": {
+      "loc": 4
+    },
+    "unit_type": "file"
+  },
+  "qualified_name": "pkg/logonjboss/etc/pkg_template/config/templates/standalone.conf.bat",
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "code_unit",
+  "updated_at": "2026-11-24T11:32:18.902642Z"
+}

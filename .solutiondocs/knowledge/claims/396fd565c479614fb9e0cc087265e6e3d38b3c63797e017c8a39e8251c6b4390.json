@@ -1,0 +1,42 @@
+{
+  "applicability": {
+    "source_revision": "c4799b3dfcf94ee66c921f340bda20c43e31a979"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 0.95,
+  "created_at": "2026-11-24T13:43:36.779345Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:fs-summary-component-logon-order-web"
+  ],
+  "id": "claim:fs-component-logon-order-web-tech-stack-languages",
+  "predicate": "tech_stack.languages",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-order-web",
+  "status": "candidate",
+  "subject": "component:logon-order-web",
+  "updated_at": "2026-11-24T13:43:36.779345Z",
+  "value": [
+    {
+      "name": "Java",
+      "percentage": 51.87
+    },
+    {
+      "name": "Web/Template",
+      "percentage": 31.82
+    },
+    {
+      "name": "JavaScript/TypeScript",
+      "percentage": 13.52
+    },
+    {
+      "name": "Config",
+      "percentage": 1.42
+    },
+    {
+      "name": "Other",
+      "percentage": 1.37
+    }
+  ]
+}

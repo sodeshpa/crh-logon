@@ -1,0 +1,17 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T10:20:23.597113Z",
+  "id": "data_entity:vlgnc-editbp-soldship-sarea",
+  "name": "VLGNC_EDITBP_SOLDSHIP_SAREA",
+  "properties": {
+    "entity_type": "view",
+    "materialised": false,
+    "purpose": "Used at BP modification after delivered status.",
+    "schema": "ulgn"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "data_entity",
+  "updated_at": "2026-11-24T10:20:23.597113Z"
+}

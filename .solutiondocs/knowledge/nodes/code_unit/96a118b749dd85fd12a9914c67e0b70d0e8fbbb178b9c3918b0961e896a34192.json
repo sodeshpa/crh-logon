@@ -1,0 +1,21 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:47:32.738904Z",
+  "id": "code_unit:logon-admin-web-src-main-java-com-crh-logon-admin-web-beans-materialenhancementsdetailbean.java",
+  "name": "MaterialEnhancementsDetailBean.java",
+  "properties": {
+    "file_path": "logon-admin-web/src/main/java/com/crh/logon/admin/web/beans/MaterialEnhancementsDetailBean.java",
+    "language": "Java",
+    "loc": 473,
+    "metrics": {
+      "loc": 473
+    },
+    "unit_type": "file"
+  },
+  "qualified_name": "logon-admin-web/src/main/java/com/crh/logon/admin/web/beans/MaterialEnhancementsDetailBean.java",
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "code_unit",
+  "updated_at": "2026-11-24T09:47:32.738904Z"
+}

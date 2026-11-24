@@ -1,0 +1,70 @@
+{
+  "applicability": {
+    "source_revision": "c2f096c377bafac62102650ab6980e51bbfad6bc"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 0.9,
+  "created_at": "2026-11-24T10:29:11.973190Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:dva-assessment-attempt"
+  ],
+  "id": "claim:dva-assessment-bdeebde6e2c0f237",
+  "predicate": "dependency_vulnerability_assessment",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-business",
+  "status": "candidate",
+  "subject": "component:logon-business",
+  "updated_at": "2026-11-24T10:29:11.973190Z",
+  "value": {
+    "advisory_source": null,
+    "assessed_at": "2026-11-24T10:20:06+00:00",
+    "database_freshness": "unknown",
+    "dependency_ids": [
+      "dependency:maven-ch.adnovum.jcan-log--jcan-log.adntrace.name--1.8.3.0",
+      "dependency:maven-com.fasterxml.jackson.core-jackson-databind-2.10.4",
+      "dependency:maven-com.fasterxml.jackson.datatype-jackson-datatype-jsr310-2.10.4",
+      "dependency:maven-com.google.code.findbugs-jsr305-3.0.2",
+      "dependency:maven-com.google.code.gson-gson-2.8.6",
+      "dependency:maven-io.gsonfire-gson-fire-1.8.4",
+      "dependency:maven-io.swagger-swagger-annotations-1.6.2",
+      "dependency:maven-io.swagger.codegen.v3-swagger-codegen-cli-3.0.24",
+      "dependency:maven-javax.enterprise-cdi-api-1.0-sp1",
+      "dependency:maven-joda-time-joda-time-2.10",
+      "dependency:maven-org.apache.httpcomponents-httpclient-4.5.3",
+      "dependency:maven-org.apache.kafka-kafka-clients-2.6.0",
+      "dependency:maven-org.jboss-jboss-vfs-3.1.0.final",
+      "dependency:maven-org.jboss.arquillian-arquillian-bom-1.1.1.final",
+      "dependency:maven-org.jboss.arquillian.junit-arquillian-junit-container-1.1.1.final",
+      "dependency:maven-org.jboss.arquillian.protocol-arquillian-protocol-servlet-1.1.1.final",
+      "dependency:maven-org.jboss.as-jboss-as-arquillian-container-remote-7.2.0.final",
+      "dependency:maven-org.jboss.as-jboss-as-ejb-client-bom-7.2.0.final",
+      "dependency:maven-org.jboss.shrinkwrap.descriptors-shrinkwrap-descriptors-impl-javaee-1.2.0-alpha-2",
+      "dependency:maven-org.jboss.spec.javax.annotation-jboss-annotations-api_1.1_spec-1.0.0.beta2",
+      "dependency:maven-org.jboss.spec.javax.ejb-jboss-ejb-api_3.1_spec-1.0.2.final",
+      "dependency:maven-org.jboss.spec.javax.interceptor-jboss-interceptors-api_1.1_spec-1.0.0.beta1",
+      "dependency:maven-org.jboss.spec.javax.jms-jboss-jms-api_1.1_spec-1.0.0.beta1",
+      "dependency:maven-org.jboss.spec.javax.security.jacc-jboss-jacc-api_1.4_spec-1.0.2.final",
+      "dependency:maven-org.jboss.spec.javax.servlet-jboss-servlet-api_3.0_spec-1.0.1.final",
+      "dependency:maven-org.jboss.spec.javax.transaction-jboss-transaction-api_1.1_spec-1.0.1.final",
+      "dependency:maven-org.openapitools-openapi-generator-cli-5.1.0",
+      "dependency:maven-org.picketbox-picketbox-4.0.19.sp2"
+    ],
+    "direct_dependency_count": 28,
+    "ecosystem": "maven",
+    "finding_count": 0,
+    "interpretation": "zero findings recorded because no assessment ran; this is not evidence of absence of vulnerabilities",
+    "limitations": [
+      "No approved ecosystem auditor (npm audit, pip-audit, OSV-Scanner, OWASP Dependency-Check, trivy/grype, dotnet) applicable or installed for these ecosystems",
+      "No local OSV/GHSA/NVD advisory database or existing CI scanner report found; advisory database freshness unknown",
+      "No engagement-approved advisory endpoint established; private inventory not sent to external services",
+      "No lockfile or resolved dependency tree: transitive dependencies not covered",
+      "Direct declared coordinates only; many Ant jars originate from an external jpository"
+    ],
+    "outcome": "not_assessed",
+    "reachability_exploitability": "not assessed",
+    "scanner": null,
+    "transitive_coverage": "none"
+  }
+}

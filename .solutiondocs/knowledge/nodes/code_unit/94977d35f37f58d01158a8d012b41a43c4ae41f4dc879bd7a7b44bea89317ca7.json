@@ -1,0 +1,21 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T11:29:38.590104Z",
+  "id": "code_unit:logon-webservices-src-ext-java-com-crh-logon-xjc-hyperjaxb3-deterministicoutlinewrapper.java",
+  "name": "DeterministicOutlineWrapper.java",
+  "properties": {
+    "file_path": "logon-webservices/src/ext/java/com/crh/logon/xjc/hyperjaxb3/DeterministicOutlineWrapper.java",
+    "language": "Java",
+    "loc": 237,
+    "metrics": {
+      "loc": 237
+    },
+    "unit_type": "file"
+  },
+  "qualified_name": "logon-webservices/src/ext/java/com/crh/logon/xjc/hyperjaxb3/DeterministicOutlineWrapper.java",
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "code_unit",
+  "updated_at": "2026-11-24T11:29:38.590104Z"
+}

@@ -1,0 +1,28 @@
+{
+  "applicability": {
+    "source_revision": "be3a33af02166ca8601a64136b686e4141c2ee53"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T09:49:36.164007Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:deps-a9fdbc7a42ab8f5d4634"
+  ],
+  "id": "claim:deps-f3b909756fbec451bdbaa16d",
+  "predicate": "declared_coordinates",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-common-web",
+  "status": "candidate",
+  "subject": "dependency:maven-net.sourceforge.pjl-comp-filter-pjl-comp-filter-1.7",
+  "updated_at": "2026-11-24T09:49:36.164007Z",
+  "value": {
+    "ecosystem": "maven",
+    "group": "net.sourceforge.pjl-comp-filter",
+    "name": "pjl-comp-filter",
+    "note": "maven scope not declared",
+    "scope": "compile",
+    "version": "1.7"
+  }
+}

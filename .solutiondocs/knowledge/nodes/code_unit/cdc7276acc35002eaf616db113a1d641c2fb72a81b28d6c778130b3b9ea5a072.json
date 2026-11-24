@@ -1,0 +1,21 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T10:43:23.721635Z",
+  "id": "code_unit:logon-persistence-src-main-java-ch-nevis-gdi-jpa-filter-gdijpaimpl.java",
+  "name": "GDIJPAImpl.java",
+  "properties": {
+    "file_path": "logon-persistence/src/main/java/ch/nevis/gdi/jpa/filter/GDIJPAImpl.java",
+    "language": "Java",
+    "loc": 253,
+    "metrics": {
+      "loc": 253
+    },
+    "unit_type": "file"
+  },
+  "qualified_name": "logon-persistence/src/main/java/ch/nevis/gdi/jpa/filter/GDIJPAImpl.java",
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "code_unit",
+  "updated_at": "2026-11-24T10:43:23.721635Z"
+}

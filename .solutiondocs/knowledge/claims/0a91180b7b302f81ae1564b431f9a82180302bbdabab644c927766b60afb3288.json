@@ -1,0 +1,28 @@
+{
+  "applicability": {
+    "source_revision": "b65484483903039583cc2f1b36a492bb8d134609"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T09:49:36.164007Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:deps-f8e0ef85d49561987023"
+  ],
+  "id": "claim:deps-eb1798913751aa43e634408b",
+  "predicate": "declared_coordinates",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-common-web",
+  "status": "candidate",
+  "subject": "dependency:ant-jar-org.apache.struts-standard-taglibs-struts-el-contrib--1.2.9",
+  "updated_at": "2026-11-24T09:49:36.164007Z",
+  "value": {
+    "ecosystem": "ant-jar",
+    "group": "org.apache.struts",
+    "name": "standard-taglibs (struts-el contrib)",
+    "note": "ant property standard.jar -> ${STRUTS_HOME}/contrib/struts-el/lib/standard.jar (resolved from external jpository/mpository; not bundled in repo)",
+    "scope": "compile",
+    "version": "1.2.9"
+  }
+}

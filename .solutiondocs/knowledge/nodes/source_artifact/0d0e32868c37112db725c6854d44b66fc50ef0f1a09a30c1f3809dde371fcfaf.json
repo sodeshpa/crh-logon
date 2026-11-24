@@ -1,0 +1,19 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:59:54.408851Z",
+  "id": "source_artifact:dsa-logon-webservices-mop-incoming-src-main-resources-mop-eventhandler-wsdl",
+  "name": "MOP_eventhandler.wsdl",
+  "properties": {
+    "location": "logon-webservices-mop-incoming/src/main/resources/MOP_eventhandler.wsdl",
+    "metadata": {
+      "dsa:target_namespace": "http://logon.holcim.com/2009/09/MOPEvent/"
+    },
+    "revision": "3b83539ffcb7cd1693a59d8e8c741f7a91d9bd07a58881229c3909ab9d05a1c4",
+    "source_type": "wsdl"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "source_artifact",
+  "updated_at": "2026-11-24T09:59:54.408851Z"
+}

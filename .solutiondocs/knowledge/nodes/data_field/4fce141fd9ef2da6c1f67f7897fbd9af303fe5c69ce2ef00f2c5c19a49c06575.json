@@ -1,0 +1,20 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T10:24:05.985709Z",
+  "id": "data_field:vn-vendorsubrangemmssmd-vend-0-child-vn-vendorsubrangeident-0",
+  "name": "CHILD_VN_VENDORSUBRANGEIDENT_0",
+  "properties": {
+    "constraints": [
+      "NOT NULL",
+      "UNIQUE"
+    ],
+    "data_type": "number(19,0)",
+    "nullable": false,
+    "primary_key": false
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "data_field",
+  "updated_at": "2026-11-24T10:24:05.985709Z"
+}

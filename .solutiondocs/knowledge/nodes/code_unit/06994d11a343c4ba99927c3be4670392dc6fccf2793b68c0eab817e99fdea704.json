@@ -1,0 +1,21 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:50:06.925075Z",
+  "id": "code_unit:logon-business-src-main-java-com-crh-logon-business-services-eventbeans-in-mop-enterendpointrequesthandler.java",
+  "name": "EnterEndpointRequestHandler.java",
+  "properties": {
+    "file_path": "logon-business/src/main/java/com/crh/logon/business/services/eventbeans/in/mop/EnterEndpointRequestHandler.java",
+    "language": "Java",
+    "loc": 70,
+    "metrics": {
+      "loc": 70
+    },
+    "unit_type": "file"
+  },
+  "qualified_name": "logon-business/src/main/java/com/crh/logon/business/services/eventbeans/in/mop/EnterEndpointRequestHandler.java",
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "code_unit",
+  "updated_at": "2026-11-24T09:50:06.925075Z"
+}

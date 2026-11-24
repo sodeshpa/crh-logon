@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:51:52.064424Z",
+  "id": "source_artifact:cfg-logon-ansible-group-vars-tmpl-logonebm1",
+  "name": "logon-ansible/group_vars_tmpl/logonebm1",
+  "properties": {
+    "location": "logon-ansible/group_vars_tmpl/logonebm1",
+    "revision": "294014c30ebd8404325f3a22fdedacc401cf07552b74e84e0f17ca44bbc3cdc7",
+    "source_type": "config_file"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "source_artifact",
+  "updated_at": "2026-11-24T09:51:52.064424Z"
+}

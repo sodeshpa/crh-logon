@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "claim_ids": [
+    "claim:fs-rel-c52566d3a348a6df69654c93"
+  ],
+  "created_at": "2026-11-24T10:03:24.312910Z",
+  "from": "component:logon-cust-web",
+  "id": "relationship:fs-contains-c52566d3a348a6df69654c93",
+  "properties": {},
+  "record_kind": "relationship",
+  "revision": 1,
+  "status": "active",
+  "to": "code_unit:logon-cust-web-src-main-webapp-web-inf-jsp-webbestellung-webbestellungtile.jsp",
+  "type": "contains",
+  "updated_at": "2026-11-24T10:03:24.312910Z"
+}

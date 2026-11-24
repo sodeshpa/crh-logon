@@ -1,0 +1,28 @@
+{
+  "applicability": {
+    "source_revision": "b65484483903039583cc2f1b36a492bb8d134609"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T09:49:36.164007Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:deps-5ec1d60ce508b58d6602"
+  ],
+  "id": "claim:deps-9698d0b431710e26f2051aa6",
+  "predicate": "declared_coordinates",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "application:sodeshpa-improved-telegram",
+  "status": "candidate",
+  "subject": "dependency:ant-jar-org.codehaus.groovy-groovy-all-1.6.3",
+  "updated_at": "2026-11-24T09:49:36.164007Z",
+  "value": {
+    "ecosystem": "ant-jar",
+    "group": "org.codehaus.groovy",
+    "name": "groovy-all",
+    "note": "ant property groovy.jar -> ${GROOVY_HOME}/groovy-all-1.6.3.jar (resolved from external jpository/mpository; not bundled in repo)",
+    "scope": "build",
+    "version": "1.6.3"
+  }
+}

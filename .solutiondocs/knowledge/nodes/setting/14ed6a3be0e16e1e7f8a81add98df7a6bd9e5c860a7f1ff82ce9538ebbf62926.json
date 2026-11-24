@@ -1,0 +1,19 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:53:30.031918Z",
+  "id": "setting:config-build-dev-properties--externallog4jconfigpath",
+  "name": "externalLog4jConfigPath",
+  "properties": {
+    "default_value": "etc/log4j_dev.xml",
+    "is_connection_string": false,
+    "is_secret": false,
+    "key": "externalLog4jConfigPath",
+    "source_file": "config/build-dev.properties",
+    "value_type": "string"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "setting",
+  "updated_at": "2026-11-24T09:53:30.031918Z"
+}

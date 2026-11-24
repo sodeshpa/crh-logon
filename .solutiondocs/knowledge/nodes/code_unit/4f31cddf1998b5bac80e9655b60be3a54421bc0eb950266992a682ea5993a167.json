@@ -1,0 +1,18 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T10:24:05.985709Z",
+  "id": "code_unit:logon-persistence-plsql-get-minutes-to-timeline",
+  "name": "get_minutes_to_timeline",
+  "properties": {
+    "file_path": "logon-persistence/etc/sql/stored_procedures.sql",
+    "language": "PL/SQL",
+    "line_start": 132,
+    "signature": "function get_minutes_to_timeline(",
+    "unit_type": "function"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "code_unit",
+  "updated_at": "2026-11-24T10:24:05.985709Z"
+}

@@ -1,0 +1,21 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:48:25.227887Z",
+  "id": "code_unit:logon-ansible-install-int2.sh",
+  "name": "install-INT2.sh",
+  "properties": {
+    "file_path": "logon-ansible/install-INT2.sh",
+    "language": "Script",
+    "loc": 5,
+    "metrics": {
+      "loc": 5
+    },
+    "unit_type": "file"
+  },
+  "qualified_name": "logon-ansible/install-INT2.sh",
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "code_unit",
+  "updated_at": "2026-11-24T09:48:25.227887Z"
+}

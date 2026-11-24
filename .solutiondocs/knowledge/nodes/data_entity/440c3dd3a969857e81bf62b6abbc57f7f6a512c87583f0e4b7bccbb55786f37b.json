@@ -1,0 +1,17 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T10:20:23.597113Z",
+  "id": "data_entity:vlgnc-simpveh-unalc-ord",
+  "name": "VLGNC_SIMPVEH_UNALC_ORD",
+  "properties": {
+    "entity_type": "view",
+    "materialised": false,
+    "purpose": "This view returns all unallocated simple vehicle orders along with the information needed for their display on the simple vehicle scheduling screen.",
+    "schema": "ulgn"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "data_entity",
+  "updated_at": "2026-11-24T10:20:23.597113Z"
+}

@@ -1,0 +1,25 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:57:53.123932Z",
+  "id": "technical_debt:deps-legacy-eol-platform",
+  "name": "End-of-life application server and JDK baseline",
+  "properties": {
+    "business_impact": "JBoss EAP 6.x and its Java EE 6 stack are out of vendor support; build comments show an unfinished JBoss 7 alignment (TODO 09-Nov-2020).",
+    "category": "maintainability",
+    "effort_size": "L",
+    "extracted_indicators": [
+      "JBoss EAP 6.4.21",
+      "OpenJDK 1.8.0.272",
+      "Java EE 6 provided specs (jboss-*-api 1.x spec jars)"
+    ],
+    "resolution_approach": null,
+    "severity": "high",
+    "title": "End-of-life application server and JDK baseline"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "scope_id": "application:sodeshpa-improved-telegram",
+  "status": "active",
+  "type": "technical_debt",
+  "updated_at": "2026-11-24T09:57:53.123932Z"
+}

@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:59:54.408851Z",
+  "id": "source_artifact:dsa-logon-persistence-etc-sql-initialize-common-division-pkg-sql",
+  "name": "initialize_common_division_pkg.sql",
+  "properties": {
+    "location": "logon-persistence/etc/sql/initialize_common_division_pkg.sql",
+    "revision": "a14299be71dbf5dcffeb7bccd20d9591ff62471441062cb4930a7b875603afd1",
+    "source_type": "ddl_sql"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "source_artifact",
+  "updated_at": "2026-11-24T09:59:54.408851Z"
+}

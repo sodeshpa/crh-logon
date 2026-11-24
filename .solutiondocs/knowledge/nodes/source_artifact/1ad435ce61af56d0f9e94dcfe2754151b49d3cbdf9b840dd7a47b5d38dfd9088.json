@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:59:54.408851Z",
+  "id": "source_artifact:dsa-logon-persistence-etc-sql-sapimport-vn-pkg-sql",
+  "name": "sapimport_vn_pkg.sql",
+  "properties": {
+    "location": "logon-persistence/etc/sql/sapimport_vn_pkg.sql",
+    "revision": "49284825e06677758fbfc4b49b6621a63068b0d85436b18d1e24eba21183792c",
+    "source_type": "ddl_sql"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "source_artifact",
+  "updated_at": "2026-11-24T09:59:54.408851Z"
+}

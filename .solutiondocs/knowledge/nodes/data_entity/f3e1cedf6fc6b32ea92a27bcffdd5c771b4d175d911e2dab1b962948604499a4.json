@@ -1,0 +1,17 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T10:20:23.597113Z",
+  "id": "data_entity:vlgnc-pool-carrier-carrier",
+  "name": "VLGNC_POOL_CARRIER_CARRIER",
+  "properties": {
+    "entity_type": "view",
+    "materialised": false,
+    "purpose": "selects all carriers with display name",
+    "schema": "ulgn"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "data_entity",
+  "updated_at": "2026-11-24T10:20:23.597113Z"
+}
