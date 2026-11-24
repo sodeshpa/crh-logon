@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "claim_ids": [
+    "claim:dsa-f4e3eff19a49dbdf71c80cca11980004820ddeb0"
+  ],
+  "created_at": "2026-11-24T10:41:22.508413Z",
+  "from": "data_store:logon-main-database",
+  "id": "relationship:dsa-fa137bdee327b624e42370778e40c6a741aafc67",
+  "properties": {},
+  "record_kind": "relationship",
+  "revision": 1,
+  "status": "active",
+  "to": "data_entity:vlgnc-pool-shipto-mat-soldto",
+  "type": "contains",
+  "updated_at": "2026-11-24T10:41:22.508413Z"
+}

@@ -1,0 +1,21 @@
+{
+  "applicability": {
+    "source_revision": "c8575f978a45dfbb3bb25cf65d5ea42dbe41e81614d00ec8ef3320b44bc6ba5e"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T10:27:28.875935Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:dsa-f8a664f2c1bcfa2c55ebea579aa147d90dbf3532"
+  ],
+  "id": "claim:dsa-157820215ec5bb7fd72354363e5b5ecb93933efe",
+  "predicate": "protocol",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-webservices-client",
+  "status": "candidate",
+  "subject": "api_endpoint:ffsms-helloworld",
+  "updated_at": "2026-11-24T10:27:28.875935Z",
+  "value": "SOAP"
+}

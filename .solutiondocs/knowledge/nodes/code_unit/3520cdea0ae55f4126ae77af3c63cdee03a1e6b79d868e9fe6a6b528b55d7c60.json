@@ -1,0 +1,21 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T10:30:58.828557Z",
+  "id": "code_unit:logon-order-web-src-main-webapp-js-raildispo.js",
+  "name": "raildispo.js",
+  "properties": {
+    "file_path": "logon-order-web/src/main/webapp/js/raildispo.js",
+    "language": "JavaScript/TypeScript",
+    "loc": 2809,
+    "metrics": {
+      "loc": 2809
+    },
+    "unit_type": "file"
+  },
+  "qualified_name": "logon-order-web/src/main/webapp/js/raildispo.js",
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "code_unit",
+  "updated_at": "2026-11-24T10:30:58.828557Z"
+}

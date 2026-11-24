@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:59:54.408851Z",
+  "id": "source_artifact:dsa-logon-webservices-client-etc-wsdl-xsd-archiveorder-main-xsd",
+  "name": "ArchiveOrder_main.xsd",
+  "properties": {
+    "location": "logon-webservices-client/etc/wsdl/xsd/ArchiveOrder_main.xsd",
+    "revision": "2b50800c706530c2661a50c6a8a8fd19f76103d1d43b26edfcb64f79ab613190",
+    "source_type": "xsd"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "source_artifact",
+  "updated_at": "2026-11-24T09:59:54.408851Z"
+}

@@ -1,0 +1,24 @@
+{
+  "applicability": {
+    "source_revision": "c4799b3dfcf94ee66c921f340bda20c43e31a979"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 0.95,
+  "created_at": "2026-11-24T10:43:23.721635Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:fs-3f85047c9fc7fb227df1ad1e"
+  ],
+  "id": "claim:fs-rel-3f85047c9fc7fb227df1ad1e",
+  "predicate": "contains",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-persistence",
+  "status": "candidate",
+  "subject": "relationship:fs-contains-3f85047c9fc7fb227df1ad1e",
+  "updated_at": "2026-11-24T10:43:23.721635Z",
+  "value": {
+    "container": "component:logon-persistence",
+    "file_path": "logon-persistence/etc/sql/testdata/tlgnc_iud_cost.sql"
+  }
+}

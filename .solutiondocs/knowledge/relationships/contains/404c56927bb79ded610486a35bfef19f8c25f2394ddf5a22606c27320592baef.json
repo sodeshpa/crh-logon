@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "claim_ids": [
+    "claim:dsa-89903152700d801893bba3a886f388e3affbe488"
+  ],
+  "created_at": "2026-11-24T10:41:22.508413Z",
+  "from": "data_store:logon-main-database",
+  "id": "relationship:dsa-c0c74446802ba254f816acf39060b4b721755948",
+  "properties": {},
+  "record_kind": "relationship",
+  "revision": 1,
+  "status": "active",
+  "to": "data_entity:vlgnc-shipto-wagon-prio-factor",
+  "type": "contains",
+  "updated_at": "2026-11-24T10:41:22.508413Z"
+}

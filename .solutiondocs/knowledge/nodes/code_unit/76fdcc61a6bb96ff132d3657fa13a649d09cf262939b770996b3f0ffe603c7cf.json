@@ -1,0 +1,21 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T10:03:24.312910Z",
+  "id": "code_unit:logon-common-src-test-unit-com-crh-logon-utils-time-datetimeparsertest.java",
+  "name": "DateTimeParserTest.java",
+  "properties": {
+    "file_path": "logon-common/src/test/unit/com/crh/logon/utils/time/DateTimeParserTest.java",
+    "language": "Java",
+    "loc": 113,
+    "metrics": {
+      "loc": 113
+    },
+    "unit_type": "file"
+  },
+  "qualified_name": "logon-common/src/test/unit/com/crh/logon/utils/time/DateTimeParserTest.java",
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "code_unit",
+  "updated_at": "2026-11-24T10:03:24.312910Z"
+}

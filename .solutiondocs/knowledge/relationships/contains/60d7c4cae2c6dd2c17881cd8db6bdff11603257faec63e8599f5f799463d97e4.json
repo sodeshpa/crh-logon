@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "claim_ids": [
+    "claim:dsa-678eeef98b303d6d7d5278a55066b8e573a60c7e"
+  ],
+  "created_at": "2026-11-24T11:07:07.476264Z",
+  "from": "data_entity:vn-vendorcompanycodedatasmd",
+  "id": "relationship:dsa-20eb0a469ced12004e72e8b58cc7c937d25a61b8",
+  "properties": {},
+  "record_kind": "relationship",
+  "revision": 1,
+  "status": "active",
+  "to": "data_field:vn-vendorcompanycodedatasmd-zuawa",
+  "type": "contains",
+  "updated_at": "2026-11-24T11:07:07.476264Z"
+}

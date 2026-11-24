@@ -1,0 +1,27 @@
+{
+  "applicability": {
+    "source_revision": "c4799b3dfcf94ee66c921f340bda20c43e31a979"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 0.95,
+  "created_at": "2026-11-24T10:03:24.312910Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:fs-2c76b608b740d15f8d2ed4f2"
+  ],
+  "id": "claim:fs-2c76b608b740d15f8d2ed4f2",
+  "predicate": "file_inventory",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-cust-web",
+  "status": "candidate",
+  "subject": "code_unit:logon-cust-web-src-main-java-com-crh-logon-cust-web-actions-helpaction.java",
+  "updated_at": "2026-11-24T10:03:24.312910Z",
+  "value": {
+    "estimated_tokens": 512,
+    "file_path": "logon-cust-web/src/main/java/com/crh/logon/cust/web/actions/HelpAction.java",
+    "language": "Java",
+    "loc": 74,
+    "size_bytes": 2050
+  }
+}

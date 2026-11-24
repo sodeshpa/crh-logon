@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "claim_ids": [
+    "claim:dsa-c3208ea0f094765fb5b0f9c73a2d900b2d60e701"
+  ],
+  "created_at": "2026-11-24T10:41:22.508413Z",
+  "from": "component:logon-persistence",
+  "id": "relationship:dsa-68537c36a2c8f9204449c64daa40aa1fb74d7f8e",
+  "properties": {},
+  "record_kind": "relationship",
+  "revision": 1,
+  "status": "active",
+  "to": "data_entity:vlgnc-dispo-wagon-load-list",
+  "type": "owns_data",
+  "updated_at": "2026-11-24T10:41:22.508413Z"
+}

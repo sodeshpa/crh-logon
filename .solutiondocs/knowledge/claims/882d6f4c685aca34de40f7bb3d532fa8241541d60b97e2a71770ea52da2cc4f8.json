@@ -1,0 +1,24 @@
+{
+  "applicability": {
+    "source_revision": "c4799b3dfcf94ee66c921f340bda20c43e31a979"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 0.95,
+  "created_at": "2026-11-24T11:24:38.068920Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:fs-afbb6a0844f04075637d566f"
+  ],
+  "id": "claim:fs-rel-afbb6a0844f04075637d566f",
+  "predicate": "contains",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-persistence",
+  "status": "candidate",
+  "subject": "relationship:fs-contains-afbb6a0844f04075637d566f",
+  "updated_at": "2026-11-24T11:24:38.068920Z",
+  "value": {
+    "container": "component:logon-persistence",
+    "file_path": "logon-persistence/src/main/java/com/crh/logon/persistence/entities/views/RepExternalOrderEntity.java"
+  }
+}

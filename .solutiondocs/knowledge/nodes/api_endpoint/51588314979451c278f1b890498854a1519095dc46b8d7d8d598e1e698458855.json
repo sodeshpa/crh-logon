@@ -1,0 +1,25 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T10:27:28.875935Z",
+  "id": "api_endpoint:vendornotification-vendor-notification-put",
+  "name": "vendor_notification_put",
+  "properties": {
+    "method": "POST",
+    "path": "/logon/webservices/services/VendorNotificationImport",
+    "protocol": "SOAP",
+    "request_schema": {
+      "title": "vendor_notification_put_message",
+      "type": "object"
+    },
+    "response_schema": {
+      "title": "vendor_notification_put_status",
+      "type": "object"
+    }
+  },
+  "qualified_name": "VendorNotificationPort.vendor_notification_put",
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "api_endpoint",
+  "updated_at": "2026-11-24T10:27:28.875935Z"
+}

@@ -1,0 +1,46 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:43:07.964638Z",
+  "id": "component:logon-admin-web",
+  "name": "logon-admin-web",
+  "properties": {
+    "build_files": [],
+    "estimated_tokens": 792364,
+    "files": 561,
+    "folder": "logon-admin-web",
+    "metrics": {
+      "loc": 91616
+    },
+    "source_files": 479,
+    "source_root": "logon-admin-web",
+    "tech_stack": {
+      "languages": [
+        {
+          "name": "Java",
+          "percentage": 65.4
+        },
+        {
+          "name": "Web/Template",
+          "percentage": 26.42
+        },
+        {
+          "name": "JavaScript/TypeScript",
+          "percentage": 4.53
+        },
+        {
+          "name": "Config",
+          "percentage": 3.06
+        },
+        {
+          "name": "Other",
+          "percentage": 0.58
+        }
+      ]
+    }
+  },
+  "record_kind": "node",
+  "revision": 2,
+  "status": "active",
+  "type": "component",
+  "updated_at": "2026-11-24T12:10:33.467210Z"
+}

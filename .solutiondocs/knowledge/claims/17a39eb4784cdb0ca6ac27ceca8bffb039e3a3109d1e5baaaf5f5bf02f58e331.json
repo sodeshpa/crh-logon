@@ -1,0 +1,26 @@
+{
+  "applicability": {
+    "source_revision": "f25d1028a4dd3f5dd614543271cb0eee8e1cdb3d"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T09:57:53.123932Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:deps-0da0d3ad41af7d448875"
+  ],
+  "id": "claim:deps-82445e59831cd54734e4c60c",
+  "predicate": "tech_stack.frameworks",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:ansible",
+  "status": "candidate",
+  "subject": "component:ansible",
+  "updated_at": "2026-11-24T09:57:53.123932Z",
+  "value": [
+    {
+      "name": "Ansible",
+      "version": "2.8.6"
+    }
+  ]
+}

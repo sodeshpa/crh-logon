@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "claim_ids": [
+    "claim:deps-946961786197a246779670d3"
+  ],
+  "created_at": "2026-11-24T09:49:36.164007Z",
+  "from": "component:logon-business",
+  "id": "relationship:deps-200bdbaf4862a5be128a96f0",
+  "properties": {},
+  "record_kind": "relationship",
+  "revision": 1,
+  "status": "active",
+  "to": "dependency:maven-com.google.code.gson-gson-2.8.6",
+  "type": "depends_on",
+  "updated_at": "2026-11-24T09:49:36.164007Z"
+}

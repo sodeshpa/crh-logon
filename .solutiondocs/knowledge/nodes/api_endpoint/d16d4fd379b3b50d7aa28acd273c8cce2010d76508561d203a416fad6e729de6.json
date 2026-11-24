@@ -1,0 +1,25 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T10:27:28.875935Z",
+  "id": "api_endpoint:dx1-java-instance-logisticsreporting-out-logisticsreporting-out",
+  "name": "LogisticsReporting_Out",
+  "properties": {
+    "method": "POST",
+    "path": "/XISOAPAdapter/MessageServlet",
+    "protocol": "SOAP",
+    "request_schema": {
+      "title": "MT_LogisticsReporting_Out",
+      "type": "object"
+    },
+    "response_schema": {
+      "title": "rfc._-BI0_-QI6AIS_LOGON_INTER__1_RFC.Response",
+      "type": "object"
+    }
+  },
+  "qualified_name": "LogisticsReporting_Out.LogisticsReporting_Out",
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "api_endpoint",
+  "updated_at": "2026-11-24T10:27:28.875935Z"
+}

@@ -1,0 +1,28 @@
+{
+  "applicability": {
+    "source_revision": "a0b5cdb2d32c0698faadbe11ec6f8006d55d7765"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T09:49:36.164007Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:deps-272e8163823cc425286d"
+  ],
+  "id": "claim:deps-2c14e30d1f7094f2989fa12f",
+  "predicate": "declared_coordinates",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-order-web",
+  "status": "candidate",
+  "subject": "dependency:maven-com.pd4ml-pd4ml_tl-3.9.0",
+  "updated_at": "2026-11-24T09:49:36.164007Z",
+  "value": {
+    "ecosystem": "maven",
+    "group": "com.pd4ml",
+    "name": "pd4ml_tl",
+    "note": "maven scope not declared",
+    "scope": "compile",
+    "version": "3.9.0"
+  }
+}

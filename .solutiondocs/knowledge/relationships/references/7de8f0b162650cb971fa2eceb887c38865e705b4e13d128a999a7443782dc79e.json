@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "claim_ids": [
+    "claim:422ea364bb0b17c76e11473f80b640e8f36b3f8223d75dbc58860ce57f7856bb"
+  ],
+  "created_at": "2026-11-24T09:51:52.064424Z",
+  "from": "automated_process:logon-rfid-object-label-cleanup",
+  "id": "relationship:references-c88026b452b6657ea91bbc5407c87f941b0a30d7",
+  "properties": {},
+  "record_kind": "relationship",
+  "revision": 1,
+  "status": "active",
+  "to": "config_item:etc-logon-dev-properties",
+  "type": "references",
+  "updated_at": "2026-11-24T09:51:52.064424Z"
+}

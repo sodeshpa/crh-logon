@@ -1,0 +1,17 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T10:20:23.597113Z",
+  "id": "data_entity:vlgnu-util-last-login",
+  "name": "VLGNU_UTIL_LAST_LOGIN",
+  "properties": {
+    "entity_type": "view",
+    "materialised": false,
+    "purpose": "Utility view containing the last successful login of the users. Could be used to report/detect dormant users",
+    "schema": "ulgn"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "data_entity",
+  "updated_at": "2026-11-24T10:20:23.597113Z"
+}

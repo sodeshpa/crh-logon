@@ -1,0 +1,21 @@
+{
+  "applicability": {
+    "source_revision": "0db519bcc23d4b847662a26d59e471f8227e79492e44c5b1694df2641f149ab1"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T10:20:23.597113Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:dsa-37b911f3004ebc10c19947447d28a748a7dc9075"
+  ],
+  "id": "claim:dsa-dfd29201b7095a283d0a676efcae75642f8e3c6e",
+  "predicate": "entity_type",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-persistence",
+  "status": "candidate",
+  "subject": "data_entity:vlgnc-sapbp-railway-station",
+  "updated_at": "2026-11-24T10:20:23.597113Z",
+  "value": "view"
+}

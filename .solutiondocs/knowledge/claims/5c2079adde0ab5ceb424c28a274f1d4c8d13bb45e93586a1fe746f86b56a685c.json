@@ -1,0 +1,21 @@
+{
+  "applicability": {
+    "source_revision": "216c7d115f022c3a75645d1b99d4299dabbdf5a87efd42e853fb2ccc12b9fc46"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T10:27:28.875935Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:dsa-d570d400e980b4d414ad10190911c1fdca6bea71"
+  ],
+  "id": "claim:dsa-775f30db9f0bb835d02625e658ea0f8f1f473ecf",
+  "predicate": "plsql_procedure",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-persistence",
+  "status": "candidate",
+  "subject": "code_unit:logon-persistence-plsql-upsert-timezone-tx",
+  "updated_at": "2026-11-24T10:27:28.875935Z",
+  "value": "upsert_timezone_tx"
+}

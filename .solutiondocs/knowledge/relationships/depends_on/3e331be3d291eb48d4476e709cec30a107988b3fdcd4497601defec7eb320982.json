@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "claim_ids": [
+    "claim:deps-b26f1ac3d1cb62c3aa18e1f5"
+  ],
+  "created_at": "2026-11-24T09:49:36.164007Z",
+  "from": "application:sodeshpa-improved-telegram",
+  "id": "relationship:deps-26cb1539dbf0d35f61148850",
+  "properties": {},
+  "record_kind": "relationship",
+  "revision": 1,
+  "status": "active",
+  "to": "dependency:external-distribution-mozilla-geckodriver-0.30.0",
+  "type": "depends_on",
+  "updated_at": "2026-11-24T09:49:36.164007Z"
+}

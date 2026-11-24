@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "claim_ids": [
+    "claim:deps-abaf399305a84d3e4b7f09d4"
+  ],
+  "created_at": "2026-11-24T09:49:36.164007Z",
+  "from": "component:logon-business",
+  "id": "relationship:deps-1caef31b215f4d4c7bb8f6ca",
+  "properties": {},
+  "record_kind": "relationship",
+  "revision": 1,
+  "status": "active",
+  "to": "dependency:ant-jar-com.ibm.icu-icu4j-51.2",
+  "type": "depends_on",
+  "updated_at": "2026-11-24T09:49:36.164007Z"
+}

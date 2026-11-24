@@ -1,0 +1,18 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:53:30.031918Z",
+  "id": "setting:config-build-properties--db-connection-url",
+  "name": "db.connection.url",
+  "properties": {
+    "is_connection_string": true,
+    "is_secret": false,
+    "key": "db.connection.url",
+    "source_file": "config/build.properties",
+    "value_type": "connection_string"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "setting",
+  "updated_at": "2026-11-24T09:53:30.031918Z"
+}

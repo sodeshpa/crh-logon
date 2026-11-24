@@ -1,0 +1,17 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T10:20:23.597113Z",
+  "id": "data_entity:vlgnc-dispo-assign-part-list",
+  "name": "VLGNC_DISPO_ASSIGN_PART_LIST",
+  "properties": {
+    "entity_type": "view",
+    "materialised": false,
+    "purpose": "assignment item list for dispo screen",
+    "schema": "ulgn"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "data_entity",
+  "updated_at": "2026-11-24T10:20:23.597113Z"
+}

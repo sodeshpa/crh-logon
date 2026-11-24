@@ -1,0 +1,21 @@
+{
+  "applicability": {
+    "source_revision": "f0319b7f1fa2ac8b05f0bc2cbf001eceaa03677eb829c7419fb7413f61391f69"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T10:08:37.052779Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:dsa-ef4fdb5d62b017bb6bed0d3615995c21323fcc45"
+  ],
+  "id": "claim:dsa-d7a9863c3f2cb5950713547c001fd220097ad358",
+  "predicate": "data_type",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-webservices",
+  "status": "candidate",
+  "subject": "data_field:mn-materialforecastvalue-saiin",
+  "updated_at": "2026-11-24T10:08:37.052779Z",
+  "value": "varchar2(7 char)"
+}

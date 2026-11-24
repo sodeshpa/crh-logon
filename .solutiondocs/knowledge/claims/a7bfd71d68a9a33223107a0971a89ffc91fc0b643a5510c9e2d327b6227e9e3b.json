@@ -1,0 +1,21 @@
+{
+  "applicability": {
+    "source_revision": "568fb62cc499bfcb716fdd4168d2266a10e7b88cc4eb3607d9b68efd621fe86d"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T10:20:23.597113Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:dsa-6269796183ed54071284500494a2a9ec68e4cfdb"
+  ],
+  "id": "claim:dsa-855e977c3df691a8a97d1cc6fbdb20ef624a0326",
+  "predicate": "entity_type",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-persistence",
+  "status": "candidate",
+  "subject": "data_entity:vlgnc-rep-order-list",
+  "updated_at": "2026-11-24T10:20:23.597113Z",
+  "value": "view"
+}

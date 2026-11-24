@@ -1,0 +1,17 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:49:36.164007Z",
+  "id": "dependency:ant-jar-commons-net-commons-net-2.0",
+  "name": "commons-net",
+  "properties": {
+    "dependency_type": "library",
+    "scope": "compile",
+    "version": "2.0"
+  },
+  "qualified_name": "commons-net:commons-net@2.0",
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "dependency",
+  "updated_at": "2026-11-24T09:49:36.164007Z"
+}

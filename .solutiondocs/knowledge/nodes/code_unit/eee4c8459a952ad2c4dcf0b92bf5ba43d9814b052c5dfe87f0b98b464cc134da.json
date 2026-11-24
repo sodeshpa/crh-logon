@@ -1,0 +1,21 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:49:05.830186Z",
+  "id": "code_unit:logon-business-src-main-java-com-crh-logon-business-ordercreation-dto-orderdeliveryminmaxdatedto.java",
+  "name": "OrderDeliveryMinMaxDateDTO.java",
+  "properties": {
+    "file_path": "logon-business/src/main/java/com/crh/logon/business/ordercreation/dto/OrderDeliveryMinMaxDateDTO.java",
+    "language": "Java",
+    "loc": 66,
+    "metrics": {
+      "loc": 66
+    },
+    "unit_type": "file"
+  },
+  "qualified_name": "logon-business/src/main/java/com/crh/logon/business/ordercreation/dto/OrderDeliveryMinMaxDateDTO.java",
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "code_unit",
+  "updated_at": "2026-11-24T09:49:05.830186Z"
+}

@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "claim_ids": [
+    "claim:fs-rel-b55d9ec403c00e458d67af31"
+  ],
+  "created_at": "2026-11-24T09:58:39.080022Z",
+  "from": "component:logon-common-web",
+  "id": "relationship:fs-contains-b55d9ec403c00e458d67af31",
+  "properties": {},
+  "record_kind": "relationship",
+  "revision": 1,
+  "status": "active",
+  "to": "code_unit:logon-common-web-src-main-java-com-crh-logon-web-forms-rfidpopupform.java",
+  "type": "contains",
+  "updated_at": "2026-11-24T09:58:39.080022Z"
+}

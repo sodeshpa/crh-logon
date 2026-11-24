@@ -1,0 +1,21 @@
+{
+  "applicability": {
+    "source_revision": "0db519bcc23d4b847662a26d59e471f8227e79492e44c5b1694df2641f149ab1"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T10:20:23.597113Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:dsa-dd83aad5e2ee2e632bb0b85e5034b8b8fc2f85f3"
+  ],
+  "id": "claim:dsa-974a11e7d9c0700f95e4b1b1f08d4c94d0e72d27",
+  "predicate": "entity_type",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-persistence",
+  "status": "candidate",
+  "subject": "data_entity:vlgnc-man-pool-assignment-list",
+  "updated_at": "2026-11-24T10:20:23.597113Z",
+  "value": "view"
+}

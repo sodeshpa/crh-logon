@@ -1,0 +1,18 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T10:27:28.875935Z",
+  "id": "integration_point:here-routing-api-v8",
+  "name": "HERE Routing API v8",
+  "properties": {
+    "auth_method": "apiKey(apiKey), bearerAuth(bearer)",
+    "contract_type": "OpenAPI",
+    "endpoint": "https://router.hereapi.com/v8",
+    "protocol": "HTTPS/REST",
+    "type": "external_api"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "integration_point",
+  "updated_at": "2026-11-24T10:27:28.875935Z"
+}

@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "claim_ids": [
+    "claim:deps-4236bbe67b631d8de465f994"
+  ],
+  "created_at": "2026-11-24T09:49:36.164007Z",
+  "from": "application:sodeshpa-improved-telegram",
+  "id": "relationship:deps-8e55a297b5c872b05fcc951a",
+  "properties": {},
+  "record_kind": "relationship",
+  "revision": 1,
+  "status": "active",
+  "to": "dependency:ant-jar-com.aspose-aspose.words-13.9.0.0",
+  "type": "depends_on",
+  "updated_at": "2026-11-24T09:49:36.164007Z"
+}

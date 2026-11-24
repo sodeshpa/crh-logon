@@ -1,0 +1,18 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T10:27:28.875935Z",
+  "id": "integration_point:itrack-restful-api-idata-telematics",
+  "name": "iTrack RESTful API (iData telematics)",
+  "properties": {
+    "auth_method": "basic_user_password(basic)",
+    "contract_type": "OpenAPI",
+    "endpoint": "https://api.itrack.hu/rest",
+    "protocol": "HTTPS/REST",
+    "type": "external_api"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "integration_point",
+  "updated_at": "2026-11-24T10:27:28.875935Z"
+}

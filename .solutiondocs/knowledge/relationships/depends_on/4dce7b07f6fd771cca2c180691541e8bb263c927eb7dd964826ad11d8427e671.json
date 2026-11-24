@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "claim_ids": [
+    "claim:deps-2a3f2ef2ca24051186d2f80c"
+  ],
+  "created_at": "2026-11-24T09:49:36.164007Z",
+  "from": "application:sodeshpa-improved-telegram",
+  "id": "relationship:deps-e0b49fce433321e5cb20ea0b",
+  "properties": {},
+  "record_kind": "relationship",
+  "revision": 1,
+  "status": "active",
+  "to": "dependency:ant-jar-org.jvnet.hyperjaxb3-hyperjaxb3-runtime-0.2.ga",
+  "type": "depends_on",
+  "updated_at": "2026-11-24T09:49:36.164007Z"
+}

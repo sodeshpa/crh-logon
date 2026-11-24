@@ -1,0 +1,24 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T10:06:43.126484Z",
+  "id": "data_entity:bpn-mastercustomerbasicdata-3",
+  "name": "BPN_MASTERCUSTOMERBASICDATA__3",
+  "properties": {
+    "entity_type": "table",
+    "indexes": [
+      {
+        "columns": [
+          "CHILD_BPN_MASTERCUSTOMERCOMP_0"
+        ],
+        "name": "BPN_MASTERCUSTOMERBASICDATA__3_UQ1",
+        "unique": true
+      }
+    ],
+    "schema": "ulgnsap"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "data_entity",
+  "updated_at": "2026-11-24T10:06:43.126484Z"
+}

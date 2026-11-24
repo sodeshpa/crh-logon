@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:51:52.064424Z",
+  "id": "source_artifact:cfg-etc-logon-nightly-properties",
+  "name": "etc/logon-nightly.properties",
+  "properties": {
+    "location": "etc/logon-nightly.properties",
+    "revision": "3a835caeea77d691835acd5cbf0d3261f720ee1fa6f1c6d025af6b252385a44e",
+    "source_type": "config_file"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "source_artifact",
+  "updated_at": "2026-11-24T09:51:52.064424Z"
+}

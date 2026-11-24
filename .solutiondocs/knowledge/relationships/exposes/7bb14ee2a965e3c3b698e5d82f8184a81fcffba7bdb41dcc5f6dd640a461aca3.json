@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "claim_ids": [
+    "claim:dsa-1474aecf83687f13a7233fbde1f1a07d4aa62f25"
+  ],
+  "created_at": "2026-11-24T11:07:07.476264Z",
+  "from": "component:logon-webservices",
+  "id": "relationship:dsa-c5035ab01f8b4f8999359819bc5eb854d8058131",
+  "properties": {},
+  "record_kind": "relationship",
+  "revision": 1,
+  "status": "active",
+  "to": "api_endpoint:vehiclenotification-vehicle-notification-put",
+  "type": "exposes",
+  "updated_at": "2026-11-24T11:07:07.476264Z"
+}

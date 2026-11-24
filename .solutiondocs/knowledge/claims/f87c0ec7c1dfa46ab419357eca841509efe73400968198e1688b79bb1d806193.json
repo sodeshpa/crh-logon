@@ -1,0 +1,21 @@
+{
+  "applicability": {
+    "source_revision": "83b9dd3a1af9fdc87c66231caf3f309981317d8ac69377f6429a8dcb01e5c853"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T10:24:05.985709Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:dsa-970c829a578e5bb76f9b9ef3561287a1c12eb73c"
+  ],
+  "id": "claim:dsa-1aa56996ee2f0b857d87ae022144c9e93d683e12",
+  "predicate": "plsql_function",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-persistence",
+  "status": "candidate",
+  "subject": "code_unit:logon-persistence-plsql-get-orders-to-delete",
+  "updated_at": "2026-11-24T10:24:05.985709Z",
+  "value": "get_orders_to_delete"
+}

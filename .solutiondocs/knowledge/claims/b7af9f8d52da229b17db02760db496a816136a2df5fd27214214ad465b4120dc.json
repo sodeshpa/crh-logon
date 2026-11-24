@@ -1,0 +1,21 @@
+{
+  "applicability": {
+    "source_revision": "f0319b7f1fa2ac8b05f0bc2cbf001eceaa03677eb829c7419fb7413f61391f69"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T10:24:05.985709Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:dsa-b1c27ef92bbf254be9371b7fdee763039c3f8d25"
+  ],
+  "id": "claim:dsa-8d78384702f4cd532281c7c8c6ef750ec8a7acd2",
+  "predicate": "data_type",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-webservices",
+  "status": "candidate",
+  "subject": "data_field:vn-vendorpurchasingorganizat-0-vsbed",
+  "updated_at": "2026-11-24T10:24:05.985709Z",
+  "value": "varchar2(2 char)"
+}

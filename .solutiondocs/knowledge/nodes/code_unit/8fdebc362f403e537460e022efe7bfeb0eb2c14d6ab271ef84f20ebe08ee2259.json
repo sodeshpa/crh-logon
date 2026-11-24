@@ -1,0 +1,21 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:58:39.080022Z",
+  "id": "code_unit:logon-common-web-src-main-webapp-js-ext-data-dwrproxy.js",
+  "name": "ext-data-dwrproxy.js",
+  "properties": {
+    "file_path": "logon-common-web/src/main/webapp/js/ext-data-dwrproxy.js",
+    "language": "JavaScript/TypeScript",
+    "loc": 74,
+    "metrics": {
+      "loc": 74
+    },
+    "unit_type": "file"
+  },
+  "qualified_name": "logon-common-web/src/main/webapp/js/ext-data-dwrproxy.js",
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "code_unit",
+  "updated_at": "2026-11-24T09:58:39.080022Z"
+}

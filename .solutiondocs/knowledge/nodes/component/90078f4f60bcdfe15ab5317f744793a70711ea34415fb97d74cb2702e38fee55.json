@@ -1,0 +1,19 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:43:07.964638Z",
+  "id": "component:logon-test-load",
+  "name": "logon-test-load",
+  "properties": {
+    "build_files": [],
+    "estimated_tokens": 47556,
+    "files": 41,
+    "folder": "logon-test-load",
+    "source_files": 24,
+    "source_root": "logon-test-load"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "component",
+  "updated_at": "2026-11-24T09:43:07.964638Z"
+}

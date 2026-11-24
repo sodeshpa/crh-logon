@@ -1,0 +1,19 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:43:07.964638Z",
+  "id": "component:logon-security",
+  "name": "logon-security",
+  "properties": {
+    "build_files": [],
+    "estimated_tokens": 26639,
+    "files": 21,
+    "folder": "logon-security",
+    "source_files": 11,
+    "source_root": "logon-security"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "component",
+  "updated_at": "2026-11-24T09:43:07.964638Z"
+}

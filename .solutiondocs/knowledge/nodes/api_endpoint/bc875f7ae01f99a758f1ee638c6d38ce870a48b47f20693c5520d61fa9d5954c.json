@@ -1,0 +1,36 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T10:27:28.875935Z",
+  "id": "api_endpoint:openapi-itrack-getlastpositions",
+  "name": "getLastPositions",
+  "properties": {
+    "auth_method": "basic_user_password(basic)",
+    "auth_required": true,
+    "method": "GET",
+    "path": "/api/crh/v1/positions/last",
+    "protocol": "REST",
+    "request_schema": {
+      "properties": {
+        "targetIds": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "response_codes": [
+      200,
+      401,
+      403,
+      404,
+      500
+    ],
+    "versioning": {
+      "version": "1.0"
+    }
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "api_endpoint",
+  "updated_at": "2026-11-24T10:27:28.875935Z"
+}

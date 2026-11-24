@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "claim_ids": [
+    "claim:deps-3db6105fc13d41aaf9c03552"
+  ],
+  "created_at": "2026-11-24T09:49:36.164007Z",
+  "from": "component:logon-business",
+  "id": "relationship:deps-0364f20f6cee9441ea101d5d",
+  "properties": {},
+  "record_kind": "relationship",
+  "revision": 1,
+  "status": "active",
+  "to": "dependency:maven-org.apache.httpcomponents-httpclient-4.5.3",
+  "type": "depends_on",
+  "updated_at": "2026-11-24T09:49:36.164007Z"
+}

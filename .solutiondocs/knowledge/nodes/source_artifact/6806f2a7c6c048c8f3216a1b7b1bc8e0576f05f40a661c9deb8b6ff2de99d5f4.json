@@ -1,0 +1,19 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:59:54.408851Z",
+  "id": "source_artifact:dsa-logon-webservices-pws-incoming-src-main-resources-pws-eventhandler-wsdl",
+  "name": "PWS_eventhandler.wsdl",
+  "properties": {
+    "location": "logon-webservices-pws-incoming/src/main/resources/PWS_eventhandler.wsdl",
+    "metadata": {
+      "dsa:target_namespace": "http://logon.holcim.com/2009/09/PWSEvent"
+    },
+    "revision": "0e27d9fc9251d77f0b9218a06f4e030ec5faab9951aadbb5e7f2e645fa83625e",
+    "source_type": "wsdl"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "source_artifact",
+  "updated_at": "2026-11-24T09:59:54.408851Z"
+}

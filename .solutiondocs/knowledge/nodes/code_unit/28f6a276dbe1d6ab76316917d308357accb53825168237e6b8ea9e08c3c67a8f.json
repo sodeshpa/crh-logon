@@ -1,0 +1,21 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:47:21.032770Z",
+  "id": "code_unit:logon-admin-web-src-main-java-com-crh-logon-admin-web-actions-masterdata-shippingpointsendsapsppopupentryaction.java",
+  "name": "ShippingPointSendSapSpPopupEntryAction.java",
+  "properties": {
+    "file_path": "logon-admin-web/src/main/java/com/crh/logon/admin/web/actions/masterdata/ShippingPointSendSapSpPopupEntryAction.java",
+    "language": "Java",
+    "loc": 103,
+    "metrics": {
+      "loc": 103
+    },
+    "unit_type": "file"
+  },
+  "qualified_name": "logon-admin-web/src/main/java/com/crh/logon/admin/web/actions/masterdata/ShippingPointSendSapSpPopupEntryAction.java",
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "code_unit",
+  "updated_at": "2026-11-24T09:47:21.032770Z"
+}

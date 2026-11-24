@@ -1,0 +1,21 @@
+{
+  "applicability": {
+    "source_revision": "f0319b7f1fa2ac8b05f0bc2cbf001eceaa03677eb829c7419fb7413f61391f69"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T10:08:37.052779Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:dsa-02471407a9cbf8343d441ec445edb0dff7f72e4c"
+  ],
+  "id": "claim:dsa-49f52b4f645da97c2021a762e0a70907d23419b9",
+  "predicate": "data_type",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-webservices",
+  "status": "candidate",
+  "subject": "data_field:mn-materialforecastparameter-anzpr",
+  "updated_at": "2026-11-24T10:08:37.052779Z",
+  "value": "varchar2(5 char)"
+}

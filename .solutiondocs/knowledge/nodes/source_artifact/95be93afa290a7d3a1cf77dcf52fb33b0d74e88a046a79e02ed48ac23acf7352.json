@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:43:07.964638Z",
+  "id": "source_artifact:component-file-manifest",
+  "name": "Phase 0 file manifest",
+  "properties": {
+    "location": "C:\\Users\\sodeshpa\\.copilot\\repos\\copilot-worktrees\\crh-logon\\sodeshpa-improved-telegram\\.solutiondocs\\.docgen\\file-manifest.json",
+    "revision": "0fa642551b277fba10b304450c684d8aa617dbaaf2487cf1b86a2adc373c9784",
+    "source_type": "file_manifest"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "source_artifact",
+  "updated_at": "2026-11-24T09:43:07.964638Z"
+}

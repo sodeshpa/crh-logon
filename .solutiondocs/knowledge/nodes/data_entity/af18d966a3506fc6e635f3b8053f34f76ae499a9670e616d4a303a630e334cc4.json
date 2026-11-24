@@ -1,0 +1,17 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T10:20:23.597113Z",
+  "id": "data_entity:vlgnc-dispo-max-wagon-pos",
+  "name": "VLGNC_DISPO_MAX_WAGON_POS",
+  "properties": {
+    "entity_type": "view",
+    "materialised": false,
+    "purpose": "max existing track position for the track containing the wagon. used for position dropdown",
+    "schema": "ulgn"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "data_entity",
+  "updated_at": "2026-11-24T10:20:23.597113Z"
+}

@@ -1,0 +1,17 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T10:20:23.597113Z",
+  "id": "data_entity:vlgnc-bimodal-rail-order",
+  "name": "VLGNC_BIMODAL_RAIL_ORDER",
+  "properties": {
+    "entity_type": "view",
+    "materialised": false,
+    "purpose": "Naming is misleading! It also contains bimodal road orders! Used to display the combined Order Item and ship-to combobox for bimodal truck-part orders, and on Order monitoring/Monitoring/Bimodal railcar monitoring",
+    "schema": "ulgn"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "data_entity",
+  "updated_at": "2026-11-24T10:20:23.597113Z"
+}

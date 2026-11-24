@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:59:54.408851Z",
+  "id": "source_artifact:dsa-logon-persistence-etc-sql-refdata-tlgnr-incoterm-deliv-type-bs-sql",
+  "name": "tlgnr_incoterm_deliv_type_bs.sql",
+  "properties": {
+    "location": "logon-persistence/etc/sql/refdata/tlgnr_incoterm_deliv_type_bs.sql",
+    "revision": "91a4e8766a40fc19da5aaa3a68250efb97d7e85870b6b92031780d75d8046ff5",
+    "source_type": "ddl_sql"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "source_artifact",
+  "updated_at": "2026-11-24T09:59:54.408851Z"
+}

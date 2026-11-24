@@ -1,0 +1,17 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T10:04:21.856768Z",
+  "id": "evidence:dsa-4cb7918eb6508be086d7c4419a511670ea2478cb",
+  "locator": {
+    "file": "logon-persistence/etc/sql/refdata/tlgnr_uom.sql",
+    "line": 49
+  },
+  "method": "ddl-parse",
+  "observed_at": "2026-11-24T09:49:32Z",
+  "record_kind": "evidence",
+  "revision": 1,
+  "source_id": "source_artifact:dsa-logon-persistence-etc-sql-refdata-tlgnr-uom-sql",
+  "source_revision": "9f5be0d517c58b1a3e611ecf5001680a414b6ab595e84f40201a1f8efbd3a98b",
+  "status": "active",
+  "updated_at": "2026-11-24T10:04:21.856768Z"
+}

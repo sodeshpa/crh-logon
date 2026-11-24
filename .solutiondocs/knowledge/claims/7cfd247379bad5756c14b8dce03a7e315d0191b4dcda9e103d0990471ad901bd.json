@@ -1,0 +1,21 @@
+{
+  "applicability": {
+    "source_revision": "d55bbe008f23f321f0d5b8a506375217a3e947830933e0561530f770c9f475cc"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T10:18:07.792802Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:dsa-c701bac67b2c35bf2879fc23ca4476a93db850da"
+  ],
+  "id": "claim:dsa-cc4cc082a603e64cc82d10e60e57a97db43c3e6d",
+  "predicate": "data_type",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-persistence",
+  "status": "candidate",
+  "subject": "data_field:tlgnc-shipto-sarea-rest-maint-ctl-mod-ts",
+  "updated_at": "2026-11-24T10:18:07.792802Z",
+  "value": "TIMESTAMP (6)"
+}

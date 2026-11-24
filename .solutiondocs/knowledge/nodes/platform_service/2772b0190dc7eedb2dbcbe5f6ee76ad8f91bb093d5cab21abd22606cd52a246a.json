@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:51:52.064424Z",
+  "id": "platform_service:oracle-database",
+  "name": "Oracle Database",
+  "properties": {
+    "portable": false,
+    "product": "Oracle Database (ojdbc8 driver)",
+    "service": "Relational database"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "platform_service",
+  "updated_at": "2026-11-24T09:51:52.064424Z"
+}

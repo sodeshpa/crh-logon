@@ -1,0 +1,21 @@
+{
+  "applicability": {
+    "source_revision": "0db519bcc23d4b847662a26d59e471f8227e79492e44c5b1694df2641f149ab1"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T10:20:23.597113Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:dsa-560e738b42699062627a58abc4186cae8ec36639"
+  ],
+  "id": "claim:dsa-0dcc5adb6fba1895def893499905bf02970d00c9",
+  "predicate": "entity_type",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-persistence",
+  "status": "candidate",
+  "subject": "data_entity:vlgnc-webbest-soldship-sarea",
+  "updated_at": "2026-11-24T10:20:23.597113Z",
+  "value": "view"
+}

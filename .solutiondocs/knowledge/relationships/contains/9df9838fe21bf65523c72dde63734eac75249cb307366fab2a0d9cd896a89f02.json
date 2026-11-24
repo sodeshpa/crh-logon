@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "claim_ids": [
+    "claim:dsa-e8492da70913af0ea68a839699a781f6acaf7687"
+  ],
+  "created_at": "2026-11-24T10:41:22.508413Z",
+  "from": "data_store:logon-main-database",
+  "id": "relationship:dsa-9d71d4c6b431249d2442d698366c9df87e660b04",
+  "properties": {},
+  "record_kind": "relationship",
+  "revision": 1,
+  "status": "active",
+  "to": "data_entity:vlgnc-rep-order-per-plant-mat",
+  "type": "contains",
+  "updated_at": "2026-11-24T10:41:22.508413Z"
+}

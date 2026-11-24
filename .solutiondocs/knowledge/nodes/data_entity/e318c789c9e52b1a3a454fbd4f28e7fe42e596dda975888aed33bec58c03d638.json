@@ -1,0 +1,24 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T10:24:05.985709Z",
+  "id": "data_entity:vn-vendorgeneraldata-vendore-0",
+  "name": "VN_VENDORGENERALDATA_VENDORE_0",
+  "properties": {
+    "entity_type": "table",
+    "indexes": [
+      {
+        "columns": [
+          "CHILD_VN_VENDOREUTAXNUMBERS__0"
+        ],
+        "name": "VN_VENDORGENERALDATA_VENDORE_0_UQ1",
+        "unique": true
+      }
+    ],
+    "schema": "ulgnsap"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "data_entity",
+  "updated_at": "2026-11-24T10:24:05.985709Z"
+}

@@ -1,0 +1,21 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T10:01:22.932656Z",
+  "id": "code_unit:logon-common-web-src-main-webapp-js-ext-ux-ext.ux.checkcombobox.js",
+  "name": "Ext.ux.CheckComboBox.js",
+  "properties": {
+    "file_path": "logon-common-web/src/main/webapp/js/ext-ux/Ext.ux.CheckComboBox.js",
+    "language": "JavaScript/TypeScript",
+    "loc": 337,
+    "metrics": {
+      "loc": 337
+    },
+    "unit_type": "file"
+  },
+  "qualified_name": "logon-common-web/src/main/webapp/js/ext-ux/Ext.ux.CheckComboBox.js",
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "code_unit",
+  "updated_at": "2026-11-24T10:01:22.932656Z"
+}

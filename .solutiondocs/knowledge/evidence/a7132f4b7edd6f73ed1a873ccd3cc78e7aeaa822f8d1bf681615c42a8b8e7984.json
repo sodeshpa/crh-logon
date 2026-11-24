@@ -1,0 +1,17 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T10:04:21.856768Z",
+  "id": "evidence:dsa-cbfc6c151a5754c8a5119d55f801a95892a89e67",
+  "locator": {
+    "file": "logon-persistence/etc/sql/adza_initialdata/tlgnc_sarea.sql",
+    "line": 55
+  },
+  "method": "ddl-parse",
+  "observed_at": "2026-11-24T09:49:32Z",
+  "record_kind": "evidence",
+  "revision": 1,
+  "source_id": "source_artifact:dsa-logon-persistence-etc-sql-adza-initialdata-tlgnc-sarea-sql",
+  "source_revision": "48d1680392e463cd5975109155beffde70e9181397a37e46f3ea16ab43f19b79",
+  "status": "active",
+  "updated_at": "2026-11-24T10:04:21.856768Z"
+}

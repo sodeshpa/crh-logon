@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T10:15:23.919223Z",
+  "id": "data_field:sdn-documentitemgeneraldata-documentitemdate-sdn-documen-0",
+  "name": "DOCUMENTITEMDATE_SDN_DOCUMEN_0",
+  "properties": {
+    "data_type": "number(19,0)",
+    "nullable": true,
+    "primary_key": false
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "data_field",
+  "updated_at": "2026-11-24T10:15:23.919223Z"
+}

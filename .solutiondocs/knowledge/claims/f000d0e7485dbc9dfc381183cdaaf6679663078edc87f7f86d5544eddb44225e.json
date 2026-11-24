@@ -1,0 +1,21 @@
+{
+  "applicability": {
+    "source_revision": "f0319b7f1fa2ac8b05f0bc2cbf001eceaa03677eb829c7419fb7413f61391f69"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T10:24:05.985709Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:dsa-ce33bccc9ad3a839f4d2a288e85e8c8bfc192f0d"
+  ],
+  "id": "claim:dsa-105624d4f7814f1f5dd2c59f8b1eaa44c9b49e08",
+  "predicate": "data_type",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-webservices",
+  "status": "candidate",
+  "subject": "data_field:vn-vendorgeneraldata-vendorb-0-child-vn-vendorbankdetailssm-0",
+  "updated_at": "2026-11-24T10:24:05.985709Z",
+  "value": "number(19,0)"
+}

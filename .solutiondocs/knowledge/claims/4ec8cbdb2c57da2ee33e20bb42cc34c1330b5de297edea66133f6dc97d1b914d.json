@@ -1,0 +1,24 @@
+{
+  "applicability": {
+    "source_revision": "c4799b3dfcf94ee66c921f340bda20c43e31a979"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 0.95,
+  "created_at": "2026-11-24T10:03:24.312910Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:fs-2e9b09a662fd9a86ead68bbc"
+  ],
+  "id": "claim:fs-rel-2e9b09a662fd9a86ead68bbc",
+  "predicate": "contains",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-order-web",
+  "status": "candidate",
+  "subject": "relationship:fs-contains-2e9b09a662fd9a86ead68bbc",
+  "updated_at": "2026-11-24T10:03:24.312910Z",
+  "value": {
+    "container": "component:logon-order-web",
+    "file_path": "logon-order-web/src/main/java/com/crh/logon/order/web/actions/bimodalrailcarmonitoring/BimodalRailcarMonitoringAction.java"
+  }
+}

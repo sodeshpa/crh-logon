@@ -1,0 +1,28 @@
+{
+  "applicability": {
+    "source_revision": "37b08712370e807afefb95e7d140e3bd6101e15d"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T09:49:36.164007Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:deps-dfde38664655b5113562"
+  ],
+  "id": "claim:deps-ea43d352c2558d870080771b",
+  "predicate": "declared_coordinates",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-business",
+  "status": "candidate",
+  "subject": "dependency:maven-org.jboss.as-jboss-as-arquillian-container-remote-7.2.0.final",
+  "updated_at": "2026-11-24T09:49:36.164007Z",
+  "value": {
+    "ecosystem": "maven",
+    "group": "org.jboss.as",
+    "name": "jboss-as-arquillian-container-remote",
+    "note": "maven scope=test",
+    "scope": "test",
+    "version": "7.2.0.Final"
+  }
+}

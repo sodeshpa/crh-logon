@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:59:54.408851Z",
+  "id": "source_artifact:dsa-logon-webservices-etc-entities-40-create-comments-sql",
+  "name": "40_create_comments.sql",
+  "properties": {
+    "location": "logon-webservices/etc/entities/40_create_comments.sql",
+    "revision": "dcb4e25678a0c0840a22d660344050d75339a6027b7ca66c16e216cbe30a4604",
+    "source_type": "ddl_sql"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "source_artifact",
+  "updated_at": "2026-11-24T09:59:54.408851Z"
+}

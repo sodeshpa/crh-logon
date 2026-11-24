@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "claim_ids": [
+    "claim:dsa-3f5901e0b1f1e46c147683bf65ba061aa15a91fb"
+  ],
+  "created_at": "2026-11-24T11:07:07.476264Z",
+  "from": "data_entity:vn-vendorpurchasingdatammssmd",
+  "id": "relationship:dsa-b229f111e2e39914b1e973779b6e57df06e5bbf4",
+  "properties": {},
+  "record_kind": "relationship",
+  "revision": 1,
+  "status": "active",
+  "to": "data_field:vn-vendorpurchasingdatammssmd-inco2",
+  "type": "contains",
+  "updated_at": "2026-11-24T11:07:07.476264Z"
+}

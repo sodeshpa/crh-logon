@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "claim_ids": [
+    "claim:dsa-9fd2442eb3b4f8c62649f8e711f1ecf903a1f14e"
+  ],
+  "created_at": "2026-11-24T11:07:07.476264Z",
+  "from": "data_store:logon-main-database",
+  "id": "relationship:dsa-12771c13de8dc57e8714dbd4827ebae49eba673c",
+  "properties": {},
+  "record_kind": "relationship",
+  "revision": 1,
+  "status": "active",
+  "to": "data_entity:vlgns-sap-mat-staging-area",
+  "type": "contains",
+  "updated_at": "2026-11-24T11:07:07.476264Z"
+}

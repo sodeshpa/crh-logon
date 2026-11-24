@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:59:54.408851Z",
+  "id": "source_artifact:dsa-logon-persistence-etc-sql-refdata-tlgnr-country-region-tz-map-sql",
+  "name": "tlgnr_country_region_tz_map.sql",
+  "properties": {
+    "location": "logon-persistence/etc/sql/refdata/tlgnr_country_region_tz_map.sql",
+    "revision": "babd56e612b059c9b5e0d7f020413878bd1b005c245dd1464f86abe9d6688cee",
+    "source_type": "ddl_sql"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "source_artifact",
+  "updated_at": "2026-11-24T09:59:54.408851Z"
+}

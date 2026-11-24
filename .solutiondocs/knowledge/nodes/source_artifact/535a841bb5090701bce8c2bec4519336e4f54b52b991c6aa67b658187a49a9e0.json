@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:59:54.408851Z",
+  "id": "source_artifact:dsa-logon-persistence-etc-sql-bulk-delete-orders-sql",
+  "name": "bulk_delete_orders.sql",
+  "properties": {
+    "location": "logon-persistence/etc/sql/bulk_delete_orders.sql",
+    "revision": "83b9dd3a1af9fdc87c66231caf3f309981317d8ac69377f6429a8dcb01e5c853",
+    "source_type": "ddl_sql"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "source_artifact",
+  "updated_at": "2026-11-24T09:59:54.408851Z"
+}

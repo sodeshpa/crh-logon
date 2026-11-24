@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:59:54.408851Z",
+  "id": "source_artifact:dsa-logon-persistence-etc-sql-patch-old-lh-patches-from-2-6-0-create-table-tlgnc-country-pool-sql",
+  "name": "create_table_tlgnc_country_pool.sql",
+  "properties": {
+    "location": "logon-persistence/etc/sql/patch/old_lh_patches/from_2.6.0/create_table_tlgnc_country_pool.sql",
+    "revision": "affd93664ea6de2c5134142782aba97707f0a3574c15f205f6a065e3dead54fa",
+    "source_type": "ddl_sql"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "source_artifact",
+  "updated_at": "2026-11-24T09:59:54.408851Z"
+}

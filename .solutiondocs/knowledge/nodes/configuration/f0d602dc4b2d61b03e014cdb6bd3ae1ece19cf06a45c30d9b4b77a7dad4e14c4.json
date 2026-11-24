@@ -1,0 +1,22 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:51:52.064424Z",
+  "id": "configuration:logon-build-and-runtime",
+  "name": "Logon build and runtime configuration",
+  "properties": {
+    "secrets_management": {
+      "provider": "plain-text properties files in version control",
+      "rotation_configured": false,
+      "secrets_in_config": 35
+    },
+    "summary": {
+      "hardcoded_secrets_count": 35,
+      "total_config_files": 25
+    }
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "configuration",
+  "updated_at": "2026-11-24T09:51:52.064424Z"
+}

@@ -1,0 +1,18 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:57:00.770446Z",
+  "id": "evidence:fs-ff610c68cd72ec1f5a74583d",
+  "locator": {
+    "file": "logon-common-web/etc/guiproto/web_bestellung_lose.html",
+    "line_end": 349,
+    "line_start": 1
+  },
+  "method": "file-system",
+  "observed_at": "2026-11-24T09:46:55Z",
+  "record_kind": "evidence",
+  "revision": 1,
+  "source_id": "source_artifact:fs-logon-common-web-tree",
+  "source_revision": "c4799b3dfcf94ee66c921f340bda20c43e31a979",
+  "status": "active",
+  "updated_at": "2026-11-24T09:57:00.770446Z"
+}

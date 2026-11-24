@@ -1,0 +1,21 @@
+{
+  "applicability": {
+    "source_revision": "9de3a7e1daa96c1eb5dbfe9e81a7f9bcb47f74782945c5f51cb0f4a55a40415e"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T10:27:28.875935Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:dsa-24b3e2d6c2d33bd8aa79a95458f36a226aa7a620"
+  ],
+  "id": "claim:dsa-ce30cc32a20ff4f90903e0d1a4346f2e32506ba5",
+  "predicate": "plsql_procedure",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-persistence",
+  "status": "candidate",
+  "subject": "code_unit:logon-persistence-plsql-upsert-sap-lang-tx",
+  "updated_at": "2026-11-24T10:27:28.875935Z",
+  "value": "upsert_sap_lang_tx"
+}

@@ -1,0 +1,18 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T10:24:05.985709Z",
+  "id": "code_unit:logon-persistence-plsql-create-sequence",
+  "name": "create_sequence",
+  "properties": {
+    "file_path": "logon-persistence/etc/sql/initialdata_migrate.sql",
+    "language": "PL/SQL",
+    "line_start": 77,
+    "signature": "procedure create_sequence (p_sequence_name varchar2) IS",
+    "unit_type": "function"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "code_unit",
+  "updated_at": "2026-11-24T10:24:05.985709Z"
+}

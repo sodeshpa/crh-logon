@@ -1,0 +1,27 @@
+{
+  "applicability": {
+    "source_revision": "c4799b3dfcf94ee66c921f340bda20c43e31a979"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 0.95,
+  "created_at": "2026-11-24T11:17:52.393263Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:fs-de26fd84f9ab80d4cdd55416"
+  ],
+  "id": "claim:fs-de26fd84f9ab80d4cdd55416",
+  "predicate": "file_inventory",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-persistence",
+  "status": "candidate",
+  "subject": "code_unit:logon-persistence-src-main-java-com-crh-logon-persistence-entities-refdata-saplanguagetxpk.java",
+  "updated_at": "2026-11-24T11:17:52.393263Z",
+  "value": {
+    "estimated_tokens": 834,
+    "file_path": "logon-persistence/src/main/java/com/crh/logon/persistence/entities/refdata/SapLanguageTxPK.java",
+    "language": "Java",
+    "loc": 110,
+    "size_bytes": 3337
+  }
+}

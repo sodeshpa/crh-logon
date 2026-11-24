@@ -1,0 +1,19 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:43:07.964638Z",
+  "id": "component:pkg",
+  "name": "pkg",
+  "properties": {
+    "build_files": [],
+    "estimated_tokens": 24271,
+    "files": 16,
+    "folder": "pkg",
+    "source_files": 3,
+    "source_root": "pkg"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "component",
+  "updated_at": "2026-11-24T09:43:07.964638Z"
+}

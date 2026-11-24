@@ -1,0 +1,21 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:48:25.227887Z",
+  "id": "code_unit:logon-ansible-files-logonlan-handover-daily.bat",
+  "name": "logonlan-handover-daily.bat",
+  "properties": {
+    "file_path": "logon-ansible/files/logonlan-handover-daily.bat",
+    "language": "Script",
+    "loc": 28,
+    "metrics": {
+      "loc": 28
+    },
+    "unit_type": "file"
+  },
+  "qualified_name": "logon-ansible/files/logonlan-handover-daily.bat",
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "code_unit",
+  "updated_at": "2026-11-24T09:48:25.227887Z"
+}

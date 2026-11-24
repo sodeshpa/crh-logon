@@ -1,0 +1,21 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T10:01:22.932656Z",
+  "id": "code_unit:logon-common-src-main-java-com-crh-logon-converters-base64bytearrayconverter.java",
+  "name": "Base64ByteArrayConverter.java",
+  "properties": {
+    "file_path": "logon-common/src/main/java/com/crh/logon/converters/Base64ByteArrayConverter.java",
+    "language": "Java",
+    "loc": 45,
+    "metrics": {
+      "loc": 45
+    },
+    "unit_type": "file"
+  },
+  "qualified_name": "logon-common/src/main/java/com/crh/logon/converters/Base64ByteArrayConverter.java",
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "code_unit",
+  "updated_at": "2026-11-24T10:01:22.932656Z"
+}

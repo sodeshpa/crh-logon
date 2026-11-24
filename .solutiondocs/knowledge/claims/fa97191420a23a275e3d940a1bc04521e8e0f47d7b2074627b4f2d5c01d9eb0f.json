@@ -1,0 +1,21 @@
+{
+  "applicability": {
+    "source_revision": "0506f02c4b3ceadf37936f3684e7ca2a77d41b11097a95b1d93e3cb3ae614980"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T10:24:05.985709Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:dsa-f77df6c24677f34686c23b16f77170c9aafeb4d6"
+  ],
+  "id": "claim:dsa-6cb944d9e5cfce637ddb2682abac981de624152b",
+  "predicate": "plsql_package",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-persistence",
+  "status": "candidate",
+  "subject": "code_unit:logon-persistence-plsql-auto-init-shipto-sarea-restr",
+  "updated_at": "2026-11-24T10:24:05.985709Z",
+  "value": "auto_init_shipto_sarea_restr"
+}

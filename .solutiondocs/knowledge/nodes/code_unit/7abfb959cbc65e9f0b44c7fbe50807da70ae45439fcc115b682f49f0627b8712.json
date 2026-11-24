@@ -1,0 +1,21 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T10:01:22.932656Z",
+  "id": "code_unit:logon-common-web-src-main-webapp-js-logonpackagehandlinghelper.js",
+  "name": "logonPackageHandlingHelper.js",
+  "properties": {
+    "file_path": "logon-common-web/src/main/webapp/js/logonPackageHandlingHelper.js",
+    "language": "JavaScript/TypeScript",
+    "loc": 32,
+    "metrics": {
+      "loc": 32
+    },
+    "unit_type": "file"
+  },
+  "qualified_name": "logon-common-web/src/main/webapp/js/logonPackageHandlingHelper.js",
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "code_unit",
+  "updated_at": "2026-11-24T10:01:22.932656Z"
+}

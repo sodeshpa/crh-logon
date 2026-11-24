@@ -1,0 +1,23 @@
+{
+  "applicability": {
+    "domain": "organisation",
+    "extraction_phase": 1,
+    "source_revision": "c4799b3dfcf94ee66c921f340bda20c43e31a979"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 0.9,
+  "created_at": "2026-11-24T09:46:43.269899Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:git-history-files"
+  ],
+  "id": "claim:git-history-knows-logon-order-web",
+  "predicate": "git_modified_component",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-order-web",
+  "status": "candidate",
+  "subject": "actor:sodeshpa",
+  "target": "component:logon-order-web",
+  "updated_at": "2026-11-24T09:46:43.269899Z"
+}

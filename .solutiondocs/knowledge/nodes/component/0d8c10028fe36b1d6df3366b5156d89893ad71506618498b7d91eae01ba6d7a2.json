@@ -1,0 +1,19 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:43:07.964638Z",
+  "id": "component:logon-webservices-client",
+  "name": "logon-webservices-client",
+  "properties": {
+    "build_files": [],
+    "estimated_tokens": 334799,
+    "files": 100,
+    "folder": "logon-webservices-client",
+    "source_files": 31,
+    "source_root": "logon-webservices-client"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "component",
+  "updated_at": "2026-11-24T09:43:07.964638Z"
+}

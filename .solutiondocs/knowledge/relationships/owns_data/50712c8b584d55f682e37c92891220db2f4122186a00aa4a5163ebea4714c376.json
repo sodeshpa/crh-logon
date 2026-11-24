@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "claim_ids": [
+    "claim:dsa-974a11e7d9c0700f95e4b1b1f08d4c94d0e72d27"
+  ],
+  "created_at": "2026-11-24T10:41:22.508413Z",
+  "from": "component:logon-persistence",
+  "id": "relationship:dsa-74765178c6084246fea0dac01e09eb703f7a4527",
+  "properties": {},
+  "record_kind": "relationship",
+  "revision": 1,
+  "status": "active",
+  "to": "data_entity:vlgnc-man-pool-assignment-list",
+  "type": "owns_data",
+  "updated_at": "2026-11-24T10:41:22.508413Z"
+}

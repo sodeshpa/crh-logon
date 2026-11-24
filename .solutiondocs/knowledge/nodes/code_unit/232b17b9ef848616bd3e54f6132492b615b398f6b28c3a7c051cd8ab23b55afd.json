@@ -1,0 +1,21 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:58:39.080022Z",
+  "id": "code_unit:logon-common-web-src-main-webapp-web-inf-jsp-errorstile.jsp",
+  "name": "ErrorsTile.jsp",
+  "properties": {
+    "file_path": "logon-common-web/src/main/webapp/WEB-INF/jsp/ErrorsTile.jsp",
+    "language": "Web/Template",
+    "loc": 144,
+    "metrics": {
+      "loc": 144
+    },
+    "unit_type": "file"
+  },
+  "qualified_name": "logon-common-web/src/main/webapp/WEB-INF/jsp/ErrorsTile.jsp",
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "code_unit",
+  "updated_at": "2026-11-24T09:58:39.080022Z"
+}

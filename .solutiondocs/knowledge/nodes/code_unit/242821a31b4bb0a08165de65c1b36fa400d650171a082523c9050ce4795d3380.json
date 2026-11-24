@@ -1,0 +1,21 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T10:30:58.828557Z",
+  "id": "code_unit:logon-persistence-etc-sql-adza_testdata-contract_based_on_mat_cond_shipto_1866134_fvl_glattbrugg.sql",
+  "name": "contract_based_on_mat_cond_shipto_1866134_FVL_Glattbrugg.sql",
+  "properties": {
+    "file_path": "logon-persistence/etc/sql/adza_testdata/contract_based_on_mat_cond_shipto_1866134_FVL_Glattbrugg.sql",
+    "language": "SQL",
+    "loc": 69,
+    "metrics": {
+      "loc": 69
+    },
+    "unit_type": "file"
+  },
+  "qualified_name": "logon-persistence/etc/sql/adza_testdata/contract_based_on_mat_cond_shipto_1866134_FVL_Glattbrugg.sql",
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "code_unit",
+  "updated_at": "2026-11-24T10:30:58.828557Z"
+}

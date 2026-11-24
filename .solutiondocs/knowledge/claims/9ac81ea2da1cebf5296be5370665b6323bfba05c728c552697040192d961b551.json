@@ -1,0 +1,20 @@
+{
+  "applicability": {
+    "source_revision": "294014c30ebd8404325f3a22fdedacc401cf07552b74e84e0f17ca44bbc3cdc7"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 0.95,
+  "created_at": "2026-11-24T09:51:52.064424Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:cfg-2aae374f63e5d99dc19c64375e9c457a45c34899608cc68853bcb7595edb3436"
+  ],
+  "id": "claim:67944a1ac44299f09ee54f823d0632de680d242cc3a6740137668a9b5f63176f",
+  "predicate": "contains",
+  "record_kind": "claim",
+  "revision": 1,
+  "status": "candidate",
+  "subject": "component:logon-ansible",
+  "target": "config_item:logon-ansible-group-vars-tmpl-logonebm1",
+  "updated_at": "2026-11-24T09:51:52.064424Z"
+}

@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "claim_ids": [
+    "claim:deps-1072baf28f70f4895d4d45b3"
+  ],
+  "created_at": "2026-11-24T09:49:36.164007Z",
+  "from": "component:logon-admin-web",
+  "id": "relationship:deps-401e5372e6ee52224b278879",
+  "properties": {},
+  "record_kind": "relationship",
+  "revision": 1,
+  "status": "active",
+  "to": "dependency:maven-org.jboss.spec.javax.ejb-jboss-ejb-api_3.1_spec-1.0.2.final",
+  "type": "depends_on",
+  "updated_at": "2026-11-24T09:49:36.164007Z"
+}

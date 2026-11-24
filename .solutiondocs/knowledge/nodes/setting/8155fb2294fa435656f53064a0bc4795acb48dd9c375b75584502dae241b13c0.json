@@ -1,0 +1,18 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:53:30.031918Z",
+  "id": "setting:config-logon-db-properties--db-hu01-password",
+  "name": "db.hu01.password",
+  "properties": {
+    "is_connection_string": false,
+    "is_secret": true,
+    "key": "db.hu01.password",
+    "source_file": "config/logon-db.properties",
+    "value_type": "string"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "setting",
+  "updated_at": "2026-11-24T09:53:30.031918Z"
+}

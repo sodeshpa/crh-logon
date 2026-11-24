@@ -1,0 +1,21 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T10:30:58.828557Z",
+  "id": "code_unit:logon-persistence-etc-sql-adza_testdata-contracts_test_contract_hierarchy.sql",
+  "name": "contracts_test_contract_hierarchy.sql",
+  "properties": {
+    "file_path": "logon-persistence/etc/sql/adza_testdata/contracts_test_contract_hierarchy.sql",
+    "language": "SQL",
+    "loc": 123,
+    "metrics": {
+      "loc": 123
+    },
+    "unit_type": "file"
+  },
+  "qualified_name": "logon-persistence/etc/sql/adza_testdata/contracts_test_contract_hierarchy.sql",
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "code_unit",
+  "updated_at": "2026-11-24T10:30:58.828557Z"
+}

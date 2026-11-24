@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "claim_ids": [
+    "claim:dsa-d0ec6bc49752778db4afc9d251fb6032e3e784a9"
+  ],
+  "created_at": "2026-11-24T10:41:22.508413Z",
+  "from": "data_entity:tlgnt-ext-orders-to-delete",
+  "id": "relationship:dsa-8e2066909ccba11e7e1947067de03a52cb44a198",
+  "properties": {},
+  "record_kind": "relationship",
+  "revision": 1,
+  "status": "active",
+  "to": "data_field:tlgnt-ext-orders-to-delete-order-id",
+  "type": "contains",
+  "updated_at": "2026-11-24T10:41:22.508413Z"
+}

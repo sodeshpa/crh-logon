@@ -1,0 +1,21 @@
+{
+  "applicability": {
+    "source_revision": "4c545b75abafdc4b70877f1040fb5e937ca82a4098582349574c14fe0a94287e"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T10:18:07.792802Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:dsa-7920e3858d6d401dbdbe05cedd94f0d1e2074e2f"
+  ],
+  "id": "claim:dsa-ab57d6ae3b4e06564a13ade1a9936d5fca60e930",
+  "predicate": "entity_type",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-persistence",
+  "status": "candidate",
+  "subject": "data_entity:tlgnc-order-outputdoc",
+  "updated_at": "2026-11-24T10:18:07.792802Z",
+  "value": "table"
+}

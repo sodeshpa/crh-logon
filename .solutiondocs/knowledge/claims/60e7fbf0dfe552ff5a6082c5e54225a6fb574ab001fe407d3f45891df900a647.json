@@ -1,0 +1,20 @@
+{
+  "applicability": {
+    "source_revision": "ec0019a38556cd3f7360f7cb4f4d1ef9a2f648dbc4fe691c8bf04f4d6c7c31ad"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 0.95,
+  "created_at": "2026-11-24T09:51:52.064424Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:cfg-65fce4a1b87f2f13aa865a3738fff483e410a9db1a16a74b355d5d126399d5e9"
+  ],
+  "id": "claim:6a91137abfdf7535429b95ef58d62d428daf2910449c04c09e8398df668377e5",
+  "predicate": "purpose",
+  "record_kind": "claim",
+  "revision": 1,
+  "status": "candidate",
+  "subject": "config_item:etc-login-config-xml",
+  "updated_at": "2026-11-24T09:51:52.064424Z",
+  "value": "JBoss JAAS application policies"
+}

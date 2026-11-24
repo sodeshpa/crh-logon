@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "claim_ids": [
+    "claim:dsa-502fbacf50f4ac31ada13b858fa5319549e9400f"
+  ],
+  "created_at": "2026-11-24T10:39:20.993948Z",
+  "from": "data_entity:sdn-documentitempartnerinfor-0",
+  "id": "relationship:dsa-5e5e315d0e8dc8f295a90550753315286758724a",
+  "properties": {},
+  "record_kind": "relationship",
+  "revision": 1,
+  "status": "active",
+  "to": "data_field:sdn-documentitempartnerinfor-0-land1",
+  "type": "contains",
+  "updated_at": "2026-11-24T10:39:20.993948Z"
+}

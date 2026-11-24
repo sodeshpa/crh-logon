@@ -1,0 +1,20 @@
+{
+  "applicability": {
+    "source_revision": "0fa642551b277fba10b304450c684d8aa617dbaaf2487cf1b86a2adc373c9784"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 0.95,
+  "created_at": "2026-11-24T09:43:07.964638Z",
+  "derivation": "static_inference",
+  "evidence_ids": [
+    "evidence:5c75b4b8f1e9a01fd32a0d19c1e2cbb3423624dbb4fc038583402c7ff53ff640"
+  ],
+  "id": "claim:7649a6300f9a95dd77cbfd7a89094352e836d4d5b889f9541479ccf09e4a865f",
+  "predicate": "source_root",
+  "record_kind": "claim",
+  "revision": 1,
+  "status": "candidate",
+  "subject": "component:logon-test-load",
+  "updated_at": "2026-11-24T09:43:07.964638Z",
+  "value": "logon-test-load"
+}

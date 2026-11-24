@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "claim_ids": [
+    "claim:dsa-3a019f13fe80e56acb88ec5ec5bd377bb3b2ff86"
+  ],
+  "created_at": "2026-11-24T10:41:22.508413Z",
+  "from": "data_store:logon-main-database",
+  "id": "relationship:dsa-0c30e9ed0c1a009f47b69aee38330d1e80e942ba",
+  "properties": {},
+  "record_kind": "relationship",
+  "revision": 1,
+  "status": "active",
+  "to": "data_entity:vlgnc-shipp-bimodal-road-rail",
+  "type": "contains",
+  "updated_at": "2026-11-24T10:41:22.508413Z"
+}

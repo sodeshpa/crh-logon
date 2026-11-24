@@ -1,0 +1,28 @@
+{
+  "applicability": {
+    "source_revision": "7317311dce4f5cc45b1f7532834bebebdcd2d20c"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T09:49:36.164007Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:deps-e74f162417608829949b"
+  ],
+  "id": "claim:deps-376a216c8068dac6fe1e993c",
+  "predicate": "declared_coordinates",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-common",
+  "status": "candidate",
+  "subject": "dependency:maven-org.picketbox-picketbox-4.0.19.sp2",
+  "updated_at": "2026-11-24T09:49:36.164007Z",
+  "value": {
+    "ecosystem": "maven",
+    "group": "org.picketbox",
+    "name": "picketbox",
+    "note": "maven scope=compile",
+    "scope": "compile",
+    "version": "4.0.19.SP2"
+  }
+}

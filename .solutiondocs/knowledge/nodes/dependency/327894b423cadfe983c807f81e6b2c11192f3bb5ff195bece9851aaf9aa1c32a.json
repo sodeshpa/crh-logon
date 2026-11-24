@@ -1,0 +1,17 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:49:36.164007Z",
+  "id": "dependency:ant-jar-java.net-jaxb-interface-insertion-xjc-if-ins--20100624",
+  "name": "jaxb-interface-insertion (xjc-if-ins)",
+  "properties": {
+    "dependency_type": "library",
+    "scope": "build",
+    "version": "20100624"
+  },
+  "qualified_name": "java.net:jaxb-interface-insertion (xjc-if-ins)@20100624",
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "dependency",
+  "updated_at": "2026-11-24T09:49:36.164007Z"
+}

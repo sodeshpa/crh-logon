@@ -1,0 +1,24 @@
+{
+  "applicability": {
+    "source_revision": "c4799b3dfcf94ee66c921f340bda20c43e31a979"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 0.95,
+  "created_at": "2026-11-24T09:49:05.830186Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:fs-7ae3d61e5b6f99f8ffe797e9"
+  ],
+  "id": "claim:fs-rel-7ae3d61e5b6f99f8ffe797e9",
+  "predicate": "contains",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-business",
+  "status": "candidate",
+  "subject": "relationship:fs-contains-7ae3d61e5b6f99f8ffe797e9",
+  "updated_at": "2026-11-24T09:49:05.830186Z",
+  "value": {
+    "container": "component:logon-business",
+    "file_path": "logon-business/src/main/java/com/crh/logon/business/services/directjpa/UserAdminJpaQueryData.java"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T10:20:23.597113Z",
+  "id": "data_entity:vlgnu-table-info",
+  "name": "VLGNU_TABLE_INFO",
+  "properties": {
+    "entity_type": "view",
+    "materialised": false,
+    "purpose": "Table/View metadata (type) and comments, used by Table Browser to display table/view comments.",
+    "schema": "ulgn"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "data_entity",
+  "updated_at": "2026-11-24T10:20:23.597113Z"
+}

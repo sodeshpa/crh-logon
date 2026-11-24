@@ -1,0 +1,21 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T11:10:40.240238Z",
+  "id": "code_unit:logon-persistence-src-main-java-com-crh-logon-persistence-entities-common-loadentity.java",
+  "name": "LoadEntity.java",
+  "properties": {
+    "file_path": "logon-persistence/src/main/java/com/crh/logon/persistence/entities/common/LoadEntity.java",
+    "language": "Java",
+    "loc": 1116,
+    "metrics": {
+      "loc": 1116
+    },
+    "unit_type": "file"
+  },
+  "qualified_name": "logon-persistence/src/main/java/com/crh/logon/persistence/entities/common/LoadEntity.java",
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "code_unit",
+  "updated_at": "2026-11-24T11:10:40.240238Z"
+}

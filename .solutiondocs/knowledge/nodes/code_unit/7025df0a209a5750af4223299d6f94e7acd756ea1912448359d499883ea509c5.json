@@ -1,0 +1,21 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T10:03:24.312910Z",
+  "id": "code_unit:logon-cust-web-src-main-webapp-js-webadjustdeliveries.js",
+  "name": "WebAdjustDeliveries.js",
+  "properties": {
+    "file_path": "logon-cust-web/src/main/webapp/js/WebAdjustDeliveries.js",
+    "language": "JavaScript/TypeScript",
+    "loc": 643,
+    "metrics": {
+      "loc": 643
+    },
+    "unit_type": "file"
+  },
+  "qualified_name": "logon-cust-web/src/main/webapp/js/WebAdjustDeliveries.js",
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "code_unit",
+  "updated_at": "2026-11-24T10:03:24.312910Z"
+}

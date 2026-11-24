@@ -1,0 +1,24 @@
+{
+  "applicability": {
+    "source_revision": "c4799b3dfcf94ee66c921f340bda20c43e31a979"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 0.95,
+  "created_at": "2026-11-24T10:13:04.549760Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:fs-c6bc8f5b39c8a4c2d323a0c9"
+  ],
+  "id": "claim:fs-rel-c6bc8f5b39c8a4c2d323a0c9",
+  "predicate": "contains",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-order-web",
+  "status": "candidate",
+  "subject": "relationship:fs-contains-c6bc8f5b39c8a4c2d323a0c9",
+  "updated_at": "2026-11-24T10:13:04.549760Z",
+  "value": {
+    "container": "component:logon-order-web",
+    "file_path": "logon-order-web/src/main/java/com/crh/logon/order/web/forms/demandplanning/DemandPlanningForm.java"
+  }
+}

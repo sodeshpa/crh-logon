@@ -1,0 +1,17 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T10:20:23.597113Z",
+  "id": "data_entity:vlgnc-outputdoc-access",
+  "name": "VLGNC_OUTPUTDOC_ACCESS",
+  "properties": {
+    "entity_type": "view",
+    "materialised": false,
+    "purpose": "View containing authorization fields for accessing outputdoc rows. The view gets the authorization values from the order or the customer order belonging to the outputdoc.",
+    "schema": "ulgn"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "data_entity",
+  "updated_at": "2026-11-24T10:20:23.597113Z"
+}

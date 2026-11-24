@@ -1,0 +1,28 @@
+{
+  "applicability": {
+    "source_revision": "b65484483903039583cc2f1b36a492bb8d134609"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T09:49:36.164007Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:deps-491b08f8643d9cf32129"
+  ],
+  "id": "claim:deps-40b808e25b89d41a70339775",
+  "predicate": "declared_coordinates",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-common",
+  "status": "candidate",
+  "subject": "dependency:ant-jar-log4j-log4j-1.2.16",
+  "updated_at": "2026-11-24T09:49:36.164007Z",
+  "value": {
+    "ecosystem": "ant-jar",
+    "group": "log4j",
+    "name": "log4j",
+    "note": "ant property log4j.jar -> ${LOG4J_HOME}/dist-bin/log4j-1.2.16.jar (resolved from external jpository/mpository; not bundled in repo)",
+    "scope": "compile",
+    "version": "1.2.16"
+  }
+}

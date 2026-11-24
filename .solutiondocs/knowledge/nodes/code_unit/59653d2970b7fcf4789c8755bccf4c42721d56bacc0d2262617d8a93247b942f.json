@@ -1,0 +1,21 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T10:30:58.828557Z",
+  "id": "code_unit:logon-pdf-generator-src-main-java-com-crh-logon-pdf-templating-dataprovider.java",
+  "name": "DataProvider.java",
+  "properties": {
+    "file_path": "logon-pdf-generator/src/main/java/com/crh/logon/pdf/templating/DataProvider.java",
+    "language": "Java",
+    "loc": 28,
+    "metrics": {
+      "loc": 28
+    },
+    "unit_type": "file"
+  },
+  "qualified_name": "logon-pdf-generator/src/main/java/com/crh/logon/pdf/templating/DataProvider.java",
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "code_unit",
+  "updated_at": "2026-11-24T10:30:58.828557Z"
+}

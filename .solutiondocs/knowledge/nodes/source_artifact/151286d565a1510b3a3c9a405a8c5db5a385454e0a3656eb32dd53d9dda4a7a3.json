@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:51:52.064424Z",
+  "id": "source_artifact:cfg-logon-ansible-install-int1-sh",
+  "name": "logon-ansible/install-INT1.sh",
+  "properties": {
+    "location": "logon-ansible/install-INT1.sh",
+    "revision": "4a63acd426c65648f8201a4d716da4da984512b7bb1a12190d0b4a75f8b92e67",
+    "source_type": "config_file"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "source_artifact",
+  "updated_at": "2026-11-24T09:51:52.064424Z"
+}

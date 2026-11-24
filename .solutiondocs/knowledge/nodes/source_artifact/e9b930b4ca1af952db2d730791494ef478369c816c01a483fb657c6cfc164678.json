@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:59:54.408851Z",
+  "id": "source_artifact:dsa-logon-persistence-etc-sql-custom-overrides-sql",
+  "name": "custom_overrides.sql",
+  "properties": {
+    "location": "logon-persistence/etc/sql/custom_overrides.sql",
+    "revision": "ee077cd48dce216c382b9119c44f847f3266c08447174870bc8b7be2725dd974",
+    "source_type": "ddl_sql"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "source_artifact",
+  "updated_at": "2026-11-24T09:59:54.408851Z"
+}

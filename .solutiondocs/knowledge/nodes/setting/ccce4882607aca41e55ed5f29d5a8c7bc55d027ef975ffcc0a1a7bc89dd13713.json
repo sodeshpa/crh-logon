@@ -1,0 +1,19 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:53:30.031918Z",
+  "id": "setting:config-build-properties--compile-target",
+  "name": "compile.target",
+  "properties": {
+    "default_value": "1.8",
+    "is_connection_string": false,
+    "is_secret": false,
+    "key": "compile.target",
+    "source_file": "config/build.properties",
+    "value_type": "string"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "setting",
+  "updated_at": "2026-11-24T09:53:30.031918Z"
+}

@@ -1,0 +1,21 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T10:03:24.312910Z",
+  "id": "code_unit:logon-cust-web-src-main-webapp-web-inf-jsp-webbestellung-ongoingweborders.jsp",
+  "name": "OngoingWebOrders.jsp",
+  "properties": {
+    "file_path": "logon-cust-web/src/main/webapp/WEB-INF/jsp/webbestellung/OngoingWebOrders.jsp",
+    "language": "Web/Template",
+    "loc": 186,
+    "metrics": {
+      "loc": 186
+    },
+    "unit_type": "file"
+  },
+  "qualified_name": "logon-cust-web/src/main/webapp/WEB-INF/jsp/webbestellung/OngoingWebOrders.jsp",
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "code_unit",
+  "updated_at": "2026-11-24T10:03:24.312910Z"
+}

@@ -1,0 +1,19 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:43:07.964638Z",
+  "id": "component:logon-business",
+  "name": "logon-business",
+  "properties": {
+    "build_files": [],
+    "estimated_tokens": 2073586,
+    "files": 809,
+    "folder": "logon-business",
+    "source_files": 751,
+    "source_root": "logon-business"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "component",
+  "updated_at": "2026-11-24T09:43:07.964638Z"
+}

@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "claim_ids": [
+    "claim:dsa-fd0907ab60634c0c8017f271222011e5809a8170"
+  ],
+  "created_at": "2026-11-24T10:41:22.508413Z",
+  "from": "data_store:logon-main-database",
+  "id": "relationship:dsa-c50d36f0a371d6d15c59fc356c14cdeb69de9959",
+  "properties": {},
+  "record_kind": "relationship",
+  "revision": 1,
+  "status": "active",
+  "to": "data_entity:vlgnc-common-sarea-map",
+  "type": "contains",
+  "updated_at": "2026-11-24T10:41:22.508413Z"
+}

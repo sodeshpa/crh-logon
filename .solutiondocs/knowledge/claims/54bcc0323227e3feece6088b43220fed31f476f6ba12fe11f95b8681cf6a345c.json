@@ -1,0 +1,21 @@
+{
+  "applicability": {
+    "source_revision": "36df8dd4e076b424a39ccf9f48c865c73bb56c636b99dcb1145603f6a8506bed"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T10:24:05.985709Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:dsa-680b92386e859045df8f5a79d4210e78f67ec9a3"
+  ],
+  "id": "claim:dsa-d77a9b8ad75663f365a9957ecc47218c32581fe3",
+  "predicate": "plsql_procedure",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-persistence",
+  "status": "candidate",
+  "subject": "code_unit:logon-persistence-plsql-insert-missing-audit-config",
+  "updated_at": "2026-11-24T10:24:05.985709Z",
+  "value": "insert_missing_audit_config"
+}

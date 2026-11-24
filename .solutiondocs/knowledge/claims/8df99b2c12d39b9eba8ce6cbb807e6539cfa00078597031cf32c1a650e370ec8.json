@@ -1,0 +1,21 @@
+{
+  "applicability": {
+    "source_revision": "f0319b7f1fa2ac8b05f0bc2cbf001eceaa03677eb829c7419fb7413f61391f69"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T10:18:07.792802Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:dsa-8eeb6461a7843290aa14101038bfca31965a5c0a"
+  ],
+  "id": "claim:dsa-5418d690b02ac8850a3fe854cb183463d54ea2cd",
+  "predicate": "entity_type",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-webservices",
+  "status": "candidate",
+  "subject": "data_entity:vehn-vehiclenotification-veh-0",
+  "updated_at": "2026-11-24T10:18:07.792802Z",
+  "value": "table"
+}

@@ -1,0 +1,24 @@
+{
+  "applicability": {
+    "source_revision": "c4799b3dfcf94ee66c921f340bda20c43e31a979"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 0.95,
+  "created_at": "2026-11-24T09:47:32.738904Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:fs-40e343f54d6fe6a5c9b2c5e4"
+  ],
+  "id": "claim:fs-rel-40e343f54d6fe6a5c9b2c5e4",
+  "predicate": "contains",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-admin-web",
+  "status": "candidate",
+  "subject": "relationship:fs-contains-40e343f54d6fe6a5c9b2c5e4",
+  "updated_at": "2026-11-24T09:47:32.738904Z",
+  "value": {
+    "container": "component:logon-admin-web",
+    "file_path": "logon-admin-web/src/main/java/com/crh/logon/admin/web/beans/RailDistanceDetailBean.java"
+  }
+}

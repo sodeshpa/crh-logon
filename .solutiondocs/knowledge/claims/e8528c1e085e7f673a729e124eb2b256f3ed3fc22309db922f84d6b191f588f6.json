@@ -1,0 +1,24 @@
+{
+  "applicability": {
+    "source_revision": "c4799b3dfcf94ee66c921f340bda20c43e31a979"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 0.95,
+  "created_at": "2026-11-24T09:50:06.925075Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:fs-25a00f899e900b415a2cf487"
+  ],
+  "id": "claim:fs-rel-25a00f899e900b415a2cf487",
+  "predicate": "contains",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-business",
+  "status": "candidate",
+  "subject": "relationship:fs-contains-25a00f899e900b415a2cf487",
+  "updated_at": "2026-11-24T09:50:06.925075Z",
+  "value": {
+    "container": "component:logon-business",
+    "file_path": "logon-business/src/main/java/com/crh/logon/business/services/eventbeans/in/mop/SignatureRequestHandler.java"
+  }
+}

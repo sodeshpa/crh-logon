@@ -1,0 +1,19 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:43:07.964638Z",
+  "id": "component:logon-common",
+  "name": "logon-common",
+  "properties": {
+    "build_files": [],
+    "estimated_tokens": 1639272,
+    "files": 168,
+    "folder": "logon-common",
+    "source_files": 122,
+    "source_root": "logon-common"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "component",
+  "updated_at": "2026-11-24T09:43:07.964638Z"
+}

@@ -1,0 +1,17 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:43:07.964638Z",
+  "id": "evidence:e926538e7f6d8cb69e9fa72b3477c88e5d90520ee993a53d882d02d1c98cca95",
+  "locator": {
+    "file": "C:\\Users\\sodeshpa\\.copilot\\repos\\copilot-worktrees\\crh-logon\\sodeshpa-improved-telegram\\.solutiondocs\\.docgen\\file-manifest.json",
+    "section": "logon-common"
+  },
+  "method": "component-registry",
+  "observed_at": "2026-11-24T09:43:03+00:00",
+  "record_kind": "evidence",
+  "revision": 1,
+  "source_id": "source_artifact:component-file-manifest",
+  "source_revision": "0fa642551b277fba10b304450c684d8aa617dbaaf2487cf1b86a2adc373c9784",
+  "status": "active",
+  "updated_at": "2026-11-24T09:43:07.964638Z"
+}

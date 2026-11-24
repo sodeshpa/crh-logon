@@ -1,0 +1,24 @@
+{
+  "applicability": {
+    "source_revision": "c4799b3dfcf94ee66c921f340bda20c43e31a979"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 0.95,
+  "created_at": "2026-11-24T09:47:47.890823Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:fs-ec5450dfedd6dc5019f1acd1"
+  ],
+  "id": "claim:fs-rel-ec5450dfedd6dc5019f1acd1",
+  "predicate": "contains",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-admin-web",
+  "status": "candidate",
+  "subject": "relationship:fs-contains-ec5450dfedd6dc5019f1acd1",
+  "updated_at": "2026-11-24T09:47:47.890823Z",
+  "value": {
+    "container": "component:logon-admin-web",
+    "file_path": "logon-admin-web/src/main/webapp/WEB-INF/jsp/masterdata/wagondetail/WagonRfidTab.jsp"
+  }
+}

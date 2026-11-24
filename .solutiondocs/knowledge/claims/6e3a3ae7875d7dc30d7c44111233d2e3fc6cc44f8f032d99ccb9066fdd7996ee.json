@@ -1,0 +1,28 @@
+{
+  "applicability": {
+    "source_revision": "37b08712370e807afefb95e7d140e3bd6101e15d"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T09:49:36.164007Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:deps-80604a94d8a733be825e"
+  ],
+  "id": "claim:deps-6bd10949320e069cd354e8ba",
+  "predicate": "declared_coordinates",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-business",
+  "status": "candidate",
+  "subject": "dependency:maven-org.jboss.shrinkwrap.descriptors-shrinkwrap-descriptors-impl-javaee-1.2.0-alpha-2",
+  "updated_at": "2026-11-24T09:49:36.164007Z",
+  "value": {
+    "ecosystem": "maven",
+    "group": "org.jboss.shrinkwrap.descriptors",
+    "name": "shrinkwrap-descriptors-impl-javaee",
+    "note": "maven scope=test",
+    "scope": "test",
+    "version": "1.2.0-alpha-2"
+  }
+}

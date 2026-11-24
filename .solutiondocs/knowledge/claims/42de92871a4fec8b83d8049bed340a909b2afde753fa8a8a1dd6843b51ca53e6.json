@@ -1,0 +1,21 @@
+{
+  "applicability": {
+    "source_revision": "7b1593b80f97a12d19b1ac2857a94b70ba18c62f7a4576a7aa3d09599a7ab860"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T10:27:28.875935Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:dsa-7d6dba179d231c877b7cbf61e0fc04c8f3ea8443"
+  ],
+  "id": "claim:dsa-142227a3f1be42424a3e1597a30c2ea94966ea78",
+  "predicate": "contract_type",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-business",
+  "status": "candidate",
+  "subject": "integration_point:here-routing-api-v8",
+  "updated_at": "2026-11-24T10:27:28.875935Z",
+  "value": "OpenAPI"
+}

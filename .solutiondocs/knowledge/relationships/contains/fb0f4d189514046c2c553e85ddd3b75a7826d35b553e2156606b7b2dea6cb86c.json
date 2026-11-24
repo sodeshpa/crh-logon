@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "claim_ids": [
+    "claim:dsa-b36282261d3becf08946e66ae839caeef5b87cd9"
+  ],
+  "created_at": "2026-11-24T10:41:22.508413Z",
+  "from": "data_store:logon-main-database",
+  "id": "relationship:dsa-633c7d9cba3df92307e7c6c8ba6fc9784631a7f7",
+  "properties": {},
+  "record_kind": "relationship",
+  "revision": 1,
+  "status": "active",
+  "to": "data_entity:vlgnc-rail-repair",
+  "type": "contains",
+  "updated_at": "2026-11-24T10:41:22.508413Z"
+}

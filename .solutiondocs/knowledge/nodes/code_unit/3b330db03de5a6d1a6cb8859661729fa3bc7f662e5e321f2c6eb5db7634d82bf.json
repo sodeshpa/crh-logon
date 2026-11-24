@@ -1,0 +1,21 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T11:29:38.590104Z",
+  "id": "code_unit:logon-webservices-src-main-java-com-crh-logon-persistence-entities-sapdata-additionalgeneraldata.java",
+  "name": "AdditionalGeneralData.java",
+  "properties": {
+    "file_path": "logon-webservices/src/main/java/com/crh/logon/persistence/entities/sapdata/AdditionalGeneralData.java",
+    "language": "Java",
+    "loc": 1558,
+    "metrics": {
+      "loc": 1558
+    },
+    "unit_type": "file"
+  },
+  "qualified_name": "logon-webservices/src/main/java/com/crh/logon/persistence/entities/sapdata/AdditionalGeneralData.java",
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "code_unit",
+  "updated_at": "2026-11-24T11:29:38.590104Z"
+}

@@ -1,0 +1,17 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T10:20:23.597113Z",
+  "id": "data_entity:vlgnc-rail-special-assignment",
+  "name": "VLGNC_RAIL_SPECIAL_ASSIGNMENT",
+  "properties": {
+    "entity_type": "view",
+    "materialised": false,
+    "purpose": "Helps finding special (return, maintenance etc) rail assignments for a given wagon, at a given shippingpoint, on a given date ",
+    "schema": "ulgn"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "data_entity",
+  "updated_at": "2026-11-24T10:20:23.597113Z"
+}

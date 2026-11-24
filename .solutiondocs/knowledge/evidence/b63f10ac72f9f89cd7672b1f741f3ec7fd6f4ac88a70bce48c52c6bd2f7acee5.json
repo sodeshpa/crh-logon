@@ -1,0 +1,17 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:49:36.164007Z",
+  "id": "evidence:deps-0d72fa99f26a83c73cad",
+  "locator": {
+    "file": "C:\\Users\\sodeshpa\\.copilot\\repos\\copilot-worktrees\\crh-logon\\sodeshpa-improved-telegram\\ansible\\requirements.txt",
+    "section": "line 8"
+  },
+  "method": "dependency-manifest",
+  "observed_at": "2026-11-24T09:48:25+00:00",
+  "record_kind": "evidence",
+  "revision": 1,
+  "source_id": "source_artifact:deps-ansible-requirements.txt",
+  "source_revision": "f25d1028a4dd3f5dd614543271cb0eee8e1cdb3d",
+  "status": "active",
+  "updated_at": "2026-11-24T09:49:36.164007Z"
+}

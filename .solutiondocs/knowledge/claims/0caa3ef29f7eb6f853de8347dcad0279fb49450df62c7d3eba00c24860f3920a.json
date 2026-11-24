@@ -1,0 +1,21 @@
+{
+  "applicability": {
+    "source_revision": "568fb62cc499bfcb716fdd4168d2266a10e7b88cc4eb3607d9b68efd621fe86d"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T10:20:23.597113Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:dsa-46840c7d0cf9ae59ff6a32a0a323239eaae03d81"
+  ],
+  "id": "claim:dsa-62c031b4651b014a37a9bb0ce32da6cb299e0848",
+  "predicate": "entity_type",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-persistence",
+  "status": "candidate",
+  "subject": "data_entity:vlgnc-rep-sap-bw-export",
+  "updated_at": "2026-11-24T10:20:23.597113Z",
+  "value": "view"
+}

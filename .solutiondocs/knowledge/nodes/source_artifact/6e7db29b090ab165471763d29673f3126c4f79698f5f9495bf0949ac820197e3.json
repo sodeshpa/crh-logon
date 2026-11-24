@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:59:54.408851Z",
+  "id": "source_artifact:dsa-logon-persistence-etc-sql-logon-util-pkg-sql",
+  "name": "logon_util_pkg.sql",
+  "properties": {
+    "location": "logon-persistence/etc/sql/logon_util_pkg.sql",
+    "revision": "396f5e151c757dba962d9b3f54401567dad7c1a09358fa501ba004063a0e9f3d",
+    "source_type": "ddl_sql"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "source_artifact",
+  "updated_at": "2026-11-24T09:59:54.408851Z"
+}

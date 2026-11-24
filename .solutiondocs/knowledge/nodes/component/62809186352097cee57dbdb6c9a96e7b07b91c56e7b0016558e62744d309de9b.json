@@ -1,0 +1,19 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:43:07.964638Z",
+  "id": "component:logon-terminal-web",
+  "name": "logon-terminal-web",
+  "properties": {
+    "build_files": [],
+    "estimated_tokens": 81510,
+    "files": 77,
+    "folder": "logon-terminal-web",
+    "source_files": 48,
+    "source_root": "logon-terminal-web"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "component",
+  "updated_at": "2026-11-24T09:43:07.964638Z"
+}

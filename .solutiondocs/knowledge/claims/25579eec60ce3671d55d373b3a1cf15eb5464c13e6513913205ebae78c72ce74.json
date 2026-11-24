@@ -1,0 +1,28 @@
+{
+  "applicability": {
+    "source_revision": "b65484483903039583cc2f1b36a492bb8d134609"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T09:49:36.164007Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:deps-3e1f7df655b24b6ebe5f"
+  ],
+  "id": "claim:deps-4faed3b68a23fd52fd56862d",
+  "predicate": "declared_coordinates",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-persistence",
+  "status": "candidate",
+  "subject": "dependency:ant-jar-net.sf.opencsv-opencsv-1.8",
+  "updated_at": "2026-11-24T09:49:36.164007Z",
+  "value": {
+    "ecosystem": "ant-jar",
+    "group": "net.sf.opencsv",
+    "name": "opencsv",
+    "note": "ant property opencsv.jar -> ${OPENCSV_HOME}/deploy/opencsv-1.8.jar (resolved from external jpository/mpository; not bundled in repo)",
+    "scope": "compile",
+    "version": "1.8"
+  }
+}

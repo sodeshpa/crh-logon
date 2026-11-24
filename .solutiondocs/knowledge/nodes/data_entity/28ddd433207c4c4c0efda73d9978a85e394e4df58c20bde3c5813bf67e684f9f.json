@@ -1,0 +1,17 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T10:20:23.597113Z",
+  "id": "data_entity:vlgnc-simple-vehicle-assg",
+  "name": "VLGNC_SIMPLE_VEHICLE_ASSG",
+  "properties": {
+    "entity_type": "view",
+    "materialised": false,
+    "purpose": "This view returns all simple vehicles with their active assignments (if any). It is used for the top half of the simple scheduling screen.",
+    "schema": "ulgn"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "data_entity",
+  "updated_at": "2026-11-24T10:20:23.597113Z"
+}

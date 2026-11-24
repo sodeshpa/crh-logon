@@ -1,0 +1,25 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T10:27:28.875935Z",
+  "id": "api_endpoint:sirocco20-submitmtwappush",
+  "name": "submitMTWapPush",
+  "properties": {
+    "method": "POST",
+    "path": "/SiroccoGateway/services/Sirocco20",
+    "protocol": "SOAP",
+    "request_schema": {
+      "title": "submitMTWapPushSoapIn",
+      "type": "object"
+    },
+    "response_schema": {
+      "title": "submitMTWapPushSoapOut",
+      "type": "object"
+    }
+  },
+  "qualified_name": "Sirocco20Operations.submitMTWapPush",
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "api_endpoint",
+  "updated_at": "2026-11-24T10:27:28.875935Z"
+}

@@ -1,0 +1,27 @@
+{
+  "applicability": {
+    "source_revision": "c4799b3dfcf94ee66c921f340bda20c43e31a979"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 0.95,
+  "created_at": "2026-11-24T09:49:05.830186Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:fs-50e0d6d14d819b17943c6c22"
+  ],
+  "id": "claim:fs-50e0d6d14d819b17943c6c22",
+  "predicate": "file_inventory",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-business",
+  "status": "candidate",
+  "subject": "code_unit:logon-business-src-main-java-com-crh-logon-business-services-eventbeans-in-logon_lds_interface-getmaterialsforshiptorequesthandler.java",
+  "updated_at": "2026-11-24T09:49:05.830186Z",
+  "value": {
+    "estimated_tokens": 718,
+    "file_path": "logon-business/src/main/java/com/crh/logon/business/services/eventbeans/in/logon_lds_interface/GetMaterialsForShiptoRequestHandler.java",
+    "language": "Java",
+    "loc": 72,
+    "size_bytes": 2874
+  }
+}

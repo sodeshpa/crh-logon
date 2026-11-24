@@ -1,0 +1,28 @@
+{
+  "applicability": {
+    "source_revision": "37b08712370e807afefb95e7d140e3bd6101e15d"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T09:49:36.164007Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:deps-6f1744933e7c5f451d83"
+  ],
+  "id": "claim:deps-e420ef9353bf61aeb668c4b6",
+  "predicate": "declared_coordinates",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-business",
+  "status": "candidate",
+  "subject": "dependency:maven-io.swagger.codegen.v3-swagger-codegen-cli-3.0.24",
+  "updated_at": "2026-11-24T09:49:36.164007Z",
+  "value": {
+    "ecosystem": "maven",
+    "group": "io.swagger.codegen.v3",
+    "name": "swagger-codegen-cli",
+    "note": "maven scope not declared",
+    "scope": "build",
+    "version": "3.0.24"
+  }
+}

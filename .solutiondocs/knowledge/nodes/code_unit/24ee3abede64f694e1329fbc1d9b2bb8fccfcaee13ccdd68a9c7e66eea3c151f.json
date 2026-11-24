@@ -1,0 +1,21 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T10:01:22.932656Z",
+  "id": "code_unit:logon-common-web-src-main-webapp-js-ext-ux-ext.ux.form.colorpickerfieldplus.js",
+  "name": "Ext.ux.form.ColorPickerFieldPlus.js",
+  "properties": {
+    "file_path": "logon-common-web/src/main/webapp/js/ext-ux/Ext.ux.form.ColorPickerFieldPlus.js",
+    "language": "JavaScript/TypeScript",
+    "loc": 165,
+    "metrics": {
+      "loc": 165
+    },
+    "unit_type": "file"
+  },
+  "qualified_name": "logon-common-web/src/main/webapp/js/ext-ux/Ext.ux.form.ColorPickerFieldPlus.js",
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "code_unit",
+  "updated_at": "2026-11-24T10:01:22.932656Z"
+}

@@ -1,0 +1,21 @@
+{
+  "applicability": {
+    "source_revision": "6905466de23e2cbdff868bc569617b4119b57645d1c166c121eff6d0ed96ed40"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T10:27:28.875935Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:dsa-f1ded0b8adf32113489d663d28e745091a360f80"
+  ],
+  "id": "claim:dsa-64a1b6215df5749bebdfceb194e1db3bbe8cf14c",
+  "predicate": "contract_type",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-webservices-client",
+  "status": "candidate",
+  "subject": "integration_point:external-service-sirocco20",
+  "updated_at": "2026-11-24T10:27:28.875935Z",
+  "value": "WSDL"
+}

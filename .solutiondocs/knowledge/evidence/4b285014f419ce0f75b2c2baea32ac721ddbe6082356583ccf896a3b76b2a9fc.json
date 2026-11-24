@@ -1,0 +1,17 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T10:04:21.856768Z",
+  "id": "evidence:dsa-013943f4350bbc4cb477600998cfafcf329d860f",
+  "locator": {
+    "file": "logon-webservices/etc/entities/11_create_reftables.sql",
+    "line": 7
+  },
+  "method": "ddl-parse",
+  "observed_at": "2026-11-24T09:49:32Z",
+  "record_kind": "evidence",
+  "revision": 1,
+  "source_id": "source_artifact:dsa-logon-webservices-etc-entities-11-create-reftables-sql",
+  "source_revision": "5141456baa77f69f624f019942820e5716c112913ef0524f03c8de0d0418f2ac",
+  "status": "active",
+  "updated_at": "2026-11-24T10:04:21.856768Z"
+}

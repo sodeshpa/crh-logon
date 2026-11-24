@@ -1,0 +1,28 @@
+{
+  "applicability": {
+    "source_revision": "b65484483903039583cc2f1b36a492bb8d134609"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T09:49:36.164007Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:deps-f9774bb939417eff9354"
+  ],
+  "id": "claim:deps-b597d81a07f659b21e246c10",
+  "predicate": "declared_coordinates",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "application:sodeshpa-improved-telegram",
+  "status": "candidate",
+  "subject": "dependency:ant-jar-org.hibernate-hibernate-core-4.2.1.final",
+  "updated_at": "2026-11-24T09:49:36.164007Z",
+  "value": {
+    "ecosystem": "ant-jar",
+    "group": "org.hibernate",
+    "name": "hibernate-core",
+    "note": "ant property hibernate4.jar -> ${MPOSITORY_DIR}/org/hibernate/hibernate-core/4.2.1.Final/hibernate-core-4.2.1.Final.jar (resolved from external jpository/mpository; not bundled in repo)",
+    "scope": "compile",
+    "version": "4.2.1.Final"
+  }
+}

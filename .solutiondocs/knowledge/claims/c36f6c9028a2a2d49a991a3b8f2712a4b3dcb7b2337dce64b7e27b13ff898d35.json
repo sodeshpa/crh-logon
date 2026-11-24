@@ -1,0 +1,21 @@
+{
+  "applicability": {
+    "source_revision": "946f42389985a9547d4b7fcc434732cf8cd2170e9a7d896f96957adc9f239502"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T10:24:05.985709Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:dsa-aef60857e36569f6c4281c6090c1dba10406aa9b"
+  ],
+  "id": "claim:dsa-470372a65ea4ce2fcb3eb6c09c59eaba46a5b989",
+  "predicate": "plsql_function",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-persistence",
+  "status": "candidate",
+  "subject": "code_unit:logon-persistence-plsql-date-difference",
+  "updated_at": "2026-11-24T10:24:05.985709Z",
+  "value": "date_difference"
+}

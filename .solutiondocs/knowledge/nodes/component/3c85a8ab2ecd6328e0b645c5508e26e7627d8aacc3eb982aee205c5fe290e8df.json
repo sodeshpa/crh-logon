@@ -1,0 +1,19 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:43:07.964638Z",
+  "id": "component:logon-webservices-mop-incoming",
+  "name": "logon-webservices-mop-incoming",
+  "properties": {
+    "build_files": [],
+    "estimated_tokens": 105821,
+    "files": 27,
+    "folder": "logon-webservices-mop-incoming",
+    "source_files": 5,
+    "source_root": "logon-webservices-mop-incoming"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "component",
+  "updated_at": "2026-11-24T09:43:07.964638Z"
+}

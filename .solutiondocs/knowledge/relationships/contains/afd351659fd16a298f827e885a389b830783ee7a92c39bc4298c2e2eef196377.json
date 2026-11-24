@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "claim_ids": [
+    "claim:fs-rel-ea56105dd97581e5a5a57862"
+  ],
+  "created_at": "2026-11-24T10:13:04.549760Z",
+  "from": "component:logon-order-web",
+  "id": "relationship:fs-contains-ea56105dd97581e5a5a57862",
+  "properties": {},
+  "record_kind": "relationship",
+  "revision": 1,
+  "status": "active",
+  "to": "code_unit:logon-order-web-src-main-java-com-crh-logon-order-web-actions-dispokarte-produktbemerkungenentryaction.java",
+  "type": "contains",
+  "updated_at": "2026-11-24T10:13:04.549760Z"
+}

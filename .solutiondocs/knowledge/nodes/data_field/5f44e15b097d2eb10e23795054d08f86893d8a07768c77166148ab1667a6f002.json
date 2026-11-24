@@ -1,0 +1,20 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T10:15:23.919223Z",
+  "id": "data_field:sdn-documentitemdate-hjid",
+  "name": "HJID",
+  "properties": {
+    "constraints": [
+      "PRIMARY KEY",
+      "NOT NULL"
+    ],
+    "data_type": "number(19,0)",
+    "nullable": false,
+    "primary_key": true
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "data_field",
+  "updated_at": "2026-11-24T10:15:23.919223Z"
+}

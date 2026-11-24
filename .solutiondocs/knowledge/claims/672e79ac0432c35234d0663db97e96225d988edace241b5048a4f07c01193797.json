@@ -1,0 +1,21 @@
+{
+  "applicability": {
+    "source_revision": "0db519bcc23d4b847662a26d59e471f8227e79492e44c5b1694df2641f149ab1"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T10:20:23.597113Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:dsa-679523200441cf1e8a77da1d0c0091e663d5ddde"
+  ],
+  "id": "claim:dsa-443a617c5d24a7830c7ef132d3417e4d8695f6c5",
+  "predicate": "entity_type",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-persistence",
+  "status": "candidate",
+  "subject": "data_entity:vlgnc-dispo-max-wagon-pos",
+  "updated_at": "2026-11-24T10:20:23.597113Z",
+  "value": "view"
+}

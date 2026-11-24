@@ -1,0 +1,18 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T11:29:38.590104Z",
+  "id": "evidence:fs-3e0489af4e5eb2d3d304e6b8",
+  "locator": {
+    "file": "logon-webservices-client/src/test/integration/com/crh/logon/websevices/clients/LogonToFSmsTestCase.java",
+    "line_end": 118,
+    "line_start": 1
+  },
+  "method": "file-system",
+  "observed_at": "2026-11-24T09:46:55Z",
+  "record_kind": "evidence",
+  "revision": 1,
+  "source_id": "source_artifact:fs-logon-webservices-client-tree",
+  "source_revision": "c4799b3dfcf94ee66c921f340bda20c43e31a979",
+  "status": "active",
+  "updated_at": "2026-11-24T11:29:38.590104Z"
+}

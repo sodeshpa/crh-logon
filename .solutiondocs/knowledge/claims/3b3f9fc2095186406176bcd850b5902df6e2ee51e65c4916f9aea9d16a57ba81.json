@@ -1,0 +1,28 @@
+{
+  "applicability": {
+    "source_revision": "f25d1028a4dd3f5dd614543271cb0eee8e1cdb3d"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T09:49:36.164007Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:deps-a0e6baf629b111694afe"
+  ],
+  "id": "claim:deps-87720ed09830f44c2cce1ddb",
+  "predicate": "declared_coordinates",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:ansible",
+  "status": "candidate",
+  "subject": "dependency:pip-x-pycparser-2.19",
+  "updated_at": "2026-11-24T09:49:36.164007Z",
+  "value": {
+    "ecosystem": "pip",
+    "group": null,
+    "name": "pycparser",
+    "note": "pip pin (==)",
+    "scope": "build",
+    "version": "2.19"
+  }
+}

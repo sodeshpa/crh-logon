@@ -1,0 +1,21 @@
+{
+  "applicability": {
+    "source_revision": "7bdb82589778352ffb34837ae0ed0dddcf5b2fd42fc2fdafc805bd0a8e4bb3c7"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T10:27:28.875935Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:dsa-cc933a47eddcb4877ec18a50fcc58acafb01a454"
+  ],
+  "id": "claim:dsa-89a27b2bc77003609f69df0515955cb44888b07f",
+  "predicate": "protocol",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-webservices-oc-incoming",
+  "status": "candidate",
+  "subject": "api_endpoint:logonocinterface-services-createpickupcustomerorder",
+  "updated_at": "2026-11-24T10:27:28.875935Z",
+  "value": "SOAP"
+}

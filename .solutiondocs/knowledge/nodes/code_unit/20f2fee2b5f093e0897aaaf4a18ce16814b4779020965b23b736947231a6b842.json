@@ -1,0 +1,21 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T11:32:18.902642Z",
+  "id": "code_unit:pkg-logonjboss-etc-pkg_template-helpers-generateconfig.ps1",
+  "name": "generateConfig.ps1",
+  "properties": {
+    "file_path": "pkg/logonjboss/etc/pkg_template/helpers/generateConfig.ps1",
+    "language": "Script",
+    "loc": 79,
+    "metrics": {
+      "loc": 79
+    },
+    "unit_type": "file"
+  },
+  "qualified_name": "pkg/logonjboss/etc/pkg_template/helpers/generateConfig.ps1",
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "code_unit",
+  "updated_at": "2026-11-24T11:32:18.902642Z"
+}

@@ -1,0 +1,19 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:43:07.964638Z",
+  "id": "component:logon-order-web",
+  "name": "logon-order-web",
+  "properties": {
+    "build_files": [],
+    "estimated_tokens": 1221949,
+    "files": 500,
+    "folder": "logon-order-web",
+    "source_files": 464,
+    "source_root": "logon-order-web"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "component",
+  "updated_at": "2026-11-24T09:43:07.964638Z"
+}

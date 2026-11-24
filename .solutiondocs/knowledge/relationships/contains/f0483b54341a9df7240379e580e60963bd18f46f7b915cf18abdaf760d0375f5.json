@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "claim_ids": [
+    "claim:fs-rel-bfa601433da563ffabef0ed8"
+  ],
+  "created_at": "2026-11-24T09:48:25.227887Z",
+  "from": "component:logon-ansible",
+  "id": "relationship:fs-contains-bfa601433da563ffabef0ed8",
+  "properties": {},
+  "record_kind": "relationship",
+  "revision": 1,
+  "status": "active",
+  "to": "code_unit:logon-ansible-install-int1.sh",
+  "type": "contains",
+  "updated_at": "2026-11-24T09:48:25.227887Z"
+}

@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "claim_ids": [
+    "claim:dsa-ada2d4348619fb831a7ec98fdc299bf1be03bf6a"
+  ],
+  "created_at": "2026-11-24T10:39:20.993948Z",
+  "from": "data_entity:mn-materialproduction",
+  "id": "relationship:dsa-713df34ff674c10a245d6b99d3b3ebeb2d0eca34",
+  "properties": {},
+  "record_kind": "relationship",
+  "revision": 1,
+  "status": "active",
+  "to": "data_field:mn-materialproduction-offstbref",
+  "type": "contains",
+  "updated_at": "2026-11-24T10:39:20.993948Z"
+}

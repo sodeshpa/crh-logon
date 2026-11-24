@@ -1,0 +1,28 @@
+{
+  "applicability": {
+    "source_revision": "f25d1028a4dd3f5dd614543271cb0eee8e1cdb3d"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T09:49:36.164007Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:deps-4aa5323111ecafe3de1e"
+  ],
+  "id": "claim:deps-2d401dce8726e731a8fda3dc",
+  "predicate": "declared_coordinates",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:ansible",
+  "status": "candidate",
+  "subject": "dependency:pip-x-ansible-2.8.6",
+  "updated_at": "2026-11-24T09:49:36.164007Z",
+  "value": {
+    "ecosystem": "pip",
+    "group": null,
+    "name": "ansible",
+    "note": "pip pin (==)",
+    "scope": "build",
+    "version": "2.8.6"
+  }
+}

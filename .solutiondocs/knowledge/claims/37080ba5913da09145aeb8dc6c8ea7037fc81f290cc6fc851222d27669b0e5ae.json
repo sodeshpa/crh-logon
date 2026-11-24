@@ -1,0 +1,27 @@
+{
+  "applicability": {
+    "source_revision": "c4799b3dfcf94ee66c921f340bda20c43e31a979"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 0.95,
+  "created_at": "2026-11-24T11:27:07.998697Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:fs-c76fe077ef8128c16ca34f44"
+  ],
+  "id": "claim:fs-c76fe077ef8128c16ca34f44",
+  "predicate": "file_inventory",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-persistence",
+  "status": "candidate",
+  "subject": "code_unit:logon-persistence-src-main-java-com-crh-logon-persistence-entities-views-sapmaterialsareainfoentity.java",
+  "updated_at": "2026-11-24T11:27:07.998697Z",
+  "value": {
+    "estimated_tokens": 1654,
+    "file_path": "logon-persistence/src/main/java/com/crh/logon/persistence/entities/views/SapMaterialSareaInfoEntity.java",
+    "language": "Java",
+    "loc": 194,
+    "size_bytes": 6618
+  }
+}

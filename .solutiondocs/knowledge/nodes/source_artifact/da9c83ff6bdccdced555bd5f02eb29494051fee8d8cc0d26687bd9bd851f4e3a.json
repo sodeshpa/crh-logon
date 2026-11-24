@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:59:54.408851Z",
+  "id": "source_artifact:dsa-logon-persistence-etc-sql-custom-indexes-sql",
+  "name": "custom_indexes.sql",
+  "properties": {
+    "location": "logon-persistence/etc/sql/custom_indexes.sql",
+    "revision": "694b7d7b88dc47f911b3dbfaf154a056e4954abead9ceb4bf2c77229d8d230d4",
+    "source_type": "ddl_sql"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "source_artifact",
+  "updated_at": "2026-11-24T09:59:54.408851Z"
+}

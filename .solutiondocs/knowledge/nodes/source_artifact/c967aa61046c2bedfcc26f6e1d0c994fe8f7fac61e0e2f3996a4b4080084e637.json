@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:51:52.064424Z",
+  "id": "source_artifact:cfg-config-build-local-tmpl-properties",
+  "name": "config/build-local_tmpl.properties",
+  "properties": {
+    "location": "config/build-local_tmpl.properties",
+    "revision": "7ef17c8a9f015d085bfee84d6470fbf97c9a039d45a6ccab37e0b43237b2f659",
+    "source_type": "config_file"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "source_artifact",
+  "updated_at": "2026-11-24T09:51:52.064424Z"
+}

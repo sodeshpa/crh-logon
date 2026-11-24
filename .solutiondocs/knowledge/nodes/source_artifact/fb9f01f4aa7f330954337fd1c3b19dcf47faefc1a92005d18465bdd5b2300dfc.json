@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:59:54.408851Z",
+  "id": "source_artifact:dsa-logon-persistence-etc-sql-delete-invalid-restrictions-pkg-sql",
+  "name": "delete_invalid_restrictions_pkg.sql",
+  "properties": {
+    "location": "logon-persistence/etc/sql/delete_invalid_restrictions_pkg.sql",
+    "revision": "5a7cca714c7a8cad4ab079e87c62fc21ee33762b285cdeade00c39a7da279924",
+    "source_type": "ddl_sql"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "source_artifact",
+  "updated_at": "2026-11-24T09:59:54.408851Z"
+}

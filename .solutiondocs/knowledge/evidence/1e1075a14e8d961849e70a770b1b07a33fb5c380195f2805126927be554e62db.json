@@ -1,0 +1,17 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:51:52.064424Z",
+  "id": "evidence:cfg-94a9b9257eace7b717773e69f11fe272169e6342c606e7df4feca69ef02aa4c4",
+  "locator": {
+    "file": "logon-ansible/inventory",
+    "section": "file"
+  },
+  "method": "config-file",
+  "observed_at": "2026-11-24T09:49:25Z",
+  "record_kind": "evidence",
+  "revision": 1,
+  "source_id": "source_artifact:cfg-logon-ansible-inventory",
+  "source_revision": "dcc3e7ddf214be02a4c92aa924268d43b06d82b347efcc0167c72fa7327421df",
+  "status": "active",
+  "updated_at": "2026-11-24T09:51:52.064424Z"
+}

@@ -1,0 +1,24 @@
+{
+  "applicability": {
+    "source_revision": "c4799b3dfcf94ee66c921f340bda20c43e31a979"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 0.95,
+  "created_at": "2026-11-24T11:27:07.998697Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:fs-15bade12978df654ba25e4c8"
+  ],
+  "id": "claim:fs-rel-15bade12978df654ba25e4c8",
+  "predicate": "contains",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-simulator",
+  "status": "candidate",
+  "subject": "relationship:fs-contains-15bade12978df654ba25e4c8",
+  "updated_at": "2026-11-24T11:27:07.998697Z",
+  "value": {
+    "container": "component:logon-simulator",
+    "file_path": "logon-simulator/src/main/java/com/crh/logon/simulator/PdaLoginTest.java"
+  }
+}

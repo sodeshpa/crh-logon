@@ -1,0 +1,24 @@
+{
+  "applicability": {
+    "source_revision": "c4799b3dfcf94ee66c921f340bda20c43e31a979"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 0.95,
+  "created_at": "2026-11-24T10:13:04.549760Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:fs-98262fc1eda6e93623933a82"
+  ],
+  "id": "claim:fs-rel-98262fc1eda6e93623933a82",
+  "predicate": "contains",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-order-web",
+  "status": "candidate",
+  "subject": "relationship:fs-contains-98262fc1eda6e93623933a82",
+  "updated_at": "2026-11-24T10:13:04.549760Z",
+  "value": {
+    "container": "component:logon-order-web",
+    "file_path": "logon-order-web/src/main/java/com/crh/logon/order/web/forms/auftrag/BizeventMapDetailBean.java"
+  }
+}

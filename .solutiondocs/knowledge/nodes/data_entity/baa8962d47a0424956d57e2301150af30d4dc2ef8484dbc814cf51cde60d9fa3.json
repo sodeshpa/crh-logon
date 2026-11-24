@@ -1,0 +1,17 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T10:20:23.597113Z",
+  "id": "data_entity:vlgnc-railcar-opt-loaded-cars",
+  "name": "VLGNC_RAILCAR_OPT_LOADED_CARS",
+  "properties": {
+    "entity_type": "view",
+    "materialised": false,
+    "purpose": "View which contains wagons and information about the order assigned to them. Only wagons which are above and including dispatched but below and including transmitted to the rw company.",
+    "schema": "ulgn"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "data_entity",
+  "updated_at": "2026-11-24T10:20:23.597113Z"
+}

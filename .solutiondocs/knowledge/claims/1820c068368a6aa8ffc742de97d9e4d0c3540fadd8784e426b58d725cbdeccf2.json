@@ -1,0 +1,21 @@
+{
+  "applicability": {
+    "source_revision": "f0319b7f1fa2ac8b05f0bc2cbf001eceaa03677eb829c7419fb7413f61391f69"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T10:24:05.985709Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:dsa-a0be4309597d6ffa48ff3ac8ba8197ea6c479185"
+  ],
+  "id": "claim:dsa-1abd841eaa9d383f89ead838a1edc45dfd3e3625",
+  "predicate": "data_type",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-webservices",
+  "status": "candidate",
+  "subject": "data_field:vn-vendorsubrangeidentificat-0-sprasiso",
+  "updated_at": "2026-11-24T10:24:05.985709Z",
+  "value": "varchar2(2 char)"
+}

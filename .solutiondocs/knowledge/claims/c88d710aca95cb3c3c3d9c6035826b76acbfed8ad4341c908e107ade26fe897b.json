@@ -1,0 +1,28 @@
+{
+  "applicability": {
+    "source_revision": "880ff571c6531bdd2b51360ac4c8128795063f96"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T09:49:36.164007Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:deps-fd608672bf6108a87d95"
+  ],
+  "id": "claim:deps-7b1258f10c9a9a6e35d198ae",
+  "predicate": "declared_coordinates",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "application:sodeshpa-improved-telegram",
+  "status": "candidate",
+  "subject": "dependency:external-distribution-ch.adnovum-safran-0.6.0.0",
+  "updated_at": "2026-11-24T09:49:36.164007Z",
+  "value": {
+    "ecosystem": "external-distribution",
+    "group": "ch.adnovum",
+    "name": "safran",
+    "note": "SAFRAN_HOME",
+    "scope": "compile",
+    "version": "0.6.0.0"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "claim_ids": [
+    "claim:deps-a250978e80fe6aa1139ec400"
+  ],
+  "created_at": "2026-11-24T09:49:36.164007Z",
+  "from": "application:sodeshpa-improved-telegram",
+  "id": "relationship:deps-47d26cffb5520cad99bd262a",
+  "properties": {},
+  "record_kind": "relationship",
+  "revision": 1,
+  "status": "active",
+  "to": "dependency:external-distribution-eviware-soapui-5.2.1",
+  "type": "depends_on",
+  "updated_at": "2026-11-24T09:49:36.164007Z"
+}

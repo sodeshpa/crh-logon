@@ -1,0 +1,19 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:43:07.964638Z",
+  "id": "component:logon-pdf-generator",
+  "name": "logon-pdf-generator",
+  "properties": {
+    "build_files": [],
+    "estimated_tokens": 26709,
+    "files": 44,
+    "folder": "logon-pdf-generator",
+    "source_files": 34,
+    "source_root": "logon-pdf-generator"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "component",
+  "updated_at": "2026-11-24T09:43:07.964638Z"
+}

@@ -1,0 +1,21 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:59:54.408851Z",
+  "id": "source_artifact:dsa-logon-webservices-etc-xsd-original-businesspartnernotification-xsd",
+  "name": "BusinessPartnerNotification.xsd",
+  "properties": {
+    "location": "logon-webservices/etc/xsd/original/BusinessPartnerNotification.xsd",
+    "metadata": {
+      "dsa:complex_type_count": 18,
+      "dsa:simple_type_count": 253,
+      "dsa:top_level_element_count": 271
+    },
+    "revision": "cf913d053efe46788ae16560b62b21e9ea6a5ca5a6f6180027620d8d4846d37a",
+    "source_type": "xsd"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "source_artifact",
+  "updated_at": "2026-11-24T09:59:54.408851Z"
+}

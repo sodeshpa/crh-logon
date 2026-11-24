@@ -1,0 +1,21 @@
+{
+  "applicability": {
+    "source_revision": "f0319b7f1fa2ac8b05f0bc2cbf001eceaa03677eb829c7419fb7413f61391f69"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T10:15:23.919223Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:dsa-7d3e5b1245a458e1341f22eb739aaac9f15b9ea5"
+  ],
+  "id": "claim:dsa-065c31a198543d88705b637d95e2d20bc6b26956",
+  "predicate": "data_type",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-webservices",
+  "status": "candidate",
+  "subject": "data_field:sdn-documentheaderpaymentcar-0-ccins",
+  "updated_at": "2026-11-24T10:15:23.919223Z",
+  "value": "varchar2(4 char)"
+}

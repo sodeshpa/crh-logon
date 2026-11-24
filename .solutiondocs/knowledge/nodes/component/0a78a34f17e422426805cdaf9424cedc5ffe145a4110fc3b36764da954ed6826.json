@@ -1,0 +1,19 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:43:07.964638Z",
+  "id": "component:logon-ansible",
+  "name": "logon-ansible",
+  "properties": {
+    "build_files": [],
+    "estimated_tokens": 6485,
+    "files": 28,
+    "folder": "logon-ansible",
+    "source_files": 14,
+    "source_root": "logon-ansible"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "component",
+  "updated_at": "2026-11-24T09:43:07.964638Z"
+}

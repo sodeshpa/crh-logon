@@ -1,0 +1,28 @@
+{
+  "applicability": {
+    "source_revision": "78e9e77b09f7cd30237790b91f202a951e3b729c"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T09:49:36.164007Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:deps-f6e51a221c0e45e7f477"
+  ],
+  "id": "claim:deps-2dcf93b54e758708db40fd54",
+  "predicate": "declared_coordinates",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:ansible",
+  "status": "candidate",
+  "subject": "dependency:rpm-x-firefox-52.2.0",
+  "updated_at": "2026-11-24T09:49:36.164007Z",
+  "value": {
+    "ecosystem": "rpm",
+    "group": null,
+    "name": "firefox",
+    "note": "yum package pinned firefox-52.2.0",
+    "scope": "test",
+    "version": "52.2.0"
+  }
+}

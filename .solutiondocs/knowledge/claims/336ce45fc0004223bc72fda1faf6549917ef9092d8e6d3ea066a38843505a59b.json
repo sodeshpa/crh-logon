@@ -1,0 +1,21 @@
+{
+  "applicability": {
+    "source_revision": "d428990444609b5e52f0d70dc7c76c30cd3263599327b0c4876b8a2324d86f99"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T10:24:05.985709Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:dsa-e64edba30d545d54eb77e9e41969154a8c441323"
+  ],
+  "id": "claim:dsa-b51e7cd3d2632e83834373eaf6edf2b8a7c62188",
+  "predicate": "plsql_procedure",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-persistence",
+  "status": "candidate",
+  "subject": "code_unit:logon-persistence-plsql-update-planning-mat-sarea",
+  "updated_at": "2026-11-24T10:24:05.985709Z",
+  "value": "update_planning_mat_sarea"
+}

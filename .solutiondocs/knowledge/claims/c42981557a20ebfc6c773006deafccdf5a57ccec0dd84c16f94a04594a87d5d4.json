@@ -1,0 +1,21 @@
+{
+  "applicability": {
+    "source_revision": "f0319b7f1fa2ac8b05f0bc2cbf001eceaa03677eb829c7419fb7413f61391f69"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T10:04:21.856768Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:dsa-733f64dd70f602352ff18efb50e7dd752f663aef"
+  ],
+  "id": "claim:dsa-04ee6bff58a3db750b7e95702fc9f714084e836d",
+  "predicate": "data_type",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-webservices",
+  "status": "candidate",
+  "subject": "data_field:bpn-distancestoplant-zzradile",
+  "updated_at": "2026-11-24T10:04:21.856768Z",
+  "value": "varchar2(10 char)"
+}

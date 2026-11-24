@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:59:54.408851Z",
+  "id": "source_artifact:dsa-logon-persistence-etc-sql-refdata-artificial-planning-material-entries-sql",
+  "name": "artificial_planning_material_entries.sql",
+  "properties": {
+    "location": "logon-persistence/etc/sql/refdata/artificial_planning_material_entries.sql",
+    "revision": "83094b833c4c43f041cae49d9c0c0bb727f66c3154843586a8e7517df1e37391",
+    "source_type": "ddl_sql"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "source_artifact",
+  "updated_at": "2026-11-24T09:59:54.408851Z"
+}

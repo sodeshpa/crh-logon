@@ -1,0 +1,21 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T10:13:04.549760Z",
+  "id": "code_unit:logon-order-web-src-main-java-com-crh-logon-order-web-actions-itrack-itrackreportingentryaction.java",
+  "name": "ITrackReportingEntryAction.java",
+  "properties": {
+    "file_path": "logon-order-web/src/main/java/com/crh/logon/order/web/actions/itrack/ITrackReportingEntryAction.java",
+    "language": "Java",
+    "loc": 50,
+    "metrics": {
+      "loc": 50
+    },
+    "unit_type": "file"
+  },
+  "qualified_name": "logon-order-web/src/main/java/com/crh/logon/order/web/actions/itrack/ITrackReportingEntryAction.java",
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "code_unit",
+  "updated_at": "2026-11-24T10:13:04.549760Z"
+}

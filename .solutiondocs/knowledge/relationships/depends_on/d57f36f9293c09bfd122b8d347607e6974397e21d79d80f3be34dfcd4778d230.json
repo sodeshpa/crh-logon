@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "claim_ids": [
+    "claim:deps-401346211d9fab64f9381ec9"
+  ],
+  "created_at": "2026-11-24T09:49:36.164007Z",
+  "from": "component:ansible",
+  "id": "relationship:deps-b3439041e78feaaa4a7b438b",
+  "properties": {},
+  "record_kind": "relationship",
+  "revision": 1,
+  "status": "active",
+  "to": "dependency:pip-x-cffi-1.11.5",
+  "type": "depends_on",
+  "updated_at": "2026-11-24T09:49:36.164007Z"
+}

@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "claim_ids": [
+    "claim:dsa-7e22eb67a264e9be9e144068e35a405eff635075"
+  ],
+  "created_at": "2026-11-24T10:41:22.508413Z",
+  "from": "data_entity:tlgnc-shipto-sarea-rest-maint",
+  "id": "relationship:dsa-7d96c8f7f9d6a7e85881bec17ea230587ccf50d2",
+  "properties": {},
+  "record_kind": "relationship",
+  "revision": 1,
+  "status": "active",
+  "to": "data_field:tlgnc-shipto-sarea-rest-maint-ctl-cre-ts",
+  "type": "contains",
+  "updated_at": "2026-11-24T10:41:22.508413Z"
+}

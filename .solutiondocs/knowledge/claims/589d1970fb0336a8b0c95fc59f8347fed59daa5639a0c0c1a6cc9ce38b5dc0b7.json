@@ -1,0 +1,27 @@
+{
+  "applicability": {
+    "source_revision": "c4799b3dfcf94ee66c921f340bda20c43e31a979"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 0.95,
+  "created_at": "2026-11-24T09:48:25.227887Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:fs-d78fe64808d12e53e7c0c926"
+  ],
+  "id": "claim:fs-d78fe64808d12e53e7c0c926",
+  "predicate": "file_inventory",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-business",
+  "status": "candidate",
+  "subject": "code_unit:logon-business-src-main-java-com-crh-logon-business-ordercreation-dto-abstractdeliverysetting.java",
+  "updated_at": "2026-11-24T09:48:25.227887Z",
+  "value": {
+    "estimated_tokens": 1210,
+    "file_path": "logon-business/src/main/java/com/crh/logon/business/ordercreation/dto/AbstractDeliverySetting.java",
+    "language": "Java",
+    "loc": 140,
+    "size_bytes": 4841
+  }
+}

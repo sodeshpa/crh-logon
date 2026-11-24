@@ -1,0 +1,21 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T10:32:46.275408Z",
+  "id": "code_unit:logon-persistence-etc-sql-logon_util_pkg.sql",
+  "name": "logon_util_pkg.sql",
+  "properties": {
+    "file_path": "logon-persistence/etc/sql/logon_util_pkg.sql",
+    "language": "SQL",
+    "loc": 250,
+    "metrics": {
+      "loc": 250
+    },
+    "unit_type": "file"
+  },
+  "qualified_name": "logon-persistence/etc/sql/logon_util_pkg.sql",
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "code_unit",
+  "updated_at": "2026-11-24T10:32:46.275408Z"
+}

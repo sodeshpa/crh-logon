@@ -1,0 +1,21 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:50:06.925075Z",
+  "id": "code_unit:logon-business-src-main-java-com-crh-logon-business-services-impl-externalorderservicebean.java",
+  "name": "ExternalOrderServiceBean.java",
+  "properties": {
+    "file_path": "logon-business/src/main/java/com/crh/logon/business/services/impl/ExternalOrderServiceBean.java",
+    "language": "Java",
+    "loc": 233,
+    "metrics": {
+      "loc": 233
+    },
+    "unit_type": "file"
+  },
+  "qualified_name": "logon-business/src/main/java/com/crh/logon/business/services/impl/ExternalOrderServiceBean.java",
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "code_unit",
+  "updated_at": "2026-11-24T09:50:06.925075Z"
+}

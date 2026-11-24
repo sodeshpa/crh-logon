@@ -1,0 +1,24 @@
+{
+  "applicability": {
+    "source_revision": "c4799b3dfcf94ee66c921f340bda20c43e31a979"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 0.95,
+  "created_at": "2026-11-24T10:03:24.312910Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:fs-d1c6c892f1db84add11db968"
+  ],
+  "id": "claim:fs-rel-d1c6c892f1db84add11db968",
+  "predicate": "contains",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-common",
+  "status": "candidate",
+  "subject": "relationship:fs-contains-d1c6c892f1db84add11db968",
+  "updated_at": "2026-11-24T10:03:24.312910Z",
+  "value": {
+    "container": "component:logon-common",
+    "file_path": "logon-common/src/main/java/com/crh/logon/webservices/utils/AbstractAxis2LogHandler.java"
+  }
+}

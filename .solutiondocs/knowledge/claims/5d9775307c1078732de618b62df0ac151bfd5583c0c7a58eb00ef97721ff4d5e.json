@@ -1,0 +1,21 @@
+{
+  "applicability": {
+    "source_revision": "744fa2fcc9ddab2bfc478b722e18fe401d39f7aea3578d6bca1e1ab351097ee1"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T10:24:05.985709Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:dsa-6c29387cbe8649610216c3591891376ea937d343"
+  ],
+  "id": "claim:dsa-20da62a11f72f083c3ea7ba5c6a5fd6cac22c4bf",
+  "predicate": "plsql_procedure",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-persistence",
+  "status": "candidate",
+  "subject": "code_unit:logon-persistence-plsql-upsert-itrack-status-bs",
+  "updated_at": "2026-11-24T10:24:05.985709Z",
+  "value": "upsert_itrack_status_bs"
+}

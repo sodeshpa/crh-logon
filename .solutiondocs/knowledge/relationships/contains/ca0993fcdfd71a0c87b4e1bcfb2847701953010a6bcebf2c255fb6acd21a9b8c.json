@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "claim_ids": [
+    "claim:dsa-5ea4c830d90877c5f1989f547bb9e890fada787d"
+  ],
+  "created_at": "2026-11-24T10:41:22.508413Z",
+  "from": "data_store:logon-main-database",
+  "id": "relationship:dsa-04d715bbc8f83c5d351672f2513fad2e2fff1cad",
+  "properties": {},
+  "record_kind": "relationship",
+  "revision": 1,
+  "status": "active",
+  "to": "data_entity:vlgnc-credit-note-proposals",
+  "type": "contains",
+  "updated_at": "2026-11-24T10:41:22.508413Z"
+}

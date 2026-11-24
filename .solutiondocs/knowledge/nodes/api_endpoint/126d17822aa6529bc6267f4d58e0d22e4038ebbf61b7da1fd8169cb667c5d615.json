@@ -1,0 +1,25 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T10:27:28.875935Z",
+  "id": "api_endpoint:logonldsinterface-services-getordersforcarriers",
+  "name": "getOrdersForCarriers",
+  "properties": {
+    "method": "POST",
+    "path": "/logon/webservices-pws-incoming/services/LogonLDSInterface",
+    "protocol": "SOAP",
+    "request_schema": {
+      "title": "getOrdersForCarriersRequest",
+      "type": "object"
+    },
+    "response_schema": {
+      "title": "getOrdersForCarriersResponse",
+      "type": "object"
+    }
+  },
+  "qualified_name": "LogonLDSInterfacePort.getOrdersForCarriers",
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "api_endpoint",
+  "updated_at": "2026-11-24T10:27:28.875935Z"
+}

@@ -1,0 +1,19 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:51:52.064424Z",
+  "id": "config_item:config-settings-tmpl-xml",
+  "name": "config/settings_tmpl.xml",
+  "properties": {
+    "contains_secrets": false,
+    "environment_specific": false,
+    "file_path": "config/settings_tmpl.xml",
+    "format": "xml",
+    "purpose": "build",
+    "version_controlled": true
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "config_item",
+  "updated_at": "2026-11-24T09:51:52.064424Z"
+}

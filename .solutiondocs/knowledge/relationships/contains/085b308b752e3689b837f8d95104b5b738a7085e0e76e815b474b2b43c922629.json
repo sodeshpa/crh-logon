@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "claim_ids": [
+    "claim:dsa-d9e01f69158f82ab12a0039e56dffa5f20c41d54"
+  ],
+  "created_at": "2026-11-24T10:34:49.573274Z",
+  "from": "data_entity:mn-materiallongtextheader",
+  "id": "relationship:dsa-a3b63c546618a9476e879e1ad18e47797a05a198",
+  "properties": {},
+  "record_kind": "relationship",
+  "revision": 1,
+  "status": "active",
+  "to": "data_field:mn-materiallongtextheader-hjid",
+  "type": "contains",
+  "updated_at": "2026-11-24T10:34:49.573274Z"
+}

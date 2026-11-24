@@ -1,0 +1,21 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:48:25.227887Z",
+  "id": "code_unit:logon-business-src-main-java-com-crh-logon-business-edifact-tags-unh.java",
+  "name": "UNH.java",
+  "properties": {
+    "file_path": "logon-business/src/main/java/com/crh/logon/business/edifact/tags/UNH.java",
+    "language": "Java",
+    "loc": 81,
+    "metrics": {
+      "loc": 81
+    },
+    "unit_type": "file"
+  },
+  "qualified_name": "logon-business/src/main/java/com/crh/logon/business/edifact/tags/UNH.java",
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "code_unit",
+  "updated_at": "2026-11-24T09:48:25.227887Z"
+}

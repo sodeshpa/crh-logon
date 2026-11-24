@@ -1,0 +1,21 @@
+{
+  "applicability": {
+    "source_revision": "ba7ebbe341e4ec5af03f589f00b1c084f95139c609f4054b32a0d25e969d255d"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T10:27:28.875935Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:dsa-65cb07dcb00876ee3e4dc2f1e0a356a7da39f702"
+  ],
+  "id": "claim:dsa-6000e4c26d716b914d4415ab282f3069b57ba976",
+  "predicate": "protocol",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-webservices-client",
+  "status": "candidate",
+  "subject": "api_endpoint:ffax-sendfax",
+  "updated_at": "2026-11-24T10:27:28.875935Z",
+  "value": "SOAP"
+}

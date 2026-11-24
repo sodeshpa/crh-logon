@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "claim_ids": [
+    "claim:dsa-936c48768f4eb139e5f8a20a6f4b8c027649d1a9"
+  ],
+  "created_at": "2026-11-24T10:41:22.508413Z",
+  "from": "data_store:logon-main-database",
+  "id": "relationship:dsa-490ece2dc307d40ea54d7ba82f08895b4e11ed10",
+  "properties": {},
+  "record_kind": "relationship",
+  "revision": 1,
+  "status": "active",
+  "to": "data_entity:vlgnc-rail-chart",
+  "type": "contains",
+  "updated_at": "2026-11-24T10:41:22.508413Z"
+}

@@ -1,0 +1,20 @@
+{
+  "applicability": {
+    "source_revision": "e6c9d2c4f4046798b8704ef67858fc8e34369d2a24b5ccd63bdb0ddc8a618a37"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 0.9,
+  "created_at": "2026-11-24T09:53:30.031918Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:cfg-eccfb4888c7c729fef76fd0ec87d34b92a664846136caeada97f91a172326500"
+  ],
+  "id": "claim:92d632083344a9c2b634c368ae89a2c1803ed641cd4a8da692d0a711a9a995c8",
+  "predicate": "defined_in",
+  "record_kind": "claim",
+  "revision": 1,
+  "status": "candidate",
+  "subject": "setting:config-build-dev-properties--password-strength-validation-enabled",
+  "updated_at": "2026-11-24T09:53:30.031918Z",
+  "value": "config/build-dev.properties"
+}

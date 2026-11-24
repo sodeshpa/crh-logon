@@ -1,0 +1,21 @@
+{
+  "applicability": {
+    "source_revision": "87b356df606d03cccb846832b85f95bb76476355cf594e4b9024c44c601ec2a9"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T10:24:05.985709Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:dsa-22dc956051daef9bd0ed0a5fc63807fc7a6265d6"
+  ],
+  "id": "claim:dsa-fde2cf9fcb989ae508af22fbf2f533d75de29f50",
+  "predicate": "plsql_procedure",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-persistence",
+  "status": "candidate",
+  "subject": "code_unit:logon-persistence-plsql-update-shipto-bp-meta",
+  "updated_at": "2026-11-24T10:24:05.985709Z",
+  "value": "update_shipto_bp_meta"
+}

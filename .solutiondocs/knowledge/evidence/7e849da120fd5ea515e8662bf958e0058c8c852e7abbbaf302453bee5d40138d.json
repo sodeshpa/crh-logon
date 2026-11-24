@@ -1,0 +1,17 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T10:04:21.856768Z",
+  "id": "evidence:dsa-22dc956051daef9bd0ed0a5fc63807fc7a6265d6",
+  "locator": {
+    "file": "logon-persistence/etc/sql/update_shipto_bp_meta.sql",
+    "line": 1
+  },
+  "method": "ddl-parse",
+  "observed_at": "2026-11-24T09:49:32Z",
+  "record_kind": "evidence",
+  "revision": 1,
+  "source_id": "source_artifact:dsa-logon-persistence-etc-sql-update-shipto-bp-meta-sql",
+  "source_revision": "87b356df606d03cccb846832b85f95bb76476355cf594e4b9024c44c601ec2a9",
+  "status": "active",
+  "updated_at": "2026-11-24T10:04:21.856768Z"
+}

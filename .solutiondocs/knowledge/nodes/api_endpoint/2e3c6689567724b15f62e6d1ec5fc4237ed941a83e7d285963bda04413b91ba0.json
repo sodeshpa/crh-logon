@@ -1,0 +1,25 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T10:27:28.875935Z",
+  "id": "api_endpoint:logonmessageserver-consume",
+  "name": "consume",
+  "properties": {
+    "method": "POST",
+    "path": "/LOGONMessageServer/LOGONMessageServer",
+    "protocol": "SOAP",
+    "request_schema": {
+      "title": "LOGONMessagePort_consume_InputMessage",
+      "type": "object"
+    },
+    "response_schema": {
+      "title": "LOGONMessagePort_consume_OutputMessage",
+      "type": "object"
+    }
+  },
+  "qualified_name": "LOGONMessagePort.consume",
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "api_endpoint",
+  "updated_at": "2026-11-24T10:27:28.875935Z"
+}

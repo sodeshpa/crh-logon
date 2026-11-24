@@ -1,0 +1,28 @@
+{
+  "applicability": {
+    "source_revision": "b65484483903039583cc2f1b36a492bb8d134609"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T09:49:36.164007Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:deps-b5edd313ed825fe70388"
+  ],
+  "id": "claim:deps-358c6551e31958182cc58bdb",
+  "predicate": "declared_coordinates",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "application:sodeshpa-improved-telegram",
+  "status": "candidate",
+  "subject": "dependency:ant-jar-org.apache.poi-poi-ooxml-schemas-3.8-20120326",
+  "updated_at": "2026-11-24T09:49:36.164007Z",
+  "value": {
+    "ecosystem": "ant-jar",
+    "group": "org.apache.poi",
+    "name": "poi-ooxml-schemas",
+    "note": "ant property poi-ooxml-schemas.jar -> ${POI_HOME}/poi-ooxml-schemas-3.8-20120326.jar (resolved from external jpository/mpository; not bundled in repo)",
+    "scope": "compile",
+    "version": "3.8-20120326"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "applicability": {
+    "source_revision": "c42ee78cadeb1bb24b017060f6cb9e213fbd7b3fdf517b4f758ace57b1d9f091"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 0.9,
+  "created_at": "2026-11-24T09:51:52.064424Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:cfg-0f6e99c7487bfdaa755f0eeb80e4d809e5b184bccb419660c81aecf9244dfdc3"
+  ],
+  "id": "claim:ac773baff4a4df14b3641f1606b3938664f81782aeedd70460e6ab9e343b5667",
+  "predicate": "contains",
+  "record_kind": "claim",
+  "revision": 1,
+  "status": "candidate",
+  "subject": "application:sodeshpa-improved-telegram",
+  "target": "platform_service:sonarqube-analysis",
+  "updated_at": "2026-11-24T09:51:52.064424Z"
+}

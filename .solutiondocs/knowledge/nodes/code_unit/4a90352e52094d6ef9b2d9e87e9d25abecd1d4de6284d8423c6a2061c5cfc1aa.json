@@ -1,0 +1,21 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T11:29:38.590104Z",
+  "id": "code_unit:logon-terminal-web-src-main-webapp-web-inf-jsp-terminalerrorstile.jsp",
+  "name": "TerminalErrorsTile.jsp",
+  "properties": {
+    "file_path": "logon-terminal-web/src/main/webapp/WEB-INF/jsp/TerminalErrorsTile.jsp",
+    "language": "Web/Template",
+    "loc": 68,
+    "metrics": {
+      "loc": 68
+    },
+    "unit_type": "file"
+  },
+  "qualified_name": "logon-terminal-web/src/main/webapp/WEB-INF/jsp/TerminalErrorsTile.jsp",
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "code_unit",
+  "updated_at": "2026-11-24T11:29:38.590104Z"
+}

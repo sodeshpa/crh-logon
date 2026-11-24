@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "claim_ids": [
+    "claim:dsa-6c9fd37997bd7307f80c894c1d75b7a54a3735b9"
+  ],
+  "created_at": "2026-11-24T10:39:20.993948Z",
+  "from": "data_entity:mn-materialplantdata-materia-3",
+  "id": "relationship:dsa-65a534aee64f3039375fb9e8eafded9c1a06cdef",
+  "properties": {},
+  "record_kind": "relationship",
+  "revision": 1,
+  "status": "active",
+  "to": "data_field:mn-materialplantdata-materia-3-child-mn-materialtotalconsum-0",
+  "type": "contains",
+  "updated_at": "2026-11-24T10:39:20.993948Z"
+}

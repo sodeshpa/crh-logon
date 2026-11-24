@@ -1,0 +1,18 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:57:00.770446Z",
+  "id": "evidence:fs-dff52d7f6febae5a71820747",
+  "locator": {
+    "file": "logon-business/src/test/unit/com/crh/logon/business/services/utils/ContractItemQuantityTest.java",
+    "line_end": 105,
+    "line_start": 1
+  },
+  "method": "file-system",
+  "observed_at": "2026-11-24T09:46:55Z",
+  "record_kind": "evidence",
+  "revision": 1,
+  "source_id": "source_artifact:fs-logon-business-tree",
+  "source_revision": "c4799b3dfcf94ee66c921f340bda20c43e31a979",
+  "status": "active",
+  "updated_at": "2026-11-24T09:57:00.770446Z"
+}

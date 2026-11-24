@@ -1,0 +1,17 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T10:04:21.856768Z",
+  "id": "evidence:dsa-e2ffa16b3e7e16d8999d39cbc530aa1ea594649d",
+  "locator": {
+    "file": "logon-persistence/etc/sql/sapimport_mnn_pkg.sql",
+    "line": 1
+  },
+  "method": "ddl-parse",
+  "observed_at": "2026-11-24T09:49:32Z",
+  "record_kind": "evidence",
+  "revision": 1,
+  "source_id": "source_artifact:dsa-logon-persistence-etc-sql-sapimport-mnn-pkg-sql",
+  "source_revision": "e2d7189d5e5156b2bde8fe7e0dfdb356df5a697d2bff19d5e275cfaaf550862d",
+  "status": "active",
+  "updated_at": "2026-11-24T10:04:21.856768Z"
+}

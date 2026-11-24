@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:59:54.408851Z",
+  "id": "source_artifact:dsa-logon-webservices-oc-incoming-src-main-resources-xsd-logonocinterface-services-xsd",
+  "name": "LogonOCInterface_services.xsd",
+  "properties": {
+    "location": "logon-webservices-oc-incoming/src/main/resources/xsd/LogonOCInterface_services.xsd",
+    "revision": "c8ba2427df75d91516be254c7b2ba4a0c68697d535f6e95ecced4062d5c5e360",
+    "source_type": "xsd"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "source_artifact",
+  "updated_at": "2026-11-24T09:59:54.408851Z"
+}

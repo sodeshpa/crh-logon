@@ -1,0 +1,20 @@
+{
+  "applicability": {
+    "source_revision": "3bc06357a832a991828621f9ba45d77779be9c52a4247424f23eb432b593c2ac"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 0.9,
+  "created_at": "2026-11-24T09:51:52.064424Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:cfg-9971c2bf814e782344d965cfd73322f16c85ec0b0cf6eddb17891c9ee78b03e7"
+  ],
+  "id": "claim:237a0c61d66590e8a4979ba43ab85d956063cd99c844e597e418e8c1dffea7d2",
+  "predicate": "jms_queue",
+  "record_kind": "claim",
+  "revision": 1,
+  "status": "candidate",
+  "subject": "platform_service:hornetq-jms",
+  "updated_at": "2026-11-24T09:51:52.064424Z",
+  "value": "MopQueue"
+}

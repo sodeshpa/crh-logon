@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:59:54.408851Z",
+  "id": "source_artifact:dsa-logon-persistence-etc-sql-fbnl-initialdata-initialdata-fbnl-sql",
+  "name": "initialdata_FBNL.sql",
+  "properties": {
+    "location": "logon-persistence/etc/sql/fbnl_initialdata/initialdata_FBNL.sql",
+    "revision": "ed842548f716f711fb901915265b0d2e94a3b2f886a61b80adf465ee3785a1ad",
+    "source_type": "ddl_sql"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "source_artifact",
+  "updated_at": "2026-11-24T09:59:54.408851Z"
+}

@@ -1,0 +1,25 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T10:27:28.875935Z",
+  "id": "api_endpoint:mop-eventhandler-consume",
+  "name": "consume",
+  "properties": {
+    "method": "POST",
+    "path": "/logon/webservices-mop-incoming/services/MOPEventConsumer",
+    "protocol": "SOAP",
+    "request_schema": {
+      "title": "consume_message",
+      "type": "object"
+    },
+    "response_schema": {
+      "title": "consume_status",
+      "type": "object"
+    }
+  },
+  "qualified_name": "MOPEventPort.consume",
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "api_endpoint",
+  "updated_at": "2026-11-24T10:27:28.875935Z"
+}

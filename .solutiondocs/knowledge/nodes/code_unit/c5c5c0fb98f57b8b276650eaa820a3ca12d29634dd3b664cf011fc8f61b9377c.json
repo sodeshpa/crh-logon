@@ -1,0 +1,21 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T10:22:30.890929Z",
+  "id": "code_unit:logon-order-web-src-main-java-com-crh-logon-order-web-forms-truck-chartform.java",
+  "name": "ChartForm.java",
+  "properties": {
+    "file_path": "logon-order-web/src/main/java/com/crh/logon/order/web/forms/truck/ChartForm.java",
+    "language": "Java",
+    "loc": 553,
+    "metrics": {
+      "loc": 553
+    },
+    "unit_type": "file"
+  },
+  "qualified_name": "logon-order-web/src/main/java/com/crh/logon/order/web/forms/truck/ChartForm.java",
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "code_unit",
+  "updated_at": "2026-11-24T10:22:30.890929Z"
+}

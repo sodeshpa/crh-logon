@@ -1,0 +1,21 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T10:03:24.312910Z",
+  "id": "code_unit:logon-order-web-src-main-java-com-crh-logon-order-web-actions-auftrag-poolassignmentaction.java",
+  "name": "PoolAssignmentAction.java",
+  "properties": {
+    "file_path": "logon-order-web/src/main/java/com/crh/logon/order/web/actions/auftrag/PoolAssignmentAction.java",
+    "language": "Java",
+    "loc": 74,
+    "metrics": {
+      "loc": 74
+    },
+    "unit_type": "file"
+  },
+  "qualified_name": "logon-order-web/src/main/java/com/crh/logon/order/web/actions/auftrag/PoolAssignmentAction.java",
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "code_unit",
+  "updated_at": "2026-11-24T10:03:24.312910Z"
+}

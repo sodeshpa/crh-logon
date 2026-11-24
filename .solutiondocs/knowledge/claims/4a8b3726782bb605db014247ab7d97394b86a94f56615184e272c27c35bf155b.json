@@ -1,0 +1,28 @@
+{
+  "applicability": {
+    "source_revision": "880ff571c6531bdd2b51360ac4c8128795063f96"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T09:49:36.164007Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:deps-d0796ae4d9625352918c"
+  ],
+  "id": "claim:deps-b26f1ac3d1cb62c3aa18e1f5",
+  "predicate": "declared_coordinates",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "application:sodeshpa-improved-telegram",
+  "status": "candidate",
+  "subject": "dependency:external-distribution-mozilla-geckodriver-0.30.0",
+  "updated_at": "2026-11-24T09:49:36.164007Z",
+  "value": {
+    "ecosystem": "external-distribution",
+    "group": "mozilla",
+    "name": "geckodriver",
+    "note": "geckodriver.version (build-nightly/dev)",
+    "scope": "test",
+    "version": "0.30.0"
+  }
+}

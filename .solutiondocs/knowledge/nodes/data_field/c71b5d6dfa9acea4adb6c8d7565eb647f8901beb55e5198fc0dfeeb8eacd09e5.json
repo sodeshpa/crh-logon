@@ -1,0 +1,20 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T10:06:43.126484Z",
+  "id": "data_field:mn-fireqmaterialnumbermatnri-0-hjid",
+  "name": "HJID",
+  "properties": {
+    "constraints": [
+      "PRIMARY KEY",
+      "NOT NULL"
+    ],
+    "data_type": "number(19,0)",
+    "nullable": false,
+    "primary_key": true
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "data_field",
+  "updated_at": "2026-11-24T10:06:43.126484Z"
+}

@@ -1,0 +1,17 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T10:20:23.597113Z",
+  "id": "data_entity:vlgnc-order-mat-points",
+  "name": "VLGNC_ORDER_MAT_POINTS",
+  "properties": {
+    "entity_type": "view",
+    "materialised": false,
+    "purpose": "On order taking the view is used to filter loadingpoints by material restrictions applied on master data shippingpoint/loadingpoint.",
+    "schema": "ulgn"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "data_entity",
+  "updated_at": "2026-11-24T10:20:23.597113Z"
+}

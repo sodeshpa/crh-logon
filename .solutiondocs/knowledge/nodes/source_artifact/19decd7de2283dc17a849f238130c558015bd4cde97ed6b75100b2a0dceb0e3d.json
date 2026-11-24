@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:59:54.408851Z",
+  "id": "source_artifact:dsa-logon-persistence-etc-sql-patch-old-lh-patches-from-2-5-1-tlgnr-text-7898-sql",
+  "name": "tlgnr_text_7898.sql",
+  "properties": {
+    "location": "logon-persistence/etc/sql/patch/old_lh_patches/from_2.5.1/tlgnr_text_7898.sql",
+    "revision": "30f685fb1fc5419ec9f55f8ec5fadda9eaaa93bd92d29771a7bbb2d6ed4c2eb5",
+    "source_type": "ddl_sql"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "source_artifact",
+  "updated_at": "2026-11-24T09:59:54.408851Z"
+}

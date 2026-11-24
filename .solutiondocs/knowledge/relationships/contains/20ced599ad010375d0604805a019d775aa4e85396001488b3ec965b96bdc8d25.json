@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "claim_ids": [
+    "claim:fs-rel-5d7f47e9ade9de6bc95470b2"
+  ],
+  "created_at": "2026-11-24T10:36:58.132094Z",
+  "from": "component:logon-persistence",
+  "id": "relationship:fs-contains-5d7f47e9ade9de6bc95470b2",
+  "properties": {},
+  "record_kind": "relationship",
+  "revision": 1,
+  "status": "active",
+  "to": "code_unit:logon-persistence-etc-sql-patch-old_lh_patches-from_2.6.0-create_table_tlgnr_country_bs.sql",
+  "type": "contains",
+  "updated_at": "2026-11-24T10:36:58.132094Z"
+}

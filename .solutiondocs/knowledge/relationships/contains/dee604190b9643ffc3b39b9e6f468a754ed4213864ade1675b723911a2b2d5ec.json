@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "claim_ids": [
+    "claim:dsa-c27c6677a9b34a017e59de7774fac92f46f7de1f"
+  ],
+  "created_at": "2026-11-24T10:34:49.573274Z",
+  "from": "data_entity:bpn-distancestoplant",
+  "id": "relationship:dsa-db0edb538bea416e17da22204926b5dc014216e7",
+  "properties": {},
+  "record_kind": "relationship",
+  "revision": 1,
+  "status": "active",
+  "to": "data_field:bpn-distancestoplant-vstel",
+  "type": "contains",
+  "updated_at": "2026-11-24T10:34:49.573274Z"
+}

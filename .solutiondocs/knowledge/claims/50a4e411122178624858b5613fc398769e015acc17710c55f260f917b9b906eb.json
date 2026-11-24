@@ -1,0 +1,21 @@
+{
+  "applicability": {
+    "source_revision": "568fb62cc499bfcb716fdd4168d2266a10e7b88cc4eb3607d9b68efd621fe86d"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T10:20:23.597113Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:dsa-81eb4a622d2b4d2c7b9988fba5faaaae49c68b97"
+  ],
+  "id": "claim:dsa-56b5d756e95ef563661ae11039dcf278fa7eb387",
+  "predicate": "entity_type",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-persistence",
+  "status": "candidate",
+  "subject": "data_entity:vlgnc-rep-sapimport-error-bpn",
+  "updated_at": "2026-11-24T10:20:23.597113Z",
+  "value": "view"
+}

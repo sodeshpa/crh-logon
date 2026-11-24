@@ -1,0 +1,21 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T10:01:22.932656Z",
+  "id": "code_unit:logon-common-src-main-java-com-crh-logon-converters-dateconverter.java",
+  "name": "DateConverter.java",
+  "properties": {
+    "file_path": "logon-common/src/main/java/com/crh/logon/converters/DateConverter.java",
+    "language": "Java",
+    "loc": 47,
+    "metrics": {
+      "loc": 47
+    },
+    "unit_type": "file"
+  },
+  "qualified_name": "logon-common/src/main/java/com/crh/logon/converters/DateConverter.java",
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "code_unit",
+  "updated_at": "2026-11-24T10:01:22.932656Z"
+}

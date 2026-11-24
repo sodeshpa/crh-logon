@@ -1,0 +1,84 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:51:52.064424Z",
+  "id": "build_pipeline:logon-ant-master-build",
+  "name": "Logon Ant master build",
+  "properties": {
+    "build_system": {
+      "build_profiles": [
+        "pkg",
+        "dev",
+        "nightly",
+        "local"
+      ],
+      "build_steps": [
+        {
+          "name": "init"
+        },
+        {
+          "name": "dist"
+        },
+        {
+          "name": "do-all"
+        },
+        {
+          "name": "deploy"
+        },
+        {
+          "name": "package"
+        },
+        {
+          "name": "relnotes"
+        }
+      ],
+      "config_files": [
+        "build.xml",
+        "common.xml",
+        "properties.xml",
+        "build-test.xml",
+        "container/build.xml",
+        "logon-admin-web/build.xml",
+        "logon-application/build.xml",
+        "logon-business/build.xml",
+        "logon-common-web/build.xml",
+        "logon-common/build.xml",
+        "logon-cust-web/build.xml",
+        "logon-init-web/build.xml",
+        "logon-order-web/build.xml",
+        "logon-pdf-generator/build.xml",
+        "logon-persistence/build.xml",
+        "logon-security/build.xml",
+        "logon-simulator/build.xml",
+        "logon-terminal-web/build.xml",
+        "logon-test-load/build.xml",
+        "logon-webservices-client/build.xml",
+        "logon-webservices-mop-incoming/build.xml",
+        "logon-webservices-oc-incoming/build.xml",
+        "logon-webservices-pws-incoming/build.xml",
+        "logon-webservices/build.xml",
+        "pkg/build.xml"
+      ],
+      "tool": "Apache Ant"
+    },
+    "logging": {
+      "config_file": "etc/log4j.xml",
+      "framework": "log4j",
+      "framework_version": "1.2.16",
+      "log_destinations": [
+        {
+          "config_location": "etc/log4j.xml",
+          "type": "file"
+        },
+        {
+          "config_location": "etc/log4j.xml",
+          "type": "console"
+        }
+      ]
+    }
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "build_pipeline",
+  "updated_at": "2026-11-24T09:51:52.064424Z"
+}

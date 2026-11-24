@@ -1,0 +1,21 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:46:43.269899Z",
+  "domain": "organisation",
+  "evidence_ids": [
+    "evidence:git-history-depth"
+  ],
+  "gap_type": "documentable",
+  "id": "gap:git-history-flattened-history",
+  "knowledge_gap_type": "rationale",
+  "owner_ids": [],
+  "predicate": "change_history",
+  "priority": "P2",
+  "prompt": "Git history has only 2 commits by one author (full-tree import), so real authorship, ownership, bus factor, hotspots, co-change coupling and bug-fix history are unknowable from git. Locate the upstream/original repository history (or ChangeLog.legacy / issue tracker) and the real maintainers.",
+  "record_kind": "gap",
+  "revision": 1,
+  "scope_id": "application:sodeshpa-improved-telegram",
+  "status": "open",
+  "subject": "application:sodeshpa-improved-telegram",
+  "updated_at": "2026-11-24T09:46:43.269899Z"
+}

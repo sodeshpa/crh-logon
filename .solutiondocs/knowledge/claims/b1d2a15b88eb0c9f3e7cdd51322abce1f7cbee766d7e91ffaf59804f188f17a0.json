@@ -1,0 +1,28 @@
+{
+  "applicability": {
+    "source_revision": "880ff571c6531bdd2b51360ac4c8128795063f96"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T09:49:36.164007Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:deps-9960072dbcacde5f82eb"
+  ],
+  "id": "claim:deps-63722b879cf63bb811a139c7",
+  "predicate": "declared_coordinates",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "application:sodeshpa-improved-telegram",
+  "status": "candidate",
+  "subject": "dependency:external-distribution-ch.adnovum.jcan-jcan-test-1.14.0.0",
+  "updated_at": "2026-11-24T09:49:36.164007Z",
+  "value": {
+    "ecosystem": "external-distribution",
+    "group": "ch.adnovum.jcan",
+    "name": "jcan-test",
+    "note": "jcan-test.version",
+    "scope": "test",
+    "version": "1.14.0.0"
+  }
+}

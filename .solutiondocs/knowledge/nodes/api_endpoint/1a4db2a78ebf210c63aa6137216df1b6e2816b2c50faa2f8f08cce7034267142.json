@@ -1,0 +1,25 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T10:27:28.875935Z",
+  "id": "api_endpoint:ffsms-helloworld",
+  "name": "HelloWorld",
+  "properties": {
+    "method": "POST",
+    "path": "/ofmawsvc3/ffsms.asmx",
+    "protocol": "SOAP",
+    "request_schema": {
+      "title": "HelloWorldSoapIn",
+      "type": "object"
+    },
+    "response_schema": {
+      "title": "HelloWorldSoapOut",
+      "type": "object"
+    }
+  },
+  "qualified_name": "FSmsSoap.HelloWorld",
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "api_endpoint",
+  "updated_at": "2026-11-24T10:27:28.875935Z"
+}

@@ -1,0 +1,19 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:59:54.408851Z",
+  "id": "source_artifact:dsa-logon-webservices-client-etc-wsdl-dx1-java-instance-transferdeliverydocument-out-wsdl",
+  "name": "DX1_Java_Instance_TransferDeliveryDocument_Out.wsdl",
+  "properties": {
+    "location": "logon-webservices-client/etc/wsdl/DX1_Java_Instance_TransferDeliveryDocument_Out.wsdl",
+    "metadata": {
+      "dsa:target_namespace": "urn:ea.crh.net:Sales:TransferDeliveryDocument"
+    },
+    "revision": "c1f7775b4c68cf1c3ba9578a164aef43e7c2015893302b97656f43086125ffeb",
+    "source_type": "wsdl"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "source_artifact",
+  "updated_at": "2026-11-24T09:59:54.408851Z"
+}

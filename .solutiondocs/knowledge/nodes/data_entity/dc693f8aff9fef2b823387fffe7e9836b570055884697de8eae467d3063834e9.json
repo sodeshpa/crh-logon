@@ -1,0 +1,17 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T10:20:23.597113Z",
+  "id": "data_entity:vlgnc-tp-sap-vendor-search",
+  "name": "VLGNC_TP_SAP_VENDOR_SEARCH",
+  "properties": {
+    "entity_type": "view",
+    "materialised": false,
+    "purpose": "View for searching among TLGNC_TP_SAP_VENDOR entries by SAP Vendor Number and Vendor Partner Function codes",
+    "schema": "ulgn"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "data_entity",
+  "updated_at": "2026-11-24T10:20:23.597113Z"
+}

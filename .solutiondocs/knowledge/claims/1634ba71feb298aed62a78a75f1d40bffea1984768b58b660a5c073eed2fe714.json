@@ -1,0 +1,24 @@
+{
+  "applicability": {
+    "source_revision": "c4799b3dfcf94ee66c921f340bda20c43e31a979"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 0.95,
+  "created_at": "2026-11-24T09:57:00.770446Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:fs-0676d53352cd0438b05bf4cb"
+  ],
+  "id": "claim:fs-rel-0676d53352cd0438b05bf4cb",
+  "predicate": "contains",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-common-web",
+  "status": "candidate",
+  "subject": "relationship:fs-contains-0676d53352cd0438b05bf4cb",
+  "updated_at": "2026-11-24T09:57:00.770446Z",
+  "value": {
+    "container": "component:logon-common-web",
+    "file_path": "logon-common-web/etc/guiproto/shipping_point.html"
+  }
+}

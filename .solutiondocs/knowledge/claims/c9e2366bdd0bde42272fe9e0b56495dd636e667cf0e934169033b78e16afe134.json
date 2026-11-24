@@ -1,0 +1,28 @@
+{
+  "applicability": {
+    "source_revision": "be3a33af02166ca8601a64136b686e4141c2ee53"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T09:49:36.164007Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:deps-2b4675d7200a5d9b9ea9"
+  ],
+  "id": "claim:deps-f4b144de78b1bdce430693ca",
+  "predicate": "declared_coordinates",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-common-web",
+  "status": "candidate",
+  "subject": "dependency:maven-org.jboss.spec.javax.servlet-jboss-servlet-api_3.0_spec-1.0.1.final",
+  "updated_at": "2026-11-24T09:49:36.164007Z",
+  "value": {
+    "ecosystem": "maven",
+    "group": "org.jboss.spec.javax.servlet",
+    "name": "jboss-servlet-api_3.0_spec",
+    "note": "maven scope=provided (container-provided; mapped to compile)",
+    "scope": "compile",
+    "version": "1.0.1.Final"
+  }
+}

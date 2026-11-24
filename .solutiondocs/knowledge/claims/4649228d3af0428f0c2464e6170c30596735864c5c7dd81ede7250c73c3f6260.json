@@ -1,0 +1,24 @@
+{
+  "applicability": {
+    "source_revision": "c4799b3dfcf94ee66c921f340bda20c43e31a979"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 0.95,
+  "created_at": "2026-11-24T10:22:30.890929Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:fs-08f5396dde5d7a440f9865f8"
+  ],
+  "id": "claim:fs-rel-08f5396dde5d7a440f9865f8",
+  "predicate": "contains",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-order-web",
+  "status": "candidate",
+  "subject": "relationship:fs-contains-08f5396dde5d7a440f9865f8",
+  "updated_at": "2026-11-24T10:22:30.890929Z",
+  "value": {
+    "container": "component:logon-order-web",
+    "file_path": "logon-order-web/src/main/webapp/WEB-INF/jsp/auftrag/OrderSpecialTileInc.jsp"
+  }
+}

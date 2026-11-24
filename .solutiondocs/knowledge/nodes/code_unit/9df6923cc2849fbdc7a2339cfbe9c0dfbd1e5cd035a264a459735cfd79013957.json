@@ -1,0 +1,21 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T11:27:07.998697Z",
+  "id": "code_unit:logon-simulator-src-main-java-com-crh-logon-simulator-pdalogintest.java",
+  "name": "PdaLoginTest.java",
+  "properties": {
+    "file_path": "logon-simulator/src/main/java/com/crh/logon/simulator/PdaLoginTest.java",
+    "language": "Java",
+    "loc": 68,
+    "metrics": {
+      "loc": 68
+    },
+    "unit_type": "file"
+  },
+  "qualified_name": "logon-simulator/src/main/java/com/crh/logon/simulator/PdaLoginTest.java",
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "code_unit",
+  "updated_at": "2026-11-24T11:27:07.998697Z"
+}

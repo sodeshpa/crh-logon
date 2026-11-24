@@ -1,0 +1,21 @@
+{
+  "applicability": {
+    "source_revision": "6905466de23e2cbdff868bc569617b4119b57645d1c166c121eff6d0ed96ed40"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T10:27:28.875935Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:dsa-f1ded0b8adf32113489d663d28e745091a360f80"
+  ],
+  "id": "claim:dsa-58201db1e912177ab21057d9d3fc469a5a211e2b",
+  "predicate": "path",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-webservices-client",
+  "status": "candidate",
+  "subject": "api_endpoint:sirocco20-getmos",
+  "updated_at": "2026-11-24T10:27:28.875935Z",
+  "value": "/SiroccoGateway/services/Sirocco20"
+}

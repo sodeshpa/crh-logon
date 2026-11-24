@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "claim_ids": [
+    "claim:dsa-7eb6fedcc8f7e4ae66e7ba58a2e55de6aaf0aa8b"
+  ],
+  "created_at": "2026-11-24T10:34:49.573274Z",
+  "from": "component:logon-webservices",
+  "id": "relationship:dsa-36a9cc98e74cf3b05632d57537763429f03e5677",
+  "properties": {},
+  "record_kind": "relationship",
+  "revision": 1,
+  "status": "active",
+  "to": "data_entity:bpn-mastercustomermasterbasi-1",
+  "type": "owns_data",
+  "updated_at": "2026-11-24T10:34:49.573274Z"
+}

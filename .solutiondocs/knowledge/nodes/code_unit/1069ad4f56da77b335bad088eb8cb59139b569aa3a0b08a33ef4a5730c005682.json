@@ -1,0 +1,21 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:58:39.080022Z",
+  "id": "code_unit:logon-common-web-src-main-webapp-login_new_password.jsp",
+  "name": "Login_new_password.jsp",
+  "properties": {
+    "file_path": "logon-common-web/src/main/webapp/Login_new_password.jsp",
+    "language": "Web/Template",
+    "loc": 153,
+    "metrics": {
+      "loc": 153
+    },
+    "unit_type": "file"
+  },
+  "qualified_name": "logon-common-web/src/main/webapp/Login_new_password.jsp",
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "code_unit",
+  "updated_at": "2026-11-24T09:58:39.080022Z"
+}

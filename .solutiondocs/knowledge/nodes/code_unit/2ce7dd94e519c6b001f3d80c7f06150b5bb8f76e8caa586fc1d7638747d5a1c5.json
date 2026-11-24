@@ -1,0 +1,21 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T10:03:24.312910Z",
+  "id": "code_unit:logon-cust-web-src-main-webapp-web-inf-jsp-passwordchange-passwordchangetile.jsp",
+  "name": "PasswordChangeTile.jsp",
+  "properties": {
+    "file_path": "logon-cust-web/src/main/webapp/WEB-INF/jsp/passwordchange/PasswordChangeTile.jsp",
+    "language": "Web/Template",
+    "loc": 166,
+    "metrics": {
+      "loc": 166
+    },
+    "unit_type": "file"
+  },
+  "qualified_name": "logon-cust-web/src/main/webapp/WEB-INF/jsp/passwordchange/PasswordChangeTile.jsp",
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "code_unit",
+  "updated_at": "2026-11-24T10:03:24.312910Z"
+}

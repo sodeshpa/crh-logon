@@ -1,0 +1,17 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T10:20:23.597113Z",
+  "id": "data_entity:vlgnc-dispo-assignment-list",
+  "name": "VLGNC_DISPO_ASSIGNMENT_LIST",
+  "properties": {
+    "entity_type": "view",
+    "materialised": false,
+    "purpose": "assignment list for dispo screen - The dispo_assignment_list was delivering the pool info too, but in the code the filtering for the pool has been removed. Since the truck_pool_id was not used at all in this view, it has been removed. The assingment list is delivered records unique by truck_id.",
+    "schema": "ulgn"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "data_entity",
+  "updated_at": "2026-11-24T10:20:23.597113Z"
+}

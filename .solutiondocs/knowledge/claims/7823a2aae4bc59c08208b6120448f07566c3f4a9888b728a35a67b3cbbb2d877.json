@@ -1,0 +1,27 @@
+{
+  "applicability": {
+    "source_revision": "c4799b3dfcf94ee66c921f340bda20c43e31a979"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 0.95,
+  "created_at": "2026-11-24T10:01:22.932656Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:fs-f86e3b4b714e2f15fe0da3f5"
+  ],
+  "id": "claim:fs-f86e3b4b714e2f15fe0da3f5",
+  "predicate": "file_inventory",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-common-web",
+  "status": "candidate",
+  "subject": "code_unit:logon-common-web-src-main-webapp-js-logon-gmap.js",
+  "updated_at": "2026-11-24T10:01:22.932656Z",
+  "value": {
+    "estimated_tokens": 4378,
+    "file_path": "logon-common-web/src/main/webapp/js/logon-gmap.js",
+    "language": "JavaScript/TypeScript",
+    "loc": 552,
+    "size_bytes": 17513
+  }
+}

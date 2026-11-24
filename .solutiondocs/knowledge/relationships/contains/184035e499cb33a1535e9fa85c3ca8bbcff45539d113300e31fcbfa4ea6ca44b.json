@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "claim_ids": [
+    "claim:18ea0f84dcfd09ece28996bb7f96ef880b7d76915a549605c5a76c79f3d6088e"
+  ],
+  "created_at": "2026-11-24T09:51:52.064424Z",
+  "from": "application:sodeshpa-improved-telegram",
+  "id": "relationship:contains-642087275592d563c1c6cfba687c4c6df17266d1",
+  "properties": {},
+  "record_kind": "relationship",
+  "revision": 1,
+  "status": "active",
+  "to": "automated_process:logon-rfid-object-label-cleanup",
+  "type": "contains",
+  "updated_at": "2026-11-24T09:51:52.064424Z"
+}

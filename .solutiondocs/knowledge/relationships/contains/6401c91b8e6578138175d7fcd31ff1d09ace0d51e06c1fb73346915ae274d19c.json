@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "claim_ids": [
+    "claim:87ada8af65232408a170e6946d7e43a5aa5468a43bddc28b57af94e16caa2d66"
+  ],
+  "created_at": "2026-11-24T09:53:30.031918Z",
+  "from": "config_item:config-build-properties",
+  "id": "relationship:contains-5fd1485282a372164c4ad3b964d687e5b9fbbdf5",
+  "properties": {},
+  "record_kind": "relationship",
+  "revision": 1,
+  "status": "active",
+  "to": "setting:config-build-properties--kafka-version",
+  "type": "contains",
+  "updated_at": "2026-11-24T09:53:30.031918Z"
+}

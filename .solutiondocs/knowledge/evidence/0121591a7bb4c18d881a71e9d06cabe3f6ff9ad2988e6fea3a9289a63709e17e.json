@@ -1,0 +1,18 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:50:56.981245Z",
+  "id": "evidence:fs-031990c077bbb69d1d132e75",
+  "locator": {
+    "file": "logon-business/src/main/java/com/crh/logon/business/services/impl/PoolAssignmentServiceBean.java",
+    "line_end": 315,
+    "line_start": 1
+  },
+  "method": "file-system",
+  "observed_at": "2026-11-24T09:46:55Z",
+  "record_kind": "evidence",
+  "revision": 1,
+  "source_id": "source_artifact:fs-logon-business-tree",
+  "source_revision": "c4799b3dfcf94ee66c921f340bda20c43e31a979",
+  "status": "active",
+  "updated_at": "2026-11-24T09:50:56.981245Z"
+}

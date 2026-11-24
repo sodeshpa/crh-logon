@@ -1,0 +1,21 @@
+{
+  "applicability": {
+    "source_revision": "880ff571c6531bdd2b51360ac4c8128795063f96"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 0.95,
+  "created_at": "2026-11-24T09:57:53.123932Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:deps-becb72ea81277d32a5b9"
+  ],
+  "id": "claim:deps-4102fd063a7dddd4bad84abe",
+  "predicate": "tech_stack.runtime_platform",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "application:sodeshpa-improved-telegram",
+  "status": "candidate",
+  "subject": "application:sodeshpa-improved-telegram",
+  "updated_at": "2026-11-24T09:57:53.123932Z",
+  "value": "Red Hat JBoss EAP 6.4.21 (container.type=jboss7); Java EE 6 provided-scope specs"
+}

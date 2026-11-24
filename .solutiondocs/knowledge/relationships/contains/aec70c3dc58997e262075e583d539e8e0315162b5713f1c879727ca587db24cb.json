@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "claim_ids": [
+    "claim:ec10a7af0efce80d233809fa36eaa4cf128dd427c9c5902cbaf739a39265142b"
+  ],
+  "created_at": "2026-11-24T09:51:52.064424Z",
+  "from": "component:ansible",
+  "id": "relationship:contains-0cfc8b5a4f42789fbf29d64e8935e7e97b3005de",
+  "properties": {},
+  "record_kind": "relationship",
+  "revision": 1,
+  "status": "active",
+  "to": "config_item:ansible-inventories-integration",
+  "type": "contains",
+  "updated_at": "2026-11-24T09:51:52.064424Z"
+}

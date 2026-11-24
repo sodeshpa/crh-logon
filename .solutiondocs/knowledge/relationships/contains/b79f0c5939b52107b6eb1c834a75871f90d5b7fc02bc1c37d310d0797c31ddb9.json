@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "claim_ids": [
+    "claim:dsa-913806863a17134a581bedcc7a9048b603345bfe"
+  ],
+  "created_at": "2026-11-24T11:07:07.476264Z",
+  "from": "data_store:logon-main-database",
+  "id": "relationship:dsa-afe5054e691680bdd472211f855e99917ed4f0e6",
+  "properties": {},
+  "record_kind": "relationship",
+  "revision": 1,
+  "status": "active",
+  "to": "data_entity:vlgns-rail-rep-soldto-shipto",
+  "type": "contains",
+  "updated_at": "2026-11-24T11:07:07.476264Z"
+}

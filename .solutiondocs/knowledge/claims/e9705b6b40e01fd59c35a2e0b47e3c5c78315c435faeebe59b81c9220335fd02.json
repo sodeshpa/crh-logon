@@ -1,0 +1,27 @@
+{
+  "applicability": {
+    "source_revision": "c4799b3dfcf94ee66c921f340bda20c43e31a979"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 0.95,
+  "created_at": "2026-11-24T10:32:46.275408Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:fs-373ebbf11b16908d0b36c62c"
+  ],
+  "id": "claim:fs-373ebbf11b16908d0b36c62c",
+  "predicate": "file_inventory",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-persistence",
+  "status": "candidate",
+  "subject": "code_unit:logon-persistence-etc-sql-cities_initialdata-tlgnc_wagon_keeper.sql",
+  "updated_at": "2026-11-24T10:32:46.275408Z",
+  "value": {
+    "estimated_tokens": 473,
+    "file_path": "logon-persistence/etc/sql/cities_initialdata/tlgnc_wagon_keeper.sql",
+    "language": "SQL",
+    "loc": 19,
+    "size_bytes": 1892
+  }
+}

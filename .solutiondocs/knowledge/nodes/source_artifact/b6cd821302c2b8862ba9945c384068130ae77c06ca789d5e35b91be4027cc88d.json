@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:59:54.408851Z",
+  "id": "source_artifact:dsa-logon-persistence-etc-sql-cl2-initialdata-initialdata-cl2-sql",
+  "name": "initialdata_cl2.sql",
+  "properties": {
+    "location": "logon-persistence/etc/sql/cl2_initialdata/initialdata_cl2.sql",
+    "revision": "a09249c337fb5ce74b37f7e98f824803755c9873d16ef1d7e3b6aa0771cb86dc",
+    "source_type": "ddl_sql"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "source_artifact",
+  "updated_at": "2026-11-24T09:59:54.408851Z"
+}

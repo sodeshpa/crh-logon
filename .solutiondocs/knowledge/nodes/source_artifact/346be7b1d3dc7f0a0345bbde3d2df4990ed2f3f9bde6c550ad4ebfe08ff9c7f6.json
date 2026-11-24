@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:59:54.408851Z",
+  "id": "source_artifact:dsa-logon-persistence-etc-sql-refdata-tlgnr-weigh-system-lp-sql",
+  "name": "tlgnr_weigh_system_lp.sql",
+  "properties": {
+    "location": "logon-persistence/etc/sql/refdata/tlgnr_weigh_system_lp.sql",
+    "revision": "a28adafc58e5c972e4f57e448cf6730461047b4841b02ac6a117ce3e940151dd",
+    "source_type": "ddl_sql"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "source_artifact",
+  "updated_at": "2026-11-24T09:59:54.408851Z"
+}

@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:51:52.064424Z",
+  "id": "source_artifact:cfg-container-jboss7-standalone-nightly-xml",
+  "name": "container/jboss7/standalone-nightly.xml",
+  "properties": {
+    "location": "container/jboss7/standalone-nightly.xml",
+    "revision": "3befe05b4be6910bbbb858950ecd62079e9200ef7b132fe8de7c8fa234e3b6bc",
+    "source_type": "config_file"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "source_artifact",
+  "updated_at": "2026-11-24T09:51:52.064424Z"
+}

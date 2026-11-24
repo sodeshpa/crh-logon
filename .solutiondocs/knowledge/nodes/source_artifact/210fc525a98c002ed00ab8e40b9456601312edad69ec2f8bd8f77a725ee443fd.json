@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:51:52.064424Z",
+  "id": "source_artifact:cfg-logon-business-etc-cfg-log4j-properties",
+  "name": "logon-business/etc/cfg/log4j.properties",
+  "properties": {
+    "location": "logon-business/etc/cfg/log4j.properties",
+    "revision": "b7de96d5cbd2222eeb80a31f73bdd50d9cd75ce5648cbb2cebc96d5630df21a2",
+    "source_type": "config_file"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "source_artifact",
+  "updated_at": "2026-11-24T09:51:52.064424Z"
+}

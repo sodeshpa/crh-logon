@@ -1,0 +1,21 @@
+{
+  "applicability": {
+    "source_revision": "7b1593b80f97a12d19b1ac2857a94b70ba18c62f7a4576a7aa3d09599a7ab860"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T10:27:28.875935Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:dsa-b4825dd062d87a8f9c86939dd7c15e524dc828cf"
+  ],
+  "id": "claim:dsa-c5cbbc4d5ce5e30afbebcba17011ddade4b85be7",
+  "predicate": "protocol",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-business",
+  "status": "candidate",
+  "subject": "api_endpoint:openapi-heremap-routing-calculateroutes",
+  "updated_at": "2026-11-24T10:27:28.875935Z",
+  "value": "REST"
+}

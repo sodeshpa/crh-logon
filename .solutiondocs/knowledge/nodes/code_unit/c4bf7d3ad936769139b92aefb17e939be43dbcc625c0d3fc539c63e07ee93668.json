@@ -1,0 +1,21 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T11:29:38.590104Z",
+  "id": "code_unit:logon-webservices-client-src-main-java-com-crh-logon-webservices-clients-beans-ferrari-filemessagebean.java",
+  "name": "FileMessageBean.java",
+  "properties": {
+    "file_path": "logon-webservices-client/src/main/java/com/crh/logon/webservices/clients/beans/ferrari/FileMessageBean.java",
+    "language": "Java",
+    "loc": 106,
+    "metrics": {
+      "loc": 106
+    },
+    "unit_type": "file"
+  },
+  "qualified_name": "logon-webservices-client/src/main/java/com/crh/logon/webservices/clients/beans/ferrari/FileMessageBean.java",
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "code_unit",
+  "updated_at": "2026-11-24T11:29:38.590104Z"
+}

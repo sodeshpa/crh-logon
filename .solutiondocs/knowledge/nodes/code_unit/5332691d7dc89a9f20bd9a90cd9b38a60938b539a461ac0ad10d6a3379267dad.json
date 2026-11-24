@@ -1,0 +1,21 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T11:29:38.590104Z",
+  "id": "code_unit:logon-webservices-etc-entities-26_create_constraints_fk_index.sql",
+  "name": "26_create_constraints_fk_index.sql",
+  "properties": {
+    "file_path": "logon-webservices/etc/entities/26_create_constraints_fk_index.sql",
+    "language": "SQL",
+    "loc": 12,
+    "metrics": {
+      "loc": 12
+    },
+    "unit_type": "file"
+  },
+  "qualified_name": "logon-webservices/etc/entities/26_create_constraints_fk_index.sql",
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "code_unit",
+  "updated_at": "2026-11-24T11:29:38.590104Z"
+}

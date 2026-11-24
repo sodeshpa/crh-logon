@@ -1,0 +1,21 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:59:54.408851Z",
+  "id": "source_artifact:dsa-logon-webservices-client-etc-wsdl-xsd-logonldsinterface-common-out-xsd",
+  "name": "LogonLDSInterface_common_out.xsd",
+  "properties": {
+    "location": "logon-webservices-client/etc/wsdl/xsd/LogonLDSInterface_common_out.xsd",
+    "metadata": {
+      "dsa:complex_type_count": 26,
+      "dsa:simple_type_count": 132,
+      "dsa:top_level_element_count": 2
+    },
+    "revision": "b737c5b2aa4f4298dfcdd2a767168a9b75d9f4227698a0492f767987f8efb7b1",
+    "source_type": "xsd"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "source_artifact",
+  "updated_at": "2026-11-24T09:59:54.408851Z"
+}

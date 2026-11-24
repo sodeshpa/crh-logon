@@ -1,0 +1,20 @@
+{
+  "applicability": {
+    "source_revision": "2b5e9be99552872602ab3145da2551c39b9f9e527443d17d815d56ae044618b5"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 0.85,
+  "created_at": "2026-11-24T09:53:30.031918Z",
+  "derivation": "static_inference",
+  "evidence_ids": [
+    "evidence:cfg-35210221ad59be0e5531efecc86fc7be50ff5f941a5a0a1b6f66cec6f0ebd0ed"
+  ],
+  "id": "claim:291d11bf9a1fdde89f468907bdd8293224644ded02473549d6219582cd9bc40e",
+  "predicate": "hardcoded_credential_in_script",
+  "record_kind": "claim",
+  "revision": 1,
+  "status": "candidate",
+  "subject": "build_pipeline:logon-ansible-int-deploy",
+  "updated_at": "2026-11-24T09:53:30.031918Z",
+  "value": true
+}

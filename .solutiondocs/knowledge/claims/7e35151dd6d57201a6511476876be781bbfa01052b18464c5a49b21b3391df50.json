@@ -1,0 +1,20 @@
+{
+  "applicability": {
+    "source_revision": "3a835caeea77d691835acd5cbf0d3261f720ee1fa6f1c6d025af6b252385a44e"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 0.95,
+  "created_at": "2026-11-24T09:51:52.064424Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:cfg-3669e4d125878502d184028cb5a50a6a0c20b2780b0da083ab7120f861fef0fa"
+  ],
+  "id": "claim:5e5d74d7d43fdf6358e21be053956a2e188c453d9818b4f908324ad123eaa8ef",
+  "predicate": "schedule_nightly",
+  "record_kind": "claim",
+  "revision": 1,
+  "status": "candidate",
+  "subject": "automated_process:logon-rfid-object-label-cleanup",
+  "updated_at": "2026-11-24T09:51:52.064424Z",
+  "value": "0 0 0 * * ?"
+}

@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:51:52.064424Z",
+  "id": "source_artifact:cfg-config-logon-db-properties",
+  "name": "config/logon-db.properties",
+  "properties": {
+    "location": "config/logon-db.properties",
+    "revision": "c3a092c65f281953ab6b9e8528d830a7952fc40bac0b145937ab284372f8e1e4",
+    "source_type": "config_file"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "source_artifact",
+  "updated_at": "2026-11-24T09:51:52.064424Z"
+}

@@ -1,0 +1,28 @@
+{
+  "applicability": {
+    "source_revision": "b65484483903039583cc2f1b36a492bb8d134609"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T09:49:36.164007Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:deps-923aebb9e79fbecfcddf"
+  ],
+  "id": "claim:deps-ebfbb8e81c6281f214acc720",
+  "predicate": "declared_coordinates",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-common-web",
+  "status": "candidate",
+  "subject": "dependency:ant-jar-org.directwebremoting-dwr-2.0.5",
+  "updated_at": "2026-11-24T09:49:36.164007Z",
+  "value": {
+    "ecosystem": "ant-jar",
+    "group": "org.directwebremoting",
+    "name": "dwr",
+    "note": "ant property dwr.jar -> ${DWR_HOME}/dwr.jar (resolved from external jpository/mpository; not bundled in repo)",
+    "scope": "compile",
+    "version": "2.0.5"
+  }
+}

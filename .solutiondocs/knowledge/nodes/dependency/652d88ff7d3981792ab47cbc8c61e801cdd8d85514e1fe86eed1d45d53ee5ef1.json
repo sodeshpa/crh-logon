@@ -1,0 +1,17 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:49:36.164007Z",
+  "id": "dependency:ant-jar-org.hibernate-hibernate-core-4.2.1.final",
+  "name": "hibernate-core",
+  "properties": {
+    "dependency_type": "library",
+    "scope": "compile",
+    "version": "4.2.1.Final"
+  },
+  "qualified_name": "org.hibernate:hibernate-core@4.2.1.Final",
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "dependency",
+  "updated_at": "2026-11-24T09:49:36.164007Z"
+}

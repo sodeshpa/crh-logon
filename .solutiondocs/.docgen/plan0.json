@@ -1,0 +1,79 @@
+[
+    {
+        "label":  "Initialize ledger",
+        "deps":  [
+
+                 ],
+        "runs":  "inline",
+        "id":  "phase-0-init",
+        "wave":  0
+    },
+    {
+        "label":  "Repository layout check",
+        "deps":  [
+                     "phase-0-init"
+                 ],
+        "runs":  "inline",
+        "id":  "phase-0-repo-layout",
+        "wave":  0
+    },
+    {
+        "id":  "phase-0-manifest",
+        "label":  "Secret scan + file manifest",
+        "skill":  "file-coverage-enforcement",
+        "deps":  [
+                     "phase-0-repo-layout"
+                 ],
+        "wave":  1,
+        "runs":  "subagent"
+    },
+    {
+        "label":  "Discover external sources",
+        "deps":  [
+                     "phase-0-repo-layout"
+                 ],
+        "runs":  "inline",
+        "id":  "phase-0-external-sources",
+        "wave":  1
+    },
+    {
+        "id":  "phase-0-routing",
+        "label":  "Analysis routing",
+        "skill":  "codebase-analysis-routing",
+        "deps":  [
+                     "phase-0-manifest"
+                 ],
+        "wave":  2,
+        "runs":  "inline"
+    },
+    {
+        "id":  "phase-0-components",
+        "label":  "Component identification + KB init",
+        "skill":  "component-identification",
+        "deps":  [
+                     "phase-0-manifest"
+                 ],
+        "wave":  2,
+        "runs":  "inline"
+    },
+    {
+        "id":  "phase-0-grammar-setup",
+        "label":  "Tree-sitter setup",
+        "skill":  "tree-sitter-setup",
+        "deps":  [
+                     "phase-0-manifest"
+                 ],
+        "wave":  2,
+        "runs":  "subagent"
+    },
+    {
+        "id":  "phase-0-lsp-setup",
+        "label":  "LSP setup",
+        "skill":  "lsp-setup-copilot",
+        "deps":  [
+                     "phase-0-manifest"
+                 ],
+        "wave":  2,
+        "runs":  "subagent"
+    }
+]

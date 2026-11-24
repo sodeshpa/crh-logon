@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "claim_ids": [
+    "claim:dsa-d14a8ff744723ea6e799130ceb3e2317f89fd50b"
+  ],
+  "created_at": "2026-11-24T10:41:22.508413Z",
+  "from": "data_store:logon-main-database",
+  "id": "relationship:dsa-380550350b923e385c14803504bde650c92c2c12",
+  "properties": {},
+  "record_kind": "relationship",
+  "revision": 1,
+  "status": "active",
+  "to": "data_entity:vlgnc-truck-last-known-coord",
+  "type": "contains",
+  "updated_at": "2026-11-24T10:41:22.508413Z"
+}

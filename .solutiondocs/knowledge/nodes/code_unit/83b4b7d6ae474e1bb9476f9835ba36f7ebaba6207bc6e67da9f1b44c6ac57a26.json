@@ -1,0 +1,21 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T10:30:58.828557Z",
+  "id": "code_unit:logon-order-web-src-main-webapp-js-auftrag-poolassignment.js",
+  "name": "PoolAssignment.js",
+  "properties": {
+    "file_path": "logon-order-web/src/main/webapp/js/auftrag/PoolAssignment.js",
+    "language": "JavaScript/TypeScript",
+    "loc": 351,
+    "metrics": {
+      "loc": 351
+    },
+    "unit_type": "file"
+  },
+  "qualified_name": "logon-order-web/src/main/webapp/js/auftrag/PoolAssignment.js",
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "code_unit",
+  "updated_at": "2026-11-24T10:30:58.828557Z"
+}

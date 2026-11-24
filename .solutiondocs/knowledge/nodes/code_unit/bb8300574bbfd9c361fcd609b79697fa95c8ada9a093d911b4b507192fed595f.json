@@ -1,0 +1,21 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:47:47.890823Z",
+  "id": "code_unit:logon-admin-web-src-main-webapp-web-inf-jsp-truckadmin-truckadminpooltile.jsp",
+  "name": "TruckAdminPoolTile.jsp",
+  "properties": {
+    "file_path": "logon-admin-web/src/main/webapp/WEB-INF/jsp/truckadmin/TruckAdminPoolTile.jsp",
+    "language": "Web/Template",
+    "loc": 335,
+    "metrics": {
+      "loc": 335
+    },
+    "unit_type": "file"
+  },
+  "qualified_name": "logon-admin-web/src/main/webapp/WEB-INF/jsp/truckadmin/TruckAdminPoolTile.jsp",
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "code_unit",
+  "updated_at": "2026-11-24T09:47:47.890823Z"
+}

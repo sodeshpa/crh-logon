@@ -1,0 +1,21 @@
+{
+  "applicability": {
+    "source_revision": "6905466de23e2cbdff868bc569617b4119b57645d1c166c121eff6d0ed96ed40"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T10:27:28.875935Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:dsa-b1f50e4a3ffebbad6e0959e7e979ae7a0313b7f2"
+  ],
+  "id": "claim:dsa-948d9d2d6d243609b177d0fd71697cf87b966561",
+  "predicate": "protocol",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-webservices-client",
+  "status": "candidate",
+  "subject": "api_endpoint:sirocco20-querymtstatus",
+  "updated_at": "2026-11-24T10:27:28.875935Z",
+  "value": "SOAP"
+}

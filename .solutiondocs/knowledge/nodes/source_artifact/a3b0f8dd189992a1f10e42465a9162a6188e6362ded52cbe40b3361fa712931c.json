@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:59:54.408851Z",
+  "id": "source_artifact:dsa-logon-persistence-etc-sql-refdata-tlgnr-wagon-event-status-sql",
+  "name": "tlgnr_wagon_event_status.sql",
+  "properties": {
+    "location": "logon-persistence/etc/sql/refdata/tlgnr_wagon_event_status.sql",
+    "revision": "7cdd83ba6c9c925012c07af4bf424dea9185271ee599cc72a9ada29208a4b3a8",
+    "source_type": "ddl_sql"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "source_artifact",
+  "updated_at": "2026-11-24T09:59:54.408851Z"
+}

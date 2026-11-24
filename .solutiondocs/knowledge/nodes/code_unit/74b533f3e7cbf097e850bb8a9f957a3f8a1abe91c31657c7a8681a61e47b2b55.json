@@ -1,0 +1,21 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T10:36:58.132094Z",
+  "id": "code_unit:logon-persistence-etc-sql-patch-templates-patch_sap_x.x.x_to_y.y.y.sql",
+  "name": "patch_sap_x.x.x_to_y.y.y.sql",
+  "properties": {
+    "file_path": "logon-persistence/etc/sql/patch/templates/patch_sap_x.x.x_to_y.y.y.sql",
+    "language": "SQL",
+    "loc": 82,
+    "metrics": {
+      "loc": 82
+    },
+    "unit_type": "file"
+  },
+  "qualified_name": "logon-persistence/etc/sql/patch/templates/patch_sap_x.x.x_to_y.y.y.sql",
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "code_unit",
+  "updated_at": "2026-11-24T10:36:58.132094Z"
+}

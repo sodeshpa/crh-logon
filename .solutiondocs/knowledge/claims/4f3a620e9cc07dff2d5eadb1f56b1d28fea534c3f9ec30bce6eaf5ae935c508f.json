@@ -1,0 +1,28 @@
+{
+  "applicability": {
+    "source_revision": "b65484483903039583cc2f1b36a492bb8d134609"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T09:49:36.164007Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:deps-66f626fcb45d4a1be9bc"
+  ],
+  "id": "claim:deps-2db52a650c27037f780d5fcc",
+  "predicate": "declared_coordinates",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-business",
+  "status": "candidate",
+  "subject": "dependency:ant-jar-javax.mail-javamail-1.4",
+  "updated_at": "2026-11-24T09:49:36.164007Z",
+  "value": {
+    "ecosystem": "ant-jar",
+    "group": "javax.mail",
+    "name": "javamail",
+    "note": "ant property mail.jar -> ${JAVAMAIL_HOME}/dist-bin/mail.jar (resolved from external jpository/mpository; not bundled in repo)",
+    "scope": "compile",
+    "version": "1.4"
+  }
+}

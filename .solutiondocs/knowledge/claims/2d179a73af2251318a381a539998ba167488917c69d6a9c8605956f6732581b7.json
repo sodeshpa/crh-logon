@@ -1,0 +1,21 @@
+{
+  "applicability": {
+    "source_revision": "f0319b7f1fa2ac8b05f0bc2cbf001eceaa03677eb829c7419fb7413f61391f69"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T10:08:37.052779Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:dsa-bf57290e9f84b94b62fa03706cbe1ff4e8c11c08"
+  ],
+  "id": "claim:dsa-a7caafb12302d5b77508fec73c3d4cb41c888aa2",
+  "predicate": "data_type",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-webservices",
+  "status": "candidate",
+  "subject": "data_field:mn-materialgeneraldata-mater-4-child-mn-materialvaluation-id",
+  "updated_at": "2026-11-24T10:08:37.052779Z",
+  "value": "number(19,0)"
+}

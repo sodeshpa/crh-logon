@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:59:54.408851Z",
+  "id": "source_artifact:dsa-logon-persistence-etc-sql-custom-check-constraints-sql",
+  "name": "custom_check_constraints.sql",
+  "properties": {
+    "location": "logon-persistence/etc/sql/custom_check_constraints.sql",
+    "revision": "6f77e5adc8dd55e6d030be3c362d5921898442e6aff000755d478a81c94ff561",
+    "source_type": "ddl_sql"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "source_artifact",
+  "updated_at": "2026-11-24T09:59:54.408851Z"
+}

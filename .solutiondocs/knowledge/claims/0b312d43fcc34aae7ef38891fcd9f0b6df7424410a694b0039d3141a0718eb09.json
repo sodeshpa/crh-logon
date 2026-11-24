@@ -1,0 +1,24 @@
+{
+  "applicability": {
+    "source_revision": "c4799b3dfcf94ee66c921f340bda20c43e31a979"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 0.95,
+  "created_at": "2026-11-24T09:50:56.981245Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:fs-b5c4a6ef1123bac27debafc2"
+  ],
+  "id": "claim:fs-rel-b5c4a6ef1123bac27debafc2",
+  "predicate": "contains",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-business",
+  "status": "candidate",
+  "subject": "relationship:fs-contains-b5c4a6ef1123bac27debafc2",
+  "updated_at": "2026-11-24T09:50:56.981245Z",
+  "value": {
+    "container": "component:logon-business",
+    "file_path": "logon-business/src/main/java/com/crh/logon/business/services/impl/PoolAdminServiceBean.java"
+  }
+}

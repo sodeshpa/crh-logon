@@ -1,0 +1,21 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T10:22:30.890929Z",
+  "id": "code_unit:logon-order-web-src-main-java-com-crh-logon-order-web-utils-comparator-carriercomparator.java",
+  "name": "CarrierComparator.java",
+  "properties": {
+    "file_path": "logon-order-web/src/main/java/com/crh/logon/order/web/utils/comparator/CarrierComparator.java",
+    "language": "Java",
+    "loc": 43,
+    "metrics": {
+      "loc": 43
+    },
+    "unit_type": "file"
+  },
+  "qualified_name": "logon-order-web/src/main/java/com/crh/logon/order/web/utils/comparator/CarrierComparator.java",
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "code_unit",
+  "updated_at": "2026-11-24T10:22:30.890929Z"
+}

@@ -1,0 +1,21 @@
+{
+  "applicability": {
+    "source_revision": "f0319b7f1fa2ac8b05f0bc2cbf001eceaa03677eb829c7419fb7413f61391f69"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T10:06:43.126484Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:dsa-e4f3a43bb442d03b6312349812c7493ce721d504"
+  ],
+  "id": "claim:dsa-e1d7f8833ee1e8a3271130cb66a503289f108d61",
+  "predicate": "data_type",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-webservices",
+  "status": "candidate",
+  "subject": "data_field:bpn-mastercustomersalesdata-hjid",
+  "updated_at": "2026-11-24T10:06:43.126484Z",
+  "value": "number(19,0)"
+}

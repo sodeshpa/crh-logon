@@ -1,0 +1,21 @@
+{
+  "applicability": {
+    "source_revision": "9f5be0d517c58b1a3e611ecf5001680a414b6ab595e84f40201a1f8efbd3a98b"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T10:27:28.875935Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:dsa-41e1a1b6f395912e77c4a6cef71ba04c77165232"
+  ],
+  "id": "claim:dsa-2b3484d42175c360a89b76b9122309c2443359bf",
+  "predicate": "plsql_procedure",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-persistence",
+  "status": "candidate",
+  "subject": "code_unit:logon-persistence-plsql-upsert-uom-tx",
+  "updated_at": "2026-11-24T10:27:28.875935Z",
+  "value": "upsert_uom_tx"
+}

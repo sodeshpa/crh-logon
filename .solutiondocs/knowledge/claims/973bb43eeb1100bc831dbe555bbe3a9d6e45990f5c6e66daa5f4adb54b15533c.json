@@ -1,0 +1,24 @@
+{
+  "applicability": {
+    "source_revision": "c4799b3dfcf94ee66c921f340bda20c43e31a979"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 0.95,
+  "created_at": "2026-11-24T11:29:38.590104Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:fs-69cc3a6d3066e6f2a11d3569"
+  ],
+  "id": "claim:fs-rel-69cc3a6d3066e6f2a11d3569",
+  "predicate": "contains",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-webservices",
+  "status": "candidate",
+  "subject": "relationship:fs-contains-69cc3a6d3066e6f2a11d3569",
+  "updated_at": "2026-11-24T11:29:38.590104Z",
+  "value": {
+    "container": "component:logon-webservices",
+    "file_path": "logon-webservices/etc/entities/11_create_reftables.sql"
+  }
+}

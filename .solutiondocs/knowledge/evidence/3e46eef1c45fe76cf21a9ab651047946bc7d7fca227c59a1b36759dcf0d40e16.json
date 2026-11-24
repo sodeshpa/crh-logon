@@ -1,0 +1,18 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:52:44.268067Z",
+  "id": "evidence:fs-0b09d5f430ec94e497d63e9d",
+  "locator": {
+    "file": "logon-business/src/main/java/com/crh/logon/business/services/utils/EdifactParseException.java",
+    "line_end": 23,
+    "line_start": 1
+  },
+  "method": "file-system",
+  "observed_at": "2026-11-24T09:46:55Z",
+  "record_kind": "evidence",
+  "revision": 1,
+  "source_id": "source_artifact:fs-logon-business-tree",
+  "source_revision": "c4799b3dfcf94ee66c921f340bda20c43e31a979",
+  "status": "active",
+  "updated_at": "2026-11-24T09:52:44.268067Z"
+}

@@ -1,0 +1,21 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:59:54.408851Z",
+  "id": "source_artifact:dsa-logon-webservices-etc-xsd-materialnotification-xsd",
+  "name": "MaterialNotification.xsd",
+  "properties": {
+    "location": "logon-webservices/etc/xsd/MaterialNotification.xsd",
+    "metadata": {
+      "dsa:complex_type_count": 26,
+      "dsa:simple_type_count": 728,
+      "dsa:top_level_element_count": 0
+    },
+    "revision": "14d56aa390551da10c262b7dc9143dd19b1f6c3ce596c5f2384ace91221dd002",
+    "source_type": "xsd"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "source_artifact",
+  "updated_at": "2026-11-24T09:59:54.408851Z"
+}

@@ -1,0 +1,17 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T10:20:23.597113Z",
+  "id": "data_entity:vlgnc-itrack-shipto-sap-bp",
+  "name": "VLGNC_ITRACK_SHIPTO_SAP_BP",
+  "properties": {
+    "entity_type": "view",
+    "materialised": false,
+    "purpose": "Contains shipto partners, used on itrack Reporting screen shipto dropdown.",
+    "schema": "ulgn"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "data_entity",
+  "updated_at": "2026-11-24T10:20:23.597113Z"
+}

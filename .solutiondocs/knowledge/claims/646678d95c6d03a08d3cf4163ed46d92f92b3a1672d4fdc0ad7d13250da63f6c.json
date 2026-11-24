@@ -1,0 +1,21 @@
+{
+  "applicability": {
+    "source_revision": "694b7d7b88dc47f911b3dbfaf154a056e4954abead9ceb4bf2c77229d8d230d4"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T10:24:05.985709Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:dsa-ea02128c151d07b985ea13aa084c92b3dc414e9a"
+  ],
+  "id": "claim:dsa-e6f89a8a5030dafa6f10b68abf2c3a7e2faba10f",
+  "predicate": "plsql_procedure",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-persistence",
+  "status": "candidate",
+  "subject": "code_unit:logon-persistence-plsql-dropindexifexists",
+  "updated_at": "2026-11-24T10:24:05.985709Z",
+  "value": "dropIndexIfExists"
+}

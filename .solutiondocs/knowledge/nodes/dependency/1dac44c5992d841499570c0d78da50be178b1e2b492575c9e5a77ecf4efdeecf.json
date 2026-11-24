@@ -1,0 +1,17 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:49:36.164007Z",
+  "id": "dependency:pip-x-enum34-1.1.6",
+  "name": "enum34",
+  "properties": {
+    "dependency_type": "library",
+    "scope": "build",
+    "version": "1.1.6"
+  },
+  "qualified_name": "enum34@1.1.6",
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "dependency",
+  "updated_at": "2026-11-24T09:49:36.164007Z"
+}

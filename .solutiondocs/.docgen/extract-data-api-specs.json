@@ -1,0 +1,57 @@
+﻿{
+    "agentName":  "extract-data-api-specs",
+    "summary":  {
+                    "batches":  14,
+                    "sources":  225,
+                    "evidence":  587,
+                    "node_groups":  595,
+                    "rels":  3163,
+                    "entities":  431,
+                    "fields":  2136,
+                    "fks":  11,
+                    "plsql":  71,
+                    "seqs":  31,
+                    "idxs":  15,
+                    "idx_unattached":  6,
+                    "endpoints":  {
+                                      "SOAP":  60,
+                                      "REST":  7
+                                  },
+                    "integration_points":  14,
+                    "ddl_files":  160,
+                    "data_only_files":  221,
+                    "store_counts":  {
+                                         "staging":  183,
+                                         "main":  248
+                                     },
+                    "xsd":  41,
+                    "wsdl":  22,
+                    "total_records":  9562
+                },
+    "tasks":  [
+                  {
+                      "id":  "phase-1-data-api-specs",
+                      "name":  "Extract data and API specs",
+                      "retryCount":  0,
+                      "startedAt":  "2026-11-24T11:20:28.6978748Z",
+                      "completedAt":  "2026-11-24T11:20:28.6978748Z",
+                      "status":  "completed"
+                  }
+              ],
+    "createdAt":  "2026-11-24T11:20:28.6978748Z",
+    "deliverables":  {
+                         "expected":  4,
+                         "actual":  4,
+                         "files":  [
+
+                                   ]
+                     },
+    "phase":  "phase-1",
+    "status":  "completed",
+    "lastUpdate":  "2026-11-24T11:20:28.6978748Z",
+    "issues":  [
+                   "No DDL for main TLGN schema (GDI/Hibernate generated); 6 indexes unattached",
+                   "Views/XSDs registered without column-level fields; data-only SQL (221 files) not modeled",
+                   "Application totals not updated (shared node)"
+               ]
+}

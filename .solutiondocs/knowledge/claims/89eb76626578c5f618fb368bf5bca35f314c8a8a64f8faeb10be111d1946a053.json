@@ -1,0 +1,21 @@
+{
+  "applicability": {
+    "source_revision": "328519ff5ba8be824180ef08da421109f9ff86ed34952a9592f791c2e61a0590"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T10:20:23.597113Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:dsa-ce02142d33cfe9c5d64f918e30f342b5fc274d9b"
+  ],
+  "id": "claim:dsa-814eab2c09ee3dca8282f8d1ce5493081e935495",
+  "predicate": "entity_type",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-persistence",
+  "status": "candidate",
+  "subject": "data_entity:vlgns-stagingarea-vehn-new",
+  "updated_at": "2026-11-24T10:20:23.597113Z",
+  "value": "view"
+}

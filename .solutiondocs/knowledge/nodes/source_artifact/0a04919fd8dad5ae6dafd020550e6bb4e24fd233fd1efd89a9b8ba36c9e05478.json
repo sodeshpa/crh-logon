@@ -1,0 +1,21 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:59:54.408851Z",
+  "id": "source_artifact:dsa-logon-webservices-mop-incoming-src-main-resources-xsd-mopdata-v0-92-xsd",
+  "name": "MOPData_v0_92.xsd",
+  "properties": {
+    "location": "logon-webservices-mop-incoming/src/main/resources/xsd/MOPData_v0_92.xsd",
+    "metadata": {
+      "dsa:complex_type_count": 4,
+      "dsa:simple_type_count": 0,
+      "dsa:top_level_element_count": 0
+    },
+    "revision": "10dd17615fcb0f3a048c0a72f42f5b62b2834455150841c656693d0be7c862e3",
+    "source_type": "xsd"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "source_artifact",
+  "updated_at": "2026-11-24T09:59:54.408851Z"
+}

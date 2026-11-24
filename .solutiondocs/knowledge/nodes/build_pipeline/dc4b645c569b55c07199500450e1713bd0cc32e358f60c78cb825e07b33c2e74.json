@@ -1,0 +1,17 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:51:52.064424Z",
+  "id": "build_pipeline:build-node-provisioning",
+  "name": "Build node provisioning (Ansible)",
+  "properties": {
+    "developer_environment": {
+      "setup_automated": true,
+      "setup_automation_tool": "Ansible role buildnode"
+    }
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "build_pipeline",
+  "updated_at": "2026-11-24T09:51:52.064424Z"
+}

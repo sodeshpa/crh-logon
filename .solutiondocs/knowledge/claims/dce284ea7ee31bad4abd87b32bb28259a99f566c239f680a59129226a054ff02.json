@@ -1,0 +1,27 @@
+{
+  "applicability": {
+    "source_revision": "c4799b3dfcf94ee66c921f340bda20c43e31a979"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 0.95,
+  "created_at": "2026-11-24T10:22:30.890929Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:fs-067dc4624d24aba1e83ac2c6"
+  ],
+  "id": "claim:fs-067dc4624d24aba1e83ac2c6",
+  "predicate": "file_inventory",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-order-web",
+  "status": "candidate",
+  "subject": "code_unit:logon-order-web-src-main-webapp-web-inf-jsp-auftrag-orderdetail-orderdetailattachmentdivtile.jsp",
+  "updated_at": "2026-11-24T10:22:30.890929Z",
+  "value": {
+    "estimated_tokens": 1251,
+    "file_path": "logon-order-web/src/main/webapp/WEB-INF/jsp/auftrag/orderdetail/OrderDetailAttachmentDivTile.jsp",
+    "language": "Web/Template",
+    "loc": 94,
+    "size_bytes": 5007
+  }
+}

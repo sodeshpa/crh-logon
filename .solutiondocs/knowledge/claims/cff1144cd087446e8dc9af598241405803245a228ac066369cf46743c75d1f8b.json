@@ -1,0 +1,28 @@
+{
+  "applicability": {
+    "source_revision": "b65484483903039583cc2f1b36a492bb8d134609"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T09:49:36.164007Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:deps-737ec1c52ff2111ae083"
+  ],
+  "id": "claim:deps-27bed0e453e7c62ee6efcb71",
+  "predicate": "declared_coordinates",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "application:sodeshpa-improved-telegram",
+  "status": "candidate",
+  "subject": "dependency:ant-jar-java.net-jaxb-interface-insertion-xjc-if-ins--20100624",
+  "updated_at": "2026-11-24T09:49:36.164007Z",
+  "value": {
+    "ecosystem": "ant-jar",
+    "group": "java.net",
+    "name": "jaxb-interface-insertion (xjc-if-ins)",
+    "note": "ant property xjc-if-ins.jar -> ${XJC_IF_INS_HOME}/xjc-if-ins.jar (resolved from external jpository/mpository; not bundled in repo)",
+    "scope": "build",
+    "version": "20100624"
+  }
+}

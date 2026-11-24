@@ -1,0 +1,17 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T10:04:21.856768Z",
+  "id": "evidence:dsa-1d4e55d8c6cc327540071cfcb7cf0dd1032e64ec",
+  "locator": {
+    "file": "logon-persistence/etc/sql/update_sequence_start_number.sql",
+    "line": 2
+  },
+  "method": "ddl-parse",
+  "observed_at": "2026-11-24T09:49:32Z",
+  "record_kind": "evidence",
+  "revision": 1,
+  "source_id": "source_artifact:dsa-logon-persistence-etc-sql-update-sequence-start-number-sql",
+  "source_revision": "a3e2d98c46cbcf7e03b6fc07c909e7a7b7ce20b3a231246f8b73972fa08f9346",
+  "status": "active",
+  "updated_at": "2026-11-24T10:04:21.856768Z"
+}

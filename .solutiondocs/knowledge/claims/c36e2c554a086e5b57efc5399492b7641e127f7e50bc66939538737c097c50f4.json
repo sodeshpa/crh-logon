@@ -1,0 +1,27 @@
+{
+  "applicability": {
+    "source_revision": "c4799b3dfcf94ee66c921f340bda20c43e31a979"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 0.95,
+  "created_at": "2026-11-24T10:01:22.932656Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:fs-22ec59d22691f6f9a77cd738"
+  ],
+  "id": "claim:fs-22ec59d22691f6f9a77cd738",
+  "predicate": "file_inventory",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-common-web",
+  "status": "candidate",
+  "subject": "code_unit:logon-common-web-src-test-unit-com-crh-logon-web-utils-dropdownentitytest.java",
+  "updated_at": "2026-11-24T10:01:22.932656Z",
+  "value": {
+    "estimated_tokens": 492,
+    "file_path": "logon-common-web/src/test/unit/com/crh/logon/web/utils/DropdownEntityTest.java",
+    "language": "Java",
+    "loc": 71,
+    "size_bytes": 1971
+  }
+}

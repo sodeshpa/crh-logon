@@ -1,0 +1,21 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:54:50.032192Z",
+  "id": "code_unit:logon-business-src-main-java-com-crh-logon-business-stores-sap-businesspartnerstore.java",
+  "name": "BusinessPartnerStore.java",
+  "properties": {
+    "file_path": "logon-business/src/main/java/com/crh/logon/business/stores/sap/BusinessPartnerStore.java",
+    "language": "Java",
+    "loc": 139,
+    "metrics": {
+      "loc": 139
+    },
+    "unit_type": "file"
+  },
+  "qualified_name": "logon-business/src/main/java/com/crh/logon/business/stores/sap/BusinessPartnerStore.java",
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "code_unit",
+  "updated_at": "2026-11-24T09:54:50.032192Z"
+}

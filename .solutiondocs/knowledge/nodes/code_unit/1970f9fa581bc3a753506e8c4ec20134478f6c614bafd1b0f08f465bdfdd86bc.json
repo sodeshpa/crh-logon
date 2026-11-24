@@ -1,0 +1,21 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:57:00.770446Z",
+  "id": "code_unit:logon-common-web-src-main-java-com-crh-logon-taglib-orderdetailbuttonlogictag.java",
+  "name": "OrderDetailButtonLogicTag.java",
+  "properties": {
+    "file_path": "logon-common-web/src/main/java/com/crh/logon/taglib/OrderDetailButtonLogicTag.java",
+    "language": "Java",
+    "loc": 206,
+    "metrics": {
+      "loc": 206
+    },
+    "unit_type": "file"
+  },
+  "qualified_name": "logon-common-web/src/main/java/com/crh/logon/taglib/OrderDetailButtonLogicTag.java",
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "code_unit",
+  "updated_at": "2026-11-24T09:57:00.770446Z"
+}

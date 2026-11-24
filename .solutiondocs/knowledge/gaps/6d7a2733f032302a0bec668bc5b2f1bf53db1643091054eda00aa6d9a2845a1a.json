@@ -1,0 +1,21 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T10:29:11.973190Z",
+  "domain": "security",
+  "evidence_ids": [
+    "evidence:dva-assessment-attempt"
+  ],
+  "gap_type": "documentable",
+  "id": "gap:dva-not-assessed-f4f9f11299595dd5",
+  "knowledge_gap_type": "unknown_unknown",
+  "owner_ids": [],
+  "predicate": "dependency_vulnerability_assessment",
+  "priority": "P2",
+  "prompt": "2 ant-jar dependencies of component:logon-pdf-generator were not assessed against vulnerability advisories (no approved auditor/advisory data; no lockfile/transitive tree). Run an approved scanner (e.g. OWASP Dependency-Check or OSV-Scanner on a resolved inventory/offline repository) and publish results.",
+  "record_kind": "gap",
+  "revision": 1,
+  "scope_id": "component:logon-pdf-generator",
+  "status": "open",
+  "subject": "component:logon-pdf-generator",
+  "updated_at": "2026-11-24T10:29:11.973190Z"
+}

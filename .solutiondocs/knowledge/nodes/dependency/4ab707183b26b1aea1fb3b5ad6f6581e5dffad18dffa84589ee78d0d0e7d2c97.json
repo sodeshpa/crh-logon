@@ -1,0 +1,17 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:49:36.164007Z",
+  "id": "dependency:ant-jar-org.apache.struts-struts-el-1.2.9",
+  "name": "struts-el",
+  "properties": {
+    "dependency_type": "library",
+    "scope": "runtime",
+    "version": "1.2.9"
+  },
+  "qualified_name": "org.apache.struts:struts-el@1.2.9",
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "dependency",
+  "updated_at": "2026-11-24T09:49:36.164007Z"
+}

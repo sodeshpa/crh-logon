@@ -1,0 +1,25 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T10:18:07.792802Z",
+  "id": "data_entity:sdn-salesdocumentnotification",
+  "name": "SDN_SALESDOCUMENTNOTIFICATION",
+  "properties": {
+    "entity_type": "table",
+    "indexes": [
+      {
+        "columns": [
+          "SAPIMPSTATUSCD"
+        ],
+        "name": "I_SDN_NOTIFICATION_STATUS",
+        "unique": false
+      }
+    ],
+    "purpose": "Main table of SAP Contract import (staging area). Added on behalf of LRQ 040 Logon EBM.",
+    "schema": "ulgnsap"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "data_entity",
+  "updated_at": "2026-11-24T10:18:07.792802Z"
+}

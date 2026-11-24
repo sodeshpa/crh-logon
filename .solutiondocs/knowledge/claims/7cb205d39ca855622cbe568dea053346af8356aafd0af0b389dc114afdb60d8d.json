@@ -1,0 +1,24 @@
+{
+  "applicability": {
+    "source_revision": "c4799b3dfcf94ee66c921f340bda20c43e31a979"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 0.95,
+  "created_at": "2026-11-24T10:30:58.828557Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:fs-7b00929c990d6e17f6df1903"
+  ],
+  "id": "claim:fs-rel-7b00929c990d6e17f6df1903",
+  "predicate": "contains",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-pdf-generator",
+  "status": "candidate",
+  "subject": "relationship:fs-contains-7b00929c990d6e17f6df1903",
+  "updated_at": "2026-11-24T10:30:58.828557Z",
+  "value": {
+    "container": "component:logon-pdf-generator",
+    "file_path": "logon-pdf-generator/src/main/java/com/crh/logon/pdf/templating/Condition.java"
+  }
+}

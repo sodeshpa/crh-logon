@@ -1,0 +1,44 @@
+{
+  "applicability": {
+    "source_revision": "c2f096c377bafac62102650ab6980e51bbfad6bc"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 0.9,
+  "created_at": "2026-11-24T10:29:11.973190Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:dva-assessment-attempt"
+  ],
+  "id": "claim:dva-assessment-2c922522aea1db97",
+  "predicate": "dependency_vulnerability_assessment",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-persistence",
+  "status": "candidate",
+  "subject": "component:logon-persistence",
+  "updated_at": "2026-11-24T10:29:11.973190Z",
+  "value": {
+    "advisory_source": null,
+    "assessed_at": "2026-11-24T10:20:06+00:00",
+    "database_freshness": "unknown",
+    "dependency_ids": [
+      "dependency:ant-jar-net.sf.opencsv-opencsv-1.8",
+      "dependency:ant-jar-org.hibernate.javax.persistence-hibernate-jpa-2.0-api-1.0.1.final"
+    ],
+    "direct_dependency_count": 2,
+    "ecosystem": "ant-jar",
+    "finding_count": 0,
+    "interpretation": "zero findings recorded because no assessment ran; this is not evidence of absence of vulnerabilities",
+    "limitations": [
+      "No approved ecosystem auditor (npm audit, pip-audit, OSV-Scanner, OWASP Dependency-Check, trivy/grype, dotnet) applicable or installed for these ecosystems",
+      "No local OSV/GHSA/NVD advisory database or existing CI scanner report found; advisory database freshness unknown",
+      "No engagement-approved advisory endpoint established; private inventory not sent to external services",
+      "No lockfile or resolved dependency tree: transitive dependencies not covered",
+      "Direct declared coordinates only; many Ant jars originate from an external jpository"
+    ],
+    "outcome": "not_assessed",
+    "reachability_exploitability": "not assessed",
+    "scanner": null,
+    "transitive_coverage": "none"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:43:01.661038Z",
+  "id": "application:sodeshpa-improved-telegram",
+  "name": "sodeshpa-improved-telegram",
+  "properties": {
+    "totals": {
+      "components": 22
+    }
+  },
+  "record_kind": "node",
+  "revision": 2,
+  "status": "active",
+  "type": "application",
+  "updated_at": "2026-11-24T09:43:07.964638Z"
+}

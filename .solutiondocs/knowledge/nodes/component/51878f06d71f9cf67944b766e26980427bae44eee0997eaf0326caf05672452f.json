@@ -1,0 +1,19 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:43:07.964638Z",
+  "id": "component:logon-persistence",
+  "name": "logon-persistence",
+  "properties": {
+    "build_files": [],
+    "estimated_tokens": 8696155,
+    "files": 1903,
+    "folder": "logon-persistence",
+    "source_files": 1089,
+    "source_root": "logon-persistence"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "component",
+  "updated_at": "2026-11-24T09:43:07.964638Z"
+}

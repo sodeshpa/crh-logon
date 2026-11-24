@@ -1,0 +1,28 @@
+{
+  "applicability": {
+    "source_revision": "b65484483903039583cc2f1b36a492bb8d134609"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T09:49:36.164007Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:deps-5ab79030b3606b2981f1"
+  ],
+  "id": "claim:deps-171a3c33090717bf626335f2",
+  "predicate": "declared_coordinates",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "application:sodeshpa-improved-telegram",
+  "status": "candidate",
+  "subject": "dependency:ant-jar-eviware-j2ee-xmlbeans-1.4",
+  "updated_at": "2026-11-24T09:49:36.164007Z",
+  "value": {
+    "ecosystem": "ant-jar",
+    "group": "eviware",
+    "name": "j2ee-xmlbeans",
+    "note": "ant property j2ee-xmlbeans.jar -> ${SOAPUI_HOME}/lib/j2ee-xmlbeans-1.4.jar (resolved from external jpository/mpository; not bundled in repo)",
+    "scope": "test",
+    "version": "1.4"
+  }
+}

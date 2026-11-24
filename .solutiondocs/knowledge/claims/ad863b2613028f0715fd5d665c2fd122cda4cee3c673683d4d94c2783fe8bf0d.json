@@ -1,0 +1,29 @@
+{
+  "applicability": {
+    "source_revision": "880ff571c6531bdd2b51360ac4c8128795063f96"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 0.85,
+  "created_at": "2026-11-24T09:57:53.123932Z",
+  "derivation": "heuristic",
+  "evidence_ids": [
+    "evidence:deps-182fbabce7386e0938a2"
+  ],
+  "id": "claim:deps-489bb7ea7f4ece8db4a0fbbc",
+  "predicate": "obsolescence_basis",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "application:sodeshpa-improved-telegram",
+  "status": "candidate",
+  "subject": "technical_debt:deps-legacy-eol-platform",
+  "updated_at": "2026-11-24T09:57:53.123932Z",
+  "value": {
+    "eol_status": "eol",
+    "indicators": [
+      "JBoss EAP 6.4.21",
+      "OpenJDK 1.8.0.272",
+      "Java EE 6 provided specs (jboss-*-api 1.x spec jars)"
+    ],
+    "note": "Heuristic EOL classification from declared versions; not a CVE assessment"
+  }
+}

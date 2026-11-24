@@ -1,0 +1,24 @@
+{
+  "applicability": {
+    "source_revision": "c4799b3dfcf94ee66c921f340bda20c43e31a979"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 0.95,
+  "created_at": "2026-11-24T10:03:24.312910Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:fs-d4214940c5e0c63155a1ee3e"
+  ],
+  "id": "claim:fs-rel-d4214940c5e0c63155a1ee3e",
+  "predicate": "contains",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-order-web",
+  "status": "candidate",
+  "subject": "relationship:fs-contains-d4214940c5e0c63155a1ee3e",
+  "updated_at": "2026-11-24T10:03:24.312910Z",
+  "value": {
+    "container": "component:logon-order-web",
+    "file_path": "logon-order-web/src/main/java/com/crh/logon/order/web/actions/auftrag/LiveKarteEntryAction.java"
+  }
+}

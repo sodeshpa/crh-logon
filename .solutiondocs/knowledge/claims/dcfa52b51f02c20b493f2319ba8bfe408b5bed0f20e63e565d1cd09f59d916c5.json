@@ -1,0 +1,28 @@
+{
+  "applicability": {
+    "source_revision": "f25d1028a4dd3f5dd614543271cb0eee8e1cdb3d"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T09:49:36.164007Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:deps-944df9294fb39c83fb77"
+  ],
+  "id": "claim:deps-62adec5b7ac014a0a8ae360e",
+  "predicate": "declared_coordinates",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:ansible",
+  "status": "candidate",
+  "subject": "dependency:pip-x-cryptography-2.3.1",
+  "updated_at": "2026-11-24T09:49:36.164007Z",
+  "value": {
+    "ecosystem": "pip",
+    "group": null,
+    "name": "cryptography",
+    "note": "pip pin (==)",
+    "scope": "build",
+    "version": "2.3.1"
+  }
+}

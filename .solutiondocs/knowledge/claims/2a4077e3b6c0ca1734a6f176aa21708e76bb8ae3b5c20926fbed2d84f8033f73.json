@@ -1,0 +1,21 @@
+{
+  "applicability": {
+    "source_revision": "b4239055a3f17b7cc0ff9226bc68cd4729f070a1b4dd9f5f7abe4a8ff66e8b13"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T10:24:05.985709Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:dsa-c56b944677862067d8782b4d352afc0a7de809b4"
+  ],
+  "id": "claim:dsa-fc235c28da7957d1e959b1b06843958ea7b6e815",
+  "predicate": "plsql_procedure",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-persistence",
+  "status": "candidate",
+  "subject": "code_unit:logon-persistence-plsql-update-parentoffer-no",
+  "updated_at": "2026-11-24T10:24:05.985709Z",
+  "value": "update_parentoffer_no"
+}

@@ -1,0 +1,19 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T10:08:37.052779Z",
+  "id": "data_field:mn-materiallongtextheader-ma-0-parent-mn-materiallongtexthe-0",
+  "name": "PARENT_MN_MATERIALLONGTEXTHE_0",
+  "properties": {
+    "constraints": [
+      "NOT NULL"
+    ],
+    "data_type": "number(19,0)",
+    "nullable": false,
+    "primary_key": false
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "data_field",
+  "updated_at": "2026-11-24T10:08:37.052779Z"
+}

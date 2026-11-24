@@ -1,0 +1,24 @@
+{
+  "applicability": {
+    "source_revision": "c4799b3dfcf94ee66c921f340bda20c43e31a979"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 0.95,
+  "created_at": "2026-11-24T10:36:58.132094Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:fs-77f99d35405430f256f367da"
+  ],
+  "id": "claim:fs-rel-77f99d35405430f256f367da",
+  "predicate": "contains",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-persistence",
+  "status": "candidate",
+  "subject": "relationship:fs-contains-77f99d35405430f256f367da",
+  "updated_at": "2026-11-24T10:36:58.132094Z",
+  "value": {
+    "container": "component:logon-persistence",
+    "file_path": "logon-persistence/etc/sql/patch/from_1.0.0/tickets_from_1.9.2.sql"
+  }
+}

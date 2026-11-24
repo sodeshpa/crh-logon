@@ -1,0 +1,18 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T10:24:05.985709Z",
+  "id": "code_unit:logon-persistence-plsql-upsert-plant-bs",
+  "name": "upsert_plant_bs",
+  "properties": {
+    "file_path": "logon-persistence/etc/sql/adza_initialdata/tlgnr_plant.sql",
+    "language": "PL/SQL",
+    "line_start": 55,
+    "signature": "procedure upsert_plant_bs (",
+    "unit_type": "function"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "code_unit",
+  "updated_at": "2026-11-24T10:24:05.985709Z"
+}

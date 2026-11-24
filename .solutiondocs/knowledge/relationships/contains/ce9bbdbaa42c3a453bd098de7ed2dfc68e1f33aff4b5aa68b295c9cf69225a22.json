@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "claim_ids": [
+    "claim:fs-rel-7ef747d3f85c734258ddc4d0"
+  ],
+  "created_at": "2026-11-24T11:32:18.902642Z",
+  "from": "component:pkg",
+  "id": "relationship:fs-contains-7ef747d3f85c734258ddc4d0",
+  "properties": {},
+  "record_kind": "relationship",
+  "revision": 1,
+  "status": "active",
+  "to": "code_unit:pkg-logonjboss-etc-pkg_template-helpers-generateconfig.ps1",
+  "type": "contains",
+  "updated_at": "2026-11-24T11:32:18.902642Z"
+}

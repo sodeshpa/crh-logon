@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:59:54.408851Z",
+  "id": "source_artifact:dsa-logon-persistence-etc-sql-patch-clean-remaining-constraints-and-indexes-sql",
+  "name": "clean_remaining_constraints_and_indexes.sql",
+  "properties": {
+    "location": "logon-persistence/etc/sql/patch/clean_remaining_constraints_and_indexes.sql",
+    "revision": "4d0551c1e0c6bab1de3f8a29e57750687ce6512646e76a64d21ac4061876029f",
+    "source_type": "ddl_sql"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "source_artifact",
+  "updated_at": "2026-11-24T09:59:54.408851Z"
+}

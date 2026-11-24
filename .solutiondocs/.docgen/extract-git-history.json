@@ -1,0 +1,33 @@
+﻿{
+    "agentName":  "extract-git-history",
+    "lastUpdate":  "2026-11-24T09:47:03.4118248Z",
+    "createdAt":  "2026-11-24T09:47:03.4118248Z",
+    "completedAt":  "2026-11-24T09:47:03.4118248Z",
+    "phase":  "completion",
+    "issues":  [
+                   {
+                       "message":  "Git history is only 2 commits by one author (flattened import); no bug-fix commits, hotspots, co-change edges or risk records derivable. Gap gap:git-history-flattened-history published.",
+                       "timestamp":  "2026-11-24T09:47:03.4118248Z",
+                       "context":  "source_artifact:git-history-sodeshpa-improved-telegram",
+                       "severity":  "P2"
+                   }
+               ],
+    "status":  "completed",
+    "tasks":  [
+                  {
+                      "id":  "phase-1-git-history",
+                      "name":  "Extract git history",
+                      "retryCount":  0,
+                      "startedAt":  "2026-11-24T09:47:03.4118248Z",
+                      "completedAt":  "2026-11-24T09:47:03.4118248Z",
+                      "status":  "completed"
+                  }
+              ],
+    "deliverables":  {
+                         "expected":  0,
+                         "actual":  0,
+                         "files":  [
+
+                                   ]
+                     }
+}

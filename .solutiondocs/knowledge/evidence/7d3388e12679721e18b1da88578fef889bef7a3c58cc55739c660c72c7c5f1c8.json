@@ -1,0 +1,17 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T10:04:21.856768Z",
+  "id": "evidence:dsa-7e14f8a9c457ba2ec651044412c9e2d57b53b6ba",
+  "locator": {
+    "file": "logon-persistence/etc/sql/sapimport_vehn_pkg.sql",
+    "line": 1
+  },
+  "method": "ddl-parse",
+  "observed_at": "2026-11-24T09:49:32Z",
+  "record_kind": "evidence",
+  "revision": 1,
+  "source_id": "source_artifact:dsa-logon-persistence-etc-sql-sapimport-vehn-pkg-sql",
+  "source_revision": "ebda8577e3b949e2a4c48b2bce20411f95b8faf032424a524748ffe2a15e11da",
+  "status": "active",
+  "updated_at": "2026-11-24T10:04:21.856768Z"
+}

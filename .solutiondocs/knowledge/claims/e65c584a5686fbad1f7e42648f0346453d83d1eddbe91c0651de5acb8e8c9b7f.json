@@ -1,0 +1,21 @@
+{
+  "applicability": {
+    "source_revision": "0db519bcc23d4b847662a26d59e471f8227e79492e44c5b1694df2641f149ab1"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T10:20:23.597113Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:dsa-ad58f13f5321a606a613e9eb81e03ea38b4b3d89"
+  ],
+  "id": "claim:dsa-2b44a07209653c45cf8613c2d55d1502986ce808",
+  "predicate": "entity_type",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-persistence",
+  "status": "candidate",
+  "subject": "data_entity:vlgnc-mat-plant-missing",
+  "updated_at": "2026-11-24T10:20:23.597113Z",
+  "value": "view"
+}

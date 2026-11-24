@@ -1,0 +1,19 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:57:53.123932Z",
+  "domain": "build_devops",
+  "evidence_ids": [
+    "evidence:deps-54d8537ce85cb0c0438f"
+  ],
+  "gap_type": "documentable",
+  "id": "gap:deps-license-not-declared",
+  "knowledge_gap_type": "regulatory",
+  "owner_ids": [],
+  "priority": "P3",
+  "prompt": "No license metadata is declared in the dependency manifests; license composition and restrictive-license checks (GPL/AGPL) cannot be computed without scanning artifacts. latest_version/versions_behind were not computed (no registry access/lock metadata).",
+  "record_kind": "gap",
+  "revision": 1,
+  "status": "open",
+  "subject": "application:sodeshpa-improved-telegram",
+  "updated_at": "2026-11-24T09:57:53.123932Z"
+}

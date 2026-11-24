@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "claim_ids": [
+    "claim:fs-rel-ebf2c3fe6a86833a2e8def49"
+  ],
+  "created_at": "2026-11-24T09:48:25.227887Z",
+  "from": "component:logon-business",
+  "id": "relationship:fs-contains-ebf2c3fe6a86833a2e8def49",
+  "properties": {},
+  "record_kind": "relationship",
+  "revision": 1,
+  "status": "active",
+  "to": "code_unit:logon-business-src-main-java-com-crh-logon-business-common-base-genericdictionaryprovider.java",
+  "type": "contains",
+  "updated_at": "2026-11-24T09:48:25.227887Z"
+}

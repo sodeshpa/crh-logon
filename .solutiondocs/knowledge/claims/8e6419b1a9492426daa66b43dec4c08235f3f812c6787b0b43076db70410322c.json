@@ -1,0 +1,20 @@
+{
+  "applicability": {
+    "source_revision": "546bd3f0f1a0dce79ed13e161e1aeeccf06ad11f706eb5b4f48bc0f7e575a88c"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 0.95,
+  "created_at": "2026-11-24T09:51:52.064424Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:cfg-bc682a7a613ef50faf01c95fcb895db5288be9b8db749037f2708fcc194fa684"
+  ],
+  "id": "claim:5e2b567f04cf6269a0195612ba41fd7070bf55b89d2110df9c825529a1c0f880",
+  "predicate": "contains",
+  "record_kind": "claim",
+  "revision": 1,
+  "status": "candidate",
+  "subject": "component:etc",
+  "target": "config_item:etc-roles-properties",
+  "updated_at": "2026-11-24T09:51:52.064424Z"
+}

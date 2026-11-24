@@ -1,0 +1,21 @@
+{
+  "applicability": {
+    "source_revision": "ba7ebbe341e4ec5af03f589f00b1c084f95139c609f4054b32a0d25e969d255d"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T10:27:28.875935Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:dsa-18c8ef980df4dc2c9fb29bf1eefe404555796584"
+  ],
+  "id": "claim:dsa-f324e5063c958520f87c4f34c4b6be55d1d84278",
+  "predicate": "path",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-webservices-client",
+  "status": "candidate",
+  "subject": "api_endpoint:ffax-getstationeries",
+  "updated_at": "2026-11-24T10:27:28.875935Z",
+  "value": "/ofmawsvc3/ffax.asmx"
+}

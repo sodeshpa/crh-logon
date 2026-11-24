@@ -1,0 +1,28 @@
+{
+  "applicability": {
+    "source_revision": "880ff571c6531bdd2b51360ac4c8128795063f96"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T09:49:36.164007Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:deps-3c6165d37beb7c6d502f"
+  ],
+  "id": "claim:deps-46d294d3b2f208f9d1daf235",
+  "predicate": "declared_coordinates",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "application:sodeshpa-improved-telegram",
+  "status": "candidate",
+  "subject": "dependency:external-distribution-ch.adnovum.gdi-gdi-ddl-1.1.0.0",
+  "updated_at": "2026-11-24T09:49:36.164007Z",
+  "value": {
+    "ecosystem": "external-distribution",
+    "group": "ch.adnovum.gdi",
+    "name": "gdi-ddl",
+    "note": "GDI_DDL_HOME",
+    "scope": "build",
+    "version": "1.1.0.0"
+  }
+}

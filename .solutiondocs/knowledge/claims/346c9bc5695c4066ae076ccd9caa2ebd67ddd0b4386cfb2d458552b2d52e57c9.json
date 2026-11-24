@@ -1,0 +1,28 @@
+{
+  "applicability": {
+    "source_revision": "b65484483903039583cc2f1b36a492bb8d134609"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T09:49:36.164007Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:deps-7f76dbfcbd07d98b0849"
+  ],
+  "id": "claim:deps-607eddf2e026fea663aa751a",
+  "predicate": "declared_coordinates",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "application:sodeshpa-improved-telegram",
+  "status": "candidate",
+  "subject": "dependency:ant-jar-net.grinder-grinder-3.11",
+  "updated_at": "2026-11-24T09:49:36.164007Z",
+  "value": {
+    "ecosystem": "ant-jar",
+    "group": "net.grinder",
+    "name": "grinder",
+    "note": "ant property grinder.jar -> ${GRINDER_HOME}/lib/grinder.jar (resolved from external jpository/mpository; not bundled in repo)",
+    "scope": "test",
+    "version": "3.11"
+  }
+}

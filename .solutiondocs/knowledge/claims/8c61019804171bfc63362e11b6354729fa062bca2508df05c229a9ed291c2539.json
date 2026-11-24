@@ -1,0 +1,21 @@
+{
+  "applicability": {
+    "source_revision": "ba7ebbe341e4ec5af03f589f00b1c084f95139c609f4054b32a0d25e969d255d"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T10:27:28.875935Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:dsa-1c068ccb0a27aca508c91401d2548439e0bac978"
+  ],
+  "id": "claim:dsa-414d8a3785e1019fa754cd1cefd88c8533117159",
+  "predicate": "protocol",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-webservices-client",
+  "status": "candidate",
+  "subject": "api_endpoint:ffax-errortext",
+  "updated_at": "2026-11-24T10:27:28.875935Z",
+  "value": "SOAP"
+}

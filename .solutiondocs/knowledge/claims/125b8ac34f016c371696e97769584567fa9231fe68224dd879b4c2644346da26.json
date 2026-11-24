@@ -1,0 +1,24 @@
+{
+  "applicability": {
+    "source_revision": "c4799b3dfcf94ee66c921f340bda20c43e31a979"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 0.95,
+  "created_at": "2026-11-24T11:27:07.998697Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:fs-1c2def8cc5b6a36f11628d45"
+  ],
+  "id": "claim:fs-rel-1c2def8cc5b6a36f11628d45",
+  "predicate": "contains",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-simulator",
+  "status": "candidate",
+  "subject": "relationship:fs-contains-1c2def8cc5b6a36f11628d45",
+  "updated_at": "2026-11-24T11:27:07.998697Z",
+  "value": {
+    "container": "component:logon-simulator",
+    "file_path": "logon-simulator/etc/testclient/run-soapui.bat"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "applicability": {
+    "source_revision": "f0319b7f1fa2ac8b05f0bc2cbf001eceaa03677eb829c7419fb7413f61391f69"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T10:18:07.792802Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:dsa-b744208c93ca821ffaf48fba78b85bbad8b3ff11"
+  ],
+  "id": "claim:dsa-a7158bdb49ea36b88f4c3762311fbb33938869ca",
+  "predicate": "data_type",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-webservices",
+  "status": "candidate",
+  "subject": "data_field:vehn-vehicleauditdata-hjid",
+  "updated_at": "2026-11-24T10:18:07.792802Z",
+  "value": "number(19,0)"
+}

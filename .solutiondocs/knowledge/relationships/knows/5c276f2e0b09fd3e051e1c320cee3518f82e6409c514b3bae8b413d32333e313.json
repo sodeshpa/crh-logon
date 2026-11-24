@@ -1,0 +1,18 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "claim_ids": [
+    "claim:git-history-knows-ansible"
+  ],
+  "confidence": 0.9,
+  "created_at": "2026-11-24T09:46:43.269899Z",
+  "from": "actor:sodeshpa",
+  "id": "relationship:git-history-knows-ansible",
+  "properties": {},
+  "record_kind": "relationship",
+  "revision": 1,
+  "scope_id": "component:ansible",
+  "status": "active",
+  "to": "component:ansible",
+  "type": "knows",
+  "updated_at": "2026-11-24T09:46:43.269899Z"
+}

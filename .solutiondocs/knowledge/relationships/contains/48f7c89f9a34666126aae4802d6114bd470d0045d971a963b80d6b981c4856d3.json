@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "claim_ids": [
+    "claim:fs-rel-b0b0745273747d100fff07ce"
+  ],
+  "created_at": "2026-11-24T09:57:00.770446Z",
+  "from": "component:logon-business",
+  "id": "relationship:fs-contains-b0b0745273747d100fff07ce",
+  "properties": {},
+  "record_kind": "relationship",
+  "revision": 1,
+  "status": "active",
+  "to": "code_unit:logon-business-src-test-unit-com-crh-logon-business-services-impl-frozentablesservicebeantest.java",
+  "type": "contains",
+  "updated_at": "2026-11-24T09:57:00.770446Z"
+}

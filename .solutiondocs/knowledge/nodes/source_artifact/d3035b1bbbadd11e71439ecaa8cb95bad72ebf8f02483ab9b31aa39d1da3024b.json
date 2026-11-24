@@ -1,0 +1,21 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:59:54.408851Z",
+  "id": "source_artifact:dsa-logon-common-etc-gdi-xml2beans-in-input-eventbeans-xsd",
+  "name": "eventbeans.xsd",
+  "properties": {
+    "location": "logon-common/etc/gdi/xml2beans_in/input/eventbeans.xsd",
+    "metadata": {
+      "dsa:complex_type_count": 0,
+      "dsa:simple_type_count": 1,
+      "dsa:top_level_element_count": 0
+    },
+    "revision": "168b88ef5f0a6b8ce1d6bb21116a8502b518ecb4b2c422dd4f28916a81e584ae",
+    "source_type": "xsd"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "source_artifact",
+  "updated_at": "2026-11-24T09:59:54.408851Z"
+}

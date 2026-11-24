@@ -1,0 +1,28 @@
+{
+  "applicability": {
+    "source_revision": "b65484483903039583cc2f1b36a492bb8d134609"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T09:49:36.164007Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:deps-72dab04c7ebfa60331d2"
+  ],
+  "id": "claim:deps-f43e863f2ee7cdc146ae63f6",
+  "predicate": "declared_coordinates",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "application:sodeshpa-improved-telegram",
+  "status": "candidate",
+  "subject": "dependency:ant-jar-com.oracle.database.jdbc-ojdbc8-19.3.0.0",
+  "updated_at": "2026-11-24T09:49:36.164007Z",
+  "value": {
+    "ecosystem": "ant-jar",
+    "group": "com.oracle.database.jdbc",
+    "name": "ojdbc8",
+    "note": "ant property oracle8.jar -> ${container.modules.dir}/ojdbc8-19.3.0.0.jar (resolved from external jpository/mpository; not bundled in repo)",
+    "scope": "runtime",
+    "version": "19.3.0.0"
+  }
+}

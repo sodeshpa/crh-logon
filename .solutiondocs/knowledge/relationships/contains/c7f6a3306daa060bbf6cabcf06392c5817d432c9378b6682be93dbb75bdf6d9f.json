@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "claim_ids": [
+    "claim:fs-rel-b5ef8c1e63cdd96b36fcf4e3"
+  ],
+  "created_at": "2026-11-24T09:47:47.890823Z",
+  "from": "component:logon-admin-web",
+  "id": "relationship:fs-contains-b5ef8c1e63cdd96b36fcf4e3",
+  "properties": {},
+  "record_kind": "relationship",
+  "revision": 1,
+  "status": "active",
+  "to": "code_unit:logon-admin-web-src-main-webapp-web-inf-jsp-masterdata-railwaystationsearchpopup.jsp",
+  "type": "contains",
+  "updated_at": "2026-11-24T09:47:47.890823Z"
+}

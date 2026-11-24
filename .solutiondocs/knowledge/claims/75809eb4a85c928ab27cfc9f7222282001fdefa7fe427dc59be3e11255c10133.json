@@ -1,0 +1,21 @@
+{
+  "applicability": {
+    "source_revision": "f0319b7f1fa2ac8b05f0bc2cbf001eceaa03677eb829c7419fb7413f61391f69"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T10:06:43.126484Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:dsa-332e9c439d39937b1a215f77d3158494216c59a5"
+  ],
+  "id": "claim:dsa-1bb0670fe9564bd191159b55ceb1942158b01c3a",
+  "predicate": "data_type",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-webservices",
+  "status": "candidate",
+  "subject": "data_field:mnn-materialnormdata-text3",
+  "updated_at": "2026-11-24T10:06:43.126484Z",
+  "value": "varchar2(132 char)"
+}

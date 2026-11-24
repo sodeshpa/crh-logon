@@ -1,0 +1,17 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:49:36.164007Z",
+  "id": "evidence:deps-972795e8adb57ca6a20c",
+  "locator": {
+    "file": "C:\\Users\\sodeshpa\\.copilot\\repos\\copilot-worktrees\\crh-logon\\sodeshpa-improved-telegram\\properties.xml",
+    "section": "line 354 property espace.jar"
+  },
+  "method": "dependency-manifest",
+  "observed_at": "2026-11-24T09:48:25+00:00",
+  "record_kind": "evidence",
+  "revision": 1,
+  "source_id": "source_artifact:deps-properties.xml",
+  "source_revision": "b65484483903039583cc2f1b36a492bb8d134609",
+  "status": "active",
+  "updated_at": "2026-11-24T09:49:36.164007Z"
+}

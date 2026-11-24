@@ -1,0 +1,643 @@
+[
+    {
+        "label":  "File system",
+        "deps":  [
+                     "phase-0-routing",
+                     "phase-0-components"
+                 ],
+        "id":  "phase-1-file-system",
+        "skill":  "extract-file-system",
+        "runs":  "subagent"
+    },
+    {
+        "label":  "Git history",
+        "deps":  [
+                     "phase-0-routing",
+                     "phase-0-components"
+                 ],
+        "id":  "phase-1-git-history",
+        "skill":  "extract-git-history",
+        "runs":  "subagent"
+    },
+    {
+        "label":  "Config \u0026 infra",
+        "deps":  [
+                     "phase-0-routing",
+                     "phase-0-components"
+                 ],
+        "id":  "phase-1-config-infra",
+        "skill":  "extract-config-infra",
+        "runs":  "subagent"
+    },
+    {
+        "label":  "Dependencies",
+        "deps":  [
+                     "phase-0-routing",
+                     "phase-0-components"
+                 ],
+        "id":  "phase-1-dependencies",
+        "skill":  "extract-dependencies",
+        "runs":  "subagent"
+    },
+    {
+        "label":  "Dependency vulnerabilities",
+        "deps":  [
+                     "phase-1-dependencies"
+                 ],
+        "id":  "phase-1-dependency-vulnerabilities",
+        "skill":  "dependency-vulnerability-analysis",
+        "runs":  "subagent"
+    },
+    {
+        "label":  "Data \u0026 API specs",
+        "deps":  [
+                     "phase-0-routing",
+                     "phase-0-components"
+                 ],
+        "id":  "phase-1-data-api-specs",
+        "skill":  "extract-data-api-specs",
+        "runs":  "subagent"
+    },
+    {
+        "label":  "Code structure s1",
+        "deps":  [
+                     "phase-1-file-system",
+                     "phase-0-grammar-setup",
+                     "phase-0-lsp-setup"
+                 ],
+        "id":  "phase-2-code-structure--s1",
+        "skill":  "extract-code-structure",
+        "runs":  "subagent"
+    },
+    {
+        "label":  "Integration s1",
+        "deps":  [
+                     "phase-2-code-structure--s1",
+                     "phase-1-data-api-specs",
+                     "phase-1-config-infra"
+                 ],
+        "id":  "phase-2-integration--s1",
+        "skill":  "extract-integration-patterns",
+        "runs":  "subagent"
+    },
+    {
+        "label":  "Performance s1",
+        "deps":  [
+                     "phase-2-code-structure--s1",
+                     "phase-1-config-infra"
+                 ],
+        "id":  "phase-2-performance--s1",
+        "skill":  "extract-performance-patterns",
+        "runs":  "subagent"
+    },
+    {
+        "label":  "Business semantics s1",
+        "deps":  [
+                     "phase-2-integration--s1",
+                     "phase-2-performance--s1",
+                     "phase-2-data-access"
+                 ],
+        "id":  "phase-3-business-semantics--s1",
+        "skill":  "extract-business-semantics",
+        "runs":  "subagent"
+    },
+    {
+        "label":  "Quality semantics s1",
+        "deps":  [
+                     "phase-2-integration--s1",
+                     "phase-2-performance--s1",
+                     "phase-1-git-history",
+                     "phase-1-dependencies",
+                     "phase-1-dependency-vulnerabilities"
+                 ],
+        "id":  "phase-3-quality-semantics--s1",
+        "skill":  "extract-quality-semantics",
+        "runs":  "subagent"
+    },
+    {
+        "label":  "Code structure s2",
+        "deps":  [
+                     "phase-1-file-system",
+                     "phase-0-grammar-setup",
+                     "phase-0-lsp-setup"
+                 ],
+        "id":  "phase-2-code-structure--s2",
+        "skill":  "extract-code-structure",
+        "runs":  "subagent"
+    },
+    {
+        "label":  "Integration s2",
+        "deps":  [
+                     "phase-2-code-structure--s2",
+                     "phase-1-data-api-specs",
+                     "phase-1-config-infra"
+                 ],
+        "id":  "phase-2-integration--s2",
+        "skill":  "extract-integration-patterns",
+        "runs":  "subagent"
+    },
+    {
+        "label":  "Performance s2",
+        "deps":  [
+                     "phase-2-code-structure--s2",
+                     "phase-1-config-infra"
+                 ],
+        "id":  "phase-2-performance--s2",
+        "skill":  "extract-performance-patterns",
+        "runs":  "subagent"
+    },
+    {
+        "label":  "Business semantics s2",
+        "deps":  [
+                     "phase-2-integration--s2",
+                     "phase-2-performance--s2",
+                     "phase-2-data-access"
+                 ],
+        "id":  "phase-3-business-semantics--s2",
+        "skill":  "extract-business-semantics",
+        "runs":  "subagent"
+    },
+    {
+        "label":  "Quality semantics s2",
+        "deps":  [
+                     "phase-2-integration--s2",
+                     "phase-2-performance--s2",
+                     "phase-1-git-history",
+                     "phase-1-dependencies",
+                     "phase-1-dependency-vulnerabilities"
+                 ],
+        "id":  "phase-3-quality-semantics--s2",
+        "skill":  "extract-quality-semantics",
+        "runs":  "subagent"
+    },
+    {
+        "label":  "Code structure s3",
+        "deps":  [
+                     "phase-1-file-system",
+                     "phase-0-grammar-setup",
+                     "phase-0-lsp-setup"
+                 ],
+        "id":  "phase-2-code-structure--s3",
+        "skill":  "extract-code-structure",
+        "runs":  "subagent"
+    },
+    {
+        "label":  "Integration s3",
+        "deps":  [
+                     "phase-2-code-structure--s3",
+                     "phase-1-data-api-specs",
+                     "phase-1-config-infra"
+                 ],
+        "id":  "phase-2-integration--s3",
+        "skill":  "extract-integration-patterns",
+        "runs":  "subagent"
+    },
+    {
+        "label":  "Performance s3",
+        "deps":  [
+                     "phase-2-code-structure--s3",
+                     "phase-1-config-infra"
+                 ],
+        "id":  "phase-2-performance--s3",
+        "skill":  "extract-performance-patterns",
+        "runs":  "subagent"
+    },
+    {
+        "label":  "Business semantics s3",
+        "deps":  [
+                     "phase-2-integration--s3",
+                     "phase-2-performance--s3",
+                     "phase-2-data-access"
+                 ],
+        "id":  "phase-3-business-semantics--s3",
+        "skill":  "extract-business-semantics",
+        "runs":  "subagent"
+    },
+    {
+        "label":  "Quality semantics s3",
+        "deps":  [
+                     "phase-2-integration--s3",
+                     "phase-2-performance--s3",
+                     "phase-1-git-history",
+                     "phase-1-dependencies",
+                     "phase-1-dependency-vulnerabilities"
+                 ],
+        "id":  "phase-3-quality-semantics--s3",
+        "skill":  "extract-quality-semantics",
+        "runs":  "subagent"
+    },
+    {
+        "label":  "Code structure s4",
+        "deps":  [
+                     "phase-1-file-system",
+                     "phase-0-grammar-setup",
+                     "phase-0-lsp-setup"
+                 ],
+        "id":  "phase-2-code-structure--s4",
+        "skill":  "extract-code-structure",
+        "runs":  "subagent"
+    },
+    {
+        "label":  "Integration s4",
+        "deps":  [
+                     "phase-2-code-structure--s4",
+                     "phase-1-data-api-specs",
+                     "phase-1-config-infra"
+                 ],
+        "id":  "phase-2-integration--s4",
+        "skill":  "extract-integration-patterns",
+        "runs":  "subagent"
+    },
+    {
+        "label":  "Performance s4",
+        "deps":  [
+                     "phase-2-code-structure--s4",
+                     "phase-1-config-infra"
+                 ],
+        "id":  "phase-2-performance--s4",
+        "skill":  "extract-performance-patterns",
+        "runs":  "subagent"
+    },
+    {
+        "label":  "Business semantics s4",
+        "deps":  [
+                     "phase-2-integration--s4",
+                     "phase-2-performance--s4",
+                     "phase-2-data-access"
+                 ],
+        "id":  "phase-3-business-semantics--s4",
+        "skill":  "extract-business-semantics",
+        "runs":  "subagent"
+    },
+    {
+        "label":  "Quality semantics s4",
+        "deps":  [
+                     "phase-2-integration--s4",
+                     "phase-2-performance--s4",
+                     "phase-1-git-history",
+                     "phase-1-dependencies",
+                     "phase-1-dependency-vulnerabilities"
+                 ],
+        "id":  "phase-3-quality-semantics--s4",
+        "skill":  "extract-quality-semantics",
+        "runs":  "subagent"
+    },
+    {
+        "label":  "Code structure s5",
+        "deps":  [
+                     "phase-1-file-system",
+                     "phase-0-grammar-setup",
+                     "phase-0-lsp-setup"
+                 ],
+        "id":  "phase-2-code-structure--s5",
+        "skill":  "extract-code-structure",
+        "runs":  "subagent"
+    },
+    {
+        "label":  "Integration s5",
+        "deps":  [
+                     "phase-2-code-structure--s5",
+                     "phase-1-data-api-specs",
+                     "phase-1-config-infra"
+                 ],
+        "id":  "phase-2-integration--s5",
+        "skill":  "extract-integration-patterns",
+        "runs":  "subagent"
+    },
+    {
+        "label":  "Performance s5",
+        "deps":  [
+                     "phase-2-code-structure--s5",
+                     "phase-1-config-infra"
+                 ],
+        "id":  "phase-2-performance--s5",
+        "skill":  "extract-performance-patterns",
+        "runs":  "subagent"
+    },
+    {
+        "label":  "Business semantics s5",
+        "deps":  [
+                     "phase-2-integration--s5",
+                     "phase-2-performance--s5",
+                     "phase-2-data-access"
+                 ],
+        "id":  "phase-3-business-semantics--s5",
+        "skill":  "extract-business-semantics",
+        "runs":  "subagent"
+    },
+    {
+        "label":  "Quality semantics s5",
+        "deps":  [
+                     "phase-2-integration--s5",
+                     "phase-2-performance--s5",
+                     "phase-1-git-history",
+                     "phase-1-dependencies",
+                     "phase-1-dependency-vulnerabilities"
+                 ],
+        "id":  "phase-3-quality-semantics--s5",
+        "skill":  "extract-quality-semantics",
+        "runs":  "subagent"
+    },
+    {
+        "label":  "Code structure s6",
+        "deps":  [
+                     "phase-1-file-system",
+                     "phase-0-grammar-setup",
+                     "phase-0-lsp-setup"
+                 ],
+        "id":  "phase-2-code-structure--s6",
+        "skill":  "extract-code-structure",
+        "runs":  "subagent"
+    },
+    {
+        "label":  "Integration s6",
+        "deps":  [
+                     "phase-2-code-structure--s6",
+                     "phase-1-data-api-specs",
+                     "phase-1-config-infra"
+                 ],
+        "id":  "phase-2-integration--s6",
+        "skill":  "extract-integration-patterns",
+        "runs":  "subagent"
+    },
+    {
+        "label":  "Performance s6",
+        "deps":  [
+                     "phase-2-code-structure--s6",
+                     "phase-1-config-infra"
+                 ],
+        "id":  "phase-2-performance--s6",
+        "skill":  "extract-performance-patterns",
+        "runs":  "subagent"
+    },
+    {
+        "label":  "UI surface s6",
+        "deps":  [
+                     "phase-2-code-structure--s6"
+                 ],
+        "id":  "phase-2-ui-surface--s6",
+        "skill":  "extract-ui-surface",
+        "runs":  "subagent"
+    },
+    {
+        "label":  "Business semantics s6",
+        "deps":  [
+                     "phase-2-integration--s6",
+                     "phase-2-performance--s6",
+                     "phase-2-ui-surface--s6",
+                     "phase-2-data-access"
+                 ],
+        "id":  "phase-3-business-semantics--s6",
+        "skill":  "extract-business-semantics",
+        "runs":  "subagent"
+    },
+    {
+        "label":  "Quality semantics s6",
+        "deps":  [
+                     "phase-2-integration--s6",
+                     "phase-2-performance--s6",
+                     "phase-2-ui-surface--s6",
+                     "phase-1-git-history",
+                     "phase-1-dependencies",
+                     "phase-1-dependency-vulnerabilities"
+                 ],
+        "id":  "phase-3-quality-semantics--s6",
+        "skill":  "extract-quality-semantics",
+        "runs":  "subagent"
+    },
+    {
+        "label":  "Code structure s7",
+        "deps":  [
+                     "phase-1-file-system",
+                     "phase-0-grammar-setup",
+                     "phase-0-lsp-setup"
+                 ],
+        "id":  "phase-2-code-structure--s7",
+        "skill":  "extract-code-structure",
+        "runs":  "subagent"
+    },
+    {
+        "label":  "Integration s7",
+        "deps":  [
+                     "phase-2-code-structure--s7",
+                     "phase-1-data-api-specs",
+                     "phase-1-config-infra"
+                 ],
+        "id":  "phase-2-integration--s7",
+        "skill":  "extract-integration-patterns",
+        "runs":  "subagent"
+    },
+    {
+        "label":  "Performance s7",
+        "deps":  [
+                     "phase-2-code-structure--s7",
+                     "phase-1-config-infra"
+                 ],
+        "id":  "phase-2-performance--s7",
+        "skill":  "extract-performance-patterns",
+        "runs":  "subagent"
+    },
+    {
+        "label":  "UI surface s7",
+        "deps":  [
+                     "phase-2-code-structure--s7"
+                 ],
+        "id":  "phase-2-ui-surface--s7",
+        "skill":  "extract-ui-surface",
+        "runs":  "subagent"
+    },
+    {
+        "label":  "Business semantics s7",
+        "deps":  [
+                     "phase-2-integration--s7",
+                     "phase-2-performance--s7",
+                     "phase-2-ui-surface--s7",
+                     "phase-2-data-access"
+                 ],
+        "id":  "phase-3-business-semantics--s7",
+        "skill":  "extract-business-semantics",
+        "runs":  "subagent"
+    },
+    {
+        "label":  "Quality semantics s7",
+        "deps":  [
+                     "phase-2-integration--s7",
+                     "phase-2-performance--s7",
+                     "phase-2-ui-surface--s7",
+                     "phase-1-git-history",
+                     "phase-1-dependencies",
+                     "phase-1-dependency-vulnerabilities"
+                 ],
+        "id":  "phase-3-quality-semantics--s7",
+        "skill":  "extract-quality-semantics",
+        "runs":  "subagent"
+    },
+    {
+        "label":  "Code structure s8",
+        "deps":  [
+                     "phase-1-file-system",
+                     "phase-0-grammar-setup",
+                     "phase-0-lsp-setup"
+                 ],
+        "id":  "phase-2-code-structure--s8",
+        "skill":  "extract-code-structure",
+        "runs":  "subagent"
+    },
+    {
+        "label":  "Integration s8",
+        "deps":  [
+                     "phase-2-code-structure--s8",
+                     "phase-1-data-api-specs",
+                     "phase-1-config-infra"
+                 ],
+        "id":  "phase-2-integration--s8",
+        "skill":  "extract-integration-patterns",
+        "runs":  "subagent"
+    },
+    {
+        "label":  "Performance s8",
+        "deps":  [
+                     "phase-2-code-structure--s8",
+                     "phase-1-config-infra"
+                 ],
+        "id":  "phase-2-performance--s8",
+        "skill":  "extract-performance-patterns",
+        "runs":  "subagent"
+    },
+    {
+        "label":  "UI surface s8",
+        "deps":  [
+                     "phase-2-code-structure--s8"
+                 ],
+        "id":  "phase-2-ui-surface--s8",
+        "skill":  "extract-ui-surface",
+        "runs":  "subagent"
+    },
+    {
+        "label":  "Business semantics s8",
+        "deps":  [
+                     "phase-2-integration--s8",
+                     "phase-2-performance--s8",
+                     "phase-2-ui-surface--s8",
+                     "phase-2-data-access"
+                 ],
+        "id":  "phase-3-business-semantics--s8",
+        "skill":  "extract-business-semantics",
+        "runs":  "subagent"
+    },
+    {
+        "label":  "Quality semantics s8",
+        "deps":  [
+                     "phase-2-integration--s8",
+                     "phase-2-performance--s8",
+                     "phase-2-ui-surface--s8",
+                     "phase-1-git-history",
+                     "phase-1-dependencies",
+                     "phase-1-dependency-vulnerabilities"
+                 ],
+        "id":  "phase-3-quality-semantics--s8",
+        "skill":  "extract-quality-semantics",
+        "runs":  "subagent"
+    },
+    {
+        "label":  "Data access",
+        "deps":  [
+                     "phase-2-code-structure--s1",
+                     "phase-2-code-structure--s2",
+                     "phase-2-code-structure--s3",
+                     "phase-2-code-structure--s4",
+                     "phase-2-code-structure--s5",
+                     "phase-2-code-structure--s6",
+                     "phase-2-code-structure--s7",
+                     "phase-2-code-structure--s8",
+                     "phase-1-data-api-specs"
+                 ],
+        "id":  "phase-2-data-access",
+        "skill":  "extract-data-access",
+        "runs":  "subagent"
+    },
+    {
+        "label":  "Coverage validation",
+        "deps":  [
+                     "phase-3-business-semantics--s1",
+                     "phase-3-quality-semantics--s1",
+                     "phase-3-business-semantics--s2",
+                     "phase-3-quality-semantics--s2",
+                     "phase-3-business-semantics--s3",
+                     "phase-3-quality-semantics--s3",
+                     "phase-3-business-semantics--s4",
+                     "phase-3-quality-semantics--s4",
+                     "phase-3-business-semantics--s5",
+                     "phase-3-quality-semantics--s5",
+                     "phase-3-business-semantics--s6",
+                     "phase-3-quality-semantics--s6",
+                     "phase-3-business-semantics--s7",
+                     "phase-3-quality-semantics--s7",
+                     "phase-3-business-semantics--s8",
+                     "phase-3-quality-semantics--s8",
+                     "phase-1-file-system",
+                     "phase-1-git-history",
+                     "phase-1-config-infra",
+                     "phase-1-dependencies",
+                     "phase-1-dependency-vulnerabilities",
+                     "phase-1-data-api-specs"
+                 ],
+        "id":  "coverage-validation",
+        "skill":  "file-coverage-enforcement",
+        "runs":  "inline"
+    },
+    {
+        "label":  "Cross-cutting",
+        "deps":  [
+                     "coverage-validation"
+                 ],
+        "id":  "phase-4-cross-cutting",
+        "skill":  "cross-cutting-analysis",
+        "runs":  "subagent"
+    },
+    {
+        "label":  "Gap analysis",
+        "deps":  [
+                     "phase-4-cross-cutting"
+                 ],
+        "id":  "phase-5-gap-analysis",
+        "skill":  "gap-analysis",
+        "runs":  "subagent"
+    },
+    {
+        "label":  "External extraction",
+        "deps":  [
+                     "phase-5-gap-analysis",
+                     "phase-0-external-sources"
+                 ],
+        "id":  "phase-6-extraction",
+        "skill":  "extract-external-sources",
+        "runs":  "subagent"
+    },
+    {
+        "label":  "External merge",
+        "deps":  [
+                     "phase-6-extraction"
+                 ],
+        "id":  "phase-6-merge",
+        "runs":  "inline"
+    },
+    {
+        "label":  "Completeness scoring",
+        "deps":  [
+                     "phase-6-merge"
+                 ],
+        "id":  "phase-5-completeness",
+        "skill":  "completeness-scoring",
+        "runs":  "subagent"
+    },
+    {
+        "label":  "Summary report",
+        "deps":  [
+                     "phase-5-completeness"
+                 ],
+        "id":  "phase-5-summary-report",
+        "skill":  "extraction-summary-report",
+        "runs":  "subagent"
+    }
+]

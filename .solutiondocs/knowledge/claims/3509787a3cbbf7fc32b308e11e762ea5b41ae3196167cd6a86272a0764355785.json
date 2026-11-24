@@ -1,0 +1,21 @@
+{
+  "applicability": {
+    "source_revision": "8f85e5fdbe16c87bdcac6d063da2d74ace58452fd788c397dab32f2086ad53d0"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T10:18:07.792802Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:dsa-5e44052b04bc07492ff7dae53de89012ccd96772"
+  ],
+  "id": "claim:dsa-81e6333f8fdf1ede577b770ad6bcdf86f8fea5e4",
+  "predicate": "data_type",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-persistence",
+  "status": "candidate",
+  "subject": "data_field:tlgnc-demand-plan-sap-material-id",
+  "updated_at": "2026-11-24T10:18:07.792802Z",
+  "value": "number(12)"
+}

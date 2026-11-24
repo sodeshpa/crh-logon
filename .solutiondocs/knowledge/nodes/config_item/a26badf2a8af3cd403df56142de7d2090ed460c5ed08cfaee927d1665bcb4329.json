@@ -1,0 +1,36 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:51:52.064424Z",
+  "id": "config_item:config-logon-db-properties",
+  "name": "config/logon-db.properties",
+  "properties": {
+    "contains_secrets": true,
+    "environment_specific": true,
+    "environments": [
+      "ch01",
+      "ch02",
+      "ch03",
+      "hu00",
+      "hu01",
+      "hu02",
+      "vn01",
+      "rhu01",
+      "rhu02",
+      "int2",
+      "int3",
+      "int4",
+      "test1",
+      "test2",
+      "test3"
+    ],
+    "file_path": "config/logon-db.properties",
+    "format": "properties",
+    "purpose": "database",
+    "version_controlled": true
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "config_item",
+  "updated_at": "2026-11-24T09:51:52.064424Z"
+}

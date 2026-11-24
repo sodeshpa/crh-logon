@@ -1,0 +1,27 @@
+{
+  "applicability": {
+    "source_revision": "c4799b3dfcf94ee66c921f340bda20c43e31a979"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 0.95,
+  "created_at": "2026-11-24T10:36:58.132094Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:fs-09778ce598725f3a221d2f5a"
+  ],
+  "id": "claim:fs-09778ce598725f3a221d2f5a",
+  "predicate": "file_inventory",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-persistence",
+  "status": "candidate",
+  "subject": "code_unit:logon-persistence-etc-sql-patch-from_1.0.0-patch_1.9.0_to_1.9.1.sql",
+  "updated_at": "2026-11-24T10:36:58.132094Z",
+  "value": {
+    "estimated_tokens": 2644,
+    "file_path": "logon-persistence/etc/sql/patch/from_1.0.0/patch_1.9.0_to_1.9.1.sql",
+    "language": "SQL",
+    "loc": 267,
+    "size_bytes": 10579
+  }
+}

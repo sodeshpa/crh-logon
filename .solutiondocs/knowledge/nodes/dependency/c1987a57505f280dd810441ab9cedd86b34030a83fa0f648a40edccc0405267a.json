@@ -1,0 +1,17 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:49:36.164007Z",
+  "id": "dependency:maven-io.swagger.codegen.v3-swagger-codegen-cli-3.0.24",
+  "name": "swagger-codegen-cli",
+  "properties": {
+    "dependency_type": "tool",
+    "scope": "build",
+    "version": "3.0.24"
+  },
+  "qualified_name": "io.swagger.codegen.v3:swagger-codegen-cli@3.0.24",
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "dependency",
+  "updated_at": "2026-11-24T09:49:36.164007Z"
+}

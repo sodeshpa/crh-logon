@@ -1,0 +1,21 @@
+{
+  "applicability": {
+    "source_revision": "3bbc16fc1b7c92f72676b7f156652b111b4301316581041c9f5feca4eca39166"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T10:24:05.985709Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:dsa-3a4ae939ef111c613343ec4386a242ffb4cc983c"
+  ],
+  "id": "claim:dsa-a19913ec8ce369f0eb1cc3d55a6e75400424af30",
+  "predicate": "foreign_key",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-webservices",
+  "status": "candidate",
+  "subject": "data_field:vehn-vehiclenotification-sapimpstatuscd",
+  "target": "data_field:tlgnr-sapimpstatus-bs-sapimpstatus-cd",
+  "updated_at": "2026-11-24T10:24:05.985709Z"
+}

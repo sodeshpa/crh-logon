@@ -1,0 +1,24 @@
+{
+  "applicability": {
+    "source_revision": "c4799b3dfcf94ee66c921f340bda20c43e31a979"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 0.95,
+  "created_at": "2026-11-24T11:27:07.998697Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:fs-f765e1e1f4ec41279c3c4bb5"
+  ],
+  "id": "claim:fs-rel-f765e1e1f4ec41279c3c4bb5",
+  "predicate": "contains",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-terminal-web",
+  "status": "candidate",
+  "subject": "relationship:fs-contains-f765e1e1f4ec41279c3c4bb5",
+  "updated_at": "2026-11-24T11:27:07.998697Z",
+  "value": {
+    "container": "component:logon-terminal-web",
+    "file_path": "logon-terminal-web/src/main/java/com/crh/logon/terminal/web/actions/TerminalEntryAction.java"
+  }
+}

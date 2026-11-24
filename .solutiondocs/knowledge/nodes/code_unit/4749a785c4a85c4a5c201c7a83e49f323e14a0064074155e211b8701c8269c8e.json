@@ -1,0 +1,21 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:47:21.032770Z",
+  "id": "code_unit:ansible-activate-venv.sh",
+  "name": "activate-venv.sh",
+  "properties": {
+    "file_path": "ansible/activate-venv.sh",
+    "language": "Script",
+    "loc": 8,
+    "metrics": {
+      "loc": 8
+    },
+    "unit_type": "file"
+  },
+  "qualified_name": "ansible/activate-venv.sh",
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "code_unit",
+  "updated_at": "2026-11-24T09:47:21.032770Z"
+}

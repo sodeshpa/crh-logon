@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "claim_ids": [
+    "claim:fs-rel-cc7876ce162abfacf3048ce4"
+  ],
+  "created_at": "2026-11-24T11:32:18.902642Z",
+  "from": "component:logon-webservices",
+  "id": "relationship:fs-contains-cc7876ce162abfacf3048ce4",
+  "properties": {},
+  "record_kind": "relationship",
+  "revision": 1,
+  "status": "active",
+  "to": "code_unit:logon-webservices-src-main-java-com-crh-logon-persistence-entities-sapdata-materialdataforeachstoragetype.java",
+  "type": "contains",
+  "updated_at": "2026-11-24T11:32:18.902642Z"
+}

@@ -1,0 +1,21 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:47:32.738904Z",
+  "id": "code_unit:logon-admin-web-src-main-webapp-web-inf-jsp-containeradmin-containeradminmap.jsp",
+  "name": "ContainerAdminMap.jsp",
+  "properties": {
+    "file_path": "logon-admin-web/src/main/webapp/WEB-INF/jsp/containeradmin/ContainerAdminMap.jsp",
+    "language": "Web/Template",
+    "loc": 126,
+    "metrics": {
+      "loc": 126
+    },
+    "unit_type": "file"
+  },
+  "qualified_name": "logon-admin-web/src/main/webapp/WEB-INF/jsp/containeradmin/ContainerAdminMap.jsp",
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "code_unit",
+  "updated_at": "2026-11-24T09:47:32.738904Z"
+}

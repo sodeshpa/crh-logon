@@ -1,0 +1,19 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:59:54.408851Z",
+  "id": "source_artifact:dsa-logon-webservices-client-etc-wsdl-ffax-wsdl",
+  "name": "ffax.wsdl",
+  "properties": {
+    "location": "logon-webservices-client/etc/wsdl/ffax.wsdl",
+    "metadata": {
+      "dsa:target_namespace": "http://www.officemaster.de/"
+    },
+    "revision": "ba7ebbe341e4ec5af03f589f00b1c084f95139c609f4054b32a0d25e969d255d",
+    "source_type": "wsdl"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "source_artifact",
+  "updated_at": "2026-11-24T09:59:54.408851Z"
+}

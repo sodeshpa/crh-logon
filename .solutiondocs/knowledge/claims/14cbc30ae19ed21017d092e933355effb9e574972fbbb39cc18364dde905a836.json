@@ -1,0 +1,27 @@
+{
+  "applicability": {
+    "source_revision": "c4799b3dfcf94ee66c921f340bda20c43e31a979"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 0.95,
+  "created_at": "2026-11-24T09:48:25.227887Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:fs-519b7962042fd08abfcb7aad"
+  ],
+  "id": "claim:fs-519b7962042fd08abfcb7aad",
+  "predicate": "file_inventory",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-business",
+  "status": "candidate",
+  "subject": "code_unit:logon-business-src-main-java-com-crh-logon-business-ordercreation-shiptosalesareafinancialbackgrounddata.java",
+  "updated_at": "2026-11-24T09:48:25.227887Z",
+  "value": {
+    "estimated_tokens": 1920,
+    "file_path": "logon-business/src/main/java/com/crh/logon/business/ordercreation/ShiptoSalesAreaFinancialbackgroundData.java",
+    "language": "Java",
+    "loc": 285,
+    "size_bytes": 7681
+  }
+}

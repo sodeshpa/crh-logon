@@ -1,0 +1,15 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T10:04:21.856768Z",
+  "id": "data_entity:bpn-distancestoplant",
+  "name": "BPN_DISTANCESTOPLANT",
+  "properties": {
+    "entity_type": "table",
+    "schema": "ulgnsap"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "data_entity",
+  "updated_at": "2026-11-24T10:04:21.856768Z"
+}

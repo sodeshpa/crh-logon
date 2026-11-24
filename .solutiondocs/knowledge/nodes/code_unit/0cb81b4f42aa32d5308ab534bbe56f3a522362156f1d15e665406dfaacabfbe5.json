@@ -1,0 +1,21 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T10:01:22.932656Z",
+  "id": "code_unit:logon-common-src-main-java-com-crh-logon-utils-cdihelper.java",
+  "name": "CDIHelper.java",
+  "properties": {
+    "file_path": "logon-common/src/main/java/com/crh/logon/utils/CDIHelper.java",
+    "language": "Java",
+    "loc": 84,
+    "metrics": {
+      "loc": 84
+    },
+    "unit_type": "file"
+  },
+  "qualified_name": "logon-common/src/main/java/com/crh/logon/utils/CDIHelper.java",
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "code_unit",
+  "updated_at": "2026-11-24T10:01:22.932656Z"
+}

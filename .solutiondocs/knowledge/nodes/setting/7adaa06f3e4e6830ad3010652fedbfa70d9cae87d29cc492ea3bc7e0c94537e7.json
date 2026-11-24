@@ -1,0 +1,18 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:53:30.031918Z",
+  "id": "setting:config-build-dev-properties--password-strength-validation-enabled",
+  "name": "password.strength.validation.enabled",
+  "properties": {
+    "is_connection_string": false,
+    "is_secret": true,
+    "key": "password.strength.validation.enabled",
+    "source_file": "config/build-dev.properties",
+    "value_type": "string"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "setting",
+  "updated_at": "2026-11-24T09:53:30.031918Z"
+}

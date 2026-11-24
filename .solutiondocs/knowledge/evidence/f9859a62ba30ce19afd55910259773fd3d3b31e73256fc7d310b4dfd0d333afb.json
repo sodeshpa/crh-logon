@@ -1,0 +1,18 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T11:14:29.744716Z",
+  "id": "evidence:fs-ba1f68d613308f612af0f6f0",
+  "locator": {
+    "file": "logon-persistence/src/main/java/com/crh/logon/persistence/entities/common/SimpleVehicleEntity.java",
+    "line_end": 674,
+    "line_start": 1
+  },
+  "method": "file-system",
+  "observed_at": "2026-11-24T09:46:55Z",
+  "record_kind": "evidence",
+  "revision": 1,
+  "source_id": "source_artifact:fs-logon-persistence-tree",
+  "source_revision": "c4799b3dfcf94ee66c921f340bda20c43e31a979",
+  "status": "active",
+  "updated_at": "2026-11-24T11:14:29.744716Z"
+}

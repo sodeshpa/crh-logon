@@ -1,0 +1,24 @@
+{
+  "applicability": {
+    "source_revision": "c4799b3dfcf94ee66c921f340bda20c43e31a979"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 0.95,
+  "created_at": "2026-11-24T09:50:56.981245Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:fs-fb4a9fb518b959f85ad954d0"
+  ],
+  "id": "claim:fs-rel-fb4a9fb518b959f85ad954d0",
+  "predicate": "contains",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-business",
+  "status": "candidate",
+  "subject": "relationship:fs-contains-fb4a9fb518b959f85ad954d0",
+  "updated_at": "2026-11-24T09:50:56.981245Z",
+  "value": {
+    "container": "component:logon-business",
+    "file_path": "logon-business/src/main/java/com/crh/logon/business/services/pdftools/layout/logoutils/LogoBlock.java"
+  }
+}

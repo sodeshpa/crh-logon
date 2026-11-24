@@ -1,0 +1,17 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T10:20:23.597113Z",
+  "id": "data_entity:vlgns-sap-netp-order-item-sum",
+  "name": "VLGNS_SAP_NETP_ORDER_ITEM_SUM",
+  "properties": {
+    "entity_type": "view",
+    "materialised": false,
+    "purpose": "Sum up of tlgns_sap_netprice_order_item over order_item_id. Used in vlgnc_order_item_margin.",
+    "schema": "ulgn"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "data_entity",
+  "updated_at": "2026-11-24T10:20:23.597113Z"
+}

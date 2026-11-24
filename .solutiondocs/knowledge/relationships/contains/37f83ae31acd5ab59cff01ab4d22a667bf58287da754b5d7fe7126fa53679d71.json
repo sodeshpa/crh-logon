@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "claim_ids": [
+    "claim:dsa-c4635ce6cc4a8c3df99cacd83bda8def64e58929"
+  ],
+  "created_at": "2026-11-24T10:41:22.508413Z",
+  "from": "data_store:logon-main-database",
+  "id": "relationship:dsa-2aa8f55996c1981f04e6239ccee6a0ff18c44077",
+  "properties": {},
+  "record_kind": "relationship",
+  "revision": 1,
+  "status": "active",
+  "to": "data_entity:vlgnc-dispo-assign-truck",
+  "type": "contains",
+  "updated_at": "2026-11-24T10:41:22.508413Z"
+}

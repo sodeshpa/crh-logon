@@ -1,0 +1,28 @@
+{
+  "applicability": {
+    "source_revision": "880ff571c6531bdd2b51360ac4c8128795063f96"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T09:49:36.164007Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:deps-868ef446a25d1f63ff7c"
+  ],
+  "id": "claim:deps-ac7c6fb74e9a9cb86ef6b813",
+  "predicate": "declared_coordinates",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "application:sodeshpa-improved-telegram",
+  "status": "candidate",
+  "subject": "dependency:external-distribution-org.hibernate-hibernate-tools-3.2.4.cr1",
+  "updated_at": "2026-11-24T09:49:36.164007Z",
+  "value": {
+    "ecosystem": "external-distribution",
+    "group": "org.hibernate",
+    "name": "hibernate-tools",
+    "note": "HIBERNATE_TOOLS_HOME",
+    "scope": "build",
+    "version": "3.2.4.CR1"
+  }
+}

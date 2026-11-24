@@ -1,0 +1,28 @@
+{
+  "applicability": {
+    "source_revision": "b65484483903039583cc2f1b36a492bb8d134609"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T09:49:36.164007Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:deps-1af040d8fcaefce4d017"
+  ],
+  "id": "claim:deps-4236bbe67b631d8de465f994",
+  "predicate": "declared_coordinates",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "application:sodeshpa-improved-telegram",
+  "status": "candidate",
+  "subject": "dependency:ant-jar-com.aspose-aspose.words-13.9.0.0",
+  "updated_at": "2026-11-24T09:49:36.164007Z",
+  "value": {
+    "ecosystem": "ant-jar",
+    "group": "com.aspose",
+    "name": "Aspose.Words",
+    "note": "ant property aspose-words.jar -> ${ASPOSE_WORDS_HOME}/Aspose.Words.jdk16.jar (resolved from external jpository/mpository; not bundled in repo)",
+    "scope": "compile",
+    "version": "13.9.0.0"
+  }
+}

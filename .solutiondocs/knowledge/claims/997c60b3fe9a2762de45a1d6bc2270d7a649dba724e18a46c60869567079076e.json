@@ -1,0 +1,21 @@
+{
+  "applicability": {
+    "source_revision": "f0319b7f1fa2ac8b05f0bc2cbf001eceaa03677eb829c7419fb7413f61391f69"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T10:06:43.126484Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:dsa-dac7877b6cc01270fdb85350b4ea69efc06cacca"
+  ],
+  "id": "claim:dsa-1696407bc812abf9e8aa2d0997e0a4caf508b054",
+  "predicate": "data_type",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-webservices",
+  "status": "candidate",
+  "subject": "data_field:mn-fireqmaterialnumbermatnri-0-item",
+  "updated_at": "2026-11-24T10:06:43.126484Z",
+  "value": "varchar2(18 char)"
+}

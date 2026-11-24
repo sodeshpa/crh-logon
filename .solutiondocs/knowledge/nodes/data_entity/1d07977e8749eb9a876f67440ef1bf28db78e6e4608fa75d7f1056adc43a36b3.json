@@ -1,0 +1,17 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T10:20:23.597113Z",
+  "id": "data_entity:vlgns-util-matplant-missing",
+  "name": "VLGNS_UTIL_MATPLANT_MISSING",
+  "properties": {
+    "entity_type": "view",
+    "materialised": false,
+    "purpose": "Utilitly/Support view to show SAP material-plant entries for production plants without an entry in tlgnc_mat_plant. Since LOGON 1.4.0 an entry in tlgnc_mat_plant is mandatory for all material-prod-plant (because of NORM_DESC, BRAND_SALES_NAME). If missing: material cannot be used by LOGON. View is not used by the application itself.",
+    "schema": "ulgn"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "data_entity",
+  "updated_at": "2026-11-24T10:20:23.597113Z"
+}

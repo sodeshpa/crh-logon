@@ -1,0 +1,17 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T10:20:23.597113Z",
+  "id": "data_entity:vlgnc-lds-server-dropdown",
+  "name": "VLGNC_LDS_SERVER_DROPDOWN",
+  "properties": {
+    "entity_type": "view",
+    "materialised": false,
+    "purpose": "Used to display LDS server names from tlgnr_config table on the shipping point screen. We are only interested in keys, not values, therefore hard-coding instance to null is ok.",
+    "schema": "ulgn"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "data_entity",
+  "updated_at": "2026-11-24T10:20:23.597113Z"
+}

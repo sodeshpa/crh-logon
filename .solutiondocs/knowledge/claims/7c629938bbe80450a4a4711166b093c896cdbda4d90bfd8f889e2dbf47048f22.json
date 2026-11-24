@@ -1,0 +1,20 @@
+{
+  "applicability": {
+    "source_revision": "3bc06357a832a991828621f9ba45d77779be9c52a4247424f23eb432b593c2ac"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 0.9,
+  "created_at": "2026-11-24T09:51:52.064424Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:cfg-9971c2bf814e782344d965cfd73322f16c85ec0b0cf6eddb17891c9ee78b03e7"
+  ],
+  "id": "claim:9190e4e22e05e975f30adcdee735c1f110d3844c373253d607a169907b0fadeb",
+  "predicate": "uses",
+  "record_kind": "claim",
+  "revision": 1,
+  "status": "candidate",
+  "subject": "platform_service:jboss-eap",
+  "target": "platform_service:oracle-database",
+  "updated_at": "2026-11-24T09:51:52.064424Z"
+}

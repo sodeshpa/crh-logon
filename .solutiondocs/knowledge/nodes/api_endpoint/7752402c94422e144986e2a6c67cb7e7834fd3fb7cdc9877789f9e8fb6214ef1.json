@@ -1,0 +1,25 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T10:27:28.875935Z",
+  "id": "api_endpoint:ffax-sendfax",
+  "name": "SendFax",
+  "properties": {
+    "method": "POST",
+    "path": "/ofmawsvc3/ffax.asmx",
+    "protocol": "SOAP",
+    "request_schema": {
+      "title": "SendFaxJobfileSoapIn",
+      "type": "object"
+    },
+    "response_schema": {
+      "title": "SendFaxJobfileSoapOut",
+      "type": "object"
+    }
+  },
+  "qualified_name": "FFaxSoap.SendFax",
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "api_endpoint",
+  "updated_at": "2026-11-24T10:27:28.875935Z"
+}

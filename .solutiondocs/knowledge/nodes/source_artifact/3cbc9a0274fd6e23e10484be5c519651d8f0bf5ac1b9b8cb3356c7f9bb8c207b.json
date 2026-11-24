@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:59:54.408851Z",
+  "id": "source_artifact:dsa-logon-persistence-etc-sql-testdata-tlgns-sap-material-sql",
+  "name": "tlgns_sap_material.sql",
+  "properties": {
+    "location": "logon-persistence/etc/sql/testdata/tlgns_sap_material.sql",
+    "revision": "8babbcc032561659c9c569120f8864eea4e00a2b0254976c3dc643f10518a9ca",
+    "source_type": "ddl_sql"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "source_artifact",
+  "updated_at": "2026-11-24T09:59:54.408851Z"
+}

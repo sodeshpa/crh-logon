@@ -1,0 +1,17 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T09:46:43.269899Z",
+  "id": "evidence:git-history-depth",
+  "locator": {
+    "file": ".git",
+    "section": "git log --oneline (commit count and messages)"
+  },
+  "method": "git-log",
+  "observed_at": "2026-11-24T09:46:31Z",
+  "record_kind": "evidence",
+  "revision": 1,
+  "source_id": "source_artifact:git-history-sodeshpa-improved-telegram",
+  "source_revision": "c4799b3dfcf94ee66c921f340bda20c43e31a979",
+  "status": "active",
+  "updated_at": "2026-11-24T09:46:43.269899Z"
+}

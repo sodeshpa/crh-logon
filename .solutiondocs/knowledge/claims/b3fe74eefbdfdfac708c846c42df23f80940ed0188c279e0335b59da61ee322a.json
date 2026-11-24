@@ -1,0 +1,21 @@
+{
+  "applicability": {
+    "source_revision": "2f67355299bd269b3fcd1423b811f3a4e99cd848a80b034f97543578e3266285"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 1.0,
+  "created_at": "2026-11-24T10:27:28.875935Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:dsa-c1b9e536123589757582cf6fa2833d587c0253d4"
+  ],
+  "id": "claim:dsa-2e906e0ad44e6abb2f79b4883fb03d8b040cee94",
+  "predicate": "method",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-webservices-pws-incoming",
+  "status": "candidate",
+  "subject": "api_endpoint:logonldsinterface-services-addreturnorder",
+  "updated_at": "2026-11-24T10:27:28.875935Z",
+  "value": "POST"
+}

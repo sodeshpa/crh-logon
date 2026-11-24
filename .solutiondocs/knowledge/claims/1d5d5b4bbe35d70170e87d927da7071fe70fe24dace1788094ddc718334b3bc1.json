@@ -1,0 +1,20 @@
+{
+  "applicability": {
+    "source_revision": "3a835caeea77d691835acd5cbf0d3261f720ee1fa6f1c6d025af6b252385a44e"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 0.95,
+  "created_at": "2026-11-24T09:53:30.031918Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:cfg-3669e4d125878502d184028cb5a50a6a0c20b2780b0da083ab7120f861fef0fa"
+  ],
+  "id": "claim:5e34595f15388075f0f65308c017c0d233fb4e5118f4b5d589a0b6d5d5c88429",
+  "predicate": "defined_in",
+  "record_kind": "claim",
+  "revision": 1,
+  "status": "candidate",
+  "subject": "setting:etc-logon-nightly-properties--instance",
+  "updated_at": "2026-11-24T09:53:30.031918Z",
+  "value": "etc/logon-nightly.properties"
+}

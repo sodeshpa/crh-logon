@@ -1,0 +1,16 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "claim_ids": [
+    "claim:2f62fbfcc008b58a749acc4a36373090fa490768da429997e5b82fdd45b343a3"
+  ],
+  "created_at": "2026-11-24T09:51:52.064424Z",
+  "from": "application:sodeshpa-improved-telegram",
+  "id": "relationship:contains-076b740a8089e04ea67b6b8d9afe2e85d5a5ddb8",
+  "properties": {},
+  "record_kind": "relationship",
+  "revision": 1,
+  "status": "active",
+  "to": "automated_process:logon-postprocess-sapimport-vehn",
+  "type": "contains",
+  "updated_at": "2026-11-24T09:51:52.064424Z"
+}

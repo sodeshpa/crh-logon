@@ -1,0 +1,17 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T10:20:23.597113Z",
+  "id": "data_entity:vlgnc-ord-item-assignmt-load",
+  "name": "VLGNC_ORD_ITEM_ASSIGNMT_LOAD",
+  "properties": {
+    "entity_type": "view",
+    "materialised": false,
+    "purpose": "Contains all the text information about an order including the active assignment, and the load entry for the order.",
+    "schema": "ulgn"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "data_entity",
+  "updated_at": "2026-11-24T10:20:23.597113Z"
+}

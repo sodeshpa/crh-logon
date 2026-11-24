@@ -1,0 +1,17 @@
+{
+  "application_id": "application:sodeshpa-improved-telegram",
+  "created_at": "2026-11-24T10:20:23.597113Z",
+  "id": "data_entity:vlgns-sap-vendor-staging-area",
+  "name": "VLGNS_SAP_VENDOR_STAGING_AREA",
+  "properties": {
+    "entity_type": "view",
+    "materialised": false,
+    "purpose": "Utility view: Vendor staging area info made available in table browser",
+    "schema": "ulgn"
+  },
+  "record_kind": "node",
+  "revision": 1,
+  "status": "active",
+  "type": "data_entity",
+  "updated_at": "2026-11-24T10:20:23.597113Z"
+}
