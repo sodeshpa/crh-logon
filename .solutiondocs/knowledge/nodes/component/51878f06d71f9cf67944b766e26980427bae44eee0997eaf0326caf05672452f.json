@@ -8,12 +8,39 @@
     "estimated_tokens": 8696155,
     "files": 1903,
     "folder": "logon-persistence",
+    "metrics": {
+      "loc": 666655
+    },
     "source_files": 1089,
-    "source_root": "logon-persistence"
+    "source_root": "logon-persistence",
+    "tech_stack": {
+      "languages": [
+        {
+          "name": "Java",
+          "percentage": 42.39
+        },
+        {
+          "name": "Other",
+          "percentage": 31.18
+        },
+        {
+          "name": "SQL",
+          "percentage": 23.2
+        },
+        {
+          "name": "Config",
+          "percentage": 3.16
+        },
+        {
+          "name": "Script",
+          "percentage": 0.08
+        }
+      ]
+    }
   },
   "record_kind": "node",
-  "revision": 1,
+  "revision": 2,
   "status": "active",
   "type": "component",
-  "updated_at": "2026-11-24T09:43:07.964638Z"
+  "updated_at": "2026-11-24T13:43:36.779345Z"
 }

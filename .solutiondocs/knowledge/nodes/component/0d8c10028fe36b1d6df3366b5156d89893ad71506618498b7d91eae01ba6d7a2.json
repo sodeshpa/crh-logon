@@ -8,12 +8,35 @@
     "estimated_tokens": 334799,
     "files": 100,
     "folder": "logon-webservices-client",
+    "metrics": {
+      "loc": 30745
+    },
     "source_files": 31,
-    "source_root": "logon-webservices-client"
+    "source_root": "logon-webservices-client",
+    "tech_stack": {
+      "languages": [
+        {
+          "name": "Other",
+          "percentage": 48.56
+        },
+        {
+          "name": "Java",
+          "percentage": 26.59
+        },
+        {
+          "name": "Config",
+          "percentage": 24.84
+        },
+        {
+          "name": "Script",
+          "percentage": 0.01
+        }
+      ]
+    }
   },
   "record_kind": "node",
-  "revision": 1,
+  "revision": 2,
   "status": "active",
   "type": "component",
-  "updated_at": "2026-11-24T09:43:07.964638Z"
+  "updated_at": "2026-11-24T13:43:36.779345Z"
 }

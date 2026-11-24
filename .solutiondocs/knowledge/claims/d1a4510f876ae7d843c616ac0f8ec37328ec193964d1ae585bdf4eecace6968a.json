@@ -1,0 +1,42 @@
+{
+  "applicability": {
+    "source_revision": "c4799b3dfcf94ee66c921f340bda20c43e31a979"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 0.95,
+  "created_at": "2026-11-24T13:43:36.779345Z",
+  "derivation": "observation",
+  "evidence_ids": [
+    "evidence:fs-summary-component-etc"
+  ],
+  "id": "claim:fs-component-etc-tech-stack-languages",
+  "predicate": "tech_stack.languages",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:etc",
+  "status": "candidate",
+  "subject": "component:etc",
+  "updated_at": "2026-11-24T13:43:36.779345Z",
+  "value": [
+    {
+      "name": "Config",
+      "percentage": 40.57
+    },
+    {
+      "name": "Other",
+      "percentage": 28.59
+    },
+    {
+      "name": "Script",
+      "percentage": 14.62
+    },
+    {
+      "name": "Python",
+      "percentage": 13.85
+    },
+    {
+      "name": "Web/Template",
+      "percentage": 2.37
+    }
+  ]
+}

@@ -8,12 +8,39 @@
     "estimated_tokens": 1221949,
     "files": 500,
     "folder": "logon-order-web",
+    "metrics": {
+      "loc": 137732
+    },
     "source_files": 464,
-    "source_root": "logon-order-web"
+    "source_root": "logon-order-web",
+    "tech_stack": {
+      "languages": [
+        {
+          "name": "Java",
+          "percentage": 51.87
+        },
+        {
+          "name": "Web/Template",
+          "percentage": 31.82
+        },
+        {
+          "name": "JavaScript/TypeScript",
+          "percentage": 13.52
+        },
+        {
+          "name": "Config",
+          "percentage": 1.42
+        },
+        {
+          "name": "Other",
+          "percentage": 1.37
+        }
+      ]
+    }
   },
   "record_kind": "node",
-  "revision": 1,
+  "revision": 2,
   "status": "active",
   "type": "component",
-  "updated_at": "2026-11-24T09:43:07.964638Z"
+  "updated_at": "2026-11-24T13:43:36.779345Z"
 }

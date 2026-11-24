@@ -8,12 +8,31 @@
     "estimated_tokens": 1639272,
     "files": 168,
     "folder": "logon-common",
+    "metrics": {
+      "loc": 97962
+    },
     "source_files": 122,
-    "source_root": "logon-common"
+    "source_root": "logon-common",
+    "tech_stack": {
+      "languages": [
+        {
+          "name": "Other",
+          "percentage": 83.23
+        },
+        {
+          "name": "Java",
+          "percentage": 15.26
+        },
+        {
+          "name": "Config",
+          "percentage": 1.51
+        }
+      ]
+    }
   },
   "record_kind": "node",
-  "revision": 1,
+  "revision": 2,
   "status": "active",
   "type": "component",
-  "updated_at": "2026-11-24T09:43:07.964638Z"
+  "updated_at": "2026-11-24T13:43:36.779345Z"
 }

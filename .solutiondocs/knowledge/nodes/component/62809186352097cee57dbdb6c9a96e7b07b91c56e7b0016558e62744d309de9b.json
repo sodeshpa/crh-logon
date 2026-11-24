@@ -8,12 +8,39 @@
     "estimated_tokens": 81510,
     "files": 77,
     "folder": "logon-terminal-web",
+    "metrics": {
+      "loc": 8592
+    },
     "source_files": 48,
-    "source_root": "logon-terminal-web"
+    "source_root": "logon-terminal-web",
+    "tech_stack": {
+      "languages": [
+        {
+          "name": "Java",
+          "percentage": 44.3
+        },
+        {
+          "name": "Web/Template",
+          "percentage": 35.0
+        },
+        {
+          "name": "Config",
+          "percentage": 15.34
+        },
+        {
+          "name": "JavaScript/TypeScript",
+          "percentage": 3.24
+        },
+        {
+          "name": "Other",
+          "percentage": 2.13
+        }
+      ]
+    }
   },
   "record_kind": "node",
-  "revision": 1,
+  "revision": 2,
   "status": "active",
   "type": "component",
-  "updated_at": "2026-11-24T09:43:07.964638Z"
+  "updated_at": "2026-11-24T13:43:36.779345Z"
 }

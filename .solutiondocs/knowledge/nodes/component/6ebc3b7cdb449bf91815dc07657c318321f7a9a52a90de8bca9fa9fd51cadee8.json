@@ -8,12 +8,31 @@
     "estimated_tokens": 24271,
     "files": 16,
     "folder": "pkg",
+    "metrics": {
+      "loc": 1983
+    },
     "source_files": 3,
-    "source_root": "pkg"
+    "source_root": "pkg",
+    "tech_stack": {
+      "languages": [
+        {
+          "name": "Config",
+          "percentage": 86.13
+        },
+        {
+          "name": "Other",
+          "percentage": 7.56
+        },
+        {
+          "name": "Script",
+          "percentage": 6.3
+        }
+      ]
+    }
   },
   "record_kind": "node",
-  "revision": 1,
+  "revision": 2,
   "status": "active",
   "type": "component",
-  "updated_at": "2026-11-24T09:43:07.964638Z"
+  "updated_at": "2026-11-24T13:43:36.779345Z"
 }

@@ -8,12 +8,35 @@
     "estimated_tokens": 47295,
     "files": 15,
     "folder": "logon-webservices-oc-incoming",
+    "metrics": {
+      "loc": 3962
+    },
     "source_files": 2,
-    "source_root": "logon-webservices-oc-incoming"
+    "source_root": "logon-webservices-oc-incoming",
+    "tech_stack": {
+      "languages": [
+        {
+          "name": "Other",
+          "percentage": 37.66
+        },
+        {
+          "name": "Config",
+          "percentage": 36.52
+        },
+        {
+          "name": "Java",
+          "percentage": 24.56
+        },
+        {
+          "name": "Script",
+          "percentage": 1.26
+        }
+      ]
+    }
   },
   "record_kind": "node",
-  "revision": 1,
+  "revision": 2,
   "status": "active",
   "type": "component",
-  "updated_at": "2026-11-24T09:43:07.964638Z"
+  "updated_at": "2026-11-24T13:43:36.779345Z"
 }

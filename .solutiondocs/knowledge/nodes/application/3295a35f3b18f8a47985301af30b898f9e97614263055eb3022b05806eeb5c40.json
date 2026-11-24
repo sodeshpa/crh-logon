@@ -4,13 +4,89 @@
   "id": "application:sodeshpa-improved-telegram",
   "name": "sodeshpa-improved-telegram",
   "properties": {
+    "codebase_composition": {
+      "rows": [
+        {
+          "files": 2490,
+          "language": "Java",
+          "total_lines": 783855
+        },
+        {
+          "files": 597,
+          "language": "Other",
+          "total_lines": 650425
+        },
+        {
+          "files": 1040,
+          "language": "Config",
+          "total_lines": 256037
+        },
+        {
+          "files": 379,
+          "language": "SQL",
+          "total_lines": 155118
+        },
+        {
+          "files": 461,
+          "language": "Web/Template",
+          "total_lines": 92597
+        },
+        {
+          "files": 84,
+          "language": "JavaScript/TypeScript",
+          "total_lines": 38495
+        },
+        {
+          "files": 24,
+          "language": "Python",
+          "total_lines": 2654
+        },
+        {
+          "files": 40,
+          "language": "Script",
+          "total_lines": 1596
+        },
+        {
+          "files": 1,
+          "language": "Ruby",
+          "total_lines": 202
+        }
+      ],
+      "source_ids": [
+        "source_artifact:fs-ansible-tree",
+        "source_artifact:fs-application-tree",
+        "source_artifact:fs-etc-tree",
+        "source_artifact:fs-logon-admin-web-tree",
+        "source_artifact:fs-logon-ansible-tree",
+        "source_artifact:fs-logon-business-tree",
+        "source_artifact:fs-logon-common-tree",
+        "source_artifact:fs-logon-common-web-tree",
+        "source_artifact:fs-logon-cust-web-tree",
+        "source_artifact:fs-logon-init-web-tree",
+        "source_artifact:fs-logon-order-web-tree",
+        "source_artifact:fs-logon-pdf-generator-tree",
+        "source_artifact:fs-logon-persistence-tree",
+        "source_artifact:fs-logon-security-tree",
+        "source_artifact:fs-logon-simulator-tree",
+        "source_artifact:fs-logon-terminal-web-tree",
+        "source_artifact:fs-logon-test-load-tree",
+        "source_artifact:fs-logon-webservices-client-tree",
+        "source_artifact:fs-logon-webservices-mop-incoming-tree",
+        "source_artifact:fs-logon-webservices-oc-incoming-tree",
+        "source_artifact:fs-logon-webservices-pws-incoming-tree",
+        "source_artifact:fs-logon-webservices-tree",
+        "source_artifact:fs-pkg-tree"
+      ]
+    },
+    "primary_language": "Java",
+    "total_loc": 1980926,
     "totals": {
       "components": 22
     }
   },
   "record_kind": "node",
-  "revision": 2,
+  "revision": 3,
   "status": "active",
   "type": "application",
-  "updated_at": "2026-11-24T09:43:07.964638Z"
+  "updated_at": "2026-11-24T13:43:36.779345Z"
 }

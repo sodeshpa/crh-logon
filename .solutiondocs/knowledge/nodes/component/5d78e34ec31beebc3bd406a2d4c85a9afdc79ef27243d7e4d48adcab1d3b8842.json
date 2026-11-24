@@ -8,12 +8,31 @@
     "estimated_tokens": 26639,
     "files": 21,
     "folder": "logon-security",
+    "metrics": {
+      "loc": 3245
+    },
     "source_files": 11,
-    "source_root": "logon-security"
+    "source_root": "logon-security",
+    "tech_stack": {
+      "languages": [
+        {
+          "name": "Java",
+          "percentage": 82.96
+        },
+        {
+          "name": "Config",
+          "percentage": 15.72
+        },
+        {
+          "name": "Other",
+          "percentage": 1.33
+        }
+      ]
+    }
   },
   "record_kind": "node",
-  "revision": 1,
+  "revision": 2,
   "status": "active",
   "type": "component",
-  "updated_at": "2026-11-24T09:43:07.964638Z"
+  "updated_at": "2026-11-24T13:43:36.779345Z"
 }

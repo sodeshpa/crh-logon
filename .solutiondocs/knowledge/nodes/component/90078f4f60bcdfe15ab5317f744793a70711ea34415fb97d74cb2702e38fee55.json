@@ -8,12 +8,35 @@
     "estimated_tokens": 47556,
     "files": 41,
     "folder": "logon-test-load",
+    "metrics": {
+      "loc": 6084
+    },
     "source_files": 24,
-    "source_root": "logon-test-load"
+    "source_root": "logon-test-load",
+    "tech_stack": {
+      "languages": [
+        {
+          "name": "Other",
+          "percentage": 42.34
+        },
+        {
+          "name": "Python",
+          "percentage": 37.66
+        },
+        {
+          "name": "Config",
+          "percentage": 19.41
+        },
+        {
+          "name": "Script",
+          "percentage": 0.59
+        }
+      ]
+    }
   },
   "record_kind": "node",
-  "revision": 1,
+  "revision": 2,
   "status": "active",
   "type": "component",
-  "updated_at": "2026-11-24T09:43:07.964638Z"
+  "updated_at": "2026-11-24T13:43:36.779345Z"
 }

@@ -1,0 +1,26 @@
+{
+  "applicability": {
+    "source_revision": "c4799b3dfcf94ee66c921f340bda20c43e31a979"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 0.85,
+  "created_at": "2026-11-24T13:43:36.779345Z",
+  "derivation": "static_inference",
+  "evidence_ids": [
+    "evidence:fs-summary-component-logon-webservices"
+  ],
+  "id": "claim:fs-component-logon-webservices-naming-conventions",
+  "predicate": "naming_conventions",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-webservices",
+  "status": "candidate",
+  "subject": "component:logon-webservices",
+  "updated_at": "2026-11-24T13:43:36.779345Z",
+  "value": {
+    "PascalCase": 150,
+    "camelCase": 13,
+    "kebab-case": 4,
+    "snake_case": 19
+  }
+}

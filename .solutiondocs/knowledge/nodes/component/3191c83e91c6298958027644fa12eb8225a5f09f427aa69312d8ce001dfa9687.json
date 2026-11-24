@@ -8,12 +8,31 @@
     "estimated_tokens": 15475,
     "files": 24,
     "folder": "logon-init-web",
+    "metrics": {
+      "loc": 1519
+    },
     "source_files": 3,
-    "source_root": "logon-init-web"
+    "source_root": "logon-init-web",
+    "tech_stack": {
+      "languages": [
+        {
+          "name": "Config",
+          "percentage": 53.19
+        },
+        {
+          "name": "Java",
+          "percentage": 40.36
+        },
+        {
+          "name": "Other",
+          "percentage": 6.45
+        }
+      ]
+    }
   },
   "record_kind": "node",
-  "revision": 1,
+  "revision": 2,
   "status": "active",
   "type": "component",
-  "updated_at": "2026-11-24T09:43:07.964638Z"
+  "updated_at": "2026-11-24T13:43:36.779345Z"
 }

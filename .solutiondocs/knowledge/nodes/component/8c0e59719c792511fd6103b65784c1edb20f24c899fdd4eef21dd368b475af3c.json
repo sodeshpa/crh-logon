@@ -8,12 +8,39 @@
     "estimated_tokens": 91594,
     "files": 60,
     "folder": "logon-cust-web",
+    "metrics": {
+      "loc": 9842
+    },
     "source_files": 31,
-    "source_root": "logon-cust-web"
+    "source_root": "logon-cust-web",
+    "tech_stack": {
+      "languages": [
+        {
+          "name": "Java",
+          "percentage": 51.11
+        },
+        {
+          "name": "Web/Template",
+          "percentage": 27.76
+        },
+        {
+          "name": "Config",
+          "percentage": 13.58
+        },
+        {
+          "name": "JavaScript/TypeScript",
+          "percentage": 6.53
+        },
+        {
+          "name": "Other",
+          "percentage": 1.02
+        }
+      ]
+    }
   },
   "record_kind": "node",
-  "revision": 1,
+  "revision": 2,
   "status": "active",
   "type": "component",
-  "updated_at": "2026-11-24T09:43:07.964638Z"
+  "updated_at": "2026-11-24T13:43:36.779345Z"
 }

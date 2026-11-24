@@ -1,0 +1,26 @@
+{
+  "applicability": {
+    "source_revision": "c4799b3dfcf94ee66c921f340bda20c43e31a979"
+  },
+  "application_id": "application:sodeshpa-improved-telegram",
+  "confidence": 0.85,
+  "created_at": "2026-11-24T13:43:36.779345Z",
+  "derivation": "static_inference",
+  "evidence_ids": [
+    "evidence:fs-summary-component-logon-terminal-web"
+  ],
+  "id": "claim:fs-component-logon-terminal-web-architectural-patterns",
+  "predicate": "architectural_patterns",
+  "record_kind": "claim",
+  "revision": 1,
+  "scope_id": "component:logon-terminal-web",
+  "status": "candidate",
+  "subject": "component:logon-terminal-web",
+  "updated_at": "2026-11-24T13:43:36.779345Z",
+  "value": {
+    "layers_from_directory_names": {
+      "filters": 1,
+      "utils": 1
+    }
+  }
+}
