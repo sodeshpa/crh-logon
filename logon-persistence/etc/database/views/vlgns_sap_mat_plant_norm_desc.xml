@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="VLGNS_SAP_MAT_PLANT_NORM_DESC" mappingType="view" skipSql="true">
+        <column name="SAP_MAT_PLANT_NORM_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="PLANT_CD" required="true" type="VARCHAR" size="4"/>
+        <column name="TXT" required="true" type="VARCHAR" size="40"/>
+        <column name="LANG_CD" required="true" type="VARCHAR" size="2"/>
+        <column name="SAP_MATERIAL_NO" required="true" type="VARCHAR" size="18"/>
+        <column name="SAP_MATERIAL_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="SAP_MATERIAL_NORM_CD" required="true" type="VARCHAR" size="10"/>
+        <column name="SAP_LANGUAGE_CD" required="true" type="VARCHAR" size="2"/>
+        <column name="SORG_CD" type="VARCHAR" size="4"/>
+        <column name="SHOW_LOGO_FLAG" required="true" type="BOOLEAN"/>
+        <column name="ZCODE1" type="VARCHAR" size="10"/>
+        <column name="ZCODE2" type="VARCHAR" size="10"/>
+        <column name="TEXT1" type="VARCHAR" size="132"/>
+        <column name="TEXT2" type="VARCHAR" size="132"/>
+        <column name="TEXT3" type="VARCHAR" size="132"/>
+        <column name="MARKED_FOR_DELETION" required="true" type="BOOLEAN"/>
+        <column name="DEST_COUNTRY" type="VARCHAR" size="3"/>
+        <column name="DN_LOGO_IMAGE_NAME" type="VARCHAR" size="10"/>
+        <column name="DN_LOGO_ARCHIVDOCID" type="VARCHAR" size="40"/>
+    </table>
+</database>

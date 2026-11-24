@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNC_SHIPTO_SILO"
+           description="A silo which can be located at a shipto or even owned by the shipto. This includes 'Kundensilo' ('Fixed Silo', owned by the shipto, managed completely in the Dispokarte) and 'Baustellensilo'/'Portable Silo' (owned by Crh, managed in the Stammdaten, moveable to a shipto and also possible to setup at another shipto later). In the case where the silo is transported (use case 'Silostellung') the actual silo (ID) is not known; the silo counts merely as an anonymous material.">
+
+        <column name="SHIPTO_SILO_ID" primaryKey="true" required="true" type="DECIMAL" size="12"
+                description="PK"/>
+        <column name="SHIPTO_ID" type="DECIMAL" size="12"
+                description="FK tlgnc_shipto. Shipto on which the silo is located. Can be null for 'Baustellensilo', when currently not in use at a shipto."/>
+        <column name="SILO_NAME" type="VARCHAR" size="50"
+                description="Name of the silo."/>
+        <column name="SILO_TYPE_CD" required="true" type="DECIMAL" size="2"
+                description="FK tlgnr_silo_type_cd. Type of the silo: pressure, or standard silo."/>
+        <column name="SAP_MATERIAL_ID" type="DECIMAL" size="12"
+                description="FK tlgns_sap_material. The material to be kept in the silo."/>
+        <column name="MAX_VOLUME_TONS" type="DECIMAL" size="12,4"
+                description="The maximum volume in tons that can be stored in the silo; for informational purposes only."/>
+        <column name="MAX_VOLUME_M3" type="DECIMAL" size="12,4"
+                description="The maximum volume in cubic meters that can be stored in the silo; for informational purposes only."/>
+        <column name="SILO_COMMENT" type="VARCHAR" size="200"
+                description="Comment about the silo."/>
+        <column name="ACTIVE_FLAG" required="true" type="BOOLEAN"
+                description="0=inactive/deleted, 1=active."/>
+        <column name="UNLOADING_TIME" type="DECIMAL" size="10"
+                description="The unloading time (=duration) in minutes. If null, the unloadingtime is not defined for this silo and the value defined on the shipto is used. If that one is null as well, the application default value is used (see tlgnr_config, app.default.shipto.UnloadingTime_min)."/>
+        <column name="RFIDOBJECT_ID" type="DECIMAL" size="12"
+                description="FK tlgnc_rfidobject. The ID which is used to associate this object (silo) with RFID tags. An RFID object can have several RFID tags."/>
+        <column name="PORTABLE_SILO_FLAG" required="true" type="BOOLEAN"
+                description="Makes distinction between 1='Baustellensilo' (portable) and 0='Kundensilo' (fixed). Baustellensilo are managed on the masterdata screen, and can be moved to a shipto (loaded on a 'Silosteller'-truck), removed, and later setup at another shipto. Kundensilo are permanent at a certain shipto from the application's point of view. In the UI, this distinction is called 'Category'."/>
+
+        <foreign-key foreignTable="TLGNC_SHIPTO" name="FK_TLGNC_SHIPTO_SILO_SHIPTO">
+            <reference local="SHIPTO_ID" foreign="SHIPTO_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_SILO_TYPE_BS" name="FK_TLGNC_SHIPTO_SILO_S_TYPE">
+            <reference local="SILO_TYPE_CD" foreign="SILO_TYPE_CD"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNS_SAP_MATERIAL" name="FK_TLGNS_SHIPTO_SILO_MATERIAL">
+            <reference local="SAP_MATERIAL_ID" foreign="SAP_MATERIAL_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNC_RFIDOBJECT" name="FK_TLGNS_SHIPTO_SILO_RFID">
+            <reference local="RFIDOBJECT_ID" foreign="RFIDOBJECT_ID"/>
+        </foreign-key>
+        
+		<unique name="UQ_TLGNC_SILO_RFIDOBJECT_ID">
+            <unique-column name="RFIDOBJECT_ID"/>
+        </unique>
+        
+        <index name="I_SHIPTO_SILO_ACTIVE">
+            <index-column name="SHIPTO_ID"/>
+            <index-column name="ACTIVE_FLAG"/>
+        </index>
+    </table>
+</database>

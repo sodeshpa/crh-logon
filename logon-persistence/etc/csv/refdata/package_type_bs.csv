@@ -1,0 +1,11 @@
+# $Revision$
+# $Date$
+# LOGON-5043/LOGON-5039 (and subtasks)
+# Initial reference data for truck type, transport categories, package types, etc.
+# Based on source excel files in
+# /share/doc/crh/logon_2_1/input/LRQ_185.0_Concept_for_vehicle_types_transport_categories_and_packaging_typed
+#PACKAGE_TYPE_CD;CTL_ACT_CD;CTL_CRE_UID;CTL_CRE_TS;CTL_MOD_UID;CTL_MOD_TS
+1;1;;;;
+2;1;;;;
+3;1;;;;
+4;1;;;;

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNC_CONTAINER"
+           description="Containers in this table are always silo-containers, i.e. are used for bulk transport of cement. Bag-Containers (such as containers used on ships) are not supported in the current release. Crh currently knows two types of containers, which are mainly distinguished by the position of their unloading pipes (see container_type). A container can be loaded at a normal loadingpoint when located on a truck/trailer/wagon. Unloading at a shipto happens similar to unloading a truck: the container returns with the same truck immediately after unloading the material. The special feature of containers are in combination with container terminals: a full container can be removed from a rail-wagon, maybe temporarily stored, and then loaded on a truck suitable to transport containers. An empty container can be loaded on the wagon and returned to a plant, where it's loaded with cement again.">
+
+    <!-- Technical -->
+        <column name="CONTAINER_ID" primaryKey="true" required="true" type="DECIMAL" size="12"
+                description="PK"/>
+        <column name="CARRIER_ID" required="true" type="DECIMAL" size="12"
+                description="FK tlgnc_carrier. The carrier (in German: Transporteur, Spediteur, Lieferant) who owns the container."/>
+        <column name="ACTIVE_FLAG" required="true" type="BOOLEAN"
+                description="0=inactive/deleted, 1=active."/>
+
+    <!-- Stammdaten -->
+        <column name="CONTAINER_NO" required="true" type="VARCHAR" size="16"
+                description="Business identifier (unique) of the container, i.e. inventory number as printed on the container but without formatting. Example: HOLU-745 502-2 is stored as HOLU7455022."/>
+        <column name="CONTAINER_NAME" required="true" type="VARCHAR" size="30"
+                description="Name of the container as displayed in the UI (with formatting). This is typically a shortened form of container_no, but must also be unique because it's used for display/selection in Logon. Example: HOLU-502."/>
+        <column name="CONTAINER_TRSP_CAT_CD" required="true" type="DECIMAL" size="2"
+                description="FK tlgnr_container_trsp_cat_bs. Transporting category of the container, i.e. what packaging type of material it can transport. Currently, only Silo (for Bulk)." />
+        <column name="CONTAINER_TYPE_CD" required="true" type="DECIMAL" size="2"
+                description="FK tlgnr_container_type_bs. The type of a container characterizes its unloading facilities: 1 = unloading horizontally (unloading pipes at its side), 2=unloading only when tilted (unloading pipes at back). The containers loaded on trucks/trailers are all of type 2 and all trucks/trailers used for those containers have tilting facilities. The 'horizontal' containers are used as fix-installed containers on rail wagons (currently, for NEAT construction sites)."/>
+        <column name="UIC_PROFILE" required="false" type="VARCHAR" size="3"
+                description="UIC PROFILE. This is a text code without any logic for Login. Example (only value till now): C23."/>
+        <column name="LENGTH_FT" required="false" type="DECIMAL" size="12,4"
+                description="Length of the container in feet."/>
+        <column name="WIDTH_MM" required="false" type="DECIMAL" size="12,4"
+                description="Width of the container in mm."/>
+        <column name="HEIGHT_MM" required="false" type="DECIMAL" size="12,4"
+                description="Height of the container in mm."/>
+        <column name="TARE_WEIGHT_T" required="false" type="DECIMAL" size="12,4"
+                description="Weight of the empty container in tons. Typically this is measured in steps of 10kg."/>
+        <column name="VOLUME_M3" type="DECIMAL" size="12,4"
+                description="Loading volume of the container in cubic meters."/>
+        <column name="MAX_NET_WEIGHT_T" type="DECIMAL" size="12,4" required="true"
+                description="Maximal net weight."/>
+        <!-- MANUFACTURER: Spec suggests to refer to some refdata (in Truck). Low prio, as we don't have any logic for this. Text for now, container/truck/trailer consistent. -->
+        <column name="MANUFACTURER" type="VARCHAR" size="20"
+                description="Manufacturer of the container. Has only informative character for the carrier and is ignored by Logon."/>
+        <column name="BRANDING_FLAG" type="BOOLEAN"
+                description="0=no, 1=yes, null=unkown/does not matter. Has only informative character for the carrier and is ignored by Logon."/><!-- null ok, as displayed in a dropdown -->
+        <column name="CONTAINER_COMMENT" required="false" type="VARCHAR" size="250"
+                description="Comment about the container."/>
+        <column name="HOMEBASE_COORD_LAT" required="false" type="DOUBLE"
+                description="Latitude of the homebase of the container."/>
+        <column name="HOMEBASE_COORD_LON" required="false" type="DOUBLE"
+                description="Longitute of the homebase of the container."/>
+        <column name="RFIDOBJECT_ID" required="false" type="DECIMAL" size="12"
+                description="The ID which is used to associate this object (container) with RFID tags. An RFID object can have several RFID tags."/>
+
+        <!-- Not real masterdata, but "current" values. -->
+        <column name="CURRENT_TRUCK_ID" required="false" type="DECIMAL" size="12"
+                description="FK tlgnc_truck. The Truck on which the container is currently loaded, or null if not on a truck. If on a trailer, and that trailer is connected to a truck, BOTH fields should be set."/>
+        <column name="CURRENT_TRAILER_ID" required="false" type="DECIMAL" size="12"
+                description="FK tlgnc_trailer. The Trailer on which the container is currently loaded, or null, if not on a trailer."/>
+        <column name="CURRENT_WAGON_ID" required="false" type="DECIMAL" size="12"
+                description="FK tlgnc_wagon. The Wagon on which the container is currently loaded, or null, if not on a wagon."/>
+
+        <column name="LAST_KNOWN_SHIPPINGPOINT_ID" type="DECIMAL" size="12"
+                description="FK tlgnc_shippingpoint. The shippingpoint where the container was last seen. Represents the current posistion of the container if the container is not an a truck or a wagon. If the container is on a truck or a wagon, then the position of the truck or the wagon is a more accurate description of the container's current position."/>
+        <column name="ARRIVAL_LAST_KNOWN_SP_DAT" type="DATE"
+                description="Date/Time of the arrival at the last_known_shippingpoint_id. NULL is only allowed when the shippingpoint is also null (unknown)."/>
+
+        <foreign-key foreignTable="TLGNC_CARRIER" name="FK_TLGNC_CON_CARRIER">
+            <reference local="CARRIER_ID" foreign="CARRIER_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_CONTAINER_TRSP_CAT_BS" name="FK_TLGNC_CON_CON_TR_CAT">
+            <reference local="CONTAINER_TRSP_CAT_CD" foreign="CONTAINER_TRSP_CAT_CD"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_CONTAINER_TYPE_BS" name="FK_TLGNC_CON_CON_TYPE">
+            <reference local="CONTAINER_TYPE_CD" foreign="CONTAINER_TYPE_CD"/>
+        </foreign-key>
+		<foreign-key foreignTable="TLGNC_RFIDOBJECT" name="FK_TLGNC_CON_RFID">
+			<reference local="RFIDOBJECT_ID" foreign="RFIDOBJECT_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNC_TRUCK" name="FK_TLGNC_CON_TRUCK">
+            <reference local="CURRENT_TRUCK_ID" foreign="TRUCK_ID"/>
+        </foreign-key>
+		<foreign-key foreignTable="TLGNC_TRAILER" name="FK_TLGNC_CON_TRAILER">
+            <reference local="CURRENT_TRAILER_ID" foreign="TRAILER_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNC_WAGON" name="FK_TLGNC_CON_WAGON">
+            <reference local="CURRENT_WAGON_ID" foreign="WAGON_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNC_SHIPPINGPOINT" name="FK_TLGNC_CONTAINER_LAST_SP">
+            <reference local="LAST_KNOWN_SHIPPINGPOINT_ID" foreign="SHIPPINGPOINT_ID"/>
+        </foreign-key>
+        
+
+        <unique name="UQ_TLGNC_CONTAINER_NO">
+            <unique-column name="CONTAINER_NO"/>
+        </unique>
+        <unique name="UQ_TLGNC_CONTAINER_NAME">
+            <unique-column name="CONTAINER_NAME"/>
+        </unique>
+		<unique name="UQ_TLGNC_CONT_RFIDOBJECT_ID">
+            <unique-column name="RFIDOBJECT_ID"/>
+        </unique>
+        <!-- Business reason: only one container can be attached to a certain truck and/or a trailer at a time. For wagons
+        it is not so, because multiple containers can be attached to a wagon. -->  
+        <unique name="UQ_TLGNC_CONT_CURR_TRUCK">
+            <unique-column name="CURRENT_TRUCK_ID"/>
+        </unique>
+        <unique name="UQ_TLGNC_CONT_CURR_TRAILER">
+            <unique-column name="CURRENT_TRAILER_ID"/>
+        </unique>                        
+    </table>
+</database>

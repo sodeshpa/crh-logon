@@ -1,0 +1,11 @@
+- logon-7166
+
+- Tests multiple contracts belonging to the same SalesArea with the same Contract Header BillTo.
+
+- The main point in this test is to trigger the comparison of SapBpEntity when adding 
+  the contract header BillTo entities to the map. We want to ensure that our TreeSet
+  comparator works (see DispokarteServiceBean.updateShiptoSalesAreas)
+
+- All three contract requests have the same payer and bill to. Only the contract id
+  is different. This, along with using an unused BP id (shipto and soldto) is enough
+  to test the functionality. 

@@ -1,0 +1,26 @@
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+  <SOAP-ENV:Header/>
+  <SOAP-ENV:Body>
+    <oxy:credit_status_notification_put xmlns:oxy="http://logon.intranet-che/logon"
+      SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+      <creditstatus>
+        <credit_status_notification>
+          <CREDITCONTROLAREA/>
+          <TransferStructure1010>
+            <CUSTMR_NO/>
+            <CURRENT_PAYER_ONLY/>
+            <COMP_CODE_D/>
+            <DUNN_LEVEL/>
+            <DAYS_ARREARS/>
+            <CRED_LIMIT/>
+            <CRED_LIAB/>
+            <CURRENCY/>
+            <RISK_CATEG/>
+            <BLOCKED/>
+            <NXT_REVIEW/>
+          </TransferStructure1010>
+        </credit_status_notification>
+      </creditstatus>
+    </oxy:credit_status_notification_put>
+  </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>

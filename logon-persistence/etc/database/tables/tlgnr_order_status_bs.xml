@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNR_ORDER_STATUS_BS" refData="true"
+           description="The status of an order represents its current position in the workflow. The status that are possible are different for truck and rail orders, and the status can also go back again (e.g., return to pool). An order will eventually reach status 'finished' (i.e., delivered, and all post-processing performed), or 'deleted' (aborted at some point).">
+
+        <column name="ORDER_STATUS_CD" primaryKey="true" required="true" type="DECIMAL" size="2"
+                description="PK. 1=new, ... 6=dispatched, ..., 15=delivered, 16=finished, 17=deleted. The states are NOT fully sorted, i.e. 18='transmitted to rail company' happens earlier! It was just added to this state table at a later point in development. Comparisons with &lt; and &gt; are forbidden!"/>
+        <column name="SORTING_NO" required="true" type="DECIMAL" size="3"
+                description="This is to DISPLAY all status codes in a 'natural' way to the user. It is forbidden to attach any process logic to this field! In earlier releases, order_status_cd was the natural order, because the original codes were arranged in ascending order. However, new codes must be added to the end (in order not to break too much code/DB-Views), and therefore an explicit sorting_no is introduced."/>
+        <column name="POSSIBLE_TRUCK_STATUS_FLAG" required="true" type="BOOLEAN"
+                description="1=Status is relevant for an order which is delivered by truck. There is no logic connected to this field other than to make it possible to filter irrelevant status from screens which are truck-only."/>
+        <column name="POSSIBLE_RAIL_STATUS_FLAG" required="true" type="BOOLEAN"
+                description="1=Status is relevant for an order which is delivered by rail. There is no logic connected to this field other than to make it possible to filter irrelevant status from screens which are rail-only."/>
+        <column name="CTL_ACT_CD" required="true" type="BOOLEAN"
+                description="Active Flag. When new data is entered, only reference data with active flag are available for selection normally."/>
+    </table>
+</database>

@@ -1,0 +1,4 @@
+    <servlet>
+        <servlet-name>LogonVersionServlet</servlet-name>
+        <servlet-class>com.crh.logon.init.web.servlets.LogonVersionServlet</servlet-class>
+    </servlet>

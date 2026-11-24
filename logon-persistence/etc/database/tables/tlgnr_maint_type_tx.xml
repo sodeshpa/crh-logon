@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNR_MAINT_TYPE_TX" refData="true"
+           description="Language depending attributes for wagon maintenance types">
+        <column name="MAINT_TYPE_CD" required="true" type="VARCHAR" size="6" primaryKey="true"
+                description="Part of PK Code of the reference data. E.g. G1.0 (unplanned maintenance), G4.0 (Revision), C (Cleaning) etc."/>
+        <column name="LANG_CD" primaryKey="true" required="true" type="VARCHAR" size="2"
+                description="Part of PK. FK tlgnr_lang_bs. Code of the language in which TXT describes MAINT_TYPE_CD."/>
+        <column name="TXT" required="true" type="VARCHAR" size="40"
+                description="Translation of the description in the language LANG_CD."/>
+                
+        <foreign-key foreignTable="TLGNR_MAINT_TYPE_BS" name="FK_TLGNR_MAINT_TYPE">
+            <reference local="MAINT_TYPE_CD" foreign="MAINT_TYPE_CD"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_LANG_BS" name="FK_MAINT_TYPE_LANG">
+            <reference local="LANG_CD" foreign="LANG_CD"/>
+        </foreign-key>        
+  </table>
+</database>

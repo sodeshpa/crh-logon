@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+
+    <table name="TLGNC_PRICING_CALL"
+           description="Contains responses for Pricing Call from SAP">
+
+		<column name="PRICING_CALL_ID" primaryKey="true" required="true"
+			type="DECIMAL" size="12" description="PK" />
+			
+		<column name="REQUEST_TS" type="TIMESTAMP" required="true"
+			description="Date/Time pricing call performed" />
+			
+		<column name="NET_VALUE" type="DECIMAL" size="15,2"
+			description="Net value of the order item in target quantity and in uom of the target quantity in currency currency_cd" />
+			
+		<column name="VAT_AMOUNT" type="DECIMAL" size="12,4"
+			description="Vat amount" />
+			
+		<column name="TARGET_QUANTITY" type="DECIMAL" size="15,2" 
+			description="Target quantity in the unit of measure TARGET_QUANTITY_UOM_CD" />
+			
+		<column name="TARGET_QUANTITY_UOM_CD" type="VARCHAR" size="3"
+			description="Target quantity unit of measure" />
+			
+		<column name="CURRENCY_CD" type="VARCHAR" size="5"
+			description="FK TLGNC_PRICING_CALL_CUR. Currency Code" />
+			
+		<column name="ORDER_ITEM_ID" type="DECIMAL" size="12" required="true"
+			description="FK TLGNC_PRICING_CALL_OI_ID. Reference to order item." />
+			
+		<column name="SAP_CONTRACT_ID" type="DECIMAL" size="12" required="true"
+			description="FK TLGNC_PRICING_CALL_CONTRACT. The contract (Logon identifier!) to which this items belongs." />
+			
+		<column name="SAP_MATERIAL_ID" type="DECIMAL" size="12" required="true"
+			description="FK TLGNC_PRICING_CALL_MAT. The related material. All relevant attributes of SAP_MAT_COND are contained within this order item (frozen at order creation time)." />
+			
+		<column name="SOLDTO_SAP_BP_ID" type="DECIMAL" size="12" required="true"
+			description="FK TLGNC_PRICING_CALL_SOLDTO. Sold-To of this order, i.e. the customer (Auftraggeber) of this order." />
+			
+		<!--When adding new references and FK, please put them in the same order as they are as attributes! -->
+			
+		<foreign-key foreignTable="TLGNR_CURRENCY_BS" name="FK_TLGNC_PRICING_CALL_CUR">
+			<reference local="CURRENCY_CD" foreign="CURRENCY_CD" />
+		</foreign-key>
+		<foreign-key foreignTable="TLGNC_ORDER_ITEM" name="FK_TLGNC_PRICING_CALL_OI_ID">
+			<reference local="ORDER_ITEM_ID" foreign="ORDER_ITEM_ID" />
+		</foreign-key>
+		<foreign-key foreignTable="TLGNS_SAP_CONTRACT" name="FK_TLGNC_PRICING_CALL_CONTRACT">
+			<reference local="SAP_CONTRACT_ID" foreign="SAP_CONTRACT_ID" />
+		</foreign-key>
+		<foreign-key foreignTable="TLGNS_SAP_MATERIAL" name="FK_TLGNC_PRICING_CALL_MAT">
+			<reference local="SAP_MATERIAL_ID" foreign="SAP_MATERIAL_ID" />
+		</foreign-key>
+		<foreign-key foreignTable="TLGNS_SAP_BP" name="FK_TLGNC_PRICING_CALL_SOLDTO">
+			<reference local="SOLDTO_SAP_BP_ID" foreign="SAP_BP_ID" />
+		</foreign-key>
+
+    </table>
+
+</database>

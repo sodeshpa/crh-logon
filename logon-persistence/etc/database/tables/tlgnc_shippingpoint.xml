@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNC_SHIPPINGPOINT"
+           description="A Shippingpoints is the starting point of an order, in all types of orders. They are associated with a supply plant and its type defines what loading facilities are present at the shippingpoints. The material is loaded at one of the loading points which belong to a shipping point (see tlgnc_loadingpoint). Normally these shippingpoints are known to SAP as well (see SAP_SHIPPINGPOINT_NO), but for certain rail orders some Logon-only shippingpoints were introduced to have a consistent order model in Logon: from=shippingpoint, to=shipto.">
+
+        <column name="SHIPPINGPOINT_ID" primaryKey="true" required="true" type="DECIMAL" size="12"
+                description="PK"/>
+        <column name="PLANT_CD" required="true" type="VARCHAR" size="4"
+                description="FK tlgnr_plant_bs. The supply or production plant which owns this shipping point."/>
+        <column name="SAP_SHIPPINGPOINT_NO" required="true" type="VARCHAR" size="4"
+                description="The SAP Identifier of the shipping point of a plant. (plant_cd, sap_shippingpoint_no) is the unique identifier. The SAP values for shippingpoints are not kept as reference data in Logon. For Logon-only shippingpoints, this number is made-up, and starts with a '#'."/>
+        <column name="KNOWN_ALSO_IN_SAP_FLAG" required="true" type="BOOLEAN"
+                description="Whether this is a shippingpoint which exists also in SAP (identified by plant_cd, sap_shippingpoint_no), or created independently in Logon only. false=only in Logon, needed to represent starting points for certain rail orders. When an order starting at such a shippingpoint is sent to SAP, Logon instead uses the data from SEND_SAP_SHIPPINGPOINT_ID or - if null - from LOCATED_AT_SHIPPINGPOINT_ID of the order's shipto."/>
+        <column name="SHIPPINGPOINT_NAME" type="VARCHAR" size="80"
+                description="The name of the shipping point."/>
+
+        <column name="SHIPPPOINT_TYPE_CD" required="true" type="DECIMAL" size="2"
+                description="FK tlgnr_shipppoint_type_bs. The type of the shipping point: 0=Road, 1=Rail, 2=Container Terminal, 3=Bimodal Truck (FVL), 4=Rail Supplier, 5=Rail Repair and 6=Rail External/Return."/>
+        <column name="SAP_SHIPPING_COND_CD" required="true" type="VARCHAR" size="2"
+                description="FK tlgnr_sap_shipping_cond_bs. The Shipping Condition which will be sent to SAP for an order starting at this shipping point. E.g. E1=Truck, S1=SBB, S3=Mobile Silos, S4=RhB. The application does not check contradicting values with Shipping Point Types; the shipping condition does not hold any logic for LOGON."/>
+        <column name="STORAGE_LOCATION" type="VARCHAR" size="4"
+                description="The default Storage Location where materials are maintained at this shippingpoint. Value is used when exporting the order to SAP if no material-specific storage location is found in tlgnc_mat_shippingpoint. The material must be 'stockable' however, i.e. having material_package_cd.can_have_storage_location _flag = 1, else, the storage location is always empty/null."/>
+        <column name="RAILWAY_STATION_ID" type="DECIMAL" size="12"
+                description="FK tlgnc_railway_station. The railway station of the shipping point if the shipping point is a railway station."/>
+        <column name="RAILWAY_STATION_LOADING_POINT" type="VARCHAR" size="4"
+                description="Railway station loading point. Currently used values are only NUM2. value is ignored by LOGON, but sent back to SAP in order export interface, dep_station_loading_point, which is only NUM2."/>
+        <column name="SBB_CUSTOMER_NUMBER" type="VARCHAR" size="15"
+                description="SBB Customer Number, will be send to SBB."/>
+        <column name="WEIGH_SYSTEM_SP_CD" required="true" type="DECIMAL" size="2"
+                description="FK tlgnr_weigh_system_sp_bs. The weighing system type for this shippingpoint."/>
+        <column name="LDS_SERVER" type="VARCHAR" size="30"
+                description="The identifier of the LDS server at this shippingpoint. Several shippingpoints can be served by the same LDS server; several terminals are connected to one server, see tlgnc_loadingpoint.weigh_system_loadingpoint_no (unique per server). The name here is used to lookup the actual IP address/DNS name via the tlgnr_config keys wsclient.&lt;infix from tlgnr_weigh_system_sp_bs&gt;.host.name.&lt;lds_server&gt; and thus becomes independent of the deployment/instance of LOGON."/>
+        <column name="SHIPPINGPOINT_COMMENT" type="VARCHAR" size="255"
+                description="A comment about the shipping point."/>
+
+        <column name="COORD_LAT" type="DOUBLE"
+                description="Latitude coordinate of the shipping point."/>
+        <column name="COORD_LON" type="DOUBLE"
+                description="Longitude coordinate of the shipping point."/>
+        <column name="COORD_FIX_FLAG" required="true" type="BOOLEAN"
+                description="Whether coordinations are fix. 0=the coordinates will be updated with the next incoming information from a PDA. Editing the coordinates in the User Interface is still possible."/>
+        <column name="GEOFENCE_RADIUS" type="DECIMAL" size="10"
+                description="The geofence radius of the shipping point."/>
+
+		<!-- LOGON-6243: Decision to make this column not-nullable. See comments in ticket. -->
+        <column name="FVL_MIX_SHIPTO_PER_WAGON_FLAG" required="true" type="BOOLEAN"
+                description="Has meaning only for shippingpoints of type Bimodal/FVL, for other type it is ignored. If the flag is set to true, the shippingpoint allows the usage of a single wagon by bimodal truck-orders for different shiptos. Normally this is forbidden, because the individual loads in the trucks are not precisely known (just the total net load in the wagon). However, if a scale is nearby and is used, the exact weight for the trucks can be determined accurately even when the wagon is only partially unloaded."/>
+        <column name="SEND_SAP_SHIPPINGPOINT_ID" type="DECIMAL" size="12"
+                description="FK tlgnc_shippingpoint. An alternative shippingpoint which should be used in the SAP Order Export interface. This is only relevant for certain rail orders, where shippingpoints are in use which are not known in SAP (Rail Supplier, Rail Repair, Rail External/Return)."/>
+
+        <!-- Cost attributes (handling costs) which cannot be received from SAP.
+             See https://aww.adnovum.ch/twiki/bin/view/CrhPegasus/ContributionMarginCalculation
+             for full overview on Cost/margin and various sources of cost elements.
+        -->
+        <column name="UOM_CD" type="VARCHAR" size="3"
+                description="FK tlgnr_uom_bs. Unit of Measurement. The costs are expressed per 1 UOM. If a cost is specified, UOM_CD is mandatory. Note, that it is impossible to express material-independent default handling costs for a single shippingpoint but for two different UOM, because shippingpoint_id is PK!"/>
+                <!-- This last recstriction is the result of the abuse of tlgnc_shippingpoint to also store costs.
+                     If several defaults are required, do NOT remove UOM_CD (because that leads to undefined results,
+                     as it is not transparent that it's applied to ton, hour, piece, etc), but rather move these
+                     handling_cost_mat into a seperate table.
+                -->
+        <column name="VAR_HANDLING_COST_MAT" type="DECIMAL" size="11,2"
+                description="Current variable handling cost of material (per 1 UOM), material-independent. These are costs caused when handling (loading/unloading) a material at a plant. If the handling costs are material dependent, they are set in tlgnc_mat_shippingpoint and have priority over the value here. Handling costs are caused at each plant which is involved, i.e. production and supply plant (if different). The UOM is implicitely the same as for the material received from SAP."/>
+        <column name="FUTURE_VAR_HANDLING_COST_MAT" type="DECIMAL" size="11,2"
+                description="Future variable handling cost of material (per 1 UOM)."/>
+        <column name="FUTURE_VALID_FROM_DAT" type="DATE"
+                description="Validity start date of future_var_handling_cost_mat. Current costs are valid until before future_valid_from_dat. Moving 'future' into 'current' and updating the future_valid_from_dat is a manual task, done once per year. Logon compares delivery date of order with this date and decides which cost is to be used."/>
+        <column name="CURRENCY_CD" type="VARCHAR" size="5"
+                description="FK tlgnr_currency_bs. Currency in which the handling costs caused by this Shippingpoint are expressed. Exchange rates in tlgnc_currency_exch_rate must be respected when adding costs of various sources in one order_item."/>
+
+        <column name="RAIL_ARRIVAL_WARNING_MIN" type="DECIMAL" size="5"
+                description="Used for FVL only. If the linked rail order for a bimodal truck order has not arrived RAIL_ARRIVAL_WARINIG_MIN minutes before the planned load time of the assignment, then a warnign is displayed in truck dispatching"/>
+
+        <column name="TIMEZONE_CD" required="false" type="VARCHAR" size="32"
+                description="Timezone assigned to the shipping point entity"/>
+
+        <foreign-key foreignTable="TLGNR_PLANT_BS" name="FK_TLGNC_SHIPPINGPOINT_PLANT">
+            <reference local="PLANT_CD" foreign="PLANT_CD"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_SHIPPPOINT_TYPE_BS" name="FK_TLGNC_SHIPPINGPOINT_TYPE">
+            <reference local="SHIPPPOINT_TYPE_CD" foreign="SHIPPPOINT_TYPE_CD"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_SAP_SHIPPING_COND_BS" name="FK_TLGNC_SHIPPINGPOINT_COND">
+            <reference local="SAP_SHIPPING_COND_CD" foreign="SAP_SHIPPING_COND_CD"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNC_RAILWAY_STATION" name="FK_TLGNC_SHIPPINGPOINT_RAILW">
+            <reference local="RAILWAY_STATION_ID" foreign="RAILWAY_STATION_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_WEIGH_SYSTEM_SP_BS" name="FK_TLGNC_SHIPPINGPOINT_WS_SP">
+            <reference local="WEIGH_SYSTEM_SP_CD" foreign="WEIGH_SYSTEM_SP_CD"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNC_SHIPPINGPOINT" name="FK_TLGNC_SHIPPINGPOINT_SAP_SP">
+            <reference local="SEND_SAP_SHIPPINGPOINT_ID" foreign="SHIPPINGPOINT_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_UOM_BS" name="FK_TLGNC_SHIPPINGPOINT_UOM">
+            <reference local="UOM_CD" foreign="UOM_CD"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_CURRENCY_BS" name="FK_TLGNC_SHIPPINGPOINT_CURR">
+            <reference local="CURRENCY_CD" foreign="CURRENCY_CD"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_TIMEZONE_BS" name="FK_TLGNC_SHIPPINGPOINT_TZ">
+            <reference local="TIMEZONE_CD" foreign="TIMEZONE_CD"/>
+        </foreign-key>
+
+        <unique name="UQ_TLGNC_SHIPPINGPOINT_SAP">
+            <unique-column name="PLANT_CD"/>
+            <unique-column name="SAP_SHIPPINGPOINT_NO"/>
+        </unique>
+        
+        <index name="I_SHIPPINGPOINT_PLANTCD">
+            <index-column name="PLANT_CD"/>
+        </index>
+    </table>
+</database>

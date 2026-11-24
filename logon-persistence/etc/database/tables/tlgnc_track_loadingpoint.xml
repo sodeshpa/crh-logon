@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNC_TRACK_LOADINGPOINT"
+           description="The default loading point per track. Used to determine a loading point for each track, such that the shipping statistics can be calculated for all manually loaded rail orders. Track:Loadingpoint is N:1.">
+
+        <column name="TRACK_LOADINGPOINT_ID" primaryKey="true" required="true" type="DECIMAL" size="12"
+                description="PK"/>
+        <column name="PLANT_TRACK_CD" required="true" type="DECIMAL" size="4"
+                description="FK tlgnr_plant_track_bs. The track."/>
+        <column name="LOADINGPOINT_ID" required="true" type="DECIMAL" size="12"
+                description="FK tlgnc_loadingpoint. The default loadingpoint for this track."/>
+
+        <foreign-key foreignTable="TLGNR_PLANT_TRACK_BS" name="FK_TLGNC_TRACK_LP_TRACK">
+            <reference local="PLANT_TRACK_CD" foreign="PLANT_TRACK_CD"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNC_LOADINGPOINT" name="FK_TLGNC_TRACK_LP_LP">
+            <reference local="LOADINGPOINT_ID" foreign="LOADINGPOINT_ID"/>
+        </foreign-key>
+
+        <unique name="UQ_TLGNC_TRACK_LOADINGPOINT">
+            <unique-column name="PLANT_TRACK_CD"/>
+        </unique>
+
+    </table>
+</database>

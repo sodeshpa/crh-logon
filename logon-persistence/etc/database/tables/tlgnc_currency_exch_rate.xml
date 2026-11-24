@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNC_CURRENCY_EXCH_RATE"
+           description="Currency exchange rates. All exchange rates are always expressed relatively to ONE single base currency, valid for the whole installation. For Switzerland and Europe this is EUR. In the future, for an additional/independent installation - for example North/South America - USD may be chosen as base currency. Conversions from CUR1 to CUR2 are always performed via this base currency.">
+
+        <column name="CURRENCY_EXCH_RATE_ID" primaryKey="true" required="true" type="DECIMAL" size="12"
+                description="PK."/>
+        <column name="CURRENCY_CD" required="true" type="VARCHAR" size="5"
+                description="The currency for which the exchange rate towards the base currency (EUR for the current release) is defined."/>
+        <column name="VALID_FROM_DAT" type="DATE"
+                description="Validity start date of the exchange rate. The valid_to_date is implicitely defined by the next record for the same currency_cd, or infinite in case of the last record. Gaps in the validity of exchange rates are therefore impossible by design."/>
+        <column name="EXCHANGE_RATE" type="DECIMAL" size="12,4"
+                description="Exchange rate of base currency (EUR) to currency_cd. Examples from 25.08.2009: EUR/CHF = 1.5178, EUR/USD = 1.4334, EUR/GBP = 0.8752, EUR/HUF = 266.3500. If the rate is modified for the current or a past period, already existing orders/order_items are NOT updated, as the exchange rate is frozen for each order_item, see tlgnc_order_item.delivery_dat_exchange_rate. It is therefore recommended to not edit an exchange rate, but rather add a new record, with a valid_from_dat in the future."/>
+        <!-- On purpose I chose the conversions EUR/cur, and not cur/EUR,
+             because this way we do not need a huge number of decimal digits
+             as long as EUR is sufficiently strong...
+             Also, the number "1.51" for "CHF" is more well known than 0,6592.
+             Examples of the exchange rates taken from FAZ:
+             http://www.fazfinance.net/d/Markt.faz?type=cur
+             The "12" in 12,4 however is a bit random. Change if needed, when
+             very week currencies like e.g. zimbabwe dollar should be handled...
+        -->
+
+        <foreign-key foreignTable="TLGNR_CURRENCY_BS" name="FK_TLGNC_CURRENCY_EXCH_RATE">
+            <reference local="CURRENCY_CD" foreign="CURRENCY_CD"/>
+        </foreign-key>
+    </table>
+</database>

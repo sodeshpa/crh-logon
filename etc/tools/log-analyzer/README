@@ -1,0 +1,46 @@
+LOG Analyzer
+============
+
+1.) What is this tool?
+2.) Usage
+3.) Enhancements
+4.) Disclaimer (!!!)
+--------------------
+
+1.) What is this tool?
+
+After some crisis during production we (Logon devs) realized it is hard to get an overview on the application health.
+I decided to create a tool quickly that produces some easy-on-the eye reports after parsing the application log.
+
+Please note i checked some tools on the market but either they disliked our log pattern or simply could not load a 50 meg log file.
+
+The log analyzer will parse all entries in the log folder (recursively) it is pointed to. WARN and ERROR entries are collected. Also it creates a report on how many expcetions happened per type. 
+
+Testing with logs from LP0 a day of log from the 5 instances is processed in less than a minute.
+
+2.) Usage
+
+> python analyze_log.py /tmp/mylogfolder
+
+There will be a folder created called 'error_report' inside that there is an index.html. 
+Please open that in your browser.
+
+3.) Enhancements
+
+The tool could use many new features. 
+But please be aware that it might effect the performance making the tool less and less useful.
+It is written in python and can be extended without too much python experties
+
+Idea: if the log pattern regexp would be a parameter it could be used for other projects as well.
+
+4.) Disclaimer (!!!)
+
+Although i created this tool as a personal interest i hope it will be generally useful.
+PLEASE NOTE THOUGH I CREATED THE CORE IN QUASI ONE SITTING AND THE CODE QUALITY REFLECTS THAT.
+It lacks some structure / design.
+I already added some unit tests but many more seems to be needed for the parser.
+
+=======================
+All the best: balakirev
+
+

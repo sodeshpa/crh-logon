@@ -1,0 +1,8 @@
+#macro (type2java $field)
+#if ($field.type.endsWith('*'))
+List#elseif ($field.type == 'rfidObject')
+LogonRfidObject#else
+String#end 
+#end
+#macro (name2java $field)
+$st.extractJavaIdentifier($field.name)#end

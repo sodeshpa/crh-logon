@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNR_TIMEZONE_TX" refData="true" description="Language depending attributes for TimeZones">
+
+        <column name="TIMEZONE_CD" primaryKey="true" required="true" type="VARCHAR" size="32"
+                description="Part of PK. FK tlgnr_timezone_bs"/>
+        <column name="LANG_CD" primaryKey="true" required="true" type="VARCHAR" size="2"
+                description="Part of PK. FK tlgnr_lang_bs. For example de, en, ..."/>
+        <column name="TXT" required="true" type="VARCHAR" size="20"
+                description="Region name in the language LANG_CD."/>
+
+        <foreign-key foreignTable="TLGNR_TIMEZONE_BS" name="FK_TLGNR_TIMEZONE_TX">
+            <reference local="TIMEZONE_CD" foreign="TIMEZONE_CD"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_LANG_BS" name="FK_TLGNR_TIMEZONE_LANG">
+            <reference local="LANG_CD" foreign="LANG_CD"/>
+        </foreign-key>
+    </table>
+</database>

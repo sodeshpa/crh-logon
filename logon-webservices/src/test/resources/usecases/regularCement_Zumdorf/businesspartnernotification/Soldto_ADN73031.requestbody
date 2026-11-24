@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BusinessPartnerNotification xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="file:/home/schuler/projects/logon/logon-webservices/etc/xsd/original/BusinessPartnerNotification.xsd">
+    <master_customer_basic_data>
+        <MSGFN>005</MSGFN><!-- not used -->
+        <KUNNR>ADN73031</KUNNR><!-- Customer Number1, stored in tlgns_sap_bp_sap_ifc_id and zero trimmed value in tlgns_sap_bp.sap_id -->
+        <ANRED></ANRED><!-- not used -->
+        <BAHNS></BAHNS><!-- Train station, If exactly 8 characters long, decoded into uic_country_cd (first 2 characters) and railway_station_no (last 6 characters), which are used to look up the railway_station_id from tlgnc_railway_station, which in turn is saved into table tlgns_sap_bp.railway_station_id. -->
+        <KNRZA></KNRZA><!-- not used -->
+        <KTOKD>Z001</KTOKD><!-- Customer Account Group, Customer account group used to identify one-time-shipto and one-time-soldto-->
+        <KUKLA>99</KUKLA><!-- Customer Classification, tlgns_sap_bp.customer_classification.-->
+        <LAND1>CH</LAND1><!-- Country Key, Saved into table tlgns_sap_bp.country. treat as text (no reference table) -->
+        <LIFNR></LIFNR><!-- not used -->
+        <NAME1>ADN Kies und Beton Regli AG</NAME1><!-- Name1, saved into table tlgns_sap_bp.name1 -->
+        <NAME2>Kieswerk Zumdorf</NAME2><!-- Name2, Saved into table tlgns_sap_bp.name2 -->
+        <NAME3></NAME3><!-- not used -->
+        <NAME4></NAME4><!-- not used -->
+        <ORT01>Andermatt</ORT01><!-- City, Saved into table tlgns_sap_bp.city. -->
+        <ORT02></ORT02><!-- not used -->
+        <PFACH></PFACH><!-- not used -->
+        <PSTL2></PSTL2><!-- not used -->
+        <PSTLZ>6490</PSTLZ><!-- Postal code, Saved into table tlgns_sap_bp.postal_code-->
+        <REGIO>UR</REGIO><!-- Region (State, Province, Country), Saved into table tlgns_sap_bp.region. CH = Kanton -->
+        <SORTL></SORTL><!-- not used -->
+        <SPRAS></SPRAS><!-- not used -->
+        <SPRAS_ISO>Z1</SPRAS_ISO><!-- Language according to ISO 639, Saved into table tlgns_sap_bp.lang_cd.map Z1/DE-DE -->
+        <STCD1>TaxNumber1</STCD1><!-- Tax Number 1, saved into tlgns_sap_bp.TAX_NUMBER_1 -->
+        <STCD2></STCD2><!-- not used -->
+        <STRAS>Bahnhofstrasse 33</STRAS><!-- House number and street, Saved into tlgns_sap.bp.house_number -->
+        <TELF1></TELF1><!-- not used -->
+        <TELFX></TELFX><!-- not used -->
+        <LZONE></LZONE><!-- not used -->
+        <STCEG></STCEG><!-- not used -->
+        <PFORT></PFORT><!-- not used -->
+        <AUFSD></AUFSD><!-- Central order block for customer, tlgns_sap_bp.central_order_block. -->
+        <FAKSD></FAKSD><!-- not used -->
+        <LIFSD></LIFSD><!-- Central delivery block for the customer, tlgns_sap_bp. central_delivery_block. --> 
+        <LOEVM>0</LOEVM><!-- Central Deletion Flag for Master Record, Saved into table tlgns_sap_bp.marked_for_deletion.-->
+        <SPERR></SPERR><!-- Central posting block, Saved into tlrns_sap_bp. central posting_block.  -->
+        <KATR1></KATR1><!-- not used -->
+        <KATR2></KATR2><!-- not used -->
+        <master_customer_audit>
+            <ERDAT></ERDAT><!-- not used -->
+            <ERZET></ERZET><!-- not used -->
+            <ERNAM></ERNAM><!-- not used -->
+            <AENAM></AENAM><!-- not used -->
+            <AEDAT></AEDAT><!-- not used -->
+        </master_customer_audit>
+        <extension_KNA1>
+            <ZZZIDNR1></ZZZIDNR1><!-- not used -->
+            <STRA2></STRA2><!-- not used -->
+            <HOUSE_NUM1></HOUSE_NUM1><!-- not used -->
+            <LOCATION></LOCATION><!-- not used -->
+            <SMTP_ADDR></SMTP_ADDR><!-- not used -->
+            <REGIOGROUP></REGIOGROUP><!-- not used -->
+        </extension_KNA1>
+        <distances_to_plant>
+            <VSBED></VSBED><!-- not used -->
+            <WERKS></WERKS><!-- not used -->
+            <VSTEL></VSTEL><!-- not used -->
+            <ZZKMSD></ZZKMSD><!-- not used -->
+            <ZZKMLE></ZZKMLE><!-- not used -->
+            <ZZRADISD></ZZRADISD><!-- not used -->
+            <ZZRADILE></ZZRADILE><!-- not used -->
+        </distances_to_plant>
+        <master_customer_sales_data><!-- depending on the sales area to sales area configuration (common division / distribution channel) the entries below are also duplicated for other sales areas. If duplicated then entry contains a foreign key to TLGNR_SAREA_DEPENDENCY -->
+            <MSGFN>005</MSGFN><!-- SAP Delta Mode function code. -->
+            <VKORG>AD02</VKORG><!-- Sales Organization, Used to resolve reference to tlgnc_sarea from VKORG (sorg_cd) + VTWEG (distribution_channel) + SPART (division) triple. After determining it saving it to tlgns_sap_bp_sarea.sarea_cd. -->
+            <VTWEG>10</VTWEG><!-- Distribution Channel, Used to resolve reference to tlgnc_sarea from VKORG (sorg_cd) + VTWEG (distribution_channel) + SPART (division) triple. After determining it saving it to tlgns_sap_bp_sarea.sarea_cd. -->
+            <SPART>10</SPART><!-- Division, Used to resolve reference to tlgnc_sarea from VKORG (sorg_cd) + VTWEG (distribution_channel) + SPART (division) triple. After determining it saving it to tlgns_sap_bp_sarea.sarea_cd. -->
+            <LOEVM></LOEVM><!-- Deletion flag for customer (sales level) -->
+            <AUFSD></AUFSD><!-- Customer order block (sales area) -->
+            <LIFSD></LIFSD><!-- Customer delivery block (sales area)-->
+            <FAKSD></FAKSD><!-- not used -->
+            <VERSG></VERSG><!-- not used -->
+            <KALKS></KALKS><!-- not used -->
+            <KDGRP>0C</KDGRP><!-- Customer group, Saved into table tlgns_sap_bp_sarea. customer_group -->
+            <BZIRK></BZIRK><!-- Sales district, Saved into table tlgns_sap_bp_sarea. sales_district -->
+            <KONDA></KONDA><!-- not used -->
+            <PLTYP></PLTYP><!-- not used -->
+            <INCO1></INCO1><!-- not used -->
+            <INCO2></INCO2><!-- not used -->
+            <EIKTO></EIKTO><!-- not used -->
+            <VSBED></VSBED><!-- not used -->
+            <MRNKZ></MRNKZ><!-- not used -->
+            <PERFK></PERFK><!-- not used -->
+            <PERRL></PERRL><!-- not used -->
+            <WAERS>CHF</WAERS><!-- Currency, Saved into table tlgns_sap_bp_sarea. currency_cd. -->
+            <KTGRD></KTGRD><!-- not used -->
+            <ZTERM></ZTERM><!-- not used -->
+            <VWERK></VWERK><!-- Delivering Plant, Saved into table tlgns_sap_bp_sarea. default_plant_cd -->
+            <VKGRP></VKGRP><!-- Sales Group, Saved into table tlgns_sap_bp_sarea. sales_group -->
+            <VKBUR></VKBUR><!-- Sales Office, Saved into table tlgns_sap_bp_sarea. sales_office -->
+            <KVGR1></KVGR1><!-- not used -->
+            <KVGR2></KVGR2><!-- not used -->
+            <KVGR3></KVGR3><!-- not used -->
+            <KVGR4></KVGR4><!-- Customer Group 4, Saved into table tlgns_sap_bp_sarea. customer_group_4 -->
+            <KVGR5></KVGR5><!-- not used -->
+            <BOKRE></BOKRE><!-- not used -->
+            <KLABC>A</KLABC><!-- Customer classification (ABC analysis), Saved into table tlgns_sap_bp_sarea. abc_class -->
+            <master_customer_partner_roles><!-- Billto himself (ADN73031) -->
+                <MSGFN>05</MSGFN>
+                <PARVW>RE</PARVW>                
+                <KUNN2>ADN73031</KUNN2>
+                <DEFPA></DEFPA><!-- not used -->
+                <KNREF></KNREF><!-- not used -->
+                <PARZA></PARZA><!-- not used -->
+            </master_customer_partner_roles>
+            <master_customer_partner_roles><!-- Billto HG COMMERCIALE Luzern (ADN72824) -->
+                <MSGFN>05</MSGFN>
+                <PARVW>RE</PARVW>                
+                <KUNN2>ADN72824</KUNN2>
+                <DEFPA></DEFPA><!-- not used -->
+                <KNREF></KNREF><!-- not used -->
+                <PARZA></PARZA><!-- not used -->
+            </master_customer_partner_roles>
+            <master_customer_partner_roles><!-- Payer himself (ADN73031) -->
+                <MSGFN>05</MSGFN>
+                <PARVW>RG</PARVW>                
+                <KUNN2>ADN73031</KUNN2>
+                <DEFPA></DEFPA><!-- not used -->
+                <KNREF></KNREF><!-- not used -->
+                <PARZA></PARZA><!-- not used -->
+            </master_customer_partner_roles>
+            <master_customer_partner_roles><!-- Shipto himself (ADN73031) -->
+                <MSGFN>05</MSGFN>
+                <PARVW>WE</PARVW>                
+                <KUNN2>ADN73031</KUNN2>
+                <DEFPA></DEFPA><!-- not used -->
+                <KNREF></KNREF><!-- not used -->
+                <PARZA></PARZA><!-- not used -->
+            </master_customer_partner_roles>
+            <master_customer_partner_roles><!-- Shipto ADN Betonwerk Zumdorf (ADN1208869) -->
+                <MSGFN>05</MSGFN>
+                <PARVW>WE</PARVW>                
+                <KUNN2>ADN1208869</KUNN2>
+                <DEFPA></DEFPA><!-- not used -->
+                <KNREF></KNREF><!-- not used -->
+                <PARZA></PARZA><!-- not used -->
+            </master_customer_partner_roles>
+            <master_customer_partner_roles><!-- Soldto himself (ADN73031) -->
+                <MSGFN>05</MSGFN>
+                <PARVW>AG</PARVW>                
+                <KUNN2>ADN73031</KUNN2>
+                <DEFPA></DEFPA><!-- not used -->
+                <KNREF></KNREF><!-- not used -->
+                <PARZA></PARZA><!-- not used -->
+            </master_customer_partner_roles>
+            <master_customer_tax_indicators>
+                <MSGFN></MSGFN><!-- not used -->
+                <ALAND></ALAND><!-- not used -->
+                <TATYP></TATYP><!-- not used -->
+                <TAXKD></TAXKD><!-- not used -->
+            </master_customer_tax_indicators>
+        </master_customer_sales_data>
+        <master_customer_credit_mgmt>
+            <MSGFN></MSGFN><!-- not used -->
+            <KKBER></KKBER><!-- not used -->
+            <KLIMK></KLIMK><!-- not used -->
+            <CTLPC></CTLPC><!-- not used -->
+            <SBGRP></SBGRP><!-- not used -->
+        </master_customer_credit_mgmt>
+        <master_customer_companies_code>
+            <MSGFN>05</MSGFN>
+            <BUKRS>AD02</BUKRS><!-- Company Code, This would be part of unique constraint for sapbpid (reachable from parent element) + BUKRS received from SAP. Authorization will apply automatically in case user is restricted to a certain company code, but that is maybe OK, since the contract will also be invisible due that it also has BUKRS reference. Saved into tlgns_sap_bp_companycode.companycode_cd -->
+            <SPERR></SPERR><!-- Posting block for company code, Saved into tlgns_sap_bp_companycode.central posting_block. -->
+            <LOEVM></LOEVM><!-- Deletion flag for master record (Company Code Level), Used for LRQ 005 (Customer Credit Block) Saved into tlgns_sap_bp_companycode.marked_for_deletion.Usage: block all contracts having this BUKRS reference for this BP if received 1 here -->
+            <ZUAWA></ZUAWA><!-- not used -->
+            <BUSAB></BUSAB><!-- not used -->
+            <AKONT></AKONT><!-- not used -->
+            <ZWELS></ZWELS><!-- not used -->
+            <ZTERM></ZTERM><!-- not used -->
+            <TLFNS></TLFNS><!-- not used -->
+            <master_customer_reminder_data>
+                <MSGFN></MSGFN><!-- not used -->
+                <MAHNS></MAHNS><!-- not used -->
+            </master_customer_reminder_data>
+        </master_customer_companies_code>
+    </master_customer_basic_data>
+</BusinessPartnerNotification>

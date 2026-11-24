@@ -1,0 +1,16 @@
+This cartridge generates an sql based on a csv.
+
+ticket: LOGON-7031
+
+input: a list of business partner ids to be deleted
+output: a script which fully deletes all these business partners
+
+naming:
+
+- the generated sql file will be located in a directory according to
+the parent directory-name of the path in which the csv file resides
+- the generated sql files will be named according to the input-csv
+file with '.csv' replaced by '.sql'.
+
+in:    csv/deleteBp/deleteBp.csv
+out:   outputdir/deleteBp/deleteBp.sql

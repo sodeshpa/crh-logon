@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNC_CONFIG_LOGIN_MODULE"
+           description="Technical table, NOT supposed to be edited by users, the values are inserted/updated only by the application at instance startup, and configuration reload (init/versionCheck). When an instance is starting up, or configuration reload is triggered hierarchical lookup will determine the exact value for a certain key for the instance. This value is propagated into this table, thus the login module will only get the refreshed value if the instance is restarted, or configuration is reloaded. From content point of view the table contains login module related configuration values used only in the login module. As the login module reads directly from the database, changes to config values would immediately take effect for the instance, which should only take place on startup/reload config. Columns: key (not nullable): Identifier for a config entry, together with INSTANCE. Application startup will guarantee that for each started instance there is a key. instance (NOT NULLABLE): Instance for which the value applies. value: Value of the property or system default. Always as text, the application transforms it into number or date or whatever the value represents.">
+        <!-- Lengths of fields can be made longer whenever needed -->
+        <column name="CONFIG_LOGIN_MODULE_ID" primaryKey="true" required="true" type="DECIMAL" size="12"
+                description="PK"/>
+        <column name="KEY" required="true" type="VARCHAR" size="100"
+                description="Identifier for a login module config entry. The entry brings it's key from the config table. Please see comment for the INSTANCE column for more information."/>
+        <column name="INSTANCE" type="VARCHAR" size="30" required="true"
+                description="Instance for which the value applies. The instance is decided inside LOGON on startup. The respective entries of the user will be populated to this table => hence to this field. So if the app starts with instance: 'mycompany.org' entries with this instance will be copied. The list of entries are the ones related to the config-login-module. A description can be found for those entries in the config tables description column."/>        
+        <column name="VALUE" type="VARCHAR" size="1000"
+                description="Value of the login property. Always as text, the application transforms it into number or date or whatever the value represents. MIN/MAX_VALUE are validated by the admin application and are not enforced by the DB."/>
+        <unique name="UQ_TLGNC_CFG_LOG_MOD_KEY_INST">
+            <unique-column name="KEY"/>
+            <unique-column name="INSTANCE"/>
+        </unique>
+      </table>
+</database>

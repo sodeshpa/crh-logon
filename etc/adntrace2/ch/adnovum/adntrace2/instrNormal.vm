@@ -1,0 +1,25 @@
+#if($methodIntro)
+#withnoindent($methodIntro)
+#end
+#withnoindent($entering)
+#if($beforeTry)
+#withnoindent($beforeTry)
+#end
+try {
+#if($methodBody)
+	#withindent(${methodBody})
+#end
+}
+#withnoindent($exceptionBlock)
+finally {
+#if($finallyFirstBlock)
+	#withindent($finallyFirstBlock)
+#end
+#withnoindent($exiting)
+#if($finallyLastBlock)
+	#withindent($finallyLastBlock)
+#end
+}
+#if($methodExtro)
+#withnoindent($methodExtro)
+#end

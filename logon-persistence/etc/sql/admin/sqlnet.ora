@@ -1,0 +1,3 @@
+# sqlnet.ora network Configuration File: C:\adnoracle\admin\<SID>\network\sqlnet.ora
+
+SQLNET.AUTHENTICATION_SERVICES = (NTS,TNSNAMES)

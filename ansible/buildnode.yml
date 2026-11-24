@@ -1,0 +1,8 @@
+---
+- name: setup default build hosts
+  hosts:
+  - build_hosts
+  become: True
+  roles:
+  - { role: buildnode,   tags: ['buildnode']}
+

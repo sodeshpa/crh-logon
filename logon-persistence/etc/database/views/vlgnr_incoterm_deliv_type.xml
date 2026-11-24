@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="VLGNR_INCOTERM_DELIV_TYPE" mappingType="view" skipSql="true">
+        <column name="INCOTERM_DELIV_TYPE_CD" type="DECIMAL" size="12"/>
+        <column name="SAREA_ID" type="DECIMAL" size="12"/>
+        <column name="SAP_INCOTERM_CD" type="VARCHAR" size="3"/>
+        <column name="DELIVERY_TYPE_CD" required="true" type="DECIMAL" size="2"/>
+    </table>
+</database>

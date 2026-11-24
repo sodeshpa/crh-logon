@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNC_ORDER_PRESCHEDULE"
+           description="Table to store prescheduling data. The data is stored in case a prescheduler releases a dispatched order either on a real or a generic truck, with the precondition that the carrier has a rate setting in tlgnc_carrier.freight_revenue_rate_per_tkm and currency. This data is used also in exporting prescheduling data, and also in case later a scheduler handles the order further, but later on he has to deallocate it. In this case the state before he started to handle the order has to be restored: the order has to be dispatched back to the generic/real truck - to the one, to which the order was originally prescheduled by the prescheduler, and has to be released again.">
+        
+        <column name="ORDER_PRESCHEDULE_ID" primaryKey="true" required="true" type="DECIMAL" size="12"
+                description="PK"/>
+        <column name="TRUCK_ID" required="true" type="DECIMAL" size="12"
+                description="TODO review, since LOGON-4927 seems to be a redundant information already available on assignment part unload. FK to TLGNC_TRUCK. The truck to what the presheduler dispatched the order (in case a freight_revenue_rate_per_tkm setting was available for the carrier at the time of the dispatching). Can be also generic or real truck. The order will be deallocated and dispatched back to this truck in case the scheduler decides later that the real truck he assigned this order is not anymore supposed to transport the order."/>  
+        <column name="ORDER_ID" required="true" type="DECIMAL" size="12"
+                description="FK to TLGNC_ORDER. The order for what the preschedulement had been made by the prescheduler."/>  
+        <column name="FREIGHT_COST" type="DECIMAL" size="12,4"
+                description="The freight cost calculated from bag or bulk products of the order. This cost is the sum of the freight cost of these items, and is already calculated considering the freight_revenue_rate_per_tkm stored on the carrier. See table description when the cost is calculated."/>
+        <column name="FREIGHT_COST_CURRENCY_CD" type="VARCHAR" size="3"
+                description="FK to TLGNR_CURRENCY_BS. The currency cd of the freight cost. It is guaranteed to correspond with the currency code of all order items."/>                
+        <column name="PLANNED_START" required="true" type="DATE"
+                description="TODO review, since LOGON-4927 seems to be a redundant information already available on assignment part unload. Corresponds with the ASSIGNMENT_DAT of the released assignment created by the prescheduler. Used when restoring prescheduled data"/>                  
+			               
+        <column name="UNLOAD_DURATION" type="DECIMAL" size="12"
+                description="TODO review, since LOGON-4927 seems to be a redundant information already available on assignment part unload. from LOGON-Stores the unloadDuration of the order. The value was calculated due the assignment creaition process of the prescheduler. Now we simulate this process to set the order back to the original assignment"/>                 
+        <column name="LOAD_DURATION" type="DECIMAL" size="12"
+                description="TODO review, since LOGON-4927 seems to be a redundant information already available on assignment part load. Stores the loadDuration of the order. The value was calculated due the assignment creaition process of the prescheduler. Now we simulate this process to set the order back to the original assignment"/>                 
+        <column name="TRANSPORT_DURATION" type="DECIMAL" size="12"
+                description="TODO review, since LOGON-4927 seems to be a redundant information already available on assignment part to. Stores the transportDuration of the order. The value was calculated due the assignment creaition process of the prescheduler. Now we simulate this process to set the order back to the original assignment"/> 
+                 
+         <foreign-key foreignTable="TLGNR_CURRENCY_BS" name="FK_ORDER_PRESCHEDULE_CURR">
+            <reference local="FREIGHT_COST_CURRENCY_CD" foreign="CURRENCY_CD"/>                       
+         </foreign-key>        
+         <foreign-key foreignTable="TLGNC_TRUCK" name="FK_ORDER_PRESCHEDULE_TRUCK">
+            <reference local="TRUCK_ID" foreign="TRUCK_ID"/>                       
+         </foreign-key>        
+         <foreign-key foreignTable="TLGNC_ORDER" name="FK_ORDER_PRESCHEDULE_ORDER">
+            <reference local="ORDER_ID" foreign="ORDER_ID"/>                       
+         </foreign-key>
+         
+          <unique name="UQ_ORDER_PRESCHEDULE_ORDER_ID">
+            <unique-column name="ORDER_ID"/>
+          </unique>
+    </table>
+</database>

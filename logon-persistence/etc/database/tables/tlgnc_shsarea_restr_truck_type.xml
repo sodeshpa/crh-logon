@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNC_SHSAREA_RESTR_TRUCK_TYPE"
+           description="Table used to store truck type priority and limitations for a delivery setting (restriction) of a shipto sales area. See limitation purpose at tlgnc_shipto_truck_type_cem/agg. The table contains prio defaults to be applied on top of the possible truck types enabled on ship-to level. Unlike for tlgnc_shipto_truck_type_cem/agg prio = 0 setting is saved, and means that by default on order taking the value should be disabled (shown with x), and if used as default, the truck type should be disabled for the order based on this default.">
+
+        <column name="SHSAREA_RESTR_TRUCK_TYPE_ID" primaryKey="true" required="true" type="DECIMAL" size="12"
+                description="PK"/>
+        <column name="SHIPTO_SAREA_RESTR_ID" required="true" type="DECIMAL" size="12"
+                description="FK to tlgnc_shipto_sarea_restr. The dispokarte default to which the preferences belong."/>
+        <column name="TRUCK_TYPE_CD" required="true" type="DECIMAL" size="3"
+                description="FK tlgnr_truck_type_cd. Type of the truck: 2-axle, 3-axle, 4-axle, 5-axle or semi-trailer truck (Sattelschlepper)."/>
+        <column name="EVALUATION_PRIORITY" required="true" type="DECIMAL" size="2"
+                description="Priority hints to evaluate possible truck types for this default. 0: Forbidden. As default only forbid is possible to be specified. Value defined here is overrideable on call center, but counts will count as the initial setting if the default is used on a certain order taking source."/>
+
+        <foreign-key foreignTable="TLGNC_SHIPTO_SAREA_RESTR" name="FK_TLGNC_SHSAREA_RESTR_TR_REST">
+            <reference local="SHIPTO_SAREA_RESTR_ID" foreign="SHIPTO_SAREA_RESTR_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_TRUCK_TYPE_BS" name="FK_TLGNC_SHSAREA_RESTR_TYPE_TY">
+            <reference local="TRUCK_TYPE_CD" foreign="TRUCK_TYPE_CD"/>
+        </foreign-key>
+        
+        <unique name="UQ_TLGNC_SHSAREA_RESTR_TRUCK_T">
+        	<unique-column name="SHIPTO_SAREA_RESTR_ID"/>
+            <unique-column name="TRUCK_TYPE_CD"/>
+        </unique>
+        
+        <index name="I_TLGNC_SHSAREA_RESTR_REST_ID">
+            <index-column name="SHIPTO_SAREA_RESTR_ID"/>
+        </index>
+      </table>
+</database>

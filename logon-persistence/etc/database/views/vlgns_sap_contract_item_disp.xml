@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="VLGNS_SAP_CONTRACT_ITEM_DISP" mappingType="view" skipSql="true">
+        <column name="COMPOSITE_ID" type="VARCHAR" size="43"/>
+        <column name="SAP_CONTRACT_ITEM_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="SAP_CONTRACT_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="CONTRACT_ITEM_NO" required="true" type="DECIMAL" size="6"/>
+        <column name="SAP_MATERIAL_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="PRODUCTION_PLANT_CD" type="VARCHAR" size="4"/>
+        <column name="SUPPLY_PLANT_CD" type="VARCHAR" size="4"/>
+        <column name="MATERIAL_GROUP_1" type="VARCHAR" size="3"/>
+        <column name="MATERIAL_GROUP_2" type="VARCHAR" size="3"/>
+        <column name="MATERIAL_GROUP_3" type="VARCHAR" size="3"/>
+        <column name="MATERIAL_GROUP_4" type="VARCHAR" size="3"/>
+        <column name="MATERIAL_GROUP_5" type="VARCHAR" size="3"/>
+        <column name="ITEM_CATEGORY" type="VARCHAR" size="4"/>
+        <column name="TARGET_QUANTITY_UOM_CD" type="VARCHAR" size="3"/>
+        <column name="NET_VALUE" type="DECIMAL" size="15,2"/>
+        <column name="MARKED_FOR_DELETION" type="VARCHAR" size="1"/>
+        <column name="CTL_CRE_UID" required="true" type="DECIMAL" size="12"/>
+        <column name="CTL_CRE_TS" required="true" type="TIMESTAMP"/>
+        <column name="CTL_MOD_UID" required="true" type="DECIMAL" size="12"/>
+        <column name="CTL_MOD_TS" required="true" type="TIMESTAMP"/>
+        <column name="CTL_TCN" required="true" type="DECIMAL" size="12"/>
+        <column name="TARGET_QUANTITY" type="DECIMAL" size="17,3"/>
+        <column name="MATERIAL_TXT" type="VARCHAR" size="40"/>
+        <column name="LANG_CD" type="VARCHAR" size="2"/>
+        <column name="PROD_PLANT_NAME" type="VARCHAR" size="80"/>
+        <column name="SUPPLY_PLANT_NAME" type="VARCHAR" size="80"/>
+        <column name="IS_AP_GROUP_LEADER" required="true" type="BOOLEAN"/>
+        <column name="AP_GROUP_LEADER_ID" type="DECIMAL" size="12"/>
+    </table>
+</database>

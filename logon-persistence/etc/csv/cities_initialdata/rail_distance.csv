@@ -1,0 +1,35 @@
+# $Revision$
+# $Date$
+#Origin:
+#/share/doc/crh/pegasus/input/Bahn/Rail_Distance_Table_20090806.xls
+#;CC From;Station From;CC To;Station To;"TARIF KM";;Origin;Destination
+;53;325084;55;180364;182;;Alesd Rail St. CEM Alesd;Békéscsaba átrakó Rail St.
+;53;325084;55;58503;0;;Alesd Rail St. CEM Alesd;Ercsi átrakó Rail St.
+;53;325084;55;15784;0;;Alesd Rail St. CEM Alesd;Lábatlan Rail St.
+;56;140467;56;151407;447;;Rohozník Rail St.;Turna Nad Bodvou Rail St.
+;56;140467;55;180364;546;;Rohozník Rail St.;Békéscsaba átrakó Rail St.
+;56;140467;55;58503;311;;Rohozník Rail St.;Ercsi átrakó Rail St.
+;56;140467;55;139121;600;;Rohozník Rail St.;Debrecen Rail St.
+;56;140467;80;13391;1153;;Rohozník Rail St.;Bad Segeberg Rail St
+;56;140467;22;368203;1134;;Rohozník Rail St.;Chernovtsy-Juzhnaja Rail St.
+;56;140467;81;28977;144;;Rohozník Rail St.;Schönfeld-Lasse Rail St.
+;56;140467;55;15784;210;;Rohozník Rail St.;Lábatlan Rail St.
+;56;151407;56;140467;447;;Turna Nad Bodvou Rail St.;Rohozník Rail St.
+;56;151407;55;58503;377;;Turna Nad Bodvou Rail St.;Ercsi átrakó Rail St.
+;56;151407;55;139121;244;;Turna Nad Bodvou Rail St.;Debrecen Rail St.
+;56;151407;81;28977;524;;Turna Nad Bodvou Rail St.;Schönfeld-Lasse Rail St.
+;56;151407;55;15784;377;;Turna Nad Bodvou Rail St.;Lábatlan Rail St.
+;55;180364;53;325084;182;;Békéscsaba átrakó Rail St.;Alesd Rail St. CEM Alesd
+;55;180364;56;140467;546;;Békéscsaba átrakó Rail St.;Rohozník Rail St.
+;55;58503;53;325084;210;;Ercsi átrakó Rail St.;Alesd Rail St. CEM Alesd
+;55;58503;56;140467;311;;Ercsi átrakó Rail St.;Rohozník Rail St.
+;55;58503;56;151407;377;;Ercsi átrakó Rail St.;Turna Nad Bodvou Rail St.
+;55;139121;56;140467;600;;Debrecen Rail St.;Rohozník Rail St.
+;55;139121;56;151407;244;;Debrecen Rail St.;Turna Nad Bodvou Rail St.
+;80;13391;56;140467;1153;;Bad Segeberg Rail St;Rohozník Rail St.
+;81;28977;56;140467;144;;Schönfeld-Lasse Rail St.;Rohozník Rail St.
+;81;28977;56;151407;524;;Schönfeld-Lasse Rail St.;Turna Nad Bodvou Rail St.
+;55;15784;53;325084;1153;;Lábatlan Rail St.;Alesd Rail St. CEM Alesd
+;55;15784;56;140467;210;;Lábatlan Rail St.;Rohozník Rail St.
+;55;15784;56;151407;377;;Lábatlan Rail St.;Turna Nad Bodvou Rail St.
+;56;140467;55;171116;367;;Rohozník Rail St.;Kecskemét

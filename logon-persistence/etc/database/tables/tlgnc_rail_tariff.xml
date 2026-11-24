@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNC_RAIL_TARIFF"
+           description="Contains tariff no .to send to SBB, depending on the NHM code, departure/arrival railway station and wagon class.">
+
+		<column name="RAIL_TARIFF_ID" primaryKey="true"	required="true" type="DECIMAL" size="12"	
+			description="PK"/>
+
+        <column name="NHM_CODE" type="VARCHAR" size="22"
+            description="The material's NHM Code, see also TLGNS_SAP_MATERIAL_PLANT."/>
+        <column name="DEP_RAILWAY_STATION_ID" type="DECIMAL" size="12"
+			description="FK tlgnc_railway_station. Departure railway station."/>
+        <column name="ARR_RAILWAY_STATION_ID" type="DECIMAL" size="12"
+			description="FK tlgnc_railway_station. Arrival railway station."/>
+        <column name="WAGON_UIC_CLASS_CD" type="VARCHAR" size="10"
+            description="UIC classification of the wagon type, see also TLGNR_WAGON_TYPE_BS."/>
+        <column name="TARIFF_NUMBER" required="true" type="VARCHAR" size="6"
+            description="Tariff no."/>
+
+		<foreign-key foreignTable="TLGNC_RAILWAY_STATION" name="FK_TLGNC_RAIL_TARIFF_DEP">
+            <reference local="DEP_RAILWAY_STATION_ID" foreign="RAILWAY_STATION_ID"/>
+        </foreign-key>
+		<foreign-key foreignTable="TLGNC_RAILWAY_STATION" name="FK_TLGNC_RAIL_TARIFF_ARR">
+            <reference local="ARR_RAILWAY_STATION_ID" foreign="RAILWAY_STATION_ID"/>
+        </foreign-key>
+    </table>
+</database>

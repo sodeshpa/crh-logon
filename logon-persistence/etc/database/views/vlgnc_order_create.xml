@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="VLGNC_ORDER_CREATE" mappingType="view" skipSql="true">
+        <column name="COMPOSITE_ID" type="VARCHAR" size="81"/>
+        <column name="ORDER_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="SHIPTO_SAP_BP_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="SAREA_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="ORDER_NUMBER" type="DECIMAL" size="12"/>
+        <column name="ORDER_STATUS_CD" required="true" type="DECIMAL" size="2"/>
+        <column name="CUSTORDER_ID" type="DECIMAL" size="12"/>
+        <column name="SAP_CONTRACT_ID" type="DECIMAL" size="12"/>
+        <column name="DELIVNOTE_SINGLE_PAPER_FLAG" required="true" type="BOOLEAN"/>
+        <column name="DELIVNOTE_EMAIL_FLAG" required="true" type="BOOLEAN"/>
+        <column name="DELIVNOTE_FAX_FLAG" required="true" type="BOOLEAN"/>
+        <column name="ORDER_CONF_EMAIL_FLAG" required="true" type="BOOLEAN"/>
+        <column name="ORDER_CONF_EMAIL_ADRESSES" type="VARCHAR" size="200"/>
+        <column name="ORDER_CONF_FAX_FLAG" required="true" type="BOOLEAN"/>
+        <column name="ORDER_CONF_FAX_NUMBER" type="VARCHAR" size="80"/>
+        <column name="ORDER_CONF_SMS_FLAG" required="true" type="BOOLEAN"/>
+        <column name="ORDER_CONF_SMS_NUMBER" type="VARCHAR" size="80"/>
+        <column name="DELIVERY_FROM_DAT" required="true" type="DATE"/>
+        <column name="DELIVERY_TO_DAT" required="true" type="DATE"/>
+        <column name="DELIVERY_TYPE_CD" required="true" type="DECIMAL" size="2"/>
+        <column name="POOL_ID" type="DECIMAL" size="12"/>
+        <column name="COMM_CARRIER_ID" type="DECIMAL" size="12"/>
+        <column name="EXEC_CARRIER_ID" type="DECIMAL" size="12"/>
+        <column name="BILLTO_SAP_BP_ID" type="DECIMAL" size="12"/>
+        <column name="PAYER_SAP_BP_ID" type="DECIMAL" size="12"/>
+        <column name="NOTE_ORDER_MGMT" type="VARCHAR" size="256"/>
+        <column name="SHIPPINGPOINT_ID" type="DECIMAL" size="12"/>
+        <column name="NOTE_DELIVERY" type="VARCHAR" size="300"/>
+        <column name="CUST_WEBORDER_NOTE" type="VARCHAR" size="1000"/>
+        <column name="NOTE_DISPATCHING" type="VARCHAR" size="256"/>
+        <column name="NOTE_TRUCK_DRIVER" type="VARCHAR" size="256"/>
+        <column name="NOTE_RAILWAY_DISP" type="VARCHAR" size="256"/>
+        <column name="TRANSPORT_DURATION_MIN" type="DECIMAL" size="5"/>
+        <column name="RELEASE_SAP_FLAG" required="true" type="BOOLEAN"/>
+        <column name="CONTACT_PERSON_TXT" type="VARCHAR" size="80"/>
+        <column name="ORDER_CREATION_TYPE_CD" required="true" type="DECIMAL" size="2"/>
+        <column name="ON_HOLD_ORDER_AND_LOCKED_FLAG" required="true" type="BOOLEAN"/>
+        <column name="DELIVERY_TRSP_ZONE_CD" type="VARCHAR" size="10"/>
+        <column name="ORDER_ITEM_ID" type="DECIMAL" size="12"/>
+        <column name="ORDER_ITEM_NO" required="true" type="DECIMAL" size="3"/>
+        <column name="SAP_CONTRACT_ITEM_ID" type="DECIMAL" size="12"/>
+        <column name="SAP_MATERIAL_ID" type="DECIMAL" size="12"/>
+        <column name="CURRENCY_CD" type="VARCHAR" size="3"/>
+        <column name="RATE" type="DECIMAL" size="10,3"/>
+        <column name="ORDERED_UOM_CD" type="VARCHAR" size="3"/>
+        <column name="ORDERED_QUANTITY" type="DECIMAL" size="12,4"/>
+        <column name="DELIVERED_UOM_CD" type="VARCHAR" size="3"/>
+        <column name="DELIVERED_QUANTITY" type="DECIMAL" size="12,4"/>
+        <column name="SHIPTO_SILO_ID" type="DECIMAL" size="12"/>
+        <column name="LOADINGPOINT_ID" type="DECIMAL" size="12"/>
+        <column name="BIMODAL_RAIL_ORDER_ITEM_ID" type="DECIMAL" size="12"/>
+        <column name="PRODUCTION_PLANT_CD" type="VARCHAR" size="4"/>
+        <column name="LANG_CD" type="VARCHAR" size="2"/>
+        <column name="POOL_NAME" type="VARCHAR" size="30"/>
+        <column name="COMM_CARRIER_NAME" type="VARCHAR" size="40"/>
+        <column name="EXEC_CARRIER_NAME" type="VARCHAR" size="40"/>
+        <column name="SHIPPINGPOINT_NAME" type="VARCHAR" size="80"/>
+        <column name="BP_NAME" type="VARCHAR" size="35"/>
+        <column name="SOLDTO_BP_NAME" type="VARCHAR" size="35"/>
+        <column name="SHIPTO_BP_NAME" type="VARCHAR" size="35"/>
+        <column name="PAYER_BP_NAME" type="VARCHAR" size="35"/>
+        <column name="UNIT_TXT" type="VARCHAR" size="20"/>
+        <column name="MATERIAL_NO" type="VARCHAR" size="18"/>
+        <column name="MATERIAL_TXT" type="VARCHAR" size="40"/>
+        <column name="STATUS_TXT" type="VARCHAR" size="50"/>
+        <column name="LOADINGPOINT_NAME" type="VARCHAR" size="50"/>
+        <column name="SILO_NAME" type="VARCHAR" size="50"/>
+        <column name="SAP_TRSP_MODE_CD" type="VARCHAR" size="2"/>
+        <column name="DELIVERY_TYPE_TXT" type="VARCHAR" size="40"/>
+        <column name="PRODUCTION_PLANT_NAME" type="VARCHAR" size="80"/>
+        <column name="SUPPLY_PLANT_NAME" type="VARCHAR" size="80"/>
+        <column name="SUPPLY_PLANT_CD" type="VARCHAR" size="4"/>
+        <column name="UNLOAD_STATUS_CD" type="DECIMAL" size="2"/>
+        <column name="UNLOAD_PLANNED_START" type="DATE"/>
+        <column name="UNLOAD_REAL_START" type="DATE"/>
+        <column name="CUSTORDER_CUSTREF_NO" type="VARCHAR" size="15"/>
+        <column name="ITRACK_AVAILABLE_FLAG" required="false" type="BOOLEAN"/>
+    </table>
+</database>

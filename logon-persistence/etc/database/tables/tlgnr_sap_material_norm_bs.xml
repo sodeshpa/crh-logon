@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+	<table name="TLGNR_SAP_MATERIAL_NORM_BS" refData="true"
+			description="Norm types as distinguished by SAP (e.g. NF=French Norm, U=U Norm). Used in the material-norm import interface as reference data. For each material produced at a certain plant certain norm definitions are sent to LOGON from SAP. On the Logon delivery notes these norms define the logos rendered for the ordered item(s). Each such norm can be associated with a logo. The logo itself can be language specific and is stored in tlgnc_image table.">
+		
+		<column name="SAP_MATERIAL_NORM_CD" primaryKey="true" required="true" type="VARCHAR" size="10"
+				description="PK. Code of the Reference Data as known in SAP. E.g. U, AENOR, AGG_PP, AGG_CE, CE, NF, ... (Codes identical to SAP, domain ZNORM1)"/>
+		<column name="NORM_SHORT_DESC" required="true" type="VARCHAR" size="30"
+				description="Short description of the norm. I.e., AENOR = Spanish Norm, AGG_PP = Production Site, AGG_CE = European Norm, CE = CE Norm, U = U Norm, NF = French Norm."/>
+		<column name="DN_LOGO_IMAGE_NAME" type="VARCHAR" size="100"
+				description="Name of the image to be used when printing delivery notes. Lookup in tlgnc_image is first by dn_logo_image_name+'_lang', and if not found, just dn_logo_image_name is used. ('lang' = language in which the delivery note is to be printed, typically the language of the shipto)."/>
+		<column name="SEQUENCE_NO" required="true" type="DECIMAL" size="12"
+				description="Unique number; defines the sequence in which the logos/norm data is to be rendered on the delivery note when several logos are to be printed. E.g. 10, 20, 21, 31, 32, 33, 40, ..."/>
+		<column name="CTL_ACT_CD" required="true" type="BOOLEAN"
+				description="Active Flag. When new data is entered, only reference data with active flag are available for selection normally."/>
+		
+		<unique name="UQ_TLGNR_SAP_MAT_NORM">
+				<unique-column name="SEQUENCE_NO"/>
+		</unique>
+	</table>
+</database>

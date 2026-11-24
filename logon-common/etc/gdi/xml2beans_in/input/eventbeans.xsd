@@ -1,0 +1,10 @@
+<?xml version="1.0"?> 
+<xsd:schema
+    xmlns:eb="http://logon.holcim.com/eventbeans"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://logon.holcim.com/eventbeans"
+    elementFormDefault="qualified">
+    <xsd:simpleType name="id">
+      <xsd:restriction base="xsd:long"/>  
+    </xsd:simpleType>
+</xsd:schema>

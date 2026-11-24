@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNT_TABLE_META"
+           description="Meta data about tables, controls how the Generic Table Browser allows access to manipulate data in the LOGON data-base. A table which is not listed here is not editable at all in the table browser.">
+
+        <column name="TABLE_META_ID" primaryKey="true" required="true" type="DECIMAL" size="12"
+                description="PK."/>
+        <column name="TABLE_NAME" type="VARCHAR" size="30"
+                description="Name of the data-base table as known by Oracle, i.e. all upper case."/>
+        <column name="INSERT_ALLOWED" required="true" type="BOOLEAN"
+                description="1=inserting into table table_name via table browser is allowed."/>
+        <column name="UPDATE_ALLOWED" required="true" type="BOOLEAN"
+                description="1=updating an existing record in table table_name via table browser is allowed. tlgnt_column_meta may restrict further and forbid updating certain columns."/>
+        <column name="DELETE_ALLOWED" required="true" type="BOOLEAN"
+                description="1=deleting a record in table table_name via table browser is allowed."/>
+        <column name="REFERENCED_FIELD" type="VARCHAR" size="30"
+                description="If the table is referenced from another table (example: tlgnc_carrier.sap_vendor_id -&gt; tlgns_sap_vendor), the PK of that table is displayed. If referenced_field is set some other (more user-readable) attribute, e.g. sap_id could be specified instead."/>
+        <!-- 20090528/uma: referenced_field: Maybe extend for the _bs/_tx case, or simply follow convenstions (see ticket 37104, 3i) -->
+        <column name="USE_DROPDOWN" required="true" type="BOOLEAN"
+                description="1=If this table is referenced from another table, a dropdown is be used to select a value (add/edit). 0=Popup."/>
+
+        <unique name="UQ_TLGNT_TABLE_META_TABLE_NAME">
+            <unique-column name="TABLE_NAME"/>
+        </unique>
+
+    </table>
+</database>

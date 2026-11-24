@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="VLGNC_SHIPPINGPOINT_MATERIAL" mappingType="view" skipSql="true">
+        <column name="ID" type="VARCHAR" size="84"/>
+        <column name="SAP_MATERIAL_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="TXT" required="true" type="VARCHAR" size="40"/>
+        <column name="LANG_CD" required="true" type="VARCHAR" size="2"/>
+        <column name="SHIPPINGPOINT_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="SHIPPINGPOINT_NAME" type="VARCHAR" size="80"/>
+        <column name="COORD_LAT" type="DOUBLE"/>
+        <column name="COORD_LON" type="DOUBLE"/>
+        <column name="PLANT_CD" required="true" type="VARCHAR" size="4"/>
+        <column name="PACKAGE_TYPE_CD" required="true" type="DECIMAL" size="2"/>
+    </table>
+</database>

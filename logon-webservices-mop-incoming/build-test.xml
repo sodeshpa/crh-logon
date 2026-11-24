@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Author            : AdNovum Informatik AG
+ Version Number    : $Revision$
+ Date of last edit : $Date$
+-->
+
+<project name="testing" default="test" basedir=".">
+    <description>defines test targets and tasks</description>
+
+    <!-- ================================================================ -->
+    <!--  define test specific classpaths (unit, integration, load,...)   -->
+    <!-- ================================================================ -->
+    <path id="test.compile.classpath">
+        <path refid="compile.classpath"/>
+        <pathelement location="${classes.dir}"/>
+        <pathelement location="${hamcrest.jar}"/>
+    </path>
+
+	<path id="test.unit.classpath">
+        <pathelement location="${etc.dir}/cfg"/>
+        <pathelement location="${java.test.src.dir}/unit"/>
+        <pathelement location="${test.classes.dir}"/>
+        <pathelement location="${commons-logging.jar}"/>
+        <pathelement location="${dom4j.jar}"/>
+        <pathelement location="${jdom.jar}"/>
+        <pathelement location="${test.build.etc.dir}"/>
+        <path refid="test.compile.classpath"/>
+    </path>
+
+    <path id="test.integration.classpath">
+    	<!--<pathelement location="${js.jar}"/>
+        <pathelement location="${tidy.jar}"/>
+    	<pathelement location="${xercesImpl.jar}"/>
+    	<pathelement location="${xmlutil.jar}"/>
+    	<pathelement location="${xtype.jar}"/>-->
+
+        <path refid="test.unit.classpath"/>
+    </path>
+
+    <!-- ================================================================ -->
+    <!--  dummy targets, will be overridden when file is imported                -->
+    <!-- ================================================================ -->
+    <target name="build"/>
+
+
+    <!-- ================================================================ -->
+    <!--  test initialization, cleanup and default targets                -->
+    <!-- ================================================================ -->
+    <target name="init-test">
+        <mkdir dir="${test.build.dir}"/>
+        <mkdir dir="${test.classes.dir}"/>
+        <mkdir dir="${test.lib.dir}"/>
+        <mkdir dir="${test.log.dir}"/>
+    	<mkdir dir="${test.build.etc.dir}" />
+        <mkdir dir="${test.reports.dir}"/>
+
+        <mkdir dir="${test.reports.pmd.dir}"/>
+        <mkdir dir="${test.reports.unit.dir}"/>
+        <mkdir dir="${test.reports.integration.dir}"/>
+        <mkdir dir="${test.reports.load.dir}"/>
+
+    </target>
+
+    <target name="clean-test">
+        <delete dir="${test.reports.dir}"/>
+        <delete dir="${test.lib.dir}"/>
+        <delete dir="${test.classes.dir}"/>
+        <delete dir="${test.build.dir}"/>
+    </target>
+
+    <!-- ================================================================ -->
+    <!--  compile targets                                                 -->
+    <!-- ================================================================ -->
+    <target name="compile-test" depends="init-test">
+        <javac
+			source="${compile.source}"
+			target="${compile.target}"
+            destdir="${test.classes.dir}"
+            debug="${compile.debug}"
+            optimize="${compile.optimize}"
+            deprecation="${compile.deprecation}"
+            encoding="${compile.encoding}"
+            includeantruntime="no">
+        	<src path="${build.dir.name}/${generated.dir.name}/${src.dir.name}"/>   
+            <src path="${java.test.src.dir.name}/testclient/src"/>
+            <src path="${java.test.src.dir.name}/unit"/>
+            <include name="**/*.java"/>
+        	<bootclasspath refid="compile.bootclasspath"/>
+            <classpath refid="test.compile.classpath"/>
+        </javac>
+    </target>
+
+    <!-- ================================================================= -->
+    <!-- === generator                                                 === -->
+    <!-- ================================================================= -->
+    <target name="webservice-client-checkUptodate">
+		<fileset id="xsd-files" dir="${xsd.dir}">
+			<include name="**/*.xsd"/>
+		</fileset>
+
+        <uptodate property="webservice-client-isUptodate" targetfile="${generated.cli.dir}/status">
+            <srcfiles refid="xsd-files"/>
+        </uptodate>
+        <echo>checking against: ${generated.cli.dir}/status</echo>
+    </target>
+
+    <target name="generate-stub">
+		<echo message="---------  Generating stub for ${wsdl.name} ---------" />
+		<get-wsdl-id wsdlName="${wsdl.name}" />
+    	<!-- mkdir dir="${generated.cli.dir}/${wsdl.id}" / -->
+		<java classname="org.apache.axis2.wsdl.WSDL2Java" fork="true" 
+			classpathref="compile.classpath">
+			<arg line="-uri ${wsdl.dir}/${wsdl.name}" />
+			<arg line="-s" />
+			<arg line="-ap" />
+			<arg line="-ns2p http://logon.intranet-che/logon=${webservices.package.prefix}.${wsdl.id}.documents"/>
+			<arg line="-l java" />
+			<arg line="-p ${webservices.package.prefix}.${wsdl.id}.client" />
+			<arg line="-d xmlbeans" />
+			<arg line="-or" />
+			<arg line="-o ${generated.cli.dir}" />
+			<!-- arg line="-o ${generated.cli.dir}/${wsdl.id}" / -->
+		</java>
+        <delete includeemptydirs="true">
+        	<fileset dir="${generated.cli.dir}">
+            <!-- fileset dir="${generated.cli.dir}/${wsdl.id}" -->
+                <exclude name="**/*Stub.java"/>
+            </fileset>
+        </delete>
+    	<echo message="generated" file="${generated.cli.dir}/status" />
+        <!-- echo message="generated" file="${generated.cli.dir}/${wsdl.id}/status"/ -->
+	</target>
+	
+	<!-- ================================================================= -->
+	<!-- === java archives                                             === -->
+	<!-- ================================================================= -->
+	<target name="jars-test" depends="compile-test">
+		<echo message="*** building ${test-integration.jar}" />
+		<jar jarfile="${test-integration.jar}"
+		     basedir="${test.classes.dir}"
+		     index="true">
+			<include name="com/crh/logon/web/**" />
+			<manifest>
+				<attribute name="Manifest-Version"       value="1.0" />
+				<attribute name="Implementation-Title"   value="${ant.project.name} (commons classes)" />
+				<attribute name="Implementation-Vendor"  value="${vendor}" />
+				<attribute name="Implementation-Version" value="${build.version}" />
+				<attribute name="Build-Host"             value="${os.name} ${os.version}, ${os.arch}" />
+				<attribute name="Build-Environment"      value="Java ${java.version}, ${java.vendor}" />
+			</manifest>
+		</jar>
+	</target>
+
+    <!-- ================================================================ -->
+    <!--  run tests (defined in external file test.xml)                   -->
+    <!-- ================================================================ -->
+    <target name="test" depends="test-pmd, test-unit"
+            description="executes all automatic (non-interactive) tests">
+    </target>
+
+
+    <!-- ================================================================ -->
+    <!--  analyze source code quality                                     -->
+    <!-- ================================================================ -->
+    <target name="test-pmd" depends="init-test"
+            description="run source code quality analysis">
+        <taskdef name="pmd" classname="net.sourceforge.pmd.ant.PMDTask"/>
+        <echo file="${test.reports.pmd.dir}/pmd_report.xml"/>
+        <echo file="${test.reports.pmd.dir}/pmd_report.html"/>
+        <pmd rulesetfiles="${ANT_HOME}/adnovum/pmd/rulesets/AdnNightly.xml"
+             shortFilenames="yes"
+       	     failOnError="no"
+	         failuresPropertyName="test.pmd.failed">
+            <formatter type="xml" toFile="${test.reports.pmd.dir}/pmd_report.xml"/>
+            <formatter type="html" toFile="${test.reports.pmd.dir}/pmd_report.html"/>
+			<formatter type="text" toConsole="true"/>
+            <fileset dir="${src.dir}">
+                <include name="**/*.java"/>
+            	<exclude name="**/BPMasterDataREQDT.java"/> <!-- excluding pmd for this generated file -->
+            	<exclude name="**/VendorMasterDataREQDT.java"/> <!-- excluding pmd for this generated file -->
+		<exclude name="**/MaterialMasterDataREQDT.java"/> <!-- excluding pmd for this generated file -->
+		<exclude name="**/ObjectFactory.java"/> <!-- excluding pmd for this generated file -->
+		<exclude name="**/PricingConditionsREQDT.java"/> <!-- excluding pmd for this generated file -->
+		<exclude name="**/SAPBPMasterDataREQDT.java"/> <!-- excluding pmd for this generated file -->
+		<exclude name="**/VendorMasterREQDT.java"/> <!-- excluding pmd for this generated file -->
+            </fileset>
+        </pmd>
+
+        <set-flag-file-if-property-set flagfile="${test.pmd.failed.flag}" propertyname="test.pmd.failed"
+			message="at least one test failed --> setting failure flag file" />
+		<fail if="test.pmd.failed" unless="central.pmd.fail.report" message="at least one of the pmd rules was violated"/>
+
+    </target>
+
+    <!-- backward compat reasons -->
+    <target name="pmd" depends="test-pmd"/>
+
+
+    <!-- ================================================================ -->
+    <!--  run unit tests                                                  -->
+    <!-- ================================================================ -->
+	<target name="test-unit" depends="compile-test"
+            description="performs unit tests">
+
+    	<!-- junit tests -->
+	<coverage enabled="${coverage.enabled}" destfile="${unit.coverage.file}">
+	    <junit fork="true" printsummary="true"
+	           showoutput="yes" haltonfailure="no"
+		       failureproperty="test.unit.failed" dir="${basedir}">
+            <sysproperty key="truck.delivery.url" value="http://localhost:15080/logon/webservices"/>
+            <sysproperty key="truck.delivery.nocall" value="true"/>
+			<formatter type="plain" usefile="false"/>
+	        <formatter type="xml" usefile="true"/>
+	        <batchtest todir="${test.reports.unit.dir}">
+	            <fileset dir="${test.unit.dir}">
+	                <include name="**/*Test*.java"/>
+	            </fileset>
+	        </batchtest>
+	    	<classpath refid="test.unit.classpath"/>
+	    </junit>
+	</coverage>
+		
+		<!-- run soapui test cases -->
+		<!-- TODO (mcico, 3.3.09): activate when local dev setup of the WS works
+		<antcall target="test-soapui"/>
+		 -->
+		
+	    <junitreport todir="${test.reports.unit.dir}">
+	        <fileset dir="${test.reports.unit.dir}">
+	            <include name="TEST-*.xml"/>
+	        </fileset>
+	        <report format="frames" todir="${test.reports.unit.dir}"/>
+	    </junitreport>
+
+        <set-flag-file-if-property-set flagfile="${test.unit.failed.flag}" propertyname="test.unit.failed"
+        	message="at least one test failed -> setting failure flag file"/>
+		<fail if="test.unit.failed" message="at least one of the tests failed"/>
+		<echo message="all tests successful"/>
+    </target>
+
+
+    <!-- ================================================================ -->
+    <!--  run integration tests                                                  -->
+    <!-- ================================================================ -->
+	<target name="test-integration" depends="compile-test" description="performs integration tests">
+        <!-- test case properties -->
+		<property name="test.logConfigFile" value="${test.build.etc.dir}/log4j.properties" />
+		<property name="test.saveHtmlTo" value="${test.log.dir}" />
+
+        <!-- integration tests -->
+        <junit fork="true" printsummary="true"
+               showoutput="yes" haltonfailure="no"
+               failureproperty="test.integration.failed" dir="${basedir}">
+            <formatter type="plain" usefile="false"/>
+            <formatter type="xml" usefile="true"/>
+        	<sysproperty key="test.logConfigFile" value="${test.logConfigFile}" />
+        	<sysproperty key="test.saveHtmlTo" value="${test.saveHtmlTo}" />
+        	<!-- For webshpere the ${host}, ${http.port}, ${https.port} are not set -->
+        	<sysproperty key="host" value="${host}" />
+        	<sysproperty key="http.port" value="${http.port}" />
+        	<sysproperty key="https.port" value="${https.port}" />
+            <batchtest todir="${test.reports.integration.dir}">
+                <fileset dir="${test.integration.dir}">
+                    <include name="**/*Test*.java"/>
+					<exclude name="**/*SeleniumTest.java"/>
+					<exclude name="**/*TestCaseBaseImpl.java"/>
+                </fileset>
+            </batchtest>
+            <classpath refid="test.integration.classpath"/>
+        </junit>
+        <junitreport todir="${test.reports.integration.dir}">
+            <fileset dir="${test.reports.integration.dir}">
+                <include name="TEST-*.xml"/>
+            </fileset>
+            <report format="frames" todir="${test.reports.integration.dir}" styledir="${masterbuild.dir}/test/etc">
+        	    <param name="TESTTYPE" expression="Integration" />
+	    </report> 
+        </junitreport>
+
+        <set-flag-file-if-property-set flagfile="${test.integration.failed.flag}" propertyname="test.integration.failed"
+        	message="at least one test failed --> setting failure flag file" />
+        <fail if="test.integration.failed" message="at least one of the tests failed"/>
+        <echo message="all tests successful"/>
+	</target>
+
+    <target name="jars-client" depends="compile-test">
+		<jar destfile="${webservices.client.jar.loc}">
+		    <fileset dir="${test.classes.dir}">
+		    	<exclude name="**/server"/>
+		    	<exclude name="**/server/**/*.class"/>
+				<exclude name="**/Test.class"/>
+		    </fileset>
+		</jar>
+    </target>
+	
+	
+    <!-- ================================================================ -->
+    <!--  soapui testing										          -->
+    <!-- ================================================================ -->
+    <target name="start-soapui" depends="" description="start the soapui">
+        <!-- Set the error log output dir (does not yet work) -->
+        <exec executable="${SOAPUI_HOME}/bin/soapui.sh" />
+    </target>
+	
+	<target name="test-soapui" description="execute tests from soapui" depends="">
+		<echo message="${test.reports.unit.dir}/resources" />
+		<property environment="env" />
+		<exec executable="${SOAPUI_HOME}/bin/testrunner.sh">
+			<env key="PATH" path="${JAVA_HOME}/bin:${env.PATH}" />
+			<arg value="-a" />
+			<arg value="-r" />
+			<arg value="-j" />
+			<arg value="-f${test.reports.unit.dir}" />
+			<arg value="${java.test.src.dir}/resources/mop-incoming-soapui-project.xml" />
+		</exec>
+	</target>
+ </project>

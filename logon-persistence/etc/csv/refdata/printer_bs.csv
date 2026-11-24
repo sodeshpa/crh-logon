@@ -1,0 +1,84 @@
+# $Revision$
+# $Date$
+# Origin: /share/doc/crh/pegasus/input/printing/Drucker_Verladestellen_fuer_LOGON_1.2_20090917_adnovum.xls;;;;;;;;;
+#printer_cd;#Werk/Terminal;Ladestrasse;Name;IP-Adresse;Drucker Modell (Marke/Typ);Add. Comment;ctl_act_cd;Telnet Status (TCP);IPP Testpage
+#ignored;#ignore / part of comment;#part of comment only! Lookup -> add to LP load;# read as printer_name;#read as printer_uri: ipp://<ip>/ipp;# read as printer_type;# read as part of printer_comment;# active = 1;;
+#;;;;;;;;;
+;Giubiasco;LKW Verlad ;GIU-VERLAD-S1;10.4.67.48/ipp;HP;HP Laserjet 1320 n;;1;NOK (timeout);
+#;;;;;;;;;
+;Epéditions Eclépens;LKW verlad 1+2;HOLECP01;10.4.126.50;HP LaserJet 2430  ;Feuille A4. ;1;NOK (timeout);
+;Epéditions Eclépens;LKW verlad 3;HOLECP02;10.4.126.51;HP LaserJet 2430;Feuille A4. ;1;NOK (timeout);
+;Eclépens ;;CHE-ECL-P013;10.4.16.60;Konica Minolta C352/C300 PCL;Feuille A4, Colour;1;OK;
+;Vernier ;;CHE-VER-P001;10.4.30.10;Xerox Phaser 8400N PCL 5C;Feuille A4, Bureau FBA;1;OK;
+;Vernier ;;HOLVEP01;10.4.30.106;HP LaserJet 2430;Feuille A4, Chargement Site de Vernier;1;NOK (timeout);
+#;;;;;;;;;
+;Untervaz;LKW Verlad 621- BG1(Fluvio);HOLUVP01-S2;10.4.23.151;HP LaserJet 2430 dtn;;1;NOK (timeout);
+;Untervaz;LKW Verlad 622-BG1 (Normo) & 622-BG2 (Normo);HOLUVP02-S2;10.4.23.152;HP LaserJet 2430 dtn;;1;NOK (timeout);
+;Untervaz;LKW Verlad 633-BG1 (Provato);HOLUVP08-S2;10.4.23.158;HP LaserJet 2430 dtn;;1;NOK (timeout);
+;Untervaz;Alternativwaage;HOLUVP09-S2;10.4.23.159;HP LaserJet 2430 dtn;;1;NOK (timeout);
+;Untervaz;Sackverkauf;HOLUVP13-S2;10.4.23.163;HP LaserJet 2430 dtn;;1;NOK (timeout);
+#;;;;;;;;;
+;Siggenthal;LKW Verlad Silo 10-11;HOLSIP01-S1;10.4.127.71;HP LaserJet 2430 PCL 5e;\\holsisv1\HOLSIP01-S1;1;OK;OK
+;Siggenthal;LKW Verlad Silo 13 und 14-17 (Mischanlage);HOLSIP03-S1;10.4.127.72;HP LaserJet 4250 PCL 5e;\\holsisv1\HOLSIP03-S1;1;OK;OK
+;Siggenthal;Sackverkauf;HOLSIP05-S1;10.4.127.73;HP LaserJet 2430 PCL 5e;\\holsisv1\HOLSIP05-S1;1;OK;OK
+;Siggenthal;Spedition;HOLSIP07-S1;10.4.127.74;HP LaserJet 2430 PCL 5e;\\holsisv1\HOLSIP07-S1;1;OK;OK
+;Siggenthal;LKW Verlad 18 West;HOLSIP08-S1;10.4.127.75;HP LaserJet 2430 PCL 5e;\\holsisv1\HOLSIP08-S1;1;OK;OK
+;Siggenthal;LKW Verlad 18 Ost;HOLSIP09-S1;10.4.127.76;HP LaserJet 2430 PCL 5e;\\holsisv1\HOLSIP09-S1;1;OK;OK
+;Siggenthal;LKW Verlad 19 West;HOLSIP12-S1;10.4.127.78;HP LaserJet 2430 PCL 5e;\\holsisv1\HOLSIP12-S1;1;OK;OK
+;Siggenthal;LKW Verlad 19 Ost;HOLSIP13-S1;10.4.127.79;HP LaserJet 2430 PCL 5e;\\holsisv1\HOLSIP13-S1;1;OK;OK
+#;;;;;;;;;
+;Münchenstein;LKW Verlad Bahn;HOLMUP01;10.4.43.104;HP LaserJet 2410 PCL 5e;;1;OK;
+;Münchenstein;LKW Verlad Auto;HOLMUP02;10.4.43.105;HP LaserJet 2410 PCL 5e;;1;OK;
+;Münchenstein;Sackverkauf;HOLMUP03;10.4.43.106;HP LaserJet 1300 PCL 6;;1;NOK (down?);
+;Münchenstein;Büro Spedition;CHE-MUN-P002;10.4.43.120;HP LaserJet 2100 PCL 6;;1;OK;
+;Münchenstein;Büro K. Amann;CHE-MUN-P003;10.4.43.122;KONICA MINOLTA C203 Series PCL MUE;;1;OK;
+#;;;;;;;;;
+;Ottmarsheim;Büro Spedition;FRA-OTM-P001;10.4.56.10;KONICA MINOLTA pagepro 4650 en;;1;OK;OK
+#;;;;;;;;;
+;Herisau;Büro Spedition;HOLHET01;172.19.135.51;HP LaserJet 2430 dtn;;1;NOK (timeout);
+#;;;;;;;;;
+;;;Zürich HO 4A;10.4.9.154;Konica Minolta;;1;OK;OK
+;;;DEUB-DOT-P019;10.7.0.135;bizhub 40p;Ladestrasse 4;1;OK;OK
+;;;DEUB-DOT-P020;10.7.0.136;bizhub 40p;Ladestrasse 5;1;OK;OK
+;;;DEUB-DOT-P022;10.7.0.137;bizhub 40p;BMA-Verladung;1;OK;OK
+;;;DEUB-DOT-P016;10.7.0.166;bizhub 40p;Ladestrasse 1;1;OK;OK
+;;;DEUB-DOT-P017;10.7.0.167;bizhub 40p;Ladestrasse 2;1;OK;OK
+;;;DEUB-DOT-P021;10.7.1.35;bizhub 40p;TMV;1;OK;OK
+;;;DEUB-DOT-P031;10.7.1.36;bizhub 40p;Silo 345;1;OK;OK
+;;;DEUB-DOT-P033;10.7.1.39;bizhub 40p;Silo 126;1;OK;OK
+;;;DEUB-DOT-P072;10.7.0.199;bizhub 40p;BVS Zug;1;OK;OK
+;;;DEUB-DOT-P071;10.7.0.198;bizhub 40p;BVS LKW;1;OK;OK
+;;;DEUB-DOT-P018;10.7.0.134;bizhub 40p;Ladestrasse 3;1;OK;OK
+;;;HOLHET01;10.4.55.226;HP LaserJet 2430 dtn;Herisau, Büro Spedition, ;1;OK;OK
+;;;CHE-ECL-P032 ;10.4.16.75;KONICA C20;Eclepens, Spedition Bag;1;OK;OK
+;;;CHE-SIG-P017;10.4.1.143;bizub c253;Siggenthal Sackverlad Büro;1;OK;OK
+;;;CHE-UVZ-P015;10.4.22.153;KONICA MINOLTA C353 Series PCL;Untervaz, Spedition;1;OK;OK
+;;;HOLECP03;10.4.126.52;bizhub 40P;Eclépens Sackverkauf;1;OK;OK
+;;;DEUB-DOT-P030;10.7.0.144;bizhub40p;DOT-Werkseinfahrt;1;OK;OK
+;;;CHE-SIG-P047;10.4.1.185;Konica Minolta C253;Siggenthal Disposition;1;OK;OK
+;;;CHE-MAR-P001;10.4.58.200;bizhub 40p;Martigny Sack Selbstabholer;1;OK;OK
+;;;Zürich P007 (A'Mgmt);10.4.9.144;Konica Minolta;Büro Auftragsmanagement;1;OK;OK
+;;;ITA-MER-P047;10.28.0.115;Konica Minolta P40;Merone, Spedition  1;1;OK;OK
+;;;ITA-MER-P044;10.28.0.109;Konica Minolta 36;Merone, Spedition  1 Backup;1;OK;OK
+;;;ITA-MER-P040;10.28.0.124;Konica Minolta 36;Merone  office entry raw materials;1;OK;OK
+;;;ITA-TER-P002;10.28.8.25;Konica Minolta P40;Ternate office entry raw materials;1;OK;OK
+;;;ITA-TER-P010;10.28.8.17;Konica Minolta P40;Ternate Spedition 1;1;OK;OK
+;;;ITA-TER-P012;10.28.8.36;Konica Minolta C220;Ternate Spedition backup;1;OK;OK
+;;;ITA-MOR-P002;10.28.9.142;Konica Minolta P40;Morano Spedition;1;OK;OK
+;;;ITA-MOR-P003;10.28.9.141;Konica Minolta C35;Morano Spedition Backup;1;OK;OK
+;;;ITA-RAV-P004;10.28.30.248;Konica Minolta C220;Ravenna Spedition ;1;OK;OK
+;;;ITA-RAV-P002;10.28.30.243;Konica Minolta P40;Ravenna Spedition Backup;1;OK;OK
+;;;ITA-CHI-P001;10.28.26.217;Konica Minolta 36;Chioggia Cement repository;1;OK;OK
+;;;ITA-CUS-P001;10.28.27.68;Konica Minolta C35;Cusago pit aggregate ;1;OK;OK
+;;;ITA-GEN-P001;10.28.28.4;Konica Minolta 36;Genova Cement repository;1;OK;OK
+;;;ITA-GOR-P001;10.28.22.132;Konica Minolta C35;Gorla Minore  pit aggregate  ;1;OK;OK
+;;;ITA-LSP-P001;10.28.27.132;Konica Minolta C35;La spezia Cement repository;1;OK;OK
+;;;ITA-NEM-P001;10.28.28.68;Konica Minolta C35;Nembro Cement bag;1;OK;OK
+;;;ITA-PES-P002;10.28.20.58;Konica Minolta 36;Peschiera Borromeo pit aggregate ;1;OK;OK
+;;;ITA-SEG-P004;10.28.19.49;Konica Minolta 36;Segrate  pit aggregate ;1;OK;OK
+;;;ITA-SPI-P001;10.28.16.10;Konica Minolta 36;Spinetta marengo  pit aggregate ;1;OK;OK
+;;;ITA-TRE-P001;10.28.26.68;Konica Minolta C35;Trezzo Sull'adda  Cement bag;1;OK;OK
+;;;ITA-ZIB-P001;10.28.19.132;Konica Minolta C35;Zibido San Giacomo  pit aggregate ;1;OK;OK
+;;;ITA-MET-P005 ;10.28.0.91;???;ITA Merone Test ;1;OK;OK
+#;;;;;;;;;
+;;;HUN-LAB-P024;10.0.0.0;RICOH Aficio 1515 PCL 6;Labatlan (H133);1;OK;OK

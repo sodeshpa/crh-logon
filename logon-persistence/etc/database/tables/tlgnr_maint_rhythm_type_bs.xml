@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNR_MAINT_RHYTHM_TYPE_BS" refData="true"
+           description="Wagon maintenance rhythm types.">
+        <column name="MAINT_RHYTHM_TYPE_CD" required="true" type="DECIMAL" size="2"
+                description="PK Code of the maintenance rhythm type" primaryKey="true"/>
+        <column name="CTL_ACT_CD" required="true" type="BOOLEAN"
+                description="Active Flag. When new data is entered, only reference data with active flag are available for selection normally."/>
+    </table>
+</database>

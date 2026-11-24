@@ -1,0 +1,2 @@
+1. edit eventbeans.xml manually, if you want to make structural changes in MOP events.
+2. execute adnant dist to generate event bean classes (like LoadOrder.java) out of it

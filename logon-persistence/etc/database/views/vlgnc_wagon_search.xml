@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="VLGNC_WAGON_SEARCH" mappingType="view" skipSql="true">
+        <column name="COMPOSITE_ID" type="VARCHAR" size="125"/>
+        <column name="LANG_CD" required="true" type="VARCHAR" size="2"/>
+        <column name="WAGON_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="WAGON_NO" required="true" type="VARCHAR" size="12"/>
+        <column name="WAGON_TYPE_CD" required="true" type="DECIMAL" size="2"/>
+        <column name="WAGON_TYPE_NAME" required="true" type="VARCHAR" size="20"/>
+        <column name="ACTIVE_FLAG" required="true" type="BOOLEAN"/>
+        <column name="WAGON_INACTIVE_REASON_CD" type="DECIMAL" size="2"/>
+        <column name="WAGON_INACTIVE_REASON_TXT" type="VARCHAR" size="50"/>
+        <column name="WAGON_KEEPER_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="WAGON_KEEPER_NAME" required="true" type="VARCHAR" size="40"/>
+        <column name="WAGON_NOTE_DISPOSITION" type="VARCHAR" size="200"/>
+        <column name="WAGON_NOTE_RAILWAY_SPEDITION" type="VARCHAR" size="200"/>
+        <column name="RETURN_SHIPTO_NAME1" type="VARCHAR" size="35"/>
+        <column name="RETURN_STATION_ID" type="DECIMAL" size="12"/>
+        <column name="RETURN_STATION_NO" type="VARCHAR" size="6"/>
+        <column name="RETURN_STATION_NAME" type="VARCHAR" size="50"/>
+        <column name="LAST_KNOWN_STATION_ID" type="DECIMAL" size="12"/>
+        <column name="LAST_KNOWN_STATION_NO" type="VARCHAR" size="6"/>
+        <column name="LAST_KNOWN_STATION_NAME" type="VARCHAR" size="50"/>
+        <column name="ARRIVAL_LAST_KNOWN_STATION_DAT" type="DATE"/>
+        <column name="ARRIVAL_LAST_KNOWN_STATION_TIM" type="DATE"/>
+        <column name="WAGON_IDLE_TIME_MIN" type="DOUBLE"/>
+        <column name="PLANT_TRACK_CD" type="DECIMAL" size="4"/>
+        <column name="PLANT_TRACK_TXT" type="VARCHAR" size="40"/>
+        <column name="CURRENT_TRACK_POSITION_NO" type="DECIMAL" size="2"/>
+        <column name="MAX_GROSS_WEIGHT_T" type="DECIMAL" size="12,4"/>
+        <column name="TARE_WEIGHT_T" required="true" type="DECIMAL" size="12,4"/>
+        <column name="VOLUME_M3" type="DECIMAL" size="12,4"/>
+        <column name="LIMIT_CREDIT_NOTE_T" type="DECIMAL" size="7,3"/>
+        <column name="ORDER_ID" type="DECIMAL" size="12"/>
+        <column name="ORDER_NUMBER" type="DECIMAL" size="12"/>
+        <column name="ORDER_ITEM_NO" type="DECIMAL" size="3"/>
+        <column name="ORDER_STATUS_CD" type="DECIMAL" size="2"/>
+        <column name="ORDER_STATUS_TXT" type="VARCHAR" size="50"/>
+        <column name="DISTRIBUTION_DEST_CD" type="VARCHAR" size="4"/>
+        <column name="DISTRIBUTION_DEST_TXT" type="VARCHAR" size="30"/>
+        <column name="SOLDTO_SAP_ID" type="VARCHAR" size="10"/>
+        <column name="SOLDTO_NAME1" type="VARCHAR" size="35"/>
+        <column name="SHIPTO_SAP_ID" type="VARCHAR" size="10"/>
+        <column name="SHIPTO_NAME1" type="VARCHAR" size="35"/>
+        <column name="DEST_RAILWAY_STATION_ID" type="DECIMAL" size="12"/>
+        <column name="DEST_RAILWAY_STATION_NO" type="VARCHAR" size="6"/>
+        <column name="DEST_RAILWAY_STATION_NAME" type="VARCHAR" size="50"/>
+        <column name="SAP_MATERIAL_NO" type="VARCHAR" size="18"/>
+        <column name="SAP_MATERIAL_TXT" type="VARCHAR" size="40"/>
+        <column name="LOADED_QUANTITY" type="DECIMAL" size="12,4"/>
+        <column name="LOADED_UOM" type="VARCHAR" size="20"/>
+        <column name="LOADING_LIMIT_A_T" type="DECIMAL" size="7,3"/>
+        <column name="LOADING_LIMIT_B_T" type="DECIMAL" size="7,3"/>
+        <column name="LOADING_LIMIT_C_T" type="DECIMAL" size="7,3"/>
+        <column name="LOADING_LIMIT_D_T" type="DECIMAL" size="7,3"/>
+        <column name="WHEELBASE_MM" type="DECIMAL" size="5"/>
+        <column name="WHEELBASE_BPP_MM" type="DECIMAL" size="5"/>
+        <column name="BUFFER_LENGTH_MM" type="DECIMAL" size="6"/>
+        <column name="UNDERCARRIAGE_MANUFACTURER" type="VARCHAR" size="30"/>
+        <column name="UNDERCARRIAGE_CONST_YEAR" type="DECIMAL" size="4"/>
+        <column name="SUPERSTRUCTURE_MANUFACTURER" type="VARCHAR" size="30"/>
+        <column name="SUPERSTRUCTURE_CONST_YEAR" type="DECIMAL" size="4"/>
+        <column name="UNLOADING_SYSTEM" type="VARCHAR" size="30"/>
+        <column name="DRAWING_TYPE" type="VARCHAR" size="30"/>
+        <column name="BRAKE_TYPE" type="VARCHAR" size="20"/>
+        <column name="BRAKE_BLOCKS_TYPE" type="VARCHAR" size="30"/>
+        <column name="BRAKE_BLOCKS_COUNT" type="DECIMAL" size="2"/>
+        <column name="BRAKE_CYLINDER_NO" type="VARCHAR" size="30"/>
+        <column name="BRAKE_RIGGING_NO" type="VARCHAR" size="30"/>
+        <column name="BRAKE_HOSEPIPE_NO" type="VARCHAR" size="30"/>
+        <column name="BRAKE_HOSEPIPE_NBS" type="VARCHAR" size="20"/>
+        <column name="BRAKE_HOSEPIPE_BS" type="VARCHAR" size="20"/>
+        <column name="MECHANICAL_LOAD_CHANGE" type="BOOLEAN"/>
+        <column name="AIR_SHUT_OFF_COCK_TYPE" type="VARCHAR" size="30"/>
+        <column name="TRIPLE_VALVE_NO" type="VARCHAR" size="30"/>
+        <column name="TRIPLE_VALVE_TYPE" type="VARCHAR" size="30"/>
+        <column name="WEIGHING_VALVE_NO" type="VARCHAR" size="30"/>
+        <column name="WEIGHING_VALVE_TYPE" type="VARCHAR" size="30"/>
+        <column name="PRESSURE_EXCHANGER_TYPE" type="VARCHAR" size="30"/>
+        <column name="PRESSURE_EXCHANGER_NO" type="VARCHAR" size="30"/>
+        <column name="BUFFER_TYPE" type="VARCHAR" size="30"/>
+        <column name="BUFFER_CONST_YEAR" type="DECIMAL" size="4"/>
+        <column name="BOGIE_TYPE" type="VARCHAR" size="30"/>
+        <column name="BOGIE_NO" type="VARCHAR" size="30"/>
+        <column name="SPRING_TYPE" type="VARCHAR" size="30"/>
+        <column name="WHEELSET_1_NBS_NO" type="DECIMAL" size="8"/>
+        <column name="WHEELSET_1_NBS_BUILD" type="VARCHAR" size="20"/>
+        <column name="WHEELSET_1_NBS_DIAMETER_MM" type="DECIMAL" size="4"/>
+        <column name="WHEELSET_1_NBS_YEAR" type="DECIMAL" size="6,2"/>
+        <column name="WHEELSET_2_NBS_NO" type="DECIMAL" size="8"/>
+        <column name="WHEELSET_2_NBS_BUILD" type="VARCHAR" size="20"/>
+        <column name="WHEELSET_2_NBS_DIAMETER_MM" type="DECIMAL" size="4"/>
+        <column name="WHEELSET_2_NBS_YEAR" type="DECIMAL" size="6,2"/>
+        <column name="WHEELSET_3_BS_NO" type="DECIMAL" size="8"/>
+        <column name="WHEELSET_3_BS_BUILD" type="VARCHAR" size="20"/>
+        <column name="WHEELSET_3_BS_DIAMETER_MM" type="DECIMAL" size="4"/>
+        <column name="WHEELSET_3_BS_YEAR" type="DECIMAL" size="6,2"/>
+        <column name="WHEELSET_4_BS_NO" type="DECIMAL" size="8"/>
+        <column name="WHEELSET_4_BS_BUILD" type="VARCHAR" size="20"/>
+        <column name="WHEELSET_4_BS_DIAMETER_MM" type="DECIMAL" size="4"/>
+        <column name="WHEELSET_4_BS_YEAR" type="DECIMAL" size="6,2"/>
+        <column name="MAINT_RHYTHM_TYPE_CD" required="true" type="DECIMAL" size="2"/>
+        <column name="MAINT_G10_MAIN_TYPE_TXT" type="VARCHAR" size="47"/>
+        <column name="MAINT_G10_LAST_DAT" type="DATE"/>
+        <column name="MAINT_G10_NEXT_DAT" type="DATE"/>
+        <column name="MAINT_G10_SHIPTO" type="VARCHAR" size="48"/>
+        <column name="MAINT_G20_MAIN_TYPE_TXT" type="VARCHAR" size="47"/>
+        <column name="MAINT_G20_LAST_DAT" type="DATE"/>
+        <column name="MAINT_G20_NEXT_DAT" type="DATE"/>
+        <column name="MAINT_G20_SHIPTO" type="VARCHAR" size="48"/>
+        <column name="MAINT_G30_MAIN_TYPE_TXT" type="VARCHAR" size="47"/>
+        <column name="MAINT_G30_LAST_DAT" type="DATE"/>
+        <column name="MAINT_G30_NEXT_DAT" type="DATE"/>
+        <column name="MAINT_G30_SHIPTO" type="VARCHAR" size="48"/>
+        <column name="MAINT_G40_MAIN_TYPE_TXT" type="VARCHAR" size="47"/>
+        <column name="MAINT_G40_LAST_DAT" type="DATE"/>
+        <column name="MAINT_G40_NEXT_DAT" type="DATE"/>
+        <column name="MAINT_G40_SHIPTO" type="VARCHAR" size="48"/>
+        <column name="MAINT_G42_MAIN_TYPE_TXT" type="VARCHAR" size="47"/>
+        <column name="MAINT_G42_LAST_DAT" type="DATE"/>
+        <column name="MAINT_G42_NEXT_DAT" type="DATE"/>
+        <column name="MAINT_G42_SHIPTO" type="VARCHAR" size="48"/>
+        <column name="MAINT_G43_MAIN_TYPE_TXT" type="VARCHAR" size="47"/>
+        <column name="MAINT_G43_LAST_DAT" type="DATE"/>
+        <column name="MAINT_G43_NEXT_DAT" type="DATE"/>
+        <column name="MAINT_G43_SHIPTO" type="VARCHAR" size="48"/>
+        <column name="MAINT_G48_MAIN_TYPE_TXT" type="VARCHAR" size="47"/>
+        <column name="MAINT_G48_LAST_DAT" type="DATE"/>
+        <column name="MAINT_G48_NEXT_DAT" type="DATE"/>
+        <column name="MAINT_G48_SHIPTO" type="VARCHAR" size="48"/>
+        <column name="MAINT_P3M_MAIN_TYPE_TXT" type="VARCHAR" size="47"/>
+        <column name="MAINT_P3M_LAST_DAT" type="DATE"/>
+        <column name="MAINT_P3M_NEXT_DAT" type="DATE"/>
+        <column name="MAINT_P3M_SHIPTO" type="VARCHAR" size="48"/>
+        <column name="MAINT_P5_MAIN_TYPE_TXT" type="VARCHAR" size="47"/>
+        <column name="MAINT_P5_LAST_DAT" type="DATE"/>
+        <column name="MAINT_P5_NEXT_DAT" type="DATE"/>
+        <column name="MAINT_P5_SHIPTO" type="VARCHAR" size="48"/>
+        <column name="MAINT_C_MAIN_TYPE_TXT" type="VARCHAR" size="47"/>
+        <column name="MAINT_C_LAST_DAT" type="DATE"/>
+        <column name="MAINT_C_NEXT_DAT" type="DATE"/>
+        <column name="MAINT_C_SHIPTO" type="VARCHAR" size="48"/>
+    </table>
+</database>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="VLGNU_USER_ROLE_SELECTION" mappingType="view" skipSql="true">
+        <column name="COMPOSITE_ID" type="VARCHAR" size="81"/>
+        <column name="USER_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="ROLE_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="ROLE_NAME" required="true" type="VARCHAR" size="40"/>
+        <column name="ROLE_DESCR" required="true" type="VARCHAR" size="255"/>
+        <column name="USER_ROLE_ID" type="DECIMAL" size="12"/>
+    </table>
+</database>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNC_RAILWAY_STATION"
+           description="Railway stations used by Crh. Contains both operational and commercial stations. the Railway station is operational if it is assigned to a shippingpoint/shipto.">
+        <column name="RAILWAY_STATION_ID" 
+        	primaryKey="true" required="true" type="DECIMAL" size="12"
+            description="PK. Railway station ID."/>
+        <column name="UIC_COUNTRY_CD" 
+        	required="true" type="DECIMAL" size="2"
+        	description="FK tlgnc_uic_country. UIC country code of the railway station."/>
+        <column name="RAILWAY_STATION_NO" 
+        	required="true" type="VARCHAR" size="6"
+        	description="6-digit Railway Station no. may contain leeding zeros. UIC_country_cd + railway_station_no is an alternative identifier for a railway station."/>
+        <column name="RAILWAY_STATION_NAME" 
+        	required="true" type="VARCHAR" size="50"
+        	description="Name of the railway station as officially used by the railway company."/>
+        <column name="ACTIVE_FLAG" 
+        	required="true" type="BOOLEAN"
+        	description="0=inactive/deleted, 1=active."/>
+
+        <foreign-key foreignTable="TLGNR_UIC_COUNTRY_BS" name="FK_TLGNR_RWS_UIC_COUNTRY">
+            <reference local="UIC_COUNTRY_CD" foreign="UIC_COUNTRY_CD"/>
+        </foreign-key>
+
+        <unique name="UQ_TLGNC_RAILWAY_STATION_NO">
+            <unique-column name="UIC_COUNTRY_CD"/>
+            <unique-column name="RAILWAY_STATION_NO"/>
+        </unique>
+    </table>
+</database>

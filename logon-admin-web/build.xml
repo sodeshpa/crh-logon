@@ -1,0 +1,456 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Author            : AdNovum Informatik AG
+ Version Number    : $Revision$
+ Date of last edit : $Date$
+-->
+
+<!-- Set project name to project's cvs module name, as project name will
+     be used for toolbox scope checks -->
+
+<project name="logon-admin" default="dist" basedir=".">
+    <description>${ant.project.name} project build file</description>
+
+    <!-- ================================================================= -->
+    <!-- === externally defined                                        === -->
+    <!-- ================================================================= -->
+    <import file="properties.xml"/>
+    <import file="../common.xml"/>
+
+    <!-- ================================================================= -->
+    <!-- === maven like dependencies                                   === -->
+    <!-- ================================================================= -->
+    <import file="${AAL_HOME}/aal/aal-maven.xml"/>
+    <import file="./build-deps.xml"/>    
+    <path id="eclipse.lib.classpath">
+        <path refid="logon-mavendeps.test.classpath"/> <!-- maven libs -->
+    </path>
+
+    <!-- ============================================================== -->
+    <!--  properties                                                    -->
+    <!-- ============================================================== -->
+    <property name="webapp.name"                value="${ant.project.name}"/>
+
+    <!-- ================================================================ -->
+    <!--  parametrize local project structure                             -->
+    <!-- ================================================================ -->
+    <property name="javadoc.dir"                location="${build.dir}/api"/>
+    <property name="webapps.dir"                location="${build.dir}/webapps"/>
+
+    <property name="webapps.staging.dir"        location="${webapps.dir}/${webapp.name}.war_staging"/>
+    <property name="webapps.unwar.dir"          location="${webapps.dir}/${webapp.name}UNWAR"/>
+	<property name="webmerge.dir"               location="${etc.dir}/gdi/webconfig/merge"/>
+	
+    <property name="test-integration.jar"       location="${build.dir}/test/lib/test-integration.jar"/>
+
+    <!-- ================================================================ -->
+    <!--  define target specific classpaths (build, runtime, test)        -->
+    <!-- ================================================================ -->
+    <path id="compile.classpath">
+    	<pathelement location="${commons-beanutils.jar}"/>
+    	<pathelement location="${servlet.jar}"/>
+    	<pathelement location="${jcan-log.jar}"/>
+    	<pathelement location="${log4j.jar}"/>
+    	<pathelement location="${struts.jar}"/>
+    	<pathelement location="${spring.jar}"/>
+    	<pathelement location="${jcan-optrace.jar}"/>
+    	<pathelement location="${commons-lang.jar}"/>
+       	<pathelement location="${dwr.jar}"/>
+       	<pathelement location="${hibernate-annotations.jar}"/>
+       	<pathelement location="${hibernate-jpa2.jar}"/>
+    	<pathelement location="${hibernate4.jar}"/>
+
+		<pathelement location="${flexjson.jar}"/>
+		<pathelement location="${opencsv.jar}"/>
+		<pathelement location="${poi.jar}"/>
+    	<pathelement location="${project-common.jar.loc}"/>
+        <pathelement location="${project-common-web.classes.dir}"/>
+        <pathelement location="${project-persistence-client.jar.loc}"/>
+        <pathelement location="${project-business-client.jar.loc}"/>
+    	<path refid="logon-mavendeps.compile.classpath"/>
+   </path>
+
+    <!-- ================================================================ -->
+    <!--  initialization, cleanup and default targets                     -->
+    <!-- ================================================================ -->
+    <target name="all" depends="dist"
+            description="build and test everything"/>
+
+    <target name="toolbox-checkUptodate">
+        <uptodate property="toolbox-isUptodate" targetfile=".classpath">
+            <srcfiles refid="toolbox-sourcefiles"/>
+        </uptodate>
+    </target>
+
+    <target name="toolbox" depends="toolbox-checkUptodate" unless="toolbox-isUptodate">
+        <taskdef resource="adnant-taskdefs.xml"/> <!-- See documentation in adnant project's README -->
+    	<taskdef resource="net/sf/antcontrib/antcontrib.properties"/>
+    	
+    	<!-- Convert Selenium 3rd party jar libraries to property values so they get included on the Eclipse .classpath -->
+	    <property name="selenium-libs.properties" location="${test.build.dir}/selenium-libs.properties" />
+	    <for param="jar.file">
+	        <fileset dir="${selenium.java.lib.dir}" includes="*.jar"/>
+	        <sequential>
+	            <local name="property.name" />  <!-- since Ant 1.8! -->
+	            <propertyregex property="property.name"
+	                           input="@{jar.file}"
+	                           regexp="^.*/(.*).jar$$"
+	                           select="\1.jar"
+	                           casesensitive="false" />
+	            <echo file="${selenium-libs.properties}" append="true">${property.name}=@{jar.file}${line.separator}</echo>
+	        </sequential>
+	    </for>
+	    <loadproperties srcfile="${selenium-libs.properties}"/>
+        	
+        <updatedotclasspath>
+            <!-- See documentation of 'updatedotclasspath' in adnant project's README -->
+            <con path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+            <var pathref="eclipse.lib.classpath" />
+            <output path=".bin"/>
+            <src path="/logon-common"/>
+            <src path="/logon-common-web"/>
+            <src path="/logon-persistence"/>
+            <src path="/logon-business"/>
+            <src path="${java.src.dir.name}"/>
+        	<src path="${build.dir.name}/generated/gdi/entities2gui/src"/>
+            <src path="${java.test.src.dir.name}/unit"/>
+            <src path="${java.test.src.dir.name}/integration"/>
+            <lib path="${adntrace2-templates.jar}" sourcepath="${masterbuild.dir}/etc/adntrace2"/>
+        	<!-- for starting integration tests in eclipse -->
+            <lib path="${build.dir.name}/test/etc" />
+        	
+            <lib path="${junit.jar}"/>
+	        <lib path="${test.build.etc.dir}"/>
+        </updatedotclasspath>
+    </target>
+
+    <target name="init" depends="toolbox"
+            description="initialization project structure and environment">
+        <tstamp/>
+        <echo message="--------- ${ant.project.name}-${build.version} building on ${os.name} ---------"/>
+        <echo message=" "/>
+        <echo message="building file ${ant.file} with ${ant.version}"/>
+        <echo message=""/>
+        <mkdir dir="${build.dir}"/>
+        <mkdir dir="${classes.dir}"/>
+        <mkdir dir="${lib.dir}"/>
+        <mkdir dir="${webapps.dir}"/>
+        <mkdir dir="${webapps.staging.dir}"/>
+        <mkdir dir="${generated.dir}"/>
+        <mkdir dir="${test.build.dir}"/>
+        <mkdir dir="${test.log.dir}"/>
+        <mkdir dir="${test.lib.dir}"/>
+    	
+    	<!-- Create the built/test/etc already here. This way eclipse is happy with its .classpath file. -->
+    	<!-- Not the best solution, maybe there will be a better way. -->
+    	<mkdir dir="${test.build.etc.dir}" />
+    	
+    	<taskdef resource="net/sf/antcontrib/antcontrib.properties"/>
+	    <if>
+		    <equals arg1="${environment}" arg2="dev" />
+		    <then>
+			    <property name="build.date" value="January 1 1970"/>
+			    <property name="build.stamp" value="197001010000"/>
+		    </then>
+		    <else>
+			    <property name="build.date" value="${TODAY}"/>
+			    <property name="build.stamp" value="${DSTAMP}${TSTAMP}"/>
+		    </else>
+		</if>
+    </target>
+
+    <target name="clean" depends="clean-test"
+            description="cleans all generated files and directories" >
+        <delete dir="${build.dir}"/>
+    </target>
+
+    <!-- ================================================================ -->
+    <!--  compile targets                                                 -->
+    <!-- ================================================================ -->
+    <target name="build" depends="webapps"
+            description="build target"/>
+
+    <target name="compile" depends="compile-src, compile-test"/>
+
+    <target name="compile-src" depends="init, generateEntities2gui">
+        <echo message="${java.src.dir}"/>
+        <javac
+            source="${compile.source}"
+            target="${compile.target}"
+            destdir="${classes.dir}"
+            debug="${compile.debug}"
+            optimize="${compile.optimize}"
+            deprecation="${compile.deprecation}"
+            encoding="${compile.encoding}"
+            includeantruntime="no">
+            <src path="${java.src.dir}"/>
+        	<src path="${generated.dir}/gdi/entities2gui/src"/>
+            <include name="**/*.java"/>
+            <bootclasspath refid="compile.bootclasspath"/>
+            <classpath refid="compile.classpath"/>
+            <compilerarg line="-processor ch.adnovum.jcan.log.adntrace8.AdnTraceProcessor"/>
+        </javac>
+    </target>
+
+    <!-- ================================================================ -->
+    <!--  web application archives (WARs, EARs)                           -->
+    <!-- ================================================================ -->
+	<target name="war">
+		<war warfile="${warfile}"
+             webxml="${generated.dir}/gdi/webconfig/${zone}/WEB-INF/web.xml"
+             update="false" compress="true">
+
+            <manifest>
+                <attribute name="Manifest-Version" value="1.0"/>
+                <attribute name="Implementation-Title" value="${ant.project.name}-${zone}"/>
+                <attribute name="Implementation-Vendor" value="${vendor}"/>
+                <attribute name="Implementation-Version" value="${version}"/>
+                <attribute name="Build-Date" value="${build.date}"/>
+                <attribute name="Build-Stamp" value="${build.stamp}"/>
+                <attribute name="Build-Environment" value="Java ${java.version}, ${java.vendor}"/>
+                <attribute name="Build-System" value="${os.name} ${os.version}, ${os.arch}"/>
+            </manifest>
+			
+			<!-- classes -->
+			<classes dir="${classes.dir}"/>
+			<classes dir="${project-common-web.classes.dir}"/>
+
+        	<!-- resources -->
+        	<fileset dir="${resources.src.dir}"/>
+            <fileset dir="${build.dir}/resources"/>
+			<fileset dir="${project-common-web.resources.dir}"/>
+
+		    <!-- libraries containing TLDs, JBoss won't read them unless they're in WEB-INF/lib (or jboss.web-deployer) -->
+		    <lib file="${standard.jar}"/>
+		    <lib file="${struts.jar}"/>
+		    <lib file="${struts-el.jar}"/>
+		    <lib file="${espace.jar}"/>
+        	
+            <!-- webapp resources, external jars -->
+            <fileset dir="${webapps.staging.dir}"/>
+
+            <fileset dir="${generated.dir}/gdi/webconfig/${zone}">
+            	<include name="**/*.xml"/>
+               	<exclude name="WEB-INF/web.xml"/>
+            </fileset>
+        </war>
+	</target>
+	
+    <target name="webapps" depends="generateWebConfig, compile, generateDwr, prepareStagingDir">
+        <tstamp/>
+
+    	<!--<copy toDir="${build.dir}/resources/WEB-INF/classes" file="${masterbuild.dir}/etc/log4j.xml"/>-->
+    	<copy toDir="${build.dir}/resources/WEB-INF/classes">
+    		<fileset dir="${generated.dir}/gdi/dwr/spring" />
+    	</copy>
+    	
+    	<copy toDir="${build.dir}/resources/js">
+            <fileset dir="${EXTJS_HOME}">
+                <include name="ext-all-debug.js"/>
+                <include name="ext-all.js"/>
+                <include name="adapter/ext/ext-base.js"/>
+            </fileset>
+        </copy>
+
+        <copy toDir="${build.dir}/resources">
+            <fileset dir="${EXTJS_HOME}/resources">
+                <include name="css/**"/>
+                <include name="images/**"/>
+            </fileset>
+        </copy>
+    	
+    	<copy toDir="${build.dir}/resources">
+    		<fileset dir="${generated.dir}/gdi/dwr">
+    	    	<include name="**/dwr.xml" />
+    	    </fileset>
+    	</copy>
+    	
+        <antcall target="war">
+    		<param name="warfile" value="${project-admin-webapp-int.war}"/>
+        	<param name="zone" value="int"/>
+        </antcall>
+    	
+    	<antcall target="war">
+    		<param name="warfile" value="${project-admin-webapp-ext.war}"/>
+        	<param name="zone" value="ext"/>
+        </antcall>
+    </target>
+	
+	<!-- ================================================================= -->
+    <!-- === minify javascript                                         === -->
+    <!-- ================================================================= -->
+	<target name="prepareStagingDir">
+	
+		<copy toDir="${webapps.staging.dir}">
+    		<fileset dir="${project-common-web.webapp.dir}"/>
+    	</copy>
+    	
+    	<copy toDir="${webapps.staging.dir}">
+            <fileset dir="${webapp.src.dir}"/>
+    	</copy>
+		
+		<antcall target="minifyJs" inheritall="true"/>	
+	</target>
+		
+	<target name="minifyJs" unless="minifyjs.disabled">
+		<echo message="minifying ${webapps.staging.dir}/**/*.js"/>
+		<fileset dir="${webapps.staging.dir}" id="js.src.files">
+			<include name="**/*.js"/>
+		</fileset>
+		<pathconvert pathsep=" " property="jsfiles" refid="js.src.files"/>
+		<java jar="${yuicompressor.jar}" fork="true">
+			<arg line="-o '.js$:.js' ${jsfiles}"/>
+		</java>
+	</target>
+			
+    <!-- ================================================================= -->
+    <!-- === generator                                                 === -->
+    <!-- ================================================================= -->
+    <target name="generateEntities2gui">
+        <gditask classpathref="gdi.classpath"
+             cartridgePath="${etc.dir}/gdi/entities2gui"
+             outputPath="${generated.dir}/gdi/entities2gui">
+    		<input>
+    			<fileset dir="${project-persistence.dist.loc}/src/com/crh"/>
+		    </input>
+			<systemproperty name="modifiedInputOnly" value="true"/>
+			<systemproperty name="gdiencoding" value="${gdi.encoding}"/>
+        </gditask>
+    </target>
+
+    <target name="generateEntities2guiTD">
+        <java classname="ch.nevis.gdi.main.TemplateDesigner"
+            fork="true" failonerror="true" newenvironment="true">
+            <classpath refid="gdi.classpath"/>
+            <arg line="${etc.dir}/gdi/entities2gui
+                       ${project-persistence.dist.loc}/src
+                       ${generated.dir}/gdi/td/entities2gui"/>
+        </java>
+    </target>
+
+    <target name="generateDwr">
+        <gditask classpathref="gdi.classpath"
+             cartridgePath="${subcomponent.common-web}/${etc.dir.name}/gdi/dwr"
+             outputPath="${generated.dir}/gdi/dwr">
+        	<input>
+    			<fileset dir="${java.src.dir}"/>
+		    </input>
+        	<systemproperty name="webapp" value="${ant.project.name}-web"/>
+        	<properties>
+             	<fileset file="${all.properties}"/>
+        	</properties>
+			<systemproperty name="gdiencoding" value="${gdi.encoding}"/>
+        </gditask>
+    </target>
+
+    <target name="generateDwrTD">
+        <java classname="ch.nevis.gdi.main.TemplateDesigner"
+            fork="true" failonerror="true" newenvironment="true">
+            <classpath refid="gdi.classpath"/>
+            <arg line="${subcomponent.common-web}/${etc.dir.name}/gdi/dwr ${java.src.dir} ${generated.dir}/gdi/td/dwr ${all.properties}"/>
+        </java>
+    </target>
+	
+	<target name="generateWebConfig">
+	    <gditask
+		     cartridgePath="${subcomponent.common-web}/${etc.dir.name}/gdi/webconfig"
+		     outputPath="${generated.dir}/gdi/webconfig/int">
+	    	<classpath>
+		    	<path refid="compile.classpath"/>
+		        <path refid="gdi.classpath"/>
+		    </classpath>
+        	<input>
+    			<fileset dir="${java.src.dir}"/>
+		    </input>
+	    	<systemproperty name="strict" value="true"/>
+	    	<systemproperty name="mergedir" value="${webmerge.dir}"/>
+	    	<systemproperty name="additionalWatchPath" value="${webmerge.dir}"/>
+	    	<systemproperty name="clientcachingdisabled" value="${client.caching.disabled}"/>
+			<systemproperty name="redirectToHttps" value="${redirect_to_https.int}"/>
+	    	<systemproperty name="loginconfig" value="${login.config.int}"/>
+	    	<systemproperty name="securitydomain" value="java:/jaas/${login.domain.int}"/>
+	    	<systemproperty name="cronjobs" value="true"/>
+	    	<systemproperty name="dwrDebugEnabled" value="${dwr.debug.enabled}"/>
+	    	<systemproperty name="encoding" value="${web.encoding}"/>
+			<systemproperty name="gdiencoding" value="${gdi.encoding}"/>
+	    </gditask>
+	    <gditask
+		     cartridgePath="${subcomponent.common-web}/${etc.dir.name}/gdi/webconfig"
+		     outputPath="${generated.dir}/gdi/webconfig/ext">
+	    	<classpath>
+		    	<path refid="compile.classpath"/>
+		        <path refid="gdi.classpath"/>
+		    </classpath>
+        	<input>
+    			<fileset dir="${java.src.dir}"/>
+		    </input>
+	    	<systemproperty name="strict" value="true"/>
+	    	<systemproperty name="mergedir" value="${webmerge.dir}"/>
+	    	<systemproperty name="additionalWatchPath" value="${webmerge.dir}"/>
+	    	<systemproperty name="clientcachingdisabled" value="${client.caching.disabled}"/>
+			<systemproperty name="redirectToHttps" value="${redirect_to_https.ext}"/>
+	    	<systemproperty name="loginconfig" value="${login.config.ext}"/>
+	    	<systemproperty name="securitydomain" value="java:/jaas/${login.domain.ext}"/>
+	    	<systemproperty name="cronjobs" value="true"/>
+	    	<systemproperty name="dwrDebugEnabled" value="${dwr.debug.enabled}"/>
+	    	<systemproperty name="encoding" value="${web.encoding}"/>
+			<systemproperty name="gdiencoding" value="${gdi.encoding}"/>
+	    </gditask>
+    </target>
+		
+    <!-- ================================================================= -->
+    <!-- === distribution targets                                      === -->
+    <!-- ================================================================= -->
+    <target name="dist" description="build the distribution" unless="omit.subcomponent.admin-web">
+        <antcall target="realdist" inheritall="true"/>
+    </target>
+    <target name="realdist" depends="build">
+        <copy todir="${dist.lib.dir}/int" file="${project-admin-webapp-int.war}"/>
+        <copy todir="${dist.lib.dir}/ext" file="${project-admin-webapp-ext.war}"/>
+        <copy todir="${dist.dep.dir}" file="${project-common.jar.loc}"/>
+        <copy todir="${dist.dep.dir}" file="${project-business-client.jar.loc}"/>
+        <copy todir="${dist.dep.dir}" file="${jcan-log.jar}"/>
+        <copy todir="${dist.dep.dir}" file="${jcan-optrace.jar}"/>
+        <copy todir="${dist.dep.dir}" file="${commons-lang.jar}"/>
+    	<copy todir="${dist.dep.dir}" file="${espace.jar}"/>
+    	<copy todir="${dist.dep.dir}" file="${spring.jar}"/>
+    	<copy todir="${dist.dep.dir}" file="${dwr.jar}"/>
+    	<copy todir="${dist.dep.dir}" file="${flexjson.jar}"/>
+		<copy todir="${dist.dep.dir}" file="${opencsv.jar}"/>
+		<copy todir="${dist.dep.dir}" file="${poi.jar}"/>
+		<copy todir="${dist.dep.dir}">
+            <fileset dir="${subcomponent.common-web}/${build.dir.name}/${dist.dir.name}/dep"/>
+        </copy>
+    	
+    </target>
+
+    <!-- NOTE: what we build here is only used for development (enables faster dev-cycles) -->
+    <target name="deploy" depends="dist"
+            description="deploy this sub-project only">
+        <copy todir="${deploy.dir}" verbose="true" failonerror="false">
+            <fileset dir="${build.dir.name}/${dist.dir.name}/dep"/>
+        </copy>
+        <copy todir="${deploy.dir}" verbose="true" failonerror="false">
+            <fileset dir="${build.dir.name}/${dist.dir.name}/lib/int"/>
+        </copy>
+    </target>
+
+    <!-- ================================================================ -->
+    <!-- source code tracing instrumentation targets                      -->
+    <!-- ================================================================ -->
+    <target name="adntrace2-instrument">
+        <taskdef resource="adntrace2-taskdefs.xml" classpathref="adntrace2.classpath"/>
+        <adntrace2 operation="instrument"/>
+    </target>
+
+    <target name="adntrace2-refresh">
+        <taskdef resource="adntrace2-taskdefs.xml" classpathref="adntrace2.classpath"/>
+        <adntrace2 operation="refresh"/>
+    </target>
+
+    <!-- ================================================================ -->
+    <!--  externally defined tasks/targets                                -->
+    <!-- ================================================================ -->
+    <import file="./build-test.xml"/>
+
+</project>

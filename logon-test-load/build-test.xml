@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Author            : AdNovum Informatik AG
+ Version Number    : $Revision$
+ Date of last edit : $Date$
+-->
+
+<project name="logon-test-load-test" default="init-test" basedir=".">
+
+    <description>defines test targets and tasks</description>
+
+    <!-- ================================================================ -->
+    <!--  dummy targets, will be overridden when file is imported                -->
+    <!-- ================================================================ -->
+    <target name="build"/>
+
+    <!-- ================================================================ -->
+    <!--  test initialization, cleanup and default targets                -->
+    <!-- ================================================================ -->
+    <target name="init-test">
+    <mkdir dir="${test.build.dir}"/>
+    <mkdir dir="./testdata/${environment}"/>
+
+	<!-- Default load test endpoint is defined by build -->
+	<echo message="Database used for test data: ${db.connection.url}" />
+	<replaceregexp file="scripts/base_config.py" match="^url0.*" replace="url0 = '${webservices.host.url}'" flags="m"/>
+	<replaceregexp file="scripts/base_config.py" match="^database.*" replace="database = '${db.connection.url}'" flags="m"/>
+	<replaceregexp file="scripts/base_config.py" match="^db_user.*" replace="db_user = '${db.connection.username}'" flags="m"/>
+	<replaceregexp file="scripts/base_config.py" match="^db_pass.*" replace="db_pass = '${db.connection.password}'" flags="m"/>
+	<replaceregexp file="scripts/base_config.py" match="^db_schema.*" replace="db_schema = '${db.connection.schema_owner}'" flags="m"/>
+	<replaceregexp file="scripts/base_config.py" match="^environment.*" replace="environment = '${environment}'" flags="m"/>
+    </target>
+
+    <target name="clean-test">
+        <delete dir="${test.build.dir}"/>
+    </target>
+	
+	<target name="test-load-baseline">
+		<exec executable="${agent.sh}" failonerror="true" failifexecutionfails="true">
+			<arg line="etc/grinder-baseline.properties"/>
+		</exec>
+		<loadproperties srcFile="etc/grinder-baseline.properties"/>		
+		<antcall target="fail-on-grinder-error-files" ></antcall>
+	</target>
+	
+	<target name="test-load-frontend">
+		<exec executable="${agent.sh}" failonerror="true" failifexecutionfails="true">
+			<arg line="etc/grinder-frontend.properties"/>
+		</exec>
+		<loadproperties srcFile="etc/grinder-frontend.properties"/>
+		<antcall target="fail-on-grinder-error-files" ></antcall>
+	</target>
+
+	<target name="test-load-mop">
+
+		<exec executable="${agent.sh}" failonerror="true" failifexecutionfails="true">
+			<arg line="etc/grinder-mop.properties"/>
+		</exec>
+		<loadproperties srcFile="etc/grinder-mop.properties"/>
+		<antcall target="fail-on-grinder-error-files" ></antcall>
+	</target>
+
+	<target name="test-load-mixed">
+		<exec executable="${agent.sh}" failonerror="true" failifexecutionfails="true">
+			<arg line="etc/grinder-mixed.properties"/>
+		</exec>
+		<loadproperties srcFile="etc/grinder-mixed.properties"/>		
+		<antcall target="fail-on-grinder-error-files" ></antcall>
+	</target>
+
+	<target name="fail-on-grinder-error-files">		
+		  <pathconvert property="found.grinder.error.files" setonempty="false" pathsep=" ">
+		    <path>
+		      <fileset dir="${grinder.logDirectory}" includes="*.log*" >
+		        <contains text="ERROR"/>
+			  </fileset>
+		    </path>
+		  </pathconvert>
+		<shellscript shell="sh">
+		find ./${grinder.logDirectory} -name '*.log' -print |xargs grep  --binary-files=text "ERROR" | sort | uniq
+		FILES=./${grinder.logDirectory}/*log*; for f in $FILES; do  less $f | awk '/Final statistics/,0' ; done >> ./${grinder.logDirectory}/statistics.txt
+		</shellscript>					
+		<fail message="Found ERROR text in grinder log files located in ${grinder.logDirectory} '" if="found.grinder.error.files"/>			
+	</target>
+
+	<!--  Keep as report only the statistics, plain text file. -->
+	<target name="test-load-report" description="copies over load test related files to NB report area">
+		<echo message="Merge statistics.txts into one." />	
+		<copy todir="${test.reports.load.dir}/log">
+			<fileset dir="${subcomponent.test-load}/log"/>			
+		</copy>
+		<shellscript shell="sh">			
+		find ${test.reports.load.dir}/log -name 'statistics.txt' -print | xargs grep . -h  >> ${test.reports.load.dir}/statistics_all.txt
+		</shellscript>						
+	</target>
+
+</project>

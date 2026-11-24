@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="VLGNR_USER_TYPE" mappingType="view" skipSql="true">
+        <column name="USER_TYPE_CD" type="DECIMAL" size="12"/>
+        <column name="FUNCTION_ID" type="DECIMAL" size="12"/>
+        <column name="LANG_CD" type="VARCHAR" size="2"/>
+        <column name="TXT" type="VARCHAR" size="30"/>
+    </table>
+</database>

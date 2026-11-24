@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNR_WAITINGTIME_REASON_TX" refData="true"
+           description="Language depending attributes for Waiting time reasons.">
+
+        <column name="WAITINGTIME_REASON_CD" primaryKey="true" required="true" type="DECIMAL" size="2"
+                description="Part of PK. FK tlgnr_WAITINGTIME_REASON_bs. Code of the Reference Data."/>
+        <column name="LANG_CD" primaryKey="true" required="true" type="VARCHAR" size="2"
+                description="Part of PK. FK tlgnr_lang_bs. For example de, en, ..."/>
+        <column name="TXT" required="true" type="VARCHAR" size="60"
+                description="Description of the waiting time reason in the language LANG_CD."/>
+
+        <foreign-key foreignTable="TLGNR_WAITINGTIME_REASON_BS" name="FK_TLGNR_WAITINGTIME_REASON_TX">
+            <reference local="WAITINGTIME_REASON_CD" foreign="WAITINGTIME_REASON_CD"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_LANG_BS" name="FK_TLGNR_WTIME_REASON_LANG">
+            <reference local="LANG_CD" foreign="LANG_CD"/>
+        </foreign-key>
+    </table>
+</database>

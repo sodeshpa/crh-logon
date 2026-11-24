@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Author            : AdNovum Informatik AG
+ Version Number    : $Revision$
+ Date of last edit : $Date$
+-->
+
+<!-- Set project name to project's cvs module name, as project name will
+     be used for toolbox scope checks -->
+
+<project name="logon" default="dist" basedir=".">
+    <description>${ant.project.name} project build file</description>
+
+    <!-- ================================================================= -->
+    <!-- === externally defined                                        === -->
+    <!-- ================================================================= -->
+    <import file="properties.xml"/>
+    <import file="../common.xml"/>
+
+    <!-- ================================================================= -->
+    <!-- === maven like dependencies                                   === -->
+    <!-- ================================================================= -->
+    <import file="${AAL_HOME}/aal/aal-maven.xml"/>
+    <import file="./build-deps.xml"/>    
+    <path id="eclipse.lib.classpath">
+        <path refid="logon-mavendeps.test.classpath"/> <!-- maven libs -->
+    </path>
+
+    <!-- ============================================================== -->
+    <!--  properties                                                    -->
+    <!-- ============================================================== -->
+    <property name="webapp.name"                value="${ant.project.name}"/>
+
+    <!-- ================================================================ -->
+    <!--  parametrize local project structure                             -->
+    <!-- ================================================================ -->
+    <property name="javadoc.dir"                location="${build.dir}/api"/>
+    <property name="test-integration.jar"        location="${build.dir}/test/lib/test-integration.jar"/>
+
+    <!-- ================================================================ -->
+    <!--  define target specific classpaths (build, runtime, test)        -->
+    <!-- ================================================================ -->
+    <path id="compile.classpath">
+    	<pathelement location="${commons-beanutils.jar}"/>
+    	<pathelement location="${servlet.jar}"/>
+        <pathelement location="${jcan-log.jar}"/>
+        <pathelement location="${log4j.jar}"/>
+        <pathelement location="${commons-lang.jar}"/>
+    	<pathelement location="${standard.jar}"/>
+    	<pathelement location="${jstl.jar}"/>
+    	<pathelement location="${struts.jar}"/>
+    	<pathelement location="${dwr.jar}"/>
+    	<pathelement location="${spring.jar}"/>
+    	<pathelement location="${jfreechart.jar}"/>
+    	<pathelement location="${jfreechart-common.jar}"/>
+    	<pathelement location="${hibernate-annotations.jar}"/>
+    	<pathelement location="${hibernate-jpa2.jar}"/>
+    	<pathelement location="${hibernate4.jar}"/>
+		<pathelement location="${flexjson.jar}"/>
+		<pathelement location="${axis2-kernel.jar}"/>
+		<pathelement location="${axiom-api.jar}"/>
+		<pathelement location="${project-persistence-client.jar.loc}"/>
+    	<pathelement location="${project-business-client.jar.loc}"/>
+    	<pathelement location="${project-common.jar.loc}"/>
+        <path refid="logon-mavendeps.compile.classpath"/>
+    </path>
+
+    <!-- ================================================================ -->
+    <!--  initialization, cleanup and default targets                     -->
+    <!-- ================================================================ -->
+    <target name="all" depends="dist"
+            description="build and test everything"/>
+
+    <target name="toolbox-checkUptodate">
+        <uptodate property="toolbox-isUptodate" targetfile=".classpath">
+            <srcfiles refid="toolbox-sourcefiles"/>
+        </uptodate>
+    </target>
+
+    <target name="toolbox" depends="toolbox-checkUptodate" unless="toolbox-isUptodate">
+        <taskdef resource="adnant-taskdefs.xml"/> <!-- See documentation in adnant project's README -->
+        <updatedotclasspath>
+                <!-- See documentation of 'updatedotclasspath' in adnant project's README -->
+            <con path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+        	<var pathref="eclipse.lib.classpath" />
+            <output path=".bin"/>
+            <src path="/logon-common"/>
+            <src path="/logon-persistence"/>
+            <src path="/logon-business"/>
+            <src path="${java.src.dir.name}"/>
+            <src path="${java.test.src.dir.name}/unit"/>
+            <src path="${java.test.src.dir.name}/integration"/>
+            <src path="${build.dir.name}/generated/gdi/funccsv2java/src"/>
+            <lib path="${adntrace2-templates.jar}" sourcepath="${masterbuild.dir}/etc/adntrace2"/>
+        </updatedotclasspath>
+    </target>
+
+    <target name="init" depends="toolbox"
+            description="initialization project structure and environment">
+        <tstamp/>
+        <echo message="--------- ${ant.project.name}-${build.version} building on ${os.name} ---------"/>
+        <echo message=" "/>
+        <echo message="building file ${ant.file} with ${ant.version}"/>
+        <echo message=""/>
+        <mkdir dir="${build.dir}"/>
+        <mkdir dir="${classes.dir}"/>
+        <mkdir dir="${lib.dir}"/>
+        <mkdir dir="${generated.dir}"/>
+        <mkdir dir="${test.build.dir}"/>
+        <mkdir dir="${test.log.dir}"/>
+        <mkdir dir="${test.lib.dir}"/>
+    </target>
+
+    <target name="clean" depends="clean-test"
+            description="cleans all generated files and directories" >
+        <delete dir="${build.dir}"/>
+    </target>
+
+    <!-- ================================================================ -->
+    <!--  compile targets                                                 -->
+    <!-- ================================================================ -->
+    <target name="build" depends="compile, generateProperties"
+            description="build target">
+		<copy toDir="${build.dir}/resources/WEB-INF/classes">
+	    	<fileset dir="${generated.dir}/gdi/properties">
+	    		<include name="**/*.xml"/>
+	    	</fileset>
+	    </copy>
+	    <copy toDir="${build.dir}/resources">
+	    	<fileset dir="${resources.src.dir}" />
+	    </copy>
+		<copy toDir="${build.dir}/resources/js/litdict">
+			<fileset dir="${subcomponent.common}/${build.dir.name}/${generated.dir.name}/litdict">
+				<include name="*.js"/>
+			</fileset>
+		</copy>
+    </target>
+
+    <target name="compile" depends="compile-src, compile-test"/>
+
+    <target name="compile-src" depends="init, funccsv2java">
+        <echo message="${java.src.dir}"/>
+        <javac
+            source="${compile.source}"
+            target="${compile.target}"
+            destdir="${classes.dir}"
+            debug="${compile.debug}"
+            optimize="${compile.optimize}"
+            deprecation="${compile.deprecation}"
+            encoding="${compile.encoding}"
+            includeantruntime="no">
+            <src path="${java.src.dir}"/>
+            <src path="${generated.dir}/gdi/funccsv2java/src"/>
+            <include name="**/*.java"/>
+            <bootclasspath refid="compile.bootclasspath"/>
+            <classpath refid="compile.classpath"/>
+            <compilerarg line="-processor ch.adnovum.jcan.log.adntrace8.AdnTraceProcessor"/>
+        </javac>
+    </target>
+
+    <!-- ================================================================= -->
+    <!-- === generator                                                 === -->
+    <!-- ================================================================= -->
+    <!-- achtung! LogonProperties were moved to logon-common because they are 
+         used also in non-web components. however, LogonProperties is still
+         populated by spring inside the web tier, and then passed into the ejb
+         tier. -->
+	<copy todir="${generated.dir}/gdi/properties-sources">
+	    <fileset dir="${subcomponent.common}/${java.src.dir.name}">
+		    <exclude name="CVS"/>
+	    </fileset>
+    </copy>
+	<target name="generateProperties">
+        <gditask classpathref="gdi.classpath"
+             cartridgePath="${etc.dir}/gdi/properties"
+             outputPath="${generated.dir}/gdi/properties">
+    		<input>
+				<fileset dir="${generated.dir}/gdi/properties-sources"/>
+		    </input>
+        	<properties>
+            	<fileset file="${all.properties}"/>
+        	</properties>
+			<systemproperty name="gdiencoding" value="${gdi.encoding}"/>
+        </gditask>
+    </target>
+
+    <target name="generatePropertiesTD">
+        <java classname="ch.nevis.gdi.main.TemplateDesigner"
+            fork="true" failonerror="true" newenvironment="true">
+            <classpath refid="gdi.classpath"/>
+            <arg line="${etc.dir}/gdi/properties ${subcomponent.common}/${java.src.dir.name} ${generated.dir}/gdi/td/properties
+                       ${all.properties}"/>
+        </java>
+    </target>
+
+    <!-- generate Authorization.java -->
+    <target name="funccsv2java">
+        <gditask classpathref="gdi.classpath"
+             cartridgePath="${etc.dir}/gdi/funccsv2java"
+             outputPath="${generated.dir}/gdi/funccsv2java">
+        	<input>
+				<fileset dir="${subcomponent.persistence}/etc/csv/refdata"/>
+		    </input>
+	     	<systemproperty name="csv_separator" value=";"/>
+	     	<systemproperty name="csv_quote_character" value='"'/>
+	     	<systemproperty name="csv_skip_lines" value="1"/>
+			<systemproperty name="gdiencoding" value="${gdi.encoding}"/>
+        </gditask>
+    </target>
+
+	<target name="funccsv2javaTD">
+		<java classname="ch.nevis.gdi.main.TemplateDesigner"
+            fork="true" failonerror="true" newenvironment="true">
+            <jvmarg value="-Dcsv_separator=;"/>
+            <jvmarg value='-Dcsv_quote_character="'/>
+            <jvmarg value="-Dcsv_skip_lines=1"/>
+			<classpath refid="gdi.classpath"/>
+			<arg line="etc/gdi/funccsv2java ${subcomponent.persistence}/etc/csv/refdata ${generated.dir}/gdi/td/funccsv2java"/>
+		</java>
+	</target>
+    <!-- ================================================================= -->
+    <!-- === distribution targets                                      === -->
+    <!-- ================================================================= -->
+    <target name="dist" description="build the distribution" unless="omit.subcomponent.common-web">
+        <antcall target="realdist" inheritall="true"/>
+    </target>
+    <target name="realdist" depends="build">
+        <copy todir="${dist.dep.dir}" file="${project-common.jar.loc}"/>
+        <copy todir="${dist.dep.dir}" file="${jcan-log.jar}"/>
+        <copy todir="${dist.dep.dir}" file="${jfreechart.jar}"/>
+    	<copy todir="${dist.dep.dir}" file="${jfreechart-common.jar}"/>
+    	<copy todir="${dist.dep.dir}" file="${jcan-optrace.jar}"/>
+    	<copy todir="${dist.dep.dir}" file="${spring.jar}"/>
+    	<copy todir="${dist.dep.dir}" file="${espace.jar}"/>
+		<copy todir="${dist.dep.dir}" file="${flexjson.jar}"/>
+    	<!-- Struts dependencies -->
+    	<copy todir="${dist.dep.dir}" file="${struts.jar}"/>
+    	<copy todir="${dist.dep.dir}" file="${commons-beanutils.jar}"/>
+		<copy todir="${dist.dep.dir}" file="${commons-collections.jar}"/>
+		<copy todir="${dist.dep.dir}" file="${commons-digester.jar}"/>
+    	<copy todir="${dist.dep.dir}" file="${commons-fileupload.jar}"/>
+    	<copy todir="${dist.dep.dir}" file="${commons-logging.jar}"/>
+    	<copy todir="${dist.dep.dir}" file="${commons-validator.jar}"/>
+      <copy todir="${dist.dep.dir}" file="${jakarta-oro.jar}"/>
+      <!-- copy dependencies provided by maven -->
+      <copy todir="${dist.dep.dir}" flatten="true">
+        <path refid="logon-mavendeps.runtime.classpath" />
+      </copy>
+    </target>
+
+    <!-- NOTE: what we build here is only used for development (enables faster dev-cycles) -->
+    <target name="deploy" depends="dist" description="deploy this sub-project only">
+        <echo>nothing to deploy here!</echo>
+    </target>
+
+    <!-- ================================================================ -->
+    <!-- source code tracing instrumentation targets                      -->
+    <!-- ================================================================ -->
+    <target name="adntrace2-instrument">
+        <taskdef resource="adntrace2-taskdefs.xml" classpathref="adntrace2.classpath"/>
+        <adntrace2 operation="instrument"/>
+    </target>
+
+    <target name="adntrace2-refresh">
+        <taskdef resource="adntrace2-taskdefs.xml" classpathref="adntrace2.classpath"/>
+        <adntrace2 operation="refresh"/>
+    </target>
+
+    <!-- ================================================================ -->
+    <!--  externally defined tasks/targets                                -->
+    <!-- ================================================================ -->
+    <import file="./build-test.xml"/>
+
+</project>

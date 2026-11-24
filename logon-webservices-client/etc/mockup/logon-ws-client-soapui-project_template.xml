@@ -1,0 +1,1508 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project name="logon-ws-client" resourceRoot="" soapui-version="2.5.1" xmlns:con="http://eviware.com/soapui/config"><con:settings><con:setting id="ProjectSettings@projectRoot">@project.basedir@/build/test/etc</con:setting></con:settings><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="LogonToPISoap" type="wsdl" bindingName="{http://194.11.246.115/LogonToPISrv}LogonToPISoap" soapVersion="1_1" anonymous="optional" definition="@project.basedir@/etc/wsdl/LogonToPI.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="file:@project.basedir@/etc/wsdl/LogonToPI.wsdl"><con:part><con:url>file:@project.basedir@/etc/wsdl/LogonToPI.wsdl</con:url><con:content><![CDATA[<wsdl:definitions targetNamespace="http://194.11.246.115/LogonToPISrv" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://194.11.246.115/LogonToPISrv" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://194.11.246.115/LogonToPISrv">
+      <s:element name="VersionNr">
+        <s:complexType/>
+      </s:element>
+      <s:element name="VersionNrResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="VersionNrResult" type="s:string"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LKWVerladeAuftragNeu">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="verladeauftrag_id" type="s:decimal"/>
+            <s:element minOccurs="1" maxOccurs="1" name="logon_nr" type="s:decimal"/>
+            <s:element minOccurs="0" maxOccurs="1" name="verladestrasse_id" type="s:string"/>
+            <s:element minOccurs="0" maxOccurs="1" name="kunnr" type="s:string"/>
+            <s:element minOccurs="0" maxOccurs="1" name="wempf" type="s:string"/>
+            <s:element minOccurs="0" maxOccurs="1" name="rempf" type="s:string"/>
+            <s:element minOccurs="0" maxOccurs="1" name="regul" type="s:string"/>
+            <s:element minOccurs="0" maxOccurs="1" name="werks" type="s:string"/>
+            <s:element minOccurs="0" maxOccurs="1" name="matnr" type="s:string"/>
+            <s:element minOccurs="0" maxOccurs="1" name="fznum" type="s:string"/>
+            <s:element minOccurs="1" maxOccurs="1" name="verlzp" type="s:dateTime"/>
+            <s:element minOccurs="1" maxOccurs="1" name="maxweight" nillable="true" type="s:decimal"/>
+            <s:element minOccurs="1" maxOccurs="1" name="maxweight_brutto" nillable="true" type="s:decimal"/>
+            <s:element minOccurs="1" maxOccurs="1" name="suppress_ls" type="s:boolean"/>
+            <s:element minOccurs="1" maxOccurs="1" name="tara" nillable="true" type="s:decimal"/>
+            <s:element minOccurs="1" maxOccurs="1" name="zanmnr" nillable="true" type="s:decimal"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LKWVerladeAuftragNeuResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LKWVerladeAuftragNeuResult" type="tns:ReturnStatus"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ReturnStatus">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ErrorCode" type="tns:ErrorCode"/>
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorMessage" type="s:string"/>
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="ErrorCode">
+        <s:restriction base="s:string">
+          <s:enumeration value="NoError"/>
+          <s:enumeration value="TechnicalError"/>
+          <s:enumeration value="ApplicationError"/>
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="LKWVerladeAuftragLoeschen">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="verladeauftrag_id" type="s:decimal"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LKWVerladeAuftragLoeschenResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LKWVerladeAuftragLoeschenResult" type="tns:ReturnStatus"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PDAAnmeldung">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="verladeauftrag_id" type="s:decimal"/>
+            <s:element minOccurs="0" maxOccurs="1" name="verladestrasse_id" type="s:string"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PDAAnmeldungResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PDAAnmeldungResult" type="tns:ReturnStatus"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="VersionNrSoapIn">
+    <wsdl:part name="parameters" element="tns:VersionNr"/>
+  </wsdl:message>
+  <wsdl:message name="VersionNrSoapOut">
+    <wsdl:part name="parameters" element="tns:VersionNrResponse"/>
+  </wsdl:message>
+  <wsdl:message name="LKWVerladeAuftragNeuSoapIn">
+    <wsdl:part name="parameters" element="tns:LKWVerladeAuftragNeu"/>
+  </wsdl:message>
+  <wsdl:message name="LKWVerladeAuftragNeuSoapOut">
+    <wsdl:part name="parameters" element="tns:LKWVerladeAuftragNeuResponse"/>
+  </wsdl:message>
+  <wsdl:message name="LKWVerladeAuftragLoeschenSoapIn">
+    <wsdl:part name="parameters" element="tns:LKWVerladeAuftragLoeschen"/>
+  </wsdl:message>
+  <wsdl:message name="LKWVerladeAuftragLoeschenSoapOut">
+    <wsdl:part name="parameters" element="tns:LKWVerladeAuftragLoeschenResponse"/>
+  </wsdl:message>
+  <wsdl:message name="PDAAnmeldungSoapIn">
+    <wsdl:part name="parameters" element="tns:PDAAnmeldung"/>
+  </wsdl:message>
+  <wsdl:message name="PDAAnmeldungSoapOut">
+    <wsdl:part name="parameters" element="tns:PDAAnmeldungResponse"/>
+  </wsdl:message>
+  <wsdl:portType name="LogonToPISoap">
+    <wsdl:operation name="VersionNr">
+      <wsdl:input message="tns:VersionNrSoapIn"/>
+      <wsdl:output message="tns:VersionNrSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="LKWVerladeAuftragNeu">
+      <wsdl:input message="tns:LKWVerladeAuftragNeuSoapIn"/>
+      <wsdl:output message="tns:LKWVerladeAuftragNeuSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="LKWVerladeAuftragLoeschen">
+      <wsdl:input message="tns:LKWVerladeAuftragLoeschenSoapIn"/>
+      <wsdl:output message="tns:LKWVerladeAuftragLoeschenSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="PDAAnmeldung">
+      <wsdl:input message="tns:PDAAnmeldungSoapIn"/>
+      <wsdl:output message="tns:PDAAnmeldungSoapOut"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="LogonToPISoap" type="tns:LogonToPISoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="VersionNr">
+      <soap:operation soapAction="http://194.11.246.115/LogonToPISrv/VersionNr" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LKWVerladeAuftragNeu">
+      <soap:operation soapAction="http://194.11.246.115/LogonToPISrv/LKWVerladeAuftragNeu" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LKWVerladeAuftragLoeschen">
+      <soap:operation soapAction="http://194.11.246.115/LogonToPISrv/LKWVerladeAuftragLoeschen" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PDAAnmeldung">
+      <soap:operation soapAction="http://194.11.246.115/LogonToPISrv/PDAAnmeldung" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="LogonToPISoap12" type="tns:LogonToPISoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="VersionNr">
+      <soap12:operation soapAction="http://194.11.246.115/LogonToPISrv/VersionNr" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LKWVerladeAuftragNeu">
+      <soap12:operation soapAction="http://194.11.246.115/LogonToPISrv/LKWVerladeAuftragNeu" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LKWVerladeAuftragLoeschen">
+      <soap12:operation soapAction="http://194.11.246.115/LogonToPISrv/LKWVerladeAuftragLoeschen" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PDAAnmeldung">
+      <soap12:operation soapAction="http://194.11.246.115/LogonToPISrv/PDAAnmeldung" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="LogonToPI">
+    <wsdl:port name="LogonToPISoap" binding="tns:LogonToPISoap">
+      <soap:address location="http://194.11.246.115/LogonToPISrv/LogonToPI.asmx"/>
+    </wsdl:port>
+    <wsdl:port name="LogonToPISoap12" binding="tns:LogonToPISoap12">
+      <soap12:address location="http://194.11.246.115/LogonToPISrv/LogonToPI.asmx"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>@mockup.parallel.host.url@</con:endpoint></con:endpoints><con:operation isOneWay="false" action="http://194.11.246.115/LogonToPISrv/LKWVerladeAuftragLoeschen" name="LKWVerladeAuftragLoeschen" bindingOperationName="LKWVerladeAuftragLoeschen" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>@mockup.parallel.host.url@</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:log="http://194.11.246.115/LogonToPISrv">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <log:LKWVerladeAuftragLoeschen>
+         <log:verladeauftrag_id>1</log:verladeauftrag_id>
+      </log:LKWVerladeAuftragLoeschen>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://194.11.246.115/LogonToPISrv/LogonToPISoap/LKWVerladeAuftragLoeschenRequest"/></con:call></con:operation><con:operation isOneWay="false" action="http://194.11.246.115/LogonToPISrv/LKWVerladeAuftragNeu" name="LKWVerladeAuftragNeu" bindingOperationName="LKWVerladeAuftragNeu" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>@mockup.parallel.host.url@</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:log="http://194.11.246.115/LogonToPISrv">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <log:LKWVerladeAuftragNeu>
+         <log:verladeauftrag_id>?</log:verladeauftrag_id>
+         <log:logon_nr>?</log:logon_nr>
+         <!--Optional:-->
+         <log:verladestrasse_id>?</log:verladestrasse_id>
+         <!--Optional:-->
+         <log:kunnr>?</log:kunnr>
+         <!--Optional:-->
+         <log:wempf>?</log:wempf>
+         <!--Optional:-->
+         <log:rempf>?</log:rempf>
+         <!--Optional:-->
+         <log:regul>?</log:regul>
+         <!--Optional:-->
+         <log:werks>?</log:werks>
+         <!--Optional:-->
+         <log:matnr>?</log:matnr>
+         <!--Optional:-->
+         <log:fznum>?</log:fznum>
+         <log:verlzp>?</log:verlzp>
+         <log:maxweight>?</log:maxweight>
+         <log:maxweight_brutto>?</log:maxweight_brutto>
+         <log:suppress_ls>?</log:suppress_ls>
+         <log:tara>?</log:tara>
+         <log:zanmnr>?</log:zanmnr>
+      </log:LKWVerladeAuftragNeu>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://194.11.246.115/LogonToPISrv/LogonToPISoap/LKWVerladeAuftragNeuRequest"/></con:call></con:operation><con:operation isOneWay="false" action="http://194.11.246.115/LogonToPISrv/PDAAnmeldung" name="PDAAnmeldung" bindingOperationName="PDAAnmeldung" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>@mockup.parallel.host.url@</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:log="http://194.11.246.115/LogonToPISrv">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <log:PDAAnmeldung>
+         <log:verladeauftrag_id>?</log:verladeauftrag_id>
+         <!--Optional:-->
+         <log:verladestrasse_id>?</log:verladestrasse_id>
+      </log:PDAAnmeldung>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://194.11.246.115/LogonToPISrv/LogonToPISoap/PDAAnmeldungRequest"/></con:call></con:operation><con:operation isOneWay="false" action="http://194.11.246.115/LogonToPISrv/VersionNr" name="VersionNr" bindingOperationName="VersionNr" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>@mockup.parallel.host.url@</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:log="http://194.11.246.115/LogonToPISrv">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <log:VersionNr/>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://194.11.246.115/LogonToPISrv/LogonToPISoap/VersionNrRequest"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="Logon_Delivery_Async_MIBinding" type="wsdl" bindingName="{urn:net.crh.ea.logon.che.delivery}Logon_Delivery_Async_MIBinding" soapVersion="1_1" anonymous="optional" definition="file:@project.basedir@/etc/wsdl/Logon_Delivery_Async_MI.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="file:@project.basedir@/etc/wsdl/Logon_Delivery_Async_MI.wsdl"><con:part><con:url>file:@project.basedir@/etc/wsdl/Logon_Delivery_Async_MI.wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="Logon_Delivery_Async_MI" targetNamespace="urn:net.crh.ea.logon.che.delivery" xmlns:p1="urn:net.crh.ea.logon.che.delivery" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <xsd:element name="Logon_Delivery_put_message">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="delivery_header_data" form="qualified">
+              <xsd:complexType>
+                <xsd:sequence>
+                  <xsd:element name="VBKD-BSTKD" form="qualified" id="logon_delivery_number">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="35"/>
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element name="ZTLOGON01-ZDISTRDEST" form="qualified" id="distribution_destination">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="4"/>
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element name="ZTLOGON01-ZFREECHR" form="qualified" id="free_of_charge_flag">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="1"/>
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element name="ZTLOGON01-ZEXTERNAL" form="qualified" id="supply_plant_not_inventory_managed">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="1"/>
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element name="VBAK-VKORG" form="qualified" id="sales_organization">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="4"/>
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element name="VBAK-VTWEG" form="qualified" id="distribution_channel">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="2"/>
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element name="VBAK-SPART" form="qualified" id="division">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="2"/>
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element name="VBKD-KDKG2" form="qualified" id="transportation_mode">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="2"/>
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element name="VBAK-VSBED" form="qualified" id="shipping_condition">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="2"/>
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element name="VBAK-ZZZANMNR" minOccurs="0" form="qualified" id="customer_notification_number">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="4"/>
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element name="VBEP-WADAT" minOccurs="0" form="qualified" id="delivery_date">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:date"/>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element name="VBEP-WAUHR" minOccurs="0" form="qualified" id="delivery_time">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:time"/>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element name="ADDR1_DATA-TRANSPZONE" minOccurs="0" form="qualified" id="transport_zone">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="10"/>
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element name="LIKP-BTGEW" form="qualified" id="total_gross_weight">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:decimal">
+                        <xsd:totalDigits value="15"/>
+                        <xsd:fractionDigits value="3"/>
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element name="LIKP-NTGEW" form="qualified" id="total_net_weight">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:decimal">
+                        <xsd:totalDigits value="15"/>
+                        <xsd:fractionDigits value="3"/>
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element name="LIKP-GEWEI" form="qualified" id="weight_unit">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="3"/>
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element name="VBAK-ZZFZNR_ZEM" minOccurs="0" form="qualified" id="truck_plate_number">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="20"/>
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element name="VBAK-ZZKMANZ" minOccurs="0" form="qualified" id="kilometers_by_road">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:decimal">
+                        <xsd:totalDigits value="8"/>
+                        <xsd:fractionDigits value="2"/>
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element name="VBAK-BNAME" minOccurs="0" form="qualified" id="ton_kilometers_road">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:decimal">
+                        <xsd:totalDigits value="15"/>
+                        <xsd:fractionDigits value="3"/>
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element name="VBAP-ZZWAGNR" minOccurs="0" form="qualified" id="railcar_number">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="12"/>
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element name="VBAP-ZZWAKAT" minOccurs="0" form="qualified" id="railcar_category">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="4"/>
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element name="VBAK-ZZKMBAHN" minOccurs="0" form="qualified" id="distance_rail">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:decimal">
+                        <xsd:totalDigits value="8"/>
+                        <xsd:fractionDigits value="2"/>
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element name="VBAK-ZZBAHNALB" minOccurs="0" form="qualified" id="dep_o_railway_station_country">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="2"/>
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element name="VBAK-ZZBAHNAB" minOccurs="0" form="qualified" id="dep_o_railway_station">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="6"/>
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element name="VBAK-ZZBAHNAL" minOccurs="0" form="qualified" id="dep_c_railway_station_country">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="2"/>
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element name="VBAK-ZZBAHNA" minOccurs="0" form="qualified" id="dep_c_railway_station">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="6"/>
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element name="VBAK-ZZBAHNZLB" minOccurs="0" form="qualified" id="dest_o_railway_station_country">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="2"/>
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element name="VBAK-ZZBAHNZB" minOccurs="0" form="qualified" id="dest_o_railway_station">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="6"/>
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element name="VBAK-ZZBAHNZL" minOccurs="0" form="qualified" id="dest_c_railway_station_country">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="2"/>
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element name="VBAK-ZZBAHNZ" minOccurs="0" form="qualified" id="dest_c_railway_station">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="6"/>
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                </xsd:sequence>
+              </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="delivery_item_data" maxOccurs="unbounded" form="qualified">
+              <xsd:complexType>
+                <xsd:sequence>
+                  <xsd:element name="VBAP-POSNR" form="qualified" id="item_number">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:integer">
+                        <xsd:totalDigits value="6"/>
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element name="VBAP-WERKS" form="qualified" id="plant">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="4"/>
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element name="VBAP-VSTEL" form="qualified" id="shipping_point">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="4"/>
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element name="VBAP-LGORT" minOccurs="0" form="qualified" id="storage_location">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="4"/>
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element name="VBAP-MATNR" form="qualified" id="material">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="18"/>
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element name="VBAP-KWMENG" form="qualified" id="quantity">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:decimal">
+                        <xsd:totalDigits value="15"/>
+                        <xsd:fractionDigits value="3"/>
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element name="VBAP-VRKME" minOccurs="0" form="qualified" id="unit_of_mesure">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="3"/>
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element name="ZRETURN" minOccurs="0" form="qualified" id="return_indicator">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="1"/>
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                </xsd:sequence>
+              </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="partner_function" maxOccurs="unbounded" form="qualified">
+              <xsd:complexType>
+                <xsd:sequence>
+                  <xsd:element name="VBPA-PARVW" form="qualified" id="partner_function">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="4"/>
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element name="VBPA-KUNNR" form="qualified" id="partner_code">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="10"/>
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                </xsd:sequence>
+              </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="Sales_Texts" minOccurs="0" maxOccurs="unbounded" form="qualified">
+              <xsd:complexType>
+                <xsd:sequence>
+                  <xsd:element name="VBBK-TEXT_ID" form="qualified" id="text_id">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="4"/>
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element name="VBBK-SPRAS" form="qualified" id="language_key">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="2"/>
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element name="Lines" maxOccurs="unbounded" form="qualified">
+                    <xsd:complexType>
+                      <xsd:sequence>
+                        <xsd:element name="VBBK-TEXT" form="qualified" id="sales_text">
+                          <xsd:simpleType>
+                            <xsd:restriction base="xsd:string">
+                              <xsd:maxLength value="73"/>
+                            </xsd:restriction>
+                          </xsd:simpleType>
+                        </xsd:element>
+                      </xsd:sequence>
+                    </xsd:complexType>
+                  </xsd:element>
+                </xsd:sequence>
+              </xsd:complexType>
+            </xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="xmln.Logon_Delivery_put_message">
+    <wsdl:part name="Logon_Delivery_put_message" element="Logon_Delivery_put_message"/>
+  </wsdl:message>
+  <wsdl:portType name="Logon_Delivery_Async_MI">
+    <wsdl:operation name="Logon_Delivery_Async_MI">
+      <wsdl:input message="p1:xmln.Logon_Delivery_put_message"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="Logon_Delivery_Async_MIBinding" type="p1:Logon_Delivery_Async_MI">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+    <wsdl:operation name="Logon_Delivery_Async_MI">
+      <soap:operation soapAction="http://sap.com/xi/WebService/soap1.1" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+      <wsdl:input>
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+      </wsdl:input>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Logon_Delivery_Async_MIService">
+    <wsdl:port name="Logon_Delivery_Async_MIPort" binding="p1:Logon_Delivery_Async_MIBinding">
+      <soap:address location="http://hseeqxi.na.crh.net:50000/XISOAPAdapter/MessageServlet?channel=:LOGON_CHE_Quality:LOGON_CHE_Development_Deliveries_Sender&amp;version=3.0&amp;Sender.Service=LOGON_CHE_Quality&amp;Interface=urn%3Anet.crh.ea.logon.che.delivery%5ELogon_Delivery_Async_MI" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>@mockup.order_delivery.host.url@</con:endpoint></con:endpoints><con:operation isOneWay="false" action="http://sap.com/xi/WebService/soap1.1" name="Logon_Delivery_Async_MI" bindingOperationName="Logon_Delivery_Async_MI" type="One-Way" inputName="" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>@mockup.order_delivery.host.url@</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <Logon_Delivery_put_message>
+         <delivery_header_data>
+            <VBKD-BSTKD>?</VBKD-BSTKD>
+            <ZTLOGON01-ZDISTRDEST>?</ZTLOGON01-ZDISTRDEST>
+            <ZTLOGON01-ZFREECHR>?</ZTLOGON01-ZFREECHR>
+            <ZTLOGON01-ZEXTERNAL>?</ZTLOGON01-ZEXTERNAL>
+            <VBAK-VKORG>?</VBAK-VKORG>
+            <VBAK-VTWEG>?</VBAK-VTWEG>
+            <VBAK-SPART>?</VBAK-SPART>
+            <VBKD-KDKG2>?</VBKD-KDKG2>
+            <VBAK-VSBED>?</VBAK-VSBED>
+            <!--Optional:-->
+            <VBAK-ZZZANMNR>?</VBAK-ZZZANMNR>
+            <!--Optional:-->
+            <VBEP-WADAT>?</VBEP-WADAT>
+            <!--Optional:-->
+            <VBEP-WAUHR>?</VBEP-WAUHR>
+            <!--Optional:-->
+            <ADDR1_DATA-TRANSPZONE>?</ADDR1_DATA-TRANSPZONE>
+            <LIKP-BTGEW>?</LIKP-BTGEW>
+            <LIKP-NTGEW>?</LIKP-NTGEW>
+            <LIKP-GEWEI>?</LIKP-GEWEI>
+            <!--Optional:-->
+            <VBAK-ZZFZNR_ZEM>?</VBAK-ZZFZNR_ZEM>
+            <!--Optional:-->
+            <VBAK-ZZKMANZ>?</VBAK-ZZKMANZ>
+            <!--Optional:-->
+            <VBAK-BNAME>?</VBAK-BNAME>
+            <!--Optional:-->
+            <VBAP-ZZWAGNR>?</VBAP-ZZWAGNR>
+            <!--Optional:-->
+            <VBAP-ZZWAKAT>?</VBAP-ZZWAKAT>
+            <!--Optional:-->
+            <VBAK-ZZKMBAHN>?</VBAK-ZZKMBAHN>
+            <!--Optional:-->
+            <VBAK-ZZBAHNALB>?</VBAK-ZZBAHNALB>
+            <!--Optional:-->
+            <VBAK-ZZBAHNAB>?</VBAK-ZZBAHNAB>
+            <!--Optional:-->
+            <VBAK-ZZBAHNAL>?</VBAK-ZZBAHNAL>
+            <!--Optional:-->
+            <VBAK-ZZBAHNA>?</VBAK-ZZBAHNA>
+            <!--Optional:-->
+            <VBAK-ZZBAHNZLB>?</VBAK-ZZBAHNZLB>
+            <!--Optional:-->
+            <VBAK-ZZBAHNZB>?</VBAK-ZZBAHNZB>
+            <!--Optional:-->
+            <VBAK-ZZBAHNZL>?</VBAK-ZZBAHNZL>
+            <!--Optional:-->
+            <VBAK-ZZBAHNZ>?</VBAK-ZZBAHNZ>
+         </delivery_header_data>
+         <!--1 or more repetitions:-->
+         <delivery_item_data>
+            <VBAP-POSNR>?</VBAP-POSNR>
+            <VBAP-WERKS>?</VBAP-WERKS>
+            <VBAP-VSTEL>?</VBAP-VSTEL>
+            <!--Optional:-->
+            <VBAP-LGORT>?</VBAP-LGORT>
+            <VBAP-MATNR>?</VBAP-MATNR>
+            <VBAP-KWMENG>?</VBAP-KWMENG>
+            <!--Optional:-->
+            <VBAP-VRKME>?</VBAP-VRKME>
+            <!--Optional:-->
+            <ZRETURN>?</ZRETURN>
+         </delivery_item_data>
+         <!--1 or more repetitions:-->
+         <partner_function>
+            <VBPA-PARVW>?</VBPA-PARVW>
+            <VBPA-KUNNR>?</VBPA-KUNNR>
+         </partner_function>
+         <!--Zero or more repetitions:-->
+         <Sales_Texts>
+            <VBBK-TEXT_ID>?</VBBK-TEXT_ID>
+            <VBBK-SPRAS>?</VBBK-SPRAS>
+            <!--1 or more repetitions:-->
+            <Lines>
+               <VBBK-TEXT>?</VBBK-TEXT>
+            </Lines>
+         </Sales_Texts>
+      </Logon_Delivery_put_message>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:net.crh.ea.logon.che.delivery/Logon_Delivery_Async_MI/Logon_Delivery_Async_MIRequest"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="FSmsSoap" type="wsdl" bindingName="{http://www.officemaster.de/}FSmsSoap" soapVersion="1_1" anonymous="optional" definition="file:@project.basedir@/etc/wsdl/ffsms.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="file:@project.basedir@/etc/wsdl/ffsms.wsdl"><con:part><con:url>file:@project.basedir@/etc/wsdl/ffsms.wsdl</con:url><con:content><![CDATA[<wsdl:definitions targetNamespace="http://www.officemaster.de/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://www.officemaster.de/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:documentation>Webservice to provide sms functionality by using messaging server</wsdl:documentation>
+  <wsdl:types/>
+  <wsdl:message name="ErrorTextSoapIn"/>
+  <wsdl:message name="ErrorTextSoapOut">
+    <wsdl:part name="ErrorTextResult" type="s:string"/>
+  </wsdl:message>
+  <wsdl:message name="HelloWorldSoapIn"/>
+  <wsdl:message name="HelloWorldSoapOut">
+    <wsdl:part name="HelloWorldResult" type="s:string"/>
+  </wsdl:message>
+  <wsdl:message name="SendSmsSoapIn">
+    <wsdl:part name="argsNumber" type="s:string"/>
+    <wsdl:part name="argsText" type="s:string"/>
+  </wsdl:message>
+  <wsdl:message name="SendSmsSoapOut">
+    <wsdl:part name="SendSmsResult" type="s:boolean"/>
+    <wsdl:part name="argsJobId" type="s:string"/>
+  </wsdl:message>
+  <wsdl:portType name="FSmsSoap">
+    <wsdl:operation name="ErrorText">
+      <wsdl:documentation>Returns ErrorText</wsdl:documentation>
+      <wsdl:input message="tns:ErrorTextSoapIn"/>
+      <wsdl:output message="tns:ErrorTextSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="HelloWorld">
+      <wsdl:documentation>Just returns "Hello World" to show it works</wsdl:documentation>
+      <wsdl:input message="tns:HelloWorldSoapIn"/>
+      <wsdl:output message="tns:HelloWorldSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="SendSms">
+      <wsdl:documentation>Send sms by giving number and text</wsdl:documentation>
+      <wsdl:input message="tns:SendSmsSoapIn"/>
+      <wsdl:output message="tns:SendSmsSoapOut"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="FSmsSoap" type="tns:FSmsSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="rpc"/>
+    <wsdl:operation name="ErrorText">
+      <soap:operation soapAction="http://www.officemaster.de/ErrorText" style="rpc"/>
+      <wsdl:input>
+        <soap:body use="literal" namespace="http://www.officemaster.de/"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" namespace="http://www.officemaster.de/"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="HelloWorld">
+      <soap:operation soapAction="http://www.officemaster.de/HelloWorld" style="rpc"/>
+      <wsdl:input>
+        <soap:body use="literal" namespace="http://www.officemaster.de/"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" namespace="http://www.officemaster.de/"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendSms">
+      <soap:operation soapAction="http://www.officemaster.de/SendSms" style="rpc"/>
+      <wsdl:input>
+        <soap:body use="literal" namespace="http://www.officemaster.de/"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" namespace="http://www.officemaster.de/"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="FSmsSoap12" type="tns:FSmsSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" style="rpc"/>
+    <wsdl:operation name="ErrorText">
+      <soap12:operation soapAction="http://www.officemaster.de/ErrorText" style="rpc"/>
+      <wsdl:input>
+        <soap12:body use="literal" namespace="http://www.officemaster.de/"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" namespace="http://www.officemaster.de/"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="HelloWorld">
+      <soap12:operation soapAction="http://www.officemaster.de/HelloWorld" style="rpc"/>
+      <wsdl:input>
+        <soap12:body use="literal" namespace="http://www.officemaster.de/"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" namespace="http://www.officemaster.de/"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendSms">
+      <soap12:operation soapAction="http://www.officemaster.de/SendSms" style="rpc"/>
+      <wsdl:input>
+        <soap12:body use="literal" namespace="http://www.officemaster.de/"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" namespace="http://www.officemaster.de/"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="FSms">
+    <wsdl:documentation>Webservice to provide sms functionality by using messaging server</wsdl:documentation>
+    <wsdl:port name="FSmsSoap" binding="tns:FSmsSoap">
+      <soap:address location="http://localhost/ofmawsvc3/ffsms.asmx"/>
+    </wsdl:port>
+    <wsdl:port name="FSmsSoap12" binding="tns:FSmsSoap12">
+      <soap12:address location="http://localhost/ofmawsvc3/ffsms.asmx"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>@mockup.fsms.host.url@</con:endpoint></con:endpoints><con:operation isOneWay="false" action="http://www.officemaster.de/ErrorText" name="ErrorText" bindingOperationName="ErrorText" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>@mockup.fsms.host.url@</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:off="http://www.officemaster.de/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <off:ErrorText/>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.officemaster.de/FSmsSoap/ErrorTextRequest"/></con:call></con:operation><con:operation isOneWay="false" action="http://www.officemaster.de/HelloWorld" name="HelloWorld" bindingOperationName="HelloWorld" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>@mockup.fsms.host.url@</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:off="http://www.officemaster.de/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <off:HelloWorld/>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.officemaster.de/FSmsSoap/HelloWorldRequest"/></con:call></con:operation><con:operation isOneWay="false" action="http://www.officemaster.de/SendSms" name="SendSms" bindingOperationName="SendSms" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://127.0.0.1:@mockup.fsms.host.port@@mockup.fsms.host.context@</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:off="http://www.officemaster.de/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <off:SendSms>
+         <argsNumber>?</argsNumber>
+         <argsText>?</argsText>
+      </off:SendSms>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.officemaster.de/FSmsSoap/SendSmsRequest"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="FFaxSoap" type="wsdl" bindingName="{http://www.officemaster.de/}FFaxSoap" soapVersion="1_1" anonymous="optional" definition="file:@project.basedir@/etc/wsdl/ffax.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="file:@project.basedir@/etc/wsdl/ffax.wsdl"><con:part><con:url>file:@project.basedir@/etc/wsdl/ffax.wsdl</con:url><con:content><![CDATA[<wsdl:definitions targetNamespace="http://www.officemaster.de/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://www.officemaster.de/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:documentation>Webservice to provide fax functionality by using messaging server</wsdl:documentation>
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://www.officemaster.de/">
+      <s:complexType name="JobFile">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="FileName" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="OrigFileName" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="Stationery1st" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="StationeryOther" type="s:string"/>
+          <s:element minOccurs="1" maxOccurs="1" name="Stationery1stMerge" type="tns:MergeFlag"/>
+          <s:element minOccurs="1" maxOccurs="1" name="StationeryOtherMerge" type="tns:MergeFlag"/>
+          <s:element minOccurs="0" maxOccurs="1" name="JobData" type="s:base64Binary"/>
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="MergeFlag">
+        <s:restriction base="s:string">
+          <s:enumeration value="UseOnlyFirstPage"/>
+          <s:enumeration value="UseAllPages"/>
+          <s:enumeration value="UseAllRepeatFirstPage"/>
+          <s:enumeration value="UseAllRepeatLastPage"/>
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="JobDescription">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="OwnCsid" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="RemoteCsid" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="Header" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="Sender" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="ReceiverName" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="ReceiverNumber" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="JobFiles" type="tns:ArrayOfAnyType"/>
+          <s:element minOccurs="1" maxOccurs="1" name="Status" type="s:int"/>
+          <s:element minOccurs="1" maxOccurs="1" name="ErrStatus" type="s:int"/>
+          <s:element minOccurs="1" maxOccurs="1" name="ErrorCode" type="s:int"/>
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorStatusText" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorText" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="JobType" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="ReceiverType" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="JobId" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="SendTime" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="JobStatus" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="NotifyComponent" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="NotifyAddress" type="s:string"/>
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfAnyType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="anyType" nillable="true"/>
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string"/>
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="ErrorTextSoapIn"/>
+  <wsdl:message name="ErrorTextSoapOut">
+    <wsdl:part name="ErrorTextResult" type="s:string"/>
+  </wsdl:message>
+  <wsdl:message name="HelloWorldSoapIn"/>
+  <wsdl:message name="HelloWorldSoapOut">
+    <wsdl:part name="HelloWorldResult" type="s:string"/>
+  </wsdl:message>
+  <wsdl:message name="SendFaxTextSoapIn">
+    <wsdl:part name="argsNumber" type="s:string"/>
+    <wsdl:part name="argsText" type="s:string"/>
+  </wsdl:message>
+  <wsdl:message name="SendFaxTextSoapOut">
+    <wsdl:part name="SendFaxTextResult" type="s:boolean"/>
+    <wsdl:part name="argsJobId" type="s:string"/>
+  </wsdl:message>
+  <wsdl:message name="SendFaxFileSoapIn">
+    <wsdl:part name="argsNumber" type="s:string"/>
+    <wsdl:part name="argsFileName" type="s:string"/>
+    <wsdl:part name="argbytFileStream" type="s:base64Binary"/>
+  </wsdl:message>
+  <wsdl:message name="SendFaxFileSoapOut">
+    <wsdl:part name="SendFaxFileResult" type="s:boolean"/>
+    <wsdl:part name="argsJobId" type="s:string"/>
+  </wsdl:message>
+  <wsdl:message name="SendFaxJobfileSoapIn">
+    <wsdl:part name="argsNumber" type="s:string"/>
+    <wsdl:part name="argoJobFiles" type="tns:JobFile"/>
+  </wsdl:message>
+  <wsdl:message name="SendFaxJobfileSoapOut">
+    <wsdl:part name="SendFaxJobfileResult" type="s:boolean"/>
+    <wsdl:part name="argsJobId" type="s:string"/>
+  </wsdl:message>
+  <wsdl:message name="SendJobSoapIn">
+    <wsdl:part name="argoJobDesc" type="tns:JobDescription"/>
+  </wsdl:message>
+  <wsdl:message name="SendJobSoapOut">
+    <wsdl:part name="SendJobResult" type="s:boolean"/>
+    <wsdl:part name="argsJobId" type="s:string"/>
+  </wsdl:message>
+  <wsdl:message name="GetStationeriesSoapIn"/>
+  <wsdl:message name="GetStationeriesSoapOut">
+    <wsdl:part name="GetStationeriesResult" type="s:boolean"/>
+    <wsdl:part name="argsStationeries" type="tns:ArrayOfString"/>
+  </wsdl:message>
+  <wsdl:portType name="FFaxSoap">
+    <wsdl:operation name="ErrorText">
+      <wsdl:documentation>Returns ErrorText</wsdl:documentation>
+      <wsdl:input message="tns:ErrorTextSoapIn"/>
+      <wsdl:output message="tns:ErrorTextSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="HelloWorld">
+      <wsdl:documentation>Just returns "Hello World" to show it works</wsdl:documentation>
+      <wsdl:input message="tns:HelloWorldSoapIn"/>
+      <wsdl:output message="tns:HelloWorldSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="SendFaxText">
+      <wsdl:documentation>Send fax by giving number and text</wsdl:documentation>
+      <wsdl:input message="tns:SendFaxTextSoapIn"/>
+      <wsdl:output message="tns:SendFaxTextSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="SendFaxFile">
+      <wsdl:documentation>Send single document fax by giving number, filestream and filename</wsdl:documentation>
+      <wsdl:input message="tns:SendFaxFileSoapIn"/>
+      <wsdl:output message="tns:SendFaxFileSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="SendFax">
+      <wsdl:documentation>Send single document fax by giving number and JobFile description</wsdl:documentation>
+      <wsdl:input name="SendFaxJobfile" message="tns:SendFaxJobfileSoapIn"/>
+      <wsdl:output name="SendFaxJobfile" message="tns:SendFaxJobfileSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="SendJob">
+      <wsdl:documentation>Send multiple document fax by giving a complete Jobdescription</wsdl:documentation>
+      <wsdl:input message="tns:SendJobSoapIn"/>
+      <wsdl:output message="tns:SendJobSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="GetStationeries">
+      <wsdl:documentation>Returns list of available stationery documents</wsdl:documentation>
+      <wsdl:input message="tns:GetStationeriesSoapIn"/>
+      <wsdl:output message="tns:GetStationeriesSoapOut"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="FFaxSoap" type="tns:FFaxSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="rpc"/>
+    <wsdl:operation name="ErrorText">
+      <soap:operation soapAction="http://www.officemaster.de/ErrorText" style="rpc"/>
+      <wsdl:input>
+        <soap:body use="literal" namespace="http://www.officemaster.de/"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" namespace="http://www.officemaster.de/"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="HelloWorld">
+      <soap:operation soapAction="http://www.officemaster.de/HelloWorld" style="rpc"/>
+      <wsdl:input>
+        <soap:body use="literal" namespace="http://www.officemaster.de/"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" namespace="http://www.officemaster.de/"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendFaxText">
+      <soap:operation soapAction="http://www.officemaster.de/SendFaxText" style="rpc"/>
+      <wsdl:input>
+        <soap:body use="literal" namespace="http://www.officemaster.de/"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" namespace="http://www.officemaster.de/"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendFaxFile">
+      <soap:operation soapAction="http://www.officemaster.de/SendFaxFile" style="rpc"/>
+      <wsdl:input>
+        <soap:body use="literal" namespace="http://www.officemaster.de/"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" namespace="http://www.officemaster.de/"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendFax">
+      <soap:operation soapAction="http://www.officemaster.de/SendFaxJobfile" style="rpc"/>
+      <wsdl:input name="SendFaxJobfile">
+        <soap:body use="literal" namespace="http://www.officemaster.de/"/>
+      </wsdl:input>
+      <wsdl:output name="SendFaxJobfile">
+        <soap:body use="literal" namespace="http://www.officemaster.de/"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendJob">
+      <soap:operation soapAction="http://www.officemaster.de/SendJob" style="rpc"/>
+      <wsdl:input>
+        <soap:body use="literal" namespace="http://www.officemaster.de/"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" namespace="http://www.officemaster.de/"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStationeries">
+      <soap:operation soapAction="http://www.officemaster.de/GetStationeries" style="rpc"/>
+      <wsdl:input>
+        <soap:body use="literal" namespace="http://www.officemaster.de/"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" namespace="http://www.officemaster.de/"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="FFaxSoap12" type="tns:FFaxSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" style="rpc"/>
+    <wsdl:operation name="ErrorText">
+      <soap12:operation soapAction="http://www.officemaster.de/ErrorText" style="rpc"/>
+      <wsdl:input>
+        <soap12:body use="literal" namespace="http://www.officemaster.de/"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" namespace="http://www.officemaster.de/"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="HelloWorld">
+      <soap12:operation soapAction="http://www.officemaster.de/HelloWorld" style="rpc"/>
+      <wsdl:input>
+        <soap12:body use="literal" namespace="http://www.officemaster.de/"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" namespace="http://www.officemaster.de/"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendFaxText">
+      <soap12:operation soapAction="http://www.officemaster.de/SendFaxText" style="rpc"/>
+      <wsdl:input>
+        <soap12:body use="literal" namespace="http://www.officemaster.de/"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" namespace="http://www.officemaster.de/"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendFaxFile">
+      <soap12:operation soapAction="http://www.officemaster.de/SendFaxFile" style="rpc"/>
+      <wsdl:input>
+        <soap12:body use="literal" namespace="http://www.officemaster.de/"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" namespace="http://www.officemaster.de/"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendFax">
+      <soap12:operation soapAction="http://www.officemaster.de/SendFaxJobfile" style="rpc"/>
+      <wsdl:input name="SendFaxJobfile">
+        <soap12:body use="literal" namespace="http://www.officemaster.de/"/>
+      </wsdl:input>
+      <wsdl:output name="SendFaxJobfile">
+        <soap12:body use="literal" namespace="http://www.officemaster.de/"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendJob">
+      <soap12:operation soapAction="http://www.officemaster.de/SendJob" style="rpc"/>
+      <wsdl:input>
+        <soap12:body use="literal" namespace="http://www.officemaster.de/"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" namespace="http://www.officemaster.de/"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStationeries">
+      <soap12:operation soapAction="http://www.officemaster.de/GetStationeries" style="rpc"/>
+      <wsdl:input>
+        <soap12:body use="literal" namespace="http://www.officemaster.de/"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" namespace="http://www.officemaster.de/"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="FFax">
+    <wsdl:documentation>Webservice to provide fax functionality by using messaging server</wsdl:documentation>
+    <wsdl:port name="FFaxSoap" binding="tns:FFaxSoap">
+      <soap:address location="http://localhost/ofmawsvc3/ffax.asmx"/>
+    </wsdl:port>
+    <wsdl:port name="FFaxSoap12" binding="tns:FFaxSoap12">
+      <soap12:address location="http://localhost/ofmawsvc3/ffax.asmx"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>@mockup.ffax.host.url@</con:endpoint></con:endpoints><con:operation isOneWay="false" action="http://www.officemaster.de/ErrorText" name="ErrorText" bindingOperationName="ErrorText" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>@mockup.ffax.host.url@</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:off="http://www.officemaster.de/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <off:ErrorText/>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.officemaster.de/FFaxSoap/ErrorTextRequest"/></con:call></con:operation><con:operation isOneWay="false" action="http://www.officemaster.de/GetStationeries" name="GetStationeries" bindingOperationName="GetStationeries" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>@mockup.ffax.host.url@</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:off="http://www.officemaster.de/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <off:GetStationeries/>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.officemaster.de/FFaxSoap/GetStationeriesRequest"/></con:call></con:operation><con:operation isOneWay="false" action="http://www.officemaster.de/HelloWorld" name="HelloWorld" bindingOperationName="HelloWorld" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>@mockup.ffax.host.url@</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:off="http://www.officemaster.de/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <off:HelloWorld/>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.officemaster.de/FFaxSoap/HelloWorldRequest"/></con:call></con:operation><con:operation isOneWay="false" action="http://www.officemaster.de/SendFaxJobfile" name="SendFax" bindingOperationName="SendFax" type="Request-Response" outputName="SendFaxJobfile" inputName="SendFaxJobfile" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>@mockup.ffax.host.url@</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:off="http://www.officemaster.de/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <off:SendFax>
+         <argsNumber>?</argsNumber>
+         <argoJobFiles>
+            <!--Optional:-->
+            <off:FileName>?</off:FileName>
+            <!--Optional:-->
+            <off:OrigFileName>?</off:OrigFileName>
+            <!--Optional:-->
+            <off:Stationery1st>?</off:Stationery1st>
+            <!--Optional:-->
+            <off:StationeryOther>?</off:StationeryOther>
+            <off:Stationery1stMerge>?</off:Stationery1stMerge>
+            <off:StationeryOtherMerge>?</off:StationeryOtherMerge>
+            <!--Optional:-->
+            <off:JobData>cid:1117802983380</off:JobData>
+         </argoJobFiles>
+      </off:SendFax>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.officemaster.de/FFaxSoap/SendFaxJobfile"/></con:call></con:operation><con:operation isOneWay="false" action="http://www.officemaster.de/SendFaxFile" name="SendFaxFile" bindingOperationName="SendFaxFile" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>@mockup.ffax.host.url@</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:off="http://www.officemaster.de/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <off:SendFaxFile>
+         <argsNumber>?</argsNumber>
+         <argsFileName>?</argsFileName>
+         <argbytFileStream>cid:1148003385914</argbytFileStream>
+      </off:SendFaxFile>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.officemaster.de/FFaxSoap/SendFaxFileRequest"/></con:call></con:operation><con:operation isOneWay="false" action="http://www.officemaster.de/SendFaxText" name="SendFaxText" bindingOperationName="SendFaxText" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>@mockup.ffax.host.url@</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:off="http://www.officemaster.de/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <off:SendFaxText>
+         <argsNumber>?</argsNumber>
+         <argsText>?</argsText>
+      </off:SendFaxText>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.officemaster.de/FFaxSoap/SendFaxTextRequest"/></con:call></con:operation><con:operation isOneWay="false" action="http://www.officemaster.de/SendJob" name="SendJob" bindingOperationName="SendJob" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>@mockup.ffax.host.url@</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:off="http://www.officemaster.de/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <off:SendJob>
+         <argoJobDesc>
+            <!--Optional:-->
+            <off:OwnCsid>?</off:OwnCsid>
+            <!--Optional:-->
+            <off:RemoteCsid>?</off:RemoteCsid>
+            <!--Optional:-->
+            <off:Header>?</off:Header>
+            <!--Optional:-->
+            <off:Sender>?</off:Sender>
+            <!--Optional:-->
+            <off:ReceiverName>?</off:ReceiverName>
+            <!--Optional:-->
+            <off:ReceiverNumber>?</off:ReceiverNumber>
+            <!--Optional:-->
+            <off:JobFiles>
+               <!--Zero or more repetitions:-->
+               <off:anyType>?</off:anyType>
+            </off:JobFiles>
+            <off:Status>?</off:Status>
+            <off:ErrStatus>?</off:ErrStatus>
+            <off:ErrorCode>?</off:ErrorCode>
+            <!--Optional:-->
+            <off:ErrorStatusText>?</off:ErrorStatusText>
+            <!--Optional:-->
+            <off:ErrorText>?</off:ErrorText>
+            <!--Optional:-->
+            <off:JobType>?</off:JobType>
+            <!--Optional:-->
+            <off:ReceiverType>?</off:ReceiverType>
+            <!--Optional:-->
+            <off:JobId>?</off:JobId>
+            <!--Optional:-->
+            <off:SendTime>?</off:SendTime>
+            <!--Optional:-->
+            <off:JobStatus>?</off:JobStatus>
+            <!--Optional:-->
+            <off:NotifyComponent>?</off:NotifyComponent>
+            <!--Optional:-->
+            <off:NotifyAddress>?</off:NotifyAddress>
+         </argoJobDesc>
+      </off:SendJob>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.officemaster.de/FFaxSoap/SendJobRequest"/></con:call></con:operation></con:interface><con:mockService port="@mockup.parallel.host.port@" path="@mockup.parallel.host.context@" name="LogonToPISoap MockService" host="" bindToHostOnly="false" docroot=""><con:settings/><con:mockOperation name="LKWVerladeAuftragLoeschen" interface="LogonToPISoap" operation="LKWVerladeAuftragLoeschen"><con:settings/><con:dispatchPath/><con:dispatchStyle>QUERY_MATCH</con:dispatchStyle><con:defaultResponse>NoError</con:defaultResponse><con:response name="NoError" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:log="http://194.11.246.115/LogonToPISrv">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <log:LKWVerladeAuftragLoeschenResponse>
+         <!--Optional:-->
+         <log:LKWVerladeAuftragLoeschenResult>
+            <log:ErrorCode>NoError</log:ErrorCode>
+            <!--Optional:-->
+            <log:ErrorMessage>No error.</log:ErrorMessage>
+         </log:LKWVerladeAuftragLoeschenResult>
+      </log:LKWVerladeAuftragLoeschenResponse>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://194.11.246.115/LogonToPISrv/LogonToPISoap/LKWVerladeAuftragLoeschenResponse"/></con:response><con:response name="TechnicalError" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:log="http://194.11.246.115/LogonToPISrv">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <log:LKWVerladeAuftragLoeschenResponse>
+         <!--Optional:-->
+         <log:LKWVerladeAuftragLoeschenResult>
+            <log:ErrorCode>TechnicalError</log:ErrorCode>
+            <!--Optional:-->
+            <log:ErrorMessage>Technical error.</log:ErrorMessage>
+         </log:LKWVerladeAuftragLoeschenResult>
+      </log:LKWVerladeAuftragLoeschenResponse>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://194.11.246.115/LogonToPISrv/LogonToPISoap/LKWVerladeAuftragLoeschenResponse"/></con:response><con:response name="ApplicationError" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:log="http://194.11.246.115/LogonToPISrv">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <log:LKWVerladeAuftragLoeschenResponse>
+         <!--Optional:-->
+         <log:LKWVerladeAuftragLoeschenResult>
+            <log:ErrorCode>ApplicationError</log:ErrorCode>
+            <!--Optional:-->
+            <log:ErrorMessage>Application error.</log:ErrorMessage>
+         </log:LKWVerladeAuftragLoeschenResult>
+      </log:LKWVerladeAuftragLoeschenResponse>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://194.11.246.115/LogonToPISrv/LogonToPISoap/LKWVerladeAuftragLoeschenResponse"/></con:response><con:response name="EmptyResponse" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:log="http://194.11.246.115/LogonToPISrv">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <log:LKWVerladeAuftragLoeschenResponse/>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://194.11.246.115/LogonToPISrv/LogonToPISoap/LKWVerladeAuftragLoeschenResponse"/></con:response><con:dispatchConfig xsi:type="con:MockOperationQueryMatchDispatch" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:query><con:name>Id_equals_to_100</con:name><con:query>declare namespace log='http://194.11.246.115/LogonToPISrv';
+declare namespace soapenv='http://schemas.xmlsoap.org/soap/envelope/';
+
+//log:verladeauftrag_id</con:query><con:match>100</con:match><con:response>TechnicalError</con:response></con:query><con:query><con:name>Id_equals_to_200</con:name><con:query>declare namespace log='http://194.11.246.115/LogonToPISrv';
+declare namespace soapenv='http://schemas.xmlsoap.org/soap/envelope/';
+
+//log:verladeauftrag_id</con:query><con:match>200</con:match><con:response>ApplicationError</con:response></con:query><con:query><con:name>Id_equals_to_300</con:name><con:query>declare namespace log='http://194.11.246.115/LogonToPISrv';
+declare namespace soapenv='http://schemas.xmlsoap.org/soap/envelope/';
+
+//log:verladeauftrag_id</con:query><con:match>300</con:match><con:response>EmptyResponse</con:response></con:query></con:dispatchConfig></con:mockOperation><con:mockOperation name="LKWVerladeAuftragNeu" interface="LogonToPISoap" operation="LKWVerladeAuftragNeu"><con:settings/><con:dispatchStyle>QUERY_MATCH</con:dispatchStyle><con:defaultResponse>NoError</con:defaultResponse><con:response name="NoError" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:log="http://194.11.246.115/LogonToPISrv">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <log:LKWVerladeAuftragNeuResponse>
+         <!--Optional:-->
+         <log:LKWVerladeAuftragNeuResult>
+            <log:ErrorCode>NoError</log:ErrorCode>
+            <!--Optional:-->
+            <log:ErrorMessage>No error.</log:ErrorMessage>
+         </log:LKWVerladeAuftragNeuResult>
+      </log:LKWVerladeAuftragNeuResponse>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://194.11.246.115/LogonToPISrv/LogonToPISoap/LKWVerladeAuftragNeuResponse"/></con:response><con:response name="TechnicalError" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:log="http://194.11.246.115/LogonToPISrv">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <log:LKWVerladeAuftragNeuResponse>
+         <!--Optional:-->
+         <log:LKWVerladeAuftragNeuResult>
+            <log:ErrorCode>TechnicalError</log:ErrorCode>
+            <!--Optional:-->
+            <log:ErrorMessage>Technical error.</log:ErrorMessage>
+         </log:LKWVerladeAuftragNeuResult>
+      </log:LKWVerladeAuftragNeuResponse>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://194.11.246.115/LogonToPISrv/LogonToPISoap/LKWVerladeAuftragNeuResponse"/></con:response><con:response name="ApplicationError" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:log="http://194.11.246.115/LogonToPISrv">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <log:LKWVerladeAuftragNeuResponse>
+         <!--Optional:-->
+         <log:LKWVerladeAuftragNeuResult>
+            <log:ErrorCode>ApplicationError</log:ErrorCode>
+            <!--Optional:-->
+            <log:ErrorMessage>Application error.</log:ErrorMessage>
+         </log:LKWVerladeAuftragNeuResult>
+      </log:LKWVerladeAuftragNeuResponse>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://194.11.246.115/LogonToPISrv/LogonToPISoap/LKWVerladeAuftragNeuResponse"/></con:response><con:response name="EmptyResponse" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:log="http://194.11.246.115/LogonToPISrv">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <log:LKWVerladeAuftragNeuResponse/>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://194.11.246.115/LogonToPISrv/LogonToPISoap/LKWVerladeAuftragNeuResponse"/></con:response><con:dispatchConfig xsi:type="con:MockOperationQueryMatchDispatch" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:query><con:name>Id_equals_to_100</con:name><con:query>declare namespace log='http://194.11.246.115/LogonToPISrv';
+declare namespace soapenv='http://schemas.xmlsoap.org/soap/envelope/';
+
+//log:verladeauftrag_id</con:query><con:match>100</con:match><con:response>TechnicalError</con:response></con:query><con:query><con:name>Id_equals_to_200</con:name><con:query>declare namespace log='http://194.11.246.115/LogonToPISrv';
+declare namespace soapenv='http://schemas.xmlsoap.org/soap/envelope/';
+
+//log:verladeauftrag_id</con:query><con:match>200</con:match><con:response>ApplicationError</con:response></con:query><con:query><con:name>Id_equals_to_300</con:name><con:query>declare namespace log='http://194.11.246.115/LogonToPISrv';
+declare namespace soapenv='http://schemas.xmlsoap.org/soap/envelope/';
+
+//log:verladeauftrag_id</con:query><con:match>300</con:match><con:response>EmptyResponse</con:response></con:query></con:dispatchConfig></con:mockOperation><con:mockOperation name="PDAAnmeldung" interface="LogonToPISoap" operation="PDAAnmeldung"><con:settings/><con:dispatchStyle>QUERY_MATCH</con:dispatchStyle><con:defaultResponse>NoError</con:defaultResponse><con:response name="NoError" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:log="http://194.11.246.115/LogonToPISrv">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <log:PDAAnmeldungResponse>
+         <!--Optional:-->
+         <log:PDAAnmeldungResult>
+            <log:ErrorCode>NoError</log:ErrorCode>
+            <!--Optional:-->
+            <log:ErrorMessage>No error.</log:ErrorMessage>
+         </log:PDAAnmeldungResult>
+      </log:PDAAnmeldungResponse>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://194.11.246.115/LogonToPISrv/LogonToPISoap/PDAAnmeldungResponse"/></con:response><con:response name="TechnicalError" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:log="http://194.11.246.115/LogonToPISrv">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <log:PDAAnmeldungResponse>
+         <!--Optional:-->
+         <log:PDAAnmeldungResult>
+            <log:ErrorCode>TechnicalError</log:ErrorCode>
+            <!--Optional:-->
+            <log:ErrorMessage>Technical error.</log:ErrorMessage>
+         </log:PDAAnmeldungResult>
+      </log:PDAAnmeldungResponse>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://194.11.246.115/LogonToPISrv/LogonToPISoap/PDAAnmeldungResponse"/></con:response><con:response name="ApplicationError" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:log="http://194.11.246.115/LogonToPISrv">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <log:PDAAnmeldungResponse>
+         <!--Optional:-->
+         <log:PDAAnmeldungResult>
+            <log:ErrorCode>ApplicationError</log:ErrorCode>
+            <!--Optional:-->
+            <log:ErrorMessage>Application error.</log:ErrorMessage>
+         </log:PDAAnmeldungResult>
+      </log:PDAAnmeldungResponse>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://194.11.246.115/LogonToPISrv/LogonToPISoap/PDAAnmeldungResponse"/></con:response><con:response name="EmptyResponse" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:log="http://194.11.246.115/LogonToPISrv">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <log:PDAAnmeldungResponse/>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://194.11.246.115/LogonToPISrv/LogonToPISoap/PDAAnmeldungResponse"/></con:response><con:dispatchConfig xsi:type="con:MockOperationQueryMatchDispatch" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:query><con:name>Id_equals_to_100</con:name><con:query>declare namespace log='http://194.11.246.115/LogonToPISrv';
+declare namespace soapenv='http://schemas.xmlsoap.org/soap/envelope/';
+
+//log:verladeauftrag_id</con:query><con:match>100</con:match><con:response>TechnicalError</con:response></con:query><con:query><con:name>Id_equals_to_200</con:name><con:query>declare namespace log='http://194.11.246.115/LogonToPISrv';
+declare namespace soapenv='http://schemas.xmlsoap.org/soap/envelope/';
+
+//log:verladeauftrag_id</con:query><con:match>200</con:match><con:response>ApplicationError</con:response></con:query><con:query><con:name>Id_equals_to_300</con:name><con:query>declare namespace log='http://194.11.246.115/LogonToPISrv';
+declare namespace soapenv='http://schemas.xmlsoap.org/soap/envelope/';
+
+//log:verladeauftrag_id</con:query><con:match>300</con:match><con:response>EmptyResponse</con:response></con:query></con:dispatchConfig></con:mockOperation><con:mockOperation name="VersionNr" interface="LogonToPISoap" operation="VersionNr"><con:settings/><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:defaultResponse>1.0.0.0</con:defaultResponse><con:response name="1.0.0.0" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:log="http://194.11.246.115/LogonToPISrv">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <log:VersionNrResponse>
+         <!--Optional:-->
+         <log:VersionNrResult>1.0.0.0</log:VersionNrResult>
+      </log:VersionNrResponse>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://194.11.246.115/LogonToPISrv/LogonToPISoap/VersionNrResponse"/></con:response><con:dispatchConfig/></con:mockOperation><con:properties/></con:mockService><con:mockService port="@mockup.order_delivery.host.port@" path="@mockup.order_delivery.host.context@" name="Logon_Delivery_Async_MIBinding MockService" host="" bindToHostOnly="false" docroot=""><con:settings/><con:mockOperation name="Logon_Delivery_Async_MI" interface="Logon_Delivery_Async_MIBinding" operation="Logon_Delivery_Async_MI"><con:settings/><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:defaultResponse>NoResponse</con:defaultResponse><con:response name="NoResponse" encoding="UTF-8"><con:settings/><con:responseContent/><con:wsaConfig mustUnderstand="NONE" version="200508"/></con:response><con:dispatchConfig/></con:mockOperation><con:properties/></con:mockService><con:mockService port="@mockup.fsms.host.port@" path="@mockup.fsms.host.context@" name="FSmsSoap MockService" host="" bindToHostOnly="false" docroot=""><con:settings/><con:mockOperation name="ErrorText" interface="FSmsSoap" operation="ErrorText"><con:settings/><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:defaultResponse>Default Error</con:defaultResponse><con:response name="Default Error" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:off="http://www.officemaster.de/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <off:ErrorTextResponse>
+         <ErrorTextResult>Default Error: no reasons.</ErrorTextResult>
+      </off:ErrorTextResponse>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.officemaster.de/FSmsSoap/ErrorTextResponse"/></con:response><con:dispatchConfig/></con:mockOperation><con:mockOperation name="HelloWorld" interface="FSmsSoap" operation="HelloWorld"><con:settings/><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:defaultResponse>Response 1</con:defaultResponse><con:response name="Hello World!" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:off="http://www.officemaster.de/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <off:HelloWorldResponse>
+         <HelloWorldResult>Hello World!</HelloWorldResult>
+      </off:HelloWorldResponse>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.officemaster.de/FSmsSoap/HelloWorldResponse"/></con:response><con:dispatchConfig/></con:mockOperation><con:mockOperation name="SendSms" interface="FSmsSoap" operation="SendSms"><con:settings/><con:dispatchStyle>QUERY_MATCH</con:dispatchStyle><con:defaultResponse>Successful Call</con:defaultResponse><con:response name="Successful Call" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:off="http://www.officemaster.de/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <off:SendSmsResponse>
+         <SendSmsResult>true</SendSmsResult>
+         <argsJobId>1000</argsJobId>
+      </off:SendSmsResponse>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.officemaster.de/FSmsSoap/SendSmsResponse"/></con:response><con:response name="Unsuccessful Call" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:off="http://www.officemaster.de/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <off:SendSmsResponse>
+         <SendSmsResult>false</SendSmsResult>
+         <argsJobId>2000</argsJobId>
+      </off:SendSmsResponse>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.officemaster.de/FSmsSoap/SendSmsResponse"/></con:response><con:response name="Empty Response" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:off="http://www.officemaster.de/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <off:SendSmsResponse>
+         <SendSmsResult/>
+         <argsJobId/>
+      </off:SendSmsResponse>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.officemaster.de/FSmsSoap/SendSmsResponse"/></con:response><con:dispatchConfig xsi:type="con:MockOperationQueryMatchDispatch" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:query><con:name>argsNumber_unsuccess</con:name><con:query>declare namespace soapenv='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace off='http://www.officemaster.de/';
+
+//off:SendSms/argsNumber</con:query><con:match>wrong number</con:match><con:response>Unsuccessful Call</con:response></con:query><con:query><con:name>argsNumber_empty</con:name><con:query>declare namespace soapenv='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace off='http://www.officemaster.de/';
+
+//off:SendSms/argsNumber</con:query><con:match>empty number</con:match><con:response>Empty Response</con:response></con:query></con:dispatchConfig></con:mockOperation><con:properties/></con:mockService><con:mockService port="@mockup.ffax.host.port@" path="@mockup.ffax.host.context@" name="FFaxSoap MockService"><con:settings/><con:mockOperation name="ErrorText" interface="FFaxSoap" operation="ErrorText"><con:settings/><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:defaultResponse>Default Error</con:defaultResponse><con:response name="Default Error" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:off="http://www.officemaster.de/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <off:ErrorTextResponse>
+         <ErrorTextResult>Default Error: no reasons.</ErrorTextResult>
+      </off:ErrorTextResponse>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.officemaster.de/FFaxSoap/ErrorTextResponse"/></con:response><con:dispatchConfig/></con:mockOperation><con:mockOperation name="GetStationeries" interface="FFaxSoap" operation="GetStationeries"><con:settings/><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:defaultResponse>Available Stationeries</con:defaultResponse><con:response name="Available Stationeries" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:off="http://www.officemaster.de/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <off:GetStationeriesResponse>
+         <GetStationeriesResult>true</GetStationeriesResult>
+         <argsStationeries>
+               <off:string>business A</off:string>
+               <off:string>business B</off:string>
+               <off:string>business C</off:string>
+         </argsStationeries>
+      </off:GetStationeriesResponse>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.officemaster.de/FFaxSoap/GetStationeriesResponse"/></con:response><con:dispatchConfig/></con:mockOperation><con:mockOperation name="HelloWorld" interface="FFaxSoap" operation="HelloWorld"><con:settings/><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:defaultResponse>Response 1</con:defaultResponse><con:response name="Hello World!" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:off="http://www.officemaster.de/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <off:HelloWorldResponse>
+         <HelloWorldResult>Hello World!</HelloWorldResult>
+      </off:HelloWorldResponse>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.officemaster.de/FFaxSoap/HelloWorldResponse"/></con:response><con:dispatchConfig/></con:mockOperation><con:mockOperation name="SendFaxFile" interface="FFaxSoap" operation="SendFaxFile"><con:settings/><con:dispatchStyle>QUERY_MATCH</con:dispatchStyle><con:defaultResponse>Successful Call</con:defaultResponse><con:response name="Successful Call" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:off="http://www.officemaster.de/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <off:SendFaxFileResponse>
+         <SendFaxFileResult>true</SendFaxFileResult>
+         <argsJobId>5000</argsJobId>
+      </off:SendFaxFileResponse>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.officemaster.de/FFaxSoap/SendFaxFileResponse"/></con:response><con:response name="Unsuccessful Call" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:off="http://www.officemaster.de/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <off:SendFaxFileResponse>
+         <SendFaxFileResult>false</SendFaxFileResult>
+         <argsJobId>6000</argsJobId>
+      </off:SendFaxFileResponse>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.officemaster.de/FFaxSoap/SendFaxFileResponse"/></con:response><con:response name="Empty Response" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:off="http://www.officemaster.de/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <off:SendFaxFileResponse>
+         <SendFaxFileResult/>
+         <argsJobId/>
+      </off:SendFaxFileResponse>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.officemaster.de/FFaxSoap/SendFaxFileResponse"/></con:response><con:dispatchConfig xsi:type="con:MockOperationQueryMatchDispatch" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:query><con:name>argsNumber_unsuccess</con:name><con:query>declare namespace soapenv='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace off='http://www.officemaster.de/';
+
+//off:SendFaxFile/argsNumber</con:query><con:match>wrong number</con:match><con:response>Unsuccessful Call</con:response></con:query><con:query><con:name>argsNumber_empty</con:name><con:query>declare namespace soapenv='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace off='http://www.officemaster.de/';
+
+//off:SendFaxFile/argsNumber</con:query><con:match>empty number</con:match><con:response>Empty Response</con:response></con:query></con:dispatchConfig></con:mockOperation><con:mockOperation name="SendFaxText" interface="FFaxSoap" operation="SendFaxText"><con:settings/><con:dispatchStyle>QUERY_MATCH</con:dispatchStyle><con:defaultResponse>Successful Call</con:defaultResponse><con:response name="Successful Call" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:off="http://www.officemaster.de/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <off:SendFaxTextResponse>
+         <SendFaxTextResult>true</SendFaxTextResult>
+         <argsJobId>3000</argsJobId>
+      </off:SendFaxTextResponse>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.officemaster.de/FFaxSoap/SendFaxTextResponse"/></con:response><con:response name="Unsuccessful Call" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:off="http://www.officemaster.de/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <off:SendFaxTextResponse>
+         <SendFaxTextResult>false</SendFaxTextResult>
+         <argsJobId>4000</argsJobId>
+      </off:SendFaxTextResponse>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.officemaster.de/FFaxSoap/SendFaxTextResponse"/></con:response><con:response name="Empty Response" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:off="http://www.officemaster.de/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <off:SendFaxTextResponse>
+         <SendFaxTextResult/>
+         <argsJobId/>
+      </off:SendFaxTextResponse>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.officemaster.de/FFaxSoap/SendFaxTextResponse"/></con:response><con:dispatchConfig xsi:type="con:MockOperationQueryMatchDispatch" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:query><con:name>argsNumber_unsuccess</con:name><con:query>declare namespace soapenv='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace off='http://www.officemaster.de/';
+
+//off:SendFaxText/argsNumber</con:query><con:match>wrong number</con:match><con:response>Unsuccessful Call</con:response></con:query><con:query><con:name>argsNumber_empty</con:name><con:query>declare namespace soapenv='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace off='http://www.officemaster.de/';
+
+//off:SendFaxText/argsNumber</con:query><con:match>empty number</con:match><con:response>Empty Response</con:response></con:query></con:dispatchConfig></con:mockOperation><con:properties/></con:mockService><con:properties/><con:wssContainer/></con:soapui-project>

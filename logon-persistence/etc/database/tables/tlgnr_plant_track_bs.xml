@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNR_PLANT_TRACK_BS" refData="true"
+           description="Track at a plant. Each loadingpoint for rail refers to a track. Several loadingpoints of several shippingpoints of a plant can share the same track though. Track information + position information of the wagon on this track denote the exact location of a wagon at a plant; this information is used and updated in rail disposition.">
+
+        <column name="PLANT_TRACK_CD" primaryKey="true" required="true" type="DECIMAL" size="4"
+                description="PK. Code of the Reference Data."/>
+        <column name="PLANT_CD" required="true" type="VARCHAR" size="4"
+                description="FK tlgnr_plant. Plant to which the track belongs. Several loadingpoints of different shippingpoints can share the same track (case loadingpoint bag products in Untervaz, normal+narrow gauge), therefore a track can only be owned by a plant."/>
+        <column name="TRACK_NAME" required="true" type="VARCHAR" size="20"
+                description="The name of the track, unique per plant. Examples: H1, H2, Z1, ..."/>
+        <column name="CTL_ACT_CD" required="true" type="BOOLEAN"
+                description="Active Flag. When new data is entered, only reference data with active flag are available for selection normally."/>
+
+        <foreign-key foreignTable="TLGNR_PLANT_BS" name="FK_TLGNR_PLANT_TRACK_PLANT">
+            <reference local="PLANT_CD" foreign="PLANT_CD"/>
+        </foreign-key>
+
+        <unique name="UQ_TLGNR_PLANT_TRACK">
+            <unique-column name="PLANT_CD"/>
+            <unique-column name="TRACK_NAME"/>
+        </unique>
+    </table>
+</database>

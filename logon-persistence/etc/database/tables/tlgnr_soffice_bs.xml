@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNR_SOFFICE_BS" refData="true"
+           description="Reference data table for the Sales office.">
+
+        <column name="SOFFICE_CD" primaryKey="true" required="true" type="VARCHAR" size="4"
+                description="PK. A sales office. E.g. S001, S002."/>
+
+        <column name="SOFFICE_NAME" required="true" type="VARCHAR" size="30"
+                description="Name of the sales office."/>
+        <!-- Technical Attributes -->
+        <column name="CTL_ACT_CD" required="true" type="BOOLEAN"
+                description="Active Flag. When new data is entered, only reference data with active flag are available for selection normally."/>
+
+      </table>
+</database>

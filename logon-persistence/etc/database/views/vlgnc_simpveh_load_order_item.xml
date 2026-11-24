@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="VLGNC_SIMPVEH_LOAD_ORDER_ITEM" mappingType="view" skipSql="true">
+        <column name="SIMPVEH_LOAD_ORDER_ITEM_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="SIMPLE_VEHICLE_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="ORDER_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="ORDER_STATUS_CD" required="true" type="DECIMAL" size="2"/>
+        <column name="ORDER_NUMBER" type="DECIMAL" size="12"/>
+        <column name="ORDER_ITEM_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="ORDER_ITEM_NO" required="true" type="DECIMAL" size="3"/>
+        <column name="MATERIAL_DESCRIPTION" required="true" type="VARCHAR" size="40"/>
+        <column name="ORDERED_QUANTITY" type="DECIMAL" size="12,4"/>
+        <column name="ORDERED_UOM_CD" type="VARCHAR" size="3"/>
+        <column name="LOADED_QUANTITY" type="DECIMAL" size="12,4"/>
+        <column name="BASE_UOM_CD" required="true" type="VARCHAR" size="3"/>
+        <column name="LOADED_UOM_CD" type="VARCHAR" size="3"/>
+        <column name="LOADINGPOINT_ID" type="DECIMAL" size="12"/>
+        <column name="LANG_CD" required="true" type="VARCHAR" size="2"/>
+    </table>
+</database>

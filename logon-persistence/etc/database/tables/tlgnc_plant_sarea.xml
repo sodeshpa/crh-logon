@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNC_PLANT_SAREA"
+           description="A plant can be assigned to several sales areas even if they are not assigned to the same company code as the sales organization. One sales area does the business with the customer. This sales area is assigned to a company code. The plant, from where the product is delivered belongs to another company code, but it is also assigned to the sales area that sells to the customer.">
+
+		<column name="PLANT_SAREA_ID" primaryKey="true" required="true" type="DECIMAL" size="12"
+                description="PK"/>
+	    <column name="PLANT_CD" required="true" type="VARCHAR" size="4"
+                description="FK tlgnr_plant_bs. (Production) plant related to the Sales Areas. One Plant can be assigned to many Sales Areas."/>
+        <column name="SAREA_ID" required="true" type="DECIMAL" size="12"
+                description="FK TLGNC_SAREA. Sales Area related to the plants. One Sales Area can be assigned to many Plants"/>
+
+ 		<foreign-key foreignTable="TLGNR_PLANT_BS" name="FK_TLGNC_PLANT_SAREA_PLANT">
+            <reference local="PLANT_CD" foreign="PLANT_CD"/>
+		</foreign-key>
+		<foreign-key foreignTable="TLGNC_SAREA" name="FK_TLGNC_PLANT_SAREA_SAREA">
+            <reference local="SAREA_ID" foreign="SAREA_ID"/>
+		</foreign-key>
+		
+        <unique name="UQ_TLGNC_PLANT_SAREA_IDS">
+            <unique-column name="PLANT_CD"/>
+            <unique-column name="SAREA_ID"/>
+        </unique>      
+    </table>
+</database>

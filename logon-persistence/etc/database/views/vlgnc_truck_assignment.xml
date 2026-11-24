@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="VLGNC_TRUCK_ASSIGNMENT" mappingType="view" skipSql="true">
+        <column name="ASSIGNMENT_TRUCK_ID" type="VARCHAR" size="81"/>
+        <column name="ASSIGNMENT_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="ASSIGNMENT_PART_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="ORDER_ID" type="DECIMAL" size="12"/>
+        <column name="TRUCK_ID" type="DECIMAL" size="12"/>
+        <column name="TRUCK_NAME" required="true" type="VARCHAR" size="30"/>
+    </table>
+</database>

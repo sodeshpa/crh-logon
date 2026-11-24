@@ -1,0 +1,567 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans>
+ 
+    <bean package="com.crh.logon.eventbeans.mop" name="Setup">
+        <field name="pdaUserLanguage" type="String">
+            language of the pda user
+            required: yes
+        </field>
+        <field name="pdaUserNo" type="String">
+            The user Number (Identification No)
+            required: yes
+        </field>
+        <field name="pdaUserName" type="String">
+            The Name of the pda user
+            required: yes
+        </field>
+        <field name="pdaUserRoles" type="String">
+            Comma-separated list of roles of the pda user
+            required: yes
+        </field>
+        <field name="pdaUserSignatureMissing" type="String">
+            indicating, if signature Event has to be called [true|false]
+            required: yes
+        </field>
+        <field name="truckLabel" type="String">
+            Label of currently stored truck
+            required: no
+        </field>
+        <field name="trailerLabel" type="String">
+            Label of currently stored trailer
+            required: no
+        </field>
+        <field name="containerLabel" type="String">
+            Label of currently stored container
+            required: no
+        </field>
+        <field name="geoPositionTimeIntervall" type="String">
+            Zeit zwischen zwei GeoPosition Events in Sekunden
+            required: yes
+        </field>
+        <field name="geoPositionDistanceIntervall" type="String">
+            Distanz zwischen zwei GeoPosition Events in km
+            required: yes
+        </field>
+        <field name="geoPositionMinimumAngle" type="String">
+            Minimaler Winkel in Grad, ab dem haeufiger GeoEvents geschickt werden [Number]
+            required: yes
+        </field>
+        <field name="geoPositionMinimumDistance" type="String">
+            Bei Unterschreitung von minimumAngle wird alle x Meter ein GeoEvent geschickt [Number]
+            required: yes
+        </field>
+    </bean>
+
+    <bean package="com.crh.logon.eventbeans.mop" name="ReadyForOperation">
+    </bean>
+
+    <bean package="com.crh.logon.eventbeans.mop" name="LoadOrder">
+        <field name="assignmentPartID" type="String">
+            AssignmentPart ID [ID]
+            required: yes
+        </field>
+        <field name="assignmentID" type="String">
+            LOGON Assignment ID (TourID) [ID]
+            required: yes
+        </field>
+        <field name="seqNo" type="String">
+            Sequence of the assignmentPart in the Assignment [Number]
+            required: yes
+        </field>
+        <field name="siteType" type="String">
+            Site type of the shipping point or ship-to for reverse orders: loadingSite|unloadingSite. [String]
+            required: no
+        </field>
+        <field name="orderNumber" type="String">
+            The order number the load order items belong to [ID]
+            required: no
+        </field>
+        <field name="validationCode" type="String">
+            The order validation code required by certain LDS systems such as Fenics
+            required: no
+        </field>
+        <field name="loadingType" type="String">
+            loading Type [String]
+            required: yes
+        </field>
+        <field name="lastEvent" type="String">
+            Latest order-relevant event received from PDA
+            required: yes
+        </field>
+        <field name="material" type="String">
+            Ordered Material [String]
+            required: yes
+        </field>
+        <field name="chamber" type="String">
+            If truck is unloaded: chamber number to load. If truck is loaded: chamber number loaded [Number]
+            required: yes
+        </field>
+        <field name="orderedQuantity" type="String">
+            Ordered Quantity. Can be in any UOM (Truck, kg, …) [String]
+            required: yes
+        </field>
+        <field name="loadedQuantity" type="String">
+            If truck is loaded: Loaded Quantity in kg [Number]
+            required: no
+        </field>
+        <field name="expectedQuantity" type="String">
+            used if loadingType=?wagon?. contains Quantity that is expected to be unloaded from wagon to truck in kg [Number]
+            required: no
+        </field>
+        <field name="startTime" type="String">
+            Defines the start time of the assignmentPart. Sorting field for order at PDA [DateTime]
+            required: yes
+        </field>
+        <field name="endTime" type="String">
+            Defines the end time of the load order [DateTime]
+            required: yes
+        </field>
+        <field name="shippingpointID" type="String">
+            Shippingpoint ID [ID]
+            required: no (in case of order update after loading)
+        </field>
+        <field name="shippingpointName" type="String">
+            Name of the Shippingpoint [String]
+            required: no (in case of order update after loading)
+        </field>
+        <field name="shippingpointCoordLat" type="String">
+            Latitude coordinates of the shippingpoint [Coordinates]
+            required: no
+        </field>
+        <field name="shippingpointCoordLon" type="String">
+            Longitute coordinates of the shippingpoint [Coordinates]
+            required: no
+        </field>
+        <field name="shippingpointGeofenceRadius" type="String">
+            The geofence radius of the shippingpoint in meters. [Number]
+            required: no
+        </field>
+        <field name="loadingPointList" type="loadingPoint*">
+            List of "rfidObject" elements identifying loading points
+            required: no (only if loadingType in {bulk, bulk-parallel, bulk-pda, bulk-logon})
+        </field>
+        <field name="containerList" type="rfidObject*">
+            List of "rfidObject" elements identifying containers
+            required: no (only if loadingType = ?container?)
+        </field>
+        <field name="wagonList" type="rfidObject*">
+            List of "rfidObject" elements identifying rail wagons
+            required: no (only if loadingType = ?wagon?)
+        </field>
+        <field name="noteToDriver" type="String">
+            Note on Order to the Driver [String]
+            required: no
+        </field>
+        <field name="enableLdsOfflineMode" type="String">
+            Indicates if LDS loading can be skipped.
+        </field>
+        <field name="ldsOfflineMode" type="String">
+            Indicates if LDS loading was skipped.
+        </field>                     
+    </bean>
+
+    <bean package="com.crh.logon.eventbeans.mop" name="UnloadOrder">
+        <field name="assignmentPartID" type="String">
+            AssignmentPart ID [ID]
+            required: yes
+        </field>
+        <field name="assignmentID" type="String">
+            LOGON Assignment ID (TourID) [ID]
+            required: yes
+        </field>
+        <field name="actualFirstEventTime" type="String">
+            Date and time of the enterShipto event
+            required: no
+        </field>
+        <field name="seqNo" type="String">
+            Sequence of the assignmentPart in the Assignment [Number]
+            required: yes
+        </field>
+        <field name="orderNumber" type="String">
+            The order number the unload order items belong to [ID]
+            required: yes
+        </field>
+        <field name="externalOrderNumber" type="String">
+            The external order number the unload order items belong to [ID]
+            required: no
+        </field>
+        <field name="deliveryType" type="String">
+            delivery Type [String]
+            required: no
+        </field>
+        <field name="distance" type="String">
+            Transport distance from shipping point to ship-to in m. [Number]
+            required: no
+        </field>
+        <field name="drivingTime" type="String">
+            Transport duration from shippin point to ship-to in minutes. [Number]
+            required: no
+        </field>
+        <field name="startTime" type="String">
+            Defines the start time of the order. Sorting field for order at PDA [DateTime]
+            required: yes
+        </field>
+        <field name="endTime" type="String">
+            Defines the end time of the order. [DateTime]
+            required: yes
+        </field>
+        <field name="deliveryFromDat" type="String">
+            Defines the beginning (date and time) of the time frame when the delivery has to happen.[DateTime]
+            required: no
+        </field>
+        <field name="deliveryToDat" type="String">
+            Defines the end (date and time) of the time frame when the delivery has to happen. [DateTime]
+            required: no
+        </field>
+         <field name="deliveryTimeWindowFromDat" type="String">
+            Defines the time window between start date. [DateTime]
+            required: no
+        </field>
+        <field name="deliveryTimeWindowToDat" type="String">
+            Defines the time window between end date. [DateTime]
+            required: no
+        </field>
+        <field name="shipToID" type="String">
+            ShipTo ID [ID]
+            required: yes
+        </field>
+        <field name="shipToName1" type="String">
+            Line 1 of Address of ShipTo: Name [String]
+            required: no
+        </field>
+        <field name="shipToName2" type="String">
+            Line 1 of Address of ShipTo: Name [String]
+            required: no
+        </field>
+        <field name="shipToName3" type="String">
+            Line 1 of Address of ShipTo: Name [String]
+            required: no
+        </field>
+        <field name="shipToCoordLat" type="String">
+            Latitude coordinates of the shipto [Coordinates]
+            required: no
+        </field>
+        <field name="shipToCoordLon" type="String">
+            Longitute coordinates of the shipto  [Coordinates]
+            required: no
+        </field>
+        <field name="shipToGeofenceRadius" type="String">
+            The geofence radius of the shipto in meters. [Number]
+            required: no
+        </field>
+        <field name="contactPersonName" type="String">
+            Name of the contact person [String]
+            required: no
+        </field>
+        <field name="customerName" type="String">
+            Name of the customer {String}
+            required: no (only if deliveryType=?exw?)
+        </field>
+        <field name="customerLanguage" type="String">
+            language of the customer (the ShipTo) [Lang]
+            required: no (only if deliveryType=?exw?)
+        </field>
+        <field name="customer" type="rfidObject">
+            "rfidObject" element containing customer number (?objectID?) and customer RFIDs (?rfidTag?).
+            required: no (only if deliveryType=?exw?)
+        </field>
+        <field name="noteForDeliveryNote" type="String">
+            Note for the Delivery Note [String]
+            required: no
+        </field>
+        <field name="signatureType" type="String">
+            Kundenunterschrift zwingend 0=mandatory, 1=optional, 2=no signature. [Number]
+            required: yes
+        </field>
+        <field name="noteToDriver" type="String">
+            Note on Order to the Driver [String]
+            required: no
+        </field>
+        <field name="unloadOrderItems" type="unloadOrderItem*">
+            List of "unloadOrderItem", at least one entry.
+            required: yes (>=1)
+        </field>
+    </bean>
+
+    <bean package="com.crh.logon.eventbeans.mop" name="CancelTour">
+        <field name="assignmentID" type="String">
+            LOGON Assignment ID (TourID)
+            required: yes
+        </field>
+    </bean>
+
+    <bean package="com.crh.logon.eventbeans.mop" name="PreOrder">
+        <field name="assignmentPartID" type="String">
+            LOGON AssignmentPart ID (AuftragsID)
+            required: yes
+        </field>
+        <field name="assignmentID" type="String">
+            LOGON Assignment ID (TourID) [ID]
+            required: yes
+        </field>
+        <field name="lastEvent" type="String">
+            Latest order-relevant event received from PDA
+            required: yes
+        </field>
+        <field name="distance" type="String">
+            driving distance in m. [Number]
+            required: no
+        </field>
+        <field name="drivingTime" type="String">
+            Driving duration in minutes. [Number]
+            required: no
+        </field>
+        <field name="startTime" type="String">
+            Defines the beginning (date and time) of the pre-order.[DateTime]
+            required: yes
+        </field>
+        <field name="endTime" type="String">
+            Defines the end (date and time) of the pre-order. [DateTime]
+            required: yes
+        </field>
+        <field name="startpointName1" type="String">
+            Line 1 of Address of the startpoint: Name [String]
+            required: no
+        </field>
+        <field name="startpointName2" type="String">
+            Line 1 of Address of the startpoint: Name [String]
+            required: no
+        </field>
+        <field name="startpointName3" type="String">
+            Line 1 of Address of the startpoint: Name [String]
+            required: no
+        </field>
+        <field name="startpointCoordLat" type="String">
+            Latitude coordinates of the startpoint [Coordinates]
+            required: yes
+        </field>
+        <field name="startpointCoordLon" type="String">
+            Longitute coordinates of the startpoint [Coordinates]
+            required: yes
+        </field>
+        <field name="startpointGeofenceRadius" type="String">
+            The geofence radius of the startpoint in meters. [Number]
+            required: yes
+        </field>
+        <field name="endpointName1" type="String">
+            Line 1 of Address of the endpoint: Name [String]
+            required: no
+        </field>
+        <field name="endpointName2" type="String">
+            Line 1 of Address of the endpoint: Name [String]
+            required: no
+        </field>
+        <field name="endpointName3" type="String">
+            Line 1 of Address of the endpoint: Name [String]
+            required: no
+        </field>
+        <field name="endpointCoordLat" type="String">
+            Latitude coordinates of the endpoint [Coordinates]
+            required: yes
+        </field>
+        <field name="endpointCoordLon" type="String">
+            Longitute coordinates of the endpoint [Coordinates]
+            required: yes
+        </field>
+        <field name="endpointGeofenceRadius" type="String">
+            The geofence radius of the endpoint in meters. [Number]
+            required: yes
+        </field>
+    </bean>
+
+    <bean package="com.crh.logon.eventbeans.mop" name="PostOrder">
+        <field name="assignmentPartID" type="String">
+            LOGON AssignmentPart ID (AuftragsID)
+            required: yes
+        </field>
+        <field name="assignmentID" type="String">
+            LOGON Assignment ID (TourID) [ID]
+            required: yes
+        </field>
+        <field name="lastEvent" type="String">
+            Latest order-relevant event received from PDA
+            required: yes
+        </field>
+        <field name="distance" type="String">
+            driving distance in m. [Number]
+            required: no
+        </field>
+        <field name="drivingTime" type="String">
+            Driving duration in minutes. [Number]
+            required: no
+        </field>
+        <field name="startTime" type="String">
+            Defines the beginning (date and time) of the pre-order.[DateTime]
+            required: yes
+        </field>
+        <field name="endTime" type="String">
+            Defines the end (date and time) of the pre-order. [DateTime]
+            required: yes
+        </field>
+        <field name="startpointName1" type="String">
+            Line 1 of Address of the startpoint: Name [String]
+            required: no
+        </field>
+        <field name="startpointName2" type="String">
+            Line 1 of Address of the startpoint: Name [String]
+            required: no
+        </field>
+        <field name="startpointName3" type="String">
+            Line 1 of Address of the startpoint: Name [String]
+            required: no
+        </field>
+        <field name="startpointCoordLat" type="String">
+            Latitude coordinates of the startpoint [Coordinates]
+            required: yes
+        </field>
+        <field name="startpointCoordLon" type="String">
+            Longitute coordinates of the startpoint [Coordinates]
+            required: yes
+        </field>
+        <field name="startpointGeofenceRadius" type="String">
+            The geofence radius of the startpoint in meters. [Number]
+            required: yes
+        </field>
+        <field name="endpointName1" type="String">
+            Line 1 of Address of the endpoint: Name [String]
+            required: no
+        </field>
+        <field name="endpointName2" type="String">
+            Line 1 of Address of the endpoint: Name [String]
+            required: no
+        </field>
+        <field name="endpointName3" type="String">
+            Line 1 of Address of the endpoint: Name [String]
+            required: no
+        </field>
+        <field name="endpointCoordLat" type="String">
+            Latitude coordinates of the endpoint [Coordinates]
+            required: yes
+        </field>
+        <field name="endpointCoordLon" type="String">
+            Longitute coordinates of the endpoint [Coordinates]
+            required: yes
+        </field>
+        <field name="endpointGeofenceRadius" type="String">
+            The geofence radius of the endpoint in meters. [Number]
+            required: yes
+        </field>
+    </bean>
+
+    <bean package="com.crh.logon.eventbeans.mop" name="TruckComposition">
+        <field name="truckLabel" type="String">
+            Bezeichnung des RFID des LKWs / Bezeichnung des RFID des LKWs
+            required: yes
+        </field>
+        <field name="trailerLabel" type="String">
+            Bezeichnung des RFID des Anhaengers, Aufliegers / Bezeichnung des RFID des Anhaengers, Aufliegers
+            required: no
+        </field>
+        <field name="containerLabel" type="String">
+            Bezeichnung des Containers / Bezeichnung des RFID des Containers
+            required: no
+        </field>
+        <field name="numberOfChambers" type="String">
+            Indicates how many chambers the truck has. Ususally a truck has one chamber [Number]
+            required: yes
+        </field>
+    </bean>
+
+    <bean package="com.crh.logon.eventbeans.mop" name="TruckLoad">
+        <field name="assignmentPartID" type="String">
+            LOGON AssignmentPart ID (AuftragsID)
+            required: yes
+        </field>
+        <field name="quantity" type="String">
+            loaded quantity in kg, may be 0 [Number]
+            required: yes
+        </field>
+        <field name="containerLabel" type="String">
+        	Bezeichnung des Containers / Bezeichnung des RFID des Containers
+            required: no
+        </field>
+        <field name="plausible" type="String">
+            Whether truck load is correct (true) or guessed (false) [Boolean]
+            required: yes
+        </field>
+    </bean>
+
+    <bean package="com.crh.logon.eventbeans.mop" name="LoadingStarted">
+        <field name="assignmentPartID" type="String">
+            LOGON AssignmentPart ID (AuftragsID)
+            required: if only affecting assignment part
+        </field>
+        <field name="assignmentID" type="String">
+            LOGON Assignment ID
+            required: yes
+        </field>
+    </bean>
+
+    <bean package="com.crh.logon.eventbeans.mop" name="LoadingEnded">
+        <field name="assignmentPartID" type="String">
+            LOGON AssignmentPart ID (AuftragsID)
+            required: if only affecting assignment part
+        </field>
+        <field name="assignmentID" type="String">
+            LOGON Assignment ID
+            required: yes
+        </field>
+        <field name="netWeightKg" type="String">
+            Net weight:: actual load weight in kg
+            required: no
+        </field>
+        <field name="totalWeightKg" type="String">
+            Gross vehicle weight: Truck and load in kg.
+            required: no
+        </field>
+        <field name="tareWeightKg" type="String">
+            Weight: of the tare weighing in kg. 0 if no tare weighing took place.
+            required: no
+        </field>
+    </bean>
+
+    <bean package="com.crh.logon.eventbeans.mop" name="RequestForPosition">
+    </bean>
+
+    <bean package="com.crh.logon.eventbeans.mop" name="Message">
+        <field name="messageID" type="String">
+            Message-Kennung
+            required: yes
+        </field>
+        <field name="message" type="String">
+            Beliebige Klartext-Meldung. Max Length 250 Chars
+            required: yes
+        </field>
+    </bean>
+
+    <bean package="com.crh.logon.eventbeans.mop" name="Test">
+        <field name="test" type="String">
+            Beliebige Klartext-Meldung
+            required: yes
+        </field>
+    </bean>
+
+    <bean package="com.crh.logon.eventbeans.mop" name="RefData">
+        <field name="entity" type="String">
+            Das Feld[0] enthält den Namen der propagierten Entität (TabellenName), welche die in den Feldern 1 ? n folgenden Werte umfasst
+            required: yes
+        </field>
+        <field name="key" type="String">
+            Key (alpha-numeric identifier)
+            required: yes
+        </field>
+        <field name="languageCD" type="String">
+            Language Code
+            required: no
+        </field>
+        <field name="txt" type="String">
+            Text Value
+            required: yes
+        </field>
+        <field name="setNo" type="String">
+            Data set number. Messages with equal set numbers belong together. Whenever a newer set number is sent, existing entries with older set numbers must be deleted. Used to identify data sets.
+            required: yes
+        </field>
+    </bean>
+
+</beans>

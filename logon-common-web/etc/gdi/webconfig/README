@@ -1,0 +1,41 @@
+====================================================================
+WebConfig cartridge
+====================================================================
+
+Purpose:
+
+Generates the following configuration files:
+- struts-config.xml v1.2
+- jboss-web.xml v1.2
+- web.xml v2.3
+
+as a replacement for xdoclet. 
+
+====================================================================
+input:
+====================================================================
+
+java source files and xdoclet merge files.
+
+====================================================================
+configuration:
+====================================================================
+
+Either set the system property "mergedir" or in your 
+project-provided toolbox.xml, set:
+
+<data>
+  <key>mergedir</key>
+  <value> -- merge directory -- </value>
+</data>
+
+
+====================================================================
+output:
+====================================================================
+
+struts-config.xml
+jboss-web.xml
+web.xml
+
+====================================================================

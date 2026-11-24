@@ -1,0 +1,15 @@
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+  <table name="TLGNU_EXT_LOGIN_PWD_HISTORY"
+    description="History of the external login password hashes. Registers the hash of old passwords, so that whenever an external user tries to change the password he/she cannot use the previous ones.">
+      <column name="EXT_LOGIN_PWD_HISTORY_ID" primaryKey="true" required="true" type="DECIMAL" size="12" description="PK"/>
+      <column name="USER_ID" required="true" type="DECIMAL" size="12" description="FK tlgnu_user. The User."/>
+      <column name="EXT_LOGIN_PWD" required="true" type="VARCHAR" size="512"
+          description="External login password. A password set by the user via the application is stored encrypted. Plain text passwords are currently allowed (migration of user accounts from 1.0 DB, and to allow direct modifications in Tablebrowser for administrator). May be disabled in the future because of security concerns."/>
+    
+    <foreign-key foreignTable="TLGNU_USER" name="FK_TLGNU_EXT_LOGIN_PWD_H_USER">
+    	<reference local="USER_ID" foreign="USER_ID"/>
+    </foreign-key>
+
+	</table>
+</database>

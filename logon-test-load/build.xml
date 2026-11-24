@@ -1,0 +1,80 @@
+<!-- <?xml version="1.0" encoding="UTF-8"?> -->
+<!--
+ Author            : AdNovum Informatik AG
+ Version Number    : $Revision$
+ Date of last edit : $Date$
+-->
+
+<!-- Set project name to project's cvs module name, as project name will
+     be used for toolbox scope checks -->
+
+<project name="logon-test-load" default="dist" basedir=".">
+    <description>${ant.project.name} project build file</description>
+
+    <!-- ================================================================= -->
+    <!-- === externally defined                                        === -->
+    <!-- ================================================================= -->
+    <import file="properties.xml"/>
+    <import file="../common.xml"/>
+
+	<property name="staging.dir" location="${build.dir}/staging" />
+	<property name="ojdbc.jar" location="${ORACLE_HOME}/dist-bin/ojdbc6.jar"/>
+
+    <!-- ================================================================ -->
+    <!--  initialization, cleanup and default targets                     -->
+    <!-- ================================================================ -->
+    <target name="all" depends="dist" description="build and test everything"/>
+
+    <target name="init" depends="" description="initialization project structure and environment">
+        <tstamp/>
+        <echo message="--------- ${ant.project.name}-${build.version} building on ${os.name} ---------"/>
+        <echo message=" "/>
+        <echo message="building file ${ant.file} with ${ant.version}"/>
+        <echo message=""/>
+        <mkdir dir="${build.dir}"/>
+        <mkdir dir="${staging.dir}"/>
+        <mkdir dir="${staging.dir}/lib"/>
+        <mkdir dir="${dist.dir}"/>
+        <copy file="${ojdbc.jar}" tofile="${staging.dir}/lib/ojdbc.jar" />
+    </target>
+
+    <target name="clean" depends="" description="cleans all generated files and directories" >
+        <delete dir="${build.dir}"/>
+        <delete dir="${dist.dir}"/>
+    </target>
+
+    <!-- ================================================================= -->
+    <!-- === distribution targets                                      === -->
+    <!-- ================================================================= -->
+    <target name="dist" depends="init" description="build the distribution">
+    	
+    	<!-- prepare dist layout -->
+    	<mkdir dir="${staging.dir}/lib"/>
+    	
+    	<!-- copy load test scripts and configuration -->
+    	<copy todir="${staging.dir}/bin">
+    		<fileset dir="bin" />
+    	</copy>
+    	<chmod perm="a+xw" dir="${staging.dir}/bin" includes="**"/>
+    	<copy todir="${staging.dir}/etc">
+    		<fileset dir="etc" />
+    	</copy>
+    	<copy todir="${staging.dir}/scripts">
+    		<fileset dir="scripts" />
+    	</copy>
+    	
+    	<!-- copy dependencies -->
+    	<copy todir="${staging.dir}/lib">
+    		<fileset dir="${GRINDER_HOME}/lib" />
+            <fileset dir="${staging.dir}/lib" />
+    	</copy>
+    	
+    	<zip destfile="${dist.dir}/test-load.zip" basedir="${staging.dir}" />
+    </target>
+	
+    <!-- ================================================================ -->
+    <!--  externally defined tasks/targets                                -->
+    <!-- ================================================================ -->
+    <import file="./build-test.xml"/>
+
+</project>

@@ -1,0 +1,158 @@
+# ========================================
+# Templates
+# ========================================
+
+> etc/templates
+
+- Holds all templates used in generation of PDF documents using the Aspose library
+
+> etc/templates/DeliveryNoteCyrillic.docx
+
+- The main document for Delivery Notes. This document will reference other documents such as the Header.docx,
+  MaterialLogos.docx, BulkItems.docx, and the BagItems.docx templates.
+
+> etc/templates/CollectiveDeliveryNoteCyrillic.docx
+
+- The main document for Collective Delivery Notes. This document references the Header.docx template.
+
+
+# ========================================
+# Templating
+# ========================================
+
+## How to create a template
+---------------------------
+
+* Create a normal Word 2010 docx file or use an existing one.
+
+* Go to the `Developer` Ribbon and activate "Design Mode".
+
+* Mark a bit of text that should be updated by the processor.
+
+* Select `Rich Text Content Control`. Very broad blue-colored parentheses
+ should appear around the text.
+
+* Go to properties.
+
+* Enter a `title` that helps the next person to understand what you want to do
+
+* Enter a `tag` that uses `@`-notation.
+
+* Repeat.
+
+
+## How to transform a template on the console
+---------------------------------------------
+
+* Create the officeTemplate alias an work in the directory 
+  `officetemplate-jsf2app-web`
+
+>  alias officetemplate='java -classpath "./build/officetemplate-jsf2app-web/WEB-INF/classes:../lib/Aspose.Words.jdk16.jar:../lib/commons-lang3-3.1.jar" ch.adnovum.officetemplate.jsf2app.console.Program'
+
+* run the alias
+   
+The command line sample application uses key-value pairs provided in a text
+file or on stdin. It supports base64 encoded binary data such as images and
+include-documents, as well as references to binary data in the files system.
+
+
+
+# ========================================
+# The '@'-Notation User Manual
+# ========================================
+
+All `Content Controls` whose `tag` starts with an `@` are processed by the
+templating engine. After some control-flow (loops, conditions)
+transformations, the templating engine will replace the content of a 
+`Content Control` with the values provided by your implementation of the 
+`DataProvider` class.
+
+The tag should be something like `@path.like` and contain alphanumeric
+letters. Using dots to organize your data in an hierarchical manner is
+strongly encouraged. For example,
+
+> @person.name
+> @person.address1
+> @person.address2
+> @person.city
+
+## Referencing Values
+---------------------
+
+Possible values: 
+
+* If no is provided by your `DataProvider`, the content control is
+emptied and removed from the document.
+
+* `TextValue`: Any `Rich Text Content Control` or `Text Content Control`
+  tagged with a `@path.like` has its content replaced by the templating engine.
+
+* `ImageValue`: Any `Picture Content Control` tagged with a `@path.like` has
+  its content replaced by the templating engine.
+
+* `DocumentValue`: Any `Rich Text Content Control` tagged with a `@include path.like`
+  has its content replaced by the templating engine. 
+
+
+## Conditions
+-------------
+
+If the tag of a `Rich Text Content Control` starts with `@if ` or `@if-not`, the control
+gets removed if the condition does not evaluate to true. Possible conditions
+are
+
+> @if path.like
+
+> @if-not path.like
+
+It is up to the data provider to properly set the "path.like" flag to the appropriate Boolean values.
+
+
+## Loops
+--------
+
+If the tag of a `Rich Text Content Control` starts with `@foreach `, the
+contents of the control get repeated `n` times. `n` has to be determined by
+the `DataProvider`.
+
+> @foreach person
+>
+>    @person.name
+>    @person.address
+
+will be expanded into this:
+
+>    
+>    @person[0].name
+>    @person[0].address
+>
+>    @person[1].name
+>    @person[1].address
+
+
+## Includes
+-----------
+
+If the tag of a `Rich Text Content Control` starts with `@include `, then contents
+of the control gets removed and replaced with the referenced document. For example,
+
+> @include Header.docx
+
+results in the `Rich Text Content Control` node being replaced by the contents of Header.docx.
+In this case, the DataProvider is queried for retrieving the contents of the given
+document.
+
+
+# ========================================
+# Testing
+# ========================================
+
+In order to make testing easier, the following two adnant commands can be used:
+
+> adnant test-dn-pdf
+> adnant test-cdn-pdf
+
+They both use the DeliveryNoteCyrillic.docx and CollectiveDeliveryNoteCyrillic.docx templates resp. and
+the src/test/etc/DeliveryNoteCyrillic.properties file for filling in the results. This avoids having to
+deploy the template files (they are packaged up as part of the logon-pdf-generator.jar) with every little
+change.

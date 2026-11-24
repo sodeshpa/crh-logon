@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNC_BIZEVENT_AUDIT"
+           description="Table containing detail data for certain order related bizevents. The information might belong to the order itself or any of its items. See table definition for details.">
+            
+          <!-- Each change in an audited field of the order or any of its items will trigger an entry in this table. In the meantime it is not true that only a change in a field triggers here an entry.
+           
+           There is no reference to the order or to the item itself which caused the entry, one thing is only sure that the order belonging to the bizevent is the owner of this entry.
+           Stored values are tried to be resolved by language to be shown on the audit popup. As there is no FK guarantee or anything similar that any entry stored here exists in the quasi 
+           referenced table resolution might fail, and this is acceptable.
+           
+           The table is also used to be able to attach language dependent values to bizevents. For certain bizevents the entry is just storing the actual value
+           of the certain field, also if it has not changed, therefore the naming audit is not really proper anymore.
+           
+           For certain fields information about the changed field is does not carry the full information the user wants to see on audit popup.
+           Example: changing ordered quantity from 1 to 2 gives full information about the ordered quantity if the ordered
+           uom field is also known. Therefore when the quantity changes an entry is saved for the ordered uom as well, even if it has not changed. The information what the ordered uom field is could be calculated back
+           from the audits, but as not all changes are audited this was not an option. 
+           
+		   Technical:
+           The table is supposed store different type of data for the different fields. Date type audited fields will store old and new value in _dat type fields, cd type fields 
+           will store the cd in the _str field, id type fields will store data in _id fields, and there are also simple varchar type audited fields which will store value in _str suffix fields.
+           
+           The design was only focusing on the order log and order audit popup, if auditing is getting more serious the whole concept may change.
+		--> 
+        <column name="BIZEVENT_AUDIT_ID" primaryKey="true" required="true" type="DECIMAL" size="12"
+                description="PK"/>
+                
+        <column name="BIZEVENT_ID" type="DECIMAL" size="12" required="true"
+                description="FK TLGNC_BIZEVENT. The bizevent which has been created in order to keep track of the change in field of the order or one of its items. Can belong to a row of this table."/>
+        <column name="AUDIT_BIZEVENT_CONFIG_CD" type="DECIMAL" size="12"
+                description="FK to table TLGNR_AUDIT_BIZEVENT_CONFIG_BS. Describes what kind of field has been changed."/>                
+		<column name="OLD_VALUE_STR" type="VARCHAR" size="200"
+                description="Old value of the field. WARNING: as this is a  "/>
+		<column name="NEW_VALUE_STR" type="VARCHAR" size="200"
+                description="New value of the field defined by TLGNR_AUDIT_BIZEVENT_CONFIG_BS bs.TABLE_NAME.COLUMN_NAME. If bs.TABLE_NAME.COLUMN_NAME is not a foreign key column, the old_value -> new_value immediately contains the extended information about the change."/>
+		<column name="OLD_VALUE_DAT" type="DATE"
+                description="Old value of the field defined by TLGNR_AUDIT_BIZEVENT_CONFIG_BS bs.TABLE_NAME.COLUMN_NAME. If bs.TABLE_NAME.COLUMN_NAME is not a foreign key column, the old_value -> new_value immediately contains the extended information about the change."/>
+		<column name="NEW_VALUE_DAT" type="DATE"
+                description="Old value of the field defined by TLGNR_AUDIT_BIZEVENT_CONFIG_BS bs.TABLE_NAME.COLUMN_NAME. If bs.TABLE_NAME.COLUMN_NAME is not a foreign key column, the old_value -> new_value immediately contains the extended information about the change."/>
+		<column name="OLD_VALUE_ID" type="DECIMAL" size="12"
+                description="Old value of the field defined by TLGNR_AUDIT_BIZEVENT_CONFIG_BS bs.TABLE_NAME.COLUMN_NAME. If bs.TABLE_NAME.COLUMN_NAME is not a foreign key column, the old_value -> new_value immediately contains the extended information about the change."/>
+		<column name="NEW_VALUE_ID" type="DECIMAL" size="12"
+                description="Old value of the field defined by TLGNR_AUDIT_BIZEVENT_CONFIG_BS bs.TABLE_NAME.COLUMN_NAME. If bs.TABLE_NAME.COLUMN_NAME is not a foreign key column, the old_value -> new_value immediately contains the extended information about the change."/>
+                                                               
+
+        <foreign-key foreignTable="TLGNR_AUDIT_BIZEVENT_CONFIG_BS" name="FK_TLGNC_BIZEVENT_AUDIT_CONFIG">
+            <reference local="AUDIT_BIZEVENT_CONFIG_CD" foreign="AUDIT_BIZEVENT_CONFIG_CD"/>
+        </foreign-key>
+        
+         <foreign-key foreignTable="TLGNC_BIZEVENT" name="FK_TLGNC_BIZEVENT_AUDIT_BIZ">
+            <reference local="BIZEVENT_ID" foreign="BIZEVENT_ID"/>
+        </foreign-key>
+
+    </table>
+</database>

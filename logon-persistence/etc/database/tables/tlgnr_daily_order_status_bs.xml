@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNR_DAILY_ORDER_STATUS_BS" refData="true"
+           description="Shiptos which have the 'daily order'-flag set should be contacted by a call center agent if they have not yet placed an order today (typically for delivery next working day). This table contains the possible resolutions of this call, such as 'Not reachable', 'No order today', ... This list can be extended by Crh, it is just a template text and does not influence any logic in the application.">
+
+        <column name="DAILY_ORDER_STATUS_CD" primaryKey="true" required="true" type="DECIMAL" size="2"
+                description="PK. 1=Not reachable, 2=No order today, ... (can be extended without changes in the application)."/>
+        <column name="CTL_ACT_CD" required="true" type="BOOLEAN"
+                description="Active Flag. When new data is entered, only reference data with active flag are available for selection normally."/>
+    </table>
+</database>

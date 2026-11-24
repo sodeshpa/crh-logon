@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNS_SAP_MATERIAL_SAREA"
+           description="Material Sales Area Data received from SAP. The sales area from SAP is only partially defined (Sales Org + Distribution Channel). The Division will only be known when material is used, e.g. based on Contract information.">
+
+        <column name="SAP_MATERIAL_SAREA_ID" primaryKey="true" required="true" type="DECIMAL" size="12"
+                description="PK. Technical key, given by Logon."/>
+        <column name="SAP_MATERIAL_ID" required="true" type="DECIMAL" size="12"
+                description="FK tlgns_sap_material. The Material in this Material Sales Area Data."/>
+        <column name="SORG_CD" required="true" type="VARCHAR" size="4"
+                description="FK tlgnr_sorg_bs. The Sales Organisation for which this material-sales-area is defined for. E.g. S101, S128, S160, ... SAP: material_sales_data (E1MVKEM) / VKORG"/>
+        <column name="DISTRIBUTION_CHANNEL" required="true" type="VARCHAR" size="2"
+                description="The Distribution Channel for which this material-sales-area is defined for, e.g. 10=Domestic, 20=Export. SAP: material_sales_data (E1MVKEM) / VTWEG"/>
+        <column name="MARKED_FOR_DELETION" required="true" type="VARCHAR" size="1"
+                description="Deletion code in SAP. SAP: material_sales_data (E1MVKEM) / LVORM. 0=active, 1=deleted. Note that Logon normally has active_flag, with inversed logic. We stick to SAP standards in the tlgns_sap_... tables."/>
+        <column name="SALES_UOM_CD" type="VARCHAR" size="3"
+                description="FK tlgnr_uom_bs. The sales unit (of measure). SAP: material_sales_data (E1MVKEM) / VRKME, must match with the Logon reference data table."/>
+        <column name="PRICING_GROUP" type="VARCHAR" size="2"
+                description="The material pricing group. A way of grouping materials to which apply the same conditions. Used for resolving generic materials into real materials in case the generic material groups by Material pricing group. SAP: material_sales_data (E1MVKEM) / KONDM"/>
+        <column name="MATERIAL_GROUP4" type="VARCHAR" size="3"
+                description="The generic material is indicated by having the values (1,2) in material group4. This value also indicates the grouping criterion (either division='1' or material pricing group = '2'). SAP: material_sales_data (E1MVKEM) / MVGR4"/>
+        <column name="IS_GENERIC_FLAG" required="true" type="BOOLEAN"
+                description="Technical flag for easier filtering. Is set if the material group4 defines the material as a generic material. 1=Generic Material, 0=Real Material"/>
+
+        <foreign-key foreignTable="TLGNS_SAP_MATERIAL" name="FK_TLGNS_SAP_MAT_SAREA_MAT">
+            <reference local="SAP_MATERIAL_ID" foreign="SAP_MATERIAL_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_SORG_BS" name="FK_TLGNS_SAP_MAT_SAREA_SORG">
+            <reference local="SORG_CD" foreign="SORG_CD"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_UOM_BS" name="FK_TLGNS_SAP_MAT_SAREA_UOM">
+            <reference local="SALES_UOM_CD" foreign="UOM_CD"/>
+        </foreign-key>
+
+        <unique name="UQ_TLGNS_SAP_MATERIAL_SAREA">
+            <unique-column name="SAP_MATERIAL_ID"/>
+            <unique-column name="SORG_CD"/>
+            <unique-column name="DISTRIBUTION_CHANNEL"/>
+        </unique>
+        
+        <index name="I_TLGNS_SAP_MAT_SAREA_SORGDIS">
+            <index-column name="SORG_CD"/>
+            <index-column name="DISTRIBUTION_CHANNEL"/>
+        </index>
+    </table>
+</database>

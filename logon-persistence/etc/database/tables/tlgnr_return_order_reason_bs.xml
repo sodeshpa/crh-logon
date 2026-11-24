@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNR_RETURN_ORDER_REASON_BS" refData="true"
+           description="Return order reason table, containing a reason code.">
+        <column name="RETURN_ORDER_REASON_CD" primaryKey="true" required="true" type="VARCHAR" size="3"
+                description="Code of the return order reason"/>
+        <column name="CTL_ACT_CD" required="true" type="BOOLEAN"
+                description="Active Flag. When new data is entered, only reference data with active flag are available for selection normally."/>
+    </table>
+</database>

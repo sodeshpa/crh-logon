@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNU_USER_POOL_ACC"
+           description="Access Control/Data restriction table. Defines the Pools (tlgnc_pool) a user has access to.">
+
+        <column name="USER_POOL_ACC_ID" primaryKey="true" required="true" type="DECIMAL" size="12"
+                description="PK"/>
+        <column name="USER_ID" required="true" type="DECIMAL" size="12"
+                description="FK tlgnu_user. The Logon user."/>
+        <column name="POOL_ID" required="true" type="DECIMAL" size="12"
+                description="FK tlgnc_pool. The pool for which access is granted."/>
+
+        <foreign-key foreignTable="TLGNC_POOL" name="FK_TLGNU_USER_POOL_ACC_POOL">
+            <reference local="POOL_ID" foreign="POOL_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNU_USER" name="FK_TLGNU_USER_POOL_ACC_USER">
+            <reference local="USER_ID" foreign="USER_ID"/>
+        </foreign-key>
+        <unique name="UQ_TLGNU_USER_POOL_ACC">
+            <unique-column name="USER_ID"/>
+            <unique-column name="POOL_ID"/>
+        </unique>
+    </table>
+</database>

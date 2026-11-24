@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNR_ARCHIVING_STATUS_BS" refData="true"
+           description="Reference table for the different types of order archiving status.">
+
+        <column name="ARCHIVING_STATUS_CD" primaryKey="true" required="true" type="DECIMAL" size="2"
+                description="PK. Status of the order archiving. 1=new, 2=archiving failed, 3=deletable, etc."/>
+        <column name="DESCRIPTION" required="true" type="VARCHAR" size="50"
+                description="Description."/>
+        <column name="DISPLAY_FLAG" required="true" type="BOOLEAN"
+                description="When this is false then the order is not visible. Please do NOT use for business decisions, this is only for the decision about displaying or hiding the order."/>
+        
+    </table>
+</database>

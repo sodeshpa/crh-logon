@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNR_SAP_TP_SAP_VENDOR_PF_BS"
+           description="Table storing 3rd Party SAP Vendor partner functions.">
+
+        <column name="SAP_TP_SAP_VENDOR_PF_CD" required="true" primaryKey="true" type="VARCHAR" size="2"
+                description="PK. Code to be sent to SAP for the 3rd Party SAP Vendor partner function."/>
+		
+		<column name="CTL_ACT_CD" required="true" type="BOOLEAN" 
+                description="Active flag. When new data is entered, only reference data with active flag are available for selection normally."/>
+        
+        <column name="DESCRIPTION" required="true" type="VARCHAR" size="30"
+                description="Description of the partner function."/>
+        
+        </table>
+</database>

@@ -1,0 +1,393 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Author            : AdNovum Informatik AG
+ Version Number    : $Revision$
+ Date of last edit : $Date$
+-->
+
+<project name="testing" default="test" basedir=".">
+	<description>defines test targets and tasks</description>
+	<import file="${container.dir}/build.xml"/>
+	
+	<!-- ================================================================ -->
+	<!--  define test specific classpaths (unit, integration, load,...)   -->
+	<!-- ================================================================ -->
+	<path id="test.compile.classpath">
+		<path refid="compile.classpath"/>
+		<path refid="hyperjaxb3.classpath"/>
+		<pathelement location="${classes.dir}"/>
+		<pathelement location="${junit.jar}"/>
+		<pathelement location="${hamcrest.jar}"/>
+		<pathelement location="${commons-cli.jar}" />
+		<pathelement location="${commons-beanutils.jar}" />
+	<!--<pathelement location="${js.jar}"/>-->
+	<pathelement location="${webservices.entities.jar.loc}"/>
+	<pathelement location="${webservices-client.jar.loc}"/>
+	<pathelement location="${xmlbeans.logon.jar.loc}"/>
+		<pathelement location="${project-persistence.jar.loc}"/>
+	</path>
+
+	<path id="test.unit.classpath">
+		<pathelement location="${commons-logging.jar}"/>
+		<pathelement location="${dom4j.jar}"/>
+		<pathelement location="${jdom.jar}"/>
+		<pathelement location="${test.build.etc.dir}"/>
+		<pathelement location="${test.classes.dir}"/>
+		<path refid="test.compile.classpath"/>
+	</path>
+
+	<path id="test.integration.classpath">
+		<!--<pathelement location="${js.jar}"/>
+		<pathelement location="${tidy.jar}"/>
+		<pathelement location="${xercesImpl.jar}"/>
+		<pathelement location="${xmlutil.jar}"/>
+		<pathelement location="${xtype.jar}"/>-->
+		<path refid="test.unit.classpath"/>
+		<path refid="logon-mavendeps.test.classpath"/>
+	</path>
+
+	<!-- ================================================================ -->
+	<!--  dummy targets, will be overridden when file is imported         -->
+	<!-- ================================================================ -->
+	<target name="build"/>
+
+	<!-- ================================================================ -->
+	<!--  test initialization, cleanup and default targets                -->
+	<!-- ================================================================ -->
+	<target name="init-test">
+		<mkdir dir="${test.build.dir}"/>
+		<mkdir dir="${test.classes.dir}"/>
+		<mkdir dir="${test.lib.dir}"/>
+		<mkdir dir="${test.log.dir}"/>
+		<mkdir dir="${test.build.etc.dir}" />
+		<mkdir dir="${test.build.etc.dir}/testclient" />
+		<mkdir dir="${test.reports.dir}"/>
+		<mkdir dir="${test.reports.pmd.dir}"/>
+		<mkdir dir="${test.reports.unit.dir}"/>
+		<mkdir dir="${test.reports.integration.dir}"/>
+		<mkdir dir="${test.reports.load.dir}"/>
+		<copy todir="${test.build.etc.dir}/testclient" file="etc/testclient/TestClient.properties" overwrite="true">
+			 <filterset>
+				 <filter token="WEBSERVICE_URL_BASE" value="${webservices.host.url}"/>
+			 </filterset>
+		 </copy>
+	</target>
+
+	<target name="clean-test">
+		<delete dir="${test.reports.dir}"/>
+		<delete dir="${test.lib.dir}"/>
+		<delete dir="${test.classes.dir}"/>
+		<delete dir="${test.build.dir}"/>
+	</target>
+
+	<!-- ================================================================ -->
+	<!--  compile targets                                                 -->
+	<!-- ================================================================ -->
+	<target name="compile-test" depends="init-test, generate-client-stub">
+		<javac
+			source="${compile.source}"
+			target="${compile.target}"
+			destdir="${test.classes.dir}"
+			debug="${compile.debug}"
+			optimize="${compile.optimize}"
+			deprecation="${compile.deprecation}"
+			encoding="${compile.encoding}"
+			includeantruntime="no">
+			<src path="${java.test.src.dir}/testclient/src"/>
+			<src path="${generated.cli.dir}/src"/>
+			<src path="${test.integration.dir}"/>
+			<include name="**/*.java"/>
+			<bootclasspath refid="compile.bootclasspath"/>
+			<classpath refid="test.compile.classpath"/>
+			<compilerarg line="-processor ch.adnovum.jcan.log.adntrace8.AdnTraceProcessor"/>
+		</javac>
+	</target>
+
+	<!-- ================================================================= -->
+	<!-- === generator                                                 === -->
+	<!-- ================================================================= -->
+	<target name="webservice-client-checkUptodate">
+		<fileset id="xsd-files" dir="${xsd.dir}">
+			<include name="**/*.xsd"/>
+		</fileset>
+		<uptodate property="webservice-client-isUptodate" targetfile="${generated.cli.dir}/status">
+			<srcfiles refid="xsd-files"/>
+		</uptodate>
+		<echo>checking against: ${generated.cli.dir}/status</echo>
+	<echo>webservice-client-isUptodate: ${webservice-client-isUptodate}</echo>
+	</target>
+
+	<target name="generate-stub">
+		<echo message="---------  Generating stub for ${wsdl.name} ---------" />
+		<get-wsdl-id wsdlName="${wsdl.name}" />
+		<!-- mkdir dir="${generated.cli.dir}/${wsdl.id}" / -->
+		<java classname="org.apache.axis2.wsdl.WSDL2Java" fork="true" 
+			classpathref="compile.classpath">
+			<arg line="-uri ${wsdl.dir}/${wsdl.name}" />
+			<arg line="-s" />
+			<arg line="-ap" />
+			<arg line="-ns2p http://logon.intranet-che/logon=${webservices.package.prefix}.${wsdl.id}.documents"/>
+			<arg line="-l java" />
+			<arg line="-p ${webservices.package.prefix}.${wsdl.id}.client" />
+			<arg line="-d xmlbeans" />
+			<arg line="-or" />
+			<arg line="-o ${generated.cli.dir}" />
+		</java>
+		<delete includeemptydirs="true">
+			<fileset dir="${generated.cli.dir}">
+				<!-- exclude name="**/*CallbackHandler.java"/ -->
+				<exclude name="**/*Stub.java"/>
+			</fileset>
+		</delete>
+		<echo message="generated" file="${generated.cli.dir}/status" />
+	</target>
+	
+	<target name="generate-client-stub" depends="webservice-client-checkUptodate" unless="webservice-client-isUptodate">
+		<mkdir dir="${generated.cli.dir}" />
+		<get-wsdl-list />
+		<taskdef resource="net/sf/antcontrib/antcontrib.properties" />
+		<foreach list="${wsdl.names}" delimiter="; " 
+			target="generate-stub" param="wsdl.name" />
+	</target>
+
+	<!-- ================================================================= -->
+	<!-- === java archives                                             === -->
+	<!-- ================================================================= -->
+	<target name="jars-test" depends="compile-test">
+		<echo message="*** building ${test-integration.jar}" />
+		<jar jarfile="${test-integration.jar}"
+			 basedir="${test.classes.dir}"
+			 index="true">
+			<include name="com/crh/logon/webservices/tests/**" />
+			<manifest>
+				<attribute name="Manifest-Version"       value="1.0" />
+				<attribute name="Implementation-Title"   value="${ant.project.name} (commons classes)" />
+				<attribute name="Implementation-Vendor"  value="${vendor}" />
+				<attribute name="Implementation-Version" value="${build.version}" />
+				<attribute name="Build-Host"             value="${os.name} ${os.version}, ${os.arch}" />
+				<attribute name="Build-Environment"      value="Java ${java.version}, ${java.vendor}" />
+			</manifest>
+		</jar>
+	</target>
+
+	<!-- ================================================================ -->
+	<!--  run tests (defined in external file test.xml)                   -->
+	<!-- ================================================================ -->
+	<target name="test" depends="test-pmd, test-unit"
+			description="executes all automatic (non-interactive) tests">
+	</target>
+
+
+	<!-- ================================================================ -->
+	<!--  analyze source code quality                                     -->
+	<!-- ================================================================ -->
+	<target name="test-pmd" depends="init-test"
+			description="run source code quality analysis">
+		<taskdef name="pmd" classname="net.sourceforge.pmd.ant.PMDTask"/>
+		<echo file="${test.reports.pmd.dir}/pmd_report.xml"/>
+		<echo file="${test.reports.pmd.dir}/pmd_report.html"/>
+		<pmd rulesetfiles="${ANT_HOME}/adnovum/pmd/rulesets/AdnNightly.xml"
+			 shortFilenames="yes"
+	   		 failOnError="no"
+			 failuresPropertyName="test.pmd.failed">
+			<formatter type="xml" toFile="${test.reports.pmd.dir}/pmd_report.xml"/>
+			<formatter type="html" toFile="${test.reports.pmd.dir}/pmd_report.html"/>
+			<formatter type="text" toConsole="true"/>
+			<fileset dir="${src.dir}">
+				<include name="**/*.java"/>
+				<exclude name="**/MaterialMasterDataREQDT.java"/> <!-- excluding pmd for this generated file -->
+				<exclude name="**/ObjectFactory.java"/> <!-- excluding pmd for this generated file -->
+				<exclude name="**/PricingConditionsREQDT.java"/> <!-- excluding pmd for this generated file -->
+				<exclude name="**/SAPBPMasterDataREQDT.java"/> <!-- excluding pmd for this generated file -->
+				<exclude name="**/VendorMasterREQDT.java"/> <!-- excluding pmd for this generated file -->
+			</fileset>
+		</pmd>
+		<set-flag-file-if-property-set flagfile="${test.pmd.failed.flag}" propertyname="test.pmd.failed"
+			message="at least one test failed --> setting failure flag file" />
+		<fail if="test.pmd.failed" unless="central.pmd.fail.report" message="at least one of the pmd rules was violated"/>
+	</target>
+
+	<!-- backward compat reasons -->
+	<target name="pmd" depends="test-pmd"/>
+
+	<!-- ================================================================ -->
+	<!--  run unit tests                                                  -->
+	<!-- ================================================================ -->
+	<target name="test-unit" depends="compile-test"
+			description="performs unit tests">
+		<coverage enabled="${coverage.enabled}" destfile="${unit.coverage.file}">
+			<junit fork="true" printsummary="true"
+				   showoutput="yes" haltonfailure="no"
+				   failureproperty="test.unit.failed" dir="${basedir}">
+				<formatter type="plain" usefile="false"/>
+				<formatter type="xml" usefile="true"/>
+				<batchtest todir="${test.reports.unit.dir}">
+					<fileset dir="${test.unit.dir}">
+						<include name="**/*Test*.java"/>
+					</fileset>
+				</batchtest>
+				<classpath refid="test.unit.classpath"/>
+			</junit>
+		</coverage>
+		<junitreport todir="${test.reports.unit.dir}">
+			<fileset dir="${test.reports.unit.dir}">
+				<include name="TEST-*.xml"/>
+			</fileset>
+			<report format="frames" todir="${test.reports.unit.dir}"/>
+		</junitreport>
+		<set-flag-file-if-property-set flagfile="${test.unit.failed.flag}" propertyname="test.unit.failed"
+			message="at least one test failed --> setting failure flag file"/>
+		<fail if="test.unit.failed" message="at least one of the tests failed"/>
+		<echo message="all tests successful"/>
+	</target>
+
+	<!-- ================================================================ -->
+	<!--  run integration tests                                           -->
+	<!-- ================================================================ -->
+	<target name="test-integration" depends="run-client" description="performs integration tests">
+		<!-- test case properties -->
+		<property name="test.logConfigFile" value="${test.build.etc.dir}/log4j.properties" />
+		<property name="test.saveHtmlTo" value="${test.log.dir}" />
+		<echo message="${test.logConfigFile}" />
+		<!-- integration tests -->
+		<junit fork="true" printsummary="true"
+			   showoutput="yes" haltonfailure="no"
+			   failureproperty="test.integration.failed" dir="${basedir}">
+			<formatter type="plain" usefile="false"/>
+			<formatter type="xml" usefile="true"/>
+			<sysproperty key="test.logConfigFile" value="${test.logConfigFile}" />
+			<sysproperty key="test.saveHtmlTo" value="${test.saveHtmlTo}" />
+			<!-- For webshpere the ${host}, ${http.port}, ${https.port} are not set -->
+			<sysproperty key="host" value="${host}" />
+			<sysproperty key="http.port" value="${http.port}" />
+			<sysproperty key="https.port" value="${https.port}" />
+			<sysproperty key="containerserver" value="${application.test.host}" />
+			<sysproperty key="remoteport" value="${container.ejb.port}"/>
+			<batchtest todir="${test.reports.integration.dir}">
+				<fileset dir="${test.integration.dir}">
+					<include name="**/*Test*.java"/>
+					<exclude name="**/*SeleniumTest.java"/>
+					<exclude name="**/*TestCaseBaseImpl.java"/>
+				</fileset>
+			</batchtest>
+			<classpath refid="test.integration.classpath"/>
+		</junit>
+		<junitreport todir="${test.reports.integration.dir}">
+			<fileset dir="${test.reports.integration.dir}">
+				<include name="TEST-*.xml"/>
+			</fileset>
+			<report format="frames" todir="${test.reports.integration.dir}" styledir="${masterbuild.dir}/test/etc">
+				<param name="TESTTYPE" expression="Integration" />
+	   		</report> 
+		</junitreport>
+		<set-flag-file-if-property-set flagfile="${test.integration.failed.flag}" propertyname="test.integration.failed"
+			message="at least one test failed --> setting failure flag file" />
+		<fail if="test.integration.failed" message="at least one of the tests failed"/>
+		<echo message="all tests successful"/>
+	</target>
+
+	<target name="jars-client" depends="compile-test">
+		<pathconvert property="testclient.manifest.classpath" pathsep=" ">
+			<path refid="testclient.runtime.classpath"/>
+			<mapper>
+				<chainedmapper>
+					<flattenmapper/>
+					<globmapper from="*.jar" to="lib/*.jar"/>
+				</chainedmapper>
+			</mapper>
+		</pathconvert>
+		
+		<jar destfile="${webservices.client.jar.loc}">
+			<manifest>
+				<attribute name="Class-Path" value="${testclient.manifest.classpath}"/>
+			</manifest>
+			<fileset dir="${test.classes.dir}">
+				<include name="com/crh/logon/webservices/**"/>
+			</fileset>
+		</jar>
+		<copy todir="${test.build.etc.dir}" file="etc/cfg/log4j.properties"/>
+		<replaceregexp byline="true" encoding="utf-8" flags="g">
+			<regexp pattern="(log4j.appender.FILE.File=)([^\s]*)" />
+			<substitution expression="\1Test.log"/>
+			<fileset file="${test.build.etc.dir}/log4j.properties" />
+		</replaceregexp>
+		<replaceregexp byline="true" encoding="utf-8" flags="g">
+			<regexp pattern="(log4j.logger.org.apache.axis2.description.AxisService=)([^\s]*)" />
+			<substitution expression="\1INFO"/>
+			<fileset file="${test.build.etc.dir}/log4j.properties" />
+		</replaceregexp>
+		<replaceregexp byline="true" encoding="utf-8" flags="g">
+			<regexp pattern="(log4j.logger.org.apache.axis2.description.WSDL11ToAxisServiceBuilder=)([^\s]*)" />
+			<substitution expression="\1INFO"/>
+			<fileset file="${test.build.etc.dir}/log4j.properties" />
+		</replaceregexp>
+		<replaceregexp byline="true" encoding="utf-8" flags="g">
+			<regexp pattern="(log4j.logger.com.crh.logon.webservices.testclient=)([^\s]*)" />
+			<substitution expression="\1INFO"/>
+			<fileset file="${test.build.etc.dir}/log4j.properties" />
+		</replaceregexp>
+		<replaceregexp byline="true" encoding="utf-8" flags="g">
+			<regexp pattern="(log4j.logger.com.crh.logon.webservices.tests=)([^\s]*)" />
+			<substitution expression="\1INFO"/>
+			<fileset file="${test.build.etc.dir}/log4j.properties" />
+		</replaceregexp>
+	</target>
+
+	<target name="run-client" depends="jars-client" description="Send all '.request' files from 'testdata/' to webservices">
+		<path id="client.classpath">
+			<path refid="axis2.classpath" />
+			<pathelement location="${webservices.client.jar.loc}"/>
+			<pathelement location="${jcan-log.jar}"/>
+			<pathelement location="${project-common.jar.loc}"/>
+			<pathelement location="${commons-cli.jar}" />
+			<pathelement location="${commons-beanutils.jar}" />
+			<pathelement location="${xmlbeans.logon.jar.loc}"/>
+			<path refid="hyperjaxb3.classpath"/>
+			<pathelement location="${test.build.etc.dir}" />
+		</path>
+		<java classname="com.crh.logon.webservices.testclient.TestClient" fork="true">
+			<classpath refid="client.classpath" />
+			<jvmarg value="-Dfile.encoding=UTF8" />
+			<arg line="-baseDirectory=build/dist/testclient/" />
+		</java>
+	</target>
+
+	<target name="run-client-only-body" depends="jars-client" description="Send all '.requestbody' files from 'testdata/' to webservices">
+		<path id="client.classpath">
+			<path refid="axis2.classpath" />
+			<pathelement location="${webservices.client.jar.loc}"/>
+			<pathelement location="${jcan-log.jar}"/>
+			<pathelement location="${project-common.jar.loc}"/>
+			<pathelement location="${commons-cli.jar}" />
+			<pathelement location="${commons-beanutils.jar}" />
+			<pathelement location="${xmlbeans.logon.jar.loc}"/>
+			<path refid="hyperjaxb3.classpath"/>
+			<pathelement location="${test.build.etc.dir}" />
+		</path>
+		<java classname="com.crh.logon.webservices.testclient.TestClient" fork="true">
+			<classpath refid="client.classpath" />
+			<jvmarg value="-Dfile.encoding=UTF8" />
+			<arg line="-baseDirectory=build/dist/testclient/ -onlyBody" />
+		</java>
+	</target>
+
+	<target name="run-client-all-usecases" depends="jars-client" description="Send all '.request' files from 'usecases/**' to webservices">
+		<path id="client.classpath">
+			<path refid="axis2.classpath" />
+			<pathelement location="${webservices.client.jar.loc}"/>
+			<pathelement location="${jcan-log.jar}"/>
+			<pathelement location="${project-common.jar.loc}"/>
+			<pathelement location="${commons-cli.jar}" />
+			<pathelement location="${commons-beanutils.jar}" />
+			<pathelement location="${xmlbeans.logon.jar.loc}"/>
+			<path refid="hyperjaxb3.classpath"/>
+			<pathelement location="${test.build.etc.dir}" />
+		</path>
+		<java classname="com.crh.logon.webservices.testclient.TestClient" fork="true">
+			<classpath refid="client.classpath" />
+			<jvmarg value="-Dfile.encoding=UTF8" />
+			<arg line="-baseDirectory=build/dist/testclient/ -allUseCases" />
+		</java>
+	</target>
+
+ </project>

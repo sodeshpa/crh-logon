@@ -1,0 +1,71 @@
+# $Revision$
+# $Date$
+# LOGON-5043/LOGON-5039 (and subtasks)
+# Initial reference data for truck type, transport categories, package types, etc.
+# Based on source excel files in
+# /share/doc/crh/logon_2_1/input/LRQ_185.0_Concept_for_vehicle_types_transport_categories_and_packaging_typed
+#PACKAGE_TYPE_CD;LANG_CD;TXT;CTL_CRE_UID;CTL_CRE_TS;CTL_MOD_UID;CTL_MOD_TS
+1;en;Bulk powder;;;;
+2;en;Bag;;;;
+3;en;Service;;;;
+4;en;Bulk dumped;;;;
+1;de;Staubgut lose;;;;
+2;de;Sack;;;;
+3;de;Service;;;;
+4;de;Schüttgut lose;;;;
+1;fr;Poudre;;;;
+2;fr;Sac;;;;
+3;fr;Service;;;;
+4;fr;Vrac;;;;
+1;it;Sfuso polvere;;;;
+2;it;Sacco;;;;
+3;it;Servizio;;;;
+4;it;Sfuso (no polvere);;;;
+1;es;Polvo;;;;
+2;es;Saco;;;;
+3;es;Servicio;;;;
+4;es;Árido;;;;
+1;cs;Bulk powder;;;;
+2;cs;Bag;;;;
+3;cs;Service;;;;
+4;cs;Bulk dumped;;;;
+1;sk;VLC;;;;
+2;sk;BC;;;;
+3;sk;Servisný;;;;
+4;sk;VL materiál;;;;
+1;hu;Ömlesztett;;;;
+2;hu;Zsák;;;;
+3;hu;Szolgáltatás;;;;
+4;hu;Rögös cement;;;;
+1;ro;Vrac pudra;;;;
+2;ro;Sac;;;;
+3;ro;Serviciu;;;;
+4;ro;Vrac deseu;;;;
+1;bg;Насипен цимент;;;;
+2;bg;Опакован цимент;;;;
+3;bg;Услуга;;;;
+4;bg;Клинкер;;;;
+1;ru;навал;;;;
+2;ru;мешок;;;;
+3;ru;сервис;;;;
+4;ru;Навал AGG;;;;
+1;pl;Luz proszkowany;;;;
+2;pl;Worek;;;;
+3;pl;Serwis;;;;
+4;pl;Luz zbrylony;;;;
+1;az;Bulk powder;;;;
+2;az;Bag;;;;
+3;az;Service;;;;
+4;az;Bulk dumped;;;;
+1;hr;Rinfuzo cisterna;;;;
+2;hr;Vreće;;;;
+3;hr;Servis;;;;
+4;hr;Rinfuzo kiper;;;;
+1;sr;Rinfuz - cement;;;;
+2;sr;Džak;;;;
+3;sr;Usluga;;;;
+4;sr;Rinfuz - agregat;;;;
+1;tr;Bulk powder;;;;
+2;tr;Bag;;;;
+3;tr;Service;;;;
+4;tr;Bulk dumped;;;;

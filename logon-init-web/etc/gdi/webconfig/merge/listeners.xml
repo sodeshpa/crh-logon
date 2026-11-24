@@ -1,0 +1,12 @@
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+    <listener>
+        <listener-class>com.crh.logon.web.listeners.SpringBeanListener</listener-class>
+    </listener>
+    <listener>
+        <listener-class>com.crh.logon.init.web.listeners.LogonInitListener</listener-class>
+    </listener>
+    <listener>
+        <listener-class>com.crh.logon.web.listeners.LogonSessionListener</listener-class>
+    </listener>

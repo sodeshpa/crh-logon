@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNU_USER_PURCHORG_ACC"
+           description="Access Control/Data restriction table. Defines the purchasing organisation codes (tlgnr_purchasingorg_bs) a user has access to.">
+
+        <column name="USER_PURCHORG_ACC_ID" primaryKey="true" required="true" type="DECIMAL" size="12"
+                description="PK"/>
+        <column name="USER_ID" required="true" type="DECIMAL" size="12"
+                description="FK tlgnu_user. The Logon user."/>
+        <column name="PURCHASINGORG_CD" required="true" type="VARCHAR" size="4"
+                description="FK tlgnr_purchasingorg_bs The purchasing organisation code for which access is granted."/>
+
+        <foreign-key foreignTable="TLGNR_PURCHASINGORG_BS" name="FK_TLGNR_PURCHASINGORG_BS">
+            <reference local="PURCHASINGORG_CD" foreign="PURCHASINGORG_CD"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNU_USER" name="FK_PURCHORG_ACC_USER">
+            <reference local="USER_ID" foreign="USER_ID"/>
+        </foreign-key>
+        <unique name="UQ_TLGNU_USER_PCHORG_ACC">
+            <unique-column name="USER_ID"/>
+            <unique-column name="PURCHASINGORG_CD"/>
+        </unique>
+    </table>
+</database>

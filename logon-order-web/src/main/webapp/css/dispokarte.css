@@ -1,0 +1,29 @@
+table.classicblue tr.alerted {
+	background-color: #FCC;
+}
+
+table#restrictionTable tr.restrictionRow .x-form-field-wrap {
+	margin-top: 5px;
+	margin-right: 5px;
+}
+
+table#restrictionTable tr.restrictionRow .x-form-check-wrap {
+	padding-top: 5px;
+	margin-right: 5px;
+}
+
+table#restrictionTable table.noPadding {
+	border-spacing: 0px;
+}
+
+table#restrictionTable table.noPadding td {
+	padding: 0px 5px 0px 0px;
+}
+
+#salesAreaBlockTypes span {
+	font-weight: bold;
+}
+
+.activeSalesAreaBlock {
+	text-decoration: underline;
+}

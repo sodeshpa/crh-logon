@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="VLGNC_REP_LOAD_SHIPPING_STATS" mappingType="view" skipSql="true">
+        <column name="PLANT_CD" type="VARCHAR" size="4"/>
+        <column name="PLANT_NAME" type="VARCHAR" size="80"/>
+        <column name="SAP_MATERIAL_NO" required="true" type="VARCHAR" size="18"/>
+        <column name="SAP_MATERIAL_TXT" required="true" type="VARCHAR" size="40"/>
+        <column name="LANG_CD" required="true" type="VARCHAR" size="2"/>
+        <column name="NET_QUANTITY" type="DECIMAL" size="12,4"/>
+        <column name="BASE_UOM_CD" required="true" type="VARCHAR" size="3"/>
+        <column name="LOADING_TS" type="DATE"/>
+        <column name="UNLOADING_TS" type="DATE"/>
+        <column name="PRODUCTION_PLANT" type="BOOLEAN"/>
+    </table>
+</database>

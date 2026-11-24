@@ -1,0 +1,41 @@
+-- ${msg_warning_generated}
+-- prompt =========================================================================
+-- prompt === version: $gdi.version
+-- prompt === generated at: $gdi.generatedAt
+-- prompt === template: $cartridge.templatePath/$currentTemplate
+-- prompt =========================================================================
+
+/* 
+ * It's checking the existence of the given index. If exists, drops it.
+ */
+CREATE OR REPLACE PROCEDURE dropIndexIfExists(i_index_name IN VARCHAR2)
+IS
+	l_count NUMBER;
+BEGIN
+	SELECT COUNT(*)
+	INTO l_count
+	FROM user_indexes
+	WHERE index_name = UPPER(i_index_name);
+	IF l_count  > 0 THEN
+		EXECUTE immediate 'DROP index ' || i_index_name;
+		DBMS_OUTPUT.PUT_LINE('Index existed and dropped: "' || i_index_name || '"');
+	END IF;
+END;
+/
+
+#foreach ($curfile in $sorter.sort($allfiles))
+#set ($current = $inputmap.get($curfile))
+#foreach ($table in $current.database.tableArray)
+#set ($tableName = $table.name.stringValue)
+#foreach ($index in $table.indexArray)
+#set ($cols = [])
+#foreach ($indexCol in $index.indexColumnArray)
+#set ($dummy = $cols.add($indexCol.name.stringValue))
+#end
+execute dropIndexIfExists('$index.name.stringValue');
+#end
+#end
+#end
+
+
+DROP PROCEDURE dropIndexIfExists;

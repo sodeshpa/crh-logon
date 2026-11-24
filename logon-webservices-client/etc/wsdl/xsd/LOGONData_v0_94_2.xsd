@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema elementFormDefault="qualified"
+	targetNamespace="http://schemas.datacontract.org/2004/07/ComSvr"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://schemas.datacontract.org/2004/07/ComSvr">
+	<xs:complexType name="LogonLOGONEvent">
+		<xs:sequence>
+			<xs:element minOccurs="0" name="LOGONData" nillable="true"
+				type="tns:LogonLOGONEvent.LogonLOGONEventLOGONData" />
+			<xs:element minOccurs="0" name="eventType" nillable="true"
+				type="xs:string" />
+			<xs:element minOccurs="0" name="sendersTime" nillable="true"
+				type="xs:string" />
+			<xs:element minOccurs="0" name="sessionID" nillable="true"
+				type="xs:string" />
+			<xs:element minOccurs="0" name="targetPDAID" nillable="true"
+				type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="LogonLOGONEvent" nillable="true"
+		type="tns:LogonLOGONEvent" />
+	<xs:complexType name="LogonLOGONEvent.LogonLOGONEventLOGONData">
+		<xs:sequence>
+			<xs:element minOccurs="0" name="Field" nillable="true"
+				type="tns:ArrayOfLogonLOGONEvent.LogonLOGONEventLOGONDataField" />
+			<xs:element minOccurs="0" name="rfidObject" nillable="true"
+				type="tns:ArrayOfLogonLOGONEvent.rfidObjectDataField" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="LogonLOGONEvent.LogonLOGONEventLOGONData"
+		nillable="true" type="tns:LogonLOGONEvent.LogonLOGONEventLOGONData" />
+	<xs:complexType name="ArrayOfLogonLOGONEvent.LogonLOGONEventLOGONDataField">
+		<xs:sequence>
+			<xs:element minOccurs="0" maxOccurs="unbounded"
+				name="LogonLOGONEvent.LogonLOGONEventLOGONDataField" nillable="true"
+				type="tns:LogonLOGONEvent.LogonLOGONEventLOGONDataField" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="ArrayOfLogonLOGONEvent.LogonLOGONEventLOGONDataField"
+		nillable="true" type="tns:ArrayOfLogonLOGONEvent.LogonLOGONEventLOGONDataField" />
+	<xs:complexType name="LogonLOGONEvent.LogonLOGONEventLOGONDataField">
+		<xs:sequence>
+			<xs:element minOccurs="0" name="name" nillable="true"
+				type="xs:string" />
+			<xs:element minOccurs="0" name="value" nillable="true"
+				type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="LogonLOGONEvent.LogonLOGONEventLOGONDataField"
+		nillable="true" type="tns:LogonLOGONEvent.LogonLOGONEventLOGONDataField" />
+	<xs:complexType name="ArrayOfLogonLOGONEvent.rfidObjectDataField">
+		<xs:sequence>
+			<xs:element minOccurs="0" maxOccurs="unbounded"
+				name="LogonLOGONEvent.rfidObjectDataField" nillable="true"
+				type="tns:LogonLOGONEvent.rfidObjectDataField" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="ArrayOfLogonLOGONEvent.rfidObjectDataField"
+		nillable="true" type="tns:ArrayOfLogonLOGONEvent.rfidObjectDataField" />
+	<xs:complexType name="LogonLOGONEvent.rfidObjectDataField">
+		<xs:sequence>
+			<xs:element minOccurs="0" name="name" nillable="true"
+				type="xs:string" />
+			<xs:element minOccurs="0" name="value" nillable="true"
+				type="tns:ArrayOfrfidObject" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="LogonLOGONEvent.rfidObjectDataField"
+		nillable="true" type="tns:LogonLOGONEvent.rfidObjectDataField" />
+	<xs:complexType name="ArrayOfrfidObject">
+		<xs:sequence>
+			<xs:element minOccurs="0" maxOccurs="unbounded" name="rfidObject"
+				nillable="true" type="tns:rfidObject" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="ArrayOfrfidObject" nillable="true"
+		type="tns:ArrayOfrfidObject" />
+	<xs:complexType name="rfidObject">
+		<xs:sequence>
+			<xs:element minOccurs="0" name="objectID" nillable="true"
+				type="xs:string" />
+			<xs:element minOccurs="0" name="objectName" nillable="true"
+				type="xs:string" />
+			<xs:element minOccurs="0" name="rfidTag" nillable="true"
+				type="tns:ArrayOfrfid" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="rfidObject" nillable="true" type="tns:rfidObject" />
+	<xs:complexType name="ArrayOfrfid">
+		<xs:sequence>
+			<xs:element minOccurs="0" maxOccurs="unbounded" name="rfid"
+				nillable="true" type="tns:rfid" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="ArrayOfrfid" nillable="true" type="tns:ArrayOfrfid" />
+	<xs:complexType name="rfid">
+		<xs:sequence>
+			<xs:element minOccurs="0" name="rfidIdentity" nillable="true"
+				type="xs:string" />
+			<xs:element minOccurs="0" name="rfidLabel" nillable="true"
+				type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="rfid" nillable="true" type="tns:rfid" />
+	<xs:complexType name="LogonLOGONEventStatus">
+		<xs:sequence>
+			<xs:element minOccurs="0" name="code" nillable="true"
+				type="xs:string" />
+			<xs:element minOccurs="0" name="contextValue" nillable="true"
+				type="xs:string" />
+			<xs:element minOccurs="0" name="txt" nillable="true" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="LogonLOGONEventStatus" nillable="true"
+		type="tns:LogonLOGONEventStatus" />
+</xs:schema>

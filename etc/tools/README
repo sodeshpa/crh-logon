@@ -1,0 +1,17 @@
+Helper scripts
+==============
+
+1. etc/tools/buildInRAM.sh -h
+Used for building the project in RAM disc. This is still experimental only.
+
+2. etc/tools/config.pl
+Pretty prints input config file (CSV format) to standard output. It converts the original format to
+standardized format to simplify diffing with repository versions of e.g. logon-persistence/etc/csv/refdata/config.csv
+
+3. etc/tools/exportInitialData.sh
+Creates a zip file containing the current initial data files located under logon-persistence/etc/sql.
+Used for attaching the zip into the translation ticket (e.g. LOGON-7949), so that crh can manually add the translations into the insert / upsert statements, and send the updated zip back.
+(The import script is located at: logon-persistence/etc/import_crh_files.sh)
+
+4. etc/tools/generateNewLitDictKey.sh -h
+Used when adding a new entry to LitDict.global

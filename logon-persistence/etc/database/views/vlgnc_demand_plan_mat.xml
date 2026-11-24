@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+	<table name="VLGNC_DEMAND_PLAN_MAT" mappingType="view" skipSql="true">
+		<column name="SAP_CONTRACT_ITEM_ID" primaryKey="true" required="true" type="DECIMAL" size="12" />
+		<column name="SAP_MATERIAL_ID" required="true" type="DECIMAL" size="12" />
+		<column name="SHIPTO_SAP_BP_ID" required="true" type="DECIMAL" size="12" />
+		<column name="LATEST_UNTIL_H" required="false" type="DECIMAL" size="4" />
+		<column name="VALID_FROM_DAT" required="false" type="DATE" />
+		<column name="VALID_UNTIL_DAT" required="false" type="DATE" />
+		<column name="AVAILABLE" required="true" type="BOOLEAN" />
+		<column name="PLANT_NAME" required="true" type="VARCHAR" size="30" />
+	</table>
+</database>

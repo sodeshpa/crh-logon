@@ -1,0 +1,4 @@
+<!--
+    <controller processorClass="org.springframework.web.struts.DelegatingTilesRequestProcessor"/>
+-->
+    <controller processorClass="org.apache.struts.tiles.TilesRequestProcessor"/>

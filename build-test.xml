@@ -1,0 +1,536 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Author            : AdNovum Informatik AG
+Version Number    : $Revision$
+Date of last edit : $Date$
+-->
+
+<project name="test" default="test" basedir=".">
+	<description>defines test targets and tasks</description>
+
+	<property name="masterbuild.dir" location="${basedir}"/>
+	<property name="topbuild.dir" location="${basedir}"/>
+	<property name="test.reports.riskbasedcoverage.dir" location="${test.reports.dir}/riskbasedcoverage"/>
+
+	<!-- ================================================================= -->
+	<!-- === externally defined                                        === -->
+	<!-- ================================================================= -->
+	<import file="./properties.xml"/>
+	<import file="./common.xml"/>
+	<import file="${AAL_HOME}/aal/aal-test-static.xml"/>
+
+	<!-- ================================================================ -->
+	<!--  define test specific classpaths (unit, integration, load,...)   -->
+	<!-- ================================================================ -->
+	<path id="test.compile.classpath">
+		<pathelement location="${jcan-log.jar}"/>
+		<pathelement location="${log4j.jar}"/>
+		<pathelement location="${junit.jar}"/>
+	</path>
+
+	<path id="test.unit.classpath">
+		<pathelement location="${test.etc.dir}"/>
+		<pathelement location="${test.classes.dir}"/>
+		<path refid="test.compile.classpath"/>
+	</path>
+
+	<path id="test.integration.classpath">
+		<pathelement location="${tidy.jar}"/>
+		<path refid="test.unit.classpath"/>
+		<pathelement location="${test.etc.dir}"/>
+		<pathelement location="${test.classes.dir}"/>
+		<pathelement location="${test.generated.dir}"/>
+		<pathelement location="${subcomponent.web}/resources" />
+		<path refid="test.compile.classpath"/>
+	</path>
+
+	<taskdef resource="adnant-taskdefs.xml"/>
+
+
+	<!-- ================================================================ -->
+	<!--  dummy targets, will be overridden when file is imported                -->
+	<!-- ================================================================ -->
+	<target name="build"/>
+
+	<!-- ================================================================ -->
+	<!--  test initialization, cleanup and default targets                -->
+	<!-- ================================================================ -->
+	<target name="init-test">
+		<mkdir dir="${test.build.dir}"/>
+		<mkdir dir="${test.classes.dir}"/>
+		<mkdir dir="${test.lib.dir}"/>
+		<mkdir dir="${test.log.dir}"/>
+		<mkdir dir="${test.log.integration.dir}"/>
+		<mkdir dir="${test.reports.dir}"/>
+		<mkdir dir="${test.generated.dir}"/>
+
+		<mkdir dir="${test.reports.pmd.dir}"/>
+		<mkdir dir="${test.reports.depend.dir}"/>
+		<mkdir dir="${test.reports.unit.dir}"/>
+		<mkdir dir="${test.reports.integration.dir}"/>
+		<mkdir dir="${test.reports.load.dir}"/>
+		<mkdir dir="${test.generated.coverage.dir}"/>
+
+		<mkdir dir="${test.reports.coverage.dir}"/>
+		<mkdir dir="${test.reports.coverage.unit.dir}"/>
+		<mkdir dir="${test.reports.coverage.integration.dir}"/>
+	</target>
+
+	<target name="clean-test">
+		<delete dir="${test.reports.dir}"/>
+		<delete dir="${test.lib.dir}"/>
+		<delete dir="${test.classes.dir}"/>
+		<delete dir="${test.build.dir}"/>
+	</target>
+
+	<!-- ================================================================ -->
+	<!--  sub-component testing                                           -->
+	<!-- ================================================================ -->
+	<target name="test" depends="init-test, test-pmd, test-depend, test-unit"
+		description="performs test-pmd, test-depend and test-unit tasks">
+	</target>
+
+
+	<!-- ================================================================ -->
+	<!--  analyze source code quality                                     -->
+	<!-- ================================================================ -->
+	<target name="test-pmd" depends="init-test"
+		description="run source code quality analysis">
+
+		<delete file="${test.pmd.failed.flag}"/>
+
+		<!-- call test-pmd in sub components -->
+		<antcall target="do-all">
+			<param name="target" value="test-pmd"/>
+			<param name="central.pmd.fail.report" value="true"/>
+		</antcall>
+
+		<!-- pmd tests on top level -->
+		<taskdef name="pmd" classname="net.sourceforge.pmd.ant.PMDTask"/>
+		<pmd rulesetfiles="${ANT_HOME}/adnovum/pmd/rulesets/AdnNightly.xml"
+			shortFilenames="yes"
+			failOnError="no"
+			failuresPropertyName="test.pmd.failed">
+			<formatter type="xml" toFile="${test.reports.pmd.dir}/top_pmd_report.xml"/>
+			<formatter type="html" toFile="${test.reports.pmd.dir}/top_pmd_report.html"/>
+			<formatter type="text" toConsole="true"/>
+			<fileset dir="${test.dir}">
+				<include name="**/*.java"/>
+			</fileset>
+		</pmd>
+
+		<!-- get pmd reports from sub components -->
+		<property name="root.dir" location="/"/>
+		<pathconvert property="reports.pmd.path" refid="subcomponents.path" pathsep=", ">
+			<mapper type="regexp" from="^(.)(.*)$$" to="\2/${build.dir.name}/test/reports/pmd/\*"/>
+		</pathconvert>
+		<echo message="Using pmd report results from ${reports.pmd.path}"/>
+
+		<copy todir="${test.reports.pmd.dir}">
+			<fileset dir="${root.dir}">
+				<patternset includes="${reports.pmd.path}"/>
+			</fileset>
+			<regexpmapper from="(.*)/(.*)/${build.dir.name}/test/reports/pmd/(.*)$$" to="\2_\3"/>
+		</copy>
+
+		<!-- check if any sub component test failed -->
+		<condition property="test.pmd.failed">
+			<available file="${test.pmd.failed.flag}"/>
+		</condition>
+
+		<!-- fail if any test failed -->
+		<fail if="test.pmd.failed" message="at least one of the pmd rules was violated"/>
+		<echo message="no rules violated"/>
+	</target>
+
+	<!-- backward compat reasons -->
+	<target name="pmd" depends="test-pmd"/>
+
+
+	<!-- ================================================================ -->
+	<!--  run dependency analysis                                         -->
+	<!-- ================================================================ -->
+
+	<target name="test-depend" depends="init-test"
+			description="generate dependency matrix of all Java packages">
+		<module-structure-check failonerror="false">
+			<includepkg pattern="com.crh.logon.*"/>
+			<fileset dir="${masterbuild.dir}" >
+				<include name="*/build/classes" />
+				<include name="*/build/lib"/>
+			</fileset>
+			<matrixexporter output="${test.reports.depend.dir}/index.html"/>
+		</module-structure-check>
+		<echo message="test-depend successful"/>
+	</target>
+
+	<!-- ================================================================ -->
+	<!--  run unit tests                                                  -->
+	<!-- ================================================================ -->
+	<target name="test-unit" depends="init-test" description="performs unit tests">
+
+		<delete file="${test.unit.failed.flag}"/>
+
+		<!-- call test-unit in sub components -->
+		<antcall target="do-all">
+			<param name="target" value="test-unit"/>
+			<param name="failonerror" value="false"/>
+		</antcall>
+
+		<junitreport todir="${test.reports.unit.dir}" >
+			<fileset dir="${masterbuild.dir}">
+				<patternset includes="*/build/test/reports/unit/TEST-*.xml"/>
+			</fileset>
+			<report format="frames" todir="${test.reports.unit.dir}"/>
+		</junitreport>
+
+		<!-- check if any sub component test failed -->
+		<condition property="test.unit.failed">
+			<available file="${test.unit.failed.flag}"/>
+		</condition>
+
+		<!-- fail if any test failed -->
+		<fail if="test.unit.failed" message="at least one of the tests failed"/>
+		<echo message="all tests successful"/>
+	</target>
+
+
+	<!-- ================================================================ -->
+	<!--  coverage instrumentation and report generation targets          -->
+	<!-- ================================================================ -->
+
+	<target name="risk-based-coverage-prepare" if="coverage.enabled" depends="" description="prepare inout for test-risk-based-coverage">
+		<merge destfile="${test.log.dir}/jacoco-all.exec">
+			<fileset dir="${masterbuild.dir}">
+				<include name="*/build/test/log/*-jacoco.exec"/>
+				<include name="build/test/log/*-jacoco.exec"/>
+			</fileset>
+		</merge>
+
+		<coverage-create-report coveragefile="${test.log.dir}/jacoco-all.exec" dest="${test.reports.coverage.dir}">
+			<classfileset>
+				<fileset dir="${masterbuild.dir}" includes="*/build/classes/com/crh/**/*.class"/>
+			</classfileset>
+			<sourcefileset>
+				<dirset dir="${masterbuild.dir}" includes="*/${java.src.dir.name}"/>
+			</sourcefileset>
+		</coverage-create-report>
+	</target>
+
+	<target name="test-risk-based-coverage" depends="risk-based-coverage-prepare" description="run risk-based coverage check">
+		<risk-based-coverage>
+			<classfileset dir="${masterbuild.dir}" includes="*/build/classes/com/crh/**/*.class"/>
+			<coverageinputhandler file="${test.reports.coverage.dir}/coverage.xml"/>
+			<exporter output="${test.reports.riskbasedcoverage.dir}/index.html"
+				coveragereportpath="${test.reports.coverage.dir}/html/">
+				<embeddedreport name="Coverage" path="${test.reports.coverage.dir}/html/index.html"/>
+			</exporter>
+		</risk-based-coverage>
+	</target>
+
+	<!-- ================================================================ -->
+	<!--  run integration tests (testing on the level of the public API)  -->
+	<!-- ================================================================ -->
+	<target name="test-integration-report" depends="init-test" description="performs integration tests">
+		<!-- TODO (mcico Mar 26, 2010): find a cleaner way to copy the selenium test reports with screenshots -->
+		<!-- for selenium test reports with screenshots in moap2-test -->
+		<copy todir="${test.reports.integration.dir}/log">
+			<!-- screenshots exist only in the admin-web component, so copy only from there
+				 and not from all subcomponents -->
+			<fileset dir="${subcomponent.admin-web}/build/test/reports/integration/log"/>
+		</copy>
+		<!-- additional logs -->
+		<if><available file="${subcomponent.admin-web}/build/test/log/integration/device"/><then>
+			<copy todir="${test.reports.integration.dir}/log/additionalLogs">
+				<fileset dir="${subcomponent.admin-web}/build/test/log/integration/device"/>
+			</copy>
+		</then></if>
+		<path id="temp.path">
+			<pathelement location="${test.reports.integration.dir}/log" />
+		</path>
+		<pathconvert property="selenium.response.log.dir" refid="temp.path">
+			<globmapper from="${basedir}/*" to="./*" />
+		</pathconvert>
+		
+		<property name="temp" value="${selenium.response.log.dir}" />
+		
+		<var name="selenium.response.log.dir" unset="true" />
+		<if>
+			<equals arg1="${temp}" arg2="${selenium.response.log.dir}" />
+			<then>
+				<property name="responselog.dir" value="" />
+			</then>
+			<else>
+				<!-- restore the old value of 'selenium.response.log.dir' -->
+				<property name="selenium.response.log.dir" value="${temp}" />
+
+				<!-- Convert the absolute path ${selenium.response.log.dir} to a relative path 
+					 (strip ${test.reports.integration.dir}) -->
+				<path id="temp.path">
+					<pathelement location="${selenium.response.log.dir}" />
+				</path>
+				<pathconvert property="responselog.dir" refid="temp.path">
+					<globmapper from="${test.reports.integration.dir}/*" to="./*" />
+				</pathconvert>
+			</else>
+		</if>
+
+		<junitreport todir="${test.reports.integration.dir}" >
+			<fileset dir="${masterbuild.dir}">
+				<include name="*/build/test/reports/integration/TEST-*.xml"/>
+			</fileset>
+			<report format="frames" todir="${test.reports.integration.dir}" styledir="${masterbuild.dir}/test/etc">
+ 				<param name="TITLE" expression="Integration Test Results" />
+				<param name="log.dir" expression="log" />
+			</report>
+		</junitreport>
+	</target>
+
+	<target name="update-testdata" depends="init-test" description="Updates the test data">
+		<subant target="run-client-all-usecases"
+			buildpath="${subcomponent.webservices}" verbose="true" failonerror="${failonerror}" />
+		<subant target="update-testdata" verbose="true"
+			buildpath="${subcomponent.business}" failonerror="${failonerror}" />
+	</target>
+
+	<target name="test-integration-arquillian" depends="container-stop, container-start, init-test" description="bounces the container then performs arquillian integration tests">
+
+		<delete file="${test.integration.arquillian.failed.flag}"/>
+
+		<subant target="test-arquillian" verbose="true"
+			buildpath="${subcomponent.business}" failonerror="${failonerror}" />
+
+		<!-- check if any sub component test failed -->
+		<condition property="test.integration.arquillian.failed">
+			<available file="${test.integration.arquillian.failed.flag}"/>
+		</condition>
+
+		<!-- fail if any test failed -->
+		<fail if="test.integration.arquillian.failed" message="at least one of the arquillian tests failed"/>
+
+	</target>
+	
+	<target name="test-integration" depends="init-test" description="performs integration tests">
+
+		<delete file="${test.integration.failed.flag}"/>
+		<taskdef resource="net/sf/antcontrib/antcontrib.properties"/>
+
+		<subant target="start-all-mockup"  verbose="true" 
+			buildpath="${subcomponent.ws-simulator}" failonerror="${failonerror}" />
+
+		<!-- wait for the mockups to be fully loaded -->
+
+		<sleep seconds="10" />
+
+		<antcall target="update-testdata">
+			<param name="verbose" value="true"/>
+			<param name="failonerror" value="${failonerror}"/>
+		</antcall>
+
+		<loadfile property="checkVersion" srcFile="${buildtime.properties}"/>
+		<echo message="http://${application.test.host}:${container.http.port}/logon/init/versionCheck?${checkVersion}"/>
+		<!-- if this fails, the VersionCheck servlet might not be deployed -->
+		<waitfor maxwait="6" maxwaitunit="minute" checkevery="1000" timeoutproperty="no.deployment">
+			<http url="http://${application.test.host}:${container.http.port}/logon/init/versionCheck?${checkVersion}"/>
+		</waitfor>
+		<fail if="no.deployment" message="The deployment is not ready. And make sure, that the versionCheck servlet is deployed"/>
+
+		<!-- call test-integration in sub components -->
+		<antcall target="do-all">
+			<param name="target" value="test-integration"/>
+			<param name="failonerror" value="false"/>
+		</antcall>
+
+		<!--perform workflow-test for UC9013 Bulk Order With Parallel
+		<subant target="test-pda-workflow-part0" verbose="true"
+			buildpath="${subcomponent.admin-web}" failonerror="${failonerror}" />
+		<parallel>
+			<subant target="test-pda-workflow-part1" verbose="true"
+				buildpath="${subcomponent.admin-web}" failonerror="${failonerror}" />
+			<subant target="test-pda-workflow-part2" verbose="true"
+				buildpath="${subcomponent.ws-simulator}" failonerror="${failonerror}" />
+		</parallel>
+		<subant target="test-pda-workflow-part3"  verbose="true"
+			buildpath="${subcomponent.admin-web}" failonerror="${failonerror}" />
+		-->
+
+		
+		<!--perform workflow-test for External Workflow PDA test -->
+		<subant target="test-external-pda-workflow-part0" verbose="true"
+			buildpath="${subcomponent.admin-web}" failonerror="${failonerror}" />
+		<subant target="test-external-pda-workflow-part1" verbose="true"
+			buildpath="${subcomponent.admin-web}" failonerror="${failonerror}" />
+		<subant target="test-external-pda-workflow-part2" verbose="true"
+			buildpath="${subcomponent.ws-simulator}" failonerror="${failonerror}" />
+
+		
+		<!--performs simple CEM test suites see twiki page https://aww.adnovum.ch/twiki/bin/view/CRHPegasus/HowToSoapUITest -->
+		<subant target="test-lds-cem-order-creation" verbose="true"
+			buildpath="${subcomponent.ws-simulator}" failonerror="${failonerror}" />
+		<subant target="test-lds-cem-workflow" verbose="true"
+			buildpath="${subcomponent.ws-simulator}" failonerror="${failonerror}" />		
+
+		<!-- performs the negative test cases (test correct validation) for the LDS CreateCompletedCustomerOrder request -->
+		<subant target="test-lds-create-completed-negative" verbose="true"
+			buildpath="${subcomponent.ws-simulator}" failonerror="${failonerror}" />
+		<subant target="stop-all-mockup"  verbose="true" 
+				buildpath="${subcomponent.ws-simulator}" failonerror="${failonerror}" />
+
+		<!-- performs the Customer portal test cases -->
+		<subant target="test-customer-portal" verbose="true"
+			buildpath="${subcomponent.ws-simulator}" failonerror="${failonerror}" />
+
+		<!-- collect all test result an generate reports -->
+		<antcall target="test-integration-report" />
+		<antcall target="test-integration-coverage-report" />
+
+		<!-- check if any sub component test failed -->
+		<condition property="test.integration.failed">
+			<available file="${test.integration.failed.flag}"/>
+		</condition>
+
+		<!-- fail if any test failed -->
+		<fail if="test.integration.failed" message="at least one of the tests failed"/>
+		<echo message="all tests successful"/>
+	</target>
+
+
+	<!-- ================================================================ -->
+	<!--  run integration tests (testing on the level of the public API)  -->
+	<!-- ================================================================ -->
+	<target name="test-pda-workflow" depends="" description="performs integration tests">
+
+		<delete file="${test.integration.failed.flag}"/>
+		<taskdef resource="net/sf/antcontrib/antcontrib.properties"/>
+
+		<loadfile property="checkVersion" srcFile="${buildtime.properties}"/>
+		<echo message="http://${application.test.host}:${container.http.port}/logon/init/versionCheck?${checkVersion}"/>
+		<!-- if this fails, the VersionCheck servlet might not be deployed -->
+		<waitfor maxwait="6" maxwaitunit="minute" checkevery="1000" timeoutproperty="no.deployment">
+			<http url="http://${application.test.host}:${container.http.port}/logon/init/versionCheck?${checkVersion}"/>
+		</waitfor>
+		<fail if="no.deployment" message="The deployment is not ready. And make sure, that the versionCheck servlet is deployed"/>
+
+		<subant target="test-pda-workflow"  verbose="true"
+			buildpath="${subcomponent.admin-web}" failonerror="${failonerror}" />
+
+		<subant target="stop-all-mockup"  verbose="true" 
+			buildpath="${subcomponent.ws-simulator}" failonerror="${failonerror}" />
+
+		<!-- collect all test result an generate reports -->
+		<property name="root.dir" location="/"/>
+		<pathconvert property="reports.integration.path" refid="subcomponents.path" pathsep=", ">
+			<mapper type="regexp" from="^(.)(.*)$$" to="\2/${build.dir.name}/test/reports/integration/TEST-\*.xml"/>
+		</pathconvert>
+
+		<echo message="Using integration report results from ${reports.integration.path}"/>
+		<junitreport todir="${test.reports.integration.dir}" >
+			<fileset dir="${root.dir}">
+				<patternset includes="${reports.integration.path}"/>
+			</fileset>
+			<fileset dir="${test.reports.integration.dir}">
+				<include name="TEST-*.xml"/>
+			</fileset>
+			<report format="frames" todir="${test.reports.integration.dir}"/>
+		</junitreport>
+
+		<!-- check if any sub component test failed -->
+		<condition property="test.integration.failed">
+			<available file="${test.integration.failed.flag}"/>
+		</condition>
+
+		<!-- fail if any test failed -->
+		<fail if="test.integration.failed" message="at least one of the tests failed"/>
+		<echo message="all tests successful"/>
+	</target>
+
+
+
+	<!-- ================================================================ -->
+	<!--  run load tests (testing on the level of the public API)         -->
+	<!-- ================================================================ -->
+	<target name="test-load" depends="" description="performs UI and WS load tests">
+		<ant antfile="${subcomponent.test-load}/build.xml" useNativeBasedir="true" inheritAll="false" target="dist"/>
+		<ant antfile="${subcomponent.test-load}/build.xml" useNativeBasedir="true" inheritAll="false" target="init-test"/>
+		<subant target="start-all-mockup" buildpath="${subcomponent.ws-simulator}" verbose="true" failonerror="true" />
+		<trycatch>
+		<try>
+		<parallel threadcount="3">
+			<!-- for the moment the test-load subcomponent is not part of the
+			subcomponent path, therefore run the interesting targets from here
+			as part of the NB. Setting up a proper subcomponent would force
+			us to implement empty targets -->
+			<ant antfile="${subcomponent.test-load}/build.xml" useNativeBasedir="true" inheritAll="false" target="test-load-frontend"/>
+			<ant antfile="${subcomponent.test-load}/build.xml" useNativeBasedir="true" inheritAll="false" target="test-load-mop"/>
+			<subant target="test-load-ws" buildpath="${subcomponent.ws-simulator}" verbose="true" failonerror="true" />
+		</parallel>				
+		</try>
+		<finally>
+			<subant target="stop-all-mockup" buildpath="${subcomponent.ws-simulator}" verbose="true" failonerror="true" />
+			<ant antfile="${subcomponent.test-load}/build.xml" useNativeBasedir="true" inheritAll="false" target="test-load-report"/>			
+			<ant antfile="${subcomponent.ws-simulator}/build.xml" useNativeBasedir="true" inheritAll="false" target="test-load-report"/>
+		</finally>			
+		</trycatch>				
+	</target>
+
+	<!-- ================================================================ -->
+	<!--  RBCA                                                            -->
+	<!-- ================================================================ -->
+
+	<target name="test-integration-coverage-report" if="coverage.enabled">
+			<echo message="get coverage data:"/>
+			<echo message="  address=${container.coverage.host}"/>
+			<echo message="  port=${container.coverage.port}"/>
+			<echo message="  destfile=${integration.coverage.file}"/>
+			<dump address="${container.coverage.host}" port="${container.coverage.port}" reset="true" destfile="${integration.coverage.file}"/>
+		</target>
+
+    <!-- ================================================================ -->
+    <!--  Sonar                                                           -->
+	<!-- ================================================================ -->
+	<property name="adnsonar.sources.default.includes" value="*/src/main/java" />
+	<property name="adnsonar.sources.includes" value="*/src/main/webapp"/>
+	<property name="adnsonar.binaries.default.includes" value="*/build/classes" />
+	<property name="adnsonar.binaries.default.excludes" value="./logon-webservices/build/classes/service/classes/**" /> <!-- known to cause duplicate class errors -->
+
+	<target name="-init-sonar-libraries">
+		<!-- Sonar AAL library path uses mpository as top dir but logon requires additional libraries to avoid "xy is not accessible through the ClassLoader" warnings -->
+		<path id="adnsonar.libraries.path">
+			<fileset dir="${masterbuild.dir}" includes="${MPOSITORY_DIR_LOCAL}/**.jar,*/build/dist/dep/lib/*.jar,*/build/dist/dep/lib-axis2/*.jar,*/build/dist/dep/*.jar,*/build/lib/*.jar" />
+			<fileset dir="${SERVLET_HOME}" includes="lib/servlet.jar" />
+			<!-- TODO : This should be replaced with the proper JBOSS 7 dependency -->
+			<fileset dir="/share/java/jpository/jboss/jboss-as/EAP-6.1.1-GA"
+				     includes="modules/system/layers/base/**/*.jar"/>
+		</path>
+	</target>
+	<property name="jacoco.file.pattern"      value="build/test/log/jacoco-all.exec"/>
+	<!-- The sonar.projectKey is ${groupId}:${artifactId}. But the groupId provided through the build.properties
+	is set to ch.adnovum.logon, but it should be com.holcim.logon. So we set the projectKey explicitly -->
+	<property name="sonar.projectKey"                    value="com.holcim.logon:${project}" />
+	<!-- adnsonar does not allow specification of comma-separated exec files, hence we use the already-merged file of the rbca report -->
+	<property name="sonar.jacoco.reportPath"        value="${test.log.dir}/all-jacoco.exec"/>
+
+	<import file="${ADNSONAR_HOME}/adnsonar-aal/aal-adnsonar.xml"/>
+
+	<target name="jsptool">
+		<java classname="ch.nevis.gdi.main.TemplateDesigner"
+			fork="true" failonerror="true" newenvironment="true">
+			<jvmarg value="-Dallfiles=true"/>
+			<jvmarg value="-Dfiletype=jsp,js,css"/>
+			<jvmarg value="-Xmx512m"/> 
+			<jvmarg value="-Dlog4j.configuration=file:///${masterbuild.dir}/etc/gdi/jsptool/log4j.properties"/>
+			<classpath refid="gdi.classpath"/>
+			<arg line="etc/gdi/jsptool/cartridge . /tmp/jsptool"/>
+		</java>
+	</target>
+
+	<target name="generate-exception-dashboard" 
+			description="generate exception dashboard from the server.log">
+		<echo message="Server log directory is: ${container.instance.dir}/log output reachable at ${etc.dir}/tools/log-analyzer/error_report/index.html"/>
+			<shellscript shell="sh">
+			cd ${etc.dir}/tools/log-analyzer
+			python analyzelog.py ${container.instance.dir}/log
+			</shellscript>			
+	</target>
+
+</project>

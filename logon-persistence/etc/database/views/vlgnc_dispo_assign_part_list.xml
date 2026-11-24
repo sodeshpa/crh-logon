@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="VLGNC_DISPO_ASSIGN_PART_LIST" mappingType="view" skipSql="true">
+        <column name="ASSIGNMENT_PART_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="ASSIGNMENT_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="ORDER_ID" type="DECIMAL" size="12"/>
+        <column name="EXT_ORDER_ID" type="DECIMAL" size="12"/>
+        <column name="CUSTORDER_NUMBER" type="DECIMAL" size="12"/>
+        <column name="ASSIGNMENT_PART_SEQ_NO" required="true" type="DECIMAL" size="12"/>
+        <column name="ASSIGNMENT_PART_TYPE_CD" required="true" type="DECIMAL" size="2"/>
+        <column name="LNF_SHIPTO_FLAG" type="BOOLEAN"/>
+        <column name="POOL_ID" type="DECIMAL" size="12"/>
+        <column name="COMM_CARRIER_ID" type="DECIMAL" size="12"/>
+        <column name="EXEC_CARRIER_ID" type="DECIMAL" size="12"/>
+        <column name="ORDER_NUMBER" type="DECIMAL" size="12"/>
+        <column name="ORDER_NUMBER_IN_STR" type="VARCHAR" size="40"/>
+        <column name="ORDER_STATUS_CD" type="DECIMAL" size="2"/>
+        <column name="ON_HOLD_ORDER_AND_LOCKED_FLAG" type="BOOLEAN"/>
+        <column name="ORDER_STATUS_TXT" type="VARCHAR" size="50"/>
+        <column name="DELIVERY_FROM_DAT" type="DATE"/>
+        <column name="DELIVERY_TO_DAT" type="DATE"/>
+        <column name="NOTE_DISPATCHING" type="VARCHAR" size="256"/>
+        <column name="NOTE_TRUCK_DRIVER" type="VARCHAR" size="256"/>
+        <column name="NOTE_DELIVERY" type="VARCHAR" size="300"/>
+        <column name="NOTE_RAILWAY_DISP" type="VARCHAR" size="256"/>
+        <column name="CUST_WEBORDER_NOTE" type="VARCHAR" size="1000"/>
+        <column name="DISTRIBUTION_DEST_CD" type="VARCHAR" size="4"/>
+        <column name="ETRAN_OUTBOUND" type="VARCHAR" size="40"/>
+        <column name="ETRAN_RETURN" type="VARCHAR" size="20"/>
+        <column name="CARRIER_DELIVERY_NOTE" type="VARCHAR" size="600"/>
+        <column name="TRANSPORT_DISTANCE_M" type="DECIMAL" size="10"/>
+        <column name="DELIVERY_TYPE_CD" type="DECIMAL" size="2"/>
+        <column name="ORDER_SHIPTO_NAME" type="VARCHAR" size="35"/>
+        <column name="ORDER_SOLDTO_NUMBER" type="VARCHAR" size="10"/>
+        <column name="ORDER_SOLDTO_NAME" type="VARCHAR" size="35"/>
+        <column name="ORDER_SOLDTO_NAME2" type="VARCHAR" size="35"/>
+        <column name="PLANNED_START" type="DATE"/>
+        <column name="REAL_START" type="DATE"/>
+        <column name="ASSIGN_PART_STATUS_CD" required="true" type="DECIMAL" size="2"/>
+        <column name="SHIPTO_ID" type="DECIMAL" size="12"/>
+        <column name="SHIPTO_SAP_ID" type="VARCHAR" size="10"/>
+        <column name="SHIPTO_SAP_BP_ID" type="DECIMAL" size="12"/>
+        <column name="SHIPTO_NAME" type="VARCHAR" size="35"/>
+        <column name="SHIPTO_NAME2" type="VARCHAR" size="35"/>
+        <column name="SHIPTO_CITY" type="VARCHAR" size="35"/>
+        <column name="SHIPPINGPOINT_NAME" type="VARCHAR" size="80"/>
+        <column name="PLANT_CD" type="VARCHAR" size="4"/>
+        <column name="SHIPPINGPOINT_ID" type="DECIMAL" size="12"/>
+        <column name="SP_COORD_LAT" type="DOUBLE"/>
+        <column name="SP_COORD_LON" type="DOUBLE"/>
+        <column name="RAIL_ARRIVAL_WARNING_MIN" type="DECIMAL" size="5"/>
+        <column name="ST_COORD_LAT" type="DOUBLE"/>
+        <column name="ST_COORD_LON" type="DOUBLE"/>
+        <column name="ST_SAP_BP_ID" type="DECIMAL" size="12"/>
+        <column name="COORD_LAT" type="DOUBLE"/>
+        <column name="COORD_LON" type="DOUBLE"/>
+        <column name="SITE_NAME" type="VARCHAR" size="80"/>
+        <column name="SITE_CITY" type="VARCHAR" size="35"/>
+        <column name="LANG_CD" type="VARCHAR" size="2"/>
+        <column name="CARRIER_REQUIRES_PLANNING_FLAG" type="BOOLEAN"/>
+        <column name="COMM_CARRIER_NAME" type="VARCHAR" size="40"/>
+    </table>
+</database>

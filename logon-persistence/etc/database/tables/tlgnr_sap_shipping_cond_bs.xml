@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNR_SAP_SHIPPING_COND_BS" refData="true"
+           description="Shipping Conditions as distinguished by the LOGON->SAP Order Export Interface. E1=Truck, S1=SBB, S3=Mobile Silos, S4=RhB.">
+
+        <column name="SAP_SHIPPING_COND_CD" primaryKey="true" required="true" type="VARCHAR" size="2" autoIncrement="false"
+                description="PK. Code of the Reference Data. Values are defined by SAP. E1=Truck, S1=SBB, S3=Mobile Silos, S4=RhB."/>
+        <column name="SEND_TO_SAP_SHIPPING_TYPE" type="VARCHAR" size="2" required="true"
+                description="Used in LOGON->SAP interface for the mapping of shipping condition and shipping type: Shipping CONDITION (VSART): use sap_shipping_cond_bs (no mapping). For Shipping TYPE (ZVSART): use the mapped value send_to_sap_shipping_type."/>
+        <column name="CTL_ACT_CD" primaryKey="false" required="true" type="BOOLEAN" autoIncrement="false"
+                description="Active Flag. When new data is entered, only reference data with active flag are available for selection normally."/>
+
+    </table>
+</database>

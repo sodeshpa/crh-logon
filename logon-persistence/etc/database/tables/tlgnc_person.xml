@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNC_PERSON"
+           description="Persons known to the Logon system. Not every person needs to be a user of Logon.">
+        <column name="PERSON_ID" primaryKey="true" required="true" type="DECIMAL" size="12"
+                description="PK"/>
+        <column name="NAME" type="VARCHAR" size="40"
+                description="Last name/family name of the person."/>
+        <column name="FIRSTNAME" type="VARCHAR" size="40"
+                description="First name/given name of the person."/>
+        <column name="PHONE_NR" type="VARCHAR" size="25" 
+        		description="Phone number"/>
+        <column name="MOBILE_NR" type="VARCHAR" size="25" 
+        		description="Mobile phone number. For driver-users, this SMS is used to send SMS on 'Release order' and 'Order cancellation' events. For other users: no logic currently, only information."/>
+        <column name="EMAIL" type="VARCHAR" size="100" 
+        		description="E-mail address."/>
+        <column name="ACTIVE_FLAG" required="true" type="BOOLEAN" 
+        		description="0=inactive/deleted, 1=active."/>
+    </table>
+</database>

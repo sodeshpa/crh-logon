@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="VLGNC_SIMPLE_VEHICLE_ASSG" mappingType="view" skipSql="true">
+        <column name="COMPOSITE_ID" type="VARCHAR" size="122"/>
+        <column name="SIMPLE_VEHICLE_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="VEHICLE_NAME" required="true" type="VARCHAR" size="30"/>
+        <column name="VEHICLE_REG_NO" required="true" type="VARCHAR" size="20"/>
+        <column name="SIMPLE_VEHICLE_TYPE_CD" required="true" type="DECIMAL" size="2"/>
+        <column name="VEHICLE_TYPE_TX" required="true" type="VARCHAR" size="40"/>
+        <column name="PRIORITY" required="true" type="DECIMAL" size="3"/>
+        <column name="MAX_GROSS_WEIGHT_T" type="DECIMAL" size="12,4"/>
+        <column name="TARE_WEIGHT_T" required="true" type="DECIMAL" size="12,4"/>
+        <column name="CARRIER_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="CARRIER_NAME" required="true" type="VARCHAR" size="40"/>
+        <column name="ASSIGNMENT_ID" type="DECIMAL" size="12"/>
+        <column name="ASSIGNMENT_DAT" type="DATE"/>
+        <column name="ASS_ST_TXT" type="VARCHAR" size="30"/>
+        <column name="ORDER_ID" type="DECIMAL" size="12"/>
+        <column name="ORDER_NUMBER" type="DECIMAL" size="12"/>
+        <column name="ORDER_STATUS_CD" type="DECIMAL" size="2"/>
+        <column name="WEIGH_SYSTEM_SP_CD" type="DECIMAL" size="2"/>
+        <column name="ORDER_STATUS_TXT" type="VARCHAR" size="50"/>
+        <column name="MATERIAL_TXT" type="VARCHAR" size="40"/>
+        <column name="SHIPTO" type="VARCHAR" size="35"/>
+        <column name="LANG_CD" required="true" type="VARCHAR" size="2"/>
+    </table>
+</database>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="VLGNC_SAREA_DISPLAY" mappingType="view" skipSql="true">
+        <column name="COMPOSITE_ID" type="VARCHAR" size="43"/>
+        <column name="SAREA_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="SORG_CD" required="true" type="VARCHAR" size="4"/>
+        <column name="DISTRIBUTION_CHANNEL" required="true" type="VARCHAR" size="2"/>
+        <column name="DIVISION_CD" required="true" type="VARCHAR" size="2"/>
+        <column name="SAREA_DISPLAY_LONGNAME" required="true" type="VARCHAR" size="30"/>
+        <column name="SORG_ADDRESS_NAME" type="VARCHAR" size="40"/>
+        <column name="LANG_CD" required="true" type="VARCHAR" size="2"/>
+        <column name="DELNOTE_USES_WS_NUMBER_FLAG" required="true" type="BOOLEAN"/>
+        <column name="DOCUMENT_DEL_TIME_WINDOW_FLAG" required="true" type="BOOLEAN"/>
+        <column name="DOCUMENT_DISTANCE_FLAG" required="true" type="BOOLEAN"/>
+        <column name="DOCUMENT_COMM_CARRIER_FLAG" required="true" type="BOOLEAN"/>
+        <column name="DOCUMENT_EXEC_CARRIER_FLAG" required="true" type="BOOLEAN"/>
+        <column name="CUST_COMM_FLAG" required="true" type="BOOLEAN"/>
+        <column name="ALLOW_SD_WEB_ORDER_UNTIL_MI" type="DECIMAL" size="4"/>
+        <column name="ALLOW_ND_WEB_ORDER_UNTIL_MI" type="DECIMAL" size="4"/>
+        <column name="APPLY_SD_LEADTIME_CHK_FROM_MI" type="DECIMAL" size="4"/>
+        <column name="APPLY_ND_LEADTIME_CHK_UNTIL_MI" type="DECIMAL" size="4"/>
+        <column name="SHORT_TERM_ORDER_THRESHOLD_MI" type="DECIMAL" size="5"/>
+        <column name="ALLOW_BIMODAL_CREATION_TILL_MI" type="DECIMAL" size="4"/>
+        <column name="SHIPTO_OPEN_1_FROM" type="DECIMAL" size="4"/>
+        <column name="SHIPTO_OPEN_1_TO" type="DECIMAL" size="4"/>
+        <column name="SHIPTO_OPEN_2_FROM" type="DECIMAL" size="4"/>
+        <column name="SHIPTO_OPEN_2_TO" type="DECIMAL" size="4"/>
+        <column name="MAIL_FROM" type="VARCHAR" size="80"/>
+        <column name="MAIL_TEST_TO" type="VARCHAR" size="200"/>
+        <column name="MAIL_BCC" type="VARCHAR" size="200"/>
+        <column name="MAIL_RAILADMIN" type="VARCHAR" size="80"/>
+        <column name="MAIL_ENCODING" type="VARCHAR" size="32"/>
+        <column name="DELAY_SEND_TO_SAP_MI" type="DECIMAL" size="10"/>
+        <column name="EXACT_QUANTITY_ORDER_TOLERANCE" type="DECIMAL" size="10"/>
+        <column name="ALLOW_PLANNING_MATERIAL_FLAG" required="true" type="BOOLEAN"/>
+        <column name="CS_ENABLE_ONE_TIME_CUST_FLAG" required="true" type="BOOLEAN"/>
+        <column name="CS_SHOW_PAYMENT_MTH_FLAG" required="true" type="BOOLEAN"/>
+        <column name="CS_PRICE_TYPE" required="true" type="DECIMAL" size="2"/>
+        <column name="CS_SHOW_TOTALS_TEXT_FLAG" required="true" type="BOOLEAN"/>
+        <column name="CS_SHOW_CUST_TAX_CODE_FLAG" required="true" type="BOOLEAN"/>
+        <column name="CS_SHOW_CONTRACT_CURRENCY_FLAG" required="true" type="BOOLEAN"/>
+        <column name="DN_SHOW_TRAILER_FLAG" required="true" type="BOOLEAN"/>
+        <column name="DN_SHOW_SEALS_INFO_FLAG" required="true" type="BOOLEAN"/>
+        <column name="DN_SHOW_SILO_NO_FLAG" required="true" type="BOOLEAN"/>
+        <column name="DN_SHOW_PLANT_CYCLE_FLAG" required="true" type="BOOLEAN"/>
+        <column name="DN_SHOW_FIX_TEXT" required="true" type="BOOLEAN"/>
+        <column name="DN_SHOW_DISPATCHER_DRIVER_FLAG" required="true" type="BOOLEAN"/>
+        <column name="DN_SHOW_CARRIER_CRM_FLAG" required="true" type="BOOLEAN"/>
+        <column name="DN_SHOW_SHIPTO_CONTACT_FLAG" required="true" type="BOOLEAN"/>
+        <column name="EXP_SHOW_TOTAL_TXT_FLAG" required="true" type="BOOLEAN"/>
+        <column name="EXP_SHOW_LEGAL_TEXT_1_FLAG" required="true" type="BOOLEAN"/>
+        <column name="EXP_SHOW_LEGAL_TEXT_2_FLAG" required="true" type="BOOLEAN"/>
+        <column name="EXP_SHOW_ISSUE_DAT_LOC_FLAG" required="true" type="BOOLEAN"/>
+        <column name="EXP_SHOW_AD_INVOICE_NO_FLAG" required="true" type="BOOLEAN"/>
+        <column name="EXP_SHOW_CTRL_NO_FLAG" required="true" type="BOOLEAN"/>
+        <column name="EXP_MAT_PRICE_TYPE" required="true" type="DECIMAL" size="3"/>
+        <column name="EXP_SHOW_ZCODE1_2_FLAG" required="true" type="BOOLEAN"/>
+        <column name="ENABLE_PRICING_CALL_FLAG" required="true" type="BOOLEAN"/>
+        <column name="ALLOW_WEB_ORDER_ON_WEEKEND" type="DECIMAL" size="3"/>
+        <column name="FORCE_TO_SAP_FLAG" required="true" type="BOOLEAN"/>
+        <column name="DBLT_DISTANCE_L1" required="false" type="DECIMAL" size="10"/>
+        <column name="DBLT_DISTANCE_L2" required="false" type="DECIMAL" size="10"/>
+        <column name="H1_EARLY_ORDER_LIMIT" required="false" type="DECIMAL" size="4"/>
+        <column name="H2_EARLIEST_DELIVERY_FROM" required="false" type="DECIMAL" size="4"/>
+        <column name="DBLT_OFFSET_D1" required="false" type="DECIMAL" size="4"/>
+        <column name="DBLT_OFFSET_D2" required="false" type="DECIMAL" size="4"/>
+        <column name="DBLT_OFFSET_D3" required="false" type="DECIMAL" size="4"/>
+        <column name="DBLT_OFFSET_D4" required="false" type="DECIMAL" size="4"/>
+        <column name="DBLT_OFFSET_D5" required="false" type="DECIMAL" size="4"/>
+        <column name="DBLT_OFFSET_D6" required="false" type="DECIMAL" size="4"/>
+        <column name="ENABLE_DEMAND_PLANNING_FLAG" required="true" type="BOOLEAN"/>
+        <column name="DEMAND_PLAN_LATEST_UNTIL_H" required="false" type="DECIMAL" size="4"/>
+    </table>
+</database>

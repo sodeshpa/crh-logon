@@ -1,0 +1,11 @@
+
+call from the directory in which the wsdl is located
+
+/share/java/tools/util/wsi-test-tools/1.1/java/bin/Analyzer.sh -config wsi/wsiAnalyzerConfig.xml
+
+in the config file, the location of the 
+- wsdl
+- log file
+- report file
+
+are specified. The report (report.xml) can be seen best in the browser.

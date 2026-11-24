@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="VLGNC_TP_SAP_VENDOR_SEARCH" mappingType="view" skipSql="true">
+        <column name="TP_SAP_VENDOR_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="SAP_VENDOR_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="SAP_TP_SAP_VENDOR_PF_CD" required="true" type="VARCHAR" size="2"/>
+        <column name="SAP_IFC_ID" type="VARCHAR" size="10"/>
+        <column name="NAME1" type="VARCHAR" size="35"/>
+    </table>
+</database>

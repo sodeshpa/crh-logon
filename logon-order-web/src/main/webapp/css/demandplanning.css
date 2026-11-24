@@ -1,0 +1,124 @@
+.managePlanning,
+.reportExpected,
+.reportExpectedAndRealized {
+	--section-margin: 30px;
+	--header-fontsize: 14px;
+	--header-fontweight: normal;
+}
+
+.managePlanning {
+	--content-max-width: 600px;
+	--filter-max-width: 600px;
+}
+
+.reportExpected,
+.reportExpectedAndRealized {
+	--content-max-width: 800px;
+	--filter-max-width: 700px;
+}
+
+#filter {
+	display: grid;
+	grid-gap: 8px;
+	max-width: var(--filter-max-width);
+}
+
+#filter label {
+	vertical-align: bottom;
+	font-size: var(--header-fontsize);
+	font-weight: var(--header-fontweight);
+}
+
+section {
+	margin-top: var(--section-margin);
+	max-width: var(--content-max-width);
+}
+
+section:first-child {
+	margin-top: 0;
+}
+
+section h3 {
+	font-size: var(--header-fontsize);
+	font-weight: var(--header-fontweight);
+	margin-bottom: 8px;
+	max-width: 400px;
+}
+
+.managePlanning #filter {
+	grid-template-columns: auto auto;
+}
+
+.managePlanning #plan {
+	display: grid;
+	grid-template-columns: auto auto auto auto auto;
+	grid-gap: 8px;
+	align-items: center;
+}
+
+.managePlanning #plan .deleteButton img,
+.managePlanning #plan .editButton img,
+.managePlanning #plan .saveButton img {
+	width: 16px;
+	height: 16px;
+}
+
+.managePlanning #plan .uomLabelWrapper {
+	font-size: 12px;
+}
+
+.managePlanning #plan .saveButton {
+	display: none;
+}
+
+.managePlanning #plan.editing .deleteButton {
+	visibility: hidden;
+}
+
+.managePlanning #plan.editing .deleteButton.enabled {
+	visibility: visible;
+}
+
+.managePlanning #plan.editing .editButton {
+	display: none;
+}
+
+.managePlanning #plan.editing .saveButton {
+	visibility: hidden;
+	display: block;
+}
+
+.managePlanning #plan.editing .saveButton.enabled {
+	visibility: visible;
+}
+
+.managePlanning #plan .newItemButton {
+	grid-column: 1 / -1;
+	justify-self: end;
+}
+
+.managePlanning #plan.editing .newItemButton {
+	display: none;
+}
+
+.reportExpected #filter,
+.reportExpectedAndRealized #filter {
+	grid-template-columns: auto auto auto auto;
+}
+
+.reportExpected #filter .buttons,
+.reportExpectedAndRealized #filter .buttons {
+	grid-column: 1 / -1;
+}
+
+.reportExpectedAndRealized .diff-match .x-grid3-col-3 {
+	background-color: rgba(85, 221, 51, 0.5);
+}
+
+.reportExpectedAndRealized .diff-negative .x-grid3-col-3 {
+	background-color: rgba(221, 60, 51, 0.7);
+}
+
+.reportExpectedAndRealized .diff-positive .x-grid3-col-3 {
+	background-color: rgba(	225, 220, 73, 0.7);
+}

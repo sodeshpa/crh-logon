@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="VLGNC_DISPO_MESSAGE_LIST" mappingType="view" skipSql="true">
+        <column name="PDA_MESSAGE_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="DRIVER_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="PDA_USER_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="DISPATCHER_USER_ID" type="DECIMAL" size="12"/>
+        <column name="MESSAGE" required="true" type="VARCHAR" size="250"/>
+        <column name="PDA_MESSAGE_TYPE_CD" required="true" type="DECIMAL" size="2"/>
+        <column name="RECEIVER_ACK_FLAG" required="true" type="BOOLEAN"/>
+        <column name="CRE_TS" required="true" type="TIMESTAMP"/>
+        <column name="MOD_TS" required="true" type="TIMESTAMP"/>
+        <column name="DISPATCHER_NAME" type="VARCHAR" size="40"/>
+        <column name="DISPATCHER_FIRSTNAME" type="VARCHAR" size="40"/>
+        <column name="CTL_MOD_TS" required="true" type="TIMESTAMP"/>
+    </table>
+</database>

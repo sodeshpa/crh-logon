@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="VLGNC_CARRIER_SVENDOR" mappingType="view" skipSql="true">
+        <column name="CARRIER_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="UPDATE_BLOCKED_BY_HJID" type="DECIMAL" size="19"/>
+        <column name="NAME1" type="VARCHAR" size="35"/>
+        <column name="NAME2" type="VARCHAR" size="35"/>
+        <column name="STREET" type="VARCHAR" size="35"/>
+        <column name="CITY" type="VARCHAR" size="35"/>
+        <column name="COUNTRY_CD" type="VARCHAR" size="3"/>
+        <column name="SAP_ID" type="VARCHAR" size="10"/>
+        <column name="SAP_VENDOR_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="ACCOUNT_GROUP" type="VARCHAR" size="4"/>
+        <column name="VN_IS_COMM_CARRIER" required="true" type="BOOLEAN"/>
+        <column name="VN_IS_EXEC_CARRIER" required="true" type="BOOLEAN"/>
+        <column name="VN_IS_INTERNAL" required="true" type="BOOLEAN"/>
+        <column name="DISPLAY_NAME" required="true" type="VARCHAR" size="40"/>
+        <column name="TRANSMIT_TO_CARRIER_FLAG" required="true" type="BOOLEAN"/>
+        <column name="FREIGHT_REVENUE_CURRENCY_CD" type="VARCHAR" size="3"/>
+        <column name="CARRIER_REQUIRES_PLANNING_FLAG" required="true" type="BOOLEAN"/>
+        <column name="BAG_STOCK_SP" type="VARCHAR" size="85"/>
+    </table>
+</database>

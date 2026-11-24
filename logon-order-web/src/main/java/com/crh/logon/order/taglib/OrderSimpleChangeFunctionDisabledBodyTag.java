@@ -1,0 +1,27 @@
+/*
+ * Author            : AdNovum Informatik AG
+ * Version Number    : $Revision$
+ * Date of last edit : $Date$
+ */
+
+package com.crh.logon.order.taglib;
+
+import javax.servlet.jsp.JspException;
+import javax.servlet.jsp.tagext.Tag;
+import javax.servlet.jsp.tagext.TagSupport;
+
+/**
+ * Prints out the body in case the parent OrderSimpleChangeFunctionDisabledTag says that 
+ * the functionality is disabled.
+ * @author AdNovum Informatik AG
+ */
+public class OrderSimpleChangeFunctionDisabledBodyTag extends TagSupport { 
+
+	public int doStartTag() throws JspException {
+		int result = 0;
+		Tag tagNotCasted = findAncestorWithClass(this, OrderSimpleChangeFunctionDisabledTag.class);
+		OrderSimpleChangeFunctionDisabledTag tag = (OrderSimpleChangeFunctionDisabledTag) tagNotCasted;
+		boolean disabled = tag.isDisabled();
+		return result = disabled ? EVAL_BODY_INCLUDE : SKIP_BODY ;
+	}
+}

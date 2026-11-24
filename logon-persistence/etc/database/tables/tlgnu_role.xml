@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNU_ROLE"
+           description="A user role bundles a set of functions (tlgnu_function). Assigning a role to a user grants the user access to the functions contained in the role. Although there is an M:N relation between roles and functions, the set of functions contained in roles should be kept disjoint of each other if possible. Users can be granted several roles. Granting a role is restricted to users who posess the right (tlgnu_func) specified by GRANTABLE_BY_FUNC_ID.">
+
+        <column name="ROLE_ID" primaryKey="true" required="true" type="DECIMAL" size="12"
+                description="PK."/>
+        <column name="ROLE_NAME" required="true" type="VARCHAR" size="40"
+                description="The Name of the Role as it appears in the User Administration."/>
+        <column name="ROLE_DESCR" required="true" type="VARCHAR" size="255"
+                description="Description of the Role."/>
+        <!-- 20090423/uma: It may be only a question of time until Crh discovers that those names and Descriptions could be language dependent. Introduce tlrnu_role_tx if needed, see tlgnc_pool / tlgnc_pool_tx. -->
+        <column name="GRANTABLE_BY_FUNC_ID" required="true" type="DECIMAL" size="12"
+                description="FK tlgnu_func. The function (right) that a user with user-admin rights needs to have in order to grant/assign this role to another user. With this mechanism we distinguish 'User Admin' from 'User Admin Lite'."/>
+
+        <foreign-key foreignTable="TLGNU_FUNC" name="FK_TLGNU_ROLE_GRANT_FUNC">
+            <reference local="GRANTABLE_BY_FUNC_ID" foreign="FUNC_ID"/>
+        </foreign-key>
+
+    </table>
+</database>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNC_MAT_SHIPPINGPOINT"
+           description="Additional Material data depending on Material+Shippingpoint(+Plant) which is not maintained in SAP but directly in Logon. See also tlgnc_mat_plant for Material+Plant dependent data.">
+
+        <!-- PK and identifiers -->
+        <column name="MAT_SHIPPINGPOINT_ID" primaryKey="true" required="true" type="DECIMAL" size="12"
+                description="PK"/>
+        <column name="SAP_MATERIAL_ID" required="true" type="DECIMAL" size="12"
+                description="FK tlgns_sap_material. Material (Product) of this extended Logon data. Note, this is NOT the SAP Material Number, but the technical ID of that material in Logon DB. (SAP_MATERIAL_ID, SHIPPINGPOINT_ID) is an alternative identifier."/>
+        <column name="SHIPPINGPOINT_ID" required="true" type="DECIMAL" size="12"
+                description="FK tlgnc_shippingpoint. Shippingpoint of this extended Logon data. Note, this is NOT the SAP Shippingpoint Number (which would only be identifying in combination with plant_cd), but the technical ID of that shippingpoint in Logon DB. The plant can be seen in tlgnc_shippingoint.plant_cd."/>
+        <column name="STORAGE_LOCATION" type="VARCHAR" size="4"
+                description="The Storage Location where the material is kept at this shippingpoint. Value is used when exporting the order to SAP. It ALWAYS wins over tlgnc_shippingpoint.storage_location, i.e. it is possible to override a value also with NULL/empty. This value can only be set for materials where material_package_cd.can_have_storage_location _flag = 1. E.g. 'Services' cannot have a storage location."/>
+
+        <!-- Cost attributes (handling costs) which cannot be received from SAP.
+             See https://aww.adnovum.ch/twiki/bin/view/CrhPegasus/ContributionMarginCalculation
+             for full overview on Cost/margin and various sources of cost elements.
+        -->
+        <!-- 20090827/uma: UOM_CD: Not required here(?), is always tlgns_sap_material.BASE_UOM_CD(?)
+             Note, that SALES_UOM_CD would not be defined per material, but for mat+sarea!!
+             If this would be needed, one could try to store UOM_CD explicitely here as well,
+             BUT: we would run into a PK problem again, because UQ constraint (mat, sp) is violated!
+             => New table tlgnc_mat_shippingpoint_sarea or tlgnc_mat_shippingpoint_uom/costs would be needed!
+        -->
+        <column name="VAR_HANDLING_COST_MAT" type="DECIMAL" size="11,2"
+                description="Current variable handling cost of material (per 1 BASE_UOM_CD of the material from SAP), material-specific. These are costs caused when handling (loading/unloading) a certain material at a plant. If the handling costs are independent of the material (=default), they are set in tlgnc_shippingpoint, but can be overridden here. Handling costs occur at each plant which is involved, i.e. production and supply plant (if different). The UOM is implicitely the same as for the material received from SAP: tlgns_sap_material.BASE_UOM_CD."/>
+        <column name="FUTURE_VAR_HANDLING_COST_MAT" type="DECIMAL" size="11,2"
+                description="Future variable handling cost of material (per 1 UOM)."/>
+        <column name="FUTURE_VALID_FROM_DAT" type="DATE"
+                description="Validity start date of future_var_handling_cost_mat. Current costs are valid until before future_valid_from_dat. Moving 'future' into 'current' and updating the future_valid_from_dat is a manual task, done once per year. Logon compares delivery date of order with this date and decides which cost is to be used."/>
+        <column name="CURRENCY_CD" type="VARCHAR" size="5"
+                description="FK tlgnr_currency_bs. Currency in which the handling costs caused by this Shippingpoint are expressed. Exchange rates in tlgnc_currency_exch_rate must be respected when adding costs of various sources in one order_item."/>
+
+        <foreign-key foreignTable="TLGNS_SAP_MATERIAL" name="FK_TLGNC_MAT_SHIPPINGPOINT_MAT">
+            <reference local="SAP_MATERIAL_ID" foreign="SAP_MATERIAL_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNC_SHIPPINGPOINT" name="FK_TLGNC_MAT_SHIPPINGPOINT_SP">
+            <reference local="SHIPPINGPOINT_ID" foreign="SHIPPINGPOINT_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_CURRENCY_BS" name="FK_TLGNC_MAT_SHIPPINGPOINT_CUR">
+            <reference local="CURRENCY_CD" foreign="CURRENCY_CD"/>
+        </foreign-key>
+
+        <unique name="UQ_TLGNC_MAT_SHIPPINGPOINT">
+            <unique-column name="SAP_MATERIAL_ID"/>
+            <unique-column name="SHIPPINGPOINT_ID"/>
+        </unique>
+    </table>
+</database>

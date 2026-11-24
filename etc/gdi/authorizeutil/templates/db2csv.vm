@@ -1,0 +1,9 @@
+#set ($query = "select c from FuncEntity c order by funcId")
+#set ($em = $jpa.em("logon-test"))
+#set ($data = $em.createQuery($query).resultList)
+$st.printf("%-10s; %-50s; %s", "funcId", "funcName", "funcDescr")
+#foreach ($row in $data)
+#set ($a = $row.funcName)
+#set ($b = $row.funcDescr)
+$st.printf("%-10s; %-50s; %s", "$row.funcId", $a, $b)
+#end

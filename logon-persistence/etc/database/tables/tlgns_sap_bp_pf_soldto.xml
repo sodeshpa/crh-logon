@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNS_SAP_BP_PF_SOLDTO"
+           description="The soldto partner functions of a given BP-SAREA to another BP-SAREA. The 'Sales Area' information is highly redundant, and must be identical in a) owner b) soldto c) this table.">
+
+        <!--  This relation table has been added to enable reliable update of the bp_is_soldto flag. It is not
+              used in the application itself, only in the import (PL/SQL) code. May be used in the future to check
+              whether a bp is a soldto in a specific sales area
+        -->
+
+        <!-- PK -->
+        <column name="SAP_BP_SAREA_ID" primaryKey="true" required="true" type="DECIMAL" size="12"
+                description="Part of PK, FK tlgns_sap_bp_sarea. The owning BP+Sales Area of the partner function (SAP: defined by KNA1_KUNNR from the BP general data which ownes the partner function)."/>
+        <column name="SOLDTO_SAP_BP_SAREA_ID" primaryKey="true" required="true" type="DECIMAL" size="12"
+                description="PART of PK, FK tlgns_sap_bp_sarea. The referred sold-to, including its Sales Area Data. (SAP: defined by KUNN2 + VKORG + VTWEG + SPART, lookup in tlgns_sap_bp_sarea)"/>
+        <column name="SAREA_ID" primaryKey="true" required="true" type="DECIMAL" size="12"
+                description="FK TLGNC_SAREA. The Sales Area for which this partner function is defined. This is redundant to the SAREA contained in SAP_BP_SAREA_ID.SAREA_CD and SOLDTO_SAP_BP_SAREA_ID.SAREA_CD; all three SAREA are identical."/>
+
+        <foreign-key foreignTable="TLGNS_SAP_BP_SAREA" name="FK_TLGNS_SAP_BPPFSOLDTO_BP">
+            <reference local="SAP_BP_SAREA_ID" foreign="SAP_BP_SAREA_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNS_SAP_BP_SAREA" name="FK_TLGNS_SAP_BPPFSOLDTO_ST">
+            <reference local="SOLDTO_SAP_BP_SAREA_ID" foreign="SAP_BP_SAREA_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNC_SAREA" name="FK_TLGNS_SAP_BPPFSOLDTO_SAREA">
+            <reference local="SAREA_ID" foreign="SAREA_ID"/>
+        </foreign-key>
+
+        <!-- Not necessary, as the PK is on all three columns and guarantees uniqueness.
+        <unique name="UQ_TLGNS_SAP_BP_PF_SOLDTO">
+            <unique-column name="SAP_BP_SAREA_ID"/>
+            <unique-column name="SOLDTO_SAP_BP_SAREA_ID"/>
+            <unique-column name="SAREA_ID"/>
+        </unique>
+        -->
+    </table>
+</database>

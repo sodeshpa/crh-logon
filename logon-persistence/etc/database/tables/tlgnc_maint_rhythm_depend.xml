@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNC_MAINT_RHYTHM_DEPEND"
+           description="Describes the dependencies between maintenence rhythms">
+
+        <column name="MAINT_RHYTHM_DEPEND_ID" primaryKey="true" required="true" type="DECIMAL" size="12"
+                description="PK"/>
+
+        <column name="MAINT_RHYTHM_ID" required="true" type="DECIMAL" size="12"
+                description="FK tlgnc_maint_rhythm. The dependent rhythm."/>
+                
+        <column name="DEPEND_MAINT_TYPE_CD" required="true" type="VARCHAR" size="6"
+                description="FK tlgnr_maint_type_bs. The maintenance type on which this rhythm depends."/>        
+
+        <foreign-key foreignTable="TLGNC_MAINT_RHYTHM" name="FK_TLGNC_MAINT_R_D_MAINT_R">
+            <reference local="MAINT_RHYTHM_ID" foreign="MAINT_RHYTHM_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_MAINT_TYPE_BS" name="FK_TLGNC_MAINT_R_D_DEP_MAINT_T">
+            <reference local="DEPEND_MAINT_TYPE_CD" foreign="MAINT_TYPE_CD"/>
+        </foreign-key>
+
+        <unique name="UQ_TLGNC_MAINT_RHYTHM_D_M_CD">
+            <unique-column name="MAINT_RHYTHM_ID"/>
+            <unique-column name="DEPEND_MAINT_TYPE_CD"/>
+        </unique>
+
+    </table>
+</database>

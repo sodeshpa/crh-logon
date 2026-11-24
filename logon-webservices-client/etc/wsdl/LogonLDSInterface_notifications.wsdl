@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions
+    targetNamespace="http://logon.holcim.com/LogonLDSInterface/notifications"
+    xmlns:tns="http://logon.holcim.com/LogonLDSInterface/notifications"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+    xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/"
+    xmlns="http://schemas.xmlsoap.org/wsdl/">
+
+    <types>
+        <xsd:schema elementFormDefault="qualified" targetNamespace="http://logon.holcim.com/LogonLDSInterface/notifications">
+            <xsd:include schemaLocation="xsd/LogonLDSInterface_notifications.xsd"/>
+        </xsd:schema>
+    </types>
+
+    <message name="pdaLoginRequest">
+        <part name="pdaLoginRequest" element="tns:pdaLoginRequest"/>
+    </message>
+    <message name="pdaLoginResponse">
+        <part name="pdaLoginResponse" element="tns:pdaLoginResponse"/>
+    </message>
+    <message name="loadOrderNotificationRequest">
+        <part name="loadOrderNotificationRequest" element="tns:loadOrderNotificationRequest"/>
+    </message>
+    <message name="loadOrderNotificationResponse">
+        <part name="loadOrderNotificationResponse" element="tns:loadOrderNotificationResponse"/>
+    </message>
+    <message name="deleteLoadOrderRequest">
+        <part name="deleteLoadOrderRequest" element="tns:deleteLoadOrderRequest"/>
+    </message>
+    <message name="deleteLoadOrderResponse">
+        <part name="deleteLoadOrderResponse" element="tns:deleteLoadOrderResponse"/>
+    </message>
+
+    <portType name="LogonLDSInterfacePort">
+        <operation name="pdaLogin">
+            <input message="tns:pdaLoginRequest"/>
+            <output message="tns:pdaLoginResponse"/>
+        </operation>
+        <operation name="loadOrderNotification">
+            <input message="tns:loadOrderNotificationRequest"/>
+            <output message="tns:loadOrderNotificationResponse"/>
+        </operation>
+        <operation name="deleteLoadOrder">
+            <input message="tns:deleteLoadOrderRequest"/>
+            <output message="tns:deleteLoadOrderResponse"/>
+        </operation>
+    </portType>
+
+    <binding name="LogonToLDSPort" type="tns:LogonLDSInterfacePort">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="pdaLogin">
+            <soap:operation soapAction="http://logon.holcim.com/LogonLDSInterface/notifications/pdaLogin"/>
+            <input>
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+        </operation>
+        <operation name="loadOrderNotification">
+            <soap:operation soapAction="http://logon.holcim.com/LogonLDSInterface/notifications/loadOrderNotification"/>
+            <input>
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+        </operation>
+        <operation name="deleteLoadOrder">
+            <soap:operation soapAction="http://logon.holcim.com/LogonLDSInterface/notifications/deleteLoadOrder"/>
+            <input>
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+        </operation>
+    </binding>
+
+    <binding name="LogonToLDSPortSoap12" type="tns:LogonLDSInterfacePort">
+        <soap12:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="pdaLogin">
+            <soap12:operation soapAction="http://logon.holcim.com/LogonLDSInterface/notifications/pdaLogin"/>
+            <input>
+                <soap12:body use="literal" />
+            </input>
+            <output>
+                <soap12:body use="literal" />
+            </output>
+        </operation>
+        <operation name="loadOrderNotification">
+            <soap12:operation soapAction="http://logon.holcim.com/LogonLDSInterface/notifications/loadOrderNotification"/>
+            <input>
+                <soap12:body use="literal" />
+            </input>
+            <output>
+                <soap12:body use="literal" />
+            </output>
+        </operation>
+        <operation name="deleteLoadOrder">
+            <soap12:operation soapAction="http://logon.holcim.com/LogonLDSInterface/notifications/deleteLoadOrder"/>
+            <input>
+                <soap12:body use="literal" />
+            </input>
+            <output>
+                <soap12:body use="literal" />
+            </output>
+        </operation>
+    </binding>
+
+    <service name="LogonLDSInterface">
+        <port name="LogonToLDSPort" binding="tns:LogonToLDSPort">
+            <soap:address location="http://lds-server-url.com/LogonLDSInterface"/>
+        </port>
+        <port name="LogonToLDSPortSoap12" binding="tns:LogonToLDSPortSoap12">
+            <soap12:address location="http://lds-server-url.com/LogonLDSInterface"/>
+        </port>
+    </service>
+
+</definitions>

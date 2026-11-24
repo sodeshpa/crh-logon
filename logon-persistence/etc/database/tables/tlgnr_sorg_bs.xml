@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNR_SORG_BS" refData="true"
+           description="Reference data table for the Sales Organisation (aka VKO/VKORG). The attributes used for PDF data (address of the SORG) have been split in _BS/_TX according to requirements for language dependency.">
+
+        <column name="SORG_CD" primaryKey="true" required="true" type="VARCHAR" size="4"
+                description="PK. S101, S128, S160, ... A Sales Org. is used often in combination with Sales Area, which is composed by Sales Org. + Distribution Channel + Division. Do not confuse these two!"/>
+        <column name="COMPANYCODE_CD" required="true" type="VARCHAR" size="4"
+                description="FK tlgnr_companycode_bs. The company code as known in SAP (BUKRS), e.g.: FR01, BG01 which 'owns' the sales organization."/>
+
+        <column name="SORG_NAME" required="true" type="VARCHAR" size="30"
+                description="Name of the VKO used in the application besides the Code. Examples: CH-Zement, CH-Georoc, D-Zement, ..."/>
+        <column name="LOGO_IMAGE_NAME" type="VARCHAR" size="100"
+                description="Name of image to be used on output documents (delivery note) as the logo. Reference to TLGNC_IMAGE.IMAGE_NAME. Example: pdf_crh_logo."/>
+        <!-- ADDRESS_NAME is language dependent, and therefore moved to _TX -->
+        <column name="ADDRESS_STREET" type="VARCHAR" size="40"
+                description="Text to be used as line 2 on output documents (delivery note): the street including house number. Example: Dormettinger Strasse 23. Address is dependent on local post office, therefore language-independent."/>
+        <column name="ADDRESS_COUNTRYCITY" type="VARCHAR" size="40"
+                description="Text to be used as line 3 on output documents (delivery note): the country/zip-code/city. Example: D - 72359 Dotternhausen. Address is dependent on local post office, therefore language-independent."/>
+		<column name="SKIP_SEND_DISTANCE_SAP_SD" required="true" type="BOOLEAN"
+                description="Flag to determine if the distance data is to be sent to SAP in ShipmentDocument, currently we do not send it for cluster 0 SORGs, namely BE10, BE12, 'BE20', BE80, FR10, FR11."/>
+		<column name="SALESDOC_RETURN_AUART" required="true" type="VARCHAR" size="4"
+                description="The AUART (sales order type) value to use at return orders (e.g. retrn pallet order) when creating SAP sales document. WS field to SAP: SalesDocumentCreation / sales_document_notification / document_header_organizational_data (E1EDK14) / AUART."/>
+        <!-- Technical Attributes -->
+        <column name="CTL_ACT_CD" required="true" type="BOOLEAN"
+                description="Active Flag. When new data is entered, only reference data with active flag are available for selection normally."/>
+                
+        <foreign-key foreignTable="TLGNR_COMPANYCODE_BS" name="FK_TLGNR_SORG_BS_COMPC_CD">
+            <reference local="COMPANYCODE_CD" foreign="COMPANYCODE_CD"/>
+        </foreign-key>
+      </table>
+</database>

@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<jboss>
+  <enterprise-beans>
+
+    <session>
+        <ejb-name>SapServiceBean</ejb-name>
+        <jndi-name>java:global/logon/logon-webservices//SapServiceBean!com.crh.logon.webservices.services.SapService</jndi-name>
+    </session>
+
+  </enterprise-beans>
+</jboss>

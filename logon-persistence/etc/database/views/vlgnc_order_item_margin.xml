@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="VLGNC_ORDER_ITEM_MARGIN" mappingType="view" skipSql="true">
+        <column name="ORDER_ITEM_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="ORDER_ITEM_NO" required="true" type="DECIMAL" size="3"/>
+        <column name="ORDER_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="ORDER_NUMBER" type="DECIMAL" size="12"/>
+        <column name="SAP_MATERIAL_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="SAP_MATERIAL_NO" required="true" type="VARCHAR" size="18"/>
+        <column name="PRODUCTION_PLANT_CD" required="true" type="VARCHAR" size="4"/>
+        <column name="QUANTITY" type="DECIMAL" size="12,4"/>
+        <column name="CURRENCY_CD" required="true" type="VARCHAR" size="3"/>
+        <column name="DELIVERED_UOM_CD" type="VARCHAR" size="3"/>
+        <column name="NETPRICE_QUANTITY" type="DECIMAL" size="18,3"/>
+        <column name="GROSS_PRICE" type="DECIMAL" size="10,3"/>
+        <column name="GROSS_PRICE_PT" type="DOUBLE"/>
+        <column name="DISCOUNTS" type="DECIMAL" size="17,2"/>
+        <column name="DISCOUNTS_PT" type="DOUBLE"/>
+        <column name="NET_PRICE" type="DECIMAL" size="17,2"/>
+        <column name="NET_PRICE_PT" type="DOUBLE"/>
+        <column name="REBATES" type="DECIMAL" size="17,2"/>
+        <column name="REBATES_PT" type="DOUBLE"/>
+        <column name="CASH_DISCOUNT" type="DECIMAL" size="17,2"/>
+        <column name="CASH_DISCOUNT_PT" type="DOUBLE"/>
+        <column name="NET_SALES_EARNING" type="DECIMAL" size="17,2"/>
+        <column name="NET_SALES_EARNING_PT" type="DOUBLE"/>
+        <column name="PROD_COST" type="DECIMAL" size="11,2"/>
+        <column name="PROD_COST_PT" type="DOUBLE"/>
+        <column name="IUD_COST" type="DECIMAL" size="11,2"/>
+        <column name="IUD_COST_PT" type="DOUBLE"/>
+        <column name="HANDLING_COST" type="DECIMAL" size="11,2"/>
+        <column name="HANDLING_COST_PT" type="DOUBLE"/>
+        <column name="OUT_COST" type="DECIMAL" size="11,2"/>
+        <column name="OUT_COST_PT" type="DOUBLE"/>
+        <column name="TOTAL_DIST_COST" type="DECIMAL" size="11,2"/>
+        <column name="TOTAL_DIST_COST_PT" type="DOUBLE"/>
+        <column name="TOTAL_COST" type="DECIMAL" size="11,2"/>
+        <column name="TOTAL_COST_PT" type="DOUBLE"/>
+        <column name="CONTRIB_MARGIN" type="DECIMAL" size="17,2"/>
+        <column name="CONTRIB_MARGIN_PT" type="DOUBLE"/>
+    </table>
+</database>

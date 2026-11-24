@@ -1,0 +1,9 @@
+- LOGON-7435 - Romanian Ship-To/Sold-To with language set to RO
+
+- ShipTo SAP_BP_ID: 3600000181
+- SoldTo SAP_BP_ID: 3600000180
+
+- Contract 1: ADN64180
+
+1 contract item containing material 'ADN Fluvio 4'. 
+

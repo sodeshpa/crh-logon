@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="VLGNC_TIMEZONE" mappingType="view" skipSql="true">
+        <column name="COMPOSITE_CD" type="VARCHAR" size="39"/>
+        <column name="TIMEZONE_CD" required="true" type="VARCHAR" size="32"/>
+        <column name="COUNTRY" required="true" type="VARCHAR" size="40"/>
+        <column name="REGION" required="true" type="VARCHAR" size="20"/>
+        <column name="LANG_CD" required="true" type="VARCHAR" size="2"/>
+    </table>
+</database>

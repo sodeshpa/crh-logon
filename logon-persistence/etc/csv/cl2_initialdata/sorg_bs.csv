@@ -1,0 +1,191 @@
+# $Revision$
+# $Date$
+# 20.10.2012, C1_initial_data_plant_compcode_sarea_template_20121018_EGH_mod_UMA_mod_ANS.xslx
+# Due to Cluster0/Cluster1: the ctl_act_cd flag is never updated to 0, only -> 1. This way, C0+C1 can be loaded, resulting in BOTH being active!
+# Update is skipped if ctl_act_cd. Reason: Probably better maintained data exist in other cluster input file
+# 05.12.2012, file updated by FBI;
+# File updated by FBI on 16/08/2013 with Cluster 2 and Cluster 3 data.
+#SORG_CD;#COMPANYCODE_CD;#SORG_NAME;#LOGO_IMAGE_NAME;#ADDRESS_STREET;#ADDRESS_COUNTRYCITY;#SKIP_SEND_DISTANCE_SAP_SD;#SALESDOC_RETURN_AUART;#CTL_ACT_CD
+AT01;AT01;Crh (Wien);pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;1
+AT04;AT04;ecorec Österreich;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+AT50;AT50;Crh(Vorarlberg);pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+BE10;BE01;Ciments Belgique;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+BE12;BE06;Geocycle Belgique;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+BE20;BE12;GeoMinerals;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+BE30;BE01;Granulats Belgique;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+BE34;BE10;Leffe;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+BE40;BE01;Bétons Belgique;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+BE80;BE06;GeoMinerals;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+BE90;BE01;Geocycle Obourg;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+BE91;BE02;HBB Services;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+BE92;BE12;GeoMinerals Services;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+BE93;BE06;Geocycle Services;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+BE94;BE01;Belgique Services;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+BE97;BE08;HENS Services;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+BE98;BE10;Leffe Services;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+BE99;BE11;Calcaire RG Services;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+BG01;BG01;ХОЛСИМ (БЪЛГАРИЯ) АД;pdf_crh_logo;Враца, с. Бели Извор;България;1;ZCOR;1
+BG02;BG02;ХОЛСИМ КАРИЕРНИ МАТЕ;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZCOR;1
+BG03;BG03;ХКМ ПЛОВДИВ АД;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZCOR;1
+BG04;BG04;ВРИС ЕООД;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZCOR;1
+BG05;BG05;ЕКОРЕК БЪЛГАРИЯ ЕООД;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZCOR;1
+BG06;BG06;ГУМИРЕК ЕАД;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZCOR;1
+BG07;BG07;ХКМ РУДИНАТА АД;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZCOR;1
+BG08;BG01;ХОЛСИМ БЕТОН ПЛОВДИВ;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZCOR;1
+BG09;BG01;ПЛЕВЕНСКИ ЦИМЕНТ АД;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZCOR;1
+BG10;BG01;ХОЛСИМ (БЪЛГАРИЯ) AF;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZCOR;1
+CH01;CH01;Crh (Schweiz) AG;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+CH10;CH02;Crh Kies und Beto;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+CH11;CH05;Crh BF + P;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+CH12;CH04;Bétondrance Martigny;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+CH13;CH10;Praz;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+CH14;CH09;Aargau Nord;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+CH15;CH81;KUTAG;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+CH16;CH03;Crh (Cham);pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+CH89;CH01;Crh (Schweiz) AG;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+CH90;CH01;Special services;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+CH92;CH01;Crh (Schweiz) Div;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+CH95;CH01;BAWT;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+CH99;CH99;Crh Europe Servic;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+DE01;DE01;Crh (Deutschland);pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+DE03;DE03;HBZ;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+DE04;DE04;UTB;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+DE06;DE06;Prüfstelle Leer;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+DE07;DE07;Kieswerk Borsberg;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+DE09;DE09;Kieswerk Zeithain;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+DE13;DE13;Betonlabor Soltau;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+DE14;DE14;Schulenburg;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+DE15;DE01;Geocycle Norddeutsch;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+DE50;DE50;Hüttensand Salzgitte;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+DE52;DE52;Vetra;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+DE53;DE52;Vetra (NL);pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+DE65;DE65;HTB KG;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+DE67;DE67;KWL KG;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+DE70;DE70;Crh (Süd-DE);pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+DE71;DE70;SBM Crh (Süd-DE);pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+DE75;DE72;Karlsruhe Süd;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+DE76;DE73;Trockensandwerk;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+DE79;DE70;AFR Crh (Süd-DE);pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+DE80;DE80;Region Weil-Lörrach;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+DE81;DE80;Region Offenburg;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+DE82;DE80;Region Stuttgart;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+DE83;DE80;Karlsruhe Nord;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+DE88;DE71;Rohst.gew. Hohenten.;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+DE89;DE89;Osteuropäische Zemen;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+FR10;FR01;Crh (France);pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+FR11;FR07;VDN;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+FR30;FR17;HG Distribution;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+FR31;FR12;SOCALCOR;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+FR32;FR11;CBS;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+FR33;FR03;HG NORD France;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+FR34;FR03;HG EST;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+FR35;FR03;HG CENTRE;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+FR36;FR03;GRANULATS SPECIAUX;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+FR37;FR13;GDFC;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+FR38;FR14;SOCOVAL;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+FR39;FR03;HG Trading;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+FR40;FR23;EST GRANULATS;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+FR43;FR25;Gravières la Hardt;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+FR50;FR02;Crh B. (CE);pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+FR51;FR02;Crh B. (IDF);pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+FR52;FR02;Crh B. (NORD);pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+FR53;FR18;Crh B. (OUEST);pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+FR54;FR02;Crh B. (Est);pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+FR55;FR09;Béton Castel;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+FR56;FR10;Béton Rapid;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+FR57;FR02;Crh B. (Picardie);pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+FR58;FR20;Dijon Béton;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+FR70;FR01;France Services;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+FR71;FR01;Geocycle France;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+FR72;FR02;HBF Services;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+FR73;FR03;HGF Services;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+FR74;FR05;Crh Info Services;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+FR75;FR06;Dunk Ajouts Services;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+FR76;FR07;VDN Services;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+FR77;FR09;Béton Caste Services;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+FR78;FR10;Béton Rapid Services;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+FR79;FR11;CBS Services;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+FR80;FR12;Socalcor Services;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+FR81;FR13;GDFC Services;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+FR82;FR14;Socoval Services;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+FR84;FR17;HGD Services;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+FR85;FR18;Rochelle Services;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+FR87;FR20;Dijon Béton Services;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+FR88;FR21;Ternuary Services;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+FR89;FR23;EstGranulat Services;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+FR91;FR25;Grav. Hardt Services;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+FR92;FR28;Atlant NGC Services;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+FR93;FR29;Euro Stock Services;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+FR94;FR30;EDCM Services;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+FR95;FR31;MPA Services;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+HR01;HR01;Crh HR - CEM;pdf_crh_logo;Koromačno 7b;Koromačno, HR;0;ZRET;1
+HR02;HR01;Crh HR - RMX;pdf_crh_logo;Koromačno 7b;Koromačno, HR;0;ZRET;1
+HR03;HR03;Crh HR - AGG N;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;1
+HR04;HR04;Crh HR - AGG L;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;1
+HR05;HR02;ecorec d.o.o.;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;1
+HR06;HR01;Crh HR;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;1
+HR07;HR01;Crh (Hrvatska);pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;1
+HT01;HT01;Crh Trading, S.A.;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+HT02;HT02;Iberoamericana Cem;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+HT03;HT03;Crh Trading PTE;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+HT04;HT04;Crh Trading FZCO;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+HT05;HT05;UMAR Ltd.;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+HT06;HT06;Hansen Holding, S.A.;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+HT07;HT07;Holsten Intrnational;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+HT08;HT08;Yemen Cement Holding;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+HT09;HT09;CAN-CIMED Trading;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+HT10;HT10;Seamar Trading;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+HT11;HT11;Seamar Shipping;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+HT12;HT12;Seamar Enterprises;pdf_crh_logon;missing address_street;missing address_countrycity;0;ZRET;0
+HT13;HT13;Iberoamérica Cement;pdf_crh_logon;missing address_street;missing address_countrycity;0;ZRET;0
+HT14;HT14;Kimaxtra Prod. Const;pdf_crh_logon;missing address_street;missing address_countrycity;0;ZRET;0
+HT15;HT15;Ecotrade Internation;pdf_crh_logon;missing address_street;missing address_countrycity;0;ZRET;0
+HU11;HU11;Ecorec Hungária Kft.;pdf_crh_logon;missing address_street;missing address_countrycity;0;ZRET;1
+HU12;HU12;AM Vagyonkezelő Kft.;pdf_crh_logon;missing address_street;missing address_countrycity;0;ZRET;1
+HU17;HU17;Magyarország Kft.HMO;pdf_crh_logon;Madarász Viktor u. 47-49;Budapest, Magyarország;0;ZRET;1
+HU18;HU17;Magyarország Beton G;pdf_crh_logon;Madarász Viktor u. 47-49;Budapest, Magyarország;0;ZRET;1
+HU19;HU19;Nyerges Real 2012 Kf;pdf_crh_logon;missing address_street;missing address_countrycity;0;ZRET;1
+HU20;HU20;Osteuropäische Zemen;pdf_crh_logon;missing address_street;missing address_countrycity;0;ZRET;1
+IT01;IT01;Crh Italia;pdf_crh_logon;missing address_street;missing address_countrycity;0;ZRET;0
+IT02;IT01;AFR Crh Italia;pdf_crh_logon;missing address_street;missing address_countrycity;0;ZRET;0
+IT03;IT03;Eurofuels S.p.A.;pdf_crh_logon;missing address_street;missing address_countrycity;0;ZRET;0
+IT05;IT05;Micron Mineral;pdf_crh_logon;missing address_street;missing address_countrycity;0;ZRET;0
+IT10;IT10;Rolcim;pdf_crh_logon;missing address_street;missing address_countrycity;0;ZRET;0
+IT30;IT30;Crh Aggregati&RMX;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+IT39;IT39;F.lli Manara;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+IT40;IT30;Crh Agg & Calcest;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+IT49;IT49;Crh Group Italia;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+IT91;IT91;Fusine Energie;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+IT92;IT92;Fonte Curella;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+IT97;IT97;Shipping Advisor&Ser;Italy_Export_Invoice_Logo_Big;missing address_street;missing address_countrycity;0;ZRET;0
+LU50;LU01;HB Luxembourg;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+LU70;LU01;Luxembourg Services;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+NL40;NL02;Crh BetonMortel;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+NL41;NL02;Crh BCH B.V.;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+NL90;NL01;Nederland Services;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+NL91;NL02;Crh BM Services;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+NL92;NL03;Participati Services;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+PL01;PL01;Crh (Polska);pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;1
+RO10;RO01;HOL RO CEMENT;pdf_crh_logo;Calea Floreasca Nr.169A, et. 7;Bucuresti, Romania;0;ZRET;1
+RO11;RO01;HOL RO TECH. CENTER;pdf_crh_logo;Calea Floreasca Nr.169A, et. 8;Bucuresti, Romania;0;ZRET;1
+RO12;RO01;HOL RO SP. BIND (RB);pdf_crh_logo;Calea Floreasca Nr.169A, et. 9;Bucuresti, Romania;0;ZRET;1
+RO20;RO02;ecovalor S.R.L.;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;1
+RO21;RO01;ecovalor S.R.L.;pdf_crh_logo;Calea Floreasca Nr.169A, et. 10;Bucuresti, Romania;0;ZRET;1
+RO30;RO01;HOL RO AGG QUARRIES;pdf_crh_logo;Calea Floreasca Nr.169A, et. 11;Bucuresti, Romania;0;ZRET;1
+RO31;RO01;HOL RO AGG PITS;pdf_crh_logo;Calea Floreasca Nr.169A, et. 12;Bucuresti, Romania;0;ZRET;1
+RO33;RO03;HOL RO ESTAGRE;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;1
+RO34;RO04;HOL RO AGROCOMP;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;1
+RO40;RO01;HOL RO RMX ROC;pdf_crh_logo;Calea Floreasca Nr.169A, et. 13;Bucuresti, Romania;0;ZRET;1
+RO41;RO01;HOL RO RMX BUC;pdf_crh_logo;Calea Floreasca Nr.169A, et. 14;Bucuresti, Romania;0;ZRET;1
+RS01;RS01;Serbia Bulk Cement;pdf_crh_logo;Popovac;Srbija;0;ZRET;1
+RS02;RS01;Serbia PackageCement;pdf_crh_logo;Popovac;Srbija;0;ZRET;1
+RS03;RS01;Serbia RMX;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;1
+RS04;RS01;RMX advance;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;1
+RS05;RS03;Serbia AGG;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;1
+RS06;RS03;AGG advance;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;1
+RS07;RS02;ecorec d.o.o.;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;1
+RS08;RS01;Crh (Srbija);pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;1
+SK01;SK01;Crh (Slovensko);pdf_crh_logo;Rohožník;Slovenská republika;0;ZCOR;1
+SK02;SK02;ecorec Slovensko;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZCOR;1
+SK03;SK01;Crh (Slovensko);pdf_crh_logo;missing address_street;missing address_countrycity;0;ZCOR;1
+SK04;SK11;Crh Emerging Euro;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZCOR;1

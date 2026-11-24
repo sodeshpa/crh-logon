@@ -1,0 +1,362 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Author            : AdNovum Informatik AG
+ Version Number    : $Revision$
+ Date of last edit : $Date$
+-->
+
+<project name="jboss" default="" basedir=".">
+	<description>${ant.project.name} project build file</description>
+	<!-- the following code is container specific! -->
+  
+	<!-- ================================================================== -->
+	<!-- === override aal targets and properties specifically for logon === -->
+	<!-- ================================================================== -->
+	<target name="-init-container-sharedlibs">
+		<path id="oracle.jdbc.sharedlibs">
+			<pathelement location="${ojdbc8.jar}"/>
+			<pathelement location="${ojdbc8.module.xml}"/>
+		</path>
+		<!-- no shared libs by default, a project needs to provide this -->
+		<path id="container.sharedlibs"/>
+		<showPath refid="container.sharedlibs" input="default" type="SHLIB"/>
+	</target>
+	<target name="container-clean" depends="container-uninstall">
+		<echo>Killing possible concurrent JBoss processes</echo>
+		<exec executable="killall">
+			<arg value="jboss"/>
+		</exec>
+	</target>
+	<target name="container-install-sharedlibs" depends="-init-container-sharedlibs" unless="${container-install-sharedlibs.skip}">
+		<!-- Install ojdbc6 driver -->
+		<property name="ojdbc8.module.dir" location="${container.module.dir}/oracle/ojdbc8/main"/>
+		<property name="container.module.base.dir"   location="${container.run.dir}/modules/" />
+		<mkdir dir="${ojdbc8.module.dir}"/>
+		<copy todir="${ojdbc8.module.dir}" verbose="true" flatten="true" failonerror="true">
+			<path refid="oracle.jdbc.sharedlibs"/>
+		</copy>
+		<copy file="${container.module.layers.conf}" todir="${container.module.base.dir}" verbose="true" flatten="true" failonerror="true" />
+
+		<echo>Installed ojdbc6 driver as module "oracle.ojdbc6"</echo>
+	</target>
+	<property name="container.jvm.jboss.port.options" value="-Djboss.socket.binding.port-offset=0"/>
+	<property name="container.jvm.heap.options"       value="-Xmx1024m -XX:PermSize=512m -XX:-TieredCompilation -XX:NewRatio=2 -XX:SurvivorRatio=6 -XX:TargetSurvivorRatio=90 -XX:+UseParNewGC -XX:+UseConcMarkSweepGC -XX:+UseCompressedOops -verbose:gc -XX:+UseGCLogFileRotation -XX:GCLogFileSize=2M -XX:NumberOfGCLogFiles=10 -Xloggc:..\standalone\log\gc.log -XX:+PrintGCDateStamps -XX:+PrintGCTimeStamps -XX:+PrintGCDetails -XX:+PrintTenuringDistribution -XX:+CMSClassUnloadingEnabled" />
+	<!-- Whitelist coverage inclusion to stabilize tests + speed up build -->
+	<condition property="container.jvm.coverage.options" value="-javaagent:${coverman-agent.jar}=output=tcpserver,address=${container.coverage.host},port=15091,includes=com.crh.*\:ch.adnovum.*,excludes=*__EJB31_Generated__*\:*__Intf____Bean__*">
+		<istrue value="${coverage.enabled}"/>
+	</condition>
+  
+	<!-- ============================================================== -->
+	<!-- === externally defined                                     === -->
+	<!-- ============================================================== -->
+	<import file="properties.xml"/>
+	<import file="../common.xml"/>
+	<import file="aal-container-jbosseap6.xml"/>
+  
+	<!-- ============================================================== -->
+	<!-- === container properties                                   === -->
+	<!-- ============================================================== -->
+	<property name="jboss.old.dir" location="${JBOSS_HOME}"/>
+	<property name="jboss.instance.dir" location="${container.domain.dir}"/>
+	<property name="jboss.deploy.dir" location="${jboss.instance.dir}/deployments"/>
+	<target name="int-redeploy" depends="int-deploy" description="application redeployment"/>
+	<target name="int-undeploy" depends="int-undeploy-ear, int-undeploy-exploded" description="application undeployment"/>
+  
+	<!-- ============================================================== -->
+	<!-- === jboss container targets                                === -->
+	<!-- ============================================================== -->
+	<target name="int-deploy-exploded" if="deployment.exploded" description="deploy webapp in JBOSS (exploded)">
+		<echo>*** deploying exploded ***</echo>
+		<unjar src="${project-int.ear}" dest="${jboss.deploy.dir}/${project-int.ear.name}">
+			<patternset>
+				<exclude name="${project-admin-webapp-int.war.name}"/>
+				<exclude name="${project-cust-webapp-int.war.name}"/>
+				<exclude name="${project-terminal-webapp-ext.war.name}"/>
+				<exclude name="${project-init-webapp-int.war.name}"/>
+				<exclude name="${project-order-webapp-int.war.name}"/>
+				<exclude name="${project-admin-webapp-int.war.name}"/>
+				<exclude name="${project-init-webapp-int.war.name}"/>
+				<exclude name="${project-order-webapp-int.war.name}"/>
+				<exclude name="${project-webservices-mop-incoming.war.name}"/>
+				<exclude name="${project-webservices-pws-incoming.war.name}"/>
+				<exclude name="${project-webservices-oc-incoming.war.name}"/>
+				<exclude name="${project-persistence.jar.name}"/>
+				<exclude name="${project-business.jar.name}"/>
+				<exclude name="${project-business-client.jar.name}"/>
+				<exclude name="${project-common.jar.name}"/>
+				<exclude name="${project-webservices-client.jar.name}"/>
+			</patternset>
+		</unjar>
+		<if>
+			<isfalse value="${omit.subcomponent.common}"/>
+			<then>
+				<unwar src="${project-common.jar.loc}" dest="${jboss.deploy.dir}/${project-int.ear.name}/${project-common.jar.name}"/>
+			</then>
+		</if>
+		<if>
+			<isfalse value="${omit.subcomponent.persistence}"/>
+			<then>
+				<unwar src="${project-persistence.jar.loc}" dest="${jboss.deploy.dir}/${project-int.ear.name}/${project-persistence.jar.name}"/>
+			</then>
+		</if>
+		<if>
+			<isfalse value="${omit.subcomponent.business}"/>
+			<then>
+				<unwar src="${project-business.jar.loc}" dest="${jboss.deploy.dir}/${project-int.ear.name}/${project-business.jar.name}"/>
+				<if>
+					<isfalse value="${omit.subcomponent.persistence}"/>
+					<then>
+						<unwar src="${project-persistence.jar.loc}" dest="${jboss.deploy.dir}/${project-int.ear.name}/${project-business.jar.name}/lib/${project-persistence.jar.name}"/>
+					</then>
+				</if>
+				<unwar src="${project-business-client.jar.loc}" dest="${jboss.deploy.dir}/${project-int.ear.name}/${project-business-client.jar.name}"/>
+			</then>
+		</if>
+		<if>
+			<isfalse value="${omit.subcomponent.init-web}"/>
+			<then>
+				<unwar src="${project-init-webapp-int.war}" dest="${jboss.deploy.dir}/${project-int.ear.name}/${project-init-webapp-int.war.name}"/>
+			</then>
+		</if>
+		<if>
+			<isfalse value="${omit.subcomponent.cust-web}"/>
+			<then>
+				<unwar src="${project-cust-webapp-int.war}" dest="${jboss.deploy.dir}/${project-int.ear.name}/${project-cust-webapp-int.war.name}"/>
+			</then>
+		</if>
+		<if>
+			<isfalse value="${omit.subcomponent.terminal-web}"/>
+			<then>
+				<unwar src="${project-terminal-webapp-ext.war}" dest="${jboss.deploy.dir}/${project-int.ear.name}/${project-terminal-webapp-ext.war.name}"/>
+			</then>
+		</if>
+		<if>
+			<isfalse value="${omit.subcomponent.admin-web}"/>
+			<then>
+				<unwar src="${project-admin-webapp-int.war}" dest="${jboss.deploy.dir}/${project-int.ear.name}/${project-admin-webapp-int.war.name}"/>
+			</then>
+		</if>
+		<if>
+			<isfalse value="${omit.subcomponent.order-web}"/>
+			<then>
+				<unwar src="${project-order-webapp-int.war}" dest="${jboss.deploy.dir}/${project-int.ear.name}/${project-order-webapp-int.war.name}"/>
+			</then>
+		</if>
+		<if>
+			<isfalse value="${omit.subcomponent.webservices-client}"/>
+			<then>
+				<unwar src="${project-webservices-client.dist.loc}/lib/${project-webservices-client.jar.name}" dest="${jboss.deploy.dir}/${project-int.ear.name}/${project-webservices-client.jar.name}"/>
+			</then>
+		</if>
+		<if>
+			<isfalse value="${omit.subcomponent.webservices-mop-incoming}"/>
+			<then>
+				<unwar src="${project-webservices-mop-incoming.war}" dest="${jboss.deploy.dir}/${project-int.ear.name}/${project-webservices-mop-incoming.war.name}"/>
+			</then>
+		</if>
+		<if>
+			<isfalse value="${omit.subcomponent.webservices-pws-incoming}"/>
+			<then>
+				<unwar src="${project-webservices-pws-incoming.war}" dest="${jboss.deploy.dir}/${project-int.ear.name}/${project-webservices-pws-incoming.war.name}"/>
+			</then>
+		</if>
+		<if>
+			<isfalse value="${omit.subcomponent.webservices-oc-incoming}"/>
+			<then>
+				<unwar src="${project-webservices-oc-incoming.war}" dest="${jboss.deploy.dir}/${project-int.ear.name}/${project-webservices-oc-incoming.war.name}"/>
+			</then>
+		</if>
+	</target>
+	<target name="int-deploy-ear" description="deploy webapp in JBOSS (ear)">
+		<echo>*** deploying EAR - ${project-int.ear}***</echo>
+		<antcall target="container-deploy">
+			<param name="application.archive" value="${project-int.ear}"/>
+			<param name="application.name" value="${project-int.name}"/>
+			<param name="application.package" value="ear"/>
+		</antcall>
+		<loadfile property="checkVersion" srcFile="${buildtime.properties}"/>
+		<echo message="waiting for http://localhost:${container.http.port}/logon/init/versionCheck?${checkVersion}"/>
+		<waitfor maxwait="8" maxwaitunit="minute" checkevery="1000" timeoutproperty="no.deployment">
+			<http url="http://localhost:${container.http.port}/logon/init/versionCheck?${checkVersion}"/>
+		</waitfor>
+		<fail if="no.deployment" message="The deployment is not ready."/>
+		<loadfile property="message.int" srcFile="${subcomponent.application}/${build.dir.name}/${dist.dir.name}/int_info.txt"/>
+		<echo message=""/>
+		<echo message="${message.int}"/>
+	</target>
+	<target name="ext-deploy-ear" description="deploy webapp in JBOSS (ear)">
+		<echo>*** deploying EAR - ${project-ext.ear} ***</echo>
+		<antcall target="container-deploy">
+			<param name="application.archive" value="${project-ext.ear}"/>
+			<param name="application.name" value="${project-ext.name}"/>
+			<param name="application.package" value="ear"/>
+		</antcall>
+		<loadfile property="message.ext" srcFile="${subcomponent.application}/${build.dir.name}/${dist.dir.name}/ext_info.txt"/>
+		<echo message=""/>
+		<echo message="${message.ext}"/>
+	</target>
+	<target name="terminal-deploy-ear" description="deploy webapp in JBOSS (ear)">
+		<echo>*** deploying EAR - ${project-terminal.ear} ***</echo>
+		<antcall target="container-deploy">
+			<param name="application.archive" value="${project-terminal.ear}"/>
+			<param name="application.name" value="${project-terminal.name}"/>
+			<param name="application.package" value="ear"/>
+		</antcall>		
+		<loadfile property="message.terminal" srcFile="${subcomponent.application}/${build.dir.name}/${dist.dir.name}/terminal_info.txt"/>
+		<echo message=""/>
+		<echo message="${message.terminal}"/>
+	</target>
+	<target name="int-undeploy-exploded" if="deployment.exploded" description="application undeployment">
+		<delete dir="${jboss.deploy.dir}/${project-int.ear.name}"/>
+	</target>
+	<target name="int-undeploy-ear" unless="deployment.exploded" description="application undeployment">
+		<property name="application.name" value="${project-int.name}"/>
+		<property name="application.package" value="ear"/>
+		<antcall target="container-undeploy"/>
+	</target>
+	<target name="deploy-business">
+		<echo>*** deploying business ***</echo>
+		<copy todir="${jboss.deploy.dir}" verbose="true">
+			<fileset dir="${subcomponent.business}/${build.dir.name}/${dist.dir.name}/lib"/>
+		</copy>
+		<copy todir="${jboss.deploy.dir}" verbose="true">
+			<fileset dir="${subcomponent.business}/${build.dir.name}/${dist.dir.name}/dep"/>
+		</copy>
+	</target>
+	<target name="deploy-web">
+		<echo>*** deploying webapp ***</echo>
+		<copy todir="${jboss.deploy.dir}" verbose="true">
+			<fileset dir="${subcomponent.web}/${build.dir.name}/${dist.dir.name}/lib"/>
+		</copy>
+		<copy todir="${jboss.deploy.dir}" verbose="true">
+			<fileset dir="${subcomponent.web}/${build.dir.name}/${dist.dir.name}/dep"/>
+		</copy>
+	</target>
+	<target name="app-deploy" depends="ext-deploy-ear,terminal-deploy-ear" description="-&gt; alias to ext- and terminal-deploy-ear (AdN project contract)">
+		<echo>warning: [deprecation] use ext-deploy</echo>
+	</target>
+	<target name="int-deploy" depends="int-deploy-ear" description="(re-)deployment of the int-zone ear"/>
+	<target name="ext-deploy" depends="ext-deploy-ear" description="(re-)deployment of the ext-zone ear"/>
+	<target name="terminal-deploy" depends="terminal-deploy-ear" description="(re-)deployment of terminal application"/>
+
+	<target name="container-coldstart">
+        <taskdef resource="net/sf/antcontrib/antcontrib.properties" />
+        <!-- container sometimes cannot stop -> kill it. -->
+        <shellscript shell="sh">
+echo fuser -v -k -n tcp 15098; true
+     fuser -v -k -n tcp 15098; true
+        </shellscript>
+		<antcall target="aal-container-jbosseap6.container-coldstart" inheritAll="true" inheritRefs="true" />
+	</target>
+
+	<target name="container-stop">
+        <taskdef resource="net/sf/antcontrib/antcontrib.properties" />
+        <!-- container sometimes cannot stop -> kill it. -->
+        <shellscript shell="sh">
+echo fuser -v -k -n tcp 15098; true
+     fuser -v -k -n tcp 15098; true
+        </shellscript>
+		<antcall target="aal-container-jbosseap6.container-stop" inheritAll="true" inheritRefs="true" />
+	</target>
+  
+	<!-- ============================================================== -->
+	<!-- === Targets which must be present                          === -->
+	<!-- ============================================================== -->
+	<target name="build" />
+	<target name="dist" depends="build"/>
+	<target name="init"/>
+	<target name="clean"/>
+	<target name="adntrace2-refresh"/>
+	<target name="docs"/>
+	<target name="test-pmd"/>
+	<target name="test-integration"/>
+	<target name="test-unit"/>
+	<target name="test-depend"/>
+  
+	<!-- ============================== -->
+	<!-- === Target: test-waitfor   === -->
+	<!-- ============================== -->
+	<target name="test-waitfor" depends="" description="">
+		<waitfor maxwait="20" maxwaitunit="second" checkevery="500">
+			<socket server="${host}" port="${http.port}"/>
+		</waitfor>
+	</target>
+	<!-- NOTE: what we build here is only used for development (enables faster dev-cycles) -->
+	<target name="deploy" description="deploy this sub-project only">
+		<echo>nothing to deploy here!</echo>
+	</target>
+
+	<target name="hot-deploy" description="# Hot deploy web files (JSP, JS, HTML, CSS)">
+		<shellscript shell="bash">
+			echo "masterbuild.dir: ${masterbuild.dir}"
+			echo "subproject: ${subproject}"
+
+			COUNT=0
+			COUNT_NEW=0
+			SRC_DIR="${masterbuild.dir}/${from}/${webapp.src.dir.name}"
+			echo "SRC_DIR: $$SRC_DIR"
+			DST_DIR="`ls \"${container.run.dir}\"/standalone/tmp/vfs/deployment*/${subproject}app.war-*/Login.jsp`"
+			DST_DIR="`dirname $$DST_DIR`"
+			echo "*** Destination dir is: $$DST_DIR."
+			if [ ! -d "$$DST_DIR" ]; then
+			echo "Destination dir does not exist."
+			exit 1
+			fi
+			cd $$SRC_DIR
+			for i in \*.{jsp,css,js,html}; do
+			while read FILE; do
+			[ ! -f "$$DST_DIR/$$FILE" ]
+			NEW=$?
+			if cp -f "$$FILE" "$$DST_DIR/$$FILE"; then
+			echo "Copied file: $$FILE"
+			((COUNT++))
+			[ "$NEW" -eq 0 ] &amp;&amp; ((COUNT_NEW++))
+			fi
+			done &lt; &lt;(find . -name "$$i")
+			done
+			echo "*** Copied $$COUNT file(s) ($$COUNT_NEW new, $$((COUNT - COUNT_NEW)) overwritten)."
+		</shellscript>
+	</target>
+	<target name="hot-deploy-admin">
+		<property name="subproject"   value="logon-admin-web" />
+		<property name="from"   value="logon-admin-web" />
+		<antcall target="hot-deploy"/>
+	</target>
+	<target name="hot-deploy-order">
+		<property name="subproject"   value="logon-order-web" />
+		<property name="from"   value="logon-order-web" />
+		<antcall target="hot-deploy"/>
+	</target>
+	<target name="hot-deploy-cust">
+		<property name="subproject"   value="logon-cust-web" />
+		<property name="from"   value="logon-cust-web" />
+		<antcall target="hot-deploy"/>
+	</target>
+	<target name="hot-deploy-common-admin">
+		<property name="subproject"   value="logon-admin-web" />
+		<property name="from"   value="logon-common-web" />
+		<antcall target="hot-deploy"/>
+	</target>
+	<target name="hot-deploy-common-order">
+		<property name="subproject"   value="logon-order-web" />
+		<property name="from"   value="logon-common-web" />
+		<antcall target="hot-deploy"/>
+	</target>
+	<target name="hot-deploy-common-cust">
+		<property name="subproject"   value="logon-cust-web" />
+		<property name="from"   value="logon-common-web" />
+		<antcall target="hot-deploy"/>
+	</target>
+	<target name="hot-deploy-common-all">
+		<antcall target="hot-deploy-common-order"/>
+		<antcall target="hot-deploy-common-admin"/>
+	</target>
+	<target name="hot-deploy-web" description="# Hot deploy all web files (JSP, JS, HTML, CSS) for ADMIN, ORDER and CUST webapp">
+		<antcall target="hot-deploy-common-order"/>
+		<antcall target="hot-deploy-common-cust"/>
+		<antcall target="hot-deploy-common-admin"/>
+		<antcall target="hot-deploy-order"/>
+		<antcall target="hot-deploy-cust"/>
+		<antcall target="hot-deploy-admin"/>
+	</target>
+</project>

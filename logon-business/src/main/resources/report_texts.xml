@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<report-texts>
+  <report-text report-cd="20" class="com.crh.logon.business.services.reporting.LoadShippingStatText" name-key="reporting.report_name.load_shipping_stats">
+    <query>
+      <![CDATA[
+          SELECT
+     		rpad(rpad(lss.PLANT_NAME,8),11)||
+     		rpad(rpad(SUM_NET_QUANTITY,5),6)||
+     		rpad(lss.SAP_MATERIAL_TXT,15) as TEXT
+          FROM (
+          SELECT
+            lss.PLANT_CD,
+            lss.PLANT_NAME,
+            lss.SAP_MATERIAL_NO,
+            lss.SAP_MATERIAL_TXT,
+            round(SUM(lss.NET_QUANTITY),0) as SUM_NET_QUANTITY,
+            lss.BASE_UOM_CD
+          FROM
+            ulgn01.VLGNC_REP_LOAD_SHIPPING_STATS LSS
+          WHERE ({0}) AND ({1})
+          GROUP BY lss.PLANT_CD, lss.PLANT_NAME, lss.SAP_MATERIAL_NO, lss.SAP_MATERIAL_TXT, lss.LANG_CD, lss.BASE_UOM_CD) LSS
+          ORDER BY lss.PLANT_CD, SUM_NET_QUANTITY DESC
+      ]]>
+    </query>
+  </report-text>  
+</report-texts>

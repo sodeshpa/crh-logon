@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNR_SAP_CONTRACT_TYPE_TX" refData="true"
+           description="Contract types as distinguished by SAP (e.g. ZCQ=Agreement with customer with fixed prices, ZCF=Agreement with customer without prices fixed, etc). Not all types in SAP lead to different behaviour in LOGON, but all types must be known to LOGON in this table so that different behaviour can be added when needed. Relevant for LOGON: UB and LU count as 'transfer'(STPO), the rest are sales contracts.">
+
+        <column name="SAP_CONTRACT_TYPE_CD" primaryKey="true" required="true" type="VARCHAR" size="4"
+                description="PK. Code of the Reference Data as known in SAP. E.g. ZCQ=Agreement with customer with fixed prices, ZCF=Agreement with customer without prices fixed, etc. UB/LU: Treated as STPO by import code, rest treated as sales contracts, see CONTRACT_TYPE_IS_STPO_FLAG."/>
+        <column name="LANG_CD" primaryKey="true" required="true" type="VARCHAR" size="2"
+                description="Part of PK. FK to TLGNR_LANG_BS."/>
+        <column name="TXT" required="true" type="VARCHAR" size="50"
+                description="Description of the status in the language LANG_CD."/>
+
+        <foreign-key foreignTable="TLGNR_SAP_CONTRACT_TYPE_BS" name="FK_TLGNR_SAP_CONTRACT_TYPE_TX">
+            <reference local="SAP_CONTRACT_TYPE_CD" foreign="SAP_CONTRACT_TYPE_CD"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_LANG_BS" name="FK_TLGNR_SAP_CONT_TYPE_LANG">
+            <reference local="LANG_CD" foreign="LANG_CD"/>
+        </foreign-key>
+
+    </table>
+</database>

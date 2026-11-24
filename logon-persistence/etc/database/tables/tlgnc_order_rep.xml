@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNC_ORDER_REP"
+		description="Stores additional information about a repair/maintenance order. For other 'special' orders (e.g. plain transportation order) the usual data in order/order_item is sufficient, but for repair/maintenance additional data is required. The order has delivery distribution type 'REP', hence the table name. The maintenance types (tlgnr_maint_type_bs/tx) treat 'repair' just as another form of 'maintenance'. The difference mainly is, that 'maint' orders are created based on some schedule (planned), but 'repair' orders are created when something gets broken. When this happens, 'maintenance' works is often executed on the same occasion, therefore repair and maintenance are all handled in just one additional table.">
+
+		<column name="ORDER_REP_ID" primaryKey="true" required="true" type="DECIMAL" size="12"
+                description="PK"/>
+        <column name="ORDER_ID" required="true" type="DECIMAL" size="12"
+			 	description="FK tlgnc_order. Unique. The order for which special info is stored. Must be of delivery distribution type 'REP' for maintenance/rep."/>
+		<column name="EMAIL_SEND_FLAG" type="BOOLEAN" 
+                description="True, if a notification e-mail should be sent to various recipients when an order is transmitted to rail company."/>
+		<column name="EMAIL_LAST_SENT_DAT" type="DATE"
+				description="Date and Time, when e-mail was sent to the recipients in to/cc/bcc. If another e-mail is sent later, this timestamp is overwritten."/>
+        <column name="EMAIL_TO_ADRESSES" type="VARCHAR" size="200"
+				description="E-mail addresses (separated by comma) used as TO-recipients in the notification e-mail. Initial TO (and for automatically generated orders): value is taken from tlgnc_shipto.order_conf_email_address."/>
+		<column name="EMAIL_CC_ADRESSES" type="VARCHAR" size="200"
+				description="E-mail addresses (separated by comma) used as CC-recipients in the notification e-mail. Initial CC (and for automatically generated orders): value is taken from tlgnc_wagon_keeper.email_addresses IF wagon_keeper.maint_email_flag = true."/>
+		<column name="EMAIL_BCC_ADRESSES" type="VARCHAR" size="200"
+				description="E-mail addresses (separated by comma) used as BCC-recipients in the notification e-mail. Initial BCC (and for automatically generated orders):	value of rail admin (see config). The recipient from mail.bcc (see tlgnr_config) are always added as BCC in addition and are not stored/editable in this field."/>
+		<column name="EMAIL_ADDITIONAL_REMARKS" type="VARCHAR" size="2000"
+				description="Remarks about the special/maintenance/repair order. This remark is externally visible as it is included in the notificiation e-mails. Initial value (and for automatically generated orders): tlgnc_shipto.note_delivery + tlgnc_shipto_sarea_restr.note_delivery for the matching material (if defined)."/>
+ 		<column name="DOCUMENTATION_ACCEPT_FLAG" required="true" type="BOOLEAN"
+				description="1=true if the documentation has been accepted."/>
+        <column name="OFFER_DESIRED_FLAG" required="true" type="BOOLEAN"
+				description="1=true if an offer is desired, i.e. if the repair plant should first do an estimate of the repair costs before performing the repair work. For auto generated orders: 0/false."/>
+        <column name="OFFER_ACCEPT_DAT" type="DATE"
+				description="Date when offer was accepted."/>
+ 		<column name="OFFER_ACCEPT_FLAG" required="true" type="BOOLEAN"
+				description="1=true if the offer has been accepted."/>				
+        <column name="OFFER_AMOUNT" type="DECIMAL" size="11,2"
+			 	description="Amount of the offer."/>
+		<column name="OFFER_CURRENCY_CD" type="VARCHAR" size="3"
+			 	description="FK tlgnr_currency_bs. The currency in which offer_amount is expressed."/>
+	    <column name="INVOICE_DAT" type="DATE"
+				description="Date of the invoice."/>
+        <column name="INVOICE_NO" type="DECIMAL" size="12"
+			 	description="Number of the invoice."/>
+        <column name="INVOICE_AMOUNT" type="DECIMAL" size="11,2"
+			 	description="Amount of the invoice."/>
+		<column name="INVOICE_CURRENCY_CD" type="VARCHAR" size="3"
+			 	description="FK tlgnr_currency_bs. The currency in which invoice_amount is expressed."/>
+		<column name="INVOICE_PAID_FLAG" required="true" type="BOOLEAN"
+				description="1=true if the invoice has been paid. This is independent of the order.order_status_cd, i.e. an order can be finished but the invoice is not yet paid."/>
+		<column name="REMARKS_INTERNAL" type="VARCHAR" size="2000"
+				description="Internal remarks about the special/maintenance/repair order. This remark is for Crh employees only."/>
+		<column name="OFFER_REMARKS" type="VARCHAR" size="2000"
+				description="Internal remarks about the special/maintenance/repair order. This remark is for Crh employees only."/>
+		<column name="DOCUMENTATION_REMARKS" type="VARCHAR" size="2000"
+				description="Internal remarks about the special/maintenance/repair order. This remark is for Crh employees only."/>
+			
+		<!-- These long text fields may need to be modelled as CLOBs (character large objects), but that would require a seperate table. Plus, the persistence layer currently only handles BLOBs. In UTF8, a varchar2 field should not be >1000 characters (largest character is 4 bytes, and Oracle has a hard 	limit of 4000 bytes). However, in a first round, this design is sufficient.-->		
+			
+		<column name="ENTER_PLANT_DAT" type="DATE"
+				description="The date when the wagon entered the plant (repairing work has been started on it)."/>
+		<column name="LEAVE_PLANT_DAT" type="DATE"
+				description="The date when the wagon leaved the plant (done with the repair work)."/>	
+				
+		<!-- When adding new references and FK, please put them in the same order as they are as attributes! -->
+        <foreign-key foreignTable="TLGNC_ORDER" name="FK_TLGNC_ORDER_REP_ORDER">
+            <reference local="ORDER_ID" foreign="ORDER_ID"/>
+        </foreign-key>
+		<foreign-key foreignTable="TLGNR_CURRENCY_BS" name="FK_TLGNC_ORDER_REP_OFFER_CUR">
+			<reference local="OFFER_CURRENCY_CD" foreign="CURRENCY_CD"/>
+		</foreign-key>
+		<foreign-key foreignTable="TLGNR_CURRENCY_BS" name="FK_TLGNC_ORDER_REP_INVOICE_CUR">
+			<reference local="INVOICE_CURRENCY_CD" foreign="CURRENCY_CD"/>
+		</foreign-key>
+							
+		<unique name="UQ_TLGNC_ORDER_REP_ORDER">
+			<unique-column name="ORDER_ID"/>
+		</unique>
+
+
+    </table>
+</database>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNU_USER_SAREA_ACC"
+           description="Access Control/Data restriction table. Defines the Sales Area (TLGNC_SAREA) a user has access to.">
+
+        <column name="USER_SAREA_ACC_ID" primaryKey="true" required="true" type="DECIMAL" size="12"
+                description="PK"/>
+        <column name="USER_ID" required="true" type="DECIMAL" size="12"
+                description="FK tlgnu_user. The Logon user."/>
+        <column name="SAREA_ID" required="true" type="DECIMAL" size="12"
+                description="FK TLGNC_SAREA. The Sales Area for which access is granted."/>
+		<column name="USER_COMPANYCODE_ACC_ID" required="true" type="DECIMAL" size="12"
+                description="FK tlgnu_user_companycode_acc. With this constraint, we enforce that any sales area restriction requires that its company code is also restricted. I.e. you cannot create a sales area restriction, if there is not already a restriction on the respective company code."/>
+
+        <foreign-key foreignTable="TLGNU_USER" name="FK_TLGNU_USER_SAREA_ACC_USER">
+            <reference local="USER_ID" foreign="USER_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNC_SAREA" name="FK_TLGNU_USER_SAREA_ACC_SAREA">
+            <reference local="SAREA_ID" foreign="SAREA_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNU_USER_COMPANYCODE_ACC" name="FK_TLGNU_USER_SAREA_ACC_COMPCD">
+            <reference local="USER_COMPANYCODE_ACC_ID" foreign="USER_COMPANYCODE_ACC_ID"/>
+        </foreign-key>
+
+        <unique name="UQ_TLGNU_USER_SAREA_ACC">
+            <unique-column name="USER_ID"/>
+            <unique-column name="SAREA_ID"/>
+        </unique>
+    </table>
+</database>

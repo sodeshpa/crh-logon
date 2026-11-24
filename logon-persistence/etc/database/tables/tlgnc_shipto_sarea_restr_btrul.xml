@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNC_SHIPTO_SAREA_RESTR_BTRUL"
+           description="Stores the billto-rhythm (rules) for a shipto-sarea. Rules are defined per month, day of the week or day of the month, and can cover an arbitrary number of bill-tos.">
+
+        <column name="SHIPTO_SAREA_RESTR_BTRUL_ID" primaryKey="true" required="true" type="DECIMAL" size="12"
+                description="PK"/>
+        <column name="SHIPTO_SAREA_RESTR_ID" required="true" type="DECIMAL" size="12"
+                description="FK tlgnc_shipto_sarea_restr. The bulk product restriction (of a shipto-sarea) for which the rule is defined."/>
+        <column name="BILLTO_SAP_BP_ID" required="true" type="DECIMAL" size="12"
+                description="FK tlgns_sap_bp. The Billto business partner for this rule."/>
+        <column name="BILLTO_RULETYPE_CD" required="true" type="DECIMAL" size="2"
+                description="FK tlgnr_billto_ruletype_bs. 0=month, 1=day of week, 2=day of month. All rules of the type tlgnc_shipto_sarea_restr.billto_ruletype_cd are active."/>
+        <column name="VALUE" required="true" type="DECIMAL" size="2"
+                description="Value of the rule, depends on the rule type: month: 1-12 (jan-dec), day of week: 1-7 (mon-sun), day of month: 1-31."/>
+
+        <foreign-key foreignTable="TLGNS_SAP_BP" name="FK_TLGNC_SHPTSAREARSTBTRL_BILL">
+            <reference local="BILLTO_SAP_BP_ID" foreign="SAP_BP_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_BILLTO_RULETYPE_BS" name="FK_TLGNC_SHPTSAREARSTBTRL_UOM">
+            <reference local="BILLTO_RULETYPE_CD" foreign="BILLTO_RULETYPE_CD"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNC_SHIPTO_SAREA_RESTR" name="FK_TLGNC_SHPTSAREARSTBTRL_RSTR">
+            <reference local="SHIPTO_SAREA_RESTR_ID" foreign="SHIPTO_SAREA_RESTR_ID"/>
+        </foreign-key>
+          <!-- If you comment out this UQ_TLGNC_SHIPTO_SAREARESTRBTRL constraint, or remove,
+           please make sure that it is correctly handled in custom_overrides.sql. 
+           At the moment this constraint is first dropped there, and recreated as deferred there! -->
+        <unique name="UQ_TLGNC_SHIPTO_SAREARESTRBTRL">
+            <unique-column name="SHIPTO_SAREA_RESTR_ID"/>
+            <unique-column name="BILLTO_RULETYPE_CD"/>
+            <unique-column name="VALUE"/>
+        </unique>
+        
+        <index name="I_SHIPTO_SAREA_RESTR_ID">
+            <index-column name="SHIPTO_SAREA_RESTR_ID"/>
+        </index>
+     </table>
+</database>

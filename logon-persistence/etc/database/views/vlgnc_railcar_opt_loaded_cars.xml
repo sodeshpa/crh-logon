@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="VLGNC_RAILCAR_OPT_LOADED_CARS" mappingType="view" skipSql="true">
+        <column name="WAGON_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="WAGON_NO" required="true" type="VARCHAR" size="12"/>
+        <column name="WAGON_TYPE_CD" required="true" type="DECIMAL" size="2"/>
+        <column name="ACTIVE_FLAG" required="true" type="BOOLEAN"/>
+        <column name="LAST_KNOWN_RAILWAY_STATION_ID" type="DECIMAL" size="12"/>
+        <column name="ARRIVAL_LAST_KNOWN_STATION_DAT" type="DATE"/>
+        <column name="WAGON_TRSP_CAT_CD" required="true" type="DECIMAL" size="2"/>
+        <column name="WAGON_TYPE_NAME" required="true" type="VARCHAR" size="20"/>
+        <column name="LANG_CD" required="true" type="VARCHAR" size="2"/>
+        <column name="WAGON_TYPE_NAME_TX" required="true" type="VARCHAR" size="50"/>
+        <column name="LOAD_ID" type="DECIMAL" size="12"/>
+        <column name="SAP_MATERIAL_ID" type="DECIMAL" size="12"/>
+        <column name="NET_QUANTITY" type="DOUBLE"/>
+        <column name="NET_QUANTITY_UOM_CD" type="VARCHAR" size="3"/>
+        <column name="LOAD_ORDER_ID" type="DECIMAL" size="12"/>
+        <column name="LOADING_TS" type="DATE"/>
+        <column name="MATERIAL_NAME" type="VARCHAR" size="40"/>
+        <column name="LOGON_PACKAGE_TYPE_CD" type="DECIMAL" size="2"/>
+        <column name="ORDER_NUMBER" type="DECIMAL" size="12"/>
+        <column name="ORDER_STATUS_CD" type="DECIMAL" size="2"/>
+        <column name="SOLDTO_BP_NAME" type="VARCHAR" size="35"/>
+        <column name="SHIPTO_BP_NAME" type="VARCHAR" size="35"/>
+        <column name="ORDER_STATUS_TXT" type="VARCHAR" size="50"/>
+    </table>
+</database>

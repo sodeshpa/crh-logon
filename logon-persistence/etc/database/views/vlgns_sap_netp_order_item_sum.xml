@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="VLGNS_SAP_NETP_ORDER_ITEM_SUM" mappingType="view" skipSql="true">
+        <column name="ORDER_ITEM_ID" type="DECIMAL" size="12"/>
+        <column name="NETPRICE_QUANTITY" type="DECIMAL" size="18,3"/>
+        <column name="NETPRICE_NET_VALUE" type="DECIMAL" size="17,2"/>
+        <column name="NETPRICE_REBATE_TOTAL" type="DECIMAL" size="17,2"/>
+        <column name="NETPRICE_TAX" type="DECIMAL" size="17,2"/>
+        <column name="NETPRICE_CASH_DISCOUNT" type="DECIMAL" size="17,2"/>
+    </table>
+</database>

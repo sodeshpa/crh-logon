@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="VLGNC_ARCHIVING_PDF" mappingType="view" skipSql="true">
+        <column name="COMPOSITE_ID" type="VARCHAR" size="81"/>
+        <column name="ORDER_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="ORDER_NUMBER" type="DECIMAL" size="12"/>
+        <column name="DOC_TS" required="true" type="TIMESTAMP"/>
+        <column name="OUTPUTDOC_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="OUTPUTDOC_NAME" type="VARCHAR" size="400"/>
+        <column name="DATA" type="BLOB"/>
+        <column name="MIME_TYPE" required="true" type="VARCHAR" size="100"/>
+    </table>
+</database>

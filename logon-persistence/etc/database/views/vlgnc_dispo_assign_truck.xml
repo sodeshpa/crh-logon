@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="VLGNC_DISPO_ASSIGN_TRUCK" mappingType="view" skipSql="true">
+        <column name="ASSIGNMENT_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="TRUCK_ID" type="DECIMAL" size="12"/>
+        <column name="ASSIGNMENT_DAT" required="true" type="DATE"/>
+        <column name="MIN_START" type="DATE"/>
+        <column name="MAX_END" type="DATE"/>
+    </table>
+</database>

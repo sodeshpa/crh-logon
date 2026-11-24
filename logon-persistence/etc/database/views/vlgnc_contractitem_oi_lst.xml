@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="VLGNC_CONTRACTITEM_OI_LST" mappingType="view" skipSql="true">
+        <column name="COMPOSITE_ID" type="VARCHAR" size="43"/>
+        <column name="SAP_CONTRACT_ITEM_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="SENT_ORDER_ITEM_NO" required="true" type="DECIMAL" size="3"/>
+        <column name="DELIVERED_QUANTITY" type="DECIMAL" size="12,4"/>
+        <column name="DELETED_FLAG" required="true" type="BOOLEAN"/>
+		<column name="ORDER_ITEM_NO" required="true" type="DECIMAL" size="3"/>
+		<column name="ORDER_NUMBER" type="DECIMAL" size="12"/>
+    </table>
+</database>

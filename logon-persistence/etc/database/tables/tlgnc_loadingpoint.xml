@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNC_LOADINGPOINT"
+           description="Loadingpoints (German: Ladestrasse) belong to a shippingpoint. Loadingpoints differ in their packaging type (bag, bulk) and availability of weighing systems etc. The Loadingpoint is located at the shippingpoint and is used for loading; whereas the silo is  located at the shipto and used for unloading.">
+
+        <column name="LOADINGPOINT_ID" primaryKey="true" required="true" type="DECIMAL" size="12"
+                description="PK"/>
+        <column name="SHIPPINGPOINT_ID" required="true" type="DECIMAL" size="12"
+                description="FK tlgnc_shippingpoint. The shippingpoint to which the loadingpoint belongs to."/>
+        <column name="LOADINGPOINT_NAME" required="true" type="VARCHAR" size="40"
+                description="Name of the loadingpoint, used to display it in Logon. Must be unique per Shippingpoint."/>
+        <column name="LOADINGPOINT_OBJECT_LABEL" required="true" type="VARCHAR" size="50"
+                description="The identifying name of this loadingpoint at the shippingpoint. Often the same as loadingpoint_name, but can be changed to some catchy, short identifier which is printed on a plate at the loadingpoint. This field, together with plant_cd and sap_shippingpoint_no, is used to form the rfidobject.object_label (search string when rfid tag is missing). Must be unique per Shippingpoint."/>
+        <!-- 50 is actually too long, because rfidobject.object_label is currently only 40. However, that is not consistent with the various sources for it anyway, so rather keep LOADINGPOINT_NAME and LOADINGPOINT_OBJECT_LABEL conistent and error-free at least...-->
+
+        <column name="PACKAGE_TYPE_CD" required="true" type="DECIMAL" size="2"
+                description="FK tlgnr_package_type. Defines which packaging type (Bag, Bulk) can be loaded at this loadingpoint. Logon only distinguishes the major types, whereas SAP distinguishes 'Silo (Silosteller)', 'Pallet (empty)', 'Service' in addition. Logon does not 'load' services, and empty pallets are just treated as an aspect of Bag, Silosteller as an aspect of Bulk."/>
+        <column name="WEIGH_SYSTEM_LP_CD" required="true" type="DECIMAL" size="2"
+                description="FK tlgnr_weigh_system_lp_bs. The weighing system type which is in use at this loadingpoint. 0=LDS from shipping point, 2=Manual LOGON, 3=Manual PDA."/>
+        <column name="DELIV_NOTE_PRINT_TYPE_CD" required="true" type="DECIMAL" size="2"
+                description="FK tlgnr_deliv_note_print_type_bs. In case a delivery note has to printed, field defines which system is responsible for it: LOGON, Parallel, SAP/others."/>
+        <column name="DELIV_NOTE_COPIES_LOGON" type="DECIMAL" size="10"
+                description="Number of copies to print when a delivery note with logon type is printed."/>
+        <column name="WEIGH_SYSTEM_LOADINGPOINT_NO" type="VARCHAR" size="10"
+                description="The identifier of the loadingpoint known to the weighing system within the scope of a shippingpoint or plant. For Parallel (Truck and Rail) this is the 'Verladestrassenummer' a 2 digit number which defines the Parallel Terminal, connected to the server specified in tlgnc_shippingpoint.parallel_spid. For WeWaS: Something similar, 1-2 digit number, unique per plant."/>
+        <column name="PRINTER_CD" type="DECIMAL" size="4"
+                description="FK tlgnr_printer_bs. The printer used at the loadingpoint, for example to print delivery notes."/>
+        <column name="PLANT_TRACK_CD" type="DECIMAL" size="4"
+                description="FK tlgnr_plant_track_bs. For Rail only: The track of this loadingpoint. tlgnr_plant_track_bs.plant_cd must be equal to the plant of the shippingpoint of this loadingpoint."/>
+        <column name="WAGON_LOAD_FIRST_POSITION_FLAG" type="BOOLEAN"
+                description="If this flag is set to 1, the wagon loaded at this loading point will be inserted at the first position on the track, else they will be inserted at the last position"/>
+        <column name="LEAVE_LP_DELAY_MIN" type="DECIMAL" size="12"
+                description="Average delay in minutes for a loading point (LDS) to trigger the endLoad event. Is used to calculate the biz_leave_sp_ts (reporting) on order finalization in case no PDA event is available."/>
+
+        <column name="LOADINGPOINT_COMMENT" type="VARCHAR" size="250"
+                description="Comment about the loadingpoint."/>
+
+        <column name="ACTIVE_FLAG" required="true" type="BOOLEAN"
+                description="0=inactive/deleted, 1=active."/>
+
+        <column name="LOADING_TIME" type="DECIMAL" size="10"
+                description="Loading time in minutes. If null, the loadingtime is not defined for this loadingpoint and the application default value is used (see tlgnr_config, app.default.loadingpoint.LoadingTime_min)."/>
+        <column name="GROSS_WEIGHT_LIMIT_KG" type="DECIMAL" size="10"
+                description="Gross (Brutto) Weight limit in kg. Max gross sent to parallel = min (max gross truck/trailer and loading point)."/>
+
+        <column name="RFIDOBJECT_ID" type="DECIMAL" size="12"
+                description="The ID which is used to associate this object (loading point) with RFID tags. An RFID object can have several RFID tags."/>
+
+        <foreign-key foreignTable="TLGNC_SHIPPINGPOINT" name="FK_TLGNC_LOADINGPOINT_SHIP">
+            <reference local="SHIPPINGPOINT_ID" foreign="SHIPPINGPOINT_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_PACKAGE_TYPE_BS" name="FK_TLGNC_LOADINGPOINT_PKGT">
+            <reference local="PACKAGE_TYPE_CD" foreign="PACKAGE_TYPE_CD"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_WEIGH_SYSTEM_LP_BS" name="FK_TLGNC_LOADINGPOINT_WS_LP">
+            <reference local="WEIGH_SYSTEM_LP_CD" foreign="WEIGH_SYSTEM_LP_CD"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_DELIV_NOTE_PRINT_TYPE_BS" name="FK_TLGNC_LOADINGPOINT_DELPR">
+            <reference local="DELIV_NOTE_PRINT_TYPE_CD" foreign="DELIV_NOTE_PRINT_TYPE_CD"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_PRINTER_BS" name="FK_TLGNC_LOADINGPOINT_PRINTER">
+            <reference local="PRINTER_CD" foreign="PRINTER_CD"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_PLANT_TRACK_BS" name="FK_TLGNR_LOADINGPOINT_PLATRACK">
+            <reference local="PLANT_TRACK_CD" foreign="PLANT_TRACK_CD"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNC_RFIDOBJECT" name="FK_TLGNC_LOADINGPOINT_RFID">
+            <reference local="RFIDOBJECT_ID" foreign="RFIDOBJECT_ID"/>
+        </foreign-key>
+
+        <unique name="UQ_TLGNC_LOADINGPOINT_SP_NAME">
+            <unique-column name="SHIPPINGPOINT_ID"/>
+            <unique-column name="LOADINGPOINT_NAME"/>
+        </unique>
+        <unique name="UQ_TLGNC_LOADINGPOINT_SP_LABEL">
+            <unique-column name="SHIPPINGPOINT_ID"/>
+            <unique-column name="LOADINGPOINT_OBJECT_LABEL"/>
+        </unique>
+		<unique name="UQ_TLGNC_LP_RFIDOBJECT_ID">
+            <unique-column name="RFIDOBJECT_ID"/>
+        </unique>
+        
+        <index name="I_TLGNC_LP_SP_ACTIVE">
+            <index-column name="SHIPPINGPOINT_ID"/>
+            <index-column name="ACTIVE_FLAG"/>
+        </index>
+    </table>
+</database>

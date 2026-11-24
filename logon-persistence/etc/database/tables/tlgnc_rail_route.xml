@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNC_RAIL_ROUTE"
+           description="Contains 'kursnummer' and 'unterwegsbahnhof' to send to SBB, depending on the departure/arrival railway station and day of week.">
+
+		<column name="RAIL_ROUTE_ID" primaryKey="true"	required="true" type="DECIMAL" size="12"	
+			description="PK"/>
+
+        <column name="DEP_RAILWAY_STATION_ID" type="DECIMAL" size="12"
+			description="FK tlgnc_railway_station. Departure railway station."/>
+        <column name="ARR_RAILWAY_STATION_ID" type="DECIMAL" size="12"
+			description="FK tlgnc_railway_station. Arrival railway station."/>
+        <column name="DAY_OF_WEEK" type="DECIMAL" size="1"
+            description="Day of week this route applies to, 1-7 (mon-sun), NULL=all days."/>
+        <column name="ROUTE_NUMBER" type="VARCHAR" size="5"
+            description="Route number/kursnummer."/>
+        <column name="VIA_RAILWAY_STATION_ID" type="DECIMAL" size="12"
+            description="FK tlgnc_railway_station. Via-railway station, unterwegsbahnhof."/>
+
+		<foreign-key foreignTable="TLGNC_RAILWAY_STATION" name="FK_TLGNC_RAIL_ROUTE_DEP">
+            <reference local="DEP_RAILWAY_STATION_ID" foreign="RAILWAY_STATION_ID"/>
+        </foreign-key>
+		<foreign-key foreignTable="TLGNC_RAILWAY_STATION" name="FK_TLGNC_RAIL_ROUTE_ARR">
+            <reference local="ARR_RAILWAY_STATION_ID" foreign="RAILWAY_STATION_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNC_RAILWAY_STATION" name="FK_TLGNC_RAIL_ROUTE_VIA">
+            <reference local="VIA_RAILWAY_STATION_ID" foreign="RAILWAY_STATION_ID"/>
+        </foreign-key>
+        
+        <unique name="UQ_TLGNC_RAIL_ROUTE">
+            <unique-column name="DEP_RAILWAY_STATION_ID"/>
+            <unique-column name="ARR_RAILWAY_STATION_ID"/>
+            <unique-column name="DAY_OF_WEEK"/>
+        </unique>
+    </table>
+</database>

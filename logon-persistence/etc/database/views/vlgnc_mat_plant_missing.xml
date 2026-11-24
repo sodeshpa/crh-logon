@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="VLGNC_MAT_PLANT_MISSING" mappingType="view" skipSql="true">
+        <column name="SAP_MATERIAL_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="PLANT_CD" required="true" type="VARCHAR" size="4"/>
+        <column name="LANG_CD" required="true" type="VARCHAR" size="2"/>
+        <column name="TXT" required="true" type="VARCHAR" size="40"/>
+        <column name="DISPLAY" type="VARCHAR" size="61"/>
+    </table>
+</database>

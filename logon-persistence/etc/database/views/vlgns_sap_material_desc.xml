@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="VLGNS_SAP_MATERIAL_DESC" mappingType="view" skipSql="true">
+        <column name="ID" type="VARCHAR" size="43"/>
+        <column name="SAP_MATERIAL_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="SAP_MATERIAL_NO" required="true" type="VARCHAR" size="18"/>
+        <column name="BASE_UOM_CD" required="true" type="VARCHAR" size="3"/>
+        <column name="MATERIAL_PACKAGE_CD" required="true" type="VARCHAR" size="4"/>
+        <column name="MARKED_FOR_DELETION" required="true" type="BOOLEAN"/>
+        <column name="LANG_CD" required="true" type="VARCHAR" size="2"/>
+        <column name="TXT" required="true" type="VARCHAR" size="40"/>
+        <column name="DISPLAY" type="VARCHAR" size="61"/>
+    </table>
+</database>

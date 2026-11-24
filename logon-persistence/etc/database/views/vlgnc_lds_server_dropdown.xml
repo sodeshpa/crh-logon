@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="VLGNC_LDS_SERVER_DROPDOWN" mappingType="view" skipSql="true">
+        <column name="CONFIG_CD" required="true" type="DECIMAL" size="12"/>
+        <column name="KEY" required="true" type="VARCHAR" size="100"/>
+        <column name="TYPE" type="VARCHAR" size="100"/>
+        <column name="NAME" type="VARCHAR" size="100"/>
+    </table>
+</database>

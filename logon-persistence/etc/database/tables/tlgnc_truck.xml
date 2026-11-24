@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+	<table name="TLGNC_TRUCK"
+		   description="Trucks are used to deliver road orders and are owned by a carrier. Trucks can have 2-5 axes (having a loading capacity itself) or be of the type semi-trailer truck, where the trailer defines the loading capacity. Many of the fields have only informative character and are ignored by Logon.">
+		<!-- Technical -->
+		<column name="TRUCK_ID" primaryKey="true" required="true" type="DECIMAL" size="12"
+				description="PK"/>
+		<column name="CARRIER_ID" required="true" type="DECIMAL" size="12"
+				description="FK tlgnc_carrier. The carrier (in German: Transporteur, Spediteur, Lieferant) who owns the truck."/>
+		<column name="DISPATCHING_CARRIER_ID" type="DECIMAL" size="12"
+				description="FK tlgnc_carrier. FIXME"/>				
+		<column name="ACTIVE_FLAG" required="true" type="BOOLEAN"
+				description="0=inactive/deleted, 1=active."/>
+		<column name="PRIORITY" required="true" type="DECIMAL" size="3"
+				description="Range: 1-100. Used for ordering of the trucks. Value 100 means, that the truck is inactive. At the moment only used for ordering purposes. (later, i.e. at the moment out of scope, then also for the auto-scheduling functionality)."/> 
+				
+		<!-- Stammdaten -->
+		<column name="TRUCK_NAME" required="true" type="VARCHAR" size="30"
+				description="Name (ID) of the truck as displayed in the UI, with formatting. This is typically a shortened form of carrier + some enumeration, but must also be unique because it's used for display/selection in Logon. Example: Ernst 01."/>
+		<column name="TRUCK_PLATE_NO" required="true" type="VARCHAR" size="20"
+				description="Text on the number plate of the truck. Serves as alternative identifier for a truck, and must therefore be unique."/>
+		<column name="SAP_VEHICLE_NO" required="false" type="VARCHAR" size="18"
+				description="SAP Number of the truck. Field is going to be used in export interfaces to SAP."/>
+
+		<column name="TRUCK_TRANSPORT_CAT_CD" required="true" type="DECIMAL" size="2"
+				description="FK tlgnr_truck_transport_cat_bs. E.g. Silo, Container, Auflieger. Logic: Silo -> Bulk transport, trailer and container need to be null. Container: Container transport, trailer needs to be null, container needs to be set. Trailer: Trailer needs to be set, container is null, TRUCK_TYPE_CD needs to be semi-trailer." />
+		<column name="TRUCK_TYPE_CD" required="true" type="DECIMAL" size="3"
+				description="FK TLGNR_TRUCK_TYPE_BS. Type of the truck: 2-axle ... 5-axle truck or semi-trailer truck."/>
+
+		<column name="MANUFACTURER" type="VARCHAR" size="20"
+				description="Manufacturer of the truck. Has only informative character for the carrier and is ignored by Logon."/>
+		<!-- MANUFACTURER: Spec suggests to refer to some refdata. Low prio, as we don't have any logic for this. Text for now. -->
+		<column name="AXIS_COUNT" type="VARCHAR" size="10"
+				description="Number of axis of the truck. Has only informative character for the carrier and is ignored by Logon. No consistency check with TRUCK_TYPE_CD. User is free to enter 3+3 to describe truck+trailer compositions."/>
+		<column name="EURO_NORM" type="VARCHAR" size="20"
+				description="Euro Norm for this truck. Has only informative character for the carrier and is ignored by Logon."/>
+		<!-- EURO_NORM: Spec suggests to refer to some refdata. Low prio, as we don't have any logic for this. Text for now. -->
+		<column name="MAX_GROSS_WEIGHT_T" type="DECIMAL" size="12,4"
+				description="Maximal gross weight (truck+load). This is the legal max weight for the truck (e.g. because of brake power), and is sent to parallel as the limit for 'load a full truck'. For a truck of type 'semi-trailer truck' (=trsp_cat_cd: Trailer), truck.max_gross_weight_t is irrelevant to Logon and tlgnc_trailer.max_gross_weight_t is used instead! The max_net_weight_chamber1/2_t cannot be used as a limit, they are just hints for the dispatcher."/><!-- Optional because not necessary for truck of type "semi-trailer", also our initial data don't have it. -->
+		<column name="TARE_WEIGHT_T" required="true" type="DECIMAL" size="12,4"
+				description="Weight of the empty truck in tons. Typically this is measured in steps of 10kg. This can differ quite a bit from the measured tare_weight of the truck because of the amount of petrol the truck has in its tank (400 liters...)!"/>
+		<column name="HAS_DUSTFILTER_FLAG" type="BOOLEAN"
+				description="0=no dust filter, 1=truck has a dust filter, null=unkown/does not matter. Has only informative character for the carrier and is ignored by Logon."/><!-- null ok, as displayed in a dropdown -->
+		<column name="VOLUME_M3" type="DECIMAL" size="12,4"
+				description="Loading volume of the truck in cubic meters. If the truck is of type semi-trailer it doesn't have a loading capacity on its own (just the one of the trailer). Logon does not have any logic attached to this volume; it is never the limiting factor for a load. This is in contrast to rail wagons, where the load limit can be either volume or weight, depending on the material density."/>
+		<column name="BRANDING_FLAG" type="BOOLEAN"
+				description="0=no, 1=yes, null=unkown/does not matter. Has only informative character for the carrier and is ignored by Logon."/><!-- null ok, as displayed in a dropdown -->
+
+		<column name="NR_CHAMBERS" type="DECIMAL" size="1" required="true"
+				description="Number of chambers. For silo trucks 1 or 2, 0 for other truck types."/>
+		<column name="MAX_NET_WEIGHT_CHAMBER1_T" type="DECIMAL" size="12,4" required="true"
+				description="For silo and trailer transport type trucks only. Maximal net weight chamber 1. Defaults to MAX_GROSS_WEIGHT_T - TARA_WEIGHT_T. Set to 0 if not a silo truck. There is no logic/limitation bound to the max_net_weight_chamber1/2, it is for informational purposes only in Disposition. Most silo trucks actually have two chambers, and 3 loading openings: front, both, back."/>
+		<column name="MAX_NET_WEIGHT_CHAMBER2_T" type="DECIMAL" size="12,4" required="true"
+				description="For silo and trailer transport type trucks only. Maximal net weight chamber 2 (0, if truck has only one chamber or is a silo truck)."/>
+		
+		<column name="SAP_VEHICLE_IS_INTERNAL_FLAG" type="BOOLEAN"
+				description="Internal means owned by Crh company => relevant for costs calculation in SAP Yes/no/Null not applicable. Copied value from tlgns_sap_vehicle."/>
+		<column name="SAP_VEHICLE_CHAR_CD" type="DECIMAL" size="2" required="true"
+				description="FK to tlgnr_sap_vehicle_char_bs. Truck characteristic."/>		
+		<column name="SAP_VEHICLE_TYPE_CD" type="VARCHAR" size="30"
+				description="NULL for generic trucks for planning. Copied value from tlgns_sap_vehicle. SAP_TRAILER_TYPE_CD at the time of last update/creation."/>		
+		
+		<!-- Assignment and organizational -->
+		<column name="TRUCK_COMMENT" type="VARCHAR" size="200"
+				description="Comment."/>
+		<column name="PDA_AVAILABLE_FLAG" required="true" type="BOOLEAN"
+				description="True, if a PDA is available for this truck. If false, information such as container/current trailer is manually edited by the disponent."/>
+		<column name="SMS_SEND_FLAG" type="BOOLEAN"
+				description="True, if an SMS needs to be sent for the driver-user when 'Release order' and 'Order cancellation' event happens."/>
+
+		<!-- Location oriented attributes:
+			- homebase coord
+			- return shippingoint aka 'home plant'
+			- Last known coordinates ("letzte Kennung") are NOT stored on the truck, but are retrieved from tlgnc_truck_event
+		-->
+		<column name="HOMEBASE_COORD_LAT" type="DOUBLE"
+				description="Latitude of the homebase of the truck. Set independently of return_shippingpoint_id. This is typically the garage/over-night parking spot of the truck. Usage: Serves as an input-aid in assignment-editor popup in scheduling screen."/>
+		<column name="HOMEBASE_COORD_LON" type="DOUBLE"
+				description="Longitute of the homebase of the truck. Set independently of return_shippingpoint_id. This is typically the garage/over-night parking spot of the truck. Usage: Serves as an input-aid in assignment-editor popup in scheduling screen."/>
+		<column name="RETURN_SHIPPINGPOINT_ID" type="DECIMAL" size="12"
+				description="FK tlgnc_shippingpoint. The shippingpoint where to return to by default after an order has been delivered, also called 'home plant' of the truck. Used in scheduling screen when creating the assignment: If set, take this as the destintion of the return assignment part (tlgnc_assignment_part.shippingpoint_id). If not set, return to the start point of the order, i.e. tlgnc_order.shippingpoint_id."/> <!-- LOGON-4745 -->
+				
+		<column name="RFIDOBJECT_ID" type="DECIMAL" size="12"
+				description="The ID which is used to associate this object (truck) with RFID tags. An RFID object can have several RFID tags."/>
+
+		<!-- ITrack system related fields.
+		-->
+		<column name="ITRACK_TARGET_ID" type="DECIMAL" size="12"
+				description="External ID of the truck in the ITrack external system. Might change if the truck is sold to a different carrier."/>
+		<column name="ITRACK_AVAILABLE_FLAG" required="false" type="BOOLEAN"
+				description="Set if the truck is equipped with iTrack. If set the order gets to Shipping status after loading."/>
+
+		<foreign-key foreignTable="TLGNC_CARRIER" name="FK_TLGNC_TRUCK_CARRIER">
+			<reference local="CARRIER_ID" foreign="CARRIER_ID"/>
+		</foreign-key>
+		<foreign-key foreignTable="TLGNC_CARRIER" name="FK_TLGNC_TRUCK_DISP_CARRIER">
+			<reference local="DISPATCHING_CARRIER_ID" foreign="CARRIER_ID"/>
+		</foreign-key>		
+		<foreign-key foreignTable="TLGNR_TRUCK_TRANSPORT_CAT_BS" name="FK_TLGNC_TRUCK_TRUCK_TR_CAT">
+			<reference local="TRUCK_TRANSPORT_CAT_CD" foreign="TRUCK_TRANSPORT_CAT_CD"/>
+		</foreign-key>
+		<foreign-key foreignTable="TLGNR_TRUCK_TYPE_BS" name="FK_TLGNC_TRUCK_TRUCK_TYPE">
+			<reference local="TRUCK_TYPE_CD" foreign="TRUCK_TYPE_CD"/>
+		</foreign-key>
+		<foreign-key foreignTable="TLGNR_SAP_VEHICLE_CHAR_BS" name="FK_TLGNC_TRUCK_SAP_VEH_CHAR">
+			<reference local="SAP_VEHICLE_CHAR_CD" foreign="SAP_VEHICLE_CHAR_CD"/>
+		</foreign-key>
+		<foreign-key foreignTable="TLGNR_SAP_VEHICLE_TYPE_BS" name="FK_TLGNC_TRUCK_SAP_VEH_TYPE">
+			<reference local="SAP_VEHICLE_TYPE_CD" foreign="SAP_VEHICLE_TYPE_CD"/>
+		</foreign-key>
+		<foreign-key foreignTable="TLGNC_SHIPPINGPOINT" name="FK_TLGNC_TRUCK_RETURN_SHIPPPNT">
+			<reference local="RETURN_SHIPPINGPOINT_ID" foreign="SHIPPINGPOINT_ID"/>
+		</foreign-key>
+		<foreign-key foreignTable="TLGNC_RFIDOBJECT" name="FK_TLGNC_TRUCK_RFID">
+			<reference local="RFIDOBJECT_ID" foreign="RFIDOBJECT_ID"/>
+		</foreign-key>
+
+		<unique name="UQ_TLGNC_TRUCK_NAME">
+			<unique-column name="TRUCK_NAME"/>
+		</unique>
+		<unique name="UQ_TLGNC_TRUCK_PLATE_NO">
+			<unique-column name="TRUCK_PLATE_NO"/>
+		</unique>
+		<unique name="UQ_TLGNC_TRUCK_RFIDOBJECT_ID">
+			<unique-column name="RFIDOBJECT_ID"/>
+		</unique>
+		
+		<index name="I_TLGNC_TRUCK_TOP_PRIORITY">
+			<index-column name="CARRIER_ID"/>
+			<index-column name="SAP_VEHICLE_CHAR_CD"/>
+			<index-column name="TRUCK_TYPE_CD"/>
+			<index-column name="ACTIVE_FLAG"/>
+		</index>
+		
+	</table>
+</database>

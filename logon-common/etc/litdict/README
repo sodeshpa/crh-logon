@@ -1,0 +1,93 @@
+The LitDict.global file format
+==============================
+Logon uses a proprietary LitDict.global file (the format origins from the Vision project) which 
+contains the translations in the following way: the messages in all languages are kept within a single file, 
+each translation below each other. e.g.:
+
+	#####################################################
+	# Some comment
+	#####################################################
+
+	application.entry.welcome:
+	[de]Willkommen zu LOGON (Logistics Online)
+	[en]Welcome to LOGON (Logistics Online)
+	[fr]Bienvenue dans LOGON (logistique on-line)
+	[it]Benvenuti su LOGON (Logistics Online)
+
+	application.help:
+	[de]Hilfe
+	[en]Help
+	[fr]Aide
+	[it][TODO]Help
+	
+The optional [TODO] tag means that the entry is not yet translated or verified. (The generated LitDict.properties 
+files will not contain this [TODO] tag) If needed, the tag can contain additional freetext info.(e.g. author, 
+ticket number, or anything) e.g.: [fr][TODO translate/2009.11.12]French 	
+	
+
+LitDict related Ant targets in logon-common
+===========================================
+A) adnant generatelitdict
+
+This target is automatically called during the build of the project, and calls the LitDictExport.groovy script 
+which generates the standard LitDict.properties files for each language into the logon-common/build/generated/litdict directory.
+These property files are then copied by Ant into the logon-common.jar. The script also generates a CSV file 
+which could be periodically sent to Crh when translations are needed.
+
+B) adnant importlitdict
+
+This target calls the LitDictImport.groovy script. It can parse the response CSV files (corrections 
+arriving from the Crh) and generate a file which have the LitDict.global format.
+(Note: in fact, the CSV is a tab delimited txt file in our case)
+
+Detailed usage of the import:
+
+1. Copy the file to be imported in format 'TAB-delimited text file' over LitDict.replace_with_latest_to_be_imported.txt
+   (Alternative: Adjust build.xml of logon-common)
+   - Saving in Excel has a problem: It adds " characters around values which contain a "!
+     This is nonsense, because we use TAB-delimited format exactly to avoid this!
+     Alternative: use a macro, as appended below.
+   - Use Open Office, which allows you to configure the export format: "Tab"-seperated, and no quoting for text values.
+2. Execute the import command with 'adnant importlitdict'
+   Troubleshooting / common problems in the file to be imported:
+   - The file must be TABULATOR seperated - chose the right type in Excel
+   - Comment lines must start with a #
+   - "Empty lines" are forbidden! (Excel sometimes writes a last line, containing only tabs) => Remove that!
+   - ...
+3. The imported LitDict.global file will appear in the build/generated/litdict directory, the filename will 
+   have the "LitDictImported_YYYY-MM-DD_HH-mm.global" pattern. 
+4. Take a deep and thorough look on this generated file (e.g. diff with the head version of LitDict.global) and if everything 
+   seems to be OK, the head version of LitDict.global can be overwritten with the generated file 
+   (or, instead of overwriting, the changes can be manually copied with the diffing tool too).
+
+   Things to pay attention to:
+   - Since cluster 2 LOGON uses the UTF-8 format! Check for special characters (e.g. cyrillic letters)
+   - Especially dangerous: Word/Excel turn "..." into the special single character with 3 dots! => Manually fix them in the LitDict.global!
+   - (add more findings to this README)
+
+----
+
+Macro to save a file in TAB-delimited text format in Excel without "-quoting
+----------------------------------------------------------------------------
+    Public Sub TextNoModification()
+        Const DELIMITER As String = "," 'or "|", vbTab, etc.
+        Dim myRecord As Range
+        Dim myField As Range
+        Dim nFileNum As Long
+        Dim sOut As String
+        
+        nFileNum = FreeFile
+        Open "C:\Users\Roland Schuler\Desktop\Test.txt" For Output As #nFileNum
+        For Each myRecord In Range("A1:A" & _
+                Range("A" & Rows.Count).End(xlUp).Row)
+            With myRecord
+                For Each myField In Range(.Cells(1), _
+                        Cells(.Row, Columns.Count).End(xlToLeft))
+                    sOut = sOut & DELIMITER & myField.Text
+                Next myField
+                Print #nFileNum, Mid(sOut, 2)
+                sOut = Empty
+            End With
+        Next myRecord
+        Close #nFileNum
+    End Sub

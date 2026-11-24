@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNC_MOPEVENT_HEADER_OUT" description="Contains the base information of a Message sent from Logon to MOP. These fields either exist in all event types or are set to null where not applicable.">
+
+        <column name="MOPEVENT_HEADER_OUT_ID" primaryKey="true" required="true" type="DECIMAL" size="12"
+                description="PK"/>
+        <column name="EVENT_ID" required="true" type="DECIMAL" size="12"
+                description="ID of the event"/>
+        <column name="EVENT_NAME" required="true" type="VARCHAR" size="30"
+                description="Name of the event, that will be called. Event names are e.g.: login, changePIN, logout, ..."/>
+        <column name="PDA_NO" type="VARCHAR" size="100"
+                description="Identification Number of the PDA."/>
+       	<column name="SENDER_TIME" type="DATE"
+                description="Date and time of the sending device."/>
+		<column name="SESSION_NO" type="VARCHAR" size="50"
+                description="Session identifier, valid after sucessfull login."/>
+		<column name="LOGON_ORDER_NO" type="VARCHAR" size="20"
+                description="LOGON order identification number."/>
+       	<column name="MOP_STATUS_CD" type="VARCHAR" size="10"
+                description="FK tlgnr_mop_status_bs. Contains a status-code and status-text about the executed event. Used as WebService response "/>
+        <column name="MOP_STATUS_CONTEXT_VALUE" type="VARCHAR" size="250"
+                description="additional status-text.e.g.on status 0/Mandatory Field Missing: there will be added a name."/>
+        <column name="NEEDS_RESENDING_FLAG" type="BOOLEAN"
+                description="Flag to say if the event must be resent. Flags is set if a) the Com-Server is not available (=technical error) or b) the PDA is not available (response code 20301)."/>
+
+        <foreign-key foreignTable="TLGNR_MOP_STATUS_BS" name="FK_TLGNR_MOP_STATUS_OUT_BS">
+            <reference local="MOP_STATUS_CD" foreign="MOP_STATUS_CD"/>
+        </foreign-key>
+    </table>
+</database>

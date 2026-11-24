@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNR_COND_SAP_TYPE_BS" refData="true"
+           description="All Pricing condition types/tables from SAP. They are prioritized for correct evaluation within the same group of condition types distinguished by Logon. The Logon type decides if a condition is Material Price Condition (MP) and stored in tlgns_sap_mat_cond, or a Transport Cost Condition (TC, TRv, TRf) and stored in tlgns_sap_transport_cond.">
+
+        <column name="COND_SAP_TYPE_CD" primaryKey="true" required="true" type="VARCHAR" size="9"
+                description="PK. Examples mat_cond: ZPR6/A584, ZP20/A638. Examples transport_cond: ZTE2/A526, ZT2B/A811."/>
+        <column name="COND_LOGON_TYPE_CD" required="true" type="VARCHAR" size="3"
+                description="FK tlgnr_cond_logon_type_cd. Defines as what type a condition type+table from SAP is treated in Logon. MP=Material Price, TC=Transport Cost, TRf=Transport Rate fix, TRv=Transport Rate var."/>
+        <column name="EVALUATION_PRIORITY" required="true" type="DECIMAL" size="2"
+                description="Priority to evaluate conditions of different SAP types. Rule: lowest number per logon type wins. All conditions in tlgns_sap_transport_cond or tlgns_sap_mat_cond which fullfill the filter criteria (material, shippingpoint, shipto, etc) are grouped by cond_logon_type. For each cond_logon_type which is required for a certain business case, the condition with the lowest evaluation_priority wins and is used. Per Logon type there must not be two SAP types with the same priority."/>
+
+        <column name="CTL_ACT_CD" required="true" type="BOOLEAN"
+                description="Active Flag. When new data is entered, only reference data with active flag are available for selection normally."/>
+
+        <foreign-key foreignTable="TLGNR_COND_LOGON_TYPE_BS" name="FK_TLGNR_COND_SAP_TYPE_LOGON">
+            <reference local="COND_LOGON_TYPE_CD" foreign="COND_LOGON_TYPE_CD"/>
+        </foreign-key>
+
+        <!-- "Per Logon type there must not be two SAP types with the same priority." -->
+        <unique name="UQ_TLGNR_COND_SAP_TYP_PRIO_LGN">
+            <unique-column name="COND_LOGON_TYPE_CD"/>
+            <unique-column name="EVALUATION_PRIORITY"/>
+        </unique>
+    </table>
+</database>

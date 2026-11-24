@@ -1,0 +1,27 @@
+# $Revision$
+# $Date$
+# Status: Generated into INSERT OR UPDATE sql script by csv2sql generator. Do not change columns;;;
+#UIC_COUNTRY_CD;RAILWAY_STATION_NO;RAILWAY_STATION_NAME;ACTIVE_FLAG
+22;368203;Chernovtsy-Juzhnaja Rail St.;1
+52;160051;Iskar Rail St.;1
+52;160242;Ihtiman Rail St.;1
+52;410019;Dimitrovgrad Sever Rail St.;1
+52;560409;Blagoevgrad Rail St.;1
+52;650200;Kyustendil Rail St.;1
+52;720128;Beli Izvor Rail St.;1
+53;135384;Argesel Rail St. CEM Campulung;1
+53;138636;Bucuresti Progresu Rail St. Terminal Progresul;1
+53;254268;Aradu Nou Rail St. Terminal Arad;1
+53;318279;Campia Turzii Rail St. CEM Turda;1
+53;325084;Alesd Rail St. CEM Alesd;1
+53;473579;Livada Rail St. Terminal Livada;1
+53;551846;Nasaud Rail St. Influent;1
+53;821751;Calarasi Nord Rail St. Prefab;1
+55;15784;Lábatlan Rail St.;1
+55;58503;Ercsi átrakó Rail St.;1
+55;139121;Debrecen Rail St.;1
+55;180364;Békéscsaba átrakó Rail St.;1
+56;140467;Rohozník Rail St.;1
+56;151407;Turna Rail St.;1
+80;13391;Bad Segeberg Rail St.;1
+81;28977;Schönfeld-Lasse Rail St.;1

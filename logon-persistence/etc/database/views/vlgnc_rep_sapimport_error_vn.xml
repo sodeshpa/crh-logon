@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="VLGNC_REP_SAPIMPORT_ERROR_VN" mappingType="view" skipSql="true">
+        <column name="HJID" required="true" type="DECIMAL" size="19"/>
+        <column name="SAPIMPIMPORTEDDATELEMENT" type="TIMESTAMP"/>
+        <column name="SAPIMPSTATUSCD" type="DECIMAL" size="2"/>
+        <column name="SAPIMPSTATUS" required="true" type="VARCHAR" size="40"/>
+        <column name="SAPIMPERRMSG" type="VARCHAR" size="200"/>
+        <column name="MSGFN" type="VARCHAR" size="3"/>
+        <column name="LIFNR" type="VARCHAR" size="10"/>
+    </table>
+</database>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNC_SHIPTO_BILLTO"
+           description="The SOLDTO-billto relations are defined by SAP's partner functions, received via the SAP BP import interface and stored in tlgns_sap_bp_pf_billto. This table is a subselection of those relations but defined per SHIPTO (of that soldto) and Sales Area.">
+
+        <column name="SHIPTO_BILLTO_ID" primaryKey="true" required="true" type="DECIMAL" size="12"
+                description="PK. Entries in this table are a subselection of all possible SOLDTO-billto relations (from SAP), defined per  shipto/sales area of that soldto."/>
+        <column name="SHIPTO_SAREA_ID" required="true" type="DECIMAL" size="12"
+                description="FK tlgnc_shipto_sarea. The Shipto-Sales Area-tuple for which the billto is set."/>
+        <column name="BILLTO_SAP_BP_ID" required="true" type="DECIMAL" size="12"
+                description="FK tlgns_sap_bp. The billto. This table stores all possible billto on a Dispokarte (shipto-salesarea); the actual billto for an order is set a) by a default billto b) by the Billto-Rhythm or c) overridden by the user."/>
+
+        <foreign-key foreignTable="TLGNC_SHIPTO_SAREA" name="FK_TLGNC_SHIPTO_BILLTO_SHPTOSA">
+            <reference local="SHIPTO_SAREA_ID" foreign="SHIPTO_SAREA_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNS_SAP_BP" name="FK_TLGNS_SHIPTO_BILLTO_BILLTO">
+            <reference local="BILLTO_SAP_BP_ID" foreign="SAP_BP_ID"/>
+        </foreign-key>
+    </table>
+</database>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Author            : AdNovum Informatik AG
+ Version Number    : $Revision$
+ Date of last edit : $Date$
+-->
+
+<project name="properties" basedir=".">
+    <property name="masterbuild.dir" location="${basedir}/.."/>
+    <import file="${masterbuild.dir}/properties.xml"/>
+    <property name="project-business.ear.name"           value="logon-business.ear"/>
+    <property name="project-business.ear"                location="${subcomponent.business}/${build.dir.name}/${project-business.ear.name}"/>
+    <property name="generated.openapi.dir"               location="${generated.dir}/openapi"/>
+    <property name="generated.openapi.itrack.dir"        location="${generated.openapi.dir}/itrack"/>
+    <property name="generated.openapi.itrack.src.dir"    location="${generated.openapi.itrack.dir}/src/main/java"/>
+    <property name="generated.openapi.heremap.routing.dir" location="${generated.openapi.dir}/heremap/routing"/>
+    <property name="generated.openapi.heremap.routing.src.dir" location="${generated.openapi.heremap.routing.dir}/src/main/java"/>
+    <property name="openapi.template.dir"                location="${basedir}/etc/openapi-templates"/>
+</project>

@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Author            : AdNovum Informatik AG
+ Version Number    : $Revision$
+ Date of last edit : $Date$
+-->
+
+<project name="common" default="" basedir=".">
+	<description>defines common targets and tasks</description>
+
+	<import file="${APPWEB3_HOME}/appweb3-ant/build/aal-appweb3-master.xml" />
+
+	<!-- ================================================================= -->
+	<!-- === extract jar names from their fully qualified paths        === -->
+	<!-- ================================================================= -->
+	<macrodef name="extract-jarnames">
+		<sequential>
+			<!-- extract plain jar filenames from jar paths -->
+			<taskdef resource="net/sf/antcontrib/antcontrib.properties" />
+			<echo append="false" file="${build.dir}/jar_names.properties" />
+			<propertyselector property="jar.list" delimiter="," match="([^\.]*).jar$" select="\1" casesensitive="true" />
+			<for list="${jar.list}" param="jar.prop">
+				<sequential>
+					<propertycopy property="jar.path" from="@{jar.prop}.jar" override="true" />
+					<fileset file="${jar.path}" id="@{jar.prop}.name.id" />
+					<var name="jar.name" unset="true" />
+					<property name="jar.name" refid="@{jar.prop}.name.id" />
+					<echo file="${build.dir}/jar_names.properties" append="true">@{jar.prop}.jar.name=${jar.name}
+					</echo>
+				</sequential>
+			</for>
+			<loadproperties srcFile="${build.dir}/jar_names.properties" />
+		</sequential>
+	</macrodef>
+
+
+	<!-- ================================================================= -->
+	<!-- === generate documentation                                    === -->
+	<!-- ================================================================= -->
+	<!-- If you want to pass more than one src path, use pathconvert:      -->
+	<!-- <pathconvert property="javadoc.src.path">                         -->
+	<!--     <path location="${src1.dir}"/>                                -->
+	<!--     <path location="${src2.dir}"/>                                -->
+	<!-- </pathconvert>                                                    -->
+	<!-- <javadocs dest="${doc.dir}" src="${javadoc.src.path}"/>           -->
+
+	<macrodef name="javadocs" description="Generate javadoc">
+		<attribute name="dest" />
+		<attribute name="src" />
+		<sequential>
+			<javadoc
+					packagenames="ch.*"
+					destdir="@{dest}"
+					author="true"
+					version="true"
+					protected="true"
+					use="false"
+					windowtitle="${ant.project.name} Project API v${version}"
+					additionalparam="-breakiterator">
+				<classpath refid="javadoc.compile.classpath" />
+				<sourcepath path="@{src}" />
+				<tag name="struts.action" description="xdoclet" enabled="false" />
+				<tag name="struts.action-forward" description="xdoclet" enabled="false" />
+				<tag name="struts.action-set-property" description="xdoclet" enabled="false" />
+				<tag name="struts.form" description="xdoclet" enabled="false" />
+				<tag name="struts.validator" description="xdoclet" enabled="false" />
+				<tag name="struts.validator-args" description="xdoclet" enabled="false" />
+				<tag name="web.listener" description="xdoclet" enabled="false" />
+				<tag name="see" description="estivate" enabled="false" />
+			</javadoc>
+		</sequential>
+	</macrodef>
+
+
+	<!-- ================================================================= -->
+	<!-- === handling of test failure flag files                       === -->
+	<!-- ================================================================= -->
+	<macrodef name="set-flag-file-if-property-set">
+		<attribute name="flagfile" />
+		<attribute name="propertyname" />
+		<attribute name="message" default="property @{propertyname} set -> set flag file @{flagfile}" />
+		<sequential>
+			<taskdef resource="net/sf/antcontrib/antcontrib.properties" />
+			<if>
+				<isset property="@{propertyname}" />
+				<then>
+					<echo message="@{message}" />
+					<touch file="@{flagfile}" />
+				</then>
+			</if>
+		</sequential>
+	</macrodef>
+
+
+	<!-- ================================================================ -->
+	<!--  set common properties dynamically from a prefixed property      -->
+	<!-- ================================================================ -->
+	<macrodef name="setprop" description="sets properties indirect with prefix">
+		<attribute name="name" default="" />
+		<attribute name="prefix" default="" />
+		<sequential>
+			<property name="@{name}" value="${@{prefix}.@{name}}" />
+		</sequential>
+	</macrodef>
+
+	<!-- ================================================================ -->
+	<!--  cache-dependencies                                              -->
+	<!-- ================================================================ -->
+	<macrodef name="cache-dep">
+		<attribute name="basedir" />
+		<attribute name="todir" default="./.depcache" />
+		<element name="excludepatternset" optional="yes" />
+
+		<sequential>
+			<property name="cache.dir" location="@{todir}" />
+			<echo message="dependencies cache at ${cache.dir}" />
+
+			<taskdef resource="net/sf/antcontrib/antcontrib.properties" />
+
+			<!-- collect all homes in ${home.list} as a comma separated list -->
+			<propertyselector property="home.list"
+							  delimiter="," match="((.*)_HOME)" select="\1" casesensitive="true" override="true"
+			/>
+
+			<!-- iterate over the list of homes -->
+			<for list="${home.list}" param="home.name">
+				<sequential>
+					<propertycopy property="home.location" from="@{home.name}" override="true" />
+
+					<!-- remove EXT_PROJ_DIR prefix and optional dist postfix -->
+					<propertyregex property="home.reference"
+								   input="${home.location}"
+								   regexp="((@{basedir})/(.*)(/dist$)|(@{basedir})/(.*))"
+								   replace="\3\6"
+								   override="true"
+					/>
+
+					<echo message="processing reference ${home.reference} from location @{home.name}=${home.location}" />
+
+					<copy todir="@{todir}">
+						<fileset dir="@{basedir}">
+							<patternset>
+								<include name="${home.reference}/**" />
+							</patternset>
+							<excludepatternset />
+						</fileset>
+					</copy>
+
+				</sequential>
+			</for>
+
+			<chmod perm="ugo+rx" failifexecutionfails="false" failonerror="false">
+				<fileset dir="@{todir}/adnovum/adnant">
+					<include name="**/ant" />
+					<include name="**/antRun" />
+					<include name="**/*.sh" />
+					<include name="**/*.p?" />
+				</fileset>
+			</chmod>
+
+			<echo message="" />
+			<echo message="!!! update your project setup in config/env-local.proj !!!" />
+			<echo message="(1) EXT_PROJ_DIR: ${cache.dir}" />
+			<echo message="(2) JAVA_HOME   : [local java home] depending on your target platform" />
+			<echo message="(3) ANT_HOME    : adnant within ${cache.dir}/adnovum/adnant/.. will be used" />
+
+		</sequential>
+	</macrodef>
+
+	<macrodef name="binrepo-publish">
+		<attribute name="sourceFile"/>
+		<attribute name="targetPath"/>
+		<sequential>
+			<local name="env"/>
+			<property environment="env"/>
+			<if><isset property="env.BINREPO_TOKEN" /><then>
+				<local name="pkgSha"/>
+				<!-- sha-1 checksum required to make artifactory RPM default policy 'Verify against client checksums' happy -->
+				<checksum file="@{sourceFile}" algorithm="SHA-1" property="pkgSha"/>
+				<local name="pkgTarget"/>
+				<property name="pkgTarget"
+						  value="${MAVEN_PUBLISH_URL}/@{targetPath};buildName=crh-logon-mobile;buildNumber=${version};revision=${version}" />
+				<!-- ...according to https://www.jfrog.com/confluence/display/RTF/Artifactory+REST+API#ArtifactoryRESTAPI-DeployArtifactbyChecksum -->
+				<echo>Deploying @{sourceFile} with SHA1 ${pkgSha} as user ${env.BINREPO_USER} to ${MAVEN_PUBLISH_URL}</echo>
+				<exec executable="/usr/bin/curl" failonerror="true">
+					<arg line="-sS -L -i -w '\nDeploy result: HTTP/%{http_code}'" /> <!-- stdin/out handling of curl-->
+					<arg line="-u'${env.BINREPO_USER}:${env.BINREPO_TOKEN}'" />         <!-- authentication -->
+					<arg line="-H'X-Checksum-Sha1: ${pkgSha}'" />                       <!-- required with yum repo -->
+					<arg line="-T '@{sourceFile}'" />                                   <!-- source -->
+					<arg line="-XPUT '${pkgTarget}'" />                                 <!-- target, PUT overrides -->
+				</exec>
+			</then><else>
+				<echo>SKIP: BinRepo publishing of @{sourceFile}</echo>
+			</else></if>
+		</sequential>
+	</macrodef>
+
+	<macrodef name="binrepo-deliver">
+		<attribute name="artifactPath"/>
+		<sequential>
+			<local name="env"/>
+			<property environment="env"/>
+			<if><isset property="env.BINREPO_TOKEN" /><then>
+				<local name="copyTarget"/>
+				<property name="copyTarget"
+						  value="${BINREPO_URL}/api/copy/${MAVEN_PUBLISH_NAME}/@{artifactPath}?to=${MAVEN_DELIVERY_NAME}/@{artifactPath}" />
+
+				<echo>Copying @{artifactPath} from ${MAVEN_PUBLISH_URL} to ${MAVEN_DELIVERY_URL}</echo>
+				<exec executable="/usr/bin/curl" failonerror="true">
+					<arg line="-sS -L -i -w '\nDeploy result: HTTP/%{http_code}'" /> <!-- stdin/out handling of curl-->
+					<arg line="-u'${env.BINREPO_USER}:${env.BINREPO_TOKEN}'" />         <!-- authentication -->
+					<arg line="-X POST '${copyTarget}'" />                              <!-- target, POST overrides -->
+				</exec>
+			</then><else>
+				<echo>SKIP: BinRepo delivering of @{artifactPath}</echo>
+			</else></if>
+		</sequential>
+	</macrodef>
+</project>

@@ -1,0 +1,22 @@
+$generatefor
+-----------
+#set ($type = "")
+#foreach ($line in $generatefor.split("\n"))
+#set ($type = $type + "$st.extractJavaIdentifier($line)")
+#{end}
+#if ($type.contains("complexType_name_"))$type.replaceFirst(".*complexType_name_","").replaceFirst("xsd_.*","")#{else}delete#{end}.xsd
+
+<?xml version="1.0" encoding="UTF-8"?>
+#if ($generatefor.contains("xsd:complexType"))
+#set ($state = "start")
+<xsd:schema#foreach ($line in $generatefor.split("\n"))
+#if ($state == "start" && $line.trim().startsWith("</types>"))
+#set ($state = "end")
+#end
+#if ($state == "start")
+$line
+#end
+#end
+#else
+ELETE_THIS_FILE
+#end

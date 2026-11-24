@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNR_DAILY_ORDER_STATUS_TX" refData="true"
+           description="Language dependent attributes for Daily Order Status/Resolution.">
+
+        <column name="DAILY_ORDER_STATUS_CD" primaryKey="true" required="true" type="DECIMAL" size="2"
+                description="Part of PK. FK tlgnr_daily_order_status_bs. Code of the Reference Data."/>
+        <column name="LANG_CD" primaryKey="true" required="true" type="VARCHAR" size="2"
+                description="Part of PK. FK tlgnr_lang_bs."/>
+        <column name="TXT" required="true" type="VARCHAR" size="30"
+                description="Text for the Daily Order Status/Resolution in the language lang_cd."/>
+
+        <foreign-key foreignTable="TLGNR_DAILY_ORDER_STATUS_BS" name="FK_TLGNR_DAILY_ORDER_STATUS_TX">
+            <reference local="DAILY_ORDER_STATUS_CD" foreign="DAILY_ORDER_STATUS_CD"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_LANG_BS" name="FK_TLGNR_DAILY_ORDER_STATUS_LN">
+            <reference local="LANG_CD" foreign="LANG_CD"/>
+        </foreign-key>
+    </table>
+</database>

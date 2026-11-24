@@ -1,0 +1,25 @@
+Available locations:
+====================
+
+#set ($links = [])
+#foreach ($current in $allfiles)
+#if ($current.toString().endsWith(".war")) 
+#set ($cat = $current.parentFile.name)
+#set ($path = $st.up($current.toString()))
+#set ($path = $path.replace("${systemproperties.pwd}/wars/", ""))
+#set ($pelems = $st.toList($path.split("/")))
+#set ($contextroot = "")
+#foreach ($pelem in $pelems)
+#set ($contextroot = $contextroot + $st.rnl($pelems, $velocityCount, $pelem))
+#if ($velocityCount + 1 < $pelems.size())
+#set ($contextroot = $contextroot + "/")
+#end
+#end
+#set ($cat = "undef")
+#set ($cat = $current.parentFile.parentFile.name)
+#set ($dummy = $links.add("http://$systemproperties.host:$systemproperties.port/$contextroot"))
+#end
+#end
+#foreach ($cur in $sorter.sort($links))
+    $cur
+#end

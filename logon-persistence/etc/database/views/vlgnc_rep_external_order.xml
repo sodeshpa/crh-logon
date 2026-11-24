@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="VLGNC_REP_EXTERNAL_ORDER" mappingType="view" skipSql="true">
+        <column name="O_ORDER_NUMBER" required="true" type="DECIMAL" size="12"/>
+        <column name="O_ORDER_STATUS_CD" required="true" type="DECIMAL" size="2"/>
+        <column name="WE_SAP_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="WE_NAME1" required="true" type="VARCHAR" size="80"/>
+        <column name="WE_POSTAL_CODE" type="VARCHAR" size="10"/>
+        <column name="WE_CITY" type="VARCHAR" size="35"/>
+        <column name="WE_STREET" type="VARCHAR" size="45"/>
+        <column name="WE_HOUSE_NUMBER" type="VARCHAR" size="45"/>
+        <column name="WE_COUNTRY" type="VARCHAR" size="3"/>
+        <column name="WE_COORD_LAT" required="true" type="DOUBLE"/>
+        <column name="WE_COORD_LON" required="true" type="DOUBLE"/>
+        <column name="AG_SAP_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="AG_NAME1" required="true" type="VARCHAR" size="80"/>
+        <column name="AG_STREET" type="VARCHAR" size="45"/>
+        <column name="AG_HOUSE_NUMBER" type="VARCHAR" size="45"/>
+        <column name="AG_COUNTRY" type="VARCHAR" size="3"/>
+        <column name="AG_POSTAL_CODE" type="VARCHAR" size="10"/>
+        <column name="AG_CITY" type="VARCHAR" size="35"/>
+        <column name="RE_SAP_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="RE_NAME1" required="true" type="VARCHAR" size="80"/>
+        <column name="RE_STREET" type="VARCHAR" size="45"/>
+        <column name="RE_HOUSE_NUMBER" type="VARCHAR" size="45"/>
+        <column name="RE_COUNTRY" type="VARCHAR" size="3"/>
+        <column name="RE_POSTAL_CODE" type="VARCHAR" size="10"/>
+        <column name="RE_CITY" type="VARCHAR" size="35"/>
+        <column name="COMM_CARRIER_V_SAP_ID" type="DECIMAL" size="12"/>
+        <column name="COMM_CARRIER_V_STREET" type="VARCHAR" size="35"/>
+        <column name="COMM_CARRIER_V_HOUSE_NUMBER" type="VARCHAR" size="10"/>
+        <column name="COMM_CARRIER_V_COUNTRY_CD" type="VARCHAR" size="3"/>
+        <column name="COMM_CARRIER_V_POSTAL_CODE" type="VARCHAR" size="10"/>
+        <column name="COMM_CARRIER_V_CITY" type="VARCHAR" size="35"/>
+        <column name="SP_PLANT_CD" required="true" type="VARCHAR" size="80"/>
+        <column name="SP_SAP_SHIPPINGPOINT_NO" type="VARCHAR" size="0"/>
+        <column name="SP_COORD_LAT" required="true" type="DOUBLE"/>
+        <column name="SP_COORD_LON" required="true" type="DOUBLE"/>
+        <column name="O_DISTRIBUTION_DEST_CD" type="VARCHAR" size="0"/>
+        <column name="O_ACTUAL_START_LOAD_DAT" type="DATE"/>
+        <column name="O_ACTUAL_END_LOAD_DAT" type="VARCHAR" size="0"/>
+        <column name="O_ACTUAL_DELIVERY_TIME" type="DATE"/>
+        <column name="O_ACTUAL_DELIVERY_DAT" type="DATE"/>
+        <column name="O_TRANSPORT_DISTANCE_M" type="DECIMAL" size="10"/>
+        <column name="LOAD_TARE_QUANTITY" type="VARCHAR" size="0"/>
+        <column name="LOAD_NET_QUANTITY" type="DECIMAL" size="12,4"/>
+        <column name="LOAD_GROSS_QUANTITY" type="VARCHAR" size="0"/>
+        <column name="MAT_SAP_MATERIAL_NO" required="true" type="DECIMAL" size="12"/>
+        <column name="MAT_SAP_MATERIAL_TXT" required="true" type="VARCHAR" size="40"/>
+        <column name="OI_DELIVERED_UOM_CD" type="VARCHAR" size="3"/>
+        <column name="OI_DELIVERED_QUANTITY" type="DECIMAL" size="12,4"/>
+        <column name="TRUCK_PLATE_NO" type="VARCHAR" size="30"/>
+        <column name="TRAILER_PLATE_NO" type="VARCHAR" size="0"/>
+        <column name="LANG_CD" type="VARCHAR" size="2"/>
+        <column name="DISTRIBUTION_DEST_CD" type="VARCHAR" size="0"/>
+        <column name="DELIVERY_FROM_DAT" required="true" type="DATE"/>
+        <column name="DELIVERY_TO_DAT" required="true" type="DATE"/>
+        <column name="DELIVERY_ACTUAL_DAT" type="DATE"/>
+        <column name="MATERIAL_PACKAGE_CD" type="VARCHAR" size="0"/>
+        <column name="ORDER_STATUS_CD" required="true" type="DECIMAL" size="2"/>
+        <column name="REPORT_FINISHED_COMM_FLAG" type="VARCHAR" size="0"/>
+        <column name="TRUCK_SAP_INTERNAL_FLAG" type="BOOLEAN"/>
+    </table>
+</database>

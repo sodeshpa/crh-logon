@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Author            : AdNovum Informatik AG
+ Version Number    : $Revision$
+ Date of last edit : $Date$
+-->
+
+<project name="testing" default="test" basedir=".">
+    <description>defines test targets and tasks</description>
+
+	<!-- ================================================================ -->
+	<!--  define test specific classpaths (unit, integration, load,...)   -->
+	<!-- ================================================================ -->
+	<path id="test.compile.classpath">
+		<path refid="compile.classpath"/>
+		<pathelement location="${classes.dir}"/>
+		<pathelement location="${junit.jar}"/>
+		<pathelement location="${hamcrest.jar}"/>
+		<!--pathelement location="${js.jar}"/>-->
+		<pathelement location="${mockito.jar}"/>
+                <path refid="logon-mavendeps.test.classpath"/>
+	</path>
+
+    <path id="test.unit.classpath">
+        <pathelement location="${commons-logging.jar}"/>
+        <pathelement location="${dom4j.jar}"/>
+        <pathelement location="${jdom.jar}"/>
+        <pathelement location="${test.build.etc.dir}"/>
+        <pathelement location="${test.classes.dir}"/>
+        <path refid="test.compile.classpath"/>
+    </path>
+
+    <path id="test.integration.classpath">
+    	<!--<pathelement location="${js.jar}"/>
+        <pathelement location="${tidy.jar}"/>
+    	<pathelement location="${xercesImpl.jar}"/>
+    	<pathelement location="${xmlutil.jar}"/>
+    	<pathelement location="${xtype.jar}"/>-->
+
+        <path refid="test.unit.classpath"/>
+    </path>
+
+    <!-- ================================================================ -->
+    <!--  dummy targets, will be overridden when file is imported                -->
+    <!-- ================================================================ -->
+    <target name="build"/>
+
+
+    <!-- ================================================================ -->
+    <!--  test initialization, cleanup and default targets                -->
+    <!-- ================================================================ -->
+    <target name="init-test">
+        <mkdir dir="${test.build.dir}"/>
+        <mkdir dir="${test.classes.dir}"/>
+        <mkdir dir="${test.lib.dir}"/>
+        <mkdir dir="${test.log.dir}"/>
+    	<mkdir dir="${test.build.etc.dir}" />
+        <mkdir dir="${test.reports.dir}"/>
+
+        <mkdir dir="${test.reports.pmd.dir}"/>
+        <mkdir dir="${test.reports.unit.dir}"/>
+        <mkdir dir="${test.reports.integration.dir}"/>
+        <mkdir dir="${test.reports.load.dir}"/>
+
+    	<!-- create log4j.properties -->
+        <copy todir="${test.build.etc.dir}">
+			<fileset dir="${test.etc.dir}">
+				<include name="log4j_tmpl.properties"/>
+			</fileset>
+        	<filterset>
+				<filter token="logpath" value="${test.log.dir}"/>
+			</filterset>
+			<mapper type="glob" from="*_tmpl.properties" to="*.properties"/>
+        </copy>
+		<copy todir="${test.build.etc.dir}">
+			<fileset dir="${test.etc.dir}">
+				<include name="WhiteListObjectInputStreamTest/**"/>
+			</fileset>
+		</copy>
+
+    </target>
+
+    <target name="clean-test">
+        <delete dir="${test.reports.dir}"/>
+        <delete dir="${test.lib.dir}"/>
+        <delete dir="${test.classes.dir}"/>
+        <delete dir="${test.build.dir}"/>
+    </target>
+
+    <!-- ================================================================ -->
+    <!--  compile targets                                                 -->
+    <!-- ================================================================ -->
+    <target name="compile-test" depends="init-test">
+        <javac
+			source="${compile.source}"
+			target="${compile.target}"
+            destdir="${test.classes.dir}"
+            debug="${compile.debug}"
+            optimize="${compile.optimize}"
+            deprecation="${compile.deprecation}"
+            encoding="${compile.encoding}"
+            includeantruntime="no">
+            <src path="${test.unit.dir}"/>
+            <src path="${test.integration.dir}"/>
+            <include name="**/*.java"/>
+        	<bootclasspath refid="compile.bootclasspath"/>
+            <classpath refid="test.compile.classpath"/>
+            <compilerarg line="-processor ch.adnovum.jcan.log.adntrace8.AdnTraceProcessor"/>
+        </javac>
+    </target>
+
+	<!-- ================================================================= -->
+	<!-- === java archives                                             === -->
+	<!-- ================================================================= -->
+	<target name="jars-test" depends="compile-test">
+		<echo message="*** building ${test-integration.jar}" />
+		<jar jarfile="${test-integration.jar}"
+		     basedir="${test.classes.dir}"
+		     index="true">
+			<include name="com/crh/logon/web/**" />
+			<manifest>
+				<attribute name="Manifest-Version"       value="1.0" />
+				<attribute name="Implementation-Title"   value="${ant.project.name} (commons classes)" />
+				<attribute name="Implementation-Vendor"  value="${vendor}" />
+				<attribute name="Implementation-Version" value="${build.version}" />
+				<attribute name="Build-Host"             value="${os.name} ${os.version}, ${os.arch}" />
+				<attribute name="Build-Environment"      value="Java ${java.version}, ${java.vendor}" />
+			</manifest>
+		</jar>
+	</target>
+
+    <!-- ================================================================ -->
+    <!--  run tests (defined in external file test.xml)                   -->
+    <!-- ================================================================ -->
+    <target name="test" depends="test-pmd, test-unit"
+            description="executes all automatic (non-interactive) tests">
+    </target>
+
+
+    <!-- ================================================================ -->
+    <!--  analyze source code quality                                     -->
+    <!-- ================================================================ -->
+    <target name="test-pmd" depends="init-test"
+            description="run source code quality analysis">
+        <taskdef name="pmd" classname="net.sourceforge.pmd.ant.PMDTask"/>
+        <echo file="${test.reports.pmd.dir}/pmd_report.xml"/>
+        <echo file="${test.reports.pmd.dir}/pmd_report.html"/>
+        <pmd rulesetfiles="${ANT_HOME}/adnovum/pmd/rulesets/AdnNightly.xml"
+             shortFilenames="yes"
+       	     failOnError="no"
+	         failuresPropertyName="test.pmd.failed">
+            <formatter type="xml" toFile="${test.reports.pmd.dir}/pmd_report.xml"/>
+            <formatter type="html" toFile="${test.reports.pmd.dir}/pmd_report.html"/>
+			<formatter type="text" toConsole="true"/>
+            <fileset dir="${src.dir}">
+                <include name="**/*.java"/>
+            </fileset>
+        </pmd>
+
+        <set-flag-file-if-property-set flagfile="${test.pmd.failed.flag}" propertyname="test.pmd.failed"
+			message="at least one test failed --> setting failure flag file" />
+		<fail if="test.pmd.failed" unless="central.pmd.fail.report" message="at least one of the pmd rules was violated"/>
+
+    </target>
+
+    <!-- backward compat reasons -->
+    <target name="pmd" depends="test-pmd"/>
+
+
+    <!-- ================================================================ -->
+    <!--  run unit tests                                                  -->
+    <!-- ================================================================ -->
+	<target name="test-unit" depends="compile-test"
+            description="performs unit tests">
+
+    	<!-- junit tests -->
+	<coverage enabled="${coverage.enabled}" destfile="${unit.coverage.file}">
+	    <junit fork="true" printsummary="true"
+	           showoutput="yes" haltonfailure="no"
+		       failureproperty="test.unit.failed" dir="${basedir}">
+			<formatter type="plain" usefile="false"/>
+	        <formatter type="xml" usefile="true"/>
+	        <batchtest todir="${test.reports.unit.dir}">
+	            <fileset dir="${test.unit.dir}">
+	                <include name="**/*Test*.java"/>
+	            </fileset>
+	        </batchtest>
+	    	<classpath refid="test.unit.classpath"/>
+	    </junit>
+	</coverage>
+	    <junitreport todir="${test.reports.unit.dir}">
+	        <fileset dir="${test.reports.unit.dir}">
+	            <include name="TEST-*.xml"/>
+	        </fileset>
+	        <report format="frames" todir="${test.reports.unit.dir}"/>
+	    </junitreport>
+
+        <set-flag-file-if-property-set flagfile="${test.unit.failed.flag}" propertyname="test.unit.failed"
+        	message="at least one test failed --> setting failure flag file"/>
+		<fail if="test.unit.failed" message="at least one of the tests failed"/>
+		<echo message="all tests successful"/>
+    </target>
+
+
+    <!-- ================================================================ -->
+    <!--  run integration tests                                                  -->
+    <!-- ================================================================ -->
+	<target name="test-integration" depends="compile-test" description="performs integration tests">
+        <!-- test case properties -->
+		<property name="test.logConfigFile" value="${test.build.etc.dir}/log4j.properties" />
+		<property name="test.saveHtmlTo" value="${test.log.dir}" />
+
+        <!-- integration tests -->
+        <junit fork="true" printsummary="true"
+               showoutput="yes" haltonfailure="no"
+               failureproperty="test.integration.failed" dir="${basedir}">
+            <formatter type="plain" usefile="false"/>
+            <formatter type="xml" usefile="true"/>
+        	<sysproperty key="test.logConfigFile" value="${test.logConfigFile}" />
+        	<sysproperty key="test.saveHtmlTo" value="${test.saveHtmlTo}" />
+        	<!-- For webshpere the ${host}, ${http.port}, ${https.port} are not set -->
+        	<sysproperty key="host" value="${host}" />
+        	<sysproperty key="http.port" value="${http.port}" />
+        	<sysproperty key="https.port" value="${https.port}" />
+            <batchtest todir="${test.reports.integration.dir}">
+                <fileset dir="${test.integration.dir}">
+                    <include name="**/*Test*.java"/>
+					<exclude name="**/*SeleniumTest.java"/>
+                </fileset>
+            </batchtest>
+            <classpath refid="test.integration.classpath"/>
+        </junit>
+        <junitreport todir="${test.reports.integration.dir}">
+            <fileset dir="${test.reports.integration.dir}">
+                <include name="TEST-*.xml"/>
+            </fileset>
+            <report format="frames" todir="${test.reports.integration.dir}" styledir="${masterbuild.dir}/test/etc">
+        	    <param name="TESTTYPE" expression="Integration" />
+       	    </report> 
+        </junitreport>
+
+        <set-flag-file-if-property-set flagfile="${test.integration.failed.flag}" propertyname="test.integration.failed"
+        	message="at least one test failed --> setting failure flag file" />
+        <fail if="test.integration.failed" message="at least one of the tests failed"/>
+        <echo message="all tests successful"/>
+	</target>
+
+ </project>

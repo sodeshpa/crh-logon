@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNR_DELIVERY_TYPE_BS" refData="true"
+           description="LOGON Delivery Types of an order. Orders are characteristic by the way goods are transported, mainly by Truck or by Train. To support 'Kombilieferung' (first part by train, second part(s) by truck) as well as 'Selbstabholer' (Pickup) more values are needed in this table. When exporting to SAP, this LOGON delivery type is mapped into SAP transportation mode.">
+
+        <column name="DELIVERY_TYPE_CD" primaryKey="true" required="true" type="DECIMAL" size="2"
+                description="PK. Code of the Reference Data for LOGON Delivery Types of an order. 1=Road direct, 2=Train direct, 3=Kombi Bahn, 4=Kombi Truck, 5=Pickup."/>
+        <column name="SAP_TRSP_MODE_CD" required="true" type="VARCHAR" size="2"
+                description="FK tlgnr_sap_trsp_mode_bs. Mapping of the LOGON Delivery Type to the SAP Transportation Mode when exporting an order to SAP."/>
+        <column name="DEPENDS_ON_DELIVERY_TYPE_CD" type="DECIMAL" size="2"
+                description="FK tlgnr_delivery_type_bs. Set, if this LOGON Delivery Types depends on an order which needs to have another type. Currently: 4=Kombi Truck depends on 3=Kombi Bahn."/>
+        <column name="APPLY_BP_BLOCK_CHECK" required="true" type="BOOLEAN"
+        		description="Flag to decide whether a customer order can be
+								taken despite of the fact that the customer is
+								blocked on either level (sales area (through
+								company code), business partner, business partner
+								sales area) for posting/delivery/order.
+								Typically flag should be off in case the customer
+								order basically represents a credit note, in which
+								case (LafargeCrh pays for the customer instead
+								of the opposite direction). Example: return pallet."/>
+        <column name="CTL_ACT_CD" required="true" type="BOOLEAN"
+                description="Active Flag. When new data is entered, only reference data with active flag are available for selection normally."/>
+
+        <foreign-key foreignTable="TLGNR_SAP_TRSP_MODE_BS" name="FK_TLGNR_DELIVERY_TYPE_SAPTRSP">
+            <reference local="SAP_TRSP_MODE_CD" foreign="SAP_TRSP_MODE_CD"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_DELIVERY_TYPE_BS" name="FK_TLGNR_DELIVERY_TYPE_DEPEND">
+            <reference local="DEPENDS_ON_DELIVERY_TYPE_CD" foreign="DELIVERY_TYPE_CD"/>
+        </foreign-key>
+    </table>
+</database>

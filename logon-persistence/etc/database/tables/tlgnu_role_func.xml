@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNU_ROLE_FUNC"
+           description="Relationship between roles and functions. Defines the functions that are granted by the role.">
+
+        <column name="ROLE_FUNC_ID" primaryKey="true" required="true" type="DECIMAL" size="12"
+                description="PK."/>
+        <column name="ROLE_ID" required="true" type="DECIMAL" size="12"
+                description="FK tlgnu_role. The Role to which a Function is granted."/>
+        <column name="FUNC_ID" required="true" type="DECIMAL" size="12"
+                description="FK tlgnu_func. The Function."/>
+
+        <foreign-key foreignTable="TLGNU_ROLE" name="FK_TLGNU_ROLE_FUNC_ROLE">
+            <reference local="ROLE_ID" foreign="ROLE_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNU_FUNC" name="FK_TLGNU_ROLE_FUNC_FUNC">
+            <reference local="FUNC_ID" foreign="FUNC_ID"/>
+        </foreign-key>
+
+        <unique name="UQ_TLGNU_ROLE_FUNC">
+            <unique-column name="ROLE_ID"/>
+            <unique-column name="FUNC_ID"/>
+        </unique>
+    </table>
+</database>

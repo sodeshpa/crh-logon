@@ -1,0 +1,9 @@
+# THIS FILE IS GENERATED with the init-variables.sh script
+ansible_ssh_user: ansible
+ansible_ssh_pass: Welcome1
+ansible_ssh_port: 5986
+ansible_connection: winrm
+logon_version: VERSION
+logonlan_location: U:\pkg\logon\VERSION\logonlan-VERSION-ix86.msi
+container_location: U:\pkg\adnjboss\7.2.1.1\adnjboss7win-7.2.1.1-ix86.msi
+logon_installed: C:\temp\logon\installed\

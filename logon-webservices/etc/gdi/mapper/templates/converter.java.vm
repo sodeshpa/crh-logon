@@ -1,0 +1,479 @@
+## ################################
+##                                #
+##  constants                     #
+##                                #
+## ################################
+#set ($CONVERT_METHOD_NAME = 'mapSrvToEntity')
+#set ($CONVERT_CLASS_PFIX = 'Mapper')
+#set ($NBR_OF_LEVELS_TO_PROCESS = 10)
+#set ($PACKAGE_NAME_CONVERTER = 'com.crh.logon.webservices.mapper')
+##
+#set ($CHAR_DOT = '.')
+#set ($CHAR_GT = '>')
+#set ($CHAR_LT = '<')
+#set ($CHAR_INNER_CLASS = '$')
+#set ($CHAR_SQBRACKETS_O = '[')
+#set ($CHAR_SQBRACKETS_C = ']')
+#set ($CHAR_UNDERSCORE = '_')
+#set ($COLLECTION_INDICATOR = 'Item')
+#set ($CONVERSION_TYPE_SIMPLE = 'simple')
+#set ($CONVERSION_TYPE_LIST = 'list')
+#set ($IDENTATION = '    ')
+#set ($LABEL_SOURCE = 'source')
+#set ($LABEL_SRCITEM = 'srcItem')
+#set ($LABEL_RESULT = 'result')
+#set ($LABEL_RESITEM = 'resItem')
+#set ($METHOD_PREFIX_GET = 'get')
+#set ($METHOD_PREFIX_SET = 'set')
+#set ($METHOD_POSTFIX_ARRAY = 'Array')
+#set ($PACKAGE_NAME_LIST = 'java.util.List')
+#set ($PACKAGE_PREFIX_CLASSES_XMLBEANS = 'com.holcim.logon.sapdata.request')
+#set ($PACKAGE_PREFIX_CLASSES_PERSISTENCE = 'com.crh.logon.persistence.entities.sapdata')
+#set ($PACKAGE_PREFIX_CLASSES_PERSISTENCE_TO_REMOVE = $PACKAGE_PREFIX_CLASSES_PERSISTENCE + $CHAR_DOT)
+#set ($RETURN_TYPE_LIST = 'List')
+#set ($FALSE = 'false')
+#set ($TRUE = 'true')
+#set ($IGNORED_PROPERTIES_OF_CLASSES = ['HJID', 'SAPIMPIMPORTEDDAT', 'SAPIMPIMPORTEDDATELEMENT', 'SAPIMPPROPAGATEDDAT', 'SAPIMPPROPAGATEDDATELEMENT', 'SAPIMPSTATUSCD', 'SAPIMPERRMSG'])
+#set ($ALLOWED_TYPE_CONVERSIONS = { 'java.math.BigInteger' : 'java.math.BigInteger.valueOf' })
+##
+## for avoiding nameclashes axis2 and xjd generates different entity names
+##
+#set ($ENTITY_NAME_MAPPING = {})
+#set ($dummy = $ENTITY_NAME_MAPPING.put('PurchasingDocument', 'PurchasingDocument1'))
+##
+## this map hold all of the entity names (and all of them have their corresponding
+## mapper class as key). Included because now mappers are scattered in different files
+##
+#set ($ENTITIES = {})
+#foreach ($file in $allfiles)
+#set ($name = $file.name.replaceAll('\.java$', ''))
+#set ($converter = $PACKAGE_PREFIX_CLASSES_XMLBEANS + '.' + $name)
+#getConverterClassName($converter)
+#set ($converter = ${converterClassName} + '.' + ${CONVERT_METHOD_NAME})
+#set ($dummy = $ENTITIES.put($name, $converter))
+#end
+##
+## because some references to complexTypes in the SAP xsds does not have 
+## the same reference name as their referred type 
+##
+#set ($ENTITY_NAME_TYPE_MAP = {})
+
+## ################################
+##                                #
+##  variables                     #
+##                                #
+## ################################
+#set ($classesToProcess = [])
+#set ($typeOfClassesToProcess = [])
+#set ($classesProcessed = [])
+#set ($newClassesToProcess = [])
+#set ($typeOfNewClassesToProcess = [])
+#set ($entity = '')
+#set ($classNameTranslatedByPkg = '')
+#set ($converterClassName = '')
+#set ($hasClassInnerClassesWithName = '')
+#set ($fqNameOfRequestedClass = '')
+#set ($requestedClass = '')
+#set ($methodInputType = '')
+#set ($methodReturnType = '')
+## ################################
+##                                #
+##  macros                        #
+##                                #
+## ################################
+#macro (callConstructor $fName $cType $ident $offs)
+## ################################
+#if ($cType == $CONVERSION_TYPE_LIST)
+#ident($ident, $offs)result = new java.util.ArrayList<$fName>();
+#elseif ($cType == $CONVERSION_TYPE_SIMPLE)
+#ident($ident, $offs)result = new $fName();
+#end
+#end
+## ################################
+#macro (checkSourceObject $cType $ident $offs)
+## ################################
+#set ($offsInc = $offs + 1)
+#if ($cType == $CONVERSION_TYPE_LIST)
+#ident($ident, $offs)if ((source == null) || (source.length == 0)) {
+#elseif ($cType == $CONVERSION_TYPE_SIMPLE)
+#ident($ident, $offs)if (source == null) {
+#end
+#ident($ident, $offsInc)return null;
+#ident($ident, $offs)}
+#end
+## ################################
+#macro (getClassNameTranslatedByPkg $name)
+## ################################
+#set ($classNameTranslatedByPkg = '')
+#if ($name != '')
+#set ($classNameTranslatedByPkg = $name.replace($PACKAGE_PREFIX_CLASSES_XMLBEANS, $PACKAGE_PREFIX_CLASSES_PERSISTENCE).replace($CHAR_INNER_CLASS, $CHAR_DOT))
+#end
+#end
+## ################################
+#macro (getConverterClassName $name)
+## ################################
+#set ($correctedName = $name.replace($PACKAGE_PREFIX_CLASSES_PERSISTENCE, $PACKAGE_PREFIX_CLASSES_XMLBEANS))
+#set ($converterClassName = $st.extractJavaIdentifier($correctedName).replace($CHAR_INNER_CLASS, $CHAR_UNDERSCORE) + $CONVERT_CLASS_PFIX)
+#end
+## ################################
+#macro (hasClassInnerClassesWithName $class $name)
+## ################################
+#set ($alternativeName = $class.name + $name)
+#set ($hasClassInnerClassesWithName = $FALSE)
+#set ($fqNameOfRequestedClass = '')
+#set ($requestedClass = '')
+#foreach ($aclass in $class.innerClasses)
+#if (($aclass.name == $name) || ($aclass.name == $alternativeName))
+#set ($hasClassInnerClassesWithName = $TRUE)
+#set ($fqNameOfRequestedClass = $aclass.fullyQualifiedName)
+#set ($requestedClass = $aclass)
+#end
+#end
+#end
+## ################################
+#macro (getEntity $allClasses)
+## ################################
+#foreach ($class in $allClasses)
+#if ($class.inner == false)
+#set ($entity = $class)
+#end
+#end
+#end
+## ################################
+#macro (getMethodInputType $name $cType)
+## ################################
+#set ($methodInputType = $name.replace($PACKAGE_PREFIX_CLASSES_PERSISTENCE_TO_REMOVE, ''))
+#set ($inputTypeTokens = $methodInputType.split('\.', 0))
+#set ($inputTypeTokenList = [])
+#set ($previousToken = '')
+#set ($counterOfColIndicator = 1)
+#foreach ($token in $inputTypeTokens)
+#if (($token) && ($token.endsWith($COLLECTION_INDICATOR)))
+#if ($counterOfColIndicator > 1)
+#set ($token = $token + $counterOfColIndicator)
+#end
+#if (($previousToken) && ($token.startsWith($previousToken)))
+#set ($token = $token.replace($previousToken, ''))
+#end
+#set ($counterOfColIndicator = $counterOfColIndicator + 1)
+#end
+#set ($dummy = $inputTypeTokenList.add($token))
+#set ($previousToken = $token)
+#end
+#set ($methodInputType = '')
+#foreach ($token in $inputTypeTokenList)
+#set ($methodInputType = $methodInputType + $token)
+#if ($velocityCount != $inputTypeTokenList.size())
+#set ($methodInputType = $methodInputType + $CHAR_DOT)
+#end
+#end
+#if ($cType == $CONVERSION_TYPE_LIST)
+#set ($methodInputType = $methodInputType + $CHAR_SQBRACKETS_O + $CHAR_SQBRACKETS_C)
+#end
+#if ($ENTITY_NAME_MAPPING.containsKey($methodInputType))
+#set ($methodInputType = $ENTITY_NAME_MAPPING.get($methodInputType))
+#end
+#end
+## ################################
+#macro (getMethodReturnType $name $cType)
+## ################################
+#set ($methodReturnType = $name)
+#if ($cType == $CONVERSION_TYPE_LIST)
+#set ($methodReturnType = $RETURN_TYPE_LIST + $CHAR_LT + $name + $CHAR_GT)
+#end
+#end
+## ################################
+#macro (isConversionNeeded $pType)
+## ################################
+#set ($typeToConvert = $pType.javaClass.fullyQualifiedName)
+#set ($isConversionNeeded = $FALSE)
+#set ($converterExpression = '')
+#if ($ALLOWED_TYPE_CONVERSIONS.containsKey($typeToConvert))
+#set ($isConversionNeeded = $TRUE)
+#set ($converterExpression = $ALLOWED_TYPE_CONVERSIONS.get($typeToConvert))
+#else
+#if ($ENTITY_NAME_TYPE_MAP.containsKey($typeToConvert))
+#set ($typeToConvert = $ENTITY_NAME_TYPE_MAP.get($typeToConvert))
+#end
+#if ($ENTITIES.containsKey($typeToConvert))
+#set ($isConversionNeeded = $TRUE)
+#set ($converterExpression = $ENTITIES.get($typeToConvert))
+#end
+#end
+#end
+## ################################
+#macro (isConversionNeededForArray $pName)
+## ################################
+#if ($isTransient == $FALSE)	
+#set ($isConversionNeeded = $FALSE)
+#set ($converterExpression = '')
+#else	
+#set ($isConversionNeeded = $TRUE)
+#set ($converterExpression = 'java.util.Arrays.asList')
+#end
+#if ($ENTITY_NAME_TYPE_MAP.containsKey($pName))
+#set ($pName = $ENTITY_NAME_TYPE_MAP.get($pName))
+#end
+#if ($ENTITIES.containsKey($pName))
+#set ($isConversionNeeded = $TRUE)
+#set ($converterExpression = $ENTITIES.get($pName))
+#end
+#end
+## ################################
+#macro (ident $seg $offs)
+## ################################
+#if ($offs != 0)
+#set ($limit = $offs - 1)
+${seg}#foreach ($ndx in [0..$limit])${IDENTATION}#end
+#else${seg}#end
+#end
+## ################################
+#macro (isIgnoredProperty $property)
+## ################################
+#set ($isIgnoredProperty = $FALSE)
+#foreach ($prop in $IGNORED_PROPERTIES_OF_CLASSES)
+#if ($prop == $property)
+#set ($isIgnoredProperty = $TRUE)
+#end
+#end
+#end
+## ################################
+#macro (headerGenerator $fqName)
+## ################################
+package $PACKAGE_NAME_CONVERTER;
+
+#set ($simpleNameImport = $fqName.replace($PACKAGE_PREFIX_CLASSES_PERSISTENCE_TO_REMOVE, ''))
+// $simpleNameImport
+#if ($ENTITY_NAME_MAPPING.containsKey($simpleNameImport))
+#set ($simpleNameImport = $ENTITY_NAME_MAPPING.get($simpleNameImport))
+// $simpleNameImport
+#end
+import ${PACKAGE_PREFIX_CLASSES_XMLBEANS}.$simpleNameImport;
+
+import ch.nevis.jcan.log.JcanLogger;
+import ch.nevis.jcan.log.JcanLoggerFactory;
+
+/**
+ * @author AdNovum Informatik AG
+ */
+#end
+## ################################
+#macro (methodGenerator $classToProcess $srcName $resName $ident $identOffs)
+## ################################
+#set ($getterName = '')
+#set ($setterName = '')
+#set ($propertyName = '')
+#set ($propertyType = '')
+#set ($conversionType = '')
+#set ($transientPair = [])
+##
+#foreach ($method in $sorter.sort($classToProcess.methods))
+#set ($propertyName = $method.name.replace($METHOD_PREFIX_GET, ''))
+#set ($isTransient = $FALSE)
+#if ($method.propertyAccessor)
+#foreach ($annotation in $method.annotations)
+#if ($annotation.type.javaClass.fullyQualifiedName == "javax.persistence.Transient")
+#set ($isTransient = $TRUE)
+#set ($dummy = $transientPair.add("${propertyName}Items"))
+#break
+#end
+#end
+#if (!$transientPair.contains($propertyName))
+#isIgnoredProperty($propertyName.toUpperCase())
+#if ($isIgnoredProperty == $FALSE)
+#set ($propertyType = $method.propertyType)
+#if ($propertyType != $PACKAGE_NAME_LIST)
+#set ($conversionType = $CONVERSION_TYPE_SIMPLE)
+#set ($getterName = $METHOD_PREFIX_GET + $propertyName)
+#else
+#set ($conversionType = $CONVERSION_TYPE_LIST)
+#set ($getterName = $METHOD_PREFIX_GET + $propertyName + $METHOD_POSTFIX_ARRAY)
+#end
+#set ($setterName = $METHOD_PREFIX_SET + $propertyName)
+#hasClassInnerClassesWithName($classToProcess $propertyName)
+## #ident($ident, 2)// $propertyType
+#if ($hasClassInnerClassesWithName == $TRUE)
+#getConverterClassName($fqNameOfRequestedClass)
+#set ($dummy = $newClassesToProcess.add($requestedClass))
+#set ($dummy = $typeOfNewClassesToProcess.add($conversionType))
+#ident($ident,$identOffs)${resName}.${setterName}(${converterClassName}.${CONVERT_METHOD_NAME}(${srcName}.${getterName}()));
+#elseif ($hasClassInnerClassesWithName == $FALSE)
+#if ($conversionType == $CONVERSION_TYPE_LIST)
+#isConversionNeededForArray($propertyName, $isTransient)
+#else
+#isConversionNeeded($propertyType)
+#end
+#if ($isConversionNeeded == $TRUE)
+#if (($conversionType == $CONVERSION_TYPE_LIST) && ($isTransient == $FALSE))
+#ident($ident,$identOffs)//
+#set ($listType = "${PACKAGE_PREFIX_CLASSES_PERSISTENCE}.$propertyName")
+#set ($elementType = "${PACKAGE_PREFIX_CLASSES_XMLBEANS}.$propertyName")
+#ident($ident,$identOffs)final $PACKAGE_NAME_LIST<$listType> ${propertyName}List = new java.util.ArrayList<$listType>();
+#ident($ident,$identOffs)for ($elementType ${propertyName}Element : ${srcName}.${getterName}()) {
+#set ($identOffsPlus = $identOffs + 1)
+#ident($ident,$identOffsPlus)${propertyName}List.add(${converterExpression}(${propertyName}Element));
+#ident($ident,$identOffs)}
+#ident($ident,$identOffs)${resName}.${setterName}(${propertyName}List);
+#ident($ident,$identOffs)//
+#else
+#ident($ident,$identOffs)${resName}.${setterName}(${converterExpression}(${srcName}.${getterName}()));
+#end
+#else
+#ident($ident,$identOffs)${resName}.${setterName}(${srcName}.${getterName}());
+#end
+#end
+#end
+#end
+#end
+#end
+#end
+## ################################
+#macro (prepareToProcessTheNextLevel)
+## ################################
+#set ($classesToProcess = $newClassesToProcess)
+#set ($typeOfClassesToProcess = $typeOfNewClassesToProcess)
+#set ($newClassesToProcess = [])
+#set ($typeOfNewClassesToProcess = [])
+#end
+## ################################
+#macro (classGenerator $pClasses)
+## ################################
+#foreach ($actual in $pClasses)
+#set ($bident = $IDENTATION)
+#set ($index = $velocityCount - 1)
+#set ($source = $LABEL_SOURCE)
+#set ($result = $LABEL_RESULT)
+#set ($isActualClassTheMainEntity = $FALSE)
+#set ($actualConvType = $typeOfClassesToProcess.get($index))
+#set ($oident = 2)
+##
+#if ($actualConvType == $CONVERSION_TYPE_LIST)
+#set ($source = $LABEL_SRCITEM)
+#set ($result = $LABEL_RESITEM)
+#set ($oident = 4)
+#end
+#if ($actual.fullyQualifiedName == $entity.fullyQualifiedName)
+#set ($isActualClassTheMainEntity = $TRUE)
+#end
+#getClassNameTranslatedByPkg($actual.fullyQualifiedName)
+#getConverterClassName($actual.fullyQualifiedName)
+#getMethodInputType($classNameTranslatedByPkg, $actualConvType)
+#getMethodReturnType($classNameTranslatedByPkg, $actualConvType)
+#set ($baseMethodReturnType = $classNameTranslatedByPkg)
+#set ($baseMethodInputType = $methodInputType.replace($CHAR_SQBRACKETS_O, '').replace($CHAR_SQBRACKETS_C, ''))
+##***********************************************************
+##TRACE:
+##***********************************************************
+##class			-> $actual.fullyQualifiedName
+##type of conversion	-> $actualConvType
+##baseMethodReturnType	-> $baseMethodReturnType
+##methodReturnType	-> $methodReturnType
+##baseMethodInputType	-> $baseMethodInputType
+##methodInputType		-> $methodInputType
+##converterClassName	-> $converterClassName
+##***********************************************************
+## logger + methods of main entity
+#if ($isActualClassTheMainEntity == $TRUE)
+#set ($bident = '')
+#set ($oident = $oident + 1)
+#ident($bident, 0)public final class $converterClassName {
+
+#ident($bident, 1)private static final JcanLogger LOG = JcanLoggerFactory.getLogger(${converterClassName}.class);
+
+#ident($bident, 1)public static final $methodReturnType $CONVERT_METHOD_NAME($methodInputType source) {
+#ident($bident, 2)// [[
+#ident($bident, 2)$methodReturnType result1 = null;
+#ident($bident, 2)boolean logDebugEnabled = LOG.isDebugEnabled();
+#ident($bident, 2)if (logDebugEnabled) {
+#ident($bident, 3)Object[][] params = {{"source", source}};
+#ident($bident, 3)LOG.entering(${converterClassName}.class.getName(), "$CONVERT_METHOD_NAME", params);
+#ident($bident, 2)}
+#ident($bident, 2)// ]]
+#ident($bident, 2)try {
+#ident($bident, 3)$methodReturnType result = null;
+
+#checkSourceObject($actualConvType, $bident, 3)
+
+#callConstructor($classNameTranslatedByPkg, $actualConvType, $bident, 3)
+#if ($actualConvType == $CONVERSION_TYPE_LIST)
+
+#ident($bident, 3)for (int index=0; index < source.length; index++) {
+#ident($bident, 4)$baseMethodInputType srcItem = source[index];
+
+#ident($bident, 4)if (srcItem != null) {
+#ident($bident, 5)$baseMethodInputType resItem = new $baseMethodInputType();
+#end
+
+#methodGenerator($actual, $source, $result, $bident, $oident)
+#if ($actualConvType == $CONVERSION_TYPE_LIST)
+
+#ident($bident, 5)result.add(resItem);
+#ident($bident, 4)}
+#ident($bident, 3)}
+#end
+
+#ident($bident, 3)return (result1 = result);
+#ident($bident, 2)}
+#ident($bident, 2)finally {
+#ident($bident, 2)// [[
+#ident($bident, 3)if (logDebugEnabled) {
+#ident($bident, 4)LOG.exiting(result1);
+#ident($bident, 3)}
+#ident($bident, 2)// ]]
+#ident($bident, 2)}
+#ident($bident, 1)}
+## inner classes + their methods
+#else
+#ident($bident, 0)public static final class $converterClassName {
+
+#ident($bident, 1)public static final $methodReturnType $CONVERT_METHOD_NAME($methodInputType source) {
+
+#ident($bident, 2)$methodReturnType result = null;
+
+#checkSourceObject($actualConvType, $bident, 2)
+
+#callConstructor($classNameTranslatedByPkg, $actualConvType, $bident, 2)
+#if ($actualConvType == $CONVERSION_TYPE_LIST)
+
+#ident($bident, 2)for (int index=0; index < source.length; index++) {
+#ident($bident, 3)$baseMethodInputType srcItem = source[index];
+
+#ident($bident, 3)if (srcItem != null) {
+#ident($bident, 4)$baseMethodReturnType resItem = new $baseMethodReturnType();
+#end
+
+#methodGenerator($actual, $source, $result, $bident, $oident)
+#if ($actualConvType == $CONVERSION_TYPE_LIST)
+
+#ident($bident, 4)result.add(resItem);
+#ident($bident, 3)}
+#ident($bident, 2)}
+#end
+
+#ident($bident, 2)return result;
+#ident($bident, 1)}
+#ident($bident, 0)}
+#end
+
+#set ($dummy = $classesProcessed.add($actual.fullyQualifiedName))
+#end
+#end
+## ################################
+##                                #
+##  MAIN                          #
+##                                #
+## ################################
+#getEntity($current.classes)
+#set ($newClassesToProcess = [$entity])
+#set ($typeOfNewClassesToProcess = [$CONVERSION_TYPE_SIMPLE])
+#headerGenerator($entity.fullyQualifiedName)
+#foreach ($level in [1..$NBR_OF_LEVELS_TO_PROCESS])
+#if (!$newClassesToProcess.isEmpty())
+##// Level-${level} classes
+#prepareToProcessTheNextLevel()
+#classGenerator($classesToProcess)
+#end
+#end
+
+## end of class
+}

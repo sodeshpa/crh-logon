@@ -1,0 +1,59 @@
+#macro (update $new $old)
+#if ($new.lastModified() > $old.lastModified())
+#if ($old.absolutePath.contains("src") || $old.absolutePath.contains("guiproto"))
+$log.info("WARNING: $old is older than $new")
+$log.info("you should not edit deployed files. will not overwrite src files!")
+#else
+#set ($msg = "cp -p $new.absolutePath $old.absolutePath")
+  $msg. $exec.exec($msg) $log.info("  $msg")
+#end
+#end
+#end
+#set ($in = {})
+#set ($out = {})
+#set ($flookup = {})
+#foreach ($f in $all)
+#if (!$f.absoluteFile.toString().contains("guiproto")) 
+#set ($dummy = $flookup.put("$f.absoluteFile", $f))
+#if ($f.toString().contains("build"))
+## ignore build
+#elseif ($f.toString().contains("run"))
+#set ($c = "undef")
+#set ($c = $out.get($f.name))
+#if ($c != "undef") 
+#set ($dummy = $out.put($f.name, "$c,$f.absoluteFile"))
+#else
+#set ($dummy = $out.put($f.name, $f.absoluteFile))
+#end
+#else
+#if ($in.containsKey($f.name))
+#set ($dummy = $in.put($f.name, "tainted"))
+#else
+#set ($dummy = $in.put($f.name, $f))
+#end
+#end
+#end
+#end
+##
+##
+#foreach ($f in $sorter.sort($in.keySet()))
+#set ($curFile = $in.get($f))
+#if ($curFile != "tainted")
+#set ($outfiles = [])
+#set ($c = "undef")
+#set ($c = $out.get($f))
+#if ($c != "undef")
+#if ($c.contains(","))
+#set ($outfiles = $st.toList($c.split(",")))
+#else
+#set ($dummy = $outfiles.add($c))
+#end
+#foreach ($o in $outfiles)
+#update($curFile, $flookup.get("$o"))
+#end
+#end
+#else
+$log.info("  '$f' exists several times in the sources. will not update!")
+#end
+#end
+$exec.exec("/home/alvi/bin/gsay.sh")

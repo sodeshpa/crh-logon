@@ -1,0 +1,61 @@
+package com.crh.logon.business.ordercreation.dto;
+
+import java.io.Serializable;
+
+
+public class SupplyPlantDTO implements Serializable {
+	private static final long serialVersionUID = 1L;
+    private String plantCd;
+    private String plantName;
+    
+    
+	/**
+	 * @param plantCd
+	 * @param plantName
+	 */
+	public SupplyPlantDTO(String plantCd, String plantName) {
+		super();
+		this.plantCd = plantCd;
+		this.plantName = plantName;
+	}
+	
+	/**
+	 * @return the plantCd
+	 */
+	public String getPlantCd() {
+		return plantCd;
+	}
+	/**
+	 * @return the plantName
+	 */
+	public String getPlantName() {
+		return plantName;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((plantCd == null) ? 0 : plantCd.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		SupplyPlantDTO other = (SupplyPlantDTO) obj;
+		if (plantCd == null) {
+			if (other.plantCd != null)
+				return false;
+		}
+		else if (!plantCd.equals(other.plantCd))
+			return false;
+		return true;
+	}
+
+}

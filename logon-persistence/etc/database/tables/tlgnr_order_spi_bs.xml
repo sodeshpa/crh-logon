@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNR_ORDER_SPI_BS" refData="true" 
+    description="Table storing special processing indicator types">
+        <column name="ORDER_SPI_CD" primaryKey="true" required="true" type="VARCHAR" size="4" 
+        	description="PK. Code of the special processing indicator. The records are used to handle the different transportation costs." />
+        <column name="ORDER_SPI_TXT" required="true" type="VARCHAR" size="50" 
+        	description="The text description  of the special processing indicator." />
+        <column name="CTL_ACT_CD" required="true" type="BOOLEAN"
+                description="Active Flag. When new data is entered, only reference data with active flag are available for selection normally." />
+    </table>
+</database>

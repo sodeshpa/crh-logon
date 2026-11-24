@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<off:SendSms xmlns:off="http://www.officemaster.de/">
+	<argsNumber>wrong number</argsNumber>
+	<argsText>Greetings from AdNovum!</argsText>
+</off:SendSms>

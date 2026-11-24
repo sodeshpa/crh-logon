@@ -1,0 +1,35 @@
+
+<project>
+	<description>${ant.project.name} macro file</description>
+			      	
+	<target name="check-client">
+		
+	 	<uptodate property="${outputdir}.isUptodate" 
+				srcfile="${file}" 
+				targetfile="${generated.dir}/axis2/${outputdir}/build.xml" />
+
+		<echo>checking against: ${generated.dir}/axis2/${outputdir}/build.xml</echo>
+		<condition property="isUptodate" value="true" else="false">
+	   	   <isset property="${outputdir}.isUptodate"/>
+	   	</condition>
+		<echo>${outputdir}.isUptodate: ${isUptodate}</echo>
+	</target>
+	
+	<target name="generate-client" depends="check-client" unless="${outputdir}.isUptodate">
+		<echo message="---------  Generating ${outputdir} ---------"/>
+		<mkdir dir="${generated.dir}/axis2/${outputdir}"/>
+		<java classname="org.apache.axis2.wsdl.WSDL2Java" fork="true" failonerror="true"
+			classpathref="compile.classpath">
+			<arg line="-uri ${file}"/>
+			<arg line="-o ${generated.dir}/axis2/${outputdir}"/>
+			<arg line="${plusargs}"/>
+			<!-- Reduce build time by 35 minutes by disabling pretty print -->
+			<arg line="-Daxis2.jalopy=false"/>
+			<!-- alternative to above pretty print disabling:
+			 	Unpack classes. This option specifies whether to unpack the classes and generate separate classes for the databinders. 
+				would need further build changes due to duplicate classes -->
+			<!--<arg line="-u"/>-->
+		</java>
+	</target>
+	
+</project>

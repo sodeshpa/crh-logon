@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- wsdl2java generates this file per-service, this file contains the combined result for all services -->
+<serviceGroup>
+    <service name="LogonOCInterface">
+        <messageReceivers>
+            <messageReceiver mep="http://www.w3.org/ns/wsdl/in-out" 
+                             class="com.crh.logon.logon_oc_interface.webservices.LogonOCInterfaceMessageReceiverInOut"/>
+        </messageReceivers>
+        <parameter name="ServiceClass">com.crh.logon.logon_oc_interface.webservices.LogonOCInterfaceConsumer</parameter>
+        <parameter name="useOriginalwsdl">true</parameter>
+        <parameter name="modifyUserWSDLPortAddress">true</parameter>
+        <operation name="createPickupCustomerOrder" mep="http://www.w3.org/ns/wsdl/in-out"
+                   namespace="http://logon.crh.com/LogonOCInterface/services">
+            <actionMapping>createCustomerOrder</actionMapping>
+            <outputActionMapping>http://logon.crh.com/LogonOCInterface/services/LogonOCInterfacePort/createCustomerOrderResponse</outputActionMapping>
+        </operation>
+        <operation name="createRoadDirectCustomerOrder" mep="http://www.w3.org/ns/wsdl/in-out"
+                   namespace="http://logon.crh.com/LogonOCInterface/services">
+            <actionMapping>createCustomerOrderBasedOnMasterDataDefault</actionMapping>
+            <outputActionMapping>http://logon.crh.com/LogonOCInterface/services/LogonOCInterfacePort/createCustomerOrderBasedOnMasterDataDefaultResponse</outputActionMapping>
+        </operation>
+        <operation name="getOrders" mep="http://www.w3.org/ns/wsdl/in-out"
+                   namespace="http://logon.crh.com/LogonOCInterface/services">
+            <actionMapping>getOrders</actionMapping>
+            <outputActionMapping>http://logon.crh.com/LogonOCInterface/services/LogonOCInterfacePort/getOrdersResponse</outputActionMapping>
+        </operation>
+        <operation name="getContractQuantityCalculation" mep="http://www.w3.org/ns/wsdl/in-out"
+                   namespace="http://logon.crh.com/LogonOCInterface/services">
+            <actionMapping>getContractQuantityCalculation</actionMapping>
+            <outputActionMapping>http://logon.crh.com/LogonOCInterface/services/LogonOCInterfacePort/getContractQuantityCalculationResponse</outputActionMapping>
+        </operation>
+    </service>
+
+</serviceGroup>
+

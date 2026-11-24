@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+	<!-- User type:
+			0 - Crh
+			1 - Customer
+			2 - Vendor
+			3 - Driver -->
+    <table name="TLGNR_USER_TYPE_BS" refData="true"
+           description="User Types do handle different types of users. Userd for selection in user administration.">
+        <column name="USER_TYPE_CD" primaryKey="true" required="true" type="DECIMAL" size="2"
+                description="PK. 0=Crh, 1=Customer, 2=Vendor, 3=Driver"/>
+        <column name="FUNCTION_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="CTL_ACT_CD" required="true" type="BOOLEAN"
+                description="Active Flag. When new data is entered, only reference data with active flag are available for selection normally."/>
+    </table>
+</database>

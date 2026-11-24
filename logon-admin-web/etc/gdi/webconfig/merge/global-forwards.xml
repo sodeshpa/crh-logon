@@ -1,0 +1,5 @@
+    <global-forwards>
+        <forward name="welcome" path="/TableViewEntryAction.do"/>
+        <forward name="fatalError" path="FatalError.def"/>
+        <forward name="fatalErrorPopup" path="FatalErrorPopup.def"/>
+    </global-forwards>

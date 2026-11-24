@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNC_RFIDOBJECT"
+           description="The physical object (silo, truck, container, ...) which can be identified by one or several RFID tags. Table is a proxy table between the actual object and a single RFID tag (sticker) and allows for 1:N relationship for all RFID usages. The object itself typically also carries a label, a human readable identifier.">
+
+        <column name="RFIDOBJECT_ID" primaryKey="true" required="true" type="DECIMAL" size="12"
+                description="PK"/>
+        <column name="RFIDOBJECT_TYPE_CD" required="true" type="DECIMAL" size="2"
+                description="Denotes the type of the physical object where RFID tags are placed. Used for building nice UI screens, allowing quick filtering by truck-RFID, silo-RFID etc. Examples: PDA User, Loadingpoint Silo, Parallel Terminal, Truck, Trailer, ..."/>
+        <column name="OBJECT_LABEL" type="VARCHAR" size="200"
+                description="External identification of the Object (per rfidobject_type), typically written on a sticker or label. Examples: Inventory numbers of trucks, serial numbers of PDA devices. Logon does not use them as identifiers, but sends them via PDA interface to support RFID administration."/>
+        <!-- Field is so long because it is composed by other fields, where several are 50 character (or could be longer if needed). Be on the save side with 200 -->
+
+        <foreign-key foreignTable="TLGNR_RFIDOBJECT_TYPE_BS" name="TLGNC_RFIDOBJECT_OBJECT_TYPE">
+            <reference local="RFIDOBJECT_TYPE_CD" foreign="RFIDOBJECT_TYPE_CD"/>
+        </foreign-key>
+        
+        <!-- object label is used as a search string, in a canonical form:
+             - 'Ernst truck 3' - > 'ERNSTTRUCK3'
+             - 'Silo 3' of shipto with ID 1234 -> '1234SILO3'
+             Note that this prefixing of the shipto id is necessary, because silos standing at different shipto can be called identical.
+         -->
+        <unique name="UQ_TLGNC_RFIDOBJECT_TYPE_LABEL"> <!-- But DEFERRED -->
+            <unique-column name="RFIDOBJECT_TYPE_CD"/>
+            <unique-column name="OBJECT_LABEL"/>
+        </unique>
+        <!-- This index must be created DEFERRED - see custom_overrides / patch_1.3.0, where it DROPPED and RECREATED again.
+             Deferred is necessary if two objects identifier (number plates) are switched. -->
+
+    </table>
+</database>

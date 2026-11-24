@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="logon-deps">
+
+	<echo message="Fetching dependencies for ${ant.project.name}" />
+
+	<!-- project object model (maven dependency management including transitive dependencies) -->
+	<pom id="logon.maven.pom" name="Project object model of ${artifactId}" groupId="${groupId}" artifactId="${artifactId}" version="${version}">
+
+		<dependency groupId="org.jboss.arquillian"					artifactId="arquillian-bom"							version="${arquillian.version}" scope="test" type="pom"/>
+		<dependency groupId="org.jboss.arquillian.junit"			artifactId="arquillian-junit-container"				version="${arquillian.version}" scope="test" />
+		<dependency groupId="org.jboss.arquillian.protocol"			artifactId="arquillian-protocol-servlet"			version="${arquillian.version}" scope="test" />
+		<dependency groupId="org.jboss.as"							artifactId="jboss-as-arquillian-container-remote"	version="${arquillian.jboss.remote.version}" scope="test" />
+		<dependency groupId="org.jboss.as"							artifactId="jboss-as-ejb-client-bom"				version="${arquillian.jboss.remote.version}" scope="test" type="pom" />
+		<dependency groupId="org.jboss.shrinkwrap.descriptors"		artifactId="shrinkwrap-descriptors-impl-javaee"		version="${shrinkwrap.descriptors.impl.javaee}" scope="test"/>
+
+		<dependency groupId="org.jboss"								artifactId="jboss-vfs"								version="3.1.0.Final" scope="provided" />
+		<dependency groupId="org.jboss.spec.javax.ejb"				artifactId="jboss-ejb-api_3.1_spec"					version="1.0.2.Final" scope="provided" />
+		<dependency groupId="org.jboss.spec.javax.transaction"		artifactId="jboss-transaction-api_1.1_spec"			version="1.0.1.Final" scope="provided" />
+		<dependency groupId="org.jboss.spec.javax.servlet"			artifactId="jboss-servlet-api_3.0_spec"				version="1.0.1.Final" scope="provided" />
+		<dependency groupId="org.jboss.spec.javax.security.jacc"	artifactId="jboss-jacc-api_1.4_spec"				version="1.0.2.Final" scope="provided" />
+		<dependency groupId="org.jboss.spec.javax.interceptor"		artifactId="jboss-interceptors-api_1.1_spec"		version="1.0.0.Beta1" scope="provided" />
+		<dependency groupId="org.jboss.spec.javax.jms"				artifactId="jboss-jms-api_1.1_spec"					version="1.0.0.Beta1" scope="provided" />
+		<dependency groupId="org.jboss.spec.javax.annotation"		artifactId="jboss-annotations-api_1.1_spec"			version="1.0.0.Beta2" scope="provided" />
+		<dependency groupId="javax.enterprise"						artifactId="cdi-api"								version="1.0-SP1" scope="provided" />
+		<dependency groupId="joda-time"								artifactId="joda-time"								version="2.10" scope="compile" />
+		<dependency groupId="ch.adnovum.jcan-log"					artifactId="${jcan-log.adntrace.name}"				version="${jcan-log.version}" scope="provided" />
+		<dependency groupId="org.picketbox"							artifactId="picketbox"								version="4.0.19.SP2" scope="compile" />
+		<dependency groupId="org.apache.kafka"						artifactId="kafka-clients"							version="${kafka.version}" scope="compile" />
+
+		<!-- Once JBoss 7 switch happens, we should use resteasy-client to use jackson, instead of gson and httpclient instead of okhttp -->
+
+		<!-- OpenAPI -->
+		<dependency groupId="io.swagger"							artifactId="swagger-annotations"					version="1.6.2" scope="compile" />
+
+		<dependency groupId="org.apache.httpcomponents"				artifactId="httpclient"								version="4.5.3" scope="provided" />
+
+
+		<!-- okhttp
+		<dependency groupId="com.squareup.okhttp3"					artifactId="okhttp"									version="3.14.9" scope="compile" />
+		<dependency groupId="com.squareup.okhttp3"					artifactId="logging-interceptor"					version="3.14.9" scope="compile" />
+		-->
+
+		<!-- Swagger Codegen
+		<dependency groupId="io.swagger.core.v3"					artifactId="swagger-annotations"					version="2.0.0" scope="compile" />
+		<dependency groupId="com.squareup.okhttp"					artifactId="okhttp"									version="2.7.5" scope="compile" />
+		<dependency groupId="com.squareup.okhttp"					artifactId="logging-interceptor"					version="2.7.5" scope="compile" />
+		-->
+		<dependency groupId="com.google.code.gson"					artifactId="gson"									version="2.8.6" scope="compile" />
+		<dependency groupId="com.google.code.findbugs"				artifactId="jsr305"									version="3.0.2" scope="compile" />
+		<dependency groupId="io.gsonfire"							artifactId="gson-fire"								version="1.8.4" scope="compile" />
+
+		<!-- Once JBoss 7 switch happens, this should be aligned with the built-in version! -->
+		<dependency groupId="com.fasterxml.jackson.core"			artifactId="jackson-databind"						version="${jackson.version}" scope="compile" />
+		<dependency groupId="com.fasterxml.jackson.datatype"		artifactId="jackson-datatype-jsr310"				version="${jackson.version}" scope="compile" />
+	</pom>
+
+	<!-- map pom definition to ant paths using aal-maven macro -->
+	<dependencyPaths pomRefId="logon.maven.pom" pathIdPrefix="logon-mavendeps" />
+
+	<!--
+	we now have path definitions as follows:
+	* logon-mavendeps.test.classpath     (with rest client)
+	* logon-mavendeps.compile.classpath  (same as test)
+	* logon-mavendeps.runtime.classpath  (same as test, but except of spring and with slf4j)
+	* logon-mavendeps.provided.classpath (empty)
+	-->
+
+	<dependencies pathId="openapi-generator.classpath" settingsFile="${masterbuild.dir}/build/settings.xml">
+		<dependency groupId="org.openapitools" artifactId="openapi-generator-cli" version="5.1.0" />
+	</dependencies>
+
+	<dependencies pathId="swagger-codegen.classpath" settingsFile="${masterbuild.dir}/build/settings.xml">
+		<dependency groupId="io.swagger.codegen.v3" artifactId="swagger-codegen-cli" version="3.0.24"/>
+	</dependencies>
+
+</project>

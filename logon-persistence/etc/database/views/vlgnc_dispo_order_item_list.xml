@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="VLGNC_DISPO_ORDER_ITEM_LIST" mappingType="view" skipSql="true">
+        <column name="ORDER_ITEM_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="ORDER_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="ORDER_ITEM_NO" required="true" type="DECIMAL" size="3"/>
+        <column name="DELIVERY_TYPE_CD" required="true" type="DECIMAL" size="2"/>
+        <column name="ORDERED_QUANTITY" type="DECIMAL" size="12,4"/>
+        <column name="LOADED_UOM_CD" type="VARCHAR" size="3"/>
+        <column name="LOADED_QUANTITY" type="DECIMAL" size="12,4"/>
+        <column name="SAP_MATERIAL_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="PRODUCTION_PLANT_CD" required="true" type="VARCHAR" size="4"/>
+        <column name="PLANNED_LOADING_TIME_MIN" required="true" type="DECIMAL" size="10"/>
+        <column name="LOAD_ID" type="DECIMAL" size="12"/>
+        <column name="LOADING_TIME" type="DECIMAL" size="10"/>
+        <column name="LOADINGPOINT_NAME" type="VARCHAR" size="50"/>
+        <column name="UNLOADING_TIME" type="DECIMAL" size="10"/>
+        <column name="ISLANDFILL" required="true" type="BOOLEAN"/>
+        <column name="MATERIAL_PACKAGE_CD" required="true" type="VARCHAR" size="4"/>
+        <column name="MATERIAL_LANG_CD" required="true" type="VARCHAR" size="2"/>
+        <column name="MATERIAL_NAME" required="true" type="VARCHAR" size="40"/>
+        <column name="PURGED_MATERIAL_NAME" required="true" type="VARCHAR" size="40"/>
+        <column name="MATERIAL_NUMBER" required="true" type="VARCHAR" size="40"/>
+        <column name="UOM_CD" required="true" type="VARCHAR" size="3"/>
+        <column name="FUZZY_QUANTITY_FLAG" required="true" type="BOOLEAN"/>
+        <column name="UOM_NAME" required="true" type="VARCHAR" size="20"/>
+        <column name="LOAD_ORDER_ID" type="DECIMAL" size="12"/>
+        <column name="LOAD_ORDER_ITEM_ID" type="DECIMAL" size="12"/>
+        <column name="BR_ORDER_STATUS_CD" type="DECIMAL" size="2"/>
+        <column name="BR_ORDER_ID" type="DECIMAL" size="12"/>
+        <column name="BR_WAGON_ID" type="DECIMAL" size="12"/>
+        <column name="BR_WAGON_NO" type="VARCHAR" size="12"/>
+        <column name="LOGON_PACKAGE_TYPE_CD" type="DECIMAL" size="2"/>
+        <column name="ETRAN_RETURN" type="VARCHAR" size="20"/>
+        <column name="ETRAN_OUTBOUND" type="VARCHAR" size="40"/>
+    </table>
+</database>

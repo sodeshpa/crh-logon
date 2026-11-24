@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="VLGNC_MATERIAL_ENHANCEMENTS" mappingType="view" skipSql="true">
+        <column name="MAT_PLANT_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="PLANT_NAME" required="true" type="VARCHAR" size="80"/>
+        <column name="PLANT_CD" required="true" type="VARCHAR" size="4"/>
+        <column name="MATERIAL_DESC" type="VARCHAR" size="40"/>
+        <column name="LANG_CD" type="VARCHAR" size="2"/>
+        <column name="SAP_MATERIAL_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="SAP_MATERIAL_NO" required="true" type="VARCHAR" size="18"/>
+        <column name="UPDATE_BLOCKED_BY_HJID" type="DECIMAL" size="19"/>
+        <column name="BRAND_SALES_NAME" type="VARCHAR" size="40"/>
+        <column name="NORM_DESC" required="true" type="VARCHAR" size="40"/>
+        <column name="CPD_NUMBER" type="VARCHAR" size="30"/>
+        <column name="LOGO_1_Z1" type="VARCHAR" size="20"/>
+        <column name="LOGO_1_Z2" type="VARCHAR" size="10"/>
+        <column name="LOGO_1_Z3" type="VARCHAR" size="25"/>
+        <column name="AUTOADD_1_PER_N_OF_UOM" type="DECIMAL" size="12,4"/>
+        <column name="AUTOADD_N_UOM_CD" type="VARCHAR" size="3"/>
+        <column name="AUTOADD_MATERIAL_DESC" type="VARCHAR" size="40"/>
+    </table>
+</database>

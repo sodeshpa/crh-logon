@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNS_SAP_BP_PF_PAYER"
+           description="The payer partner functions of a given BP-SAREA to another BP-SAREA. The 'Sales Area' information is highly redundant, and must be identical in a) owner b) payer c) this table.">
+
+        <!-- PK -->
+        <column name="SAP_BP_SAREA_ID" primaryKey="true" required="true" type="DECIMAL" size="12"
+                description="Part of PK, FK tlgns_sap_bp_sarea. The owning BP+Sales Area of the partner function (SAP: defined by KNA1_KUNNR from the BP general data which ownes the partner function)."/>
+        <column name="PAYER_SAP_BP_SAREA_ID" primaryKey="true" required="true" type="DECIMAL" size="12"
+                description="PART of PK, FK tlgns_sap_bp_sarea. The referred payer, including its Sales Area Data. (SAP: defined by KUNN2 + VKORG + VTWEG + SPART, lookup in tlgns_sap_bp_sarea)"/>
+        <column name="SAREA_ID" primaryKey="true" required="true" type="DECIMAL" size="12"
+                description="FK TLGNC_SAREA. The Sales Area for which this partner function is defined. This is redundant to the SAREA contained in SAP_BP_SAREA_ID.SAREA_CD and PAYER_SAP_BP_SAREA_ID.SAREA_CD; all three SAREA are identical."/>
+        <!-- Attributes - currently none, just the relation -->
+
+        <!-- 20090313/uma: Unclear how deletions are sent. Maybe need to check and possibly store function_code?
+             Later: Clarified, that a deletion code is sent -> would directly remove the partner function in Logon.
+             Even later: SAP spain discovered also that "incremental" and "delete" is not really stable against import errors / lost messages.
+             Maybe the way we delete partner functions will change in the future, see ticket ADN44667 for example. (uma, 20091120).
+        -->
+
+        <foreign-key foreignTable="TLGNS_SAP_BP_SAREA" name="FK_TLGNS_SAP_BPPFPAYER_BP">
+            <reference local="SAP_BP_SAREA_ID" foreign="SAP_BP_SAREA_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNS_SAP_BP_SAREA" name="FK_TLGNS_SAP_BPPFPAYER_BT">
+            <reference local="PAYER_SAP_BP_SAREA_ID" foreign="SAP_BP_SAREA_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNC_SAREA" name="FK_TLGNS_SAP_BPPFPAYERTO_SAREA">
+            <reference local="SAREA_ID" foreign="SAREA_ID"/>
+        </foreign-key>
+
+        <!-- Not necessary, as the PK is on all three columns and guarantees uniqueness.
+        <unique name="UQ_TLGNS_SAP_BP_PF_PAYER">
+            <unique-column name="SAP_BP_SAREA_ID"/>
+            <unique-column name="PAYER_SAP_BP_SAREA_ID"/>
+            <unique-column name="SAREA_ID"/>
+        </unique>
+        -->
+    </table>
+</database>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="VLGNC_PDA_DEVICE_CARRIER" mappingType="view" skipSql="true">
+        <column name="PDA_DEVICE_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="PDA_DEVICE_NO" required="true" type="VARCHAR" size="50"/>
+        <column name="LAST_USER_ID" type="DECIMAL" size="12"/>
+        <column name="PDA_DEVICE_ACTIVE_FLAG" required="true" type="BOOLEAN"/>
+        <column name="TYPE_DESCRIPTION" type="VARCHAR" size="30"/>
+        <column name="INVENTORY_NUMBER" type="VARCHAR" size="30"/>
+        <column name="SIM_PHONE_NUMBER" type="VARCHAR" size="30"/>
+        <column name="LAST_REGISTRATION_DATE" type="DATE"/>
+        <column name="SOFTWARE_VERSION" type="VARCHAR" size="30"/>
+        <column name="CARRIER_ID" type="DECIMAL" size="12"/>
+        <column name="CARRIER_DISPLAY_NAME" type="VARCHAR" size="40"/>
+        <column name="CARRIER_ACTIVE_FLAG" type="BOOLEAN"/>
+    </table>
+</database>

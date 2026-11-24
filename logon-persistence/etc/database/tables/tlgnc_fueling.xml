@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+	<table name="TLGNC_FUELING"
+		description="Fuel Report">
+		<column name="FUELING_ID" primaryKey="true" required="true"
+			type="DECIMAL" size="12"
+			description="PK" />
+		<column name="TRUCK_ID" 
+			required="true" type="DECIMAL" size="12"
+        	description="The truck for which the fuel report is sent."/>
+		<column name="USER_ID"
+			required="true" type="DECIMAL" size="12"
+			description="The user who sent the fueling report" />
+		<column name="ODOMETER"
+			required="true" type="DECIMAL" size="12"	
+			description="current km display of truck at time of sending fuel report."/>
+		<column name="FUEL_TYPE_CD"
+			required="true" type="DECIMAL" size="2"	
+			description="FK Fuel Type."/>
+		<column name="QUANTITY_L"
+			required="true" type="DECIMAL" size="4"
+			description="Amount of fuel in liters."/>
+		<column name="PRICE"
+			required="true" type="DECIMAL" size="6"
+			description="Paid Price in total."/>
+		<column name="CURRENCY_CD"
+			required="true" type="VARCHAR" size="5"	
+			description="FK Currency of price."/>
+		
+		<foreign-key foreignTable="TLGNU_USER" name="FK_TLGNC_FUELING_USER">
+            <reference local="USER_ID" foreign="USER_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNC_TRUCK" name="FK_TLGNC_FUELING_TRUCK">
+              <reference local="TRUCK_ID" foreign="TRUCK_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_FUEL_TYPE_BS" name="FK_TLGNC_FUELING_FUEL_TYPE">
+              <reference local="FUEL_TYPE_CD" foreign="FUEL_TYPE_CD"/>
+        </foreign-key>		
+        <foreign-key foreignTable="TLGNR_CURRENCY_BS" name="FK_TLGNC_FUELING_CURRENCY">
+              <reference local="CURRENCY_CD" foreign="CURRENCY_CD"/>
+        </foreign-key>		
+	</table>
+</database>		

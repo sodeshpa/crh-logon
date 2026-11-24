@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNC_PDA_SESSION"
+        description="Sessions of PDA users/devices. A session is created when a user starts the login process on the PDA and is associated with the PDA device and its current user. After an initializing phase (in status 'initializing') the session stays in status 'ready' as long as events are being received (see last_update_dat) and messages can be sent by Logon. After an inactivity period (configured by app.session.PDASessionTimeout_min) or when the user explicitely logs out, the session is set to status 'terminated'.">
+
+        <column name="PDA_SESSION_ID" primaryKey="true" required="true" type="DECIMAL" size="12"
+                description="PK" />
+        <column name="USER_ID" required="true" type="DECIMAL" size="12"
+                description="FK to TLGNC_USER, the user logged into this session." />
+        <column name="PDA_DEVICE_ID" required="true" type="DECIMAL" size="12"
+                description="FK to TLGNC_PDA_DEVICE. Current PDA device of the user" />
+
+        <column name="PDA_SESSION_STATUS_CD" required="true" type="DECIMAL" size="2"
+                description="FK to TLGNR_PDA_SESSION_STATUS. 1=initializing, 2=ready (Application may send messages to this PDA), 3=terminated, 4=event pending, 5=timed out." />
+        <column name="LAST_UPDATE_DAT" type="DATE"
+                description="Date/Time of last event received from the PDA. If this is longer ago than app.session.PDASessionTimeout_min, the PDA session reaper background job will set the session to 'terminated' during its next execution."/><!-- This should be kept, do not replace with ctl_mod_ts, because the session could also be modified because of other reasons, like finally terminating it... -->
+        <column name="LAST_RECEIVED_EVENT_NAME" type="VARCHAR"  size="50"
+                description="Name of last event received from the PDA."/>
+
+        <foreign-key foreignTable="TLGNU_USER" name="FK_TLGNC_PDA_SESSION_USER">
+            <reference local="USER_ID" foreign="USER_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNC_PDA_DEVICE" name="FK_TLGNC_PDA_SESSION_DEVICE">
+            <reference local="PDA_DEVICE_ID" foreign="PDA_DEVICE_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_PDA_SESSION_STATUS_BS" name="FK_TLGNR_PDA_SESSION_STATUS">
+            <reference local="PDA_SESSION_STATUS_CD" foreign="PDA_SESSION_STATUS_CD"/>
+        </foreign-key>
+
+    </table>
+</database>

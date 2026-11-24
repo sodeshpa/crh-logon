@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="VLGNU_COLUMN_INFO" mappingType="view" skipSql="true">
+        <column name="ID" type="VARCHAR" size="61"/>
+        <column name="TABLE_NAME" required="true" type="VARCHAR" size="30"/>
+        <column name="COLUMN_NAME" required="true" type="VARCHAR" size="30"/>
+        <column name="DATA_TYPE" type="VARCHAR" size="189"/>
+        <column name="NULLABLE" type="VARCHAR" size="1"/>
+        <column name="CHAR_LENGTH" type="DECIMAL" size="10"/>
+        <column name="COMMENTS" type="VARCHAR" size="4000"/>
+    </table>
+</database>

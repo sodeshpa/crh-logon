@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNR_TRUCK_TYPE_BS" refData="true"
+           description="Types of Trucks. The type of a truck characterizes its length/weight/special ability and is used in the restriction/prioritization for a shipto, see tlgnc_shipto_truck_type. Examples: 2-axle truck, ..., 5-axle truck, Semi-trailer truck, Silosteller.">
+
+        <column name="TRUCK_TYPE_CD" primaryKey="true" required="true" type="DECIMAL" size="3"
+                description="PK. Code of the Reference Data. 1=2-axle truck, ... 4=5-axle truck, 5=Semi-trailer truck (Sattelschlepper), 6=Silosteller truck."/>
+        <column name="TRUCK_TYPE_SHORT_NAME" required="true" type="VARCHAR" size="4" description="Unique LOGON short name for identifying the truck type. Short names will be maintained to resemble the SAP Vehicle Type Codes but don't need to be identical. Not used in the application. Examples: A012, M030, N009."/>
+        <column name="CTL_ACT_CD" required="true" type="BOOLEAN"
+                description="Active Flag. When new data is entered, only reference data with active flag are available for selection normally."/>
+
+		<column name="volume_m3" type="DECIMAL" size="12,4" 
+				description="Loading capacity of the truck in cubic meters. Used for calculation (order entry, exact customer order) if the order is not yet scheduled on a real truck and the base unit of the material is in cubic meters."/>
+		<column name="PLANNING_NET_WEIGHT_T" type="DECIMAL" size="12,4" required="true"
+				description="Planned/estimated max net weight in tons of the truck type: used in order entry to initialize the quantity per delivery field and for Uom 'Truck' nominator/denominator determination once the order gets persisted."/>
+
+		<unique name="UQ_TLGNR_TRUCK_TYPE_SHORT">
+            <unique-column name="TRUCK_TYPE_SHORT_NAME"/>
+        </unique>
+    </table>
+</database>

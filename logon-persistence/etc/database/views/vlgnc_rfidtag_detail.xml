@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="VLGNC_RFIDTAG_DETAIL" mappingType="view" skipSql="true">
+        <column name="RFIDTAG_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="RFID_IDENTITY" type="VARCHAR" size="16"/>
+        <column name="NAME" type="VARCHAR" size="10"/>
+        <column name="OBJECT_LABEL" type="VARCHAR" size="200"/>
+        <column name="RFIDOBJECT_TYPE_CD" type="DECIMAL" size="2"/>
+        <column name="RFID_OBJECT_TYPE_LANG_CD" type="VARCHAR" size="2"/>
+        <column name="RFID_OBJECT_TYPE" type="VARCHAR" size="30"/>
+        <column name="ACTIVE_FLAG" required="true" type="BOOLEAN"/>
+    </table>
+</database>

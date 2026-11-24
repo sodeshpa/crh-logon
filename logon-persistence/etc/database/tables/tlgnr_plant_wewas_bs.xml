@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNR_PLANT_WEWAS_BS" refData="true"
+           description="Mapping in order to store the wewas code of a certain plant. Plant_bs stores the plant_cd, and Logon uses this code everywhere, but in certain cases wewas code is used. (F. ex: SAP sending, wewas communication). Table used for NGE plants.">
+        <column name="PLANT_WEWAS_CD"  primaryKey="true" required="true" type="VARCHAR" size="3"
+                description="PK. Wewas code of the plant as supplied by wewas in 'supplyPlantAltNo'."/>
+        <column name="PLANT_CD" required="true" type="VARCHAR" size="4"
+                description="FK tlgnr_plant. Reference to tlgnr_plant_bs."/>
+        <column name="CTL_ACT_CD" required="true" type="BOOLEAN"
+                description="Active Flag. When new data is entered, only reference data with active flag are available for selection normally."/>                
+                
+        <foreign-key foreignTable="TLGNR_PLANT_BS" name="FK_TLGNR_WEWAS_PLANT">
+            <reference local="PLANT_CD" foreign="PLANT_CD"/>
+        </foreign-key>                
+    </table>
+</database>

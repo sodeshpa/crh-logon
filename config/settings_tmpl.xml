@@ -1,0 +1,54 @@
+<!-- @see http://maven.apache.org/ref/3.0.3/maven-settings/settings.html -->
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
+
+	<!-- 
+	Access only Adnovum mirror with policies defined in aal-maven.
+	Enviroment defaults:
+	* prod: Uses project root as per-project local repository (see build.properties)
+	* dev:  Uses /local for as per-developer local repository (see build-local_tmpl.properties)
+	Remarks:
+	* Maven does not support variables in localRepository thats why we generate it into build target in aal-maven.
+	* As maven-ant/2.1.3 is buggy reading this settings file, we need to define snapshots policy in aal-maven too.
+	* maven ref: http://maven.apache.org/ref/3.0.3/maven-settings/settings.html
+	* maven-ant: http://maven.apache.org/ant-tasks/reference.html#dependencies
+	-->
+	<localRepository>${MPOSITORY_DIR_LOCAL}</localRepository>
+
+  	<!-- Use a single nexus server delivering _all_ artifacts via one group repository and acts as cache -->
+	<mirrors>
+		<mirror>
+			<id>central</id> <!-- do not change -->
+			<mirrorOf>*</mirrorOf>
+			<url>${MPOSITORY_URL}</url>
+		</mirror>
+	</mirrors>
+
+	<!-- duplicate from aal-maven for direct adnmvn execution -->
+	<profiles>
+		<profile>
+			<id>adnovum-default</id>
+			<repositories>
+				<repository>
+					<id>central</id>
+					<url>http://unused</url>
+					<releases>
+						<enabled>${maven.releases}</enabled>
+						<updatePolicy>${maven.releases.update}</updatePolicy>
+						<checksumPolicy>${maven.releases.checksum}</checksumPolicy>
+					</releases>
+					<snapshots>
+						<enabled>${maven.snapshots}</enabled>
+						<updatePolicy>${maven.snapshots.update}</updatePolicy>
+						<checksumPolicy>${maven.snapshots.checksum}</checksumPolicy>
+					</snapshots>
+				</repository>
+			</repositories>
+		</profile>
+	</profiles>
+	<activeProfiles>
+		<activeProfile>adnovum-default</activeProfile>
+	</activeProfiles>
+
+</settings>

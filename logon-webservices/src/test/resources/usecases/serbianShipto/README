@@ -1,0 +1,9 @@
+- LOGON-7435 - Serbian Ship-To/Sold-To with language set to SR
+
+- ShipTo SAP_BP_ID: 3600000141
+- SoldTo SAP_BP_ID: 3600000140
+
+- Contract 1: ADN64140
+
+1 contract item containing material 'ADN Fluvio 4'. 
+

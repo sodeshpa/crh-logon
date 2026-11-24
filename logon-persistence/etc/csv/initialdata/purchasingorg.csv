@@ -1,0 +1,57 @@
+# $Revision$;;
+# $Date$;;
+#PURCHASINGORG_CD;PURCHASINGORG_NAME;CTL_ACT_CD
+#update 18.10.2012: The purchasing organization has not changed;;
+#;;
+#Template EBM - no longer loaded by default, see adza_initialdata instead;;
+#AD01;AD01 PurchaseOrg.;1
+#AD02;AD02 PurchaseOrg.;1
+#ADRF;AD Cluster PurOrg;1
+#ZA01;ZA01 PurchaseOrg.;1
+#;;
+#Cluster 0: France Benelux;;
+#2012:     Original data provided by Crh;;
+#20120604: cleanup + corrected names;;
+FR01;FBNL France;1
+BE01;FBNL Belgium;1
+FBNL;Central FBNL;1
+NL01;FBNL Netherlands;1
+#;;
+#Cluster 1: Switzerland, Germany, Italy;;
+#Data provided by Crh, 4.6.2012;;
+#The list can also be extended on demand, based on findings from SAP Vendor import. (Errors in partnerfunctions import);;
+CE01;Central Europe;1
+CH01;Crh Switzerland;1
+HG01;Crh group EMEA;1
+IT01;Crh Italy;1
+NG01;North Germany;1
+SG01;South Germany;1
+#;;
+#Cluster 2: Eastern Europe;;
+#2013:     Original data provided by Crh;;
+BG01;Crh Bulgaria;1
+CEE1;Central East. Europe;1
+EE01;Emerging Europe;1
+HR01;Crh Croatia;1
+RO01;Crh Romania;1
+RS01;Crh Srbija;1
+#;;
+#Cluster 3: Spain;;
+#2013:     Original data provided by Crh;;
+ES01;Crh España;1
+#;;
+#Crh Trading;;
+#2013:     Original data provided by Crh;;
+HT01;Crh Trading;1
+#;;
+#Cluster 3: Spain;;
+#2013:     Original data provided by Crh;;
+#;;
+#Cluster 4: Russia, Azerbaijan, Qatar, Ivory Coast, Morocco, Lebanon, Cyprus;;
+#2015:     Original data provided by Crh;;
+AZ01;Crh (Azerbaijan);1
+CI01;Côte d''Ivoire;1
+LB01;Crh Lebanon;1
+MA01;Crh Morocco;1
+QA01;Aljabor Cement;1
+RU01;Crh (Russia);1

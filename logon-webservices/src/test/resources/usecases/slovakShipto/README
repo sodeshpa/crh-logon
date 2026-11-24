@@ -1,0 +1,9 @@
+- LOGON-7435 - Slovak Ship-To/Sold-To with language set to SK
+
+- ShipTo SAP_BP_ID: 3600000171
+- SoldTo SAP_BP_ID: 3600000170
+
+- Contract 1: ADN64170
+
+1 contract item containing material 'ADN Fluvio 4'. 
+

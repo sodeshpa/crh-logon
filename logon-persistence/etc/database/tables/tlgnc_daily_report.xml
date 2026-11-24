@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+	<table name="TLGNC_DAILY_REPORT"
+		description="Daily Report sent by PDA">
+		<column name="DAILY_REPORT_ID" primaryKey="true" required="true"
+			type="DECIMAL" size="12"
+			description="PK" />
+		<column name="USER_ID"
+			required="true"  type="DECIMAL" size="12"
+			description="The user who send the daily report" />
+		<column name="TRUCK_ID" 
+			required="true"  type="DECIMAL" size="12"
+        	description="The truck for which the information in the daily report is intended."/>
+		<column name="odometer"
+			required="true" type="DECIMAL" size="12"	
+			description="current km display of truck at time of daily report."/>
+		<column name="TRUCK_MAINTENANCE_CD"
+			type="DECIMAL" size="3"	
+			description="FK Unterhaltsarbeiten. Informes if maintenance is necessary. If so what kind of maintenance."/>
+		<column name="inspection"
+			type="BOOLEAN"
+			description="Unterhaltskontrolle. Defines if an inspection is necessary."/>
+		<column name="steeringtime_min"
+			required="true" type="DECIMAL" size="4"
+			description="Lenkzeit. time that the driver spent driving in minutes."/>
+		<column name="workingtime_min"
+			required="true" type="DECIMAL" size="4"
+			description="Arbeitszeit. time that the driver was working in minutes."/>
+		
+		<foreign-key foreignTable="TLGNU_USER" name="FK_TLGNC_DAILY_REPORT_USER">
+            <reference local="USER_ID" foreign="USER_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNC_TRUCK" name="FK_TLGNC_DAILY_REPORT_TRUCK">
+              <reference local="TRUCK_ID" foreign="TRUCK_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_TRUCK_MAINTENANCE_BS" name="FK_TLGNC_DAILY_REPORT_MNTNANCE">
+              <reference local="TRUCK_MAINTENANCE_CD" foreign="TRUCK_MAINTENANCE_CD"/>
+        </foreign-key>
+	</table>
+</database>

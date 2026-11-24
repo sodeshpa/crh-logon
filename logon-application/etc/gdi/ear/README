@@ -1,0 +1,25 @@
+creates a j2ee compliant application deployment descriptor.
+
+you first need to set up a directory structure like this:
+
+stage
+stage/javas
+stage/javas/jcan-log.jar
+stage/javas/logon-common.jar
+stage/javas/log4j-1.2.8.jar
+stage/javas/commons-lang-2.3.jar
+stage/javas/logon-business-client.jar
+stage/ejbs
+stage/ejbs/logon-business.jar
+stage/wars
+stage/wars/tablebrowser
+stage/wars/tablebrowser/logon-webapp.war
+
+the generator will then create an application.xml according to this scructure.
+
+- the ejbs are in 'ejbs'
+- jar files which are shared by all modules are in 'javas'
+- the web apps are in wars
+    - the wars dir contains directories
+    - these directories' names will be taken as the context root of the webapp
+      which resides inside those directories.

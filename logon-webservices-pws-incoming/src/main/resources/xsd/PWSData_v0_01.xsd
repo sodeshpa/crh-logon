@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="http://logon.holcim.com/2009/09/PWSEvent" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://logon.holcim.com/2009/09/PWSEvent">
+
+  <xsd:complexType name="DataElement">
+    <xsd:sequence>
+      <xsd:element type="xsd:string" name="name" maxOccurs="1"/>
+      <xsd:choice minOccurs="0" maxOccurs="1">
+        <xsd:element type="xsd:string" name="value" maxOccurs="1" nillable="true"/>
+        <xsd:element name="multi-value" maxOccurs="1">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element type="xsd:string" name="value" maxOccurs="unbounded" nillable="true"/>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element name="data" maxOccurs="unbounded">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element type="tns:DataElement" name="dataElement" maxOccurs="unbounded"/>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+      </xsd:choice>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:element name="PWSEventRequest">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element type="xsd:dateTime" name="sendersTime" maxOccurs="1"/>
+        <xsd:element type="xsd:string" name="senderInfo" maxOccurs="1"/>
+        <xsd:element type="xsd:string" name="eventName" maxOccurs="1"/>
+        <xsd:element name="eventData" minOccurs="0" maxOccurs="1">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element type="tns:DataElement" name="dataElement" maxOccurs="unbounded"/>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+
+  <xsd:element name="PWSEventResponse">
+    <xsd:complexType>
+      <xsd:sequence>
+	    <xsd:element type="xsd:integer" name="code"/>
+        <xsd:element name="txt" type="xsd:string" minOccurs="0"/>
+        <xsd:element name="contextValue" type="xsd:string" minOccurs="0"/>
+        <xsd:element name="responseData" minOccurs="0" maxOccurs="1">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element type="tns:DataElement" name="dataElement" maxOccurs="unbounded"/>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+
+</xsd:schema>

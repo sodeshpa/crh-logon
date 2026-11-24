@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="VLGNC_BIMODAL_RAIL_ORDER" mappingType="view" skipSql="true">
+        <column name="COMPOSITE_ID" type="VARCHAR" size="84"/>
+        <column name="ORDER_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="SHIPTO_SAP_BP_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="ORDER_NUMBER" type="DECIMAL" size="12"/>
+        <column name="ORDER_STATUS_CD" required="true" type="DECIMAL" size="2"/>
+        <column name="DELIVERY_TYPE_CD" required="true" type="DECIMAL" size="2"/>
+        <column name="SHIPPINGPOINT_ID" type="DECIMAL" size="12"/>
+        <column name="ACTUAL_DELIVERY_DAT" type="DATE"/>
+        <column name="ORDER_ITEM_NO" required="true" type="DECIMAL" size="3"/>
+        <column name="ORDER_ITEM_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="SAP_MATERIAL_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="ORDER_STATUS_TXT" type="VARCHAR" size="50"/>
+        <column name="BIMODAL_RAIL_ORDER_ITEM_ID" type="DECIMAL" size="12"/>
+        <column name="PRODUCTION_PLANT_CD" required="true" type="VARCHAR" size="4"/>
+        <column name="ASSIGNMENT_ID" type="DECIMAL" size="12"/>
+        <column name="NAME1" type="VARCHAR" size="35"/>
+        <column name="RAILWAY_STATION_ID" type="DECIMAL" size="12"/>
+        <column name="RAILWAY_STATION_NAME" type="VARCHAR" size="50"/>
+        <column name="PRODUCTION_PLANT_NAME" type="VARCHAR" size="80"/>
+        <column name="COMPANYCODE_CD" required="true" type="VARCHAR" size="4"/>
+        <column name="ASSIGN_STATUS_CD" type="DECIMAL" size="2"/>
+        <column name="TRUCK_ID" type="DECIMAL" size="12"/>
+        <column name="SAP_MATERIAL_DESC" type="VARCHAR" size="40"/>
+        <column name="WAGON_ID" type="DECIMAL" size="12"/>
+        <column name="WAGON_IDLE_TIME_MIN" type="DECIMAL" size="12"/>
+        <column name="WAGON_NO" type="VARCHAR" size="15"/>
+        <column name="WAGON_TYPE" type="VARCHAR" size="20"/>
+        <column name="CONTAINER_NAME" type="VARCHAR" size="30"/>
+        <column name="CONTAINER_TARE_WEIGHT_T" type="DECIMAL" size="12,4"/>
+        <column name="ORDERED_MEASURE" type="DOUBLE"/>
+        <column name="LOAD_ID" type="DECIMAL" size="12"/>
+        <column name="LOAD_PRODUCTION_PLANT_CD" type="VARCHAR" size="4"/>
+        <column name="LOAD_NET_MEASURE" type="DOUBLE"/>
+        <column name="LOAD_TARE_MEASURE" type="DECIMAL" size="12,4"/>
+        <column name="TRUCK_MAX_NET_WEIGHT_T" type="DOUBLE"/>
+        <column name="WAGON_MAX_NET_WEIGHT_T" type="DOUBLE"/>
+        <column name="SHIPPINGPOINT_NAME" type="VARCHAR" size="80"/>
+        <column name="FVL_MIX_SHIPTO_PER_WAGON_FLAG" type="BOOLEAN"/>
+        <column name="LANG_CD" type="VARCHAR" size="2"/>
+    </table>
+</database>

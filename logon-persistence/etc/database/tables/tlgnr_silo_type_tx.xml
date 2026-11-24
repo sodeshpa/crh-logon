@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNR_SILO_TYPE_TX" refData="true"
+           description="Language dependent attributes of the Silo Types.">
+
+        <column name="SILO_TYPE_CD" primaryKey="true" required="true" type="DECIMAL" size="2"
+                description="Part of PK. FK to tlgnr_silo_type_bs. Code of the Reference Data."/>
+        <column name="LANG_CD" primaryKey="true" required="true" type="VARCHAR" size="2"
+                description="Part of PK. FK to tlgnr_lang_bs."/>
+        <column name="TXT" required="true" type="VARCHAR" size="20"
+                description="Display text of the Silo Type in the language lang_cd."/>
+
+        <foreign-key foreignTable="TLGNR_SILO_TYPE_BS" name="FK_TLGNR_SILO_TYPE_TX">
+            <reference local="SILO_TYPE_CD" foreign="SILO_TYPE_CD"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_LANG_BS" name="FK_TLGNR_SILO_TYPE_LANG">
+            <reference local="LANG_CD" foreign="LANG_CD"/>
+        </foreign-key>
+    </table>
+</database>

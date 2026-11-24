@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNR_MIME_TYPE_BS" refData="true"
+           description="List of MIME types supported by LOGON, for example for BLOB data stored in the database.">
+        <column name="MIME_TYPE_CD" primaryKey="true" required="true" type="DECIMAL" size="12"
+                description="PK. Code of the Reference Data."/>
+        <column name="MIME_TYPE" required="true" type="VARCHAR" size="100"
+                description="Name of the MIME type as understood by a browser, e.g. 'image/png' or 'application/pdf'."/>
+		<column name="FILE_EXTENSION" required="false" type="VARCHAR" size="20"
+                description="Default file extension to use when creating a filename of this type, for example 'pdf' or 'gif' (excl. separator)."/>
+        <column name="CTL_ACT_CD" required="true" type="BOOLEAN"
+                description="Active Flag. When new data is entered, only reference data with active flag are available for selection normally."/>
+    </table>
+</database>

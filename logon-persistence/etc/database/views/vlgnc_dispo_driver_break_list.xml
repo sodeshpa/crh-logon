@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="VLGNC_DISPO_DRIVER_BREAK_LIST" mappingType="view" skipSql="true">
+        <column name="DRIVER_BREAK_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="DRIVER_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="START_DAT" required="true" type="DATE"/>
+        <column name="END_DAT" required="true" type="DATE"/>
+        <column name="DESCRIPTION" type="VARCHAR" size="200"/>
+        <column name="IS_LUNCH_BREAK" required="true" type="BOOLEAN"/>
+        <column name="IS_MOP_BREAK" required="true" type="BOOLEAN"/>
+        <column name="CTL_MOD_TS" required="true" type="TIMESTAMP" />
+    </table>
+</database>

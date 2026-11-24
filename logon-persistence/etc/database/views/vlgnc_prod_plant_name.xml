@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="VLGNC_PROD_PLANT_NAME" mappingType="view" skipSql="true">
+        <column name="PLANT_CD" required="true" type="VARCHAR" size="4"/>
+        <column name="PLANT_NAME" required="true" type="VARCHAR" size="80"/>
+    </table>
+</database>

@@ -1,0 +1,39 @@
+##
+##
+##
+#macro (generatesequencename $tableName $columnName)
+#set ($tableName = $tableName.toUpperCase())
+#set ($sequenceName = "undef")
+#set ($colName = "")
+#if ($tableName.startsWith("T${properties.prefix}"))
+#set ($tabType = "undef")
+#set ($firstUnderscorePos = $tableName.indexOf("_"))
+#if ($firstUnderscorePos > 0)
+#set ($tabType = $tableName.substring(0, $firstUnderscorePos))
+#set ($firstUnderscorePos = $firstUnderscorePos + 1)
+#set ($tabName = $tableName.substring($firstUnderscorePos))
+#set ($tabType = $tabType.replaceAll("T${properties.prefix}", "S${properties.prefix}"))
+#if ($tabName.length() > 23)
+#set ($tabName = $tabName.replaceAll("_", ""))
+#end
+#end
+#set ($sequenceName = "${tabType}_")
+#else
+#set ($tabName = $tableName)
+#set ($sequenceName = "SQ_")
+#end
+#if ($columnName != "undef")
+#if ($tabName.length() > 11)
+#set ($tabName = $tabName.substring(0, 11))
+#end
+#set ($colName = $columnName.replaceAll("_", ""))
+#if ($colName.length() > 11)
+#set ($colName = $colName.substring(0, 11))
+#end
+#end
+#set ($sequenceName = "${sequenceName}${tabName}${colName}")
+#set ($tableName = $tableName.toLowerCase())
+$sequenceName.toLowerCase()#end
+##
+##
+##

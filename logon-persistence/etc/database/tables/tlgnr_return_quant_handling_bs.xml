@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <!-- Return quantity handling of order items:
+            0 - no adjustment needed (or credit note refused)
+            1 - Delivered quantity adjustment needed
+            2 - Delivered quantity adjusted
+            3 - Credit note needed
+            4 - Credit note created
+    -->
+    <table name="TLGNR_RETURN_QUANT_HANDLING_BS" refData="true"
+           description="Types/Status of returned quantity handling of an order item. Normally (if still possible by the workflow), the delivered quantity is adjusted, but if this had already been sent to SAP, a credit note might need to be created.">
+
+        <column name="RETURN_QUANT_HANDLING_CD" primaryKey="true" required="true" type="DECIMAL" size="2"
+                description="PK. 0=no adjustment needed (or credit note refused), 1=delivered quantity adjustment needed,  2=delivered quantity adjusted, 3=credit note needed, 4=credit note created."/>
+        <column name="CTL_ACT_CD" required="true" type="BOOLEAN"
+                description="Active Flag. When new data is entered, only reference data with active flag are available for selection normally."/>
+    </table>
+</database>

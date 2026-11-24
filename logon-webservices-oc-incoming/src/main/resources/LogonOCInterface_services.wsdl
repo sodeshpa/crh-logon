@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions targetNamespace="http://logon.crh.com/LogonOCInterface/services" xmlns:ocns="http://logon.crh.com/LogonOCInterface/services" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+    <types>
+        <xsd:schema elementFormDefault="qualified" targetNamespace="http://logon.crh.com/LogonOCInterface/services">
+            <xsd:include schemaLocation="xsd/LogonOCInterface_services.xsd"/>
+        </xsd:schema>
+    </types>
+    <message name="createPickupCustomerOrderRequest">
+        <part name="createPickupCustomerOrderRequest" element="ocns:createPickupCustomerOrderRequest"/>
+    </message>
+    <message name="createPickupCustomerOrderResponse">
+        <part name="createPickupCustomerOrderResponse" element="ocns:createPickupCustomerOrderResponse"/>
+    </message>
+    <message name="createRoadDirectCustomerOrderRequest">
+        <part name="createRoadDirectCustomerOrderRequest" element="ocns:createRoadDirectCustomerOrderRequest"/>
+    </message>
+    <message name="createRoadDirectCustomerOrderResponse">
+        <part name="createRoadDirectCustomerOrderResponse" element="ocns:createRoadDirectCustomerOrderResponse"/>
+    </message>
+    <message name="getContractQuantityCalculationRequest">
+        <part name="getContractQuantityCalculationRequest" element="ocns:getContractQuantityCalculationRequest"/>
+    </message>
+    <message name="getContractQuantityCalculationResponse">
+        <part name="getContractQuantityCalculationResponse" element="ocns:getContractQuantityCalculationResponse"/>
+    </message>
+    <message name="getOrdersRequest">
+        <part name="getOrdersRequest" element="ocns:getOrdersRequest"/>
+    </message>
+    <message name="getOrdersResponse">
+        <part name="getOrdersResponse" element="ocns:getOrdersResponse"/>
+    </message>
+    <portType name="LogonOCInterfacePort">
+        <operation name="createPickupCustomerOrder">
+            <input message="ocns:createPickupCustomerOrderRequest"/>
+            <output message="ocns:createPickupCustomerOrderResponse"/>
+        </operation>
+        <operation name="createRoadDirectCustomerOrder">
+            <input message="ocns:createRoadDirectCustomerOrderRequest"/>
+            <output message="ocns:createRoadDirectCustomerOrderResponse"/>
+        </operation>
+        <operation name="getContractQuantityCalculation">
+            <input message="ocns:getContractQuantityCalculationRequest"/>
+            <output message="ocns:getContractQuantityCalculationResponse"/>
+        </operation>
+        <operation name="getOrders">
+            <input message="ocns:getOrdersRequest"/>
+            <output message="ocns:getOrdersResponse"/>
+        </operation>
+    </portType>
+    <binding name="OCLogonPort" type="ocns:LogonOCInterfacePort">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="createPickupCustomerOrder">
+            <soap:operation soapAction="createPickupCustomerOrder"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="createRoadDirectCustomerOrder">
+            <soap:operation soapAction="createRoadDirectCustomerOrder"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="getContractQuantityCalculation">
+            <soap:operation soapAction="getContractQuantityCalculation"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="getOrders">
+            <soap:operation soapAction="getOrders"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+    </binding>
+    <service name="LogonOCInterface">
+        <port name="OCLogonPort" binding="ocns:OCLogonPort">
+            <soap:address location="https://logon.crh.com/logon/webservices-oc-incoming/services/LogonOCInterface"/>
+        </port>
+    </service>
+</definitions>

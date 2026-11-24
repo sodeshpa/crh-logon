@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNC_MAT_COMPAT_MAT"
+           description="Defines the compatible materials for a material and its threshold values expressed in tlgnc_mat_compat. For one entry in tlgnc_mat_compat, N entries can be listed in this table and are this way defined as compatible within the percentages insignificant_threshold_perc and force_identical_threshold_perc.">
+
+        <!-- PK and identifiers -->
+        <column name="MAT_COMPAT_MAT_ID" primaryKey="true" required="true" type="DECIMAL" size="12"
+                description="PK"/>
+        <column name="FROM_MAT_COMPAT_ID" required="true" type="DECIMAL" size="12"
+                description="FK tlgnc_mat_compat. The 'from' material and the percentage interval where only explicitlely defined compatible materials are allowed."/>
+        <column name="TO_SAP_MATERIAL_ID" required="true" type="DECIMAL" size="12"
+                description="FK tlgns_sap_material. The 'to' material of this material-material compatibility rule, i.e. the material which will be loaded on top."/>
+
+        <!-- Comments -->
+        <column name="MAT_COMPAT_MAT_COMMENT" type="VARCHAR" size="200"
+                description="A comment which expresses the 'to'-material specific reason for this mat-mat compatibility rule, or since when, or based on what decision, etc."/>
+
+        <foreign-key foreignTable="TLGNC_MAT_COMPAT" name="FK_TLGNC_MAT_COMPAT_MAT_COMPAT">
+            <reference local="FROM_MAT_COMPAT_ID" foreign="MAT_COMPAT_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNS_SAP_MATERIAL" name="FK_TLGNC_MAT_COMPAT_MAT_TO_MAT">
+            <reference local="TO_SAP_MATERIAL_ID" foreign="SAP_MATERIAL_ID"/>
+        </foreign-key>
+
+        <unique name="UQ_TLGNC_MAT_COMPAT_MAT">
+            <unique-column name="FROM_MAT_COMPAT_ID"/>
+            <unique-column name="TO_SAP_MATERIAL_ID"/>
+        </unique>
+    </table>
+</database>

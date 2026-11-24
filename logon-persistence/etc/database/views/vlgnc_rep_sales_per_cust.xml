@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="VLGNC_REP_SALES_PER_CUST" mappingType="view" skipSql="true">
+        <column name="OI_MARGIN_GROSS_PRICE" type="DECIMAL" size="10,3"/>
+        <column name="OI_MARGIN_GROSS_PRICE_PT" type="DOUBLE"/>
+        <column name="OI_MARGIN_NET_PRICE" type="DECIMAL" size="17,2"/>
+        <column name="OI_MARGIN_NET_PRICE_PT" type="DOUBLE"/>
+        <column name="O_SAREA_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="SAREA_SORG_CD" required="true" type="VARCHAR" size="4"/>
+        <column name="SAREA_DISTRIBUTION_CHANNEL" required="true" type="VARCHAR" size="2"/>
+        <column name="SAREA_DIVISION_CD" required="true" type="VARCHAR" size="2"/>
+        <column name="O_DISTRIBUTION_DEST_CD" required="true" type="VARCHAR" size="4"/>
+        <column name="O_SOLDTO_SAP_BP_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="AG_SAP_ID" type="VARCHAR" size="10"/>
+        <column name="AG_NAME1" type="VARCHAR" size="35"/>
+        <column name="AG_CUSTOMER_CLASSIFICATION" type="VARCHAR" size="2"/>
+        <column name="AG_CUSTOMER_GROUP" type="VARCHAR" size="2"/>
+        <column name="O_SHIPTO_SAP_BP_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="WE_SAP_ID" type="VARCHAR" size="10"/>
+        <column name="WE_NAME1" type="VARCHAR" size="35"/>
+        <column name="WE_POSTAL_CODE" type="VARCHAR" size="10"/>
+        <column name="WE_CITY" type="VARCHAR" size="35"/>
+        <column name="WE_SALES_DISTRICT" type="VARCHAR" size="6"/>
+        <column name="WE_SOFFICE_NAME" type="VARCHAR" size="30"/>
+        <column name="WE_SGROUP_NAME" type="VARCHAR" size="30"/>
+        <column name="WE_ABC_CLASS" type="VARCHAR" size="2"/>
+        <column name="OI_MARGIN_CURRENCY_CD" type="VARCHAR" size="3"/>
+        <column name="OI_MARGIN_QUANTITY" type="DECIMAL" size="12,4"/>
+        <column name="OI_MARGIN_DELIVERED_UOM_CD" type="VARCHAR" size="3"/>
+        <column name="OI_MARGIN_DISCOUNTS" type="DECIMAL" size="17,2"/>
+        <column name="OI_MARGIN_DISCOUNTS_PT" type="DOUBLE"/>
+        <column name="OI_MARGIN_REBATES" type="DECIMAL" size="17,2"/>
+        <column name="OI_MARGIN_REBATES_PT" type="DOUBLE"/>
+        <column name="OI_MARGIN_CASH_DISCOUNT" type="DECIMAL" size="17,2"/>
+        <column name="OI_MARGIN_CASH_DISCOUNT_PT" type="DOUBLE"/>
+        <column name="OI_MARGIN_NET_SALES_EARNING" type="DECIMAL" size="17,2"/>
+        <column name="OI_MARGIN_NET_SALES_EARNING_PT" type="DOUBLE"/>
+        <column name="OI_MARGIN_PROD_COST" type="DECIMAL" size="11,2"/>
+        <column name="OI_MARGIN_PROD_COST_PT" type="DOUBLE"/>
+        <column name="OI_MARGIN_IUD_COST" type="DECIMAL" size="11,2"/>
+        <column name="OI_MARGIN_IUD_COST_PT" type="DOUBLE"/>
+        <column name="OI_MARGIN_HANDLING_COST" type="DECIMAL" size="11,2"/>
+        <column name="OI_MARGIN_HANDLING_COST_PT" type="DOUBLE"/>
+        <column name="OI_MARGIN_OUT_COST" type="DECIMAL" size="11,2"/>
+        <column name="OI_MARGIN_OUT_COST_PT" type="DOUBLE"/>
+        <column name="OI_MARGIN_TOTAL_DIST_COST" type="DECIMAL" size="11,2"/>
+        <column name="OI_MARGIN_TOTAL_DIST_COST_PT" type="DOUBLE"/>
+        <column name="OI_MARGIN_TOTAL_COST" type="DECIMAL" size="11,2"/>
+        <column name="OI_MARGIN_TOTAL_COST_PT" type="DOUBLE"/>
+        <column name="OI_MARGIN_CONTRIB_MARGIN" type="DECIMAL" size="17,2"/>
+        <column name="OI_MARGIN_CONTRIB_MARGIN_PT" type="DOUBLE"/>
+        <column name="DISTRIBUTION_DEST_CD" required="true" type="VARCHAR" size="4"/>
+        <column name="DELIVERY_FROM_DAT" required="true" type="DATE"/>
+        <column name="DELIVERY_TO_DAT" required="true" type="DATE"/>
+        <column name="DELIVERY_ACTUAL_DAT" type="DATE"/>
+        <column name="MATERIAL_PACKAGE_CD" required="true" type="VARCHAR" size="4"/>
+        <column name="LANG_CD" required="true" type="VARCHAR" size="2"/>
+        <column name="SAREA_COMPANYCODE_CD" type="VARCHAR" size="4"/>
+		<column name="SAREA_COUNTRY_CD" type="VARCHAR" size="3"/>
+    </table>
+</database>

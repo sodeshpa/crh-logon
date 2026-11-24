@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNS_SAP_MATERIAL_ALT_UOM"
+           description="Alternative units of measurements for a given material. Received from SAP, n per Material.">
+
+        <column name="SAP_MATERIAL_ALT_UOM_ID" primaryKey="true" required="true" type="DECIMAL" size="12"
+                description="PK"/>
+        <column name="SAP_MATERIAL_ID" required="true" type="DECIMAL" size="12"
+                description="FK tlgns_sap_material. The referenced material."/>
+        <column name="UOM_CD" required="true" type="VARCHAR" size="3"
+                description="FK tlgnr_uom_bs. The alternative unit of measurement. SAP: material_unit_measure (MARM) / MEINH, must match with the Logon reference data table."/>
+        <!-- 20090225/uma: NUMERATOR and DENOMINATOR should probably be not-null in the end - check if we can extend our testdata first!
+             TODO 20091120/uma: All productive data from Crh has real values, so, this could really be made required.-->
+        <column name="NUMERATOR_FOR_CONVERSION" type="DECIMAL" size="5"
+                description="Multiplier in respect to base unit tlgns_sap_material.base_uom_cd. SAP: material_unit_measure (MARM) / UMREZ."/>
+        <column name="DENOMINATOR_FOR_CONVERSION" type="DECIMAL" size="5"
+                description="Divisor in respect to base unit tlngs_sap_material.base_uom_cd. SAP: material_unit_measure (MARM) / UMREN."/>
+
+        <foreign-key foreignTable="TLGNS_SAP_MATERIAL" name="FK_TLGNS_SAP_MAT_ALT_UOM_MAT">
+            <reference local="SAP_MATERIAL_ID" foreign="SAP_MATERIAL_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_UOM_BS" name="FK_TLGNS_SAP_ALT_MATERIAL_UOM">
+            <reference local="UOM_CD" foreign="UOM_CD"/>
+        </foreign-key>
+        <unique name="UQ_TLGNS_SAP_MAT_ALT_MAT_UOM">
+            <unique-column name="SAP_MATERIAL_ID"/>
+            <unique-column name="UOM_CD"/>
+        </unique>
+    </table>
+</database>

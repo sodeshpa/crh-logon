@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="http://logon.crh.net/v20090319/logonevent" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:partns="http://logon.crh.net/v20090319/logonevent">
+  <xsd:complexType name="rfid">
+    <xsd:sequence>
+      <xsd:element name="rfidLabel" type="xsd:string" nillable="true"/>
+      <xsd:element name="rfidIdentity" type="xsd:string" nillable="true"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="loadingpointType">
+    <xsd:sequence>
+      <xsd:element name="loadingpointID" type="xsd:string" nillable="true"/>
+      <xsd:element name="loadingpointName" type="xsd:string" nillable="true"/>
+      <xsd:element name="rfidTag" type="partns:rfid" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="LogonLOGONEvent">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="targetPDAID" type="xsd:string" nillable="true"/>
+        <xsd:element name="sendersTime" type="xsd:string" nillable="false"/>
+        <xsd:element name="eventType" type="xsd:string" nillable="false"/>
+        <xsd:element name="sessionID" type="xsd:string" nillable="true"/>
+        <xsd:element name="LOGONData">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="Field" minOccurs="0" maxOccurs="unbounded">
+                <xsd:complexType>
+                  <xsd:sequence>
+                    <xsd:element name="name" type="xsd:string" nillable="true"/>
+                    <xsd:element name="value" type="xsd:string" nillable="true"/>
+                  </xsd:sequence>
+                </xsd:complexType>
+              </xsd:element>
+              <xsd:element name="loadingpoint" type="partns:loadingpointType" minOccurs="0" maxOccurs="unbounded"/>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="LogonLOGONEventStatus">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="code" type="xsd:string"/>
+        <xsd:element name="contextValue" type="xsd:string"/>
+        <xsd:element name="txt" type="xsd:string"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+</xsd:schema>

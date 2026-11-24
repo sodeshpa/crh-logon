@@ -1,0 +1,643 @@
+# Date: 06.12.2012 LOGON-6105 but heavily corrected.;;;;;;;;;;;;;;;;;;;
+# Adding more columns / lookup to other columns needs a change to the data loader. Or, do it 2phase (export via TB, enrich, and upload again);;;;;;;;;;;;;;;;;;;
+#PLANT_CD;SAP_SHIPPINGPOINT_NO;KNOWN_ALSO_IN_SAP_FLAG;SHIPPINGPOINT_NAME;SHIPPPOINT_TYPE_CD;SAP_SHIPPING_COND_CD;STORAGE_LOCATION;UIC_COUNTRY_CD;RAILWAY_STATION_NO;RAILWAY_STATION_LOADING_POINT;WEIGH_SYSTEM_SP_CD;LDS SERVER;SHIPPINGPOINT_COMMENT;COORD_LAT;COORD_LON;COORD_FIX_FLAG;GEOFENCE_RADIUS;SEND_SAP_PLANT_CD;SEND_SAP_SHIPPINGPOINT_NO;EOL
+B100;B100;1;Pt exp Obourg;0;01;F001;;;;7;;;;;0;50;50;;1
+B100;B101;1;Pt exp Manage;0;01;F001;;;;7;;;;;0;50;50;;1
+B101;B102;1;Pt exp Haccourt;0;01;F001;;;;7;;;;;0;50;50;;1
+B102;B103;1;Pt exp Anvers;0;01;G100;;;;7;;;;;1;250;50;;1
+B103;B115;1;Pt exp Dalle de Gand;0;01;F001;;;;7;;;;;0;50;50;;1
+B105;B104;1;Pt exp C.C.B. Gaurain;0;01;F001;;;;7;;;;;0;50;50;;1
+B105;B105;1;Pt exp ENCI 's Hertogenbosch;0;01;F001;;;;7;;;;;0;50;50;;1
+B105;B106;1;Pt exp Wittekind Erwitte;0;01;F001;;;;7;;;;;0;50;50;;1
+B105;B107;1;Pt d'exp. Seibel Erwitte;0;01;F001;;;;7;;;;;0;50;50;;1
+B105;B108;1;Pt exp Crh Deutschland Höve;0;01;F001;;;;7;;;;;0;50;50;;1
+B105;B109;1;Pt exp Cemex Schwelgem;0;01;F001;;;;7;;;;;0;50;50;;1
+B105;B110;1;Pt exp Cemex Dortmund;0;01;F001;;;;7;;;;;1;50;50;;1
+B105;B111;1;Pt exp C.B.R. Harmignies;0;01;;;;;7;;;;;0;50;50;;1
+B105;B112;1;Pt exp. C.S.N Eemshaven;0;01;;;;;7;;;;;0;50;50;;1
+B105;B113;1;Pt exp Nivelles;0;01;;;;;7;;;;;0;50;50;;1
+B105;B114;1;Pt exp Crh SK Rohoznik;0;01;;;;;7;;;;;0;50;50;;1
+B106;B100;1;Pt exp Obourg;0;01;F001;;;;7;;;;;0;50;50;;1
+B106;B101;1;Pt exp Manage;0;01;F001;;;;7;;;;;0;50;50;;1
+B107;B100;1;Pt exp Obourg;0;01;F001;;;;7;;;;;0;50;50;;1
+B107;B101;1;Pt exp Manage;0;01;F001;;;;7;;;;;0;50;50;;1
+B108;B116;1;Pt exp Geocycle;0;01;;;;;7;;;;;0;50;50;;1
+B201;B200;1;Pt exp EdF La Maxe;0;01;;;;;7;;;;;0;50;50;;1
+B201;B201;1;Pt exp EdF Blénod;0;01;G100;;;;7;;;;;0;50;50;;1
+B201;B202;1;Pt exp EdF Bouchain;0;01;G100;;;;7;;;;;0;50;50;;1
+B201;B203;1;Pt exp EdF Ansereuilles;0;01;G100;;;;7;;;;;0;50;50;;1
+B201;B204;1;Pt exp SNET Emile Huchet;0;01;G100;;;;7;;;;;0;50;50;;1
+B201;B205;1;Pt exp SNET Hornaing;0;01;G100;;;;7;;;;;0;50;50;;1
+B201;B206;1;Pt Exp Terminal Ottmarsheim;0;01;G100;;;;7;;;;;0;50;50;;1
+B202;B207;1;Pt exp GeoMin. Anvers HB;0;01;G100;;;;7;;;;;0;50;50;;1
+B203;B208;1;Pt exp GeoMin. Anvers Manuport;0;01;G100;;;;7;;;;;0;50;50;;1
+B204;B209;1;Pt exp GeoMinerals Ebange;0;01;G100;;;;7;;;;;0;50;50;;1
+B205;B210;1;Pt exp GeoMin. VDN Dunkerque;0;01;;;;;7;;;;;0;50;50;;1
+B206;B211;1;Pt exp GeoMinerals Ottmarsheim;0;01;;;;;7;;;;;0;50;50;;1
+B207;B212;1;Pt exp Electrabel Langerlo;0;01;;;;;7;;;;;0;50;50;;1
+B207;B213;1;Pt exp Electrabel Ruien;0;01;;;;;7;;;;;0;50;50;;1
+B208;B214;1;Pt exp E.ON Rott.Maasv.(BauM);0;01;;;;;7;;;;;0;50;50;;1
+B208;B215;1;Pt exp SMZ Rott.Maasv.(Vlieg);0;01;;;;;7;;;;;0;50;50;;1
+B208;B216;1;Pt exp RWE Amercentrale(Vlieg);0;01;;;;;7;;;;;0;50;50;;1
+B208;B217;1;Pt exp Electr.Nijmegen (Vlieg);0;01;;;;;7;;;;;0;50;50;;1
+B208;B218;1;Pt exp NUON Hemweg (Vlieg);0;01;;;;;7;;;;;0;50;50;;1
+B209;B219;1;Pt exp Evonik Walsum;0;01;F001;;;;7;;;;;0;50;50;;1
+B209;B220;1;Pt exp Evonik Voerde;0;01;G100;;;;7;;;;;0;50;50;;1
+B209;B221;1;Pt exp E.ON Scholven (BauMin.);0;01;G100;;;;7;;;;;0;50;50;;1
+B209;B222;1;Pt exp SAFA Bexbach;0;01;G100;;;;7;;;;;0;50;50;;1
+B209;B223;1;Pt exp SAFA Ensdorf;0;01;G100;;;;7;;;;;0;50;50;;1
+B209;B224;1;Pt exp SAFA Fenne;0;01;G100;;;;7;;;;;0;50;50;;1
+B209;B225;1;Pt exp SAFA Karlsruhe;0;01;G100;;;;7;;;;;0;50;50;;1
+B209;B226;1;Pt exp SAFA Mannheim;0;01;G100;;;;7;;;;;0;50;50;;1
+B209;B227;1;Pt Exp Terminal Kehl;0;01;G100;;;;7;;;;;0;50;50;;1
+B209;B228;1;Pt exp Evonik Quierschied;0;01;G100;;;;7;;;;;0;50;50;;1
+B300;B300;1;Pt Exp Milieu Gaurain;0;01;F001;;;;7;;;;;0;50;50;;1
+B300;B301;1;Pt Exp Quai Vaulx;0;01;F001;;;;7;;;;;0;50;50;;1
+B300;B302;1;Pt Exp Gare Lessines;0;01;F001;;;;7;;;;;0;50;50;;1
+B301;B301;1;Pt Exp Quai Vaulx;0;01;F001;;;;7;;;;;0;50;50;;1
+B301;B302;1;Pt Exp Gare Lessines;0;01;F001;;;;7;;;;;0;50;50;;1
+B301;B303;1;Pt Exp Ermitage;0;01;F001;;;;7;;;;;0;50;50;;1
+B302;B302;1;Pt Exp Gare Lessines;0;01;F001;;;;7;;;;;0;50;50;;1
+B302;B304;1;Pt Exp Soignies;0;01;F001;;;;7;;;;;0;50;50;;1
+B302;B305;1;Pt Exp Stk tampon fer Ermitage;0;01;F001;;;;7;;;;;0;50;50;;1
+B302;B306;1;Pt Exp quai de Strepy;0;01;F001;;;;7;;;;;0;50;50;;1
+B303;B302;1;Pt Exp Gare Lessines;0;01;F001;;;;7;;;;;0;50;50;;1
+B303;B305;1;Pt Exp Stk tampon fer Ermitage;0;01;F001;;;;7;;;;;0;50;50;;1
+B303;B306;1;Pt Exp quai de Strepy;0;01;F001;;;;7;;;;;0;50;50;;1
+B303;B307;1;Pt Exp Perlonjour;0;01;F001;;;;7;;;;;0;50;50;;1
+B304;B308;1;Pt Exp Trooz;0;01;G100;;;;7;;;;;0;50;50;;1
+B304;B309;1;Pt Exp quai Ile Monsin;0;01;F001;;;;7;;;;;0;50;50;;1
+B305;B301;1;Pt Exp Quai Vaulx;0;01;G100;;;;7;;;;;0;50;50;;1
+B305;B310;1;Pt Exp Hermalle;0;01;F001;;;;7;;;;;0;50;50;;1
+B306;B306;1;Pt Exp quai de Strepy;0;01;F001;;;;7;;;;;0;50;50;;1
+B306;B340;1;Pt Exp Scouflény;0;01;;;;;7;;;;;0;50;50;;1
+B307;B311;1;Pt Exp Leffe;0;01;F001;;;;7;;;;;0;50;50;;1
+B307;B312;1;Pt Exp Quai de Maizeret;0;01;F001;;;;7;;;;;0;50;50;;1
+B309;B311;1;Pt Exp Leffe;0;01;;;;;7;;;;;0;50;50;;1
+B309;B312;1;Pt Exp Quai de Maizeret;0;01;;;;;7;;;;;0;50;50;;1
+B310;B313;1;Pt Exp Berthe;0;01;F001;;;;7;;;;;0;50;50;;1
+B310;B314;1;Pt Exp Carmeuse Engis;0;01;;;;;7;;;;;0;50;50;;1
+B310;B315;1;Pt Exp Carmeuse Frasnes;0;01;;;;;7;;;;;0;50;50;;1
+B310;B316;1;Pt Exp Carmeuse Moha;0;01;;;;;7;;;;;0;50;50;;1
+B310;B317;1;Pt Exp Calcaire de la Sambre;0;01;;;;;7;;;;;0;50;50;;1
+B310;B318;1;Pt Exp De Prins - Limites;0;01;;;;;7;;;;;0;50;50;;1
+B310;B319;1;Pt Exp De Prins - Les Petons;0;01;;;;;7;;;;;0;50;50;;1
+B310;B320;1;Pt Exp Dolomies de Villers-L-G;0;01;;;;;7;;;;;0;50;50;;1
+B310;B321;1;Pt Exp Lhoist - Dumont Wautier;0;01;;;;;7;;;;;0;50;50;;1
+B310;B322;1;Pt Exp Lhoist - Usine de On;0;01;;;;;7;;;;;0;50;50;;1
+B310;B323;1;Pt Exp Lhoist - Dolomies;0;01;;;;;7;;;;;0;50;50;;1
+B310;B342;1;Pt Exp Ecodream - Hermalle;0;01;;;;;7;;;;;0;50;50;;1
+B311;B329;1;Pt Exp Carr. Unies de Porph.;0;01;;;;;7;;;;;0;50;50;;1
+B311;B330;1;Pt Exp Sagrex Quenast;0;01;;;;;7;;;;;0;50;50;;1
+B311;F461;1;Pt Exp ROY - La Gouraudière;0;01;;;;;7;;;;;0;50;50;;1
+B312;B331;1;Pt Exp Anthisnes;0;01;;;;;7;;;;;0;50;50;;1
+B313;B332;1;Pt Exp Hermaco;0;01;;;;;7;;;;;0;50;50;;1
+B313;B333;1;Pt Exp Eurogri - Kinrooi;0;01;;;;;7;;;;;0;50;50;;1
+B313;B334;1;Pt Exp S.B.S. - Maasm.;0;01;G100;;;;7;;;;;0;50;50;;1
+B313;B335;1;Pt Exp Rhein. Buir;0;01;G100;;;;7;;;;;0;50;50;;1
+B313;B336;1;Pt Exp Rhein. Herzogenrath;0;01;G100;;;;7;;;;;0;50;50;;1
+B313;B337;1;Pt Exp Rhein. Inden;0;01;G100;;;;7;;;;;0;50;50;;1
+B313;B338;1;Pt Exp Theunesen;0;01;G100;;;;7;;;;;0;50;50;;1
+B313;B339;1;Pt Exp Varenberg - Maasm.;0;01;G100;;;;7;;;;;0;50;50;;1
+B314;B324;1;Pt Exp CCB;0;01;G100;;;;7;;;;;0;50;50;;1
+B314;B325;1;Pt Exp Lemay;0;01;G100;;;;7;;;;;0;50;50;;1
+B314;B326;1;Pt Exp Quai Vaulx;0;01;G100;;;;7;;;;;0;50;50;;1
+B314;B327;1;Pt Exp Ferrari Gr - Bay Bonnet;0;01;G100;;;;7;;;;;0;50;50;;1
+B314;B328;1;Pt Exp Cimescaut Antoing;0;01;G100;;;;7;;;;;0;50;50;;1
+B314;B341;1;Pt Exp TPR;0;01;G100;;;;7;;;;;0;50;50;;1
+B314;B343;1;Pt Exp Sagrex Beez;0;01;G100;;;;7;;;;;0;50;50;;1
+B314;B344;1;Pt Exp Feller Jemelle;0;01;G100;;;;7;;;;;0;50;50;;1
+B401;B400;1;AARSCHOT;0;01;G100;;;;7;;;;;0;50;50;;1
+B402;B401;1;MERKSEM;0;01;G100;;;;7;;;;;0;50;50;;1
+B403;B402;1;HERENTALS;0;01;G100;;;;7;;;;;0;50;50;;1
+B404;B403;1;KIELDRECHT;0;01;G100;;;;7;;;;;0;50;50;;1
+B405;B404;1;KIELDRECHT 2;0;01;G100;;;;7;;;;;0;50;50;;1
+B406;B405;1;SINT-TRUIDEN;0;01;G100;;;;7;;;;;0;50;50;;1
+B407;B406;1;HOESELT;0;01;G100;;;;7;;;;;0;50;50;;1
+B408;B407;1;BORGLOON;0;01;G100;;;;7;;;;;0;50;50;;1
+B409;B408;1;TISSELT;0;01;G100;;;;7;;;;;0;50;50;;1
+B410;B409;1;IZEGEM;0;01;G100;;;;7;;;;;0;50;50;;1
+B410;B428;1;LABO IZEGEM HBB;0;01;G100;;;;7;;;;;0;50;50;;1
+B411;B410;1;OOSTENDE;0;01;G100;;;;7;;;;;0;50;50;;1
+B412;B411;1;VEURNE;0;01;G100;;;;7;;;;;0;50;50;;1
+B413;B412;1;AALST;0;01;G100;;;;7;;;;;0;50;50;;1
+B414;B413;1;LESSINES;0;01;G100;;;;7;;;;;0;50;50;;1
+B415;B414;1;BRUGGE;0;01;G100;;;;7;;;;;0;50;50;;1
+B416;B415;1;BRUXELLES/BRUSSEL;0;01;G100;;;;7;;;;;0;50;50;;1
+B416;B426;1;LABO BRUXELLES HBB;0;01;F001;;;;7;;;;;0;50;50;;1
+B417;B416;1;OVERIJSE;0;01;G100;;;;7;;;;;0;50;50;;1
+B418;B417;1;GEMBLOUX;0;01;G100;;;;7;;;;;0;50;50;;1
+B419;B418;1;QUENAST;0;01;G100;;;;7;;;;;0;50;50;;1
+B420;B419;1;CHAUMONT;0;01;G100;;;;7;;;;;0;50;50;;1
+B421;B420;1;LIEGE;0;01;G100;;;;7;;;;;0;50;50;;1
+B421;B429;1;LABO LIEGE HBB;0;01;G100;;;;7;;;;;0;50;50;;1
+B422;B421;1;HUY;0;01;G100;;;;7;;;;;0;50;50;;1
+B423;B422;1;DAMPREMY;0;01;G100;;;;7;;;;;0;50;50;;1
+B424;B423;1;MONS;0;01;G100;;;;7;;;;;0;50;50;;1
+B425;B432;1;WIJNEGEM;0;01;G100;;;;7;;;;;0;50;50;;1
+B801;B208;1;Pt exp GeoMin. Anvers Manuport;0;01;G100;;;;7;;;;;0;50;50;;1
+B802;B207;1;Pt exp GeoMin. Anvers HB;0;01;G100;;;;7;;;;;0;50;50;;1
+B803;B212;1;Pt exp Electrabel Langerlo;0;01;G100;;;;7;;;;;0;50;50;;1
+B803;B213;1;Pt exp Electrabel Ruien;0;01;G100;;;;7;;;;;0;50;50;;1
+B804;B214;1;Pt exp E.ON Rott.Maasv.(BauM);0;01;G100;;;;7;;;;;0;50;50;;1
+B804;B215;1;Pt exp SMZ Rott.Maasv.(Vlieg);0;01;G100;;;;7;;;;;0;50;50;;1
+B804;B216;1;Pt exp RWE Amercentrale(Vlieg);0;01;;;;;7;;;;51.03456;0;50;50;;1
+B804;B217;1;Pt exp Electr.Nijmegen (Vlieg);0;01;F001;;;;7;;;;50.708254;0;50;50;;1
+B804;B218;1;Pt exp NUON Hemweg (Vlieg);0;01;F001;;;;7;;;;47.6304696;0;50;50;;1
+B805;B219;1;Pt exp Evonik Walsum;0;01;F001;;;;7;;;;50.591036;0;50;50;;1
+B805;B220;1;Pt exp Evonik Voerde;0;01;F001;;;;7;;;;47.124579;0;50;50;;1
+B805;B221;1;Pt exp E.ON Scholven (BauMin.);0;01;F001;;;;7;;;;48.694813;0;50;150;;1
+B805;B222;1;Pt exp SAFA Bexbach;0;01;F001;;;;7;;;;;0;50;50;;1
+B805;B223;1;Pt exp SAFA Ensdorf;0;01;F001;;;;7;;;;49.3370869;0;50;50;;1
+B805;B224;1;Pt exp SAFA Fenne;0;01;F001;;;;7;;;;;0;50;50;;1
+B805;B225;1;Pt exp SAFA Karlsruhe;0;01;F001;;;;7;;;;;0;50;50;;1
+B805;B226;1;Pt exp SAFA Mannheim;0;01;;;;;7;;;;;0;50;50;;1
+B805;B227;1;Pt Exp Terminal Kehl;0;01;F001;;;;7;;;;48.869909;0;50;150;;1
+B805;B228;1;Pt exp Evonik Quierschied;0;01;F001;;;;7;;;;48.739429;0;50;50;;1
+B806;B200;1;Pt exp EdF La Maxe;0;01;F001;;;;7;;;;;0;50;50;;1
+B806;B201;1;Pt exp EdF Blénod;0;01;F001;;;;7;;;;;0;50;50;;1
+B806;B202;1;Pt exp EdF Bouchain;0;01;F001;;;;7;;;;51.03456;0;50;50;;1
+B806;B203;1;Pt exp EdF Ansereuilles;0;01;;;;;7;;;;;0;50;50;;1
+B806;B204;1;Pt exp SNET Emile Huchet;0;01;G100;;;;7;;;;;0;50;50;;1
+B806;B205;1;Pt exp SNET Hornaing;0;01;F001;;;;7;;;;;0;50;50;;1
+B806;B206;1;Pt Exp Terminal Ottmarsheim;0;01;G100;;;;7;;;;;0;50;50;;1
+F101;F100;1;Pt exp Dunkerque;0;01;G100;;;;7;;;;;1;50;50;;1
+F102;F101;1;Pt exp Lumbres;0;01;F001;;;;7;;;;;1;50;50;;1
+F102;F134;1;Pt exp Saint Omer;0;01;F001;;;;7;;;;;0;50;50;;1
+F103;F102;1;Pt exp Altkirch;0;01;F001;;;;7;;;;49.360464;0;50;150;;1
+F104;F103;1;Pt exp Dannes;0;01;F001;;;;7;;;;;0;50;50;;1
+F105;F104;1;Pt exp Rochefort;0;01;F001;;;;7;;;;;0;50;50;;1
+F106;F105;1;Pt exp Héming;0;01;F001;;;;7;;;;;0;150;50;;1
+F107;F106;1;Pt exp Sovrac;0;01;F001;;;;7;;;;;0;50;50;;1
+F108;F107;1;Pt exp Ebange;0;01;F001;;;;7;;;;;0;50;50;;1
+F109;F110;1;Pt exp Chelles;0;01;F001;;;;7;;;;;1;150;50;;1
+F110;F111;1;Pt exp Villeneuve;0;01;F001;;;;7;;;;;1;50;50;;1
+F111;F112;1;Pt exp Homblières;0;01;F001;;;;7;;;;;0;50;50;;1
+F112;F113;1;Pt exp Oissel;0;01;F001;;;;7;;;;;0;50;50;;1
+F114;F118;1;Pt exp SMAMPV;0;01;F001;;;;7;;;;;0;50;50;;1
+F116;F121;1;Pt exp Lumbres;0;01;F001;;;;7;;;;;0;50;50;;1
+F117;F122;1;Pt exp GRANULATEUR HF3;0;01;F001;;;;7;;;;;0;50;50;;1
+F118;F123;1;Pt Exp Val de Seine;0;01;F001;;;;7;;;;;1;150;50;;1
+F118;F133;1;Pt exp Quai de la Papeterie GC;0;01;F001;;;;7;;;;;0;50;50;;1
+F119;F124;1;Pt d'exp Azincourt (VDN);0;01;F001;;;;7;;;;;0;50;50;;1
+F120;F126;1;Pt GEOCYCLE EST;0;01;F001;;;;7;;;;;0;50;50;;1
+F121;F129;1;Pt exp Lumbres;0;01;F001;;;;7;;;;;0;50;50;;1
+F121;F135;1;Pt exp Silo Kehl;0;01;F001;;;;7;;;;;0;50;50;;1
+F122;F130;1;Pt exp MONTOIR DE BRETAGNE;0;01;F001;;;;7;;;;;0;50;50;;1
+F123;F131;1;Pt exp Bouchain;0;01;F001;;;;7;;;;;0;50;50;;1
+F124;F108;1;Pt exp Dotternhausen;0;01;F001;;;;7;;;;;0;50;50;;1
+F124;F109;1;Pt exp Eclépens;0;01;F001;;;;7;;;;;0;50;50;;1
+F124;F132;1;Pt Exp Lagerdorf;0;01;F001;;;;7;;;;;0;50;50;;1
+F140;F114;1;DUNKERQUE AJOUTS;0;01;F001;;;;7;;;;;1;50;50;;1
+F150;F115;1;Pt exp Vracs du Nord;0;01;F001;;;;7;;;;;0;50;50;;1
+F150;F116;1;Pt d'exp Héming (VDN);0;01;G100;;;;7;;;;;0;50;50;;1
+F150;F137;1;Pt d'exp Vracs Du Nord;0;01;F001;;;;7;;;;;0;50;50;;1
+F152;F120;1;Pt d'exp Azincourt (VDN);0;01;G100;;;;7;;;;;0;50;50;;1
+F153;F116;1;Pt d'exp Héming (VDN);0;01;G100;;;;7;;;;;0;50;50;;1
+F154;F125;1;Pt exp Chelles;0;01;;;;;7;;;;;0;50;50;;1
+F1A0;F127;1;Ciments de la Rochelle;0;01;F001;;;;7;;;;;0;50;50;;1
+F1B0;F128;1;Cimarmor S.A.S.;0;01;F001;;;;7;;;;;0;50;50;;1
+F2C1;F2C1;1;Truck Ottmarsheim;0;01;G100;;;;7;;;;;0;50;50;;1
+F300;F300;1;Pt Exp Conchil le Temple;0;01;F001;;;;7;;;;;0;50;50;;1
+F302;F365;1;Pt ex. MOUSSY;0;01;F001;;;;7;;;;;0;50;50;;1
+F303;F366;1;Pt Exp Bruyeres sur Oise;0;01;F001;;;;7;;;;;0;50;50;;1
+F304;F367;1;Pt Exp La Fere;0;01;F001;;;;7;;;;;0;50;50;;1
+F305;F321;1;Pt Exp Limé;0;01;F001;;;;7;;;;;0;50;50;;1
+F307;F369;1;Pt Exp Marcilly;0;01;F001;;;;7;;;;;0;50;50;;1
+F308;F370;1;Pt Exp Maizy;0;01;F001;;;;7;;;;;0;50;50;;1
+F309;F371;1;Pt Exp Moru;0;01;F001;;;;7;;;;;0;50;50;;1
+F309;F372;1;Pt Exp Moru Pontpoint;0;01;F001;;;;7;;;;;0;50;50;;1
+F310;F373;1;Pt Exp Presles et Boves;0;01;F001;;;;7;;;;;0;50;50;;1
+F311;F341;1;Pt Exp Plessis plateforme;0;01;F001;;;;7;;;;;0;50;50;;1
+F313;F343;1;Pt Exp Soupir;0;01;F001;;;;7;;;;;0;50;50;;1
+F313;F344;1;Pt Exp Bourg et Comin;0;01;F001;;;;7;;;;;0;50;50;;1
+F315;F375;1;Pt ex. VILLERS;0;01;F001;;;;7;;;;;0;50;50;;1
+F316;F376;1;Pt Exp Herrlisheim;0;01;F001;;;;7;;;;;0;50;50;;1
+F317;F377;1;Pt Exp Hirtzfelden;0;01;F001;;;;7;;;;;0;50;50;;1
+F317;F378;1;Pt Exp Ile Napoleon;0;01;F001;;;;7;;;;;0;50;50;;1
+F317;F379;1;Pt Exp Ottmarsheim;0;01;F001;;;;7;;;;;0;50;50;;1
+F318;F380;1;Pt Exp Houssen;0;01;F001;;;;7;;;;;0;50;50;;1
+F319;F378;1;Pt Exp Ile Napoleon;0;01;F001;;;;7;;;;;0;50;50;;1
+F320;F379;1;Pt Exp Ottmarsheim;0;01;F001;;;;7;;;;;0;50;50;;1
+F321;F381;1;Pt Exp Rixheim;0;01;F001;;;;7;;;;;0;50;50;;1
+F322;F378;1;Pt Exp Ile Napoleon;0;01;F001;;;;7;;;;;0;50;50;;1
+F322;F379;1;Pt Exp Ottmarsheim;0;01;F001;;;;7;;;;;0;50;50;;1
+F322;F382;1;Pt Exp Sausheim;0;01;F001;;;;7;;;;;0;50;50;;1
+F323;F383;1;Pt Exp Bischwiller;0;01;F001;;;;7;;;;;0;50;50;;1
+F324;F386;1;Pt Exp Holtzheim;0;01;F001;;;;7;;;;;0;50;50;;1
+F325;F387;1;Pt Exp Lingolsheim;0;01;F001;;;;7;;;;;0;50;50;;1
+F327;F389;1;Pt Exp Dieulouard;0;01;F001;;;;7;;;;;0;50;50;;1
+F328;F392;1;Pt Exp Malancourt;0;01;G100;;;;7;;;;;0;50;50;;1
+F331;F393;1;Pt Exp Saint Remy;0;01;F001;;;;7;;;;;0;50;50;;1
+F332;F394;1;Pt Exp Vandieres;0;01;F001;;;;7;;;;;0;50;50;;1
+F333;F409;1;Pt Exp Arceau;0;01;G100;;;;7;;;;;0;50;50;;1
+F334;F410;1;Pt Exp Athée;0;01;G100;;;;7;;;;;0;50;50;;1
+F335;F411;1;Pt Exp Chassigny;0;01;G100;;;;7;;;;;0;50;50;;1
+F336;F420;1;Pt Exp Dampierre;0;01;G100;;;;7;;;;;0;50;50;;1
+F337;F412;1;LES MAILLYS;0;01;G100;;;;7;;;;;0;50;50;;1
+F338;F415;1;Pt Exp Noidant;0;01;G100;;;;7;;;;;0;50;50;;1
+F339;F416;1;Pt Exp Obtrée;0;01;G100;;;;7;;;;;0;50;50;;1
+F340;F417;1;Pt Exp Prenois;0;01;G100;;;;7;;;;;0;50;50;;1
+F341;F418;1;Pt Exp Rouvres en Plaine;0;01;G100;;;;7;;;;;0;50;50;;1
+F342;F419;1;Pt Exp Rolampont;0;01;G100;;;;7;;;;;0;50;50;;1
+F343;F345;1;Pt Exp Saint Eloi;0;01;F001;;;;7;;;;;0;50;50;;1
+F344;F346;1;Pt Exp Germancy;0;01;F001;;;;7;;;;;0;50;50;;1
+F345;F347;1;Pt Exp Petit Mesnil;0;01;F001;;;;7;;;;;0;50;50;;1
+F346;F339;1;Pt Exp STF;0;01;F001;;;;7;;;;;0;50;50;;1
+F346;F421;1;Pt Exp Périgny;0;01;G100;;;;7;;;;;0;50;50;;1
+F346;F422;1;Pt Exp Bray sur Seine;0;01;G100;;;;7;;;;;0;50;50;;1
+F346;F423;1;Pt Exp Nogent sur Seine;0;01;G100;;;;7;;;;;0;50;50;;1
+F347;F357;1;Pt Exp Sully;0;01;F001;;;;7;;;;;0;50;50;;1
+F347;F364;1;Pt Exp Viry Chatillon;0;01;;;;;7;;;;;0;50;50;;1
+F348;F358;1;Pt Exp Saint Eloi SI;0;01;F001;;;;7;;;;;0;50;50;;1
+F349;F359;1;Pt Exp Briod;0;01;F001;;;;7;;;;;0;50;50;;1
+F350;F424;1;Pt Exp Vincent;0;01;G100;;;;7;;;;;0;50;50;;1
+F351;F390;1;Pt Exp Mondelange plateforme;0;01;F001;;;;7;;;;;0;50;50;;1
+F352;F443;1;Quarry Hejocsaba;0;01;G100;;;;7;;;;;0;50;50;;1
+F352;F462;1;Point Exp Rédange;0;01;F001;;;;7;;;;;0;50;50;;1
+F353;F364;1;Pt Exp Viry Chatillon;0;01;F001;;;;7;;;;;0;50;50;;1
+F354;F444;1;Pt Exp Munchhouse;0;01;G100;;;;7;;;;;0;50;50;;1
+F355;F445;1;Pt Exp Ensisheim;0;01;F001;;;;7;;;;;0;50;50;;1
+F356;F342;1;Pt Exp Gennevilliers;0;01;F001;;;;7;;;;;0;50;50;;1
+F357;F447;1;Pt Exp Bartenheim;0;01;G100;;;;7;;;;;0;50;50;;1
+F358;F448;1;Pt Exp Blotzheim;0;01;G100;;;;7;;;;;0;50;50;;1
+F359;F384;1;Pt Exp Stattmatten;0;01;F001;;;;7;;;;;0;50;50;;1
+F360;F455;1;Pt Exp GERSTHEIM;0;01;G100;;;;7;;;;;0;50;50;;1
+F361;F456;1;Pt Exp OSTWALD (SABLIERE);0;01;G100;;;;7;;;;;0;50;50;;1
+F362;F457;1;Pt Exp BISCHOFFSHEIM;0;01;G100;;;;7;;;;;0;50;50;;1
+F365;F463;1;Pt Exp Bayel;0;01;F001;;;;7;;;;;0;50;50;;1
+F366;F376;1;Pt Exp Herrlisheim;0;01;F001;;;;7;;;;;0;50;50;;1
+F366;F382;1;Pt Exp Sausheim;0;01;F001;;;;7;;;;;0;50;50;;1
+F367;F376;1;Pt Exp Herrlisheim;0;01;F001;;;;7;;;;;0;50;50;;1
+F367;F382;1;Pt Exp Sausheim;0;01;F001;;;;7;;;;;0;50;50;;1
+F368;F383;1;Pt Exp Bischwiller;0;01;F001;;;;7;;;;;0;50;50;;1
+F368;F387;1;Pt Exp Lingolsheim;0;01;;;;;7;;;;;0;50;50;;1
+F369;F383;1;Pt Exp Bischwiller;0;01;F001;;;;7;;;;;0;50;50;;1
+F369;F387;1;Pt Exp Lingolsheim;0;01;F001;;;;7;;;;;0;50;50;;1
+F370;F391;1;Pt Exp VELTZ-VIX  Gambsheim;0;01;F001;;;;7;;;;;0;50;50;;1
+F370;F393;1;Pt Exp Saint Remy;0;01;F001;;;;7;;;;;0;50;50;;1
+F370;F394;1;Pt Exp Vandieres;0;01;;;;;7;;;;;0;50;50;;1
+F371;F393;1;Pt Exp Saint Remy;0;01;;;;;7;;;;;0;50;50;;1
+F371;F394;1;Pt Exp Vandieres;0;01;;;;;7;;;;;0;50;50;;1
+F372;F413;1;NEGOCE ALLUVIONNAIRE COTE D'OR;0;01;G100;;;;7;;;;;0;50;50;;1
+F373;F414;1;NEGOCE CALCAIRE COTE D'OR;0;01;G100;;;;7;;;;50.473457;0;50;50;;1
+F376;F440;1;NEGOCE JURA CALCAIRE;0;01;G100;;;;7;;;;;0;50;50;;1
+F377;F441;1;NEGOCE JURA ALLUVIONNAIRE;0;01;G100;;;;7;;;;50.745512;0;50;50;;1
+F378;F465;1;Pt Exp Vernou;0;01;G100;;;;7;;;;51.2529016402;0;50;250;;1
+F379;F301;1;Pt Exp Dunkerque;0;01;;;;;7;;;;;0;50;50;;1
+F380;F308;1;Pt Exp Dhainaut;0;01;F001;;;;7;;;;;0;50;50;;1
+F380;F309;1;Pt Exp Chevrières;0;01;F001;;;;7;;;;;0;50;50;;1
+F380;F310;1;Pt Exp Samin;0;01;F001;;;;7;;;;;0;50;50;;1
+F380;F311;1;Pt Exp Izegem;0;01;F001;;;;7;;;;;0;50;50;;1
+F380;F312;1;Pt Exp Blandin;0;01;;;;;7;;;;;0;50;50;;1
+F380;F313;1;Pt Exp Rieulay;0;01;;;;;7;;;;51.5356652;0;50;50;;1
+F380;F314;1;Pt Exp CSS Lafarge;0;01;;;;;7;;;;;0;50;50;;1
+F380;F315;1;Pt Exp STB HAMEL;0;01;;;;;7;;;;;0;50;50;;1
+F380;F316;1;Pt Exp Tertre;0;01;;;;;7;;;;;0;50;50;;1
+F381;B324;1;Pt Exp CCB;0;01;;;;;7;;;;;0;50;50;;1
+F381;B341;1;Pt Exp TPR;0;01;;;;;7;;;;;0;50;50;;1
+F381;F317;1;Pt Exp UCP;0;01;;;;;7;;;;;0;50;50;;1
+F381;F318;1;Pt Exp MORILLON Val de Reuil;0;01;F001;;;;7;;;;;0;50;50;;1
+F381;F319;1;Pt Exp Stref;0;01;F001;;;;7;;;;;0;50;50;;1
+F381;F320;1;Pt Exp Bocahut;0;01;F001;;;;7;;;;;0;50;50;;1
+F381;F459;1;Pt Exp Crh Lumbres;0;01;F001;;;;7;;;;;0;50;50;;1
+F382;F312;1;Pt Exp Blandin;0;01;;;;;7;;;;;0;50;50;;1
+F382;F318;1;Pt Exp MORILLON Val de Reuil;0;01;G100;;;;7;;;;;0;50;50;;1
+F382;F322;1;Pt Exp Bray;0;01;G100;;;;7;;;;;0;50;50;;1
+F382;F323;1;Pt Exp Saint Benoit sur Loire;0;01;G100;;;;7;;;;;0;50;50;;1
+F382;F324;1;Pt Exp GSM Matignicourt;0;01;G100;;;;7;;;;;0;50;50;;1
+F382;F325;1;Pt Exp Vic sur Aisne;0;01;G100;;;;7;;;;;0;50;50;;1
+F382;F326;1;Pt Exp DESMAREST Ressons;0;01;G100;;;;7;;;;;0;50;50;;1
+F382;F327;1;Pt Exp SIBELCO Crépy en Valois;0;01;G100;;;;7;;;;;0;50;50;;1
+F382;F328;1;Pt Exp SIBELCO St PierreNemour;0;01;G100;;;;7;;;;;0;50;50;;1
+F382;F340;1;Pt Exp Gonfreville MBS;0;01;G100;;;;7;;;;;0;50;50;;1
+F383;F329;1;Pt Exp Virey sur Bar;0;01;;;;;7;;;;;0;50;50;;1
+F383;F330;1;Pt Exp Saint Aignan;0;01;;;;;7;;;;;0;50;50;;1
+F383;F331;1;Pt Exp Crambes;0;01;;;;;7;;;;;0;50;50;;1
+F383;F332;1;Pt Exp Ligérienne;0;01;;;;;7;;;;;0;50;50;;1
+F383;F333;1;Pt Exp Cemex;0;01;;;;;7;;;;;0;50;50;;1
+F383;F334;1;Pt Exp Bonnevault;0;01;;;;;7;;;;;0;50;50;;1
+F384;F335;1;Pt Exp Vimpelles;0;01;;;;;7;;;;;0;50;50;;1
+F384;F336;1;Pt Exp Genevilliers;0;01;;;;;7;;;;;0;50;50;;1
+F384;F337;1;Pt Exp GSM Genevilliers;0;01;;;;;7;;;;;0;50;50;;1
+F384;F338;1;Pt Exp Viry Chatillon;0;01;;;;;7;;;;;0;50;50;;1
+F384;F339;1;Pt Exp STF;0;01;;;;;7;;;;;0;50;50;;1
+F385;F341;1;Pt Exp Plessis plateforme;0;01;;;;;7;;;;;0;50;50;;1
+F386;F341;1;Pt Exp Plessis plateforme;0;01;;;;;7;;;;;0;50;50;;1
+F387;F348;1;Pt Exp Neg Calc Aube VdL;0;01;;;;;7;;;;;0;50;50;;1
+F388;F329;1;Pt Exp Virey sur Bar;0;01;;;;;7;;;;;0;50;50;;1
+F388;F332;1;Pt Exp Ligérienne;0;01;;;;;7;;;;;0;50;50;;1
+F388;F334;1;Pt Exp Bonnevault;0;01;;;;;7;;;;;0;50;50;;1
+F388;F353;1;Pt Exp Saint léger sous Brienn;0;01;;;;;7;;;;;0;50;50;;1
+F388;F354;1;Pt Exp Pont sur Yonne;0;01;;;;;7;;;;;0;50;50;;1
+F388;F355;1;Pt Exp Montereau;0;01;F001;;;;7;;;;;0;50;50;;1
+F388;F356;1;Pt Exp Marolles sur Seine;0;01;F001;;;;7;;;;;0;50;50;;1
+F389;F349;1;Pt Exp Wandrille;0;01;F001;;;;7;;;;;0;50;50;;1
+F390;F350;1;Pt Exp Le Havre;0;01;F001;;;;7;;;;;0;50;50;;1
+F391;F360;1;Pt Exp Port de Brest;0;01;F001;;;;7;;;;;0;50;50;;1
+F391;F361;1;Pt Exp Port La Rochelle;0;01;F001;;;;7;;;;;0;50;50;;1
+F391;F362;1;Pt Exp Port Boucau/Tarnos;0;01;F001;;;;7;;;;;0;50;50;;1
+F391;F363;1;Pt Exp Bordeaux;0;01;G100;;;;7;;;;;0;50;50;;1
+F392;F342;1;Pt Exp Gennevilliers;0;01;G100;;;;7;;;;;0;50;50;;1
+F393;F342;1;Pt Exp Gennevilliers;0;01;G100;;;;7;;;;;0;50;50;;1
+F394;F464;1;Pt Exp Dieppe;0;01;G100;;;;7;;;;;0;50;50;;1
+F395;F301;1;Pt Exp Dunkerque;0;01;;;;;7;;;;;0;50;50;;1
+F3B1;F431;1;Pt Exp Chaux;0;01;G100;;;;7;;;;;0;50;50;;1
+F3B2;F432;1;Pt Exp Comblanchien;0;01;G100;;;;7;;;;;0;50;50;;1
+F3B3;F433;1;CARRIÈRES DIVERSES (CBS);0;01;G100;;;;7;;;;;0;50;50;;1
+F3B4;F436;1;Pt Exp La Rochepot;0;01;G100;;;;7;;;;;0;50;50;;1
+F3B5;F437;1;Pt Exp Sennecey le Grand;0;01;G100;;;;7;;;;;0;50;50;;1
+F3B6;F438;1;Pt Exp CBS Décharge;0;01;G100;;;;7;;;;;0;50;50;;1
+F3B7;F442;1;Pt Exp Magny-Les-Villers;0;01;G100;;;;7;;;;;0;50;50;;1
+F3B8;F434;1;NEGOCE ALLUVIONNAIRE (CBS);0;01;G100;;;;7;;;;;0;50;50;;1
+F3B9;F435;1;NEGOCE CALCAIRE (CBS);0;01;G100;;;;7;;;;;0;50;50;;1
+F3D1;F425;1;DECHARGE (SOCALCOR);0;01;G100;;;;7;;;;;0;50;50;;1
+F3D2;F426;1;Pt Exp Dienay;0;01;G100;;;;7;;;;;0;50;50;;1
+F3D3;F427;1;Pt Exp Epagny;0;01;G100;;;;7;;;;;0;50;50;;1
+F3D4;F429;1;NEGOCE ALLUVIONNAIRE (SOCALCOR;0;01;G100;;;;7;;;;;0;50;50;;1
+F3D5;F430;1;NEGOCE CALCAIRE (SOCALCOR);0;01;G100;;;;7;;;;;0;50;50;;1
+F3E1;F395;1;Pt Exp Anteuil;0;01;G100;;;;7;;;;;0;50;50;;1
+F3E2;F396;1;Pt Exp Arcey;0;01;G100;;;;7;;;;;0;50;50;;1
+F3E3;F397;1;Pt Exp Banvillars;0;01;;;;;7;;;;;0;50;50;;1
+F3E4;F398;1;Pt Exp Bougnon;0;01;;;;;7;;;;;0;50;50;;1
+F3E5;F399;1;Pt Exp Faverney;0;01;;;;;7;;;;;0;50;50;;1
+F3E6;F403;1;Pt Exp Saint Loup;0;01;G100;;;;7;;;;;0;50;50;;1
+F3E7;F404;1;Pt Exp Magny d'Anygon;0;01;G100;;;;7;;;;;0;50;50;;1
+F3E8;F405;1;Pt Exp Mailley;0;01;G100;;;;7;;;;;0;50;50;;1
+F3E9;F406;1;Pt Exp Mathay;0;01;G100;;;;7;;;;;0;50;50;;1
+F3EA;F407;1;Pt Exp Marchaux;0;01;G100;;;;7;;;;;0;50;50;;1
+F3EB;F408;1;Pt Exp Roye;0;01;G100;;;;7;;;;;0;50;50;;1
+F3EC;F446;1;Pt Exp Bart;0;01;G100;;;;7;;;;;0;50;50;;1
+F3ED;F449;1;Pt Exp Bart déblais;0;01;G100;;;;7;;;;;0;50;50;;1
+F3EE;F450;1;Pt Exp Grosbois;0;01;G100;;;;7;;;;;0;50;50;;1
+F3EF;F400;1;Pt Exp Crotenay;0;01;G100;;;;7;;;;;0;50;50;;1
+F3EF;F401;1;Pt Exp Velet;0;01;G100;;;;7;;;;;0;50;50;;1
+F3EG;F428;1;Pt Exp Marsannay le Bois;0;01;G100;;;;7;;;;;0;50;50;;1
+F3EH;F402;1;Pt Exp Argiesans;0;01;G100;;;;7;;;;;0;50;50;;1
+F3G1;F451;1;Pt Exp Gerstheim;0;01;G100;;;;7;;;;;0;50;50;;1
+F3G2;F452;1;Pt Exp Ostwald sablière;0;01;G100;;;;7;;;;;0;50;50;;1
+F3G3;F453;1;Pt Exp Bischoffheim;0;01;G100;;;;7;;;;;0;50;50;;1
+F3I1;F454;1;Pt Exp Grav de la Hardt;0;01;G100;;;;7;;;;;0;50;50;;1
+F400;F617;1;ABBEVILLE HBP;0;01;;;;;7;;;;;0;50;50;;1
+F401;F605;1;ALBERT HBP;0;01;;;;;7;;;;;0;50;50;;1
+F402;F529;1;ALFORTVILLE HBIDF;0;01;;;;;7;;;;;0;50;50;;1
+F403;F590;1;ALTKIRCH;0;01;;;;;7;;;;;0;50;50;;1
+F404;F614;1;AMIENS HBP;0;01;;;;;7;;;;;0;50;50;;1
+F405;F569;1;AMNEVILLE HBE;0;01;;;;;7;;;;;0;50;50;;1
+F406;F661;1;ARC LES GRAY HBCE;0;01;;;;;7;;;;;0;50;50;;1
+F407;F591;1;ARQUES HBN;0;01;;;;;7;;;;;0;50;50;;1
+F408;F601;1;ARRAS - ST LAURENT BLANGY HBN;0;01;;;;;7;;;;;0;50;50;;1
+F409;F512;1;BAR SUR AUBE HBCE;0;01;;;;;7;;;;;0;50;50;;1
+F410;F542;1;BATIGNOLLES 2;0;01;;;;;7;;;;;0;50;50;;1
+F411;F543;1;Batignolles Provisoire;0;01;;;;;7;;;;;0;50;50;;1
+F412;F502;1;BAUME LES DAMES HBCE;0;01;;;;;7;;;;;0;50;50;;1
+F413;F610;1;BEAUVAIS-TILLE HBP;0;01;;;;;7;;;;;0;50;50;;1
+F414;F507;1;BELFORT - BAVILLIERS HBCE;0;01;;;;;7;;;;;0;50;50;;1
+F415;F553;1;BENFELD HBE;0;01;;;;;7;;;;;0;50;50;;1
+F416;F501;1;BESANCON - TREPILLOT HBCE;0;01;;;;;7;;;;;0;50;50;;1
+F417;F599;1;BETHUNE 1 - HBN;0;01;;;;;7;;;;;0;50;50;;1
+F418;F600;1;BETHUNE 2 - HBN;0;01;;;;;7;;;;;0;50;50;;1
+F419;F602;1;BETHUNE 3 - HBN;0;01;;;;;7;;;;;0;50;50;;1
+F420;F550;1;BOLBEC HBIDF;0;01;;;;;7;;;;;0;50;50;;1
+F421;F532;1;BONDY HBIDF;0;01;;;;;7;;;;;0;50;50;;1
+F422;F596;1;BOULOGNE-ST LEONARD HBN;0;01;;;;;7;;;;;0;50;50;;1
+F423;F561;1;BUHL HBE;0;01;;;;;7;;;;;0;50;50;;1
+F424;F570;1;BUREAUX THIONVILLE;0;01;;;;;7;;;;;0;50;50;;1
+F425;F595;1;CALAIS HBN;0;01;;;;;7;;;;;0;50;50;;1
+F426;F604;1;CAMBRAI - PROVILLE HBN;0;01;;;;;7;;;;;0;50;50;;1
+F427;F530;1;CERGY - PONTOISE HBIDF;0;01;;;;;7;;;;;0;50;50;;1
+F428;F654;1;CERNAY  HBE;0;01;;;;;7;;;;;0;50;50;;1
+F429;F503;1;CHALON SUR SAONE HBCE;0;01;;;;;7;;;;;0;50;50;;1
+F430;F516;1;CHAMBON FEUGEROLLE;0;01;;;;;7;;;;;0;50;50;;1
+F431;F683;1;BEAUMONT HBCE;0;01;;;;;7;;;;;0;50;50;;1
+F432;F575;1;CHARLEVILLE HBE;0;01;;;;;7;;;;;0;50;50;;1
+F433;F545;1;CLEON LA RIVIERE HBIDF;0;01;;;;;7;;;;;0;50;50;;1
+F434;F612;1;CLERMONT-AGNETZ HBP;0;01;;;;;7;;;;;0;50;50;;1
+F435;F609;1;COMPIEGNE HBP;0;01;;;;;7;;;;;0;50;50;;1
+F436;F594;1;CONCHIL HBN;0;01;;;;;7;;;;;0;50;50;;1
+F437;F587;1;CONTREXEVILLE HBE;0;01;;;;;7;;;;;0;50;50;;1
+F438;F615;1;CONTY HBP;0;01;;;;;7;;;;;0;50;50;;1
+F439;F611;1;CREIL - NOGENT SUR OISE HBP;0;01;;;;;7;;;;;0;50;50;;1
+F439;F624;1;LABORATOIRE HBP;0;01;;;;;7;;;;;0;50;50;;1
+F440;F547;1;CRIQUETOT L'ESNEVAL HBIDF;0;01;;;;;7;;;;;0;50;50;;1
+F441;F504;1;DOLE - CHOISEY HBCE;0;01;;;;;7;;;;;0;50;50;;1
+F442;F603;1;DOUAI - ROOST HBN;0;01;;;;;7;;;;;0;50;50;;1
+F443;F613;1;DOULLENS HBP;0;01;;;;;7;;;;;0;50;50;;1
+F444;F593;1;DUNKERQUE HBN;0;01;;;;;7;;;;;0;50;50;;1
+F445;F592;1;DUNKERQUE ISOPIPE HBN;0;01;;;;;7;;;;;0;50;50;;1
+F446;F586;1;ELOYES - REMIREMONT HBE;0;01;;;;;7;;;;;0;50;50;;1
+F447;F555;1;ENTZHEIM HBE;0;01;;;;;7;;;;;0;50;50;;1
+F448;F511;1;EPOTHEMONT HBCE;0;01;;;;;7;;;;;0;50;50;;1
+F449;F554;1;ERGERSHEIM HBE;0;01;;;;;7;;;;;0;50;50;;1
+F450;F567;1;ERSTEIN;0;01;;;;;7;;;;;0;50;50;;1
+F451;F505;1;MONTBELIARD - ETUPES HBCE;0;01;;;;;7;;;;;0;50;50;;1
+F452;F562;1;FAULQUEMONT HBE;0;01;;;;;7;;;;;0;50;50;;1
+F453;F515;1;FEYZIN;0;01;;;;;7;;;;;0;50;50;;1
+F454;F546;1;GAILLON HBIDF;0;01;;;;;7;;;;;0;50;50;;1
+F455;F541;1;Gennevilliers BUS;0;01;;;;;7;;;;;0;50;50;;1
+F456;F538;1;GENNEVILLIERS HBIDF;0;01;;;;;7;;;;;0;50;50;;1
+F457;F584;1;GOLBEY - EPINAL HBCE;0;01;;;;;7;;;;;0;50;50;;1
+F458;F581;1;GUEBWILLER  HBE;0;01;;;;;7;;;;;0;50;50;;1
+F459;F558;1;HAGUENAU HBE;0;01;;;;;7;;;;;0;50;50;;1
+F460;F653;1;HEGENHEIM;0;01;;;;;7;;;;;0;50;50;;1
+F461;F583;1;HERRLISHEIM  HBE;0;01;;;;;7;;;;;0;50;50;;1
+F462;F579;1;HIRSON HBE;0;01;;;;;7;;;;;0;50;50;;1
+F463;F557;1;HOERDT HBE;0;01;;;;;7;;;;;0;50;50;;1
+F465;F582;1;HOUSSEN  HBE;0;01;;;;;7;;;;;0;50;50;;1
+F466;F566;1;CENTRALE MOBILE 2;0;01;;;;;7;;;;;0;50;50;;1
+F467;F560;1;INGWILLER HBE;0;01;;;;;7;;;;;0;50;50;;1
+F468;F535;1;ISLES LES VILLENOY HBIDF;0;01;;;;;7;;;;;0;50;50;;1
+F469;F571;1;JARNY - HATRIZE HBE;0;01;;;;;7;;;;;0;50;50;;1
+F470;F551;1;LA NEUVILLE CHANT DOISEL HBIDF;0;01;;;;;7;;;;;0;50;50;;1
+F471;F624;1;LABORATOIRE HBP;0;01;;;;;7;;;;;0;50;50;;1
+F472;F625;1;LABORATOIRE BC;0;01;;;;;7;;;;;0;50;50;;1
+F473;F623;1;LABORATOIRE HBN;0;01;;;;;7;;;;;0;50;50;;1
+F474;F510;1;LONS LE SAUNIER HBCE;0;01;;;;;7;;;;;0;50;50;;1
+F475;F531;1;LUZANCY HBIDF;0;01;;;;;7;;;;;0;50;50;;1
+F476;F509;1;MAICHE HBCE;0;01;;;;;7;;;;;0;50;50;;1
+F477;F537;1;MARCOUSSIS HBIDF;0;01;;;;;7;;;;;0;50;50;;1
+F478;F607;1;MARLE HBP;0;01;;;;;7;;;;;0;50;50;;1
+F479;F514;1;MERY SUR SEINE HBCE;0;01;;;;;7;;;;;0;50;50;;1
+F480;F572;1;METZ - BORNY HBE;0;01;;;;;7;;;;;0;50;50;;1
+F481;F500;1;MISEREY HBCE;0;01;;;;;7;;;;;0;50;50;;1
+F482;F576;1;MONT ST MARTIN - LONGWY HBE;0;01;;;;;7;;;;;0;50;50;;1
+F483;F506;1;MONTBELIARD - ETUPES HBCE;0;01;;;;;7;;;;;0;50;50;;1
+F484;F564;1;NANCY - BONSECOURS HBE;0;01;;;;;7;;;;;0;50;50;;1
+F485;F565;1;NANCY - MILLERY HBE;0;01;;;;;7;;;;;0;50;50;;1
+F486;F539;1;NANTERRE 1 HBIDF;0;01;;;;;7;;;;;0;50;50;;1
+F487;F540;1;NANTERRE 2 HBIDF;0;01;;;;;7;;;;;0;50;50;;1
+F488;F559;1;CENTRALE MOBILE 1;0;01;;;;;7;;;;;0;50;50;;1
+F489;F556;1;NEUDORF  HBE;0;01;;;;;7;;;;;0;50;50;;1
+F490;F552;1;NIEDERNAI  HBE;0;01;;;;;7;;;;;0;50;50;;1
+F490;F620;1;LABORATOIRE HBA;0;01;;;;;7;;;;;0;50;50;;1
+F491;F536;1;ORLY HBIDF;0;01;;;;;7;;;;;0;50;50;;1
+F492;F568;1;OSTWALD HBE;0;01;;;;;7;;;;;0;50;50;;1
+F493;F527;1;PANTIN HBIDF;0;01;;;;;7;;;;;0;50;50;;1
+F494;F549;1;PAVILLY HBIDF;0;01;;;;;7;;;;;0;50;50;;1
+F495;F606;1;PERONNE HBP;0;01;;;;;7;;;;;0;50;50;;1
+F496;F508;1;PONTARLIER HBCE;0;01;;;;;7;;;;;0;50;50;;1
+F497;F618;1;PONTS ET MARAIS HBP;0;01;;;;;7;;;;;0;50;50;;1
+F498;F577;1;REIMS HBE;0;01;;;;;7;;;;;0;50;50;;1
+F499;F574;1;RIXHEIM HBE;0;01;;;;;7;;;;;0;50;50;;1
+F4A0;F658;1;Pt exp. PAVILLY 2 HBIDF;0;01;;;;;7;;;;;0;50;50;;1
+F4A1;F533;1;ROISSY I HBIDF;0;01;;;;;7;;;;;0;50;50;;1
+F4A2;F534;1;ROISSY II HBIDF;0;01;;;;;7;;;;;0;50;50;;1
+F4A3;F544;1;ROUEN HBIDF;0;01;;;;;7;;;;;0;50;50;;1
+F4A4;F585;1;RUPT SUR MOSELLE HBE;0;01;;;;;7;;;;;0;50;50;;1
+F4A5;F563;1;RUSSANGE HBE;0;01;;;;;7;;;;;0;50;50;;1
+F4A6;F513;1;SAINT PARRES LES VAUDES HBCE;0;01;;;;;7;;;;;0;50;50;;1
+F4A7;F517;1;SAINT PIERRE DE CHANDIEU HBCE;0;01;;;;;7;;;;;0;50;50;;1
+F4A8;F573;1;SAINT-LOUIS HBE;0;01;;;;;7;;;;;0;50;50;;1
+F4A9;F580;1;SAUSHEIM  HBE;0;01;;;;;7;;;;;0;50;50;;1
+F4AA;F528;1;LAGNY SUR MARNE HBIDF;0;01;;;;;7;;;;;0;50;50;;1
+F4AB;F608;1;LAON - VESLUD HBP;0;01;;;;;7;;;;;0;50;50;;1
+F4AC;F548;1;LE HAVRE HBIDF;0;01;;;;;7;;;;;0;50;50;;1
+F4AD;F597;1;LILLE - MARQUETTE HBN;0;01;;;;;7;;;;;0;50;50;;1
+F4AE;F598;1;LILLE - TEMPLEMARS HBN;0;01;;;;;7;;;;;0;50;50;;1
+F4AF;F619;1;LONGROY - GAMACHES HBP;0;01;;;;;7;;;;;0;50;50;;1
+F4AG;F659;1;SAVERNE TUNNEL HBE;0;01;;;;;7;;;;;0;50;50;;1
+F4AL;F662;1;SIERENTZ HBE;0;01;;;;;7;;;;;0;50;50;;1
+F4AM;F663;1;SOISSONS - PERNANT HBP;0;01;;;;;7;;;;;0;50;50;;1
+F4AN;F675;1;ST FLORENTIN HBCE;0;01;;;;;7;;;;;0;50;50;;1
+F4AO;F664;1;ST QUENTIN HBP;0;01;;;;;7;;;;;0;50;50;;1
+F4AP;F665;1;ST SOUPPLETS HBIDF;0;01;;;;;7;;;;;0;50;50;;1
+F4AQ;F666;1;STEINBOURG HBE;0;01;;;;;7;;;;;0;50;50;;1
+F4AR;F667;1;STENAY HBE;0;01;;;;;7;;;;;0;50;50;;1
+F4AS;F668;1;THIBERVILLE HBIDF;0;01;;;;;7;;;;;0;50;50;;1
+F4AT;F669;1;THIONVILLE - ILLANGE HBE;0;01;;;;;7;;;;;0;50;50;;1
+F4AU;F670;1;THOLY - GERARDMER HBE;0;01;;;;;7;;;;;0;50;50;;1
+F4AV;F671;1;TOLBIAC HBIDF;0;01;;;;;7;;;;;0;50;50;;1
+F4AX;F672;1;TROYES - ST ANDRE HBCE;0;01;;;;;7;;;;;0;50;50;;1
+F4AY;F673;1;VALDAHON HBCE;0;01;;;;;7;;;;;0;50;50;;1
+F4AZ;F674;1;VALENCIENNES HBN;0;01;;;;;7;;;;;0;50;50;;1
+F4B0;F676;1;VANDIERES HBE;0;01;;;;;7;;;;;0;50;50;;1
+F4B1;F677;1;VESOUL HBCE;0;01;;;;;7;;;;;0;50;50;;1
+F4B2;F678;1;BEAUVAIS GARE HBP;0;01;;;;;7;;;;;0;50;50;;1
+F4B3;F679;1;VIREUX MOLHAIN HBE;0;01;;;;;7;;;;;0;50;50;;1
+F4B4;F655;1;CHARLEVILLE ANHY. HBE;0;01;;;;;7;;;;;0;50;50;;1
+F4E0;F633;1;ATHEE DB;0;01;G100;;;;7;;;;;0;50;50;;1
+F4E1;F636;1;BEAUNE DB;0;01;G100;;;;7;;;;;0;50;50;;1
+F4E2;F639;1;CHATILLON SUR SEINE DB;0;01;;;;;7;;;;;0;50;50;;1
+F4E3;F631;1;DIJON NORD DB;0;01;;;;;7;;;;;0;50;50;;1
+F4E4;F641;1;MOBILE 1 SECT DIJON DB;0;01;;;;;7;;;;;0;50;50;;1
+F4E5;F644;1;MOBILE 1 SITE EST DB;0;01;;;;;7;;;;;0;50;;;1
+F4E6;F650;1;MOBILE 1 SITE NORD DB;0;01;;;;;7;;;;;0;50;;;1
+F4E7;F647;1;MOBILE 1 SITE SUD DB;0;01;;;;;7;;;;;0;50;;;1
+F4E8;F642;1;MOBILE 2 SECT DIJON DB;0;01;;;;;7;;;;;0;50;;;1
+F4E9;F645;1;MOBILE 2 SITE EST DB;0;01;;;;;7;;;;;0;50;;;1
+F4EA;F651;1;MOBILE 2 SITE NORD DB;0;01;;;;;7;;;;;0;50;;;1
+F4EB;F648;1;MOBILE 2 SITE SUD DB;0;01;;;;;7;;;;;0;50;;;1
+F4EC;F643;1;MOBILE 3 SECT DIJON DB;0;01;;;;;7;;;;;0;50;;;1
+F4ED;F646;1;MOBILE 3 SITE EST DB;0;01;;;;;7;;;;;0;50;;;1
+F4EE;F652;1;MOBILE 3 SITE NORD DB;0;01;;;;;7;;;;;0;50;;;1
+F4EF;F649;1;MOBILE 3 SITE SUD DB;0;01;;;;;7;;;;;0;50;;;1
+F4EG;F640;1;MONTBARD DB;0;01;;;;;7;;;;;0;50;;;1
+F4EH;F637;1;NUITS ST GEORGES DB;0;01;;;;;7;;;;;0;50;;;1
+F4EI;F638;1;POUILLY EN AUXOIS DB;0;01;;;;;7;;;;;0;50;;;1
+F4EJ;F632;1;ROUVRES EN PLAINE DB;0;01;;;;;7;;;;;0;50;;;1
+F4EK;F634;1;LONGVIC 1 DB;0;01;;;;;7;;;;;0;50;;;1
+F4EL;F635;1;LONGVIC 2 DB;0;01;;;;;7;;;;;0;50;;;1
+F4EP;F680;1;ST VIT DB;0;01;;;;;7;;;;;0;50;;;1
+F4EQ;F681;1;STS GEOSMES DB;0;01;;;;;7;;;;;0;50;;;1
+F4ER;F682;1;#N/A;0;01;;;;;7;;;;;0;50;;;1
+F4ES;F656;1;Pt exp. CHATEAU-THIERRY BC;0;01;;;;;7;;;;;0;50;;;1
+F4ET;F578;1;Pt exp. EPERNAY HBE;0;01;;;;;7;;;;;0;50;;;1
+F4EU;F657;1;Pt exp. ST APOLLINAIRE DB;0;01;;;;;7;;;;;0;50;;;1
+F4F0;F521;1;CROTENAY BR;0;01;;;;;7;;;;;0;50;;;1
+F4F1;F525;1;GEX BR;0;01;;;;;7;;;;;0;50;;;1
+F4F2;F526;1;IZERNORE - NANTUA BR;0;01;;;;;7;;;;;0;50;;;1
+F4F3;F626;1;LABORATOIRE BR;0;01;;;;;7;;;;;0;50;;;1
+F4F4;F522;1;LONS LE SAUNIER BR;0;01;;;;;7;;;;;0;50;;;1
+F4F5;F523;1;ORGELET BR;0;01;;;;;7;;;;;0;50;;;1
+F4F6;F524;1;SAPOIS BR;0;01;;;;;7;;;;;0;50;;;1
+F801;F300;1;Pt Exp Conchil le Temple;0;01;F001;;;;7;;;;;0;50;;;1
+F802;F301;1;Pt Exp Dunkerque;0;01;F001;;;;7;;;;;0;50;;;1
+F803;F302;1;Pt Exp Ferques;0;01;F001;;;;7;;;;;0;50;;;1
+F803;F303;1;Pt Exp Limont Fontaine;0;01;F001;;;;7;;;;;0;50;;;1
+F803;F304;1;Pt Exp Coulogne;0;01;F001;;;;7;;;;;0;50;;;1
+F803;F305;1;Pt Exp Mardick;0;01;F001;;;;7;;;;;0;50;;;1
+F803;F306;1;Pt Exp Bailleul sur Therain;0;01;F001;;;;7;;;;;0;50;;;1
+F807;F307;1;Pt Exp Zeebrugge;0;01;F001;;;;7;;;;;0;50;;;1
+F808;F308;1;Pt Exp Dhainaut;0;01;F001;;;;7;;;;;0;50;;;1
+F808;F309;1;Pt Exp Chevrières;0;01;F001;;;;7;;;;;0;50;;;1
+F808;F310;1;Pt Exp Samin;0;01;F001;;;;7;;;;;0;50;;;1
+F808;F311;1;Pt Exp Izegem;0;01;F001;;;;7;;;;;0;50;;;1
+F808;F312;1;Pt Exp Blandin;0;01;F001;;;;7;;;;;0;50;;;1
+F808;F313;1;Pt Exp Rieulay;0;01;F001;;;;7;;;;;0;50;;;1
+F808;F314;1;Pt Exp CSS Lafarge;0;01;;;;;7;;;;;0;50;;;1
+F808;F315;1;Pt Exp STB HAMEL;0;01;F001;;;;7;;;;;0;50;;;1
+F808;F316;1;Pt Exp Tertre;0;01;F001;;;;7;;;;;0;50;;;1
+F809;B324;1;Pt Exp CCB;0;01;;;;;7;;;;;0;50;;;1
+F809;B341;1;Pt Exp TPR;0;01;;;;;7;;;;;0;50;;;1
+F809;F317;1;Pt Exp UCP;0;01;F001;;;;7;;;;;0;50;;;1
+F809;F318;1;Pt Exp MORILLON Val de Reuil;0;01;F001;;;;7;;;;;0;50;;;1
+F809;F319;1;Pt Exp Stref;0;01;F001;;;;7;;;;;0;50;;;1
+F809;F320;1;Pt Exp Bocahut;0;01;F001;;;;7;;;;;0;50;;;1
+F809;F459;1;Pt Exp Crh Lumbres;0;01;G100;;;;7;;;;;0;50;;;1
+F810;F321;1;Pt Exp Limé;0;01;F001;;;;7;;;;;0;50;;;1
+F811;F312;1;Pt Exp Blandin;0;01;F001;;;;7;;;;;0;50;;;1
+F811;F318;1;Pt Exp MORILLON Val de Reuil;0;01;F001;;;;7;;;;;0;50;;;1
+F811;F322;1;Pt Exp Bray;0;01;F001;;;;7;;;;;0;50;;;1
+F811;F323;1;Pt Exp Saint Benoit sur Loire;0;01;F001;;;;7;;;;;0;50;;;1
+F811;F324;1;Pt Exp GSM Matignicourt;0;01;F001;;;;7;;;;;0;50;;;1
+F811;F325;1;Pt Exp Vic sur Aisne;0;01;F001;;;;7;;;;;0;50;;;1
+F811;F326;1;Pt Exp DESMAREST Ressons;0;01;F001;;;;7;;;;;0;50;;;1
+F811;F327;1;Pt Exp SIBELCO Crépy en Valois;0;01;F001;;;;7;;;;;0;50;;;1
+F811;F328;1;Pt Exp SIBELCO St PierreNemour;0;01;F001;;;;7;;;;;0;50;;;1
+F811;F340;1;Pt Exp Gonfreville MBS;0;01;;;;;7;;;;;0;50;;;1
+F812;F329;1;Pt Exp Virey sur Bar;0;01;F001;;;;7;;;;;0;50;;;1
+F812;F330;1;Pt Exp Saint Aignan;0;01;F001;;;;7;;;;;0;50;;;1
+F812;F331;1;Pt Exp Crambes;0;01;F001;;;;7;;;;;0;50;;;1
+F812;F332;1;Pt Exp Ligérienne;0;01;F001;;;;7;;;;;0;50;;;1
+F812;F333;1;Pt Exp Cemex;0;01;F001;;;;7;;;;;0;50;;;1
+F812;F334;1;Pt Exp Bonnevault;0;01;F001;;;;7;;;;;0;50;;;1
+F813;F335;1;Pt Exp Vimpelles;0;01;F001;;;;7;;;;;0;50;;;1
+F813;F336;1;Pt Exp Genevilliers;0;01;F001;;;;7;;;;;0;50;;;1
+F813;F337;1;Pt Exp GSM Genevilliers;0;01;F001;;;;7;;;;;0;50;;;1
+F813;F338;1;Pt Exp Viry Chatillon;0;01;F001;;;;7;;;;;0;50;;;1
+F813;F339;1;Pt Exp STF;0;01;F001;;;;7;;;;;0;50;;;1
+F814;F341;1;Pt Exp Plessis plateforme;0;01;;;;;7;;;;;0;50;;;1
+F815;F341;1;Pt Exp Plessis plateforme;0;01;F001;;;;7;;;;;0;50;;;1
+F816;F343;1;Pt Exp Soupir;0;01;F001;;;;7;;;;;0;50;;;1
+F816;F344;1;Pt Exp Bourg et Comin;0;01;F001;;;;7;;;;;0;50;;;1
+F817;F345;1;Pt Exp Saint Eloi;0;01;F001;;;;7;;;;;0;50;;;1
+F818;F346;1;Pt Exp Germancy;0;01;F001;;;;7;;;;;0;50;;;1
+F819;F347;1;Pt Exp Petit Mesnil;0;01;F001;;;;7;;;;;0;50;;;1
+F820;F348;1;Pt Exp Neg Calc Aube VdL;0;01;;;;;7;;;;;0;50;;;1
+F821;F329;1;Pt Exp Virey sur Bar;0;01;F001;;;;7;;;;;0;50;;;1
+F821;F332;1;Pt Exp Ligérienne;0;01;F001;;;;7;;;;;0;50;;;1
+F821;F334;1;Pt Exp Bonnevault;0;01;F001;;;;7;;;;;0;50;;;1
+F821;F353;1;Pt Exp Saint léger sous Brienn;0;01;F001;;;;7;;;;;0;50;;;1
+F821;F354;1;Pt Exp Pont sur Yonne;0;01;F001;;;;7;;;;;0;50;;;1
+F821;F355;1;Pt Exp Montereau;0;01;F001;;;;7;;;;;0;50;;;1
+F821;F356;1;Pt Exp Marolles sur Seine;0;01;F001;;;;7;;;;;0;50;;;1
+F822;F357;1;Pt Exp Sully;0;01;F001;;;;7;;;;;0;50;;;1
+F823;F349;1;Pt Exp Wandrille;0;01;F001;;;;7;;;;;0;50;;;1
+F824;F350;1;Pt Exp Le Havre;0;01;F001;;;;7;;;;;0;50;;;1
+F825;F364;1;Pt Exp Viry Chatillon;0;01;;;;;7;;;;;0;50;;;1
+F826;F360;1;Pt Exp Port de Brest;0;01;F001;;;;7;;;;;0;50;;;1
+F826;F361;1;Pt Exp Port La Rochelle;0;01;F001;;;;7;;;;;0;50;;;1
+F826;F362;1;Pt Exp Port Boucau/Tarnos;0;01;F001;;;;7;;;;;0;50;;;1
+F826;F363;1;Pt Exp Bordeaux;0;01;F001;;;;7;;;;;0;50;;;1
+F827;F342;1;Pt Exp Gennevilliers;0;01;F001;;;;7;;;;;0;50;;;1
+F828;F342;1;Pt Exp Gennevilliers;0;01;F001;;;;7;;;;;0;50;;;1
+F829;F464;1;Pt Exp Dieppe;0;01;;;;;7;;;;;0;50;;;1
+FC00;F108;1;Pt exp Dotternhausen;0;01;;;;;7;;;;;0;50;;;1
+FC00;F109;1;Pt exp Eclépens;0;01;;;;;7;;;;;0;50;;;1
+FC00;F132;1;Pt Exp Lagerdorf;0;01;;;;;7;;;;;0;50;;;1
+FC00;F136;1;Pt Exp Siege Crh (France);0;01;;;;;7;;;;;0;50;;;1
+FC01;F518;1;SIÈGE BÉTON CASTEL;0;01;;;;;7;;;;;0;50;;;1
+FC04;F400;1;Pt Exp Crotenay;0;01;;;;;7;;;;;0;50;;;1
+FC04;F402;1;Pt Exp Argiesans;0;01;;;;;7;;;;;0;50;;;1
+FC06;F341;1;Pt Exp Plessis plateforme;0;01;F001;;;;7;;;;;0;50;;;1
+FC07;F630;1;SECTEUR DIJON DB;0;01;;;;;7;;;;;0;50;;;1
+FC11;F621;1;LABORATOIRE HBBFC;0;01;;;;;7;;;;;0;50;;;1
+FC12;F589;1;Secteur Foltzer;0;01;;;;;7;;;;;0;50;;;1
+FC14;F622;1;LABORATOIRE HBIDF;0;01;;;;;7;;;;;0;50;;;1
+FC18;F660;1;Crh Bétons Siège;0;01;;;;;7;;;;;0;50;;;1
+FC22;F520;1;SIÈGE BÉTON RAPID;0;01;;;;;7;;;;;0;50;;;1
+N404;N401;1;ALPHEN A/D RIJN;0;01;;;;;7;;;;;0;50;;;1
+N405;N402;1;KRIMPEN A/D IJSSEL;0;01;G100;;;;7;;;;;0;50;;;1
+N406;N403;1;OUDENBOSCH;0;01;G100;;;;7;;;;;0;50;;;1
+N4D1;N4D1;1;TB Handel NL (VETRA);0;01;;;;;7;;;;;0;50;;;1
+NC02;N401;1;ALPHEN A/D RIJN;0;01;;;;;7;;;;;0;50;;;1

@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<toolbox>
+  <data type="string">
+     <key>msg_warning_generated</key>
+     <!-- NOTE: this is used inside of templates to warn from editing the generated result -->
+     <value>!!! WARNING: THIS FILE IS GENERATED - DO NOT EDIT !!!</value>
+  </data>
+
+  <data type="string">
+     <key>project_package</key>
+     <value>ch.nevis.gdi</value>
+  </data>
+
+  <data type="string">
+     <key>dao_package</key>
+     <value>service.dao</value>
+  </data>
+
+  <tool>
+     <key>sorter</key>
+     <class>org.apache.velocity.tools.generic.SortTool</class>
+  </tool>
+
+  <tool>
+     <key>st</key>
+     <class>ch.nevis.gdi.tools.StringTool</class>
+  </tool>
+
+  <tool>
+     <key>wu</key>
+     <class>org.apache.commons.lang.WordUtils</class>
+  </tool>
+
+</toolbox>

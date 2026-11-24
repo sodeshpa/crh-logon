@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="VLGNC_TEST_SP_DROPDOWN" mappingType="view" skipSql="true">
+        <column name="SHIPPINGPOINT_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="SHIPPINGPOINT_NAME" type="VARCHAR" size="80"/>
+        <column name="LDS_SERVER" type="VARCHAR" size="33"/>
+        <column name="LANG_CD" required="true" type="VARCHAR" size="2"/>
+        <column name="TXT" required="true" type="VARCHAR" size="50"/>
+    </table>
+</database>

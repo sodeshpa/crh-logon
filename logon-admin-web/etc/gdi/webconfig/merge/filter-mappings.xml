@@ -1,0 +1,132 @@
+
+<!--     <filter-mapping> -->
+<!--         <filter-name>SessionIdFilter</filter-name> -->
+<!--         <url-pattern>/Login.jsp</url-pattern> -->
+<!--         <dispatcher>REQUEST</dispatcher>  -->
+<!--         <dispatcher>FORWARD</dispatcher> -->
+<!--     </filter-mapping> -->
+
+<!--     <filter-mapping> -->
+<!--         <filter-name>SessionIdFilter</filter-name> -->
+<!--         <url-pattern>*.do</url-pattern> -->
+<!--     </filter-mapping> -->
+    
+    <filter-mapping>
+        <filter-name>SerializeSessionAccessFilter</filter-name>
+        <url-pattern>*.do</url-pattern>
+	    <!-- must serialize dwr requests as well because we have double-clickling users on dwr requests too -->
+        <url-pattern>*.dwr</url-pattern>
+    </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>NoCacheHeaderFilter</filter-name>
+        <url-pattern>*.do</url-pattern>
+	    <!--  no caching because of security-constraint in web-security.xml -->
+        <url-pattern>/index.html</url-pattern>
+    </filter-mapping>
+    
+#if($systemproperties.get("clientcachingdisabled") == "true")
+    <!-- Filters disabled; client.caching.disabled=true
+#end
+    <filter-mapping>
+        <filter-name>FarFutureExpiresCacheHeaderFilter</filter-name>
+        <url-pattern>*.js</url-pattern>
+        <url-pattern>*.gif</url-pattern>
+        <url-pattern>*.jpg</url-pattern>
+        <url-pattern>*.png</url-pattern>
+        <url-pattern>*.css</url-pattern>
+        <url-pattern>*.ico</url-pattern>
+    </filter-mapping>
+    
+    <filter-mapping>
+        <filter-name>NearFutureExpiresCacheHeaderFilter</filter-name>
+        <url-pattern>/image/*</url-pattern>
+        <url-pattern>/imagename/*</url-pattern>
+    </filter-mapping>
+#if($systemproperties.get("clientcachingdisabled") == "true")
+    Filters disabled; client.caching.disabled=true -->
+#end
+<!-- OpTraceFilter -->
+    <filter-mapping>
+        <filter-name>OpTraceFilter</filter-name>
+		<url-pattern>*.do</url-pattern>
+        <url-pattern>*.dwr</url-pattern>
+        <url-pattern>/chart/*</url-pattern>
+        <url-pattern>/blob/*</url-pattern>
+        <url-pattern>/image/*</url-pattern>
+        <url-pattern>/imagename/*</url-pattern>
+        <url-pattern>/pdf/*</url-pattern>
+        <url-pattern>/download/pdf/*</url-pattern>
+    </filter-mapping>
+
+<!-- TimeIndicatorFilter -->
+	<filter-mapping>
+		<filter-name>TimeIndicatorFilter</filter-name>
+		<url-pattern>*.do</url-pattern>
+        <url-pattern>*.dwr</url-pattern>
+        <url-pattern>/chart/*</url-pattern>
+        <url-pattern>/blob/*</url-pattern>
+        <url-pattern>/image/*</url-pattern>
+        <url-pattern>/imagename/*</url-pattern>
+        <url-pattern>/pdf/*</url-pattern>
+        <url-pattern>/download/pdf/*</url-pattern>
+	</filter-mapping>
+
+<!-- RequestInfoFilter -->
+	<filter-mapping>
+		<filter-name>RequestInfoFilter</filter-name>
+		<url-pattern>*.do</url-pattern>
+        <url-pattern>/chart/*</url-pattern>
+        <url-pattern>/blob/*</url-pattern>
+        <url-pattern>/image/*</url-pattern>
+        <url-pattern>/imagename/*</url-pattern>
+        <url-pattern>/pdf/*</url-pattern>
+        <url-pattern>/download/pdf/*</url-pattern>
+	</filter-mapping>
+
+<!-- DwrRequestInfoFilter -->
+    <filter-mapping>
+        <filter-name>DwrRequestInfoFilter</filter-name>
+        <url-pattern>*.dwr</url-pattern>
+    </filter-mapping>
+
+<!-- UserFilter -->
+    <filter-mapping>
+        <filter-name>UserFilter</filter-name>
+		<url-pattern>*.do</url-pattern>
+        <url-pattern>*.dwr</url-pattern>
+        <url-pattern>/chart/*</url-pattern>
+        <url-pattern>/blob/*</url-pattern>
+        <url-pattern>/image/*</url-pattern>
+        <url-pattern>/imagename/*</url-pattern>
+        <url-pattern>/pdf/*</url-pattern>
+        <url-pattern>/download/pdf/*</url-pattern>
+    </filter-mapping>
+
+<!-- ConfigBeanFilter only for *.do! -->
+    <filter-mapping>
+        <filter-name>ConfigBeanFilter</filter-name>
+        <url-pattern>*.do</url-pattern>
+    </filter-mapping>
+
+#if(!$systemproperties.get("securitydomain").endsWith("SPNEGO"))
+<!-- ForcePasswordChangeFilter -->
+    <filter-mapping>
+        <filter-name>ForcePasswordChangeFilter</filter-name>
+		<url-pattern>*.do</url-pattern>
+        <url-pattern>*.dwr</url-pattern>
+        <url-pattern>/chart/*</url-pattern>
+        <url-pattern>/blob/*</url-pattern>
+        <url-pattern>/image/*</url-pattern>
+        <url-pattern>/imagename/*</url-pattern>
+        <url-pattern>/pdf/*</url-pattern>
+        <url-pattern>/download/pdf/*</url-pattern>
+    </filter-mapping>
+#end
+
+<!-- RequestEncodingFilter -->
+	<filter-mapping>
+	    <filter-name>RequestEncodingFilter</filter-name>
+	    <url-pattern>*.do</url-pattern>
+	</filter-mapping>
+	

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNR_SGROUP_BS" refData="true"
+           description="Reference data table for the Sales Group. No TX table needed.">
+
+        <column name="SGROUP_CD" primaryKey="true" required="true" type="VARCHAR" size="4"
+                description="PK. A sales group. E.g. S01, S02, S03."/>
+
+        <column name="SGROUP_NAME" required="true" type="VARCHAR" size="30"
+                description="Name of the sales group, e.g. VA/S-Ostschweiz 01,N-Ostschweiz 03,  ..."/>
+        <column name="CTL_ACT_CD" required="true" type="BOOLEAN"
+                description="Active Flag. When new data is entered, only reference data with active flag are available for selection normally."/>
+        <!-- Have long varchars at the end, because otherwise rather important fields like "ctl_act_cd" are easily overseen in select * from -->
+        <column name="EMAIL_ADDRESSES" type="VARCHAR" size="200"
+                description="E-mail address(es) of the sales group. Used to notify the 'Kundenberater' (customer service representative) in case of Marketinfos received via PDA. Several e-mail addresses are possible, separated by comma."/>
+
+      </table>
+</database>

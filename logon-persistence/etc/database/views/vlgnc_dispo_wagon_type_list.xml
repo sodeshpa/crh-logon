@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="VLGNC_DISPO_WAGON_TYPE_LIST" mappingType="view" skipSql="true">
+        <column name="SHIPTO_WAGON_TYPE_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="SHIPTO_SAP_BP_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="EVALUATION_PRIORITY" required="true" type="DECIMAL" size="2"/>
+        <column name="WAGON_TYPE_CD" required="true" type="DECIMAL" size="2"/>
+        <column name="WAGON_TYPE_NAME" required="true" type="VARCHAR" size="20"/>
+        <column name="LANG_CD" required="true" type="VARCHAR" size="2"/>
+        <column name="WAGON_TYPE_NAME_TX" required="true" type="VARCHAR" size="50"/>
+    </table>
+</database>

@@ -1,0 +1,10 @@
+// [[
+#if($fieldName)
+if (${logVarName}.isDebugEnabled()) {
+	${logVarName}.debug("${methodName}(): '" + ${fieldName} + "'");
+}
+#else
+${logVarName}.debug("${methodName}()");
+#end
+// ]]
+#withnoindent(${methodBody})

@@ -1,0 +1,1 @@
+powershell -ExecutionPolicy ByPass "& .\helpers\migrateAdnJBossSettingsFromRegistry.ps1"

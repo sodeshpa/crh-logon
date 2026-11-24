@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="VLGNC_DISPO_LOADTARGET" mappingType="view" skipSql="true">
+        <column name="SHIPPINGPOINT_LOADTARGET_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="SHIPPINGPOINT_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="SAP_MATERIAL_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="PRODUCTION_PLANT_CD" required="true" type="VARCHAR" size="4"/>
+        <column name="TARGET_LOAD_COUNT" required="true" type="DECIMAL" size="4"/>
+        <column name="LOAD_UOM_CD" required="true" type="VARCHAR" size="3"/>
+        <column name="LOAD_QUANTITY" required="true" type="DECIMAL" size="12,4"/>
+        <column name="PRELOAD_COMMENT" type="VARCHAR" size="200"/>
+        <column name="PLANT_CD" required="true" type="VARCHAR" size="4"/>
+        <column name="MATERIAL_NAME" required="true" type="VARCHAR" size="40"/>
+        <column name="LANG_CD" required="true" type="VARCHAR" size="2"/>
+        <column name="FUZZY_QUANTITY_FLAG" required="true" type="BOOLEAN"/>
+        <column name="UOM_NAME" required="true" type="VARCHAR" size="20"/>
+    </table>
+</database>

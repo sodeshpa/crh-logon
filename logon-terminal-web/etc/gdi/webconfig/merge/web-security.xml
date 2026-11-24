@@ -1,0 +1,50 @@
+
+	<security-constraint>
+	  <web-resource-collection>
+	    <web-resource-name>protectedactions</web-resource-name>
+	    <url-pattern>*.do</url-pattern>
+	  </web-resource-collection>
+#if ($systemproperties.redirectToHttps == "true")
+      <user-data-constraint>
+        <transport-guarantee>CONFIDENTIAL</transport-guarantee>
+      </user-data-constraint>
+#end
+	  <auth-constraint>
+	    <role-name>TerminalUsers</role-name>
+	  </auth-constraint>
+	</security-constraint>
+
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>WS</web-resource-name>
+			<url-pattern>/dwr/*</url-pattern>
+		</web-resource-collection>
+#if ($systemproperties.redirectToHttps == "true")
+      <user-data-constraint>
+        <transport-guarantee>CONFIDENTIAL</transport-guarantee>
+      </user-data-constraint>
+#end
+		<auth-constraint>
+			<role-name>TerminalUsers</role-name>
+		</auth-constraint>
+	</security-constraint>
+
+	<security-constraint>
+	  <web-resource-collection>
+	    <web-resource-name>protectedentryhtml</web-resource-name>
+	    <url-pattern>/index.html</url-pattern>
+	  </web-resource-collection>
+#if ($systemproperties.redirectToHttps == "true")
+      <user-data-constraint>
+        <transport-guarantee>CONFIDENTIAL</transport-guarantee>
+      </user-data-constraint>
+#end
+	  <auth-constraint>
+	    <role-name>TerminalUsers</role-name>
+	  </auth-constraint>
+	</security-constraint>
+	
+	<!--  when adding a security constraint, please note that there are no headers sent by default to prevent caching (tomcat's default behavior). Please see WEB-INF/context.xml -->
+	
+	$systemproperties.get("loginconfig")
+

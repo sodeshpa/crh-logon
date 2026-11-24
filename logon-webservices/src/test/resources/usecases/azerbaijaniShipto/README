@@ -1,0 +1,8 @@
+- LOGON-7435 - Azerbaijani Ship-To/Sold-To with language set to AZ
+
+- ShipTo SAP_BP_ID: 3600000121
+- SoldTo SAP_BP_ID: 3600000120
+
+- Contract 1: ADN64120
+
+1 contract item containing material 'ADN Fluvio 4'. 

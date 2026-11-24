@@ -1,0 +1,44 @@
+<?xml version="1.0"?> 
+<xsd:schema
+    xmlns:ebin="http://logon.holcim.com/eventbeans/in"
+    xmlns:eb="http://logon.holcim.com/eventbeans"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:jaxb="http://java.sun.com/xml/ns/jaxb"
+    jaxb:version="2.0"
+    targetNamespace="http://logon.holcim.com/eventbeans/in"
+    elementFormDefault="qualified">
+  <xsd:import schemaLocation="eventbeans.xsd" namespace="http://logon.holcim.com/eventbeans"/>
+  
+  <xsd:complexType name="logonEventRequest" abstract="true">
+    <xsd:sequence>
+      <xsd:element name="eventTime" type="xsd:dateTime"/>
+      <xsd:element name="senderInfo" type="xsd:string"/>
+      <xsd:element name="eventName" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+   
+  <xsd:simpleType name="responseCodeName">
+    <xsd:annotation>
+      <xsd:appinfo>
+        <jaxb:typesafeEnumClass/>
+      </xsd:appinfo>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="OK"/>
+      <xsd:enumeration value="TECHNICAL_ERROR"/>
+      <xsd:enumeration value="MANDATORY_FIELD_MISSING"/>
+      <xsd:enumeration value="MANDATORY_FIELD_ERROR"/>
+      <xsd:enumeration value="APPLICATION_ERROR"/>
+      <xsd:enumeration value="SCHEDULING_ERROR"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+    
+  <xsd:complexType name="logonEventResponse">
+  	<xsd:sequence>
+      <xsd:element name="code" type="xsd:integer"/>
+      <xsd:element name="txt" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="contextValue" type="xsd:string" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+</xsd:schema>

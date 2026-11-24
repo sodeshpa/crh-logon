@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNC_SHIPTO"
+           description="The additional data LOGON stores for a shipto in the 'Dispokarte'. A tlgnc_shipto extends a business partner of type ship-to as received from SAP in tlgns_sap_bp; there can be max 1 tlgnc_shipto per SAP BP. In the LOGON order model the destination of an order must be a shipto. If logically an order says 'go to a shippingpoint' / 'go to a plant' it is still going to a shipto, located at the same place.">
+
+        <column name="SHIPTO_ID" primaryKey="true" required="true" type="DECIMAL" size="12"
+                description="PK"/>
+
+        <column name="SHIPTO_SAP_BP_ID" required="true" type="DECIMAL" size="12"
+                description="FK tlgns_sap_bp. The corresponding SAP BP, must be a ship-to (BP_IS_SHIPTO=1). There must be only one LOGON extension to an SAP SHIPTO. (Since 2.1.0.8, LOGON-6158: Forbid having 2 tlgnc_shipto for the very same SAP BP)."/>
+        <column name="ACTIVE_FLAG" required="true" type="BOOLEAN"
+                description="0=inactive/deleted, 1=active. Flag is independent of TLGNS_SAP_SHIPTO.MARKED_FOR_DELETION, i.e. for technical reasons a Logon-Shipto may be inactivated, but the SAP Shipto is still valid. If an inactive shipto is used later on again, the ACTIVE_FLAG must be set to active again, and NOT creating an additional tlgnc_shipto for the same SAP BP!"/>
+        <column name="SHIPTO_TYPE_CD" required="true" type="DECIMAL" size="2"
+                description="FK tlgnr_shipto_type_bs. Type of Shipto, e.g. 0=Standard, 1=Transporteurlager, 2=Location not fixed, 3=Bimodal (FVL), 4=Container Terminal, 5=Maintenance/Repair, 6=Plant, 7=Supplier."/>
+
+        <column name="OPEN1_FROM" required="true" type="DECIMAL" size="4"
+                description="Opening begin time 1 in minutes. Example: 540 for 09:00"/>
+        <column name="OPEN1_TO" required="true" type="DECIMAL" size="4"
+                description="Opening end time 1 in minutes. Example: 720 for 12:00"/>
+        <column name="OPEN2_FROM" required="true" type="DECIMAL" size="4"
+                description="Opening begin time 2 in minutes. Example: 780 for 13:00"/>
+        <column name="OPEN2_TO" required="true" type="DECIMAL" size="4"
+                description="Opening end time 2 in minutes. Example: 1080 for 18:00"/>
+
+        <column name="CONTACT_PERSON_ID" type="DECIMAL" size="12"
+                description="FK tlgnc_person. The main/default contact person for this shipto. All possible contact persons are stored in tlgnc_shipto_person; the default one should exist in this set as well (if not, this field will be set to null on next save)."/>
+        <column name="SELF_SERVICE_FLAG" required="true" type="BOOLEAN"
+                description="1=Selbstabholer/Pickup. For a shipto where Pickup is possible, the Delivery Type 'Pickup' is possible. In Delivery Type 'Pickup', no dispatching will happen; no Pool or Carrier will be involved."/>
+        <column name="DAILY_ORDER_CONTACT_FLAG" required="true" type="BOOLEAN"
+                description="Used to mark big Shiptos, where a daily order is expected: If set, customer should be contacted (by a sales agent) when no order were entered for today (typically to be delivered on next workingday)."/>
+        <column name="DAILY_ORDER_LAST_CONTACT_DAT" type="DATE"
+                description="Date + Time when user was contacted last time concerning 'no orders yet today' but daily_order_contact_flag=1."/>
+        <column name="DAILY_ORDER_STATUS_CD" type="DECIMAL" size="2"
+                description="FK tlgnr_daily_order_status_bs. Status/Resolution of the daily order contact call. E.g. Not reachable, No order today, etc."/>
+
+        <column name="SIGNATURE_TYPE_CD" required="true" type="DECIMAL" size="2"
+                description="FK tlgnr_signature_type_bs. If a signature is expected when delivering or not: 0=mandatory, 1=optional, 2=no signature."/>
+
+        <column name="COORD_LAT" type="DOUBLE"
+                description="Latitude coordinates of the shipto"/>
+        <column name="COORD_LON" type="DOUBLE"
+                description="Longitute coordinates of the shipto"/>
+        <column name="COORD_FIX_FLAG" required="true" type="BOOLEAN"
+                description="Whether coordinations are fix. 0=the coordinates will be updated with the next incoming information from a PDA. Editing the coordinates in the User Interface is still possible."/>
+        <column name="GEOFENCE_RADIUS" type="DECIMAL" size="10"
+                description="The geofence radius of the shipto in meters. The initial value is taken from tlgnr_config, app.default.shippingpoint_shipto.GeofenceRadius_m and then set explicitly in every shipto. No automatic update when default changes."/>        
+        <column name="UNLOADING_TIME_CEM_MIN" type="DECIMAL" size="10"
+                description="The estimated time (duration in minutes) needed for unloading a truck with CEMENT material. Value is used for the calculation of the times when dispositioning the trucks, see tlgnc_assignment and tlgnc_assignment_part.unloading time of the shipto (in minutes after midnight). Default from app.default.shipto.UnloadingTime_CEM_min."/>
+		<column name="UNLOADING_TIME_AGG_MIN" type="DECIMAL" size="10"
+                description="The estimated time (duration in minutes) needed for unloading a truck with AGGREGATED material. Value is used for the calculation of the times when dispositioning the trucks, see tlgnc_assignment and tlgnc_assignment_part.unloading time of the shipto (in minutes after midnight). Default from app.default.shipto.UnloadingTime_AGG_min."/>
+		<column name="LOADING_TIME_LF_MIN" type="DECIMAL" size="10"
+                description="The estimated time (duration in minutes) needed to load a LANDFILL order at the shipto. Default from app.default.shipto.loadingTime_LF_min."/>
+
+        <column name="RAIL_CHAIN_SHIPPINGPOINT_ID" type="DECIMAL" size="12"
+                description="FK tlgnc_shippingpoint. This link is used for rail orders, it defines the shippingpoint from where the next (e.g. return) rail order starts after it has arrived or emptied at this shipto. Shipto-type and shippingpoint-type follow some patterns: a) repair -> rail repair SP, b) plant -> rail SP, c) supplier -> rail supplier SP, d) FVL/Container Terminal -> rail extern/return (not FVL/Container shippingpoint; those types are used for the LOADING side, see mat_chain_shippoingpoint_id, not as an artificial return shippingpoint), f) standard -> rail extern/return."/>
+        <column name="MAT_CHAIN_SHIPPINGPOINT_ID" type="DECIMAL" size="12"
+                description="FK tlgnc_shippingpoint. Only applicable for ship-to type FVL or Container Terminal: it points to the shippingpoint at the same spot where the material/load can be picked up by a follow-up order. For FVL: FVL Shipto Rail -> FVL Shippingpoint Truck. For Container Terminal: normally Rail -> Truck, but the reverse case Truck -> Rail also exists."/>
+        <column name="RAIL_HOLD_BACK_RE_ORDER_FLAG" type="BOOLEAN"
+                description="If the flag is set to true, no automatic order for sending back the empty wagon is created (Leerwagenmeldung zurueckhalten). Business case describes this flag as useful for 'FVL'-Shipto, but it makes sense also for Container Terminals, and probably other rail-shipto's as well."/>
+        <column name="PLANT_CD" type="VARCHAR" size="4"
+                description="FK tlgnr_plant_cd. Only applicable for ship-to type Plant. It defines which plant a shipto actually represents when goods are delivered to here. The information is send to SAP."/>
+
+        <!-- Long text fields without much logic at the end, easier to read the important fields in a Table/DB browser... -->
+
+        <column name="PAPER_SINGLE_DELNOTE_FLAG_CEM" type="BOOLEAN"
+                description="Enable the printing of the Single Delivery Note at the shipping point in case of a cement order."/>
+        <column name="PAPER_SINGLE_DELNOTE_FLAG_AGG" type="BOOLEAN"
+                description="Enable the printing of the Single Delivery Note at the shipping point in case of an Aggregates or Landfill order."/>        
+        <column name="PAPER_COLL_DELNOTE_FLAG_CEM" type="BOOLEAN"
+                description="Enable the printing of the Collective Delivery Note at the shipping point in case of a cement order."/>
+		<column name="PAPER_COLL_DELNOTE_FLAG_AGG" type="BOOLEAN"
+                description="Enable the printing of the Collective Delivery Note at the shipping point in case of an Aggregates/Landfill order."/>
+        <column name="EMAIL_DELIVNOTE_FLAG" type="BOOLEAN"
+                description="Flag to control if a delivery note (Lieferschein) by e-mail should be generated, to the addresses contained in ORDER_CONF_EMAIL_ADDRESSES. The flag has an effect during order status set to finished."/>
+        <column name="FAX_DELIVNOTE_FLAG" type="BOOLEAN"
+                description="Flag to control if a delivery note by fax should be generated, to the number contained in ORDER_CONF_FAX_NUMBER. The flag has an effect during order status set to finished."/>
+        <column name="ORDER_CONF_EMAIL_FLAG" type="BOOLEAN"
+                description="Flag to control if an order confirmation note (Bestellbestaetigung) by e-mail should be generated, to the addresses contained in ORDER_CONF_EMAIL_ADDRESSES."/>
+        <column name="ORDER_CONF_EMAIL_ADDRESSES" type="VARCHAR" size="200"
+                description="E-mail addresses (separated by comma) to be used for order confirmation note and/or delivery note (BB and LS checkboxes in the German user interface)."/>
+        <column name="ORDER_CONF_FAX_FLAG" type="BOOLEAN"
+                description="Flag to control if an order confirmation note (Bestellbestaetigung) by fax should be generated, to the number contained in ORDER_CONF_FAX_NUMBER."/>
+        <column name="ORDER_CONF_FAX_NUMBER" type="VARCHAR" size="80"
+                description="Fax number to be used for order confirmation note and/or delivery note (BB and LS checkboxes in the German user interface). Enter as +41 44 123456, i.e. country code mandatory and only space allowed for grouping."/>
+        <column name="ORDER_CONF_SMS_FLAG" type="BOOLEAN"
+                description="Flag to control if an order confirmation note (Bestellbestaetigung) by SMS should be generated, to the number contained in ORDER_CONF_SMS_NUMBER."/>
+        <column name="ORDER_CONF_SMS_NUMBER" type="VARCHAR" size="80"
+                description="Phone number to be used for order confirmation note (BB checkbox in the German user interface. Delivery note by SMS is not supported). Enter as +41 44 123456, i.e. country code mandatory and only space allowed for grouping."/>
+        <!-- region_lang_cd has been removed. The UI should use the language from the BP: tlgns_sap_bp_id.lang_cd, for the involved shipto -->
+        <column name="LOAD_CONF_EMAIL_FLAG" type="BOOLEAN"
+                description="Flag to control if a load confirmation note by e-mail should be generated, to the addresses contained in ORDER_CONF_EMAIL_ADDRESSES."/>
+        <column name="LOAD_CONF_FAX_FLAG" type="BOOLEAN"
+                description="Flag to control if a load confirmation note by fax should be generated, to the number contained in ORDER_CONF_FAX_NUMBER."/>
+        <column name="LOAD_CONF_SMS_FLAG" type="BOOLEAN"
+                description="Flag to control if a load confirmation note by SMS should be generated, to the number contained in ORDER_CONF_SMS_NUMBER."/>
+        <column name="NOTE_ORDER_MGMT" type="VARCHAR" size="256"
+                description="Note for the order management (Auftragsmanagement)"/>
+        <column name="NOTE_DELIVERY" type="VARCHAR" size="256"
+                description="Note for the delivery (Zusatz Lieferschein)"/>
+        <column name="NOTE_DISPATCHING" type="VARCHAR" size="256"
+                description="Note for the dispatching (Pool/Spediteur)"/>
+        <column name="NOTE_TRUCK_DRIVER" type="VARCHAR" size="256"
+                description="Note for the truck driver (Chauffeur)"/>
+        <column name="NOTE_RAILWAY_DISP" type="VARCHAR" size="256"
+                description="Note for the railway disposition (Bahndisposition)"/>
+                
+        <!-- extfmu LOGON-6660 -->    
+        <column name="SBB_CUSTOMER_NUMBER" type="VARCHAR" size="15"
+                description="SBB Customer Number editable in dispocard"/>
+        <column name="TRAIN_STATION_UNLOADING_POINT" type="VARCHAR" size="4"
+                description="Train station unloading point as editable in dispocard"/>
+		<!--  end extfmu -->
+
+        <foreign-key foreignTable="TLGNS_SAP_BP" name="FK_TLGNC_SHIPTO_SAP_BP_SHIPTO">
+            <reference local="SHIPTO_SAP_BP_ID" foreign="SAP_BP_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_SHIPTO_TYPE_BS" name="FK_TLGNC_SHIPTO_SHIPTO_TYPE">
+            <reference local="SHIPTO_TYPE_CD" foreign="SHIPTO_TYPE_CD"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNC_PERSON" name="FK_TLGNC_SHIPTO_CONTACT">
+            <reference local="CONTACT_PERSON_ID" foreign="PERSON_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_DAILY_ORDER_STATUS_BS" name="FK_TLGNC_SHIPTO_DAILY_ORDER_ST">
+            <reference local="DAILY_ORDER_STATUS_CD" foreign="DAILY_ORDER_STATUS_CD"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_SIGNATURE_TYPE_BS" name="FK_TLGNC_SHIPTO_SIGNATURE_TYPE">
+            <reference local="SIGNATURE_TYPE_CD" foreign="SIGNATURE_TYPE_CD"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNC_SHIPPINGPOINT" name="FK_TLGNC_SHIPTO_RAIL_SHIPPOINT">
+            <reference local="RAIL_CHAIN_SHIPPINGPOINT_ID" foreign="SHIPPINGPOINT_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNC_SHIPPINGPOINT" name="FK_TLGNC_SHIPTO_MAT_SHIPPOINT">
+            <reference local="MAT_CHAIN_SHIPPINGPOINT_ID" foreign="SHIPPINGPOINT_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_PLANT_BS" name="FK_TLGNC_SHIPTO_PLANT">
+            <reference local="PLANT_CD" foreign="PLANT_CD"/>
+        </foreign-key>
+
+        <!-- History of whether there could/should be a unique constraint on SHIPTO_SAP_BP_ID, i.e. N:1 or 1:1:
+        
+             2009-2012:
+             A tlgnc_shipto extends an SAP BP-Shipto. There must be only 1 ACTIVE Logon-extension
+             to a SAP Shipto - but, because of errors in managing shiptos, and because of 'dummy'-shipto
+             it is possible to have several inactive shipto for the same sap shipto.
+             This could only be enforced with a trigger in the DB. => Application to guarantee this.
+             
+             LOGON 2.0/EBM, ca 2011:
+             Since LOGON EBM, the concept of 'dummy'-shipto was removed (replaced by a concept for
+             one-time customer), and there is no business reason at all to allow N:1 relations here.
+             Since then, this additional "flexibility" did not add any value anymore.
+             
+             Dec 2012 / 2.1.0.8
+             Due to the severe issue LOGON-6158, "New authorizations can cause multiple (tlgnc_)ship-to's per BP being created",
+             we finally enforced the UQ constraint on shipto_sap_bp_id to prevent data corruption.
+        -->
+        <unique name="UQ_TLGNC_SHIPTO_SAP_BP">
+            <unique-column name="SHIPTO_SAP_BP_ID"/>
+        </unique>
+        <unique name="UQ_TLGNC_SHIPTO_SAP_BP_ACT">
+            <unique-column name="SHIPTO_SAP_BP_ID"/>
+            <unique-column name="ACTIVE_FLAG"/>
+        </unique>
+      </table>
+</database>

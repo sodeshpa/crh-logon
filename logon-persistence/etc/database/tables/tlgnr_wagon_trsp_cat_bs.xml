@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNR_WAGON_TRSP_CAT_BS" refData="true"
+           description="Transport categories for Wagon Types. Transport categories of truck/trailer/wagon/container generally define what kind of 'packaging' can be transported. In contrast to truck/trailer, where the transport category is an attribute of the vehicle directly, it is an attribute of the WAGON_TYPE for rail wagons. The official classification of UIC, http://en.wikipedia.org/wiki/UIC_classification_of_goods_wagons, is based on the lower-case latters contained in wagon_type_bs.WAGON_UIC_CLASS_CD, but that type system is too complex for the needs of Logon. A simplification is performed, similar to truck/trailer transport categories.">
+
+        <column name="WAGON_TRSP_CAT_CD" primaryKey="true" required="true" type="DECIMAL" size="2"
+                description="PK. Code of the Reference Data. 1=Silo, 2=Container, 4=Sliding walls (Stueckgut/Mixed Goods, i.e. for pallets), 5=Opening roof/gravity discharge (for clinker), 6=Open/gravity discharge (for coal, slag, gravel, ...), 7=Open/Side-tipping (for Gipsum and Clinker).
+ 3 is skipped to have similar numbers as in truck/trailer transport categories."/>
+        <column name="CTL_ACT_CD" required="true" type="BOOLEAN"
+                description="Active Flag. When new data is entered, only reference data with active flag are available for selection normally."/>
+
+    </table>
+</database>

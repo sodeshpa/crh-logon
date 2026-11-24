@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="VLGNC_ORDER_READY_TO_FINISH" mappingType="view" skipSql="true">
+        <column name="ORDER_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="ACTUAL_DELIVERY_DAT" type="DATE"/>
+        <column name="FORCE_TO_SAP_FLAG" type="BOOLEAN"/>
+    </table>
+</database>

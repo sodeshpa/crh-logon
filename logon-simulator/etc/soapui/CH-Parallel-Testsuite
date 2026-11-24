@@ -1,0 +1,7 @@
+tareWeightKg=850
+wagon=338566762039
+verladestrasseID=45
+werkID=C103
+materialRestrictions=regex:.*
+sendersTime=2014-05-27T08:06:01
+geoTime=2014-05-27T08:06:01

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jboss-deployment-structure xmlns="urn:jboss:deployment-structure:1.2">
+    <deployment>
+        <dependencies>
+            <module name="org.hibernate"/>
+            <module name="org.antlr"/>
+            <module name="test.integration.deployment.jalopy"/>
+            <module name="org.apache.commons.collections"/>
+            <system export="true">
+                <paths>
+                    <path name="com/sun/org/apache/xerces/internal/impl/dv/util"/>
+                </paths>
+            </system>
+        </dependencies>
+    </deployment>
+    <module name="test.integration.deployment.jalopy">
+        <resources>
+            <resource-root path="lib/jalopy-1.5rc3.jar">
+                <filter>
+                    <exclude path="antlr/**"/>
+                </filter>
+            </resource-root>
+        </resources>
+    </module>
+</jboss-deployment-structure>

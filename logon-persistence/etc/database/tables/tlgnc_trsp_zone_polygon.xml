@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNC_TRSP_ZONE_POLYGON"
+           description="A transport zone is geographically defined by 1 or several polygons which define the area(s) of the zone. Such polygons can overlap with polygons of other areas. If this happens, the one with the highest z-index is taken.">
+
+        <column name="TRSP_ZONE_POLYGON_ID" primaryKey="true" required="true" type="DECIMAL" size="12"
+                description="PK"/>
+        <column name="TRSP_ZONE_CD" required="true" type="VARCHAR" size="10"
+                description="FK tlgnr_trsp_zone_bs. Transport Zone to which this polygon belongs. Examples: CH-A00, CH-A01, DE-A00, ..."/>
+        <column name="COLOR_RGB" required="true" type="VARCHAR" size="6"
+                description="Color code of the polygon (area) in RGB notation, hexadecimal. FF0000=red, FFFF00=yellow, etc."/>
+        <column name="Z_INDEX" required="true" type="DECIMAL" size="3"
+                description="Z-Index of the polygon. Higher Z-Index means 'lies on top' and gets higher priority if polygons overlap. Is ignored, as long as polygons do not overlap."/>
+
+        <foreign-key foreignTable="TLGNR_TRSP_ZONE_BS" name="FK_TLGNC_TRSP_ZONE_POLYGON_ZON">
+            <reference local="TRSP_ZONE_CD" foreign="TRSP_ZONE_CD"/>
+        </foreign-key>
+
+    </table>
+</database>

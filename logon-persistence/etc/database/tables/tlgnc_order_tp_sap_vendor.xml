@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNC_ORDER_TP_SAP_VENDOR"
+           description="Table storing the 3rd Party SAP Vendor roles of the order. SAP needs to be informed by involvement of the SA Vendor in the delivery.">
+
+        <column name="ORDER_TP_SAP_VENDOR_ID" primaryKey="true" required="true" type="DECIMAL" size="12"
+                description="PK. Id of the 3rd Party SAP Vendor entry."/>
+        
+        <column name="ORDER_ID" required="true" type="DECIMAL" size="12"
+                description="FK. Reference to the order."/>
+        
+        <column name="TP_SAP_VENDOR_ID" required="true" type="DECIMAL" size="12"
+                description="FK. Table storing the 3rd Party SAP Vendor roles of the order. SAP needs to be informed by involvement of the SAP Vendor in the delivery."/>
+
+        <foreign-key foreignTable="TLGNC_ORDER" name="FK_TLGNC_ORDER_TP_SAP_VENDOR_O">
+            <reference local="ORDER_ID" foreign="ORDER_ID"/>
+        </foreign-key>
+
+        <foreign-key foreignTable="TLGNC_TP_SAP_VENDOR" name="FK_TLGNC_ORDER_TP_SAP_VENDOR_V">
+            <reference local="TP_SAP_VENDOR_ID" foreign="TP_SAP_VENDOR_ID"/>
+        </foreign-key>
+
+        <unique name="UQ_TLGNC_ORDER_TP_SAP_VENDOR_P">
+            <unique-column name="ORDER_ID"/>
+            <unique-column name="TP_SAP_VENDOR_ID"/>
+        </unique>
+        
+    </table>
+</database>

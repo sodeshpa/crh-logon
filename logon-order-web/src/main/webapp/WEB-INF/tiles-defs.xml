@@ -1,0 +1,697 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Author            : AdNovum Informatik AG
+ Version Number    : $Revision$
+ Date of last edit : $Date$
+-->
+
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 1.1//EN"
+       "http://struts.apache.org/dtds/tiles-config_1_1.dtd">
+
+<!-- Definitions for Tiles documentation   -->
+
+<tiles-definitions>
+
+	<!-- =======================================================  -->
+	<!-- Master definitions                                       -->
+	<!-- =======================================================  -->
+
+	<!-- Main layout used as a root for other page definitions.   -->
+
+	<definition name="common" path="/WEB-INF/jsp/MainLayout.jsp">
+		<put name="jslib" value="JsLibTile.jsp"/>
+		<put name="extra_header" value="EmptyExtraHeader.jsp"/>
+	    <put name="header" value="HeaderTile.jsp"/>
+		<put name="navigation" value="NavigationTile.jsp"/>
+	  	<put name="errors" value="ErrorsTile.jsp"/>
+	  	<put name="footer" value="FooterTile.jsp"/>
+	</definition>
+
+	<definition name="part" path="/WEB-INF/jsp/PartLayout.jsp">
+		<put name="errors" value="ErrorsTile.jsp"/>
+	</definition>
+
+	<definition name="part_popup" path="/WEB-INF/jsp/PopupPartLayout.jsp">
+	  	<put name="errors" value="ErrorsTile.jsp"/>
+	</definition>
+
+	<definition name="FatalError.def" extends="common">
+		<put name="body" value="FatalErrorTile.jsp"/>
+	</definition>
+
+	<definition name="FatalErrorPopup.def" extends="part_popup">
+		<put name="body" value="FatalErrorPopupTile.jsp"/>
+	</definition>
+
+	<!-- =======================================================  -->
+	<!-- Page definitions - login/logout                          -->
+	<!-- =======================================================  -->
+
+	<definition name="Logout.def" path="/WEB-INF/jsp/LogoutTile.jsp"/>
+
+	<definition name="OrderEntryTile.def" extends="common">
+		<put name="body" value="/WEB-INF/jsp/ApplicationEntry.jsp"/>
+	</definition>
+
+	<definition name="Help.def" extends="part_popup">
+		<put name="body" value="HelpTile.jsp"/>
+	</definition>
+
+	<!-- =======================================================  -->
+	<!-- Function definitions                                 -->
+	<!-- =======================================================  -->
+
+	<!-- Dispokarte                                 -->
+	<definition name="DispokarteTile.def" extends="common">
+		<put name="body" value="dispokarte/DispokarteTile.jsp"/>
+	</definition>
+
+	<definition name="DispokarteShipToTile.def" extends="common">
+		<put name="body" value="dispokarte/DispokarteShipToTile.jsp"/>
+	</definition>
+
+	<definition name="DispokarteSilobelegungTile.def" extends="part">
+		<put name="body" value="dispokarte/Silobelegung.jsp"/>
+	</definition>
+
+	<definition name="DispokarteAnsprechpartnerTile.def" extends="part">
+		<put name="body" value="dispokarte/Ansprechpartner.jsp"/>
+	</definition>
+
+	<definition name="DispokarteSilobelegungEditTile.def" extends="part">
+		<put name="body" value="dispokarte/EditSilobelegung.jsp"/>
+	</definition>
+
+	<definition name="DispokarteSilobelegungCloseTile.def" extends="part">
+		<put name="body" value="dispokarte/CloseSilobelegung.jsp"/>
+	</definition>
+
+	<definition name="DispokarteAnsprechpartnerEditTile.def" extends="part">
+		<put name="body" value="dispokarte/EditAnsprechpartner.jsp"/>
+	</definition>
+
+	<definition name="DispokarteTabShipToTile.def" extends="part">
+		<put name="body" value="dispokarte/TabShipTo.jsp"/>
+	</definition>
+
+	<definition name="DispokarteTabVkoTile.def" extends="part">
+		<put name="body" value="dispokarte/TabVko.jsp"/>
+	</definition>
+
+	<definition name="DispokarteListLoseTile.def" extends="part">
+		<put name="body" value="dispokarte/ListLose.jsp"/>
+	</definition>
+
+	<definition name="MatFlowDropdown.def" extends="part">
+		<put name="body" value="dispokarte/MatFlowDropdown.jsp"/>
+	</definition>
+
+	<definition name="PlantDropdown.def" extends="part">
+		<put name="body" value="dispokarte/PlantDropdown.jsp"/>
+	</definition>
+
+	<definition name="RailChainDropdown.def" extends="part">
+		<put name="body" value="dispokarte/RailChainDropdown.jsp"/>
+	</definition>
+
+	<definition name="ShiptoTypeRoad.def" extends="part">
+		<put name="body" value="dispokarte/TabShipToRoad.jsp"/>
+	</definition>
+
+	<definition name="ShiptoTypeRail.def" extends="part">
+		<put name="body" value="dispokarte/TabShipToRail.jsp"/>
+	</definition>
+
+	<definition name="ContractData.def" extends="part">
+		<put name="body" value="dispokarte/ContractDataTile.jsp"/>
+	</definition>
+
+	<definition name="ContractItemData.def" extends="part">
+		<put name="body" value="dispokarte/ContractItemDataTile.jsp"/>
+	</definition>
+
+	<definition name="BilltoSelectionRhythmTile.def" extends="part">
+		<put name="body" value="dispokarte/BilltoSelectionRhythm.jsp"/>
+	</definition>
+
+	<definition name="BilltoSelectionRhythmCloseTile.def" extends="part">
+		<put name="body" value="dispokarte/CloseBilltoSelectionRhythm.jsp"/>
+	</definition>
+
+	<definition name="ProduktBemerkungenTile.def" extends="part">
+		<put name="body" value="dispokarte/ProduktBemerkungen.jsp"/>
+	</definition>
+
+	<definition name="ProduktBemerkungenCloseTile.def" extends="part">
+		<put name="body" value="dispokarte/CloseProduktBemerkungen.jsp"/>
+	</definition>
+
+	<!-- CC Bestellung -->
+	<definition name="BestellungTile.def" extends="common">
+		<put name="body" value="bestellung/BestellungTile.jsp"/>
+	</definition>
+
+	<definition name="BestellungShipToTile.def" extends="common">
+		<put name="body" value="bestellung/BestellungShipToTile.jsp"/>
+	</definition>
+
+	<definition name="BestellungNewOrdersTile.def" extends="part">
+		<put name="body" value="bestellung/NewOrders.jsp"/>
+	</definition>
+
+	<definition name="BestellungEditorsAllOrdersTile.def" extends="part">
+		<put name="body" value="bestellung/EditorsOngoingOrders.jsp"/>
+	</definition>
+
+	<definition name="BestellungOrderProcessingResultTile.def" extends="part">
+		<put name="body" value="bestellung/OrderProcessingResult.jsp"/>
+	</definition>
+
+	<definition name="BestellungOrdersListTile.def" extends="part">
+		<put name="body" value="bestellung/OrdersListTile.jsp"/>
+	</definition>
+
+	<definition name="BestellungOpenOrdersTile.def" extends="part">
+		<put name="body" value="bestellung/OngoingOrders.jsp"/>
+	</definition>
+
+	<definition name="BestellungClosedOrdersTile.def" extends="part">
+		<put name="body" value="bestellung/CompletedOrdersTile.jsp"/>
+	</definition>
+
+	<definition name="BestellungBimodalRailPartTile.def" extends="part">
+		<put name="body" value="bestellung/BimodalRailPart.jsp"/>
+	</definition>
+
+	<definition name="BestellungAddedOrderItemTile.def" extends="part">
+		<put name="body" value="bestellung/AddedOrderItem.jsp"/>
+	</definition>
+
+	<definition name="BestellungAddedOrderItemBulkTile.def" extends="part">
+		<put name="body" value="bestellung/NewOrders.jsp"/>
+	</definition>
+
+	<definition name="SingleDeliveryOrderPopup1Tile.def" extends="part_popup">
+		<put name="body" value="bestellung/SingleDeliveryOrderPopup1Tile.jsp"/>
+	</definition>
+
+	<definition name="AdjustDeliveriesTile.def" extends="part_popup">
+		<put name="body" value="bestellung/AdjustDeliveries.jsp"/>
+	</definition>
+
+	<definition name="SingleDeliveryOrderPopup1ErrorTile.def" extends="part_popup">
+		<put name="body" value="bestellung/SingleDeliveryOrderPopup1ErrorTile.jsp"/>
+	</definition>
+
+	<definition name="OrdersForCustorder.def" extends="part">
+		<put name="body" value="bestellung/OrdersForCustorder.jsp"/>
+	</definition>
+
+	<definition name="BestellungSearchTile.def" extends="common">
+		<put name="body" value="bestellung/BestellungSearchTile.jsp"/>
+	</definition>
+
+	<definition name="ChartWrapperTile.def" extends="part">
+		<put name="body" value="bestellung/ChartWrapper.jsp"/>
+	</definition>
+
+	<definition name="TruckPlanningTile.def" extends="common">
+		<put name="body" value="truck/TruckPlanningTile.jsp"/>
+	</definition>
+
+	<!-- Instandhaltung -->
+
+	<definition name="RailRepairTile.def" extends="common">
+		<put name="body" value="railrepair/RailRepairTile.jsp"/>
+	</definition>
+
+	<!-- Auftrag bearbeitung -->
+	<definition name="AuftragBearbeitungTile.def" extends="common">
+		<put name="body" value="auftrag/AuftragBearbeitungTile.jsp"/>
+	</definition>
+	<definition name="UpdateJsTile.def" extends="part">
+		<put name="body" value="auftrag/AuftragBearbeitungUpdateJsTile.jsp"/>
+	</definition>
+	<definition name="MessageTile.def" extends="part">
+		<put name="body" value="auftrag/AuftragBearbeitungMessageTile.jsp"/>
+	</definition>
+	<definition name="ContainerSelector.def" extends="part_popup">
+		<put name="body" value="auftrag/AuftragBearbeitungContainerSelectorPopup.jsp"/>
+	</definition>
+
+	<definition name="ShippingPointSelector.def" path="/WEB-INF/jsp/auftrag/ShippingPointSelector.jsp"/>
+	<definition name="DateSelector.def" path="/WEB-INF/jsp/auftrag/DateSelector.jsp"/>
+	<definition name="InfoStatistic.def" path="/WEB-INF/jsp/auftrag/InfoStatistic.jsp"/>
+	<definition name="InfoStatistic2.def" path="/WEB-INF/jsp/auftrag/InfoStatistic2.jsp"/>
+	<definition name="LoadingPointSelector.def" path="/WEB-INF/jsp/auftrag/OrderListLoadingPointSelect.jsp"/>
+	<definition name="EditLdsInformationTile.def" path="/WEB-INF/jsp/auftrag/EditLdsInformationTile.jsp"/>
+
+	<!-- Live Karte -->
+	<definition name="LiveKarteTile.def" extends="common">
+		<put name="body" value="auftrag/LiveKarteTile.jsp"/>
+	</definition>
+
+	<definition name="LiveKarteFilters.def" extends="part">
+		<put name="body" value="auftrag/filters/LiveKarteFilters.jsp"/>
+	</definition>
+
+	<!-- Order Special -->
+	<definition name="OrderSpecialTile.def" extends="part_popup">
+		<put name="body" value="auftrag/OrderSpecialTile.jsp"/>
+	</definition>
+
+	<definition name="OrderSpecialSave.def" extends="part">
+		<put name="body" value="auftrag/OrderSpecialSave.jsp"/>
+	</definition>
+
+	<definition name="OrderSpecialPopupClose.def" extends="part">
+		<put name="body" value="auftrag/OrderSpecialPopupClose.jsp"/>
+	</definition>
+
+	<definition name="OrderSpecialDamageCodeTile.def" extends="part_popup">
+		<put name="body" value="auftrag/OrderSpecialDamageCodeTile.jsp"/>
+	</definition>
+
+	<definition name="OrderSpecialRepAttachmentTile.def" extends="part_popup">
+		<put name="body" value="auftrag/OrderSpecialRepAttachmentTile.jsp"/>
+	</definition>
+
+	<definition name="OrderSpecialEmptyMaterialOption.def" path="/WEB-INF/jsp/auftrag/OrderSpecialEmptyMaterialOptionInc.jsp">
+	</definition>
+
+	<!-- Order Detail -->
+	<definition name="OrderDetailTile.def" extends="part_popup">
+		<put name="body" value="auftrag/OrderDetailTile.jsp"/>
+	</definition>
+
+	<definition name="GoodsMovementPopup.def" extends="part_popup">
+		<put name="body" value="auftrag/orderdetail/GoodsMovementPopupTile.jsp"/>
+	</definition>
+	
+	<definition name="LdsInformationPopup.def" extends="part_popup">
+		<put name="body" value="auftrag/orderdetail/LdsInformationPopupTile.jsp"/>
+	</definition>
+	
+	<definition name="LdsInformationPopupClose.def" extends="part_popup">
+		<put name="body" value="auftrag/orderdetail/LdsInformationPopupCloseTile.jsp"/>
+	</definition>
+
+	<definition name="ReturnReasonPopup.def" extends="part_popup">
+		<put name="body" value="auftrag/orderdetail/ReturnReasonPopupTile.jsp"/>
+	</definition>
+
+	<definition name="ReturnReasonPopupClose.def" extends="part_popup">
+		<put name="body" value="auftrag/orderdetail/ReturnReasonPopupCloseTile.jsp"/>
+	</definition>
+
+	<definition name="OrderDetailPopupClose.def" extends="part">
+		<put name="body" value="auftrag/orderdetail/OrderDetailPopupClose.jsp"/>
+	</definition>
+
+	<definition name="OrderDetailPopupReload.def" extends="part">
+		<put name="body" value="auftrag/orderdetail/OrderDetailPopupReload.jsp"/>
+	</definition>
+
+	<definition name="OrderDetailSave.def" extends="part">
+		<put name="body" value="auftrag/orderdetail/OrderDetailSave.jsp"/>
+	</definition>
+
+	<definition name="OrderDetailUomList.def" extends="part">
+		<put name="body" value="auftrag/orderdetail/MaterialTabItem.jsp"/>
+	</definition>
+
+	<definition name="OrderDetailShPoint.def" extends="part">
+		<put name="body" value="auftrag/orderdetail/ShPoint.jsp"/>
+	</definition>
+
+	<definition name="OrderDetailCommCarrier.def" extends="part">
+		<put name="body" value="auftrag/orderdetail/CommCarrier.jsp"/>
+	</definition>
+
+	<definition name="OrderDetailExecCarrier.def" extends="part">
+		<put name="body" value="auftrag/orderdetail/ExecCarrier.jsp"/>
+	</definition>
+
+	<definition name="OrderDetailLdPoint.def" extends="part">
+		<put name="body" value="auftrag/orderdetail/LPoint.jsp"/>
+	</definition>
+
+	<definition name="OrderDetailDelNote.def" extends="part">
+		<put name="body" value="auftrag/orderdetail/MaterialTabDelNote.jsp"/>
+	</definition>
+
+	<definition name="OrderDetailRepItem.def" extends="part">
+		<put name="body" value="auftrag/orderdetail/ReportingItemTab.jsp"/>
+	</definition>
+
+	<definition name="OrderDetailBillto.def" extends="part">
+		<put name="body" value="auftrag/orderdetail/MaterialTabBillto.jsp"/>
+	</definition>
+
+	<definition name="OrderDetailPayer.def" extends="part">
+		<put name="body" value="auftrag/orderdetail/MaterialTabPayer.jsp"/>
+	</definition>
+
+	<definition name="OrderDetailMaterialTab.def" extends="part">
+		<put name="body" value="auftrag/orderdetail/MaterialTab.jsp"/>
+	</definition>
+
+	<definition name="OrderDetailMapTab.def" extends="part">
+		<put name="body" value="auftrag/orderdetail/MapTab.jsp"/>
+	</definition>
+
+	<definition name="OrderDetailReportingTab.def" extends="part">
+		<put name="body" value="auftrag/orderdetail/ReportingTab.jsp"/>
+	</definition>
+
+	<definition name="OrderDetailMngTab.def" extends="part">
+		<put name="body" value="auftrag/orderdetail/MngTab.jsp"/>
+	</definition>
+
+	<definition name="OrderDetailOrderLogTab.def" extends="part">
+		<put name="body" value="auftrag/orderdetail/OrderLogTab.jsp"/>
+	</definition>
+
+	<definition name="OrderDetailTruckLogTab.def" extends="part">
+		<put name="body" value="auftrag/orderdetail/TruckLogTab.jsp"/>
+	</definition>
+
+	<definition name="OrderDetailRepMaintTab.def" extends="part">
+		<put name="body" value="auftrag/orderdetail/RepTab.jsp"/>
+	</definition>
+
+	<definition name="ServicesExtraCostTab.def" extends="part">
+		<put name="body" value="auftrag/orderdetail/ServicesExtraCostTab.jsp"/>
+	</definition>
+
+	<definition name="OrderDetailCustOrder.def" extends="part">
+		<put name="body" value="auftrag/orderdetail/CustOrderTab.jsp"/>
+	</definition>
+
+	<definition name="OrderDetailCollDelNote.def" extends="part">
+		<put name="body" value="auftrag/orderdetail/CustOrderCollDelNote.jsp"/>
+	</definition>
+
+	<definition name="RepTabDamageCodeTile.def" extends="part">
+		<put name="body" value="auftrag/orderdetail/RepTabDamageCodeTile.jsp"/>
+	</definition>
+
+	<definition name="OrderExtraCost.def" extends="part">
+		<put name="body" value="auftrag/orderdetail/OrderExtraCostDiv.jsp"/>
+	</definition>
+
+	<definition name="OrderDetailAttachmentDivTile.def" extends="part_popup">
+		<put name="body" value="auftrag/orderdetail/OrderDetailAttachmentDivTile.jsp"/>
+	</definition>
+
+	<definition name="OrderDetailAuditPopup.def" path="/WEB-INF/jsp/auftrag/orderdetail/OrderDetailAuditPopupTile.jsp">
+	</definition>
+
+	<definition name="VendorPFPopup.def" path="/WEB-INF/jsp/auftrag/orderdetail/VendorPFPopup.jsp">
+	</definition>
+
+	<definition name="OrderDetailThirdPartyFreightersTab.def" extends="part">
+		<put name="body" value="auftrag/orderdetail/OrderDetailThirdPartyFreightersTab.jsp"/>
+	</definition>
+
+	<!--  Manual Pool Assignment -->
+	<definition name="PoolAssignment.def" extends="common">
+		<put name="body" value="auftrag/PoolAssignment.jsp"/>
+	</definition>
+
+	<!-- Dispo                                      -->
+	<definition name="DispoTile2.def" extends="common">
+		<put name="extra_header" value="dispo/DispoExtraHeader.jsp"/>
+		<put name="body" value="dispo/DispoTile2.jsp"/>
+	</definition>
+
+	<definition name="LKWPopupTile.def" extends="part_popup">
+		<put name="body" value="dispo/LKWPopup.jsp"/>
+	</definition>
+
+	<definition name="LKWPopupErrorTile.def" extends="part_popup">
+		<put name="body" value="dispo/LKWPopupErrorTile.jsp"/>
+	</definition>
+
+	<definition name="DispoCarriersEditTile.def" extends="part">
+		<put name="body" value="dispo/CarriersEditTile.jsp"/>
+	</definition>
+
+	<definition name="DispoCarriersTile.def" path="/WEB-INF/jsp/dispo/CarriersTile.jsp">
+	</definition>
+
+	<definition name="DispoAssignmentEditTile.def" extends="part_popup">
+		<put name="body" value="dispo/EditAssignment.jsp"/>
+	</definition>
+
+	<definition name="DispoReroutePopupTile.def" extends="part_popup">
+		<put name="body" value="dispo/ReroutePopup.jsp"/>
+	</definition>
+
+	<definition name="DispoCreateExternalOrderPopup.def" extends="part_popup">
+		<put name="body" value="dispo/CreateExternalOrderPopup.jsp"/>
+	</definition>
+
+	<definition name="DispoCloseExternalOrderPopup.def" extends="part_popup">
+		<put name="body" value="dispo/CloseExternalOrderPopup.jsp"/>
+	</definition>
+
+	<definition name="DispoEditHomePlantPopup.def" extends="part_popup">
+		<put name="body" value="dispo/EditHomePlantPopup.jsp"/>
+	</definition>
+
+	<definition name="DispoCloseEditHomePlantPopup.def" extends="part_popup">
+		<put name="body" value="dispo/CloseEditHomePlantPopup.jsp"/>
+	</definition>
+
+	<definition name="DispoAssignmentEditTableTile.def" extends="part">
+		<put name="body" value="dispo/EditAssignmentTable.jsp"/>
+	</definition>
+
+	<definition name="DispoAssignmentCloseTile.def" extends="part_popup">
+		<put name="body" value="dispo/CloseEditAssignment.jsp"/>
+	</definition>
+
+	<definition name="DispoAssignmentEditTableLoadOrderIdTile.def" extends="part_popup">
+		<put name="body" value="dispo/LoadOrderId.jsp"/>
+	</definition>
+
+	<definition name="DispoAssignmentEditTableLoadExtOrderIdTile.def" extends="part_popup">
+		<put name="body" value="dispo/LoadExtOrderId.jsp"/>
+	</definition>
+
+	<definition name="DispoTrucksEditTile.def" extends="part">
+		<put name="body" value="dispo/DispoTrucksEditTile.jsp"/>
+	</definition>
+
+	<definition name="DispoTrucksTile.def" path="/WEB-INF/jsp/dispo/DispoTrucksTile.jsp">
+	</definition>
+
+	<definition name="DispoDeliveringPlantsEditTile.def" extends="part">
+		<put name="body" value="dispo/DispoDeliveringPlantsEditTile.jsp"/>
+	</definition>
+
+	<definition name="DispoDeliveringPlantsTile.def" path="/WEB-INF/jsp/dispo/DispoDeliveringPlantsTile.jsp">
+	</definition>
+
+	<definition name="DispoOrderStatusEditTile.def" extends="part">
+		<put name="body" value="dispo/DispoOrderStatusEditTile.jsp"/>
+	</definition>
+
+	<definition name="DispoOrderStatusTile.def" path="/WEB-INF/jsp/dispo/DispoOrderStatusTile.jsp">
+	</definition>
+
+	<definition name="DispoDisplayEditTile.def" extends="part">
+		<put name="body" value="dispo/DispoDisplayEditTile.jsp"/>
+	</definition>
+
+	<definition name="DispoDisplayTile.def" path="/WEB-INF/jsp/dispo/DispoDisplayTile.jsp">
+	</definition>
+
+	<definition name="DriverBreakEditTile.def" extends="part_popup">
+		<put name="body" value="dispo/DriverBreak.jsp"/>
+	</definition>
+
+	<definition name="DriverBreakCloseTile.def" extends="part_popup">
+		<put name="body" value="dispo/CloseDriverBreak.jsp"/>
+	</definition>
+
+	<definition name="DispoMessagesEditTile.def" extends="part_popup">
+		<put name="body" value="dispo/EditMessages.jsp"/>
+	</definition>
+
+	<definition name="DispoExportPopupTile.def" extends="part_popup">
+		<put name="body" value="dispo/DispoExportPopup.jsp"/>
+	</definition>
+
+	<definition name="ShowDispoExportPopup.def" extends="part">
+		<put name="body" value="dispo/ShowDispoExportPopupTile.jsp"/>
+	</definition>
+
+	<!-- Simple Vehicle Scheduling (Simple Dispo) -->
+	<definition name="SimpleDispoTile.def" extends="common">
+		<put name="extra_header" value="simpledispo/SimpleDispoExtraHeader.jsp"/>
+		<put name="body" value="simpledispo/SimpleDispoTile.jsp"/>
+	</definition>
+
+	<definition name="SimpleDispoLoadPopupTile.def" extends="part_popup">
+		<put name="body" value="simpledispo/SimpleVehicleLoadPopupTile.jsp"/>
+	</definition>
+
+	<definition name="SimpleDispoCloseLoadPopupTile.def" extends="part_popup">
+		<put name="body" value="simpledispo/SimpleDispoCloseLoadPopupTile.jsp"/>
+	</definition>
+
+	<definition name="SimpleDispoUnloadPopupTile.def" extends="part_popup">
+		<put name="body" value="simpledispo/SimpleVehicleUnloadPopupTile.jsp"/>
+	</definition>
+
+	<definition name="SimpleDispoDeallocatePopupTile.def" extends="part_popup">
+		<put name="body" value="simpledispo/SimpleVehicleDeallocatePopupTile.jsp"/>
+	</definition>
+
+	<!-- Rail Dispo                                      -->
+	<definition name="RailDispoTile.def" extends="common">
+		<put name="extra_header" value="raildispo/RailDispoExtraHeader.jsp"/>
+		<put name="body" value="raildispo/RailDispoTile.jsp"/>
+	</definition>
+
+	<definition name="RailDispoShippingpointsEditTile.def" extends="part">
+		<put name="body" value="raildispo/ShippingpointsEditTile.jsp"/>
+	</definition>
+
+	<definition name="RailDispoTracksEditTile.def" extends="part">
+		<put name="body" value="raildispo/TracksEditTile.jsp"/>
+	</definition>
+
+	<definition name="RailDispoStatusEditTile.def" extends="part">
+		<put name="body" value="raildispo/WagonStatusEditTile.jsp"/>
+	</definition>
+
+	<definition name="RailDispoShippingpointsTracksTile.def" path="/WEB-INF/jsp/raildispo/ShippingpointsTracksTile.jsp">
+	</definition>
+
+	<definition name="ContainersEditTile.def" extends="part_popup">
+		<put name="body" value="raildispo/ContainersEdit.jsp"/>
+	</definition>
+
+	<definition name="ContainersEditCloseTile.def" extends="part_popup">
+		<put name="body" value="raildispo/CloseContainersEdit.jsp"/>
+	</definition>
+
+	<definition name="PreLoadWagonPopupTile.def" extends="part_popup">
+		<put name="body" value="raildispo/PreLoadWagonPopupTile.jsp"/>
+	</definition>
+
+	<definition name="ClosePreLoadWagonPopupTile.def" extends="part_popup">
+		<put name="body" value="raildispo/ClosePreLoadWagonPopupTile.jsp"/>
+	</definition>
+
+	<!--  Reporting -->
+	<definition name="ReportingTile.def" extends="common">
+		<put name="body" value="reporting/ReportingTile.jsp"/>
+	</definition>
+
+	<definition name="ReportingPreviewTile.def" extends="part">
+		<put name="body" value="reporting/ReportingPreviewTile.jsp"/>
+	</definition>
+
+	<!--  ITrack Reporting -->
+	<definition name="ITrackReportingTile.def" extends="common">
+		<put name="body" value="itrack/ITrackReportingTile.jsp"/>
+	</definition>
+
+	<!-- ==================RFID Popup ======================  -->
+	<definition name="/OrderRFIDPopupTile.def" extends="part_popup">
+		<put name="body" value="/WEB-INF/jsp/OrderRFIDPopupTile.jsp"/>
+	</definition>
+
+	<definition name="/OrderRFIDsTile.def" extends="part">
+		<put name="body" value="/WEB-INF/jsp/OrderRfidsTile.jsp"/>
+	</definition>
+
+	<definition name="CreditNoteTile.def" extends="common">
+		<put name="body" value="creditnote/CreditNoteTile.jsp"/>
+	</definition>
+
+
+	<!-- ==================Railcar optimization======================  -->
+	<definition name="/railcaroptimization/RailCarOptimization.def" extends="common">
+		<put name="body" value="railcaroptimization/RailCarOptimizationTile.jsp"/>
+	</definition>
+
+	<definition name="/railcaroptimization/RailCarOptimizationShippingpointsEditTile.def" extends="part">
+		<put name="body" value="railcaroptimization/RailCarOptimizationShippingpointsEditTile.jsp"/>
+	</definition>
+
+	<definition name="/railcaroptimization/RailCarOptimizationShippingpointsTile.def" path="/WEB-INF/jsp/railcaroptimization/RailCarOptimizationShippingpointsTile.jsp">
+	</definition>
+
+	<definition name="/railcaroptimization/RailCarOptimizationWagonTypesEditTile.def" extends="part">
+		<put name="body" value="railcaroptimization/RailCarOptimizationWagonTypesEditTile.jsp"/>
+	</definition>
+
+	<definition name="/railcaroptimization/RailCarOptimizationWagonsPartTile.def" extends="part">
+		<put name="body" value="railcaroptimization/RailCarOptimizationWagonsPartTile.jsp"/>
+	</definition>
+
+	<definition name="/railcaroptimization/RailCarOptimizationWagonTypeSummaryPartTile.def" extends="part">
+		<put name="body" value="railcaroptimization/RailCarOptimizationWagonTypeSummaryPartTile.jsp"/>
+	</definition>
+
+	<definition name="/railcaroptimization/RailCarOptimizationWagonTypesTile.def" path="/WEB-INF/jsp/railcaroptimization/RailCarOptimizationWagonTypesTile.jsp">
+	</definition>
+
+		<!-- ==================Bimodal railcar monitoring ======================  -->
+	<definition name="/bimodalrailcarmonitoring/BimodalRailcarMonitoring.def" extends="common">
+		<put name="body" value="bimodalrailcarmonitoring/BimodalRailcarMonitoringTile.jsp"/>
+	</definition>
+
+	<definition name="/bimodalrailcarmonitoring/BimodalRailcarMonitoringShiptosEditPartTile.def" extends="part">
+		<put name="body" value="bimodalrailcarmonitoring/BimodalRailcarMonitoringShiptosEditPartTile.jsp"/>
+	</definition>
+
+	<definition name="/bimodalrailcarmonitoring/BimodalRailcarMonitoringResultsPartTile.def" extends="part">
+		<put name="body" value="bimodalrailcarmonitoring/BimodalRailcarMonitoringResultsPartTile.jsp"/>
+	</definition>
+
+	<definition name="/bimodalrailcarmonitoring/BimodalRailcarMonitoringShiptosPartTile.def"
+		path="/WEB-INF/jsp/bimodalrailcarmonitoring/BimodalRailcarMonitoringShiptosPartTile.jsp">
+	</definition>
+
+		<!-- ================== Container monitoring ======================  -->
+
+
+	<definition name="/containermonitoring/ContainerMonitoring.def" extends="common">
+		<put name="body" value="containermonitoring/ContainerMonitoringTile.jsp"/>
+	</definition>
+
+	<definition name="/containermonitoring/ContainerMonitoringShippingPointsEditPartTile.def" extends="part">
+		<put name="body" value="containermonitoring/ContainerMonitoringShippingPointsEditPartTile.jsp"/>
+	</definition>
+
+	<definition name="/containermonitoring/ContainerMonitoringResultsPartTile.def" extends="part">
+		<put name="body" value="containermonitoring/ContainerMonitoringResultsPartTile.jsp"/>
+	</definition>
+
+	<definition name="/containermonitoring/ContainerMonitoringShippingPointsPartTile.def"
+		path="/WEB-INF/jsp/containermonitoring/ContainerMonitoringShippingPointsPartTile.jsp">
+	</definition>
+
+	<!-- ================== Demand planning ======================  -->
+
+
+	<definition name="/demandplanning/ManagePlanning.def" extends="common">
+		<put name="body" value="demandplanning/ManagePlanningTile.jsp"/>
+	</definition>
+
+	<definition name="/demandplanning/ReportExpected.def" extends="common">
+		<put name="body" value="demandplanning/ReportExpectedTile.jsp"/>
+	</definition>
+
+	<definition name="/demandplanning/ReportExpectedAndRealizedTile.def" extends="common">
+		<put name="body" value="demandplanning/ReportExpectedAndRealizedTile.jsp"/>
+	</definition>
+
+</tiles-definitions>

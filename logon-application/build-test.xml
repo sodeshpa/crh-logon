@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Author            : AdNovum Informatik AG
+ Version Number    : $Revision$
+ Date of last edit : $Date$
+-->
+
+<project name="testing" default="" basedir=".">
+    <description>defines test targets and tasks</description>
+
+    <!-- ================================================================ -->
+    <!--  define test specific classpaths (unit, integration, load,...)   -->
+    <!-- ================================================================ -->
+
+    <!-- ================================================================ -->
+    <!--  dummy targets, will be overridden when file is imported         -->
+    <!-- ================================================================ -->
+    <target name="build"/>
+
+
+    <!-- ================================================================ -->
+    <!--  test initialization, cleanup and default targets                -->
+    <!-- ================================================================ -->
+    <target name="init-test">
+		<mkdir dir="${test.log.dir}"/>
+    </target>
+
+    <target name="clean-test">
+    </target>
+
+    <!-- ================================================================ -->
+    <!--  compile targets                                                 -->
+    <!-- ================================================================ -->
+    <target name="compile-test" depends="init-test">
+    </target>
+
+
+    <!-- ================================================================ -->
+    <!--  run tests (defined in external file test.xml)                   -->
+    <!-- ================================================================ -->
+    <target name="test" depends="test-pmd, test-unit"
+            description="executes all automatic (non-interactive) tests">
+        <antcall target="test-unit"/>
+    </target>
+
+
+    <!-- ================================================================ -->
+    <!--  analyze source code quality                                     -->
+    <!-- ================================================================ -->
+    <target name="test-pmd" depends="init-test"
+            description="run source code quality analysis">
+         <!-- do local pmd tests here if needed-->
+    </target>
+
+    <!-- backward compat reasons -->
+    <target name="pmd" depends="test-pmd"/>
+
+
+    <!-- ================================================================ -->
+    <!--  run unit tests                                                  -->
+    <!-- ================================================================ -->
+	<target name="test-unit" depends="" description="performs unit tests">
+    </target>
+
+
+    <!-- ================================================================ -->
+    <!--  run integration tests                                                  -->
+    <!-- ================================================================ -->
+	<target name="test-integration" depends="" description="performs unit tests">
+	    <!-- do local integration tests here if needed-->
+	</target>
+
+</project>

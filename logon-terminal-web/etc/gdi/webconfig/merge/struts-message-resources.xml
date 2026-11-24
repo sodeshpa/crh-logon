@@ -1,0 +1,1 @@
+	<message-resources parameter="LitDict" factory="com.crh.logon.web.utils.Utf8MessageResourceFactory" null="false" />

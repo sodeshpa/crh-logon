@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="VLGNC_DISPATCHING_CARRIER" mappingType="view" skipSql="true">
+        <column name="CARRIER_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="DISPATCHING_CARRIER_ID" type="DECIMAL" size="12"/>
+        <column name="SAP_VENDOR_ID" required="true" type="DECIMAL" size="12"/>
+    </table>
+</database>

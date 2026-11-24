@@ -1,0 +1,13 @@
+#macro (get $index)
+#set ($v = $row.get($index).trim())
+#set ($q = $systemproperties.get("csv_quote_character"))
+## it seems that there is a bug in opencsv: quoted text start with the quoting character.
+## here we trim it away if the entry starts with the quoting character
+#if ($v.startsWith($q))
+$v.replaceFirst($q, "")#{else}$v#end#end
+#macro (str2db $in)
+#if ($in == "null")$in#{else}
+'$in.replaceAll("\'", "''")'#end#end
+#macro (nullablenumber2db $in)
+#if ($in == "")null#{else}
+$in#end#end

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="VLGNC_RFIDOBJECT_SILO_ATTACH" mappingType="view" skipSql="true">
+        <column name="RFIDOBJECT_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="RFIDOBJECT_TYPE_CD" required="true" type="DECIMAL" size="2"/>
+        <column name="OBJECT_LABEL" type="VARCHAR" size="200"/>
+        <column name="SHIPTO_SILO_ID" type="DECIMAL" size="12"/>
+        <column name="SHIPTO_ID" type="DECIMAL" size="12"/>
+        <column name="ACTIVE_FLAG" type="BOOLEAN"/>
+        <column name="PORTABLE_SILO_FLAG" type="BOOLEAN"/>
+    </table>
+</database>

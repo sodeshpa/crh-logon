@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNR_WAITINGTIME_REASON_BS" refData="true"
+           description="Reasons for Waiting times at Shippingpoints or Shipto.">
+        <column name="WAITINGTIME_REASON_CD" primaryKey="true" required="true" type="DECIMAL" size="2"
+                description="PK. Code of the Reference Data."/>
+		<column name="AT_SHIPTO_FLAG" required="true" type="BOOLEAN"
+               description="If set, this reason is applicable to a shipto (for PDA event waitingOnShipTo)"/>
+		<column name="AT_SHIPPINGPOINT_FLAG" required="true" type="BOOLEAN"
+               description="If set, this reason is applicable to a shipto (for PDA event waitingOnShipTo)"/>
+        <column name="CTL_ACT_CD" required="true" type="BOOLEAN"
+                description="Active Flag. When new data is entered, only reference data with active flag are available for selection normally."/>
+    </table>
+</database>

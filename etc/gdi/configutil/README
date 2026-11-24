@@ -1,0 +1,3 @@
+reads from table tlgnr_config and creates a class which makes it easier to read config parameters.
+the generated class is checked in. this generator just helps maintaining it. (we can't have
+build dependencies on a DB)

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNC_GOODS_MOVEMENT"
+           description="The goodsmovement table stores relevant data for the goodsmovement request at the time the material is loaded from loading point. The goodsmovement request enables SAP to keep accurate inventory levels at all times. This was introduced because updating inventory levels only after a delivery finishes does not count for preloading or deliveries which cross boundaries of the SAP goods reporting timeperiod.">
+        <column name="GOODS_MOVEMENT_ID" primaryKey="true" required="true" type="DECIMAL" size="12"
+                description="PK"/>
+        <column name="LOAD_ID" type="DECIMAL" size="12" 
+        		description="FK tlgnc_load. Load reference."/>
+       	<column name="SAP_MATERIAL_ID" required="true" type="DECIMAL" size="12" 
+       			description="FK tlgns_sap_material. Material which is loaded."/>
+        <column name="NET_QUANTITY" required="true" type="DECIMAL" size="12,4"
+        		description="Net quantity of material in uom net_quantity_uom_cd persisted at the time of queuing."/>
+        <column name="NET_QUANTITY_UOM_CD" required="true" type="VARCHAR" size="3"
+        		description="Loaded unit of measurement persisted at the time of queuing. FK tlgnr_uom_bs. Unit of measure for net_quantity."/>
+        <column name="FROM_PLANT_CD" type="VARCHAR" size="4"
+        		description="FK tlgnr_plant_bs. Stores the value for the outgoing goods movement interface for attribute WERKS. WERKS attribute value: loading plant (known to SAP) persisted at the time of queuing. If Shippingpoint SEND_SAP_SHIPPINGPOINT_ID is null Then tlgnc_load.loadingpoint_id => tlgnc_shippingpoint.plant_cd, Else tlgnc_shippingpoint.send_sap_shippingpoint_id.plant_cd."/>	
+       	<column name="FROM_STORAGE_LOC" type="VARCHAR" size="4"
+        		description="Stores the value for the outgoing goods movement interface for attribute LGORT. LGORT attribute value: 1.) Virtual storage location of the from_plant_cd; 2.) Real storage location of the from_plant_cd. Virtual storage location: Load => tlgnr_plant_bs.storage_loc_bag|bulk_in_transit (respecting SEND_SAP_SHIPPINGPOINT_ID logic). Real Storage location: Load => tlgnc_mat_shippingpoint.storage_location | tlgnc_shippingpoint.storage_location (respecting SEND_SAP_SHIPPINGPOINT_ID logic)."/>	
+        <column name="TO_PLANT_CD" type="VARCHAR" size="4"
+        		description="FK tlgnr_plant_bs. Stores the value for the outgoing goods movement interface for attribute UMWRK. UMWRK attribute value: The plant where the truck,rail,... returns."/>	
+       	<column name="TO_STORAGE_LOC" type="VARCHAR" size="4"
+        		description="Stores the value for the outgoing goods movement interface for attribute UMLGO. UMLGO attribute value: 1.) Virtual storage location of the from_plant_cd;  2.) Real storage location of the to_plant_cd. 3.) Mixed Quality of the from_plant_cd; 4.) Mixed Quality of the to_plant_cd; Virtual storage location: Load => tlgnr_plant_bs.storage_loc_bag|bulk_in_transit (respecting SEND_SAP_SHIPPINGPOINT_ID logic). Real Storage location: Load => tlgnc_mat_shippingpoint.storage_location | tlgnc_shippingpoint.storage_location (respecting SEND_SAP_SHIPPINGPOINT_ID logic). Mixed Qualities: tlgnr_plant_bs.STORAGE_LOC_MIXED_QUALITIES (respecting SEND_SAP_SHIPPINGPOINT_ID logic)."/>	
+		<column name="REFERENCE_DOCUMENT_NUMBER_SAP" type="VARCHAR" size="35" 
+				description="String to help SAP to (manually) relate/identify the goods movement request to the Sales Document / Transfer document request." />
+		<column name="MOVEMENT_TYPE" type="VARCHAR" size="3"
+				description="Identification of special cases for SAP. '311' is for 'Transfer Storage Location request within plant'. '312' for 'TR transfer in plant'. '301' for return handling." />
+		<column name="SENT_GOODSMOVE_TO_QUEUE_TS" type="TIMESTAMP"
+				description="Timestamp where the goods movement request was queued to be sent to SAP." />
+		<column name="SENT_GOODSMOVE_TO_SAP_TS" type="TIMESTAMP"
+				description="Timestamp where the goods movement request was actually sent to SAP." />
+		<column name="IS_ENDLOAD_GM" type="BOOLEAN"
+                description="Defines if it the record is created at endload."/>
+		<column name="IS_RETURN_GM" type="BOOLEAN"
+                description="Defines if it the record is created at return. (i.e.: when the truck returns to plant)"/>
+		<column name="IS_CREDIT_NOTE_GM" type="BOOLEAN"
+                description="Defines if it the record is created at credit note process."/>
+
+		<foreign-key foreignTable="TLGNC_LOAD" name="FK_TLGNC_GOODSMOV_LOAD">
+				<reference local="LOAD_ID" foreign="LOAD_ID" />
+		</foreign-key>
+		<foreign-key foreignTable="TLGNS_SAP_MATERIAL" name="FK_TLGNC_GOODSMOV_SAP_MATERIAL">
+				<reference local="SAP_MATERIAL_ID" foreign="SAP_MATERIAL_ID" />
+		</foreign-key>
+		<foreign-key foreignTable="TLGNR_UOM_BS" name="FK_TLGNC_GOODSMOV_UOM_BS">
+				<reference local="NET_QUANTITY_UOM_CD" foreign="UOM_CD" />
+		</foreign-key>	
+		<foreign-key foreignTable="TLGNR_PLANT_BS" name="FK_TLGNC_GOODSMOV_FROM_PLANT">
+				<reference local="FROM_PLANT_CD" foreign="PLANT_CD" />
+		</foreign-key>	
+		<foreign-key foreignTable="TLGNR_PLANT_BS" name="FK_TLGNC_GOODSMOV_TO_PLANT">
+				<reference local="TO_PLANT_CD" foreign="PLANT_CD" />
+		</foreign-key>	
+    </table>
+</database>

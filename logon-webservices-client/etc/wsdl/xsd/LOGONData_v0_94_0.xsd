@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema elementFormDefault="qualified" targetNamespace="http://logon.crh.net/logonevent" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://logon.crh.net/logonevent">
+  <xs:import schemaLocation="LOGONData_v0_94_2.xsd" namespace="http://schemas.datacontract.org/2004/07/ComSvr"/>
+  <xs:element name="consume">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="LogonLOGONEvent" nillable="true" type="q1:LogonLOGONEvent" xmlns:q1="http://schemas.datacontract.org/2004/07/ComSvr"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="consumeResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="consumeResult" nillable="true" type="q2:LogonLOGONEventStatus" xmlns:q2="http://schemas.datacontract.org/2004/07/ComSvr"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

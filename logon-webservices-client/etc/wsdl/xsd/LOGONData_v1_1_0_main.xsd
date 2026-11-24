@@ -1,0 +1,17 @@
+<xs:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://tempuri.org/">
+   <xs:import schemaLocation="LOGONData_v1_1_0_complex_types.xsd" namespace="http://schemas.datacontract.org/2004/07/ComSvr"/>
+   <xs:element name="consume">
+      <xs:complexType>
+         <xs:sequence>
+            <xs:element minOccurs="0" name="LOGONMessage" nillable="true" type="q1:LOGONMessage" xmlns:q1="http://schemas.datacontract.org/2004/07/ComSvr"/>
+         </xs:sequence>
+      </xs:complexType>
+   </xs:element>
+   <xs:element name="consumeResponse">
+      <xs:complexType>
+         <xs:sequence>
+            <xs:element minOccurs="0" name="consumeResult" nillable="true" type="q2:LOGONMessageStatus" xmlns:q2="http://schemas.datacontract.org/2004/07/ComSvr"/>
+         </xs:sequence>
+      </xs:complexType>
+   </xs:element>
+</xs:schema>

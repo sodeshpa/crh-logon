@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNR_PLANT_BS" refData="true"
+           description="Supply plants from where products can be taken (Lieferwerk). This contains actual production plants (Produktionswerk) as well as places where materials are just stored. Plants dont necessarily correspond to real, physical plants, e.g. S106 (Externe Lager Zementverkauf) is a virtual plant and cannot be located geographically.">
+        <column name="PLANT_CD" primaryKey="true" required="true" type="VARCHAR" size="4"
+                description="PK"/>
+        <column name="PLANT_NAME" required="true" type="VARCHAR" size="80"
+                description="The name of the plant."/>
+        <column name="PRODUCTION_PLANT" required="true" type="BOOLEAN"
+                description="Set, if the plant is actually a production plant. Reason to know this: Identical products are only identical if they have been produced by the same plant. The 'production plant' is generally a property of the material (where it was produced). From a logistical point of view, the plant of the shipping point is called the 'supply plant', regardless if it actually produced the material as well or not."/>	
+        <column name="SAP_INVENTORY_MANAGED" required="true" type="BOOLEAN"
+                description="Not used by Logon, sent to SAP Order interface in the field supply_plant_not_inventory_managed (value of flag is inversed when sending)."/>
+        <column name="COORD_LAT" type="DOUBLE"
+                description="Latitude coordinates of the plant. Null: Plant is not a real plant / cannot be located geographically."/>
+        <column name="COORD_LON" type="DOUBLE"
+                description="Longitute coordinates of the plant. Null: Plant is not a real plant / cannot be located geographically."/>
+		<column name="STORAGE_LOC_BAG_IN_TRANSIT" type="VARCHAR" size="4"
+				description="Stock in transit storage location (SAP Virtual Storage Location) to be used for the goods movement process for Bag type materials." />
+		<column name="STORAGE_LOC_BULK_IN_TRANSIT" type="VARCHAR" size="4"
+				description="Stock in transit storage location (SAP Virtual Storage Location) to be used for the goods movement process for Bulk type materials." />    
+        <column name="STORAGE_LOC_MIX_QUALITY" type="VARCHAR" size="4"
+                description="Mixed qualities storage location to be used for the goods movement process if the user choses that the returned quantity belongs to the mixed qualities storage location."/>
+        <column name="CTL_ACT_CD" required="true" type="BOOLEAN"
+                description="Active Flag. When new data is entered, only reference data with active flag are available for selection normally."/>
+        <column name="ETRAN_FLAG" type="BOOLEAN"
+                description="Set to 1 if this is a Russian delivery plant with rail connection, thus needs the Etran input fields in the rail tab."/>	
+    </table>
+</database>

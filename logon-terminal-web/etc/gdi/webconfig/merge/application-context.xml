@@ -1,0 +1,6 @@
+<beans>
+    <!-- properties from build environment are stored here -->
+    <import resource="classpath:/spring_configurationContext.xml"/>
+    <import resource="classpath:/spring_propertyContext.xml"/>
+    <import resource="classpath:/logon-terminal-web-spring_dwrContext.xml"/>
+</beans>

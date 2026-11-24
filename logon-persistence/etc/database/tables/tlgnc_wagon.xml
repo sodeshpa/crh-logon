@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNC_WAGON"
+           description="Wagons are used to deliver road orders and are owned by a carrier. WAGONs can have 2-5 axes (having a loading capacity itself) or be of the type semi-trailer WAGON, where the trailer defines the loading capacity. Many of the fields have only informative character and are ignored by Logon.">
+    <!-- Technical -->
+        <column name="WAGON_ID" primaryKey="true" required="true" type="DECIMAL" size="12"
+                description="PK"/>
+        <column name="WAGON_NO" required="true" type="VARCHAR" size="12"
+                description="The complete wagon number comprises 12 digits, stored without formatting in DB, must be unique. Example (formatted) 2385 910 4 144-3. First and second position: Interoperability code (on multiple units Type code), Third and fourth position: Owner's code (since 2006: UIC country code), Fifth to eight position: Type number (fifth digit forms first letter of UIC classification), Ninth to eleventh position: Serial number, Twelfth position: Self-check digit. See http://en.wikipedia.org/wiki/UIC_wagon_numbers"/>
+        <column name="WAGON_TYPE_CD" required="true" type="DECIMAL" size="2"
+                description="FK tlgnr_wagon_type. Crh wagon type (what the customer orders). Subtypes of UIC Classification to differiante individual build of wagon. ShipTos can only receive certain types (prioritized)"/>
+        <column name="ACTIVE_FLAG" required="true" type="BOOLEAN"
+                description="0=inactive/deleted, 1=active."/>
+        <column name="WAGON_INACTIVE_REASON_CD" required="false" type="DECIMAL" size="2"
+                description="FK tlgnr_wagon_inactive_reason. Indicates the reason of wagon being inactive. Can only be set if activeFlag=0."/>
+
+    <!-- Stammdaten -->
+        <column name="WAGON_KEEPER_ID" required="true" type="DECIMAL" size="12"
+                description="FK tlgnc_wagon_keeper. Owner (Halter) of wagon."/>
+                
+        <column name="WAGON_NOTE_DISPOSITION" type="VARCHAR" size="200"
+                description="Note for disposition. Wagon-specific comment. To be shown whenever the wagon is dispatched."/>
+        <column name="WAGON_NOTE_RAILWAY_SPEDITION" type="VARCHAR" size="200"
+                description="Note for Railway Spedition (Parallel). Comment should be displayed in Parallel when wagon is selected to be loaded."/>
+        <column name="RETURN_SHIPTO_SAP_BP_ID" type="DECIMAL" size="12"
+                description="FK tlgns_sap_bp. Default return location to which the empty wagon is sent after order is finished. Must be a shipto with tlgnc_shipto.shipto_type_cd='Plant'. For the actual transportation request to SAP mainly the railway station (destination) is of interest but because a return order is a normal Logon order it is also modelled as from=shippingpoint, to=shipto."/>
+        <!-- return shipto could be made mandatory, but not clear if this can be enforced, for all wagons. Better solution
+             probably: Allow only wagons to participate in an order when the return location is set. (Forbid send to SAP without?)-->
+        <!--  Wagon Group: Not part of the 1.1 release, but according to the workshop finding, see
+                https://aww.adnovum.ch/twiki/bin/view/CrhPegasus/WorkshopCrh20090915,
+              the design is something like this:
+              - New table tlgnc_wagon_group (watch out: it's NOT a relation table wagon-to-group, but just a name, same as wagon_type, wagon_keeper)
+              - New field tlgnc_wagon.wagon_group_id
+              - New field tlgnc_wagon.wagon_group_active_flag (if running with it, or not)
+        -->
+        <column name="LAST_KNOWN_RAILWAY_STATION_ID" type="DECIMAL" size="12"
+                description="FK tlgnc_railway_station. The railway station where the wagon was last seen. If no new assignment with status > dispatched exists for this wagon this is also the 'current station' of the wagon. The value is NOT reset when a train leaves the station! The last known station is set when a) arrival messages are received from the railway company, b) a wagon is seen at a shippingpoint to be loaded, c) a wagon is scanned at a FVL (unloading into truck), d) corrected by an administrator, etc..."/>
+        <column name="ARRIVAL_LAST_KNOWN_STATION_DAT" type="DATE"
+                description="Date/Time of the arrival at the last_known_railway_station_id. NULL is only allowed when the station is also null (unknown). The date is updated when the station changes, independent of the type of event. However, if an event simply confirms the station (=still standing there), the arrival date is not updated, i.e. Logon tries to keep the original arrival information. If an administrator corrects the last known station, he should also set a (guessed) arrival date, for example 'now' (but not null!)"/>
+		<column name="CURRENT_PLANT_TRACK_CD" type="DECIMAL" size="4"
+                description="FK tlgnr_plant_track_bs. Track at the station/plant, where the wagon is currently standing. A track+position can only be taken by 1 wagon. This information is updated during the rail-disposition/switching. When a departure message is received, the track+position is set to null. If the departure is not registered (but it should have), the dispatcher should manually clear these fields in the wagon administration."/>                
+        <column name="CURRENT_TRACK_POSITION_NO" type="DECIMAL" size="2"
+                description="Position of the wagon within the 'train' standing on the track defined by current_plant_track_cd."/>
+
+        <!-- Control Tab -->
+        <column name="SAP_VEHICLE_NO" required="false" type="VARCHAR" size="18"
+                description="SAP Number of the wagon. Field is going to be used in export interfaces to SAP."/>
+        <column name="MAX_GROSS_WEIGHT_T" type="DECIMAL" size="12,4"
+                description="Maximal gross weight. This is the legal max weight for the wagon from the railroad company, e.g. because of axle load. 
+                TODO ADN 47233: Logic not yet 100%, but add to 1.1 DB for now (to have it at correct place in the schema)."/>
+        <column name="TARE_WEIGHT_T" required="true" type="DECIMAL" size="12,4"
+                description="Weight of the empty wagon in tons. Typically this is measured in steps of 10kg. The difference between this SHOULD-tare-weight and the actual tare weight is relevant when loading a wagon because of material compatibility and return quantity, see also limit_credit_note_t."/>
+        <column name="WRITTEN_TARE_WEIGHT_T" type="DECIMAL" size="12,4"
+                description="Written weight of the empty wagon in tons. No logic in Logon."/>
+        <!-- uma: We probably need to distinguish TWO max_load_t, because of different volume-mass ratios.
+             For some materials the max load will be defined by the VOLUME of the wagon, but because we don't know
+             the density of the materials as absolut numbers for a material (only as correction factors per material,
+             in comparison to a 'standard' material), there would be those limits:
+             - max_load_t : absolute limit in t
+             - max_volume_load_t: limit corrected, assuming what could be loaded for a "100%" material, until the VOLUME is full
+             => The lower of those values defines the limit for an actual loading procedures for a certain material
+             Check careful, if GROSS or NET limits are stored. For the rail-companies the GROSS limits are probably relevant and entered!!
+
+             Update 19.10.2009, Decided with Christoph, see also https://aww.adnovum.ch/twiki/bin/view/CrhPegasus/WagonNetLoadLimits
+             => We use absolut density values, so called "schuettdichte", stored per material on tlgnc_mat_plant.bulk_density_kgpm3
+             => Advantage: No additional "weight-volume" limit is needed, easier to understand!
+        -->
+        <column name="VOLUME_M3" type="DECIMAL" size="12,4"
+                description="Loading capacity of the wagon in cubic meters/Laderaum. If null: use tlgnr_wagon_type_cd.volume_m3 instead. For certain wagon-material combinations the volume is the limiting factor (instead of just max_net_load_t), see the so-called 'Schuettdichte' of a material, tlgnc_mat_plant.bulk_density_kgpm3."/>
+        <column name="LIMIT_CREDIT_NOTE_T" type="DECIMAL" size="7,3"
+                description="Default is taken from wagon type. If null: use tlgnr_wagon_type_cd.limit_credit_note_t."/>
+
+        <!-- Information only - no logic attached to these fields.
+             What could be moved to type?
+             => uma, decision 19.10.2009: If it is without any logic, do NOT move to type + add 'default' mechanism, see volume_m3 or MAX_NET_LOAD_T. Simply too much work.
+        -->
+        <column name="LOADING_LIMIT_A_T" type="DECIMAL" size="7,3"
+                description="Load limit A in tons/Lastgrenze A in Tonnen. No logic in Logon currently."/>
+        <column name="LOADING_LIMIT_B_T" type="DECIMAL" size="7,3"
+                description="Load limit B in tons/Lastgrenze B in Tonnen. No logic in Logon currently."/>
+        <column name="LOADING_LIMIT_C_T" type="DECIMAL" size="7,3"
+                description="Load limit C in tons/Lastgrenze C in Tonnen. No logic in Logon currently."/>
+        <column name="LOADING_LIMIT_D_T" type="DECIMAL" size="7,3"
+                description="Load limit D in tons/Lastgrenze D in Tonnen. No logic in Logon currently."/>
+        <column name="WHEELBASE_MM" type="DECIMAL" size="5"
+                description="Wheelbase in millimeter/Radstand in Millimeter"/>
+        <column name="WHEELBASE_BPP_MM" type="DECIMAL" size="5"
+                description="Wheelbase Bogie Pivot Pitch in millimeter/Radstand DZA in Millimeter"/>
+        <column name="BUFFER_LENGTH_MM" type="DECIMAL" size="6"
+                description="Length over buffer in millimeter/Laenge ueber Puffer in Millimeter"/>
+        <column name="UNDERCARRIAGE_MANUFACTURER" type="VARCHAR" size="30"
+                description="Manufacturer undercarriage/Hersteller Untergestell"/>
+        <column name="UNDERCARRIAGE_CONST_YEAR" type="DECIMAL" size="4"
+                description="Year of construction undercarriage/Baujahr Untergestell"/>
+        <column name="SUPERSTRUCTURE_MANUFACTURER" type="VARCHAR" size="30"
+                description="Manufacturer superstructure/Hersteller Aufbau"/>
+        <column name="SUPERSTRUCTURE_CONST_YEAR" type="DECIMAL" size="4"
+                description="Year of construction superstructure/Baujahr Aufbau"/>
+        <column name="UNLOADING_SYSTEM" type="VARCHAR" size="30"
+                description="Unloading system/Entladesystem"/>
+        <column name="DRAWING_TYPE" type="VARCHAR" size="30"
+                description="Type drawing/Typenskizze"/>
+        <!-- Build Tab -->
+        <column name="BRAKE_TYPE" type="VARCHAR" size="20"
+                description="Type of brake/Bremsen Bauart"/>
+        <column name="BRAKE_BLOCKS_TYPE" type="VARCHAR" size="30"
+                description="Brake blocke/Bremskloetze"/>
+        <column name="BRAKE_BLOCKS_COUNT" type="DECIMAL" size="2"
+                description="Number of brake blocks/Anzahl Bremskloetze"/>
+        <column name="BRAKE_CYLINDER_NO" type="VARCHAR" size="30"
+                description="Brake cylinder number/Bremszylinder Nr"/>
+        <column name="BRAKE_RIGGING_NO" type="VARCHAR" size="30"
+                description="Brake rigging number/Bremsgestaenge Nr"/>
+        <column name="BRAKE_HOSEPIPE_NO" type="VARCHAR" size="30"
+                description="Brake hose-pipe part number/Bremsschlaeuche ArtNr"/>
+        <column name="BRAKE_HOSEPIPE_NBS" type="VARCHAR" size="20"
+                description="Brake hose-pipe NBS/Bremsschlaeuche NBS"/>
+        <column name="BRAKE_HOSEPIPE_BS" type="VARCHAR" size="20"
+                description="Brake hose-pipe BS/Bremsschlaeuche BS"/>
+        <column name="MECHANICAL_LOAD_CHANGE" type="BOOLEAN" 
+                description="Mechanical load change/mech.Lastwechsel"/>
+        <column name="AIR_SHUT_OFF_COCK_TYPE" type="VARCHAR" size="30"
+                description="Air shut-off cock type/Luftabsperrhahn"/>
+        <column name="TRIPLE_VALVE_NO" type="VARCHAR" size="30"
+                description="triple valve number/Steuerventil Nr"/>
+        <column name="TRIPLE_VALVE_TYPE" type="VARCHAR" size="30"
+                description="triple valve type/Steuerventil"/>
+        <column name="WEIGHING_VALVE_NO" type="VARCHAR" size="30"
+                description="weighing valve number/Wiegeventil Nr"/>
+        <column name="WEIGHING_VALVE_TYPE" type="VARCHAR" size="30"
+                description="weighing valve Type/Wiegeventilart"/>
+        <column name="PRESSURE_EXCHANGER_TYPE" type="VARCHAR" size="30"
+                description="Pressure exchanger type/Lastbremsventil Typ"/>
+        <column name="PRESSURE_EXCHANGER_NO" type="VARCHAR" size="30"
+                description="Pressure exchanger number/Lastbremsventil Nr"/>
+        <column name="BUFFER_TYPE" type="VARCHAR" size="30"
+                description="Type of buffer/Puffertyp"/>
+        <column name="BUFFER_CONST_YEAR" type="DECIMAL" size="4"
+                description="Year of construction buffer/Baujahr Puffer"/>
+        <column name="BOGIE_TYPE" type="VARCHAR" size="30"
+                description="Bogie/Drehgestell"/>
+        <column name="BOGIE_NO" type="VARCHAR" size="30"
+                description="Bogie number/Drehgestell-Nr."/>
+        <column name="SPRING_TYPE" type="VARCHAR" size="30"
+                description="Type of spring/Federart"/>
+        <!-- WHEELSET Tab -->
+        <column name="WHEELSET_1_NBS_NO" type="DECIMAL" size="8"
+                description="wheelset 1 NBS number/Radsatz 1 NBS Nr"/>
+        <column name="WHEELSET_1_NBS_BUILD" type="VARCHAR" size="20"
+                description="wheelset 1 NBS build/Radsatz 1 NBS Bauart"/>
+        <column name="WHEELSET_1_NBS_DIAMETER_MM" type="DECIMAL" size="4"
+                description="wheelset 1 NBS diameter in millimeter/Radsatz 1 NBS Durchmesser in Millimetern"/>
+        <column name="WHEELSET_1_NBS_YEAR" type="DECIMAL" size="6,2"
+                description="wheelset 1 NBS year/Radsatz 1 NBS Jahr. Values are Year.Month (e.g. 2010.10). 2010.00 has the meaning '2010, month not known/relevant', 2010.1 = 2010.10 = October. 2010.13 etc has no meaning and is not allowed to enter in the application."/>
+        <column name="WHEELSET_2_NBS_NO" type="DECIMAL" size="8"
+                description="wheelset 2 NBS number/Radsatz 2 NBS Nr"/>
+        <column name="WHEELSET_2_NBS_BUILD" type="VARCHAR" size="20"
+                description="wheelset 2 NBS build/Radsatz 2 NBS Bauart"/>
+        <column name="WHEELSET_2_NBS_DIAMETER_MM" type="DECIMAL" size="4"
+                description="wheelset 2 NBS diameter in millimeter/Radsatz 2 NBS Durchmesser in Millimetern"/>
+        <column name="WHEELSET_2_NBS_YEAR" type="DECIMAL" size="6,2"
+                description="wheelset 2 NBS year/Radsatz 2 NBS Jahr. Values are Year.Month (e.g. 2010.10). 2010.00 has the meaning '2010, month not known/relevant', 2010.1 = 2010.10 = October. 2010.13 etc has no meaning and is not allowed to enter in the application."/>
+        <column name="WHEELSET_3_BS_NO" type="DECIMAL" size="8"
+                description="wheelset 3 BS number/Radsatz 3 BS Nr"/>
+        <column name="WHEELSET_3_BS_BUILD" type="VARCHAR" size="20"
+                description="wheelset 3 BS build/Radsatz 3 BS Bauart"/>
+        <column name="WHEELSET_3_BS_DIAMETER_MM" type="DECIMAL" size="4"
+                description="wheelset 3 BS diameter in millimeter/Radsatz 3 BS Durchmesser in Millimetern"/>
+        <column name="WHEELSET_3_BS_YEAR" type="DECIMAL" size="6,2"
+                description="wheelset 3 BS year/Radsatz 3 BS Jahr. Values are Year.Month (e.g. 2010.10). 2010.00 has the meaning '2010, month not known/relevant', 2010.1 = 2010.10 = October. 2010.13 etc has no meaning and is not allowed to enter in the application."/>
+        <column name="WHEELSET_4_BS_NO" type="DECIMAL" size="8"
+                description="wheelset 4 BS number/Radsatz 4 BS Nr"/>
+        <column name="WHEELSET_4_BS_BUILD" type="VARCHAR" size="20"
+                description="wheelset 4 BS build/Radsatz 4 BS Bauart"/>
+        <column name="WHEELSET_4_BS_DIAMETER_MM" type="DECIMAL" size="4"
+                description="wheelset 4 BS diameter in millimeter/Radsatz 4 BS Durchmesser in Millimetern"/>
+        <column name="WHEELSET_4_BS_YEAR" type="DECIMAL" size="6,2"
+                description="wheelset 4 BS year/Radsatz 4 BS Jahr. Values are Year.Month (e.g. 2010.10). 2010.00 has the meaning '2010, month not known/relevant', 2010.1 = 2010.10 = October. 2010.13 etc has no meaning and is not allowed to enter in the application."/>
+        <!-- Maintenance Tab -->
+		<column name="MAINT_RHYTHM_TYPE_CD" type="DECIMAL" size="2" required="true" 
+                description="FK tlgnr_maint_rhythm_type_bs. 0=manual, 1=(12-4-4 Rhythmus), 2=(12-6 Rhythmus)."/>
+
+		<column name="RFIDOBJECT_ID" type="DECIMAL" size="12"
+				description="FK tlgnc_rfid_object. The ID which is used to associate this object (wagon) with RFID tags. An RFID object can have several RFID tags."/>
+		
+		<column name="WAGON_NOTE_MAINTENANCE" type="VARCHAR" size="300" 
+		        description="Comments"/>
+		
+		<column name="ETRAN_RETURN" type="VARCHAR" size="20"
+        		description="The ETRAN DN number for empty trips (to send the wagons back to the plant)."/>
+		<column name="ETRAN_OUTBOUND" type="VARCHAR" size="40"
+        		description="The ETRAN DN number for loaded wagons (sent to the customer)."/>
+		
+        <foreign-key foreignTable="TLGNR_WAGON_TYPE_BS" name="FK_TLGNC_WAGON_WAGON_TYPE">
+            <reference local="WAGON_TYPE_CD" foreign="WAGON_TYPE_CD"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_WAGON_INACTIVE_REASON_BS" name="FK_TLGNC_WAGON_INACTIVE_REASON">
+            <reference local="WAGON_INACTIVE_REASON_CD" foreign="WAGON_INACTIVE_REASON_CD"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNC_WAGON_KEEPER" name="FK_TLGNC_WAGON_WAGON_KEEPER">
+            <reference local="WAGON_KEEPER_ID" foreign="WAGON_KEEPER_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNS_SAP_BP" name="FK_TLGNC_WAGON_RET_SHIPTO">
+            <reference local="RETURN_SHIPTO_SAP_BP_ID" foreign="SAP_BP_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNC_RAILWAY_STATION" name="FK_TLGNC_WAGON_LAST_STATION">
+            <reference local="LAST_KNOWN_RAILWAY_STATION_ID" foreign="RAILWAY_STATION_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_PLANT_TRACK_BS" name="FK_TLGNC_WAGON_PLANT_TRACK">
+            <reference local="CURRENT_PLANT_TRACK_CD" foreign="PLANT_TRACK_CD"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_MAINT_RHYTHM_TYPE_BS" name="FK_TLGNR_WAGON_MNT_RHYTHM_TYPE">
+            <reference local="MAINT_RHYTHM_TYPE_CD" foreign="MAINT_RHYTHM_TYPE_CD"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNC_RFIDOBJECT" name="FK_TLGNC_WAGON_RFID">
+            <reference local="RFIDOBJECT_ID" foreign="RFIDOBJECT_ID"/>
+        </foreign-key>
+
+        <unique name="UQ_TLGNC_WAGON_WAGON_NO">
+            <unique-column name="WAGON_NO"/>
+        </unique>
+		<unique name="UQ_TLGNC_WAGON_RFIDOBJECT_ID">
+            <unique-column name="RFIDOBJECT_ID"/>
+        </unique>        
+    </table>
+</database>

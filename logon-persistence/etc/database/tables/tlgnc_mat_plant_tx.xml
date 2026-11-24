@@ -1,0 +1,20 @@
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNC_MAT_PLANT_TX"
+           description="Language dependent data of a material plant entry. The majority of the data (quality assurance information etc) is either language indepdendent (and can therefore be stored on tlgnc_mat_plant), or is contained within the logos/images, where another method of language-dependen resolution exists (filename, filename_de, filename_en, ...). If, in the future, more of the text lines have to be made language dependent, move these attributes from tlgnc_mat_plant to tlgnc_mat_plant_tx (code change/release dependent).">
+
+        <column name="MAT_PLANT_ID" primaryKey="true" required="true" type="DECIMAL" size="12"
+                description="Part of PK. FK tlgnc_mat_plant."/>
+        <column name="LANG_CD" primaryKey="true" required="true" type="VARCHAR" size="2"
+                description="Part of PK. FK tlgnr_lang_bs. For example de, en, ..."/>
+        <column name="CHROMAT_REDUCTION_TXT" type="VARCHAR" size="300"
+                description="Text about 'chromat reduction' information shown on the delivery note if value tlgns_sap_bp.chromat_reduction_months of the ship-to is set. If this text is 'null', the LitDict value of key pdf.chromat.missing is used instead. One variable {0} can be specified. This variable is replaced by the value of tlgns_sap_bp.chromat_reduction_months of the shipto."/>
+
+        <foreign-key foreignTable="TLGNC_MAT_PLANT" name="FK_TLGNC_MAT_PLANT">
+            <reference local="MAT_PLANT_ID" foreign="MAT_PLANT_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_LANG_BS" name="FK_TLGNC_MAT_PLANT_LANG">
+            <reference local="LANG_CD" foreign="LANG_CD"/>
+        </foreign-key>
+    </table>
+</database>

@@ -1,0 +1,47 @@
+
+<project>
+    <description>${ant.project.name} macro file</description>
+
+    <target name="init-services">
+
+        <echo message="--------- Creating and initializing services-all.xml ---------" />
+
+        <echo file="${generated.dir}/${resources.dir.name}/services-all.xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;!-- wsdl2java generates this file per-service, this file contains the combined result for all services --&gt;
+&lt;serviceGroup&gt;
+</echo>
+
+    </target>
+
+    <target name="update-services">
+
+        <echo message="--------- Updating services-all.xml ---------" />
+        <!--
+        <replaceregexp file="${generated.dir}/${resources.dir.name}/services.xml" encoding="utf-8" flags="s">
+            <regexp pattern=".*&lt;serviceGroup&gt;(.*)&lt;/serviceGroup&gt;.*" />
+            <substitution expression="\1" />
+        </replaceregexp>
+        -->
+        <concat destfile="${generated.dir}/${resources.dir.name}/services-all.xml" append="true">
+            <path path="${generated.dir}/${resources.dir.name}/services.xml" />
+            <filterchain>
+                <headfilter skip="4" lines="-1" />
+                <tailfilter skip="1" lines="-1" />
+            </filterchain>
+        </concat>
+
+        <delete file="${generated.dir}/${resources.dir.name}/services.xml" />
+
+    </target>
+
+    <target name="finalize-services">
+
+        <echo message="--------- Finalizing services-all.xml ---------" />
+
+        <echo file="${generated.dir}/${resources.dir.name}/services-all.xml" append="true">
+&lt;/serviceGroup&gt;
+</echo>
+
+    </target>
+
+</project>

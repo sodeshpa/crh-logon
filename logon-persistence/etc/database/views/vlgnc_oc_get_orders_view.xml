@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+	<table name="VLGNC_OC_GET_ORDERS_VIEW" mappingType="view" skipSql="true">
+		<column name="ORDER_ID" required="true" type="DECIMAL" size="12"/>
+		<column name="ORDER_NUMBER" type="DECIMAL" size="12"/>
+		<column name="SOLDTO_SAP_ID" type="VARCHAR" size="10"/>
+		<column name="SHIPTO_SAP_ID" type="VARCHAR" size="10"/>
+		<column name="DELIVERY_FROM_DAT" required="true" type="DATE"/>
+		<column name="DELIVERY_TO_DAT" required="true" type="DATE"/>
+		<column name="DELIVERY_TYPE_CD" required="true" type="DECIMAL" size="2"/>
+		<column name="ORDER_STATUS_CD" required="true" type="DECIMAL" size="2"/>
+		<column name="SAP_SHIPPINGPOINT_NO" type="VARCHAR" size="4"/>
+		<column name="SUPPLY_PLANT_NO" type="VARCHAR" size="4"/>
+		<column name="SAREA_SORG_CD" type="VARCHAR" size="4"/>
+		<column name="ORDER_CREATION_TYPE_CD" required="true" type="DECIMAL" size="2"/>
+	</table>
+</database>

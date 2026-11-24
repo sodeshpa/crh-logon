@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="VLGNC_ORDER_SEARCH" mappingType="view" skipSql="true">
+        <column name="COMPOSITE_ID" type="VARCHAR" size="45"/>
+        <column name="ORDERED_UOM_NUMERATOR" type="DECIMAL" size="5"/>
+        <column name="ORDERED_UOM_DENOMINATOR" type="DECIMAL" size="5"/>
+        <column name="LR_UOM_NUMERATOR" type="DECIMAL" size="5"/>
+        <column name="LR_UOM_DENOMINATOR" type="DECIMAL" size="5"/>
+        <column name="ORDER_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="ORDER_CREATION_TYPE_CD" required="true" type="DECIMAL" size="2"/>
+        <column name="SHIPTO_SAP_BP_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="SOLDTO_SAP_BP_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="BILLTO_SAP_BP_ID" type="DECIMAL" size="12"/>
+        <column name="SAREA_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="SAP_MATERIAL_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="ORDER_NUMBER" type="DECIMAL" size="12"/>
+        <column name="ORDER_ITEM_NO" required="true" type="DECIMAL" size="3"/>
+        <column name="ORDERED_UOM_CD" type="VARCHAR" size="3"/>
+        <column name="ORDERED_UOM_TXT" type="VARCHAR" size="20"/>
+        <column name="ORDERED_QUANTITY" type="DECIMAL" size="12,4"/>
+        <column name="LOADED_UOM_CD" type="VARCHAR" size="3"/>
+        <column name="LOADED_UOM_TXT" type="VARCHAR" size="20"/>
+        <column name="LOADED_QUANTITY" type="DECIMAL" size="12,4"/>
+        <column name="DELIVERED_UOM_CD" type="VARCHAR" size="3"/>
+        <column name="DELIVERED_UOM_TXT" type="VARCHAR" size="20"/>
+        <column name="DELIVERED_QUANTITY" type="DECIMAL" size="12,4"/>
+        <column name="RETURNED_UOM_CD" type="VARCHAR" size="3"/>
+        <column name="RETURNED_UOM_TXT" type="VARCHAR" size="20"/>
+        <column name="RETURNED_QUANTITY" type="DECIMAL" size="12,4"/>
+        <column name="DELIVERY_FROM_DAT" required="true" type="DATE"/>
+        <column name="DELIVERY_TO_DAT" required="true" type="DATE"/>
+        <column name="DISTRIBUTION_DEST_CD" required="true" type="VARCHAR" size="4"/>
+        <column name="ORDER_STATUS_CD" required="true" type="DECIMAL" size="2"/>
+        <column name="DELIVERY_TYPE_CD" required="true" type="DECIMAL" size="2"/>
+        <column name="SHIPPINGPOINT_ID" type="DECIMAL" size="12"/>
+        <column name="TRANSPORT_DURATION_MIN" type="DECIMAL" size="5"/>
+        <column name="POOL_ID" type="DECIMAL" size="12"/>
+        <column name="COMM_CARRIER_ID" type="DECIMAL" size="12"/>
+        <column name="EXEC_CARRIER_ID" type="DECIMAL" size="12"/>
+        <column name="PLANNED_DELIVERY_DAT" type="DATE"/>
+        <column name="ORDER_VALIDATION_CODE" type="VARCHAR" size="2"/>
+        <column name="SOLDTO_NAME1" type="VARCHAR" size="35"/>
+        <column name="SHIPTO_NAME1" type="VARCHAR" size="35"/>
+        <column name="SHIPTO_CITY" required="true" type="VARCHAR" size="35"/>
+        <column name="BILLTO_NAME1" type="VARCHAR" size="35"/>
+        <column name="SHIPTO_SAREA_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="SHIPTO_SGROUP_CD" type="VARCHAR" size="4"/>
+        <column name="SGROUP_CD" type="VARCHAR" size="4"/>
+        <column name="SHIPTO_SOFFICE_CD" type="VARCHAR" size="4"/>
+        <column name="LANG_CD" required="true" type="VARCHAR" size="2"/>
+        <column name="STATUS_TXT" required="true" type="VARCHAR" size="50"/>
+        <column name="WARN_STATUS_CODE" type="DECIMAL" size="2"/>
+        <column name="POOL_NAME" type="VARCHAR" size="30"/>
+        <column name="COMM_CARRIER_NAME" type="VARCHAR" size="40"/>
+        <column name="COMM_SAP_VENDOR_ID" type="DECIMAL" size="12"/>
+        <column name="EXEC_CARRIER_NAME" type="VARCHAR" size="40"/>
+        <column name="EXEC_SAP_VENDOR_ID" type="DECIMAL" size="12"/>
+        <column name="PLANT_CD" type="VARCHAR" size="4"/>
+        <column name="SHIPPINGPOINT_NAME" type="VARCHAR" size="80"/>
+        <column name="MATERIAL_NO" required="true" type="VARCHAR" size="18"/>
+        <column name="MATERIAL_TXT" type="VARCHAR" size="40"/>
+        <column name="DELIVERY_TYPE_TXT" required="true" type="VARCHAR" size="40"/>
+        <column name="PLANT_NAME" type="VARCHAR" size="80"/>
+        <column name="SORG_CD" required="true" type="VARCHAR" size="4"/>
+        <column name="COMPANYCODE_CD" required="true" type="VARCHAR" size="4"/>
+        <column name="DRIVER_FULL_NAME" type="VARCHAR" size="81"/>
+        <column name="TRUCK_ID" type="DECIMAL" size="12"/>
+        <column name="WAGON_ID" type="DECIMAL" size="12"/>
+        <column name="SIMPLE_VEHICLE_ID" type="DECIMAL" size="12"/>
+        <column name="VEHICLE_NAME" type="VARCHAR" size="30"/>
+        <column name="TRUCK_MAX_NET_WEIGHT_T" type="DOUBLE"/>
+        <column name="WAGON_MAX_NET_WEIGHT_T" type="DOUBLE"/>
+        <column name="SIM_VEH_MAX_NET_WEIGHT_T" type="DOUBLE"/>
+        <column name="STATS_QUANTITY" type="DOUBLE"/>
+        <column name="STATS_UOM_CD" type="VARCHAR" size="3"/>
+        <column name="SHIPTO_TIMEZONE_CD" type="VARCHAR" size="32"/>
+        <column name="TONS" type="DOUBLE"/>
+        <column name="LDS_DELIVERY_NOTE_NO" type="VARCHAR" size="12"/>
+        <column name="SHIPTO_ADDRESS" type="VARCHAR" size="256"/>
+        <!-- 2) Order Header comments: Initially coming from TLGNC_SHIPTO, but can be overridden on order creation / processing customer web order. -->
+        <column name="NOTE_ORDER_MGMT" type="VARCHAR" size="256"
+                description="Notes for the order management about the ship-to. Not modifiable by Call Center Agent. The initial content is composed of tlgnc_shipto.note_order_mgmt and tlgnc_shipto_sarea_restr.note_order_mgmt is set at order creation time."/>
+		<!-- Field size is 300 becasue we misuse TLGNC_SHIPTO_SAREA_RESTR.NOTE_DELIVERY field for special customs information from Loruns to CH (Ticket ADN49541). -->
+        <column name="NOTE_DELIVERY" type="VARCHAR" size="300"
+                description="Additional text for the delivery note (PDF). The initial content is composed of tlgnc_shipto.note_delivery and tlgnc_shipto_sarea_restr.note_delivery, set at order creation time and can be modified."/>
+        <column name="NOTE_DISPATCHING" type="VARCHAR" size="256"
+                description="Notes for the Dispatching (Pool/Carrier). The initial content is composed of tlgnc_shipto.note_dispatching and tlgnc_shipto_sarea_restr.note_dispatching, set at order creation time and can be modified."/>
+        <column name="NOTE_TRUCK_DRIVER" type="VARCHAR" size="256"
+                description="Notes for the Driver. The initial content is composed of tlgnc_shipto.note_truck_driver and tlgnc_shipto_sarea_restr.note_truck_driver, set at order creation time and can be modified."/>
+        <column name="NOTE_RAILWAY_DISP" type="VARCHAR" size="256"
+                description="Notes for the Railway disposition, but in the UI called 'Spedition'. This is misleading, because the terminal screen for Trucks is called 'Spedition', but has definitely nothing to do with it. Anyway: The initial content is composed of tlgnc_shipto.note_railway_disp and tlgnc_shipto_sarea_restr.note_railway_disp, set at order creation time and can be modified."/>
+        <column name="ORDER_NUMBER_FROM_SEQ_USAGE" type="VARCHAR" size="12"
+                description="Order number according to the use case specified by 'order_number_seq_usage_cd', based on the configurable sequence counter from table tlngc_conf_seq_counters. Only meaningful if order_number_seq_usage_cd is not empty."/>
+        <column name="LOADING_TS" type="DATE" description="Date and time when start-loading occurred."/>
+		<column name="MATERIAL_PACKAGE_CD" required="true" type="VARCHAR" size="4"/>
+        <column name="ITRACK_STATUS_CD" required="true" type="DECIMAL" size="1"/>
+    </table>
+</database>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+	<table name="VLGNC_DEMAND_PLAN_SHIP_SOLD" mappingType="view" skipSql="true">
+		<column name="COMPOUND_ID" required="true" type="VARCHAR" size="25" />
+		<column name="SHIPTO_SAP_BP_ID" required="true" type="DECIMAL" size="12" />
+		<column name="SHIPTO_SAP_ID" required="true" type="VARCHAR" size="10" />
+		<column name="SHIPTO_NAME1" type="VARCHAR" size="35" />
+		<column name="SHIPTO_NAME2" type="VARCHAR" size="35" />
+		<column name="SHIPTO_ID" required="true" type="DECIMAL" size="12" />
+		<column name="SOLDTO_SAP_BP_ID" required="true" type="DECIMAL" size="12" />
+		<column name="SOLDTO_SAP_ID" required="true" type="VARCHAR" size="10" />
+		<column name="SOLDTO_NAME1" type="VARCHAR" size="35" />
+		<column name="SOLDTO_NAME2" type="VARCHAR" size="35" />
+	</table>
+</database>

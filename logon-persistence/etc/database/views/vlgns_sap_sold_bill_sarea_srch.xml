@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="VLGNS_SAP_SOLD_BILL_SAREA_SRCH" mappingType="view" skipSql="true">
+        <column name="COMPOSITE_ID" type="VARCHAR" size="51"/>
+        <column name="BILLTO_NAME" type="VARCHAR" size="35"/>
+        <column name="BILLTO_NAME2" type="VARCHAR" size="35"/>
+        <column name="BILLTO_NR" type="VARCHAR" size="10"/>
+        <column name="BILLTO_SAP_BP_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="BILLTO_POSTAL_CODE" required="true" type="VARCHAR" size="10"/>
+        <column name="BILLTO_CITY" required="true" type="VARCHAR" size="35"/>
+        <column name="BILLTO_MARKED_FOR_DELETION" type="VARCHAR" size="1"/>
+        <column name="SOLDTO_MARKED_FOR_DELETION" type="VARCHAR" size="1"/>
+        <column name="SOLDTO_NAME" type="VARCHAR" size="35"/>
+        <column name="SOLDTO_NR" type="VARCHAR" size="10"/>
+        <column name="SOLDTO_SAP_BP_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="SAREA_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="SORG_CD" required="true" type="VARCHAR" size="4"/>
+    </table>
+</database>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNR_COND_LOGON_TYPE_TX" refData="true"
+           description="Language dependent data of the Condition Types from SAP as distinguished by Logon as different types.">
+
+        <column name="COND_LOGON_TYPE_CD" primaryKey="true" required="true" type="VARCHAR" size="3"
+                description="Part of PK. FK to TLGNR_COND_LOGON_TYPE_BS. Code of the Reference Data."/>
+        <column name="LANG_CD" primaryKey="true" required="true" type="VARCHAR" size="2"
+                description="Part of PK. FK to TLGNR_LANG_BS. Language in which reference data code is described in TXT."/>
+        <column name="TXT" required="true" type="VARCHAR" size="80"
+                description="Description of the Condition Type from SAP as distinguished by Logon as different types in the language LANG_CD."/>
+
+        <foreign-key foreignTable="TLGNR_COND_LOGON_TYPE_BS" name="FK_TLGNR_COND_LOGON_TYPE_TX">
+            <reference local="COND_LOGON_TYPE_CD" foreign="COND_LOGON_TYPE_CD"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_LANG_BS" name="FK_TLGNR_COND_LOGON_TYPE_LANG">
+            <reference local="LANG_CD" foreign="LANG_CD"/>
+        </foreign-key>
+    </table>
+</database>

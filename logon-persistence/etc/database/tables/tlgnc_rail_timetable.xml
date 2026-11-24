@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+	<table name="TLGNC_RAIL_TIMETABLE"
+		description="Rail timetable for Crh. Timetable is published by the railway company, tipically once a year especially for Crh. It contains all end-to-end connections between stations used by Crh. The route is unknown. Manual corrections to the timetable can be done by the administrator.">
+		<column name="RAIL_TIMETABLE_ID" primaryKey="true" required="true"
+			type="DECIMAL" size="12"
+			description="PK" />
+		<column name="DEP_RAILWAY_STATION_ID"
+			required="true" type="DECIMAL" size="12"	
+			description="FK tlgnc_railway_station. Railway station on which the tour starts."/>
+		<column name="DEP_TRAIN_NO"
+			type="VARCHAR" size="20"
+			description="The train that is used for shipping at departure" />
+		<column name="DEP_SWITCHING_TIME_MIN"
+			type="DECIMAL" size="4"
+			description="Time of departure before switching in minutes after midnight. (Stellzeit Abfahrt)" />
+		<column name="DEP_TIME_MIN"
+			type="DECIMAL" size="4"
+			description="Time of departure in minutes after midnight. (Abfahrt)" />
+		<column name="ARR_RAILWAY_STATION_ID"
+			required="true" type="DECIMAL" size="12"	
+			description="FK tlgnc_railway_station. Railway station on which the tour ends."/>
+		<column name="ARR_OFFSET_DAYS"
+			required="true" type="DECIMAL" size="2"	
+			description="Additional working days between departure time and arrival time. (excludes Saturday, Sunday and public holidays)."/>
+		<column name="ARR_TRAIN_NO"
+			type="VARCHAR" size="20"
+			description="The train that is used for shipping on arrival" />
+		<column name="ARR_TIME_MIN"
+			required="true" type="DECIMAL" size="4"
+			description="Time of preparation time departure in minutes after midnight. (Ankunft)" />
+		<column name="ARR_SWITCHING_TIME_MIN"
+			required="true" type="DECIMAL" size="4"
+			description="Time of arrival after switching in minutes after midnight. (Stellzeit Ankunft)" />
+		<!-- TODO "bahnwagengruppe" would be here, but this was removed from scope of Logon Rail for now. May come back in Jan/Feb 2010. -->
+        <column name="TIMETABLE_COMMENT" 
+        	type="VARCHAR" size="100"
+            description="A comment that the user can enter. Has no logic attached."/>
+        <column name="ACTIVE_FLAG" 
+        	required="true" type="BOOLEAN"
+        	description="0=inactive/deleted, 1=active."/>		
+		
+		<foreign-key foreignTable="TLGNC_RAILWAY_STATION" name="FK_TLGNC_TIMETABLE_DEP_RWS">
+            <reference local="DEP_RAILWAY_STATION_ID" foreign="RAILWAY_STATION_ID"/>
+        </foreign-key>
+		<foreign-key foreignTable="TLGNC_RAILWAY_STATION" name="FK_TLGNC_TIMETABLE_ARR_RWS">
+            <reference local="ARR_RAILWAY_STATION_ID" foreign="RAILWAY_STATION_ID"/>
+        </foreign-key>
+	</table>
+</database>

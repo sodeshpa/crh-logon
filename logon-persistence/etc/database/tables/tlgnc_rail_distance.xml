@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNC_RAIL_DISTANCE"
+           description="Distances between railway stations used by Crh. The distances given by SBB are 'tariff-kilometers' and are used for cost calculation per kilometer. Tariff-kilometers typically differfrom the actual travel-distances.">
+
+        <column name="RAIL_DISTANCE_ID" primaryKey="true" required="true" type="DECIMAL" size="12"
+            description="PK"/>
+        <column name="DEP_RAILWAY_STATION_ID" required="true" type="DECIMAL" size="12"
+            description="FK tlgnc_railway_station. Departure Railway station. These are Brunnen, Cornaux, Eclepens, Siggenthal-Wurenlingen, Zizers SBB."/>
+        <column name="ARR_RAILWAY_STATION_ID" required="true" type="DECIMAL" size="12"
+            description="FK tlgnc_railway_station. Arrival Railway station."/>
+        <!-- Logon generally uses meters to store distances, to avoid decimals. In the UI, show kilometers -->
+        <column name="TARIFF_DISTANCE_M" required="true" type="DECIMAL" size="10"
+            description="The distance between departure and arrival station, expressed in tariff-METERS. The distance from A to B is the same as B to A, only one is stored in this table."/>
+        <column name="ACTIVE_FLAG" required="true" type="BOOLEAN"
+            description="0=inactive/deleted, 1=active."/>
+
+        <foreign-key foreignTable="TLGNC_RAILWAY_STATION" name="FK_TLGNC_RAIL_DISTANCE_DEP">
+            <reference local="DEP_RAILWAY_STATION_ID" foreign="RAILWAY_STATION_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNC_RAILWAY_STATION" name="FK_TLGNC_RAIL_DISTANCE_ARR">
+            <reference local="ARR_RAILWAY_STATION_ID" foreign="RAILWAY_STATION_ID"/>
+        </foreign-key>
+
+        <unique name="UQ_TLGNC_RAIL_DISTANCE_DEP_ARR">
+            <unique-column name="DEP_RAILWAY_STATION_ID"/>
+            <unique-column name="ARR_RAILWAY_STATION_ID"/>
+        </unique>
+    </table>
+</database>

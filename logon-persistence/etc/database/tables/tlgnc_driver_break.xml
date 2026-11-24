@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNC_DRIVER_BREAK"
+        description="Stores timeperiods when a certain driver is on break. These can be either planned breaks, or breaks defined by the driver on his PDA (MOP breaks). Planned breaks cannot overlap with other planned breaks, MOP breaks cannot overlap with other MOP breaks">
+
+        <column name="DRIVER_BREAK_ID" primaryKey="true" required="true" type="DECIMAL" size="12"
+                description="PK"/>
+        <column name="DRIVER_ID" required="true" type="DECIMAL" size="12" 
+                description="FK tlgnc_driver. Driver ID, to which this record is related."/>
+        <column name="START_DAT" required="true" type="DATE"
+                description="The start date/time of the driver break."/>
+        <column name="END_DAT" required="true" type="DATE"
+                description="The end date/time of the driver break. In case it's open end, a hardcoded date of 31.12.9999=infinite is set."/>
+        <column name="DESCRIPTION" type="VARCHAR" size="200"
+                description="Description of the break."/>
+        <column name="IS_LUNCH_BREAK" required="true" type="BOOLEAN"
+                description="If set, this entry overrides the defalt lunch break, else we have a default lunch break, as defined in the config table. Can only be set if for planned breaks."/>
+        <column name="IS_MOP_BREAK" required="true" type="BOOLEAN"
+                description="True, if the break is defined on the driver's PDA"/>
+        <column name="ACTIVE_FLAG" required="true" type="BOOLEAN"
+                description="0=inactive/deleted, 1=active."/>
+
+        <foreign-key foreignTable="TLGNC_DRIVER" name="FK_TLGNC_DRIVER_BREAK_DRIVER">
+            <reference local="DRIVER_ID" foreign="DRIVER_ID"/>
+        </foreign-key>
+
+        <!-- Driver break queries do a 'and start_dat < X and start_dat >= Y -->
+        <index name="I_TLGNC_DRIVER_BREAK_START_DAT">
+            <index-column name="START_DAT"/>
+        </index>
+    </table>
+</database>

@@ -1,0 +1,17 @@
+---
+# An incomplete list of currently available modules can be found here: http://docs.ansible.com/list_of_windows_modules.html
+- name: ping the host
+  gather_facts: false
+  hosts: logonebmdb3
+  tasks:
+    - name: Ping the target host
+      win_ping:
+    - name: copy over the zipped db pkgs
+      script: files/copy-db-zips.ps1 "{{dbdumpversion}}" "{{share_pkg}}" "{{logon_db_zips}}"
+    - name: unzip the packages
+      script: files/unzip-packages.ps1 "{{logon_db_zips}}" "{{logon_db_sql}}"
+    - name: delete database and import dump
+      script: files/importdump-v1-0.ps1 "{{connectionstring}}" "{{dbdumpfile}}" "{{packagelocation}}" "{{impdplogs}}"
+    - name: patch the db
+      script: files/patchdb-v1-1.ps1 "{{logon_db_sql}}" "{{connectionurl}}"
+

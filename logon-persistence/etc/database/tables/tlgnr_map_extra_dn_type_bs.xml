@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+	<table name="TLGNR_MAP_EXTRA_DN_TYPE_BS" refData="true"
+		description="Storing contract type, sales area code and indicating whether these combinations need Export invoice, Cash sales or regular delivery note.">
+		
+		<column name="MAP_EXTRA_DN_TYPE_ID" primaryKey="true" required="true" type="DECIMAL" size="12"
+			description="PK ID"/>
+		<column name="SAP_CONTRACT_TYPE_CD" type="VARCHAR" size="4" required="true"
+			description="FK and contract type"/>
+		<column name="SAREA_ID" required="true" type="DECIMAL" size="12"
+            description="FK TLGNC_SAREA. Sales Area for this order. The Sales Organisation (TLGNC_SAREA.sorg_cd) is a part of the sales area identifier, besides distribution channel and division."/>
+		<column name="PRINT_EXPORT_INVOICE" required="true" type="BOOLEAN"
+			description="If this flag is true, an Export invoice needs to be printed too."/>
+		<column name="PRINT_CASH_SALES" required="true" type="BOOLEAN"
+			description="If this flas is true, a Cash Sales invoice needs to be printed too."/>
+        <column name="CTL_ACT_CD" required="true" type="BOOLEAN"
+                description="Active Flag. When new data is entered, only reference data with active flag are available for selection normally."/>
+		
+		
+		<foreign-key foreignTable="TLGNR_SAP_CONTRACT_TYPE_BS" name="FK_TLGNR_MAPEXTR_SAP_BS">
+			<reference local="SAP_CONTRACT_TYPE_CD" foreign="SAP_CONTRACT_TYPE_CD"/>
+		</foreign-key>	
+		
+        <foreign-key foreignTable="TLGNC_SAREA" name="FK_TLGNR_MAP_CUSTO_SAREA">
+            <reference local="SAREA_ID" foreign="SAREA_ID"/>
+        </foreign-key>
+		
+	</table>
+</database>

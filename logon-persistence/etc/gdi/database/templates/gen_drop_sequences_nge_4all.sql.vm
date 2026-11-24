@@ -1,0 +1,37 @@
+-- ${msg_warning_generated}
+-- prompt =========================================================================
+-- prompt === version: $gdi.version
+-- prompt === generated at: $gdi.generatedAt
+-- prompt === template: $cartridge.templatePath/$currentTemplate
+-- prompt =========================================================================
+
+#parse("macros/macros.hvm")
+##
+##
+#foreach ($curfile in $sorter.sort($allfiles))
+#set ($current = $inputmap.get($curfile))
+#foreach ($table in $current.database.tableArray)
+#if(($table.skipSql == false) && ($table.refData == false))
+#set ($pks = [])
+#set ($tableName = $table.name.stringValue)
+#if (!$tableName.toUpperCase().endsWith("_TX"))
+#foreach ($column in $table.columnArray)
+#set ($columnName =  $column.name.stringValue().trim())
+#set ($type = "${type}($column.size.stringValue())")
+#if ($column.primaryKey == true && $column.type == "DECIMAL")
+#set ($dummy = $pks.add($columnName))
+#end
+#end
+#foreach ($pk in $pks)
+#if ($pks.size() > 1)
+#set ($sequenceName = "#generatesequencename($tableName $pk)")
+#else
+#set ($dummy = "undef")
+#set ($sequenceName = "#generatesequencename($tableName $dummy)")
+#end
+$st.printf("drop sequence %s", $sequenceName).toLowerCase();
+#end
+#end
+#end
+#end
+#end

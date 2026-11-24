@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNR_ORDER_REP_ATT_TYPE_BS" refData="true"
+				description="Stores attachment types to reference by TLGNC_ORDER_REP_ATT (repair order attachment table).">
+    	
+        <column name="ATTACHMENT_TYPE_CD" primaryKey="true" required="true" type="DECIMAL" size="2"
+                description="PK, which should be one of: 1) offer 2) doku 3) invoice 4) email"/>
+					
+		<column name="CTL_ACT_CD" required="true" type="BOOLEAN"
+                description="Active Flag. When new data is entered, only reference data with active flag are available for selection normally."/>
+		
+    </table>
+</database>

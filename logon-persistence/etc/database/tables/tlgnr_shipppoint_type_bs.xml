@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNR_SHIPPPOINT_TYPE_BS" refData="true"
+           description="Reference data table for the types of Shipping Points, e.g. Road, Rail, Container Terminal etc. The shippingpoint type what kind of vehicles can be loaded there. 1) A Road SP can load trucks, trailers and containers as long as they are on a truck/trailer. 2) A Rail SP can load wagons and containers when they are on the wagon. 3) A Container Terminal Truck can load a full container on a truck, with the help of a cran or huge forklift (container reachstacker). 4, 5, 6) Rail shippingpoints at the Supplier, Repair plant or other External places are not used to actually load a rail, but only needed as a starting point of inbound and return rail orders. 7) A Container Terminal Rail is a shippingpoint where a full container is loaded on a wagon (with a cran or container reachstacker).">
+
+        <column name="SHIPPPOINT_TYPE_CD" primaryKey="true" required="true" type="DECIMAL" size="2"
+                description="PK. Code of the Reference Data. 0=Road, 1=Rail, 2=Container Terminal (Truck), 3=Bimodal Truck (Freiverlad), 4=Rail Supplier, 5=Rail Repair, 6=Rail External/just Return. 7=Container Terminal (Rail)."/>
+        <column name="IS_RAIL_FLAG" required="true" type="BOOLEAN"
+                description="Defines if it is a rail shippingpoint. For rail shippingpoints, the definition of a railway_station is mandatory."/>
+        <column name="CTL_ACT_CD" required="true" type="BOOLEAN"
+                description="Active Flag. When new data is entered, only reference data with active flag are available for selection normally."/>
+
+    </table>
+</database>

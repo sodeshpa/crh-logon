@@ -1,0 +1,39 @@
+# $Revision$
+# $Date$
+#Railway_Station_Country_From;Railway_Station_From;Railway_Station_From_Name;Train_no_departure;Stellz. Abfahrt;Abfahrt;Railway_Station_Country_To;Railway_Station_To;Railway_Station_To_Name;Train_no_arrival;Tage+;Ankunft;Stellz. Ankunft;Comment;Benutzer;Zeit
+53;135384;Argesel Rail St. CEM Campulung;;7:80;8:40;53;138636;Bucuresti Progresu Rail St. Terminal Progresul;;0;13:20;14:39;;;
+53;138636;Bucuresti Progresu Rail St. Terminal Progresul;;13:50;14:10;53;135384;Argesel Rail St. CEM Campulung;;0;3:00;4:20;;;
+56;140467;Rohozník Rail St.;;11:40;12:00;55;58503;Ercsi átrakó Rail St.;;1;7:20;7:80;;;
+56;140467;Rohozník Rail St.;;11:40;12:00;55;139121;Debrecen Rail St.;;1;7:20;7:80;;;
+56;140467;Rohozník Rail St.;;11:40;12:00;55;15784;Lábatlan Rail St.;;1;7:20;7:80;;;
+56;140467;Rohozník Rail St.;;5:40;6:00;81;28977;Schönfeld-Lasse Rail St.;;1;4:20;4:20;;;
+56;140467;Rohozník Rail St.;;5:40;6:00;56;151407;Turna Rail St.;;1;13:20;13:20;;;
+56;140467;Rohozník Rail St.;;5:40;6:00;80;13391;Bad Segeberg Rail St.;;7;5:40;6:00;;;
+56;140467;Rohozník Rail St.;;5:40;6:00;22;368203;Chernovtsy-Juzhnaja Rail St.;;7;13:20;13:20;;;
+56;151407;Turna Rail St.;;5:40;6:00;55;58503;Ercsi átrakó Rail St.;;1;6:00;6:00;;;
+56;151407;Turna Rail St.;;5:40;6:00;55;139121;Debrecen Rail St.;;1;3:60;3:60;;;
+56;151407;Turna Rail St.;;5:40;6:00;55;15784;Lábatlan Rail St.;;1;6:00;6:00;;;
+56;151407;Turna Rail St.;;5:40;6:00;81;28977;Schönfeld-Lasse Rail St.;;1;10:80;10:80;;;
+56;151407;Turna Rail St.;;5:40;6:00;56;140467;Rohozník Rail St.;;1;13:20;13:20;;;
+52;160051;Iskar Rail St.;;10:20;10:20;52;720128;Beli Izvor Rail St.;;2;3:60;4:20;;;
+52;160242;Ihtiman Rail St.;;10:20;10:20;52;720128;Beli Izvor Rail St.;;2;3:60;4:20;;;
+55;180364;Békéscsaba átrakó Rail St.;;4:20;4:20;53;325084;Alesd Rail St. CEM Alesd;;1;4:80;5:40;;;
+53;254268;Aradu Nou Rail St. Terminal Arad;;11:40;12:60;53;325084;Alesd Rail St. CEM Alesd;;1;5:10;5:40;;;
+53;318279;Campia Turzii Rail St. CEM Turda;;12:00;12:60;53;325084;Alesd Rail St. CEM Alesd;;1;3:00;3:30;;;
+53;325084;Alesd Rail St. CEM Alesd;;13:20;13:50;53;318279;Campia Turzii Rail St. CEM Turda;;0;3:00;4:50;;;
+53;325084;Alesd Rail St. CEM Alesd;;13:20;13:50;53;473579;Livada Rail St. Terminal Livada;;0;3:30;4:20;;;
+53;325084;Alesd Rail St. CEM Alesd;;5:10;5:40;53;551846;Nasaud Rail St. Influent;;0;3:00;4:20;;;
+53;325084;Alesd Rail St. CEM Alesd;;5:10;5:40;55;180364;Békéscsaba átrakó Rail St.;;0;4:20;4:20;;;
+53;325084;Alesd Rail St. CEM Alesd;;13:20;13:50;53;254268;Aradu Nou Rail St. Terminal Arad;;0;3:30;4:20;;;
+53;325084;Alesd Rail St. CEM Alesd;;13:20;13:50;53;138636;Bucuresti Progresu Rail St. Terminal Progresul;;0;13:20;14:10;;;
+53;325084;Alesd Rail St. CEM Alesd;;13:20;13:50;53;821751;Calarasi Nord Rail St. Prefab;;0;13:20;14:10;;;
+53;473579;Livada Rail St. Terminal Livada;;11:40;12:60;53;325084;Alesd Rail St. CEM Alesd;;0;1:20;1:50;;;
+53;551846;Nasaud Rail St. Influent;;9:60;10:80;53;325084;Alesd Rail St. CEM Alesd;;1;3:60;4:20;;;
+52;560409;Blagoevgrad Rail St.;;10:20;10:20;52;720128;Beli Izvor Rail St.;;2;3:60;4:20;;;
+52;650200;Kyustendil Rail St.;;10:20;10:20;52;720128;Beli Izvor Rail St.;;2;3:60;4:20;;;
+52;720128;Beli Izvor Rail St.;;8:40;9:00;52;560409;Blagoevgrad Rail St.;;2;6:00;9:60;;;
+52;720128;Beli Izvor Rail St.;;8:40;9:00;52;650200;Kyustendil Rail St.;;2;6:00;9:60;;;
+52;720128;Beli Izvor Rail St.;;8:40;9:00;52;160242;Ihtiman Rail St.;;2;6:00;9:60;;;
+52;720128;Beli Izvor Rail St.;;8:40;9:00;52;160051;Iskar Rail St.;;2;6:00;9:60;;;
+56;140467;Rohozník Rail St.;;5:40;6:00;55;180364;Békéscsaba átrakó Rail St.;;0;4:20;4:20;;;
+52;720128;Beli Izvor Rail St.;;8:40;9:00;52;410019;Dimitrovgrad Sever Rail St.;;2;6:00;9:60;;;

@@ -1,0 +1,14 @@
+<%@page import="com.crh.logon.constants.Constant"%>
+
+<%@page import="com.crh.logon.admin.web.forms.useradmin.UserAdminForm"%>
+			<td class="left"><nobr><fmt:message key="useradmin.field.type" /></nobr></td>
+			<td>
+					<html:select styleId="userType" tabindex="9" size="1" style="width:200px;" property="userEntity.userType.userTypeCd">
+						<c:forEach var="userType" varStatus="status"
+							items="${admin_UserAdminForm.allowedUserTypeList}">
+							<html:option value="${userType.userTypeCd}">
+							<c:out value="${userType.txt}" />
+						</html:option>
+						</c:forEach>
+					</html:select>
+			</td>

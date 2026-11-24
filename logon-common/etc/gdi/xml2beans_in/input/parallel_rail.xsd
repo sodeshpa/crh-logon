@@ -1,0 +1,252 @@
+<?xml version="1.0"?> 
+<xsd:schema
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:eb="http://logon.holcim.com/eventbeans"
+    xmlns:ebin="http://logon.holcim.com/eventbeans/in"
+    xmlns:pr="http://logon.holcim.com/eventbeans/in/parallel_rail"
+    xmlns:jaxb="http://java.sun.com/xml/ns/jaxb"
+    jaxb:version="2.0"
+    targetNamespace="http://logon.holcim.com/eventbeans/in/parallel_rail"
+    elementFormDefault="qualified">
+  <xsd:import schemaLocation="eventbeans.xsd" namespace="http://logon.holcim.com/eventbeans"/>
+  <xsd:import schemaLocation="eventbeans-in.xsd" namespace="http://logon.holcim.com/eventbeans/in"/>
+  
+  <xsd:complexType name="parallelRailRequest" abstract="true">
+    <xsd:complexContent>
+      <xsd:extension base="ebin:logonEventRequest">
+        <xsd:sequence>
+          <xsd:element name="userId" type="xsd:string"/>
+          <xsd:element name="language" type="xsd:string"/>
+          <xsd:element name="wagon" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  
+  <xsd:complexType name="parallelRailResponse">
+    <xsd:complexContent>
+      <xsd:extension base="ebin:logonEventResponse" />
+    </xsd:complexContent>
+  </xsd:complexType>
+  
+  <xsd:simpleType name="parallelRailResponseCode">
+    <xsd:annotation>
+      <xsd:appinfo>
+        <jaxb:typesafeEnumClass/>
+      </xsd:appinfo>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:integer">
+      <xsd:enumeration value="10000">
+        <xsd:annotation>
+          <xsd:appinfo>
+            <jaxb:typesafeEnumMember name="OK"/>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="10001">
+        <xsd:annotation>
+          <xsd:appinfo>
+            <jaxb:typesafeEnumMember name="OK_WITH_REMARK"/>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="10101">
+        <xsd:annotation>
+          <xsd:appinfo>
+            <jaxb:typesafeEnumMember name="TECHNICAL_ERROR"/>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="10102">
+        <xsd:annotation>
+          <xsd:appinfo>
+            <jaxb:typesafeEnumMember name="RETRY"/>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="10201">
+        <xsd:annotation>
+          <xsd:appinfo>
+            <jaxb:typesafeEnumMember name="MANDATORY_FIELD_MISSING"/>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="10202">
+        <xsd:annotation>
+          <xsd:appinfo>
+            <jaxb:typesafeEnumMember name="MANDATORY_FIELD_ERROR"/>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="10401">
+        <xsd:annotation>
+          <xsd:appinfo>
+            <jaxb:typesafeEnumMember name="APPLICATION_ERROR"/>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="10601">
+        <xsd:annotation>
+          <xsd:appinfo>
+            <jaxb:typesafeEnumMember name="LOADING_NOT_POSSIBLE"/>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="10602">
+        <xsd:annotation>
+          <xsd:appinfo>
+            <jaxb:typesafeEnumMember name="NO_LOAD_ON_WAGON"/>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="10603">
+        <xsd:annotation>
+          <xsd:appinfo>
+            <jaxb:typesafeEnumMember name="LOADING_ABORTED"/>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="10604">
+        <xsd:annotation>
+          <xsd:appinfo>
+            <jaxb:typesafeEnumMember name="INCOMPATIBLE_WAGON"/>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:enumeration>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <xsd:complexType name="startLoadRequest">
+    <xsd:complexContent>
+      <xsd:extension base="pr:parallelRailRequest">
+        <xsd:sequence>
+          <xsd:element name="logonOrderId" type="eb:id" minOccurs="0"/>
+          <xsd:element name="verladeauftragId" type="eb:id"/>
+          <xsd:element name="verladestrasseId" type="xsd:string"/>
+          <xsd:element name="verladeStrasseName" type="xsd:string" minOccurs="0"/> <!--  not implemented -->
+          <xsd:element name="startTime" type="xsd:dateTime" minOccurs="0"/> <!--  not implemented -->
+          <xsd:element name="containerLabel" type="xsd:string" minOccurs="0" />
+          <xsd:element name="containerCompound" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="werkId" type="xsd:string"/>
+          <xsd:element name="tareWeightKg" type="xsd:decimal"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  
+  <xsd:complexType name="endLoadRequest">
+    <xsd:complexContent>
+      <xsd:extension base="pr:parallelRailRequest">
+        <xsd:sequence>
+          <xsd:element name="logonOrderId" type="eb:id" minOccurs="0"/>
+          <xsd:element name="verladeauftragId" type="eb:id"/>
+          <xsd:element name="verladestrasseId" type="xsd:string"/>
+          <xsd:element name="verladeStrasseName" type="xsd:string" minOccurs="0"/> <!--  not implemented -->
+          <xsd:element name="endTime" type="xsd:dateTime" minOccurs="0"/> <!--  not implemented -->
+          <xsd:element name="netWeightKg" type="xsd:decimal"/>
+          <xsd:element name="totalWeightKg" type="xsd:decimal"/>
+          <xsd:element name="tareWeightKg" type="xsd:decimal"/>
+          <xsd:element name="tareQuit" type="xsd:boolean"/>
+          <xsd:element name="containerCompound" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="containerLabel" type="xsd:string" minOccurs="0" />
+          <xsd:element name="werkId" type="xsd:string"/>
+          <xsd:element name="wsDeliveryNoteNo" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="wsEichbeleg1" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="wsEichbeleg1Time" type="xsd:dateTime" minOccurs="0"/>
+          <xsd:element name="wsEichbeleg1Balance" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="wsEichbeleg2" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="wsEichbeleg2Time" type="xsd:dateTime" minOccurs="0"/>
+          <xsd:element name="wsEichbeleg2Balance" type="xsd:string" minOccurs="0"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  
+  <xsd:complexType name="getWagonTypeRequest">
+    <xsd:complexContent>
+      <xsd:extension base="pr:parallelRailRequest">
+        <xsd:sequence>
+          <xsd:element name="werkId" type="xsd:string"/>
+          <xsd:element name="verladestrasseId" type="xsd:string"/>
+          <xsd:element name="verladeStrasseName" type="xsd:string" minOccurs="0"/> <!--  not implemented -->
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  
+  <xsd:complexType name="getWagonTypeResponse">
+    <xsd:complexContent>
+      <xsd:extension base="pr:parallelRailResponse">
+        <xsd:sequence>
+          <xsd:element name="wagonType" type="xsd:string"/>
+          <xsd:element name="tareWeightKg" type="xsd:decimal" minOccurs="0"/>
+          <xsd:element name="maxContainers" type="xsd:long"/>
+          <xsd:element name="wagonComment" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="containerLabelList" type="xsd:string" maxOccurs="unbounded" minOccurs="0"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  
+  <xsd:complexType name="getWagonActualLoadRequest">
+    <xsd:complexContent>
+      <xsd:extension base="pr:parallelRailRequest"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  
+  <xsd:complexType name="getWagonActualLoadResponse">
+    <xsd:complexContent>
+      <xsd:extension base="pr:parallelRailResponse">
+        <xsd:sequence>
+          <xsd:element name="verladeauftragID" type="eb:id"/>
+          <xsd:element name="material" type="xsd:string"/>
+          <xsd:element name="loadingTime" type="xsd:dateTime"/>
+          <xsd:element name="customer" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="customerName" type="xsd:string" minOccurs="0"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+    
+  <xsd:complexType name="getWagonLoadOrderRequest">
+    <xsd:complexContent>
+      <xsd:extension base="pr:parallelRailRequest">
+        <xsd:sequence>
+          <xsd:element name="werkId" type="xsd:string"/>
+          <xsd:element name="verladestrasseId" type="xsd:string"/>
+          <xsd:element name="verladeStrasseName" type="xsd:string" minOccurs="0"/> <!--  not implemented -->
+          <xsd:element name="tareWeightKg" type="xsd:decimal"/>
+          <xsd:element name="containerLabelList" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+          <xsd:element name="materialRestrictions" type="xsd:string" minOccurs="1" maxOccurs="unbounded"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  
+  <xsd:complexType name="loadOrder">
+    <xsd:sequence>
+      <xsd:element name="verladeauftragID" type="eb:id"/>
+      <xsd:element name="priority" type="xsd:long"/>
+      <xsd:element name="material" type="xsd:string"/>
+      <xsd:element name="chromReduce" type="xsd:long"/>
+      <xsd:element name="netWeightKg" type="xsd:decimal"/>
+      <xsd:element name="customer" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="shipTo" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="logonOrderID" type="eb:id" minOccurs="0"/>
+      <xsd:element name="orderComment" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="containerCompound" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="containerLabelList" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  
+  <xsd:complexType name="getWagonLoadOrderResponse">
+    <xsd:complexContent>
+      <xsd:extension base="pr:parallelRailResponse">
+        <xsd:sequence>
+          <xsd:element name="loadOrderList" type="pr:loadOrder" maxOccurs="unbounded"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  
+</xsd:schema>

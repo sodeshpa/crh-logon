@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="VLGNC_WAGON_DETAIL_LOAD_LIST" mappingType="view" skipSql="true">
+        <column name="COMPOSITE_ID" type="VARCHAR" size="43"/>
+        <column name="LOAD_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="LANG_CD" type="VARCHAR" size="2"/>
+        <column name="LOAD_UNIT_TXT" type="VARCHAR" size="20"/>
+        <column name="ORDERED_UNIT_TXT" type="VARCHAR" size="20"/>
+        <column name="MATERIAL_NO" type="VARCHAR" size="18"/>
+        <column name="MATERIAL_PACKAGE_CD" type="VARCHAR" size="4"/>
+        <column name="PLANT_NAME" type="VARCHAR" size="80"/>
+        <column name="MATERIAL_TXT" type="VARCHAR" size="40"/>
+        <column name="WAGON_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="CONTAINER_NAME" type="VARCHAR" size="30"/>
+        <column name="CONTAINER_TARE_WEIGHT_T" type="DECIMAL" size="12,4"/>
+        <column name="CONTAINER_MAX_NET_WEIGHT_T" type="DECIMAL" size="12,4"/>
+        <column name="LOAD_PRODUCTION_PLANT_CD" required="true" type="VARCHAR" size="4"/>
+        <column name="LOAD_TRUCK_ID" type="DECIMAL" size="12"/>
+        <column name="LOADING_TS" type="DATE"/>
+        <column name="UNLOADING_TS" type="DATE"/>
+        <column name="NET_QUANTITY" type="DECIMAL" size="12,4"/>
+        <column name="LOAD_NET_MEASURE" type="DOUBLE"/>
+        <column name="WS_ORIGINAL_TARE_MEASURE_T" type="DECIMAL" size="12,4"/>
+        <column name="TARE_QUANTITY" type="DECIMAL" size="12,4"/>
+        <column name="GROSS_WEIGHT_T" type="DOUBLE"/>
+        <column name="DELTA" type="DOUBLE"/>
+        <column name="ORDERED_MEASURE" type="DOUBLE"/>
+        <column name="ORDER_NUMBER_WITH_ITEM_NO" type="VARCHAR" size="15"/>
+        <column name="ORDERED_QUANTITY" type="DECIMAL" size="12,4"/>
+        <column name="ORDER_ID" type="DECIMAL" size="12"/>
+    </table>
+</database>

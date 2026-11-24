@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNR_WEIGH_SYSTEM_SP_BS" refData="true"
+           description="Weighing systems which are used in a loadingpoint to determine the weight of a truck/load: Parallel bulk, manual LOGON, manual PDA, Container loading.">
+
+        <column name="WEIGH_SYSTEM_SP_CD" primaryKey="true" required="true" type="DECIMAL" size="2"
+                description="PK. 0=No LDS, 1=Parallel truck bulk, 4=Container loading, 5=Parallel rail bulk, 6=WeWas bulk, 7=Fenics FBNL, 8=Dorner, 9=KDTruck, 10=D800."/>
+
+        <column name="PUSH_MODE_ON" required="true" type="BOOLEAN"
+                description="Defines whether notifications are sent to this weighing system."/>
+        <column name="LDS_OFFLINE_MODE_ENABLE" required="true" type="BOOLEAN"
+                description="Defines whether this weighing system is designed to cope with offline situations and sends regularization messages once back online."/>                
+        <column name="ENABLE_TOURS" required="true" type="BOOLEAN"
+                description="Set this to true if this weighing system supports tours."/>
+
+        <column name="CONFIG_TABLE_INFIX" type="VARCHAR" size="16"
+                description="The infix used in the config table to define the webservice parameters (wsclient.[infix].host.url etc.)."/>
+        <column name="CLIENT_TYPE" type="VARCHAR" size="16"
+                description="The value this weighing system sends in the clientType field of the request header. Used to identify the weighing system in incoming requests."/>
+
+        <column name="CTL_ACT_CD" required="true" type="BOOLEAN"
+                description="Active Flag. When new data is entered, only reference data with active flag are available for selection normally."/>
+
+        <unique name="UQ_TLGNR_WEIGH_SYSTEM_SP_INFIX">
+            <unique-column name="CONFIG_TABLE_INFIX"/>
+        </unique>
+
+        <unique name="UQ_TLGNR_WEIGH_SYSTEM_SP_CLITP">
+            <unique-column name="CLIENT_TYPE"/>
+        </unique>
+
+    </table>
+</database>

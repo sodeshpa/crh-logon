@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<beans>
+#foreach ($current in $all)
+#set ($pkg = "undef")
+#set ($bean = "undef")
+#set ($state = 0)
+#set ($quote = "undef")
+#set ($quote2 = "undef")
+#foreach ($para in $current.paragraphText)
+#if ($quote == "undef" && $para.contains("pdaUserLabel"))
+#set($quote = $para.charAt(0).charValue())
+#set($quote2 = $para.charAt(13).charValue())
+#end
+#if ($quote == "undef" && $para.contains("logonOrderID"))
+#set($quote = $para.charAt(0).charValue())
+#set($quote2 = $para.charAt(13).charValue())
+#end
+#if ($para.trim().startsWith("$quote") || $para.trim().startsWith("$quote2"))
+#if ($fstate != 0)
+        </field>
+#end
+#set ($fstate = 0)
+#end
+#if ($para.trim().length() > 0 && !$para.contains("Attribute mandatory"))
+#if ($para.trim().contains("Event-Schnittstelle LOGON"))
+#set ($pkg = "com.crh.logon.eventbeans.logon")
+#elseif ($para.trim().contains("Event-Schnittstelle MOP"))
+#set ($pkg = "com.crh.logon.eventbeans.mop")
+#elseif ($para.trim().contains("Event-Schnittstelle Parallel"))
+#set ($pkg = "com.crh.logon.eventbeans.parallel")
+#end
+#if ($para.trim().equals("Feldname"))
+#set ($state = 1)
+#elseif ($para.trim().contains("Feldinhalt") && $state == 1)
+#set ($state = 2)
+#elseif ($para.trim().contains("required") && $state == 2)
+#set ($state = 3)
+#if ($bean !="undef")
+#if ($fstate != 0)
+        </field>
+#set ($fstate = 0)
+#end
+    </bean>
+#end
+#set ($bean = $tmp0)
+
+    <bean package="${pkg}" name="$st.uc($bean)">
+#else
+#set ($tmp0 = $tmp)
+#set ($tmp = $st.toList($para.trim().split(" ")).get(0))
+#end
+#if ($state == 3)
+#if ($para.contains(''))
+#if (!$para.trim().contains("required"))
+#if ($fstate == 0)
+#set ($fstate = 1)
+#elseif ($fstate == 1)
+#set ($fstate = 2)
+#elseif ($fstate == 2)
+#set ($fstate = 0)
+#end
+#if ($fstate == 1)
+#set ($type = "String")
+#set ($ftmp = $st.toList($para.trim().split(" ")))
+#set ($name = $ftmp.get(0).trim())
+#if ($ftmp.size() > 1)
+#set ($type = $ftmp.get(1))
+#end
+#if ($type != "String") 
+#end
+#set ($l = $name.length() - 1)
+#set ($key = $name.substring(1,$l))
+        <field name="$key" type="$type">
+#elseif ($fstate == 2)
+            $para.trim().replace(">", '"').replace("<", '"')
+#else
+            required: $para.trim()
+        </field>
+#set ($fstate = 0)
+#end
+#else
+#set ($fstate = 0)
+#end
+#else
+#set ($state = 0)
+#end
+#end
+#end
+#end
+    </bean>
+#end
+
+</beans>

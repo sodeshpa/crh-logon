@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNC_TRSP_ZONE_VERTEX"
+           description="Defines a vertex (point) of a polygon which is associated with a Transport Zone. Vertices are put in a sequence. Google Map calculations do not distinguish clockwise/counter-clockwise definitions of polygons to decide if a point is inside/outside a line.">
+
+        <column name="TRSP_ZONE_VERTEX_ID" primaryKey="true" required="true" type="DECIMAL" size="12"
+                description="PK"/>
+        <column name="TRSP_ZONE_POLYGON_ID" required="true" type="DECIMAL" size="12"
+                description="FK trsp_trsp_zone_polygon. The polygon to which a vertex belongs."/>
+        <column name="SEQ_NO" required="true" type="DECIMAL" size="2"
+                description="The vertices with the same trsp_zone_polygon_id are put in a sequence, defined by this number."/>
+        <column name="COORD_LAT" required="true" type="DOUBLE"
+                description="Latitude coordinates of this vertex."/>
+        <column name="COORD_LON" required="true" type="DOUBLE"
+                description="Longitute coordinates of this vertex."/>
+
+        <foreign-key foreignTable="TLGNC_TRSP_ZONE_POLYGON" name="FK_TLGNC_TRSP_ZONE_VERTEX_POLY">
+            <reference local="TRSP_ZONE_POLYGON_ID" foreign="TRSP_ZONE_POLYGON_ID"/>
+        </foreign-key>
+
+        <!-- The sequence numbers in a single polygon must be unique -->
+        <unique name="UQ_TRSP_ZONE_VERTEX_SEQ">
+            <unique-column name="TRSP_ZONE_POLYGON_ID"/>
+            <unique-column name="SEQ_NO"/>
+        </unique>
+    </table>
+</database>

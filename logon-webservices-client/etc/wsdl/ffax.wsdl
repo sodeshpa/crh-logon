@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://www.officemaster.de/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://www.officemaster.de/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Webservice to provide fax functionality by using messaging server</wsdl:documentation>
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://www.officemaster.de/">
+      <s:complexType name="JobFile">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="FileName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="OrigFileName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Stationery1st" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="StationeryOther" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Stationery1stMerge" type="tns:MergeFlag" />
+          <s:element minOccurs="1" maxOccurs="1" name="StationeryOtherMerge" type="tns:MergeFlag" />
+          <s:element minOccurs="0" maxOccurs="1" name="JobData" type="s:base64Binary" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="MergeFlag">
+        <s:restriction base="s:string">
+          <s:enumeration value="UseOnlyFirstPage" />
+          <s:enumeration value="UseAllPages" />
+          <s:enumeration value="UseAllRepeatFirstPage" />
+          <s:enumeration value="UseAllRepeatLastPage" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="JobDescription">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="OwnCsid" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RemoteCsid" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Header" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Sender" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ReceiverName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ReceiverNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="JobFiles" type="tns:ArrayOfAnyType" />
+          <s:element minOccurs="1" maxOccurs="1" name="Status" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ErrStatus" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ErrorCode" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorStatusText" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorText" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="JobType" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ReceiverType" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="JobId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SendTime" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="JobStatus" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="NotifyComponent" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="NotifyAddress" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfAnyType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="anyType" nillable="true" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="ErrorTextSoapIn" />
+  <wsdl:message name="ErrorTextSoapOut">
+    <wsdl:part name="ErrorTextResult" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="HelloWorldSoapIn" />
+  <wsdl:message name="HelloWorldSoapOut">
+    <wsdl:part name="HelloWorldResult" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="SendFaxTextSoapIn">
+    <wsdl:part name="argsNumber" type="s:string" />
+    <wsdl:part name="argsText" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="SendFaxTextSoapOut">
+    <wsdl:part name="SendFaxTextResult" type="s:boolean" />
+    <wsdl:part name="argsJobId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="SendFaxFileSoapIn">
+    <wsdl:part name="argsNumber" type="s:string" />
+    <wsdl:part name="argsFileName" type="s:string" />
+    <wsdl:part name="argbytFileStream" type="s:base64Binary" />
+  </wsdl:message>
+  <wsdl:message name="SendFaxFileSoapOut">
+    <wsdl:part name="SendFaxFileResult" type="s:boolean" />
+    <wsdl:part name="argsJobId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="SendFaxJobfileSoapIn">
+    <wsdl:part name="argsNumber" type="s:string" />
+    <wsdl:part name="argoJobFiles" type="tns:JobFile" />
+  </wsdl:message>
+  <wsdl:message name="SendFaxJobfileSoapOut">
+    <wsdl:part name="SendFaxJobfileResult" type="s:boolean" />
+    <wsdl:part name="argsJobId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="SendJobSoapIn">
+    <wsdl:part name="argoJobDesc" type="tns:JobDescription" />
+  </wsdl:message>
+  <wsdl:message name="SendJobSoapOut">
+    <wsdl:part name="SendJobResult" type="s:boolean" />
+    <wsdl:part name="argsJobId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetStationeriesSoapIn" />
+  <wsdl:message name="GetStationeriesSoapOut">
+    <wsdl:part name="GetStationeriesResult" type="s:boolean" />
+    <wsdl:part name="argsStationeries" type="tns:ArrayOfString" />
+  </wsdl:message>
+  <wsdl:portType name="FFaxSoap">
+    <wsdl:operation name="ErrorText">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns ErrorText</wsdl:documentation>
+      <wsdl:input message="tns:ErrorTextSoapIn" />
+      <wsdl:output message="tns:ErrorTextSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="HelloWorld">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Just returns "Hello World" to show it works</wsdl:documentation>
+      <wsdl:input message="tns:HelloWorldSoapIn" />
+      <wsdl:output message="tns:HelloWorldSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SendFaxText">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send fax by giving number and text</wsdl:documentation>
+      <wsdl:input message="tns:SendFaxTextSoapIn" />
+      <wsdl:output message="tns:SendFaxTextSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SendFaxFile">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send single document fax by giving number, filestream and filename</wsdl:documentation>
+      <wsdl:input message="tns:SendFaxFileSoapIn" />
+      <wsdl:output message="tns:SendFaxFileSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SendFax">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send single document fax by giving number and JobFile description</wsdl:documentation>
+      <wsdl:input name="SendFaxJobfile" message="tns:SendFaxJobfileSoapIn" />
+      <wsdl:output name="SendFaxJobfile" message="tns:SendFaxJobfileSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SendJob">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send multiple document fax by giving a complete Jobdescription</wsdl:documentation>
+      <wsdl:input message="tns:SendJobSoapIn" />
+      <wsdl:output message="tns:SendJobSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetStationeries">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns list of available stationery documents</wsdl:documentation>
+      <wsdl:input message="tns:GetStationeriesSoapIn" />
+      <wsdl:output message="tns:GetStationeriesSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="FFaxSoap" type="tns:FFaxSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="rpc" />
+    <wsdl:operation name="ErrorText">
+      <soap:operation soapAction="http://www.officemaster.de/ErrorText" style="rpc" />
+      <wsdl:input>
+        <soap:body use="literal" namespace="http://www.officemaster.de/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" namespace="http://www.officemaster.de/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="HelloWorld">
+      <soap:operation soapAction="http://www.officemaster.de/HelloWorld" style="rpc" />
+      <wsdl:input>
+        <soap:body use="literal" namespace="http://www.officemaster.de/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" namespace="http://www.officemaster.de/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendFaxText">
+      <soap:operation soapAction="http://www.officemaster.de/SendFaxText" style="rpc" />
+      <wsdl:input>
+        <soap:body use="literal" namespace="http://www.officemaster.de/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" namespace="http://www.officemaster.de/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendFaxFile">
+      <soap:operation soapAction="http://www.officemaster.de/SendFaxFile" style="rpc" />
+      <wsdl:input>
+        <soap:body use="literal" namespace="http://www.officemaster.de/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" namespace="http://www.officemaster.de/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendFax">
+      <soap:operation soapAction="http://www.officemaster.de/SendFaxJobfile" style="rpc" />
+      <wsdl:input name="SendFaxJobfile">
+        <soap:body use="literal" namespace="http://www.officemaster.de/" />
+      </wsdl:input>
+      <wsdl:output name="SendFaxJobfile">
+        <soap:body use="literal" namespace="http://www.officemaster.de/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendJob">
+      <soap:operation soapAction="http://www.officemaster.de/SendJob" style="rpc" />
+      <wsdl:input>
+        <soap:body use="literal" namespace="http://www.officemaster.de/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" namespace="http://www.officemaster.de/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStationeries">
+      <soap:operation soapAction="http://www.officemaster.de/GetStationeries" style="rpc" />
+      <wsdl:input>
+        <soap:body use="literal" namespace="http://www.officemaster.de/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" namespace="http://www.officemaster.de/" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="FFaxSoap12" type="tns:FFaxSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" style="rpc" />
+    <wsdl:operation name="ErrorText">
+      <soap12:operation soapAction="http://www.officemaster.de/ErrorText" style="rpc" />
+      <wsdl:input>
+        <soap12:body use="literal" namespace="http://www.officemaster.de/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" namespace="http://www.officemaster.de/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="HelloWorld">
+      <soap12:operation soapAction="http://www.officemaster.de/HelloWorld" style="rpc" />
+      <wsdl:input>
+        <soap12:body use="literal" namespace="http://www.officemaster.de/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" namespace="http://www.officemaster.de/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendFaxText">
+      <soap12:operation soapAction="http://www.officemaster.de/SendFaxText" style="rpc" />
+      <wsdl:input>
+        <soap12:body use="literal" namespace="http://www.officemaster.de/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" namespace="http://www.officemaster.de/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendFaxFile">
+      <soap12:operation soapAction="http://www.officemaster.de/SendFaxFile" style="rpc" />
+      <wsdl:input>
+        <soap12:body use="literal" namespace="http://www.officemaster.de/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" namespace="http://www.officemaster.de/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendFax">
+      <soap12:operation soapAction="http://www.officemaster.de/SendFaxJobfile" style="rpc" />
+      <wsdl:input name="SendFaxJobfile">
+        <soap12:body use="literal" namespace="http://www.officemaster.de/" />
+      </wsdl:input>
+      <wsdl:output name="SendFaxJobfile">
+        <soap12:body use="literal" namespace="http://www.officemaster.de/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendJob">
+      <soap12:operation soapAction="http://www.officemaster.de/SendJob" style="rpc" />
+      <wsdl:input>
+        <soap12:body use="literal" namespace="http://www.officemaster.de/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" namespace="http://www.officemaster.de/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStationeries">
+      <soap12:operation soapAction="http://www.officemaster.de/GetStationeries" style="rpc" />
+      <wsdl:input>
+        <soap12:body use="literal" namespace="http://www.officemaster.de/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" namespace="http://www.officemaster.de/" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="FFax">
+    <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Webservice to provide fax functionality by using messaging server</wsdl:documentation>
+    <wsdl:port name="FFaxSoap" binding="tns:FFaxSoap">
+      <soap:address location="http://localhost/ofmawsvc3/ffax.asmx" />
+    </wsdl:port>
+    <wsdl:port name="FFaxSoap12" binding="tns:FFaxSoap12">
+      <soap12:address location="http://localhost/ofmawsvc3/ffax.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

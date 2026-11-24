@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNR_WEIGH_SYSTEM_LP_BS" refData="true"
+           description="Weighing systems which are used in a loadingpoint to determine the weight of a truck/load: Parallel bulk, manual LOGON, manual PDA, Container loading.">
+
+        <column name="WEIGH_SYSTEM_LP_CD" primaryKey="true" required="true" type="DECIMAL" size="2"
+                description="PK. 0=LDS from shipping point, 2=Manual LOGON, 3=Manual PDA."/>
+        
+        <column name="CTL_ACT_CD" required="true" type="BOOLEAN"
+                description="Active Flag. When new data is entered, only reference data with active flag are available for selection normally."/>
+    </table>
+</database>

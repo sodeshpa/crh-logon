@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="VLGNC_DISPO_TRUCK_CHANGE_LIST" mappingType="view" skipSql="true">
+	    <column name="COMPOSITE_ID" type="VARCHAR" size="43"/>
+        <column name="TRUCK_ID" required="true" type="DECIMAL" size="12"/>
+		<column name="CTL_MOD_TS" required="true" type="TIMESTAMP" />
+	    <column name="UNAV_START_DAT" required="true" type="DATE" description="The start date/time from when truck is unavailable."/>
+	    <column name="UNAV_END_DAT" required="true" type="DATE" description="The end date/time until when a truck is unavailable. In case it's open end, a hardcoded date of 31.12.9999=infinite is set."/>
+        <column name="TRAFFJAM_START_DAT" required="true" type="DATE" description="The date/time when the traffic jam event was sent by the PDA = start of traffic jam for Logon."/>
+        <column name="DRVBREAK_START_DAT" required="true" type="DATE"/>
+        <column name="CRE_TS" required="true" type="TIMESTAMP"/>
+    </table>
+</database>

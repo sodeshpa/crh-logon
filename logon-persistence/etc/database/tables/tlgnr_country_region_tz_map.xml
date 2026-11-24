@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNR_COUNTRY_REGION_TZ_MAP" refData="true"
+           description="Maps an SAP Country and Region to a TimeZone entity">
+
+        <column name="COUNTRY_REGION_TZ_MAP_ID" primaryKey="true" required="true" type="DECIMAL" size="12"
+                description="PK"/>
+        <column name="SAP_COUNTRY_CD" primaryKey="false" required="true" type="VARCHAR" size="3"
+                description="FK TLGNR_SAP_COUNTRY_BS"/>
+        <column name="SAP_REGION_CODE" primaryKey="false" required="false" type="VARCHAR" size="8"
+                description="SAP Region code"/>
+        <column name="TIMEZONE_CD" primaryKey="false" required="true" type="VARCHAR" size="32"
+                description="FK TLGNR_TIMEZONE_BS"/>
+        <column name="SAP_TIMEZONE_DESCRIPTION" primaryKey="false" required="false" type="VARCHAR" size="64"
+                description="Additional user friendly timezone information taken from SAP"/>
+        <column name="CTL_ACT_CD" required="true" type="BOOLEAN"
+                description="Active Flag. When new data is entered, only reference data with active flag are available for selection normally."/>
+
+        <foreign-key foreignTable="TLGNR_SAP_COUNTRY_BS" name="FK_TLGNR_CTRY_REGIO_TZ_CTRY">
+            <reference local="SAP_COUNTRY_CD" foreign="SAP_COUNTRY_CD"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_TIMEZONE_BS" name="FK_TLGNR_CTRY_REGIO_TZ_TZ">
+            <reference local="TIMEZONE_CD" foreign="TIMEZONE_CD"/>
+        </foreign-key>
+
+    </table>
+</database>
+

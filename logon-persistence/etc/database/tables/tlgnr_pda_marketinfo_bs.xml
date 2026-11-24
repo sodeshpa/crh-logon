@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNR_PDA_MARKETINFO_BS" refData="true"
+           description="Predefined Marketinfo Messages for PDA.">
+        <column name="PDA_MARKETINFO_CD" primaryKey="true" required="true" type="DECIMAL" size="2"
+                description="PK. Code of the Reference Data."/>
+        <column name="CTL_ACT_CD" required="true" type="BOOLEAN"
+                description="Active Flag. When new data is entered, only reference data with active flag are available for selection normally."/>
+    </table>
+</database>

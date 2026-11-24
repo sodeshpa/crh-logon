@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="VLGNC_DISPO_SHIPTO_SOLDTO" mappingType="view" skipSql="true">
+        <column name="SHIPTO_NAME" type="VARCHAR" size="35"/>
+        <column name="SHIPTO_NR" type="VARCHAR" size="10"/>
+        <column name="POSTAL_CODE" required="true" type="VARCHAR" size="10"/>
+        <column name="CITY" required="true" type="VARCHAR" size="35"/>
+        <column name="SOLDTO_NAME" type="VARCHAR" size="35"/>
+        <column name="SOLDTO_NR" type="VARCHAR" size="10"/>
+        <column name="COORD_LAT" type="DOUBLE"/>
+        <column name="COORD_LON" type="DOUBLE"/>
+        <column name="GEOFENCE_RADIUS" type="DECIMAL" size="10"/>
+    </table>
+</database>

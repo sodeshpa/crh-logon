@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="VLGNC_EDITBP_SOLDSHIP_SAREA" mappingType="view" skipSql="true">
+        <column name="COMPOSITE_ID" type="VARCHAR" size="133"/>
+        <column name="SHIPTO_NAME" type="VARCHAR" size="35"/>
+        <column name="SHIPTO_SAP_ID" type="VARCHAR" size="10"/>
+        <column name="SHIPTO_MARKED_FOR_DELETION" type="VARCHAR" size="1"/>
+        <column name="SHIPTO_POSTAL_CODE" required="true" type="VARCHAR" size="10"/>
+        <column name="SHIPTO_CITY" required="true" type="VARCHAR" size="35"/>
+        <column name="SOLDTO_SAP_ID" type="VARCHAR" size="10"/>
+        <column name="SOLDTO_NAME" type="VARCHAR" size="35"/>
+        <column name="SOLDTO_MARKED_FOR_DELETION" type="VARCHAR" size="1"/>
+        <column name="SAREA_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="SAREA_DISPLAY_LONGNAME" required="true" type="VARCHAR" size="30"/>
+        <column name="DAILY_ORDER_STATUS_LANG_CD" type="VARCHAR" size="2"/>
+        <column name="COMPOSITE_SEARCH_STRING" type="VARCHAR" size="180"/>
+    </table>
+</database>

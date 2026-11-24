@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNC_PICKUP_LOADINGPOINT"
+           description="Mapping between a client attribute and loadingpoint terminals. Used for the touchscreen terminals located at the loadingpoints.">
+
+        <column name="PICKUP_LOADINGPOINT" primaryKey="true" required="true" type="DECIMAL" size="12"
+                description="PK."/>
+
+        <column name="CLIENT_IDENTIFIER" required="true" type="VARCHAR" size="40"
+                description="Current implementation uses host name to look up the loadingpoint."/>
+                
+        <column name="LOADINGPOINT_ID" required="true" type="DECIMAL" size="12"
+                description="FK. The id of the loadingpoint where the touchscreen terminal stands."/>
+                
+        <column name="ORDERS_LOADABLE_TERMINAL_FLAG" required="true" type="BOOLEAN"
+                description="Defines whether or not loading of Bag materials can be performed on the Terminal (using Terminal App.). If the flag is activated (1=activated), the loading will be possible on the Terminal, if it is deactivated (0=deactivated) loading will NOT happen on the Terminal (loading will be performed with LDS or LOGON)."/>
+                
+        <column name="BULK_PICKUP_CREATION_FLAG" required="true" type="BOOLEAN"
+                description="This flag defines whether or not Bulk Pickup orders are AVAILABLE and can be CREATED on the Terminal Application."/>
+        
+        <unique name="UQ_CLIENT_IDENTIFIER">
+            <unique-column name="CLIENT_IDENTIFIER"/>
+        </unique>
+        
+        <foreign-key foreignTable="TLGNC_LOADINGPOINT" name="FK_TLGNC_PICKUP_LOADINGPOINT">
+            <reference local="LOADINGPOINT_ID" foreign="LOADINGPOINT_ID"/>
+        </foreign-key>        
+      </table>
+</database>

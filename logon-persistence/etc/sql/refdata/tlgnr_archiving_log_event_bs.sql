@@ -1,0 +1,31 @@
+-- LOGON-9253 
+prompt '---------- refdata/tlgnr_archiving_log_event_bs.sql ----------'
+insert into TLGNR_ARCHIVING_LOG_EVENT_BS(ARCHIVING_LOG_EVENT_CD, EVENT_NAME) values(1000, 'Start order archiving');
+insert into TLGNR_ARCHIVING_LOG_EVENT_BS(ARCHIVING_LOG_EVENT_CD, EVENT_NAME) values(1001, 'Transmit to archiving service');
+insert into TLGNR_ARCHIVING_LOG_EVENT_BS(ARCHIVING_LOG_EVENT_CD, EVENT_NAME) values(1002, 'Receive response from archiving service');
+insert into TLGNR_ARCHIVING_LOG_EVENT_BS(ARCHIVING_LOG_EVENT_CD, EVENT_NAME) values(1003, 'Remove entries from tlgnc_order_rep_maint_type table');
+insert into TLGNR_ARCHIVING_LOG_EVENT_BS(ARCHIVING_LOG_EVENT_CD, EVENT_NAME) values(1004, 'Remove entries from tlgnc_order_rep_att table');
+insert into TLGNR_ARCHIVING_LOG_EVENT_BS(ARCHIVING_LOG_EVENT_CD, EVENT_NAME) values(1005, 'Remove entries from tlgnc_order_rep_dmgcode_type table');
+insert into TLGNR_ARCHIVING_LOG_EVENT_BS(ARCHIVING_LOG_EVENT_CD, EVENT_NAME) values(1006, 'Remove entries from tlgnc_order_rep table');
+insert into TLGNR_ARCHIVING_LOG_EVENT_BS(ARCHIVING_LOG_EVENT_CD, EVENT_NAME) values(1007, 'Remove entries from tlgnc_order_outputdoc table');
+insert into TLGNR_ARCHIVING_LOG_EVENT_BS(ARCHIVING_LOG_EVENT_CD, EVENT_NAME) values(1008, 'Remove entries from tlgnc_outputdoc table');
+insert into TLGNR_ARCHIVING_LOG_EVENT_BS(ARCHIVING_LOG_EVENT_CD, EVENT_NAME) values(1009, 'Remove entries from tlgnc_custorder_outputdoc table');
+insert into TLGNR_ARCHIVING_LOG_EVENT_BS(ARCHIVING_LOG_EVENT_CD, EVENT_NAME) values(1010, 'Remove entries from tlgnc_custorder_item table');
+insert into TLGNR_ARCHIVING_LOG_EVENT_BS(ARCHIVING_LOG_EVENT_CD, EVENT_NAME) values(1011, 'Remove entries from tlgnc_bizevent_audit table');
+insert into TLGNR_ARCHIVING_LOG_EVENT_BS(ARCHIVING_LOG_EVENT_CD, EVENT_NAME) values(1012, 'Remove entries from tlgnc_bizevent table');
+insert into TLGNR_ARCHIVING_LOG_EVENT_BS(ARCHIVING_LOG_EVENT_CD, EVENT_NAME) values(1013, 'Remove entries from tlgnc_assignment_part table');
+insert into TLGNR_ARCHIVING_LOG_EVENT_BS(ARCHIVING_LOG_EVENT_CD, EVENT_NAME) values(1014, 'Remove entries from tlgnc_assignment table');
+insert into TLGNR_ARCHIVING_LOG_EVENT_BS(ARCHIVING_LOG_EVENT_CD, EVENT_NAME) values(1015, 'Remove entries from tlgnc_ext_order table');
+insert into TLGNR_ARCHIVING_LOG_EVENT_BS(ARCHIVING_LOG_EVENT_CD, EVENT_NAME) values(1016, 'Remove entries from tlgnc_credit_note table');
+insert into TLGNR_ARCHIVING_LOG_EVENT_BS(ARCHIVING_LOG_EVENT_CD, EVENT_NAME) values(1017, 'Remove entries from tlgnc_pricing_call table');
+insert into TLGNR_ARCHIVING_LOG_EVENT_BS(ARCHIVING_LOG_EVENT_CD, EVENT_NAME) values(1018, 'Set bimodal rail to null in tlgnc_order_item table (order_item_id = deleted_entry_id)');
+insert into TLGNR_ARCHIVING_LOG_EVENT_BS(ARCHIVING_LOG_EVENT_CD, EVENT_NAME) values(1019, 'Remove entries from tlgnc_order_item table');
+insert into TLGNR_ARCHIVING_LOG_EVENT_BS(ARCHIVING_LOG_EVENT_CD, EVENT_NAME) values(1020, 'Remove entries from tlgnc_goods_movement table');
+insert into TLGNR_ARCHIVING_LOG_EVENT_BS(ARCHIVING_LOG_EVENT_CD, EVENT_NAME) values(1021, 'Remove entries from tlgnc_load table');
+insert into TLGNR_ARCHIVING_LOG_EVENT_BS(ARCHIVING_LOG_EVENT_CD, EVENT_NAME) values(1022, 'Remove entries from tlgnc_order_preschedule table');
+insert into TLGNR_ARCHIVING_LOG_EVENT_BS(ARCHIVING_LOG_EVENT_CD, EVENT_NAME) values(1023, 'Remove entries from tlgnc_order_truck_type table');
+insert into TLGNR_ARCHIVING_LOG_EVENT_BS(ARCHIVING_LOG_EVENT_CD, EVENT_NAME) values(1024, 'Remove entries from tlgnc_order table');
+insert into TLGNR_ARCHIVING_LOG_EVENT_BS(ARCHIVING_LOG_EVENT_CD, EVENT_NAME) values(1025, 'Remove entries from tlgnc_custorder table');
+insert into TLGNR_ARCHIVING_LOG_EVENT_BS(ARCHIVING_LOG_EVENT_CD, EVENT_NAME) values(1026, 'Remove entries from tlgnc_signature table');
+insert into TLGNR_ARCHIVING_LOG_EVENT_BS(ARCHIVING_LOG_EVENT_CD, EVENT_NAME) values(1027, 'Unable to delete order');
+insert into TLGNR_ARCHIVING_LOG_EVENT_BS(ARCHIVING_LOG_EVENT_CD, EVENT_NAME) values(1028, 'Archiving: the whole batch of orders have failed. Could not send to webservice.');

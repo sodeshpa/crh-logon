@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>	
+    <bean id="configurationContext"
+       class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+       <property name="locations">
+            <list>
+                <value>classpath:buildtime.properties</value>
+                <value>file:${properties.configurationPath}</value>
+            </list>
+       </property>
+    </bean>
+</beans>

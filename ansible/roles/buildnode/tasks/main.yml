@@ -1,0 +1,10 @@
+---
+- name: install some required packages
+  yum:
+    name:
+    - psmisc
+    - xorg-x11-server-Xvfb
+    - firefox-52.2.0
+    enablerepo:
+    - rhel-7-server-optional-rpms
+    state: present

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNR_CONTAINER_TYPE_BS" refData="true"
+           description="Types of Containers. The type of a container characterizes special abilities/requirements. We currently distinguish 'unloading horizontally' and 'unloading only when tilted' as the two unloading possibilities. Containers which are fix installed on a rail wagon have their unloading pipes at the side, and are never tilted.">
+
+        <column name="CONTAINER_TYPE_CD" primaryKey="true" required="true" type="DECIMAL" size="2"
+                description="PK. Code of the Reference Data. 1=unloading horizontally (unloading pipes at its side), 2=unloading only when tilted (unloading pipes at back)"/>
+        <column name="CTL_ACT_CD" required="true" type="BOOLEAN"
+                description="Active Flag. When new data is entered, only reference data with active flag are available for selection normally."/>
+
+    </table>
+</database>

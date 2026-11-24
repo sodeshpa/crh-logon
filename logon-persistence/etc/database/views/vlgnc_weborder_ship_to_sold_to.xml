@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="VLGNC_WEBORDER_SHIP_TO_SOLD_TO" mappingType="view" skipSql="true">
+        <column name="COMPOSITE_ID" type="VARCHAR" size="133"/>
+        <column name="SHIPTO_NAME" type="VARCHAR" size="35"/>
+        <column name="SOLDTO_NAME" type="VARCHAR" size="35"/>
+        <column name="SHIPTO_SAP_ID" type="VARCHAR" size="10"/>
+        <column name="SHIPTO_SAP_BP_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="SOLDTO_SAP_ID" type="VARCHAR" size="10"/>
+        <column name="SOLDTO_SAP_BP_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="STREET" type="VARCHAR" size="35"/>
+        <column name="HOUSE_NUMBER" type="VARCHAR" size="10"/>
+        <column name="CITY" type="VARCHAR" size="35"/>
+        <column name="POSTAL_CODE" type="VARCHAR" size="10"/>
+        <column name="COUNTRY_CD" type="VARCHAR" size="3"/>
+    </table>
+</database>

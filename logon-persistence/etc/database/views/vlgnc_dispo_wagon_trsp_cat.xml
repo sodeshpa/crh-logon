@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="VLGNC_DISPO_WAGON_TRSP_CAT" mappingType="view" skipSql="true">
+        <column name="WAGON_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="WAGON_TYPE_CD" required="true" type="DECIMAL" size="2"/>
+        <column name="WAGON_TRSP_CAT_CD" required="true" type="DECIMAL" size="2"/>
+    </table>
+</database>

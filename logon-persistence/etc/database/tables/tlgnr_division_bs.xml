@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNR_DIVISION_BS" refData="true" 
+    description="Table Implementation of the Divisions">
+        <column name="DIVISION_CD" primaryKey="true" required="true" type="VARCHAR" size="2" 
+        description="PK. Code of the Division Data"/>
+        <column name="SEGMENT_CODE" required="true" type="VARCHAR" size="1"
+                description="Defines the segment for the division. AFR A, Cement C, Aggregates G, ReadyMix R"/>
+        <column name="CTL_ACT_CD" required="true" type="BOOLEAN"
+                description="Active Flag. When new data is entered, only reference data with active flag are available for selection normally."/>
+                
+    </table>
+</database>

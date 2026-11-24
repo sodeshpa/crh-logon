@@ -1,0 +1,3 @@
+-- Only view updates
+
+DROP VIEW VLGNC_DEMAND_PLAN_SHIPTO;

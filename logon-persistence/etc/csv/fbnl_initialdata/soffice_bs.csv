@@ -1,0 +1,133 @@
+# Provided by Crh on 04.12.2012;;
+# This is CLUSTER 0. Data of Cluster 0 and Cluster 1 is identical in both clusters, currently even in their active flag (ctl_act_cd);;
+# 05.12.2012, file updated by FBI;;
+#SOFFICE_CD;#SOFFICE_NAME;#CTL_ACT_CD
+B101;DCC Belgique;1
+B102;DCC Nederland;1
+B103;Georoc Benelux;1
+B104;Grand Export Benelux;1
+B201;GeoMinerals;1
+B301;Granulats Belgique;1
+B401;RMX BELGIUM WEST;1
+B402;RMX BELGIUM NORTH;1
+B800;GeoMinerals;1
+B403;RMX BELGIUM SOUTH;1
+B900;Geocycle Belgique;1
+B999;Agence Prestation BE;1
+C001;VA/S-Ostschweiz;1
+C002;N-Ostschweiz;1
+C003;Zürich;1
+C004;Nordwestschweiz;1
+C005;GE/VD;1
+C006;VS/VD-O/FR/NE/JU;1
+C007;Sopraceneri;1
+C008;Sottoceneri;1
+C009;Grossprojekte;1
+C010;Exporte;1
+C011;Zentralschweiz;1
+C050;AFR Schweiz;1
+C051;Verschiedene DL Schw;1
+D001;Cement NG;1
+D002;AGG NI;1
+D003;AGG SH;1
+D004;AGG SN;1
+D005;RMX HH;1
+D006;RMX MV;1
+D007;RMX NI;1
+D008;RMX NI LER;1
+D009;RMX NW;1
+D010;RMX SH;1
+D011;AF;1
+D012;AR;1
+D013;Waste trading;1
+D014;TRD CEM;1
+D015;MIC - Slag;1
+D550;Verkauf Zement;1
+D551;Region Weil/Lörrach;1
+D552;Region Offenburg;1
+D553;Region Stuttgart;1
+D554;Region Karlsruhe;1
+D555;Trockensandwerk;1
+D559;AFR Süddeutschland;1
+D560;SBM Süd-DE;1
+D570;Verschiedene DL Süd-;1
+F110;Direction Commercial;1
+F111;DV NO;1
+F112;DV Est;1
+F113;GEOROC;1
+F122;VDN;1
+F300;HG Distribution;1
+F314;Socoval Côte d`Or;1
+F323;secteur EST GRAN. HR;1
+F324;secteur EST GRAN. BR;1
+F327;secteur GR. LA HARDT;1
+F331;secteur COTE D'OR SO;1
+F334;secteur JURA CBS;1
+F338;secteur HGN F NORD;1
+F339;secteur HGN F SUD;1
+F341;secteur HAUT RHIN;1
+F342;secteur BAS RHIN;1
+F343;secteur MOSELLE;1
+F344;secteur COTE D'OR;1
+F345;HGN AUBE VAL DE LOIR;1
+F346;secteur JURA;1
+F347;GRANULATS SPECIAUX;1
+F348;secteur FRANCHE COMT;1
+F349;HG Trading;1
+F405;Béton Castel;1
+F410;Béton Rapid;1
+F415;S.HBIDFN Est;1
+F416;S.HBIDFN Paris;1
+F417;S.HBIDFN Normandie;1
+F420;S. HBFN Littoral;1
+F421;S. HBFN Lille;1
+F422;S. HBFN Artois;1
+F423;S. HBFN Hainaut;1
+F425;S.HBFCE Rhone Alpes;1
+F430;S.HBFE Bas-Rhin Sud;1
+F431;S.HBFE Bas-Rhin Nord;1
+F432;S.HBFE Vosges Nord;1
+F434;S.HBFE Vosges;1
+F435;S.HBFE Nancy;1
+F436;S.HBFE Metz;1
+F437;S.HBFE Lorraine Nord;1
+F438;S.HBFE Ardennes;1
+F439;S.HBFE Marne;1
+F440;S.HBFE Mulhouse;1
+F441;S.HBFE Colmar;1
+F443;S.HBFP Oise;1
+F444;S.HBFP Nord est;1
+F445;S. HBFE 3 Frontières;1
+F446;S.HBFP Val de Somme;1
+F447;S.HBFCE Grd Besançon;1
+F448;S.HBFCE F.C.Nord;1
+F449;S.HBFCE Aube;1
+F450;DB Centre;1
+F451;DB Est;1
+F452;DB Sud;1
+F453;DB Nord;1
+F454;S.HBFCE F.C.Sud;1
+F996;Geocycle France Nord;1
+F998;Geocycle France Est;1
+F999;Agence Prestation FR;1
+I001;Area 1 Est;1
+I002;Area 2 Ovest;1
+I003;Area 3 Toscana;1
+I004;Area 4 Triveneto;1
+I005;Imprese-Grandi lavor;1
+I006;Direzione Cemento;1
+I011;Varie;1
+I012;Ufficio Sea Beton;1
+I013;Ufficio BG BS;1
+I014;Ufficio AL;1
+I015;Ufficio VA CO;1
+I016;Ufficio MI;1
+I018;Direzione Agg Rmx;1
+I019;Ufficio AFR;1
+I020;Fusine Energia;1
+I023;Ufficio Biomass Ener;1
+L401;HB Luxembourg;1
+L999;Agence Prestation LU;1
+N405;RMX Nederland;1
+N455;Concrete Production;1
+N999;Agence Prestation NL;1

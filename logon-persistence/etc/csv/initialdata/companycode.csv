@@ -1,0 +1,256 @@
+# $Revision$;;
+# $Date$;;
+#COMPANYCODE_CD;COMPANYCODE_NAME;CTL_ACT_CD
+#;;
+AT01;Holcim (Wien) GmbH;AT;1
+AT04;ecorec Österreich GmbH;AT;1
+AT50;Holcim (Vorarlberg) GmbH;AT;1
+ATZZ;Legacy Austria - HR;AT;1
+AZ01;Holcim (Azerbaijan) OJSC;AZ;1
+AZ02;Geocycle (Azerbaijan) LLC;AZ;1
+AZZZ;Legacy Azerbaijan - HR;AZ;1
+BE01;Holcim (Belgique) SA;BE;1
+BE02;Holcim Bétons (Belgique);BE;1
+BE03;Holcim Granulats (Belgique);BE;1
+BE06;Geocycle SA;BE;1
+BE08;Holcim Environment Servic;BE;1
+BE10;Carrières de Leffe SA;BE;1
+BE11;Calcaires Rive Gauche I S;BE;1
+BE12;Holcim GeoMinerals SDC;BE;1
+BE88;Société Carrières Tournaisis;BE;1
+BEZZ;Legacy Belgium - HR;BE;1
+BG01;Holcim (Bulgaria) AD;BG;1
+BG02;Holcim Karierni Materiali;BG;1
+BG03;HKM Plovdiv AD;BG;1
+BG04;Vris EOOD;BG;1
+BG05;ecorec Bulgaria EOOD;BG;1
+BG06;Gumirec EAD;BG;1
+BG07;HKM Rudinata AD;BG;1
+BGZZ;Legacy Bulgaria - HR;BG;1
+CH01;Holcim (Schweiz) AG;CH;1
+CH02;Holcim Kies und Beton AG;CH;1
+CH03;Holcim (Cham) AG;CH;1
+CH04;Holcim Bétondrance SA;CH;1
+CH05;Holcim BF+P SA;CH;1
+CH06;Holcim Foundation;CH;1
+CH07;Basaltstein AG;CH;1
+CH08;AG Hunziker & Cie;CH;1
+CH09;Kalt Kies- und Betonwerk;CH;1
+CH10;Praz SA;CH;1
+CH11;Fänn-Beton AG, Küssnacht;CH;0
+CH81;Holcim Kies und Beton AG;CH;1
+CH91;Hupfer AGARGE AKB;CH;1
+CH99;Holcim Europe Services AG;CH;1
+CHZZ;Legacy Switzerland - HR;CH;1
+CI01;Socimat (Holcim Côte d''Iv;CI;1
+CIZZ;Legacy Ivory Coast - HR;CI;1
+CY01;BOGAZ ENDUSTRI VE MADENCI;CY;1
+CYZZ;Legacy Cyprus - HR;CY;1
+CZZZ;Legacy Czech Rep - HR;CZ;1
+DE01;Holcim (Deutschland) AG;DE;1
+DE02;Arge Salzbeton Morsleben;DE;1
+DE03;Holcim Beton und Zuschlag;DE;1
+DE04;Union-Transportbeton GmbH;DE;1
+DE05;Union-Beton Beteil. GmbH;DE;1
+DE06;Betontechnik Nord GmbH;DE;1
+DE07;Kieswerk Borsberg GmbH;DE;1
+DE08;HSG Hannoversche Silo;DE;1
+DE09;Holcim KW Zeithain KG;DE;1
+DE10;VETRA BFTW GmbH, Oldenb.;DE;1
+DE11;VETRA BFTW GmbH&Co.KG, Nb;DE;1
+DE12;Betonfertigteilwerke GmbH;DE;1
+DE13;BLS Beton-Labor Soltau Gm;DE;1
+DE14;Schulenburg GmbH;DE;1
+DE16;Yeoman Baumineralien GmbH;DE;1
+DE17;Hemmoor Zement AG i.A.;DE;1
+DE18;Arb-Wofa-Stiftung Hemmoor;DE;1
+DE19;Ang-Wofa-Stiftung Hemmoor;DE;1
+DE20;U-Fonds der APCH;DE;1
+DE21;Holcim Kies und Splitt Gm;DE;1
+DE22;Verw.Ges. Kiesw. Borsberg;DE;1
+DE23;Holcim Beton und Betonwar;DE;1
+DE24;HABEWO Vermögensverwalt.;DE;1
+DE25;Versorgungskasse NC;DE;1
+DE26;VG Holcim KW Zeithain mbH;DE;1
+DE33;Unterstützungskasse AB;DE;1
+DE36;SBU Dresden GmbH & Co.KG;DE;1
+DE37;Stiftung Bau-Steine-Erden;DE;1
+DE40;Happy Beton Gmb & Co.KG;DE;1
+DE41;Happy Kies S Rec.GmbH&Co.;DE;1
+DE42;Happy Translogistik GmbH;DE;1
+DE50;Hüttensand Salzgitter Gmb;DE;1
+DE51;Hüttensand Salzgitter Ver;DE;1
+DE52;VETRA GmbH&Co.KG;DE;1
+DE53;VETRA Verwalt. GmbH;DE;1
+DE55;Fertigbeton Saldern&Co.KG;DE;1
+DE57;Union Beton NSach &CO. KG;DE;1
+DE58;Union Beton NSach GmbH;DE;1
+DE65;Heide Transportbeton GmbH;DE;1
+DE66;Heide-Wind Verwalt. GmbH;DE;1
+DE67;Kieswerk Leinetal  &Co.KG;DE;1
+DE68;Kieswerk Leinetal  GmbH;DE;1
+DE70;Holcim (Süddeutschland) G;DE;1
+DE71;Rohstoffgewinnung Hohente;DE;1
+DE72;Glaser Sand- und Kieswer;DE;1
+DE73;Glaser Trockensand GmbH;DE;1
+DE80;Holcim Kies und Beton Gmb;DE;1
+DE89;Osteuropäische Zementbete;DE;1
+DE91;Holcim Schiffarht Baustof;DE;1
+DEA1;Holcim West Zement GmbH;DE;1
+DEA2;Holcim HüttenZement GmbH;DE;1
+DEB0;Wencker Verwaltungs-GmbH;DE;1
+DEB1;Holcim Transportbeton Gmb;DE;1
+DEB2;CEMEX Transportbeton Verw;DE;1
+DEB3;MDS Mörteldienst Siegerla;DE;1
+DEB4;Mörteldienst Siegerland G;DE;1
+DEB5;STB Sauerländer GmbH & Co;DE;1
+DEB6;STB Sauerländer Transport;DE;1
+DEB7;Transportbeton G.m.b.H. &;DE;1
+DEB8;Transportbeton GmbH, Wupp;DE;1
+DEB9;Wencker GmbH & Co. KG;DE;1
+DEBA;TBE Transportbeton Eisern;DE;1
+DEG1;Geocycle (Deutschland);DE;1
+DEK1;Adjustments on G_DEU_1;DE;1
+DES1;Kalksteinwerk Medenbach G;DE;1
+DES2;Holcim Kies & Splitt Hess;DE;1
+DES3;KSV Kies & Splitt GmbH Rh;DE;1
+DES4;Buss Basalt GmbH & Co. KG;DE;1
+DES5;Lahn-Kalkstein GmbH;DE;1
+DES6;Kieswerk Herrmann GmbH &;DE;1
+DES7;Kieswerk Herrmann Verwalt;DE;1
+DEZZ;Legacy Germany - HR;DE;1
+ES01;HOLCIM (ESPAÑA), S.A.;ES;1
+ES02;Geocycle (España), S.A.;ES;1
+ES03;Gravera el Puente, S.L.;ES;1
+ES04;Vera Consignatarios, S.L.;ES;1
+ES05;Chipala Medioambientes, S;ES;1
+ES06;VALFARMA;ES;1
+ES07;Ready Mixed Gibraltar LTD;GI;1
+ES08;Aridos Hat, S.L.y Cia S.C;ES;1
+ES09;Filona, S.L.;ES;1
+ES10;Urbanizaciones del Sur;ES;1
+ES28;HOLCIM Services EMEA, S.L;ES;1
+ESZZ;Legacy Spain - HR;ES;1
+FR01;Holcim (France) SAS;FR;1
+FR02;Holcim Bétons (France)SAS;FR;1
+FR03;Holcim Granulats (France);FR;1
+FR05;Holcim Informatique SAS;FR;1
+FR06;Dunkerque Ajouts SNC;FR;1
+FR07;VDN S.A.S;FR;1
+FR09;Béton Castel SAS;FR;1
+FR10;Béton Rapid SA;FR;1
+FR11;Carrière Bourgogne Sud SA;FR;1
+FR12;Socalcor SA;FR;1
+FR13;Granulats de Franche Comt;FR;1
+FR14;SOCOVAL SARL;FR;1
+FR15;C.B.P. SNC;FR;1
+FR17;Holcim Granulats Distribu;FR;1
+FR18;Holcim Bétons (Ouest) SAS;FR;1
+FR20;Dijon Béton;FR;1
+FR21;Carrières de Ternuay;FR;1
+FR23;EST Granulats;FR;1
+FR25;Gravières de la Hardt SNC;FR;1
+FR28;Atlantique Négoce SAS;FR;1
+FR29;Euro Stockage SAS;FR;1
+FR30;EDCM;FR;1
+FR31;SAS MPA;FR;1
+FR32;PHENIX NC;FR;1
+FR50;Holcim Schoeneck S.a.r.l;FR;1
+FR51;Sables et Graviers Willer;FR;1
+FRAH;Holcim France Benelux;FR;1
+FRZZ;Legacy France - HR;FR;1
+HBEL;Holcibel S.A.;BE;1
+HFRA;Holcim Investments (Franc;FR;1
+HR01;Holcim (Hrvatska) d.o.o.;HR;1
+HR02;ecorec d.o.o.;HR;1
+HR03;Holcim mineralni agre.d.o;HR;1
+HR04;Holcim mineralni agre.d.o;HR;1
+HR05;Transplus d.o.o.;HR;1
+HR06;Resnik d.o.o.;HR;1
+HRZZ;Legacy Croatia - HR;HR;1
+HT01;Holcim Trading, S.A.;ES;1
+HT02;Iberoamericana de Cemento;ES;1
+HT03;Holcim Trading PTE LTD;SG;1
+HT04;Holcim Trading FZCO;AE;1
+HT05;UMAR Ltd.;BM;1
+HT06;Hansen Holding, S.A.;PA;1
+HT07;Holsten International, LT;VG;1
+HT08;Yemen Cement Holding LTD;VG;1
+HT09;CAN-CIMED Trading LTD.;VG;1
+HT10;Seamar Trading;PA;1
+HT11;Seamar Shipping;PA;1
+HT12;Seamar Enterprises;PA;1
+HT13;Iberoamérica Cement Tradi;ES;1
+HT14;Kimaxtra Produtos de Cons;PT;1
+HT15;Ecotrade International;CH;1
+HTZZ;Legacy Trading - HR;ES;1
+HU11;ecorec Hungária Kft.;HU;1
+HU12;AM  Vagyonkezelõ Kft;HU;1
+HU16;TransPlus(Hungary)Kft.;HU;1
+HU17;Holcim Magyarország Kft.;HU;1
+HU19;Nyerges Real  2012  Kft;HU;1
+HU20;Osteuropäische Zementbete;HU;1
+HU22;HMO 2014 Kft.;HU;1
+HU23;Conretesites Kft.;HU;1
+HUZZ;Legacy Hungary - HR;HU;1
+IT01;Holcim (Italia) S.p.A.;IT;1
+IT03;Eurofuels S.p.A.;IT;1
+IT05;Micron Mineral S.r.l.;IT;1
+IT10;Rolcim S.p.A.;IT;1
+IT30;Holcim Aggregati Calcest;IT;1
+IT39;F.lli Manara  & C. Srl;IT;1
+IT49;Holcim Gruppo (Italia)SPA;IT;1
+IT75;ECOTRADE SPA;IT;1
+IT91;Fusine Energia S.r.l.;IT;1
+IT92;Fonte Curella S.r.l.;IT;1
+IT97;Shipping Adv & Serv. S.R.;IT;1
+ITZZ;Legacy Italy - HR;IT;1
+KZZZ;Legacy Kazajistan- HR;KZ;1
+LB01;Holcim Liban S.A.L.;LB;1
+LB02;Ste Liban. des Ciments Bl;LB;1
+LB03;Holcim Béton S.A.L.;LB;1
+LB04;ENERGIS LIBAN S.A.L.;LB;1
+LBZZ;Legacy Lebanon - HR;LB;1
+LU01;Holcim (Luxembourg) SA;LU;1
+LUZZ;Legacy Luxembourg - HR;LU;1
+MA01;Holcim (Maroc) S.A.;MA;1
+MA04;ANDIRA;MA;1
+MA06;ECOVAL;MA;1
+MA08;Batiprodis S.A.;MA;1
+MA09;Société des Granulats Tif;MA;1
+MAZZ;Legacy Morocco - HR;MA;1
+NCLH;Holcim (Nouv. Calédonie);NC;1
+NL01;Holcim (Nederland) B.V.;NL;1
+NL02;Holcim Betonmortel B.V.;NL;1
+NL03;Holcim (Nederland) B.V.;NL;1
+NL08;Holcim Coastal BV;NL;1
+NL09;Holcim Prefab Wanden BV;NL;1
+NL10;HB Grondstoffen C.V.;NL;1
+NL11;HB Grondstoffen B.V.;NL;1
+NL20;Holcim Nederland Bouwmate;NL;1
+NLZZ;Legacy Netherlands - HR;NL;1
+PL01;Holcim (Polska) Sp. Z o.o;PL;1
+QA01;Aljabor Cement Industries;QA;1
+QAZZ;Legacy Qatar - HR;QA;1
+RO01;Holcim (Romania) SA;RO;1
+RO02;ecovalor SRL;RO;1
+RO03;Estagre SRL;RO;1
+RO04;Agrocomp International SR;RO;1
+RO05;TransPlus Activ (Romania);RO;1
+ROZZ;Legacy Romania - HR;RO;1
+RS01;Holcim (Srbija) d.o.o.;RS;1
+RS02;ecorec d.o.o.;RS;1
+RS03;Holcim Agregati a.d.;RS;1
+RS04;AGG Proizvodnja d.o.o.;RS;1
+RSZZ;Legacy Serbia - HR;RS;1
+RU02;ОАО Холсим (Рус) СМ;RU;1
+RU03;OOO Холсим (Рус);RU;1
+RU04;ООО ГеоМакс;RU;1
+RU05;ООО Георазведка;RU;1
+RUZZ;Legacy Russia - HR;RU;1
+SK01;Holcim (Slovensko) a. s.;SK;1
+SK02;ecorec Slovensko s.r.o.;SK;1
+SK04;TransPlus (Slovensko);SK;1
+SK11;Holcim Emerging Eur. Serv;SK;1
+SK12;Holcim Business Services;SK;1
+SKZZ;Legacy Slovakia - HR;SK;1

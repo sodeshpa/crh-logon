@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+	<table name="TLGNC_PDA_MESSAGE"
+		description="Messages sent from and to PDA">
+		<column name="PDA_MESSAGE_ID" primaryKey="true" required="true"
+			type="DECIMAL" size="12"
+			description="PK" />
+		<column name="PDA_USER_ID"
+			required="true"  type="DECIMAL" size="12"
+			description="PDA user involved in this message. Can be sender or recipient, depending non message type" />
+		<column name="DISPATCHER_USER_ID"
+			type="DECIMAL" size="12"
+			description="Dispatcher involved in this message. Can be null for incoming messages, until a dispatcher acknowlewdges. Can be sender or recipient, depending non message type " />
+		<column name="MESSAGE"
+			required="true" type="VARCHAR" size="250"	
+			description="content of the message"/>
+		<column name="PDA_MESSAGE_TYPE_CD"
+			required="true" type="DECIMAL" size="2"	
+			description="FK message type."/>
+		<column name="RECEIVER_ACK_FLAG"
+			type="BOOLEAN" required="true"
+			description="Set to true when the receiver acknowledges the message."/>
+        <column name="SHIPTO_ID" 
+        	type="DECIMAL" size="12"
+            description="FK tlgnc_shipto. Used for marketInfo event."/>
+        <column name="ASSIGNMENT_ID" 
+        	type="DECIMAL" size="12"
+            description="FK TLGNC_ASSIGNMENT. Used for error event."/>
+			
+		
+		<foreign-key foreignTable="TLGNU_USER" name="FK_TLGNC_PDA_MSG_PDA_USER">
+            <reference local="PDA_USER_ID" foreign="USER_ID"/>
+        </foreign-key>
+		<foreign-key foreignTable="TLGNU_USER" name="FK_TLGNC_PDA_MSG_DISP_USER">
+            <reference local="DISPATCHER_USER_ID" foreign="USER_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_PDA_MESSAGE_TYPE_BS" name="FK_TLGNR_PDA_MSG_MSG_TYPE">
+              <reference local="PDA_MESSAGE_TYPE_CD" foreign="PDA_MESSAGE_TYPE_CD"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNC_SHIPTO" name="FK_TLGNC_PDA_MESSAGE_SHIPTO">
+            <reference local="SHIPTO_ID" foreign="SHIPTO_ID"/>
+        </foreign-key>         
+        <foreign-key foreignTable="TLGNC_ASSIGNMENT" name="FK_TLGNC_PDA_MSG_ASSIGNMENT">
+            <reference local="ASSIGNMENT_ID" foreign="ASSIGNMENT_ID"/>
+        </foreign-key>         
+	</table>
+</database>

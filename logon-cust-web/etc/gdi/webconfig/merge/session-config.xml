@@ -1,0 +1,10 @@
+
+<session-config>
+    <cookie-config>
+        <http-only>true</http-only>
+#if($systemproperties.redirectToHttps=="true")
+		<secure>true</secure>
+#end
+	</cookie-config>
+    <tracking-mode>COOKIE</tracking-mode>
+</session-config>

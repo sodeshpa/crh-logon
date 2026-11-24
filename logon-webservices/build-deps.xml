@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="logon-deps">
+
+	<echo message="Fetching dependencies for ${ant.project.name}" />
+
+	<!-- project object model (maven dependency management including transitive dependencies) -->
+	<pom id="logon.maven.pom" name="Project object model of ${artifactId}"  groupId="${groupId}" artifactId="${artifactId}" version="${version}">
+
+		<dependency groupId="org.jboss.spec.javax.ejb" artifactId="jboss-ejb-api_3.1_spec" version="1.0.2.Final" scope="provided" />
+		<dependency groupId="org.jboss.as" artifactId="jboss-as-ejb-client-bom"	version="${arquillian.jboss.remote.version}" scope="test" type="pom" />
+		<dependency groupId="ch.adnovum.jcan-log" artifactId="${jcan-log.adntrace.name}" version="${jcan-log.version}" scope="provided"/>
+		<dependency groupId="org.picketbox" 	artifactId="picketbox" version="4.0.19.SP2" scope="compile"/>
+
+	</pom>
+
+	<!-- map pom definition to ant paths using aal-maven macro -->
+	<dependencyPaths pomRefId="logon.maven.pom" pathIdPrefix="logon-mavendeps" />
+
+	<!--
+	we now have path definitions as follows:
+	* logon-mavendeps.test.classpath     (with rest client)
+	* logon-mavendeps.compile.classpath  (same as test)
+	* logon-mavendeps.runtime.classpath  (same as test, but except of spring and with slf4j)
+	* logon-mavendeps.provided.classpath (empty)
+	-->
+
+</project>

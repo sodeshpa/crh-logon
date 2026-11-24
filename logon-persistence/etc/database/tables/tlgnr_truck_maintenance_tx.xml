@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNR_TRUCK_MAINTENANCE_TX" refData="true"
+           description="Language depending attributes for Truck Maintenance.">
+
+        <column name="TRUCK_MAINTENANCE_CD" primaryKey="true" required="true" type="DECIMAL" size="3"
+                description="Part of PK. FK tlgnr_truck_maintenance_bs. Code of the Reference Data."/>
+        <column name="LANG_CD" primaryKey="true" required="true" type="VARCHAR" size="2"
+                description="Part of PK. FK tlgnr_lang_bs. For example de, en, ..."/>
+        <column name="TXT" required="true" type="VARCHAR" size="40"
+                description="Description of the Truck Maintenance in the language LANG_CD."/>
+
+        <foreign-key foreignTable="TLGNR_TRUCK_MAINTENANCE_BS" name="FK_TLGNR_TRUCK_MNTENANCE_TX">
+            <reference local="TRUCK_MAINTENANCE_CD" foreign="TRUCK_MAINTENANCE_CD"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_LANG_BS" name="FK_TLGNR_TRUCK_MNTENANCE_LANG">
+            <reference local="LANG_CD" foreign="LANG_CD"/>
+        </foreign-key>
+    </table>
+</database>

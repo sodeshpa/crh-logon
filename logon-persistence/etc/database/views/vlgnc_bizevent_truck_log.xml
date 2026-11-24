@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="VLGNC_BIZEVENT_TRUCK_LOG" mappingType="view" skipSql="true">
+        <column name="COMPOSITE_ID" type="VARCHAR" size="43"/>
+        <column name="ORDER_ID" type="DECIMAL" size="12"/>
+        <column name="ASSIGNMENT_ID" type="DECIMAL" size="12"/>
+        <column name="MOD_TS" required="true" type="TIMESTAMP"/>
+        <column name="CRE_TS" required="true" type="TIMESTAMP"/>
+        <column name="LANG_CD" required="true" type="VARCHAR" size="2"/>
+        <column name="BIZEVENT_TYPE_TXT" required="true" type="VARCHAR" size="50"/>
+        <column name="SPEED" type="DECIMAL" size="12"/>
+    </table>
+</database>

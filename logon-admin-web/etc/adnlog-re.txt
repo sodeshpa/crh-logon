@@ -1,0 +1,15 @@
+@no-trace {
+	<ch.adnovum..*.service.interfaces>.<.*>.<.*>(<.*>)
+
+	<ch.adnovum..*.service.impl>.<.*>.<is.*>(<.*>)
+	<ch.adnovum..*.service.impl>.<.*>.<get.*>(<.*>)
+	<ch.adnovum..*.service.impl>.<.*>.<set.*>(<.*>)
+
+	<ch.adnovum..*.web.beans>.<.*>.<get.*>(<.*>)
+	<ch.adnovum..*.web.beans>.<.*>.<set.*>(<.*>)
+
+	<ch.adnovum..*.web.forms>.<.*>.<get.*>(<.*>)
+	<ch.adnovum..*.web.forms>.<.*>.<set.*>(<.*>)
+
+	<.*>.<.*>.<toString>(<.*>)
+}

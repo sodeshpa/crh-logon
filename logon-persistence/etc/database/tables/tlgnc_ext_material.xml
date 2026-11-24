@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNC_EXT_MATERIAL"
+           description="External materials, as used in the Use Case '3rd party orders', aka 'External orders'. An external material is basically just a name, and maintained by the carriers directly. When creating an external order, the user can select the material from the list. The typical usage is 'copy' (not 'reference'): i.e the external order does not have a reference to the ext_material anymore.">
+        <column name="EXT_MATERIAL_ID" primaryKey="true" required="true" type="DECIMAL" size="12"
+                description="PK"/>
+        <column name="CARRIER_ID" required="true" type="DECIMAL" size="12"
+                description="FK tlgnc_carrier. The vendor/carrier which created/maintains this external material."/>
+                <!-- possible extension: allow null, for "use by all carriers. But, leads to additional authorization issues. Rather do not implement this, not required. -->
+        <column name="ACTIVE_FLAG" required="true" type="BOOLEAN"
+                description="0=inactive/deleted, 1=active. Inactive materials are not shown in the selection drop downs in the application, but still visible in the administration pages."/>
+
+        <column name="MATERIAL_NAME" required="true" type="VARCHAR" size="40"
+                description="Name of the material, equivalent to tlgns_sap_material_description.txt, but language-independent. When creating an external order, this value is copied into tlgnc_assignment.material_name."/>
+<!-- Do not add those... It's unclear if they should default the ORDERED or (UN)LOADED quantity. or would even need more fields.
+     Too much logic and functionality that had not been requested by customer, and is not payed for.
+        <column name="DEFAULT_QUANTITY" type="DECIMAL" size="12,4"
+                description="Default Quantity of the material in UOM expressed by DEFAULT_UOM_CD when used in external orders. Null: No default quantity."/>
+        <column name="DEFAULT_UOM_CD" type="VARCHAR" size="3"
+                description="FK tlgnr_uom_bs. Default unit of measure on which default_quantity is based. Null: No default UOM."/>
+-->
+        <column name="MATERIAL_COMMENT" required="false" type="VARCHAR" size="200"
+                description="Comment about external material. Only visible in the administration pages, not in the application."/>
+
+        <foreign-key foreignTable="TLGNC_CARRIER" name="FK_TLGNC_EXT_MATERIAL_CARRIER">
+            <reference local="CARRIER_ID" foreign="CARRIER_ID"/>
+        </foreign-key>
+
+        <unique name="UQ_TLGNC_EXT_MAT_CARRIER">
+            <unique-column name="CARRIER_ID"/>
+            <unique-column name="MATERIAL_NAME"/>
+        </unique>
+    </table>
+</database>

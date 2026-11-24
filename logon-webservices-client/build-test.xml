@@ -1,0 +1,485 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Author            : AdNovum Informatik AG
+ Version Number    : $Revision$
+ Date of last edit : $Date$
+-->
+
+<project name="testing" default="test" basedir=".">
+    <description>defines test targets and tasks</description>
+
+    <!-- ================================================================ -->
+    <!--  define test specific classpaths (unit, integration, load,...)   -->
+    <!-- ================================================================ -->
+    <path id="test.compile.classpath">
+        <path refid="compile.classpath"/>
+        <pathelement location="${classes.dir}"/>
+        <pathelement location="${junit.jar}"/>
+        <pathelement location="${hamcrest.jar}"/>
+    </path>
+
+    <path id="test.unit.classpath">
+        <pathelement location="${etc.dir}/cfg"/>
+        <pathelement location="${test.classes.dir}"/>
+        <pathelement location="${commons-logging.jar}"/>
+        <pathelement location="${dom4j.jar}"/>
+        <pathelement location="${jdom.jar}"/>
+        <pathelement location="${test.build.etc.dir}"/>
+        <path refid="test.compile.classpath"/>
+    </path>
+
+    <path id="test.integration.classpath">
+    	<pathelement location="${commons-beanutils.jar}"/>
+        <pathelement location="${etc.dir}/cfg"/>
+    	<!--<pathelement location="${js.jar}"/>
+        <pathelement location="${tidy.jar}"/>
+    	<pathelement location="${xercesImpl.jar}"/>
+    	<pathelement location="${xmlutil.jar}"/>
+    	<pathelement location="${xtype.jar}"/>-->
+
+        <path refid="test.unit.classpath"/>
+    </path>
+
+    <!-- ================================================================ -->
+    <!--  dummy targets, will be overridden when file is imported                -->
+    <!-- ================================================================ -->
+    <target name="build"/>
+
+
+    <!-- ================================================================ -->
+    <!--  test initialization, cleanup and default targets                -->
+    <!-- ================================================================ -->
+    <target name="init-test">
+        <mkdir dir="${test.build.dir}"/>
+        <mkdir dir="${test.classes.dir}"/>
+        <mkdir dir="${test.lib.dir}"/>
+        <mkdir dir="${test.log.dir}"/>
+    	<mkdir dir="${test.build.etc.dir}" />
+        <mkdir dir="${test.reports.dir}"/>
+
+        <mkdir dir="${test.reports.pmd.dir}"/>
+        <mkdir dir="${test.reports.unit.dir}"/>
+        <mkdir dir="${test.reports.integration.dir}"/>
+        <mkdir dir="${test.reports.load.dir}"/>
+
+    </target>
+
+    <target name="clean-test">
+        <delete dir="${test.reports.dir}"/>
+        <delete dir="${test.lib.dir}"/>
+        <delete dir="${test.classes.dir}"/>
+        <delete dir="${test.build.dir}"/>
+    </target>
+
+    <!-- ================================================================ -->
+    <!--  compile targets                                                 -->
+    <!-- ================================================================ -->
+    <target name="compile-test" depends="init-test">
+        <javac
+			source="${compile.source}"
+			target="${compile.target}"
+            destdir="${test.classes.dir}"
+            debug="${compile.debug}"
+            optimize="${compile.optimize}"
+            deprecation="${compile.deprecation}"
+            encoding="${compile.encoding}"
+            includeantruntime="no">
+            <src path="${java.test.src.dir.name}/integration"/>
+            <include name="**/*.java"/>
+        	<bootclasspath refid="compile.bootclasspath"/>
+            <classpath refid="test.compile.classpath"/>
+        </javac>
+    </target>
+
+    <target name="compile-testclient" depends="init-test">
+        <javac
+			source="${compile.source}"
+			target="${compile.target}"
+            destdir="${test.classes.dir}"
+            debug="${compile.debug}"
+            optimize="${compile.optimize}"
+            deprecation="${compile.deprecation}"
+            encoding="${compile.encoding}"
+            includeantruntime="no">
+            <src path="${java.test.src.dir.name}/testclient"/>
+            <include name="**/*.java"/>
+        	<bootclasspath refid="compile.bootclasspath"/>
+            <classpath refid="test.compile.classpath"/>
+        </javac>
+    </target>
+
+
+    <!-- ================================================================= -->
+    <!-- === generator                                                 === -->
+    <!-- ================================================================= -->
+    <target name="webservice-client-checkUptodate">
+		<fileset id="xsd-files" dir="${xsd.dir}">
+			<include name="**/*.xsd"/>
+		</fileset>
+
+        <uptodate property="webservice-client-isUptodate" targetfile="${generated.cli.dir}/status">
+            <srcfiles refid="xsd-files"/>
+        </uptodate>
+        <echo>checking against: ${generated.cli.dir}/status</echo>
+    </target>
+
+    <target name="generate-stub">
+		<echo message="---------  Generating stub for ${wsdl.name} ---------" />
+		<get-wsdl-id wsdlName="${wsdl.name}" />
+    	<!-- mkdir dir="${generated.cli.dir}/${wsdl.id}" / -->
+		<java classname="org.apache.axis2.wsdl.WSDL2Java" fork="true" 
+			classpathref="compile.classpath">
+			<arg line="-uri ${wsdl.dir}/${wsdl.name}" />
+			<arg line="-s" />
+			<arg line="-ap" />
+			<arg line="-ns2p http://logon.intranet-che/logon=${webservices.package.prefix}.${wsdl.id}.documents"/>
+			<arg line="-l java" />
+			<arg line="-p ${webservices.package.prefix}.${wsdl.id}.client" />
+			<arg line="-d xmlbeans" />
+			<arg line="-or" />
+			<arg line="-o ${generated.cli.dir}" />
+			<!-- arg line="-o ${generated.cli.dir}/${wsdl.id}" / -->
+		</java>
+        <delete includeemptydirs="true">
+        	<fileset dir="${generated.cli.dir}">
+            <!-- fileset dir="${generated.cli.dir}/${wsdl.id}" -->
+                <exclude name="**/*Stub.java"/>
+            </fileset>
+        </delete>
+    	<echo message="generated" file="${generated.cli.dir}/status" />
+        <!-- echo message="generated" file="${generated.cli.dir}/${wsdl.id}/status"/ -->
+	</target>
+	
+	<!-- ================================================================= -->
+	<!-- === java archives                                             === -->
+	<!-- ================================================================= -->
+	<target name="jars-test" depends="compile-test">
+		<echo message="*** building ${test-integration.jar}" />
+		<jar jarfile="${test-integration.jar}"
+		     basedir="${test.classes.dir}"
+		     index="true">
+			<include name="com/crh/logon/web/**" />
+			<manifest>
+				<attribute name="Manifest-Version"       value="1.0" />
+				<attribute name="Implementation-Title"   value="${ant.project.name} (commons classes)" />
+				<attribute name="Implementation-Vendor"  value="${vendor}" />
+				<attribute name="Implementation-Version" value="${build.version}" />
+				<attribute name="Build-Host"             value="${os.name} ${os.version}, ${os.arch}" />
+				<attribute name="Build-Environment"      value="Java ${java.version}, ${java.vendor}" />
+			</manifest>
+		</jar>
+	</target>
+
+	<target name="jar-testclient" depends="compile-testclient">
+		<echo message="*** building ${testclient.jar}" />
+		<jar jarfile="${testclient.jar}"
+		     basedir="${test.classes.dir}"
+		     index="true">
+			<include name="com/crh/logon/webservices/client/**" />
+			<manifest>
+				<attribute name="Manifest-Version"       value="1.0" />
+				<attribute name="Implementation-Title"   value="${ant.project.name} (commons classes)" />
+				<attribute name="Implementation-Vendor"  value="${vendor}" />
+				<attribute name="Implementation-Version" value="${build.version}" />
+				<attribute name="Build-Host"             value="${os.name} ${os.version}, ${os.arch}" />
+				<attribute name="Build-Environment"      value="Java ${java.version}, ${java.vendor}" />
+			</manifest>
+		</jar>
+	</target>
+
+    <!-- ================================================================ -->
+    <!--  run tests (defined in external file test.xml)                   -->
+    <!-- ================================================================ -->
+    <target name="test" depends="test-pmd"
+    		description="executes all automatic (non-interactive) tests">
+    </target>
+	
+    <!-- ================================================================ -->
+    <!--  run unit tests                                                  -->
+    <!-- ================================================================ -->
+	<target name="test-unit" depends="compile-test"
+            description="performs unit tests">
+
+    	<!-- junit tests -->
+
+	<coverage enabled="${coverage.enabled}" destfile="${unit.coverage.file}">
+	    <junit fork="true" printsummary="true"
+	           showoutput="yes" haltonfailure="no"
+		       failureproperty="test.unit.failed" dir="${basedir}">
+			<formatter type="plain" usefile="false"/>
+	        <formatter type="xml" usefile="true"/>
+	        <batchtest todir="${test.reports.unit.dir}">
+	            <fileset dir="${test.unit.dir}">
+	                <include name="**/*Test*.java"/>
+	            </fileset>
+	        </batchtest>
+	    	<classpath refid="test.unit.classpath"/>
+	    </junit>
+	</coverage>
+	    <junitreport todir="${test.reports.unit.dir}">
+	        <fileset dir="${test.reports.unit.dir}">
+	            <include name="TEST-*.xml"/>
+	        </fileset>
+	        <report format="frames" todir="${test.reports.unit.dir}"/>
+	    </junitreport>
+
+        <set-flag-file-if-property-set flagfile="${test.unit.failed.flag}" propertyname="test.unit.failed"
+        	message="at least one test failed --> setting failure flag file"/>
+		<fail if="test.unit.failed" message="at least one of the tests failed"/>
+		<echo message="all tests successful"/>
+    </target>
+	
+    <!-- ================================================================ -->
+    <!--  analyze source code quality                                     -->
+    <!-- ================================================================ -->
+    <target name="test-pmd" depends="init-test"
+            description="run source code quality analysis">
+        <taskdef name="pmd" classname="net.sourceforge.pmd.ant.PMDTask"/>
+        <echo file="${test.reports.pmd.dir}/pmd_report.xml"/>
+        <echo file="${test.reports.pmd.dir}/pmd_report.html"/>
+        <pmd rulesetfiles="${ANT_HOME}/adnovum/pmd/rulesets/AdnNightly.xml"
+             shortFilenames="yes"
+       	     failOnError="no"
+	         failuresPropertyName="test.pmd.failed">
+            <formatter type="xml" toFile="${test.reports.pmd.dir}/pmd_report.xml"/>
+            <formatter type="html" toFile="${test.reports.pmd.dir}/pmd_report.html"/>
+			<formatter type="text" toConsole="true"/>
+            <fileset dir="${src.dir}">
+                <include name="**/*.java"/>
+                <exclude name="**/clients/util/OptraceProvider.java"/>		<!-- excluding pmd for this enum -->
+                <!-- exclude name="**/clients/LogonToFFax.java"/ -->		<!-- excluding pmd for this enum -->
+                <!-- exclude name="**/clients/LogonToFSms.java"/ -->		<!-- excluding pmd for this enum -->
+            	<!-- exclude name="**/clients/LogonToParallel.java"/ -->	<!-- excluding pmd for this enum -->
+            	<!-- exclude name="**/clients/OrderDelivery.java"/ -->		<!-- excluding pmd for this enum -->
+            </fileset>
+        </pmd>
+
+        <set-flag-file-if-property-set flagfile="${test.pmd.failed.flag}" propertyname="test.pmd.failed"
+			message="at least one test failed --> setting failure flag file" />
+		<fail if="test.pmd.failed" unless="central.pmd.fail.report" message="at least one of the pmd rules was violated"/>
+
+    </target>
+
+    <!-- backward compat reasons -->
+    <target name="pmd" depends="test-pmd"/>
+    
+	
+    <!-- ================================================================ -->
+    <!--  run unit tests    		                                      -->
+    <!--                                                                  -->
+    <!-- needs running mockservices!!! 									  -->
+    <!-- 																  -->
+    <!-- ================================================================ -->
+	<target name="test-integration" depends="compile-test"
+            description="performs integration tests">
+
+		<echo message="current: ${basedir}" />
+    	<!-- junit tests -->
+	    <junit fork="true" printsummary="true"
+	           showoutput="yes" haltonfailure="no"
+		       failureproperty="test.integration.failed" dir="${basedir}">
+            <sysproperty key="wsclient.parallel.host.url" value="${mockup.parallel.host.url}"/>
+            <sysproperty key="wsclient.parallel.nocall" value="${mockup.parallel.host.nocall}"/>
+            <sysproperty key="wsclient.parallel.user" value="${mockup.parallel.host.user}"/>
+            <sysproperty key="wsclient.parallel.password" value="${mockup.parallel.host.pwd}"/>
+            <sysproperty key="wsclient.fsms.host.url" value="${mockup.fsms.host.url}"/>
+            <sysproperty key="wsclient.fsms.nocall" value="${mockup.fsms.host.nocall}"/>
+            <sysproperty key="wsclient.fsms.user" value="${mockup.fsms.host.user}"/>
+            <sysproperty key="wsclient.fsms.password" value="${mockup.fsms.host.pwd}"/>
+            <sysproperty key="wsclient.ffax.host.url" value="${mockup.ffax.host.url}"/>
+            <sysproperty key="wsclient.ffax.nocall" value="${mockup.ffax.host.nocall}"/>
+            <sysproperty key="wsclient.ffax.user" value="${mockup.ffax.host.user}"/>
+            <sysproperty key="wsclient.ffax.password" value="${mockup.ffax.host.pwd}"/>
+            <sysproperty key="wsclient.parallel.host.name.dotternhausen" value="${mockup.parallel.host.name.dotternhausen}"/>
+            <sysproperty key="fullPropertyTracing" value="true"/>
+	    	<sysproperty key="wsclient.pda.user" value="${mockup.pda.host.user}"/>
+	    	<sysproperty key="wsclient.pda.password" value="${mockup.pda.host.pwd}"/>
+	      	<sysproperty key="fullPropertyTracing" value="true"/>
+			<formatter type="plain" usefile="false"/>
+	        <formatter type="xml" usefile="true"/>
+	        <batchtest todir="${test.reports.integration.dir}">
+	            <fileset dir="${test.integration.dir}">
+	                <include name="**/*Test*.java"/>
+                    <exclude name="**/LogonToParallelTestCase.java" />
+	                <exclude name="**/BaseClientTestCase.java" />
+	            </fileset>
+	        </batchtest>
+	    	<classpath refid="test.integration.classpath"/>
+	    	<!--<jvmarg value="-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=9999"/> -->
+	    </junit>
+	    <junitreport todir="${test.reports.integration.dir}">
+	        <fileset dir="${test.reports.integration.dir}">
+	            <include name="TEST-*.xml"/>
+	        </fileset>
+	            <report format="frames" todir="${test.reports.integration.dir}" styledir="${masterbuild.dir}/test/etc">
+	        	    <param name="TESTTYPE" expression="Integration" />
+        	    </report> 
+	    </junitreport>
+        <set-flag-file-if-property-set flagfile="${test.integration.failed.flag}" propertyname="test.integration.failed"
+        	message="at least one test failed -> setting failure flag file"/>
+		<fail if="test.integration.failed" message="at least one of the tests failed" />
+		<echo message="all tests successful"/>
+    </target>
+
+
+	<target name="run-client" depends="jar-testclient" description="build and run test-stub">
+		<path id="client.classpath">
+			<path refid="compile.classpath" />
+			<pathelement location="${webservices-client.jar.loc}" />
+			<pathelement location="${testclient.jar}"/>
+	    </path>
+        <java classname="com.crh.logon.webservices.client.TestClient">
+            <classpath refid="client.classpath" />
+        	<arg line="-properties=etc/testclient/TestClient.properties" />
+        </java>
+    </target>
+
+	<target name="filter-soapui-project-template">
+		<copy toFile="${test.build.etc.dir}/logon-ws-client-soapui-project.xml" file="${mockup.dir}/logon-ws-client-soapui-project_template.xml" overwrite="yes">
+			<filterset>
+				<filter token="project.basedir" value="${basedir}" />
+				<filter token="mockup.parallel.host.url" value="${mockup.parallel.host.url}" />
+				<filter token="mockup.parallel.host.port" value="${mockup.parallel.host.port}" />
+				<filter token="mockup.parallel.host.context" value="${mockup.parallel.host.context}" />
+				<filter token="mockup.fsms.host.url" value="${mockup.fsms.host.url}" />
+				<filter token="mockup.fsms.host.port" value="${mockup.fsms.host.port}" />
+				<filter token="mockup.fsms.host.context" value="${mockup.fsms.host.context}" />
+				<filter token="mockup.ffax.host.url" value="${mockup.ffax.host.url}" />
+				<filter token="mockup.ffax.host.port" value="${mockup.ffax.host.port}" />
+				<filter token="mockup.ffax.host.context" value="${mockup.ffax.host.context}" />
+			</filterset>
+		</copy>
+		<echo message="soapUI-project file: ${test.build.etc.dir}/logon-ws-client-soapui-project.xml" />
+		<copy toFile="${test.build.etc.dir}/mop-gateway-soapui-project.xml" file="${mockup.dir}/mop-gateway-soapui-project_template.xml" overwrite="yes">
+			<filterset>
+				<filter token="mockup.pda.host.url" value="${mockup.pda.host.url}" />
+				<filter token="mockup.pda.host.port" value="${mockup.pda.host.port}" />
+				<filter token="mockup.pda.host.context" value="${mockup.pda.host.context}" />
+				<filter token="project.basedir" value="${basedir}" />
+				<filter token="ws.logon.mopevent.consumer.url" value="${ws.logon.mopevent.consumer.url}" />
+			</filterset>
+		</copy>
+		<echo message="soapUI-project file: ${test.build.etc.dir}/mop-gateway-soapui-project.xml" />
+	</target>
+
+	<target name="test-mop" description="test Mop TestCases on SoapUI" depends="">
+		<property environment="env" />
+		<exec executable="${SOAPUI_HOME}/bin/testrunner.sh">
+			<env key="PATH" path="${JAVA_HOME}/bin:${env.PATH}" />
+			<arg value="-f" />
+			<arg value="${test.reports.dir}/" />
+			<arg value="${test.build.etc.dir}/mop-gateway-soapui-project.xml" />
+		</exec>
+		<antcall target="stop-mockup"/>
+	</target>
+	
+	<target name="soapui-project-checkAvailable">
+		<available property="soapui-project-file-isAvailable" file="${test.build.etc.dir}/logon-ws-client-soapui-project.xml" />
+		<echo message="Checking against: ${test.build.etc.dir}/logon-ws-client-soapui-project.xml." />
+		<echo message="Available: ${soapui-project-file-isAvailable}" />
+	</target>
+
+	<target name="get-soapui-mop-project-template" >
+		<copy toFile="${mockup.dir}/mop-gateway-soapui-project_template.xml" file="${test.build.etc.dir}/mop-gateway-soapui-project.xml" overwrite="yes" />
+		<replaceregexp byline="true" encoding="utf-8" flags="g">
+			<regexp pattern="${basedir}" />
+        	<substitution expression="@project.basedir@"/>
+			<fileset file="${mockup.dir}/mop-gateway-soapui-project_template.xml" />
+		</replaceregexp>
+		<replaceregexp byline="true" encoding="utf-8" flags="g">
+			<regexp pattern="${mockup.pda.host.url}" />
+        	<substitution expression="@mockup.pda.host.url@"/>
+			<fileset file="${mockup.dir}/mop-gateway-soapui-project_template.xml" />
+		</replaceregexp>
+		<replaceregexp byline="true" encoding="utf-8" flags="g">
+			<regexp pattern="${mockup.pda.host.port}" />
+	    	<substitution expression="@mockup.pda.host.port@"/>
+			<fileset file="${mockup.dir}/mop-gateway-soapui-project_template.xml" />
+		</replaceregexp>
+		<replaceregexp byline="true" encoding="utf-8" flags="g">
+			<regexp pattern="${mockup.pda.host.context}" />
+        	<substitution expression="@mockup.pda.host.context@"/>
+			<fileset file="${mockup.dir}/mop-gateway-soapui-project_template.xml" />
+		</replaceregexp>
+	</target>		
+	
+	<target name="get-soapui-project-template" depends="soapui-project-checkAvailable" if="soapui-project-file-isAvailable">
+		<copy toFile="${mockup.dir}/logon-ws-client-soapui-project_template.xml" file="${test.build.etc.dir}/logon-ws-client-soapui-project.xml" overwrite="yes" />
+		<replaceregexp byline="true" encoding="utf-8" flags="g">
+        	<regexp pattern="${basedir}" />
+        	<substitution expression="@project.basedir@"/>
+			<fileset file="${mockup.dir}/logon-ws-client-soapui-project_template.xml" />
+		</replaceregexp>
+		<replaceregexp byline="true" encoding="utf-8" flags="g">
+        	<regexp pattern="${mockup.parallel.host.url}" />
+        	<substitution expression="@mockup.parallel.host.url@"/>
+			<fileset file="${mockup.dir}/logon-ws-client-soapui-project_template.xml" />
+		</replaceregexp>
+		<replaceregexp byline="true" encoding="utf-8" flags="g">
+        	<regexp pattern="${mockup.parallel.host.port}" />
+        	<substitution expression="@mockup.parallel.host.port@"/>
+			<fileset file="${mockup.dir}/logon-ws-client-soapui-project_template.xml" />
+		</replaceregexp>
+		<replaceregexp byline="true" encoding="utf-8" flags="g">
+        	<regexp pattern="${mockup.parallel.host.context}" />
+        	<substitution expression="@mockup.parallel.host.context@"/>
+			<fileset file="${mockup.dir}/logon-ws-client-soapui-project_template.xml" />
+		</replaceregexp>
+		<replaceregexp byline="true" encoding="utf-8" flags="g">
+        	<regexp pattern="${mockup.fsms.host.url}" />
+        	<substitution expression="@mockup.fsms.host.url@"/>
+			<fileset file="${mockup.dir}/logon-ws-client-soapui-project_template.xml" />
+		</replaceregexp>
+		<replaceregexp byline="true" encoding="utf-8" flags="g">
+        	<regexp pattern="${mockup.fsms.host.port}" />
+        	<substitution expression="@mockup.fsms.host.port@"/>
+			<fileset file="${mockup.dir}/logon-ws-client-soapui-project_template.xml" />
+		</replaceregexp>
+		<replaceregexp byline="true" encoding="utf-8" flags="g">
+        	<regexp pattern="${mockup.fsms.host.context}" />
+        	<substitution expression="@mockup.fsms.host.context@"/>
+			<fileset file="${mockup.dir}/logon-ws-client-soapui-project_template.xml" />
+		</replaceregexp>
+		<replaceregexp byline="true" encoding="utf-8" flags="g">
+        	<regexp pattern="${mockup.ffax.host.url}" />
+        	<substitution expression="@mockup.ffax.host.url@"/>
+			<fileset file="${mockup.dir}/logon-ws-client-soapui-project_template.xml" />
+		</replaceregexp>
+		<replaceregexp byline="true" encoding="utf-8" flags="g">
+        	<regexp pattern="${mockup.ffax.host.port}" />
+        	<substitution expression="@mockup.ffax.host.port@"/>
+			<fileset file="${mockup.dir}/logon-ws-client-soapui-project_template.xml" />
+		</replaceregexp>
+		<replaceregexp byline="true" encoding="utf-8" flags="g">
+        	<regexp pattern="${mockup.ffax.host.context}" />
+        	<substitution expression="@mockup.ffax.host.context@"/>
+			<fileset file="${mockup.dir}/logon-ws-client-soapui-project_template.xml" />
+		</replaceregexp>
+	</target>
+
+    <target name="LogonToMopIntegrationTest" depends="compile-test">
+		<java classname="com.crh.logon.webservices.client.LogonToMopTestClient"
+            fork="true" failonerror="true" newenvironment="true">
+			<classpath refid="test.integration.classpath"/>
+            <sysproperty key="wsclient.soap.dump.dir" value="build/test/wsdumps"/>
+            <sysproperty key="wsclient.mop.nocall" value="false"/>
+            <sysproperty key="wsclient.mop.host.url" value="http://212.101.25.144:54340/"/>
+
+            <sysproperty key="http.proxyHost" value="proxy.adnovum.hu"/>
+            <sysproperty key="http.proxyPort" value="3128"/>
+<!--
+            <sysproperty key="wsclient.mop.host.url" value="http://localhost:8092/mockLOGONEventPort"/>
+            <sysproperty key="wsclient.mop.password" value=""/>
+            <sysproperty key="wsclient.mop.user" value=""/>
+-->
+		</java>
+	</target>
+
+    <!-- ================================================================ -->
+    <!--  soapui testing										          -->
+    <!-- ================================================================ -->
+    <target name="start-soapui" depends="" description="start the soapui">
+        <!-- Set the error log output dir (does not yet work) -->
+        <exec executable="${SOAPUI_HOME}/bin/soapui.sh" />
+    </target>
+ </project>

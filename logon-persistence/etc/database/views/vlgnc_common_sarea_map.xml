@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="VLGNC_COMMON_SAREA_MAP" mappingType="view" skipSql="true">
+        <column name="COMPOSITE_ID" type="VARCHAR" size="81"/>
+        <column name="REF_SAREA_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="SAREA_ID" required="true" type="DECIMAL" size="12"/>
+    </table>
+</database>

@@ -1,0 +1,482 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Author            : AdNovum Informatik AG
+ Version Number    : $Revision$
+ Date of last edit : $Date$
+-->
+
+<project name="global-properties" default="" basedir=".">
+    <description>defines the global project properties</description>
+
+    <property name="masterbuild.dir" location="${basedir}/.."/>
+
+    <!-- ================================================================= -->
+    <!-- === load property files                                       === -->
+    <!-- ===   Note: the ordering is VERY important.                   === -->
+    <!-- ================================================================= -->
+    <property file="${masterbuild.dir}/config/env-local.proj"/>
+    <property file="${masterbuild.dir}/config/env.proj"/>
+    <property file="${masterbuild.dir}/config/build-local.properties"/>
+    <property file="${masterbuild.dir}/config/build-${environment}.properties"/>
+    <property file="${masterbuild.dir}/config/build.properties"/>
+    <property file="${masterbuild.dir}/config/logon-db.properties"/>
+
+	<!-- ================================================================ -->
+    <!--  container specific properties                                   -->
+    <!-- ================================================================ -->
+	<property name="container.dir" location="${masterbuild.dir}/container"/>
+	<property name="container.modules.dir" location="${container.dir}/modules"/>
+    <property file="${container.dir}/conf/container-local.properties"/>
+    <property file="${container.dir}/conf/container.properties"/>
+
+    <!-- ================================================================ -->
+    <!--  application specific properties                                 -->
+    <!-- ================================================================ -->
+    <tstamp>
+        <format property="buildnumber.init" timezone="GMT" pattern="DDDHHmmss"/>
+    </tstamp>
+    <property name="build.version.init" value="${version}-${buildnumber.init}-${environment}"/>
+    
+    <!-- ================================================================ -->
+    <!--  parametrize common project structure (main build)               -->
+    <!-- ================================================================ -->
+    <property name="src.dir.name"                 value="src"/>
+    <property name="src.dir"                      location="${src.dir.name}"/>
+    <property name="java.src.dir.name"            value="${src.dir.name}/main/java"/>
+    <property name="java.src.dir"                 location="${java.src.dir.name}"/>
+    <property name="resources.src.dir"            location="${src.dir}/main/resources"/>
+    <property name="webapp.src.dir.name"          value="${src.dir.name}/main/webapp"/>
+    <property name="webapp.src.dir"               location="${webapp.src.dir.name}"/>
+    <property name="java.test.src.dir.name"       value="${src.dir.name}/test"/>
+    <property name="java.test.src.dir"            location="${java.test.src.dir.name}"/>
+    <property name="topbuild.dir"                 location="${masterbuild.dir}"/>
+
+    <property name="etc.dir.name"                 value="etc"/>
+    <property name="etc.dir"                      location="${etc.dir.name}"/>
+    <property name="build.dir.name"               value="build"/>
+    <property name="build.dir"                    location="${build.dir.name}"/>
+    <property name="dist.dir.name"                value="dist"/>
+    <property name="dist.dir"                     location="${build.dir.name}/${dist.dir.name}"/>
+    <property name="test.dir"                     location="test"/>
+    <property name="run.dir.name"                 value="run"/>
+    <property name="run.dir"                      location="${masterbuild.dir}/${run.dir.name}"/>
+    <property name="config.dir"                   location="config"/>
+    <property name="web.dir"                      location="web"/>
+
+    <property name="classes.dir"                  location="${build.dir}/classes"/>
+    <property name="lib.dir"                      location="${build.dir}/lib"/>
+    <property name="doc.dir"                      location="${build.dir}/doc"/>
+    <property name="generated.dir.name"           value="generated"/>
+    <property name="generated.dir"                location="${build.dir}/${generated.dir.name}"/>
+    <property name="build.etc.dir"                location="${build.dir}/etc"/>
+    <property name="build.config.dir"             location="${build.dir}/config"/>
+
+    <property name="relnotes.dir"                 location="${doc.dir}/releasenotes"/>
+
+    <property name="dist.doc.dir"                 location="${dist.dir}/doc"/>
+    <property name="dist.lib.dir"                 location="${dist.dir}/lib"/>
+    <property name="dist.etc.dir"                 location="${dist.dir}/etc"/>
+    <property name="dist.dep.dir"                 location="${dist.dir}/dep"/>
+    <property name="dist.javadoc.dir"             location="${dist.doc.dir}/javadoc"/>
+    <property name="dist.relnotes.dir"            location="${dist.doc.dir}/releasenotes"/>
+
+    <property name="etc.spring.dir"               location="${etc.dir}/spring"/>
+    <property name="build.etc.spring.dir"         location="${build.etc.dir}/spring"/>
+    <property name="test.build.spring.dir"        location="${test.build.dir}/spring"/>
+    <property name="buildtime.properties"         location="${masterbuild.dir}/${build.dir.name}/buildtime.properties"/>
+    <property file="${buildtime.properties}"/>
+
+    <property name="deploy.dir"                   location="${run.dir}/server/logon/deploy/logon"/>
+
+
+    <!-- ================================================================ -->
+    <!--  parametrize common project test structure (testing)             -->
+    <!-- ================================================================ -->
+    <property name="test.dir"                     location="test"/>
+    <property name="test.src.dir"                 location="${src.dir}/test"/>
+    <property name="test.unit.dir"                location="${test.src.dir}/unit"/>
+    <property name="test.integration.dir"         location="${test.src.dir}/integration"/>
+    <property name="test.etc.dir"                 location="${test.src.dir}/etc"/>
+    <property name="test.load.dir"                location="${test.dir}/load"/>
+    <property name="test.data.dir"                location="${test.dir}/data"/>
+    <property name="test.run.dir"                 location="run"/>
+
+    <property name="test.build.dir"               location="${build.dir}/test"/>
+	<property name="test.generated.dir"           location="${test.build.dir}/generated"/>
+	<property name="test.classes.dir"             location="${test.build.dir}/classes"/>
+    <property name="test.lib.dir"                 location="${test.build.dir}/lib"/>
+    <property name="test.log.dir"                 location="${test.build.dir}/log"/>
+	<property name="test.log.unit.dir"            location="${test.log.dir}/unit"/>
+	<property name="test.log.integration.dir"     location="${test.log.dir}/integration"/>
+    <property name="test.build.etc.dir"           location="${test.build.dir}/etc"/>
+
+    <property name="test.reports.dir"             location="${test.build.dir}/reports"/>
+    <property name="test.reports.pmd.dir"         location="${test.reports.dir}/pmd"/>
+
+    <property name="test.reports.unit.dir"              location="${test.reports.dir}/unit"/>
+    <property name="test.reports.integration.dir"       location="${test.reports.dir}/integration"/>
+
+    <property name="test.reports.load.dir"        location="${test.reports.dir}/load"/>
+ 	
+    <property name="test.reports.depend.dir"            location="${test.reports.dir}/depend"/>
+
+    <property name="test.reports.riskbasedcoverage.dir"         location="${test.reports.dir}/riskbasedcoverage"/>
+    <property name="test.reports.coverage.dir"    	        location="${test.reports.riskbasedcoverage.dir}/coverage"/>
+    <property name="test.reports.coverage.unit.dir"		location="${test.reports.coverage.dir}/unit"/>
+    <property name="test.reports.coverage.integration.dir"	location="${test.reports.coverage.dir}/integration"/>
+    <property name="test.generated.coverage.dir"    		location="${test.generated.dir}/coverage"/>
+	    
+    <property name="test.reports.coverage.all.dir"              location="${test.reports.coverage.dir}/all"/>
+    <property name="test.reports.static.dir"                    location="${test.reports.dir}/static"/>
+
+	<property name="unit.coverage.file.name"      		value="${ant.project.name}-unit-jacoco.exec" />		
+	<property name="unit.coverage.file"           		location="${test.log.dir}/${unit.coverage.file.name}" />          
+
+	<property name="integration.coverage.file.name"    	value="${ant.project.name}-integration-jacoco.exec" />
+	<property name="integration.coverage.file"          	location="${test.log.dir}/${integration.coverage.file.name}"/>
+
+
+    <!-- ================================================================ -->
+    <!--  java compile properties                                         -->
+    <!-- ================================================================ -->
+    <property name="compile.debug" value="true" />
+    <property name="compile.deprecation" value="on" />
+    <property name="compile.optimize" value="true" />
+    <property name="compile.encoding" value="UTF-8" />
+    <property name="compile.verbose" value="false" />
+    <property name="compile.listfiles" value="false" />
+    <property name="compile.source" value="1.6" />
+    <property name="compile.target" value="1.6" />
+
+    <path id="compile.bootclasspath">
+        <pathelement location="${JAVA_HOME}/jre/lib/rt.jar"/>
+        <pathelement location="${JAVA_HOME}/jre/lib/jce.jar"/>
+        <pathelement location="${JAVA_HOME}/jre/lib/jsse.jar"/>
+    </path>
+
+    <!-- ================================================================ -->
+    <!--  flag file properties to determine failed sub component test     -->
+    <!-- ================================================================ -->
+    <property name="test.pmd.failed.flag"             location="${masterbuild.dir}/${build.dir.name}/test/pmdtestfailed.flag"/>
+    <property name="test.unit.failed.flag"            location="${masterbuild.dir}/${build.dir.name}/test/unittestfailed.flag"/>
+    <property name="test.integration.failed.flag"     location="${masterbuild.dir}/${build.dir.name}/test/integrationtestfailed.flag"/>
+    <property name="test.static.failed.flag"          location="${masterbuild.dir}/${build.dir.name}/test/statictestsfailed.flag"/>
+
+    <!-- file to all currently active properties -->
+    <property name="all.properties"                   location="${masterbuild.dir}/${build.dir.name}/all.properties"/>
+
+    <!-- ================================================================ -->
+    <!--  parametrize sub component                                       -->
+    <!-- ================================================================ -->
+    <property name="subcomponent.common"                 	location="${masterbuild.dir}/logon-common"/>
+    <property name="subcomponent.pdf-generator"             location="${masterbuild.dir}/logon-pdf-generator"/>
+	<property name="subcomponent.security"               	location="${masterbuild.dir}/logon-security"/>
+    <property name="subcomponent.persistence"            	location="${masterbuild.dir}/logon-persistence"/>
+    <property name="subcomponent.webservices"            	location="${masterbuild.dir}/logon-webservices"/>
+    <property name="subcomponent.webservices-client"     	location="${masterbuild.dir}/logon-webservices-client"/>
+    <property name="subcomponent.webservices-mop-incoming" 	location="${masterbuild.dir}/logon-webservices-mop-incoming"/>
+    <property name="subcomponent.webservices-pws-incoming" 	location="${masterbuild.dir}/logon-webservices-pws-incoming"/>
+	<property name="subcomponent.webservices-oc-incoming" 	location="${masterbuild.dir}/logon-webservices-oc-incoming"/>
+    <property name="subcomponent.business"               	location="${masterbuild.dir}/logon-business"/>
+    <property name="subcomponent.common-web"             	location="${masterbuild.dir}/logon-common-web"/>
+    <property name="subcomponent.init-web"               	location="${masterbuild.dir}/logon-init-web"/>
+    <property name="subcomponent.admin-web"              	location="${masterbuild.dir}/logon-admin-web"/>
+    <property name="subcomponent.order-web"              	location="${masterbuild.dir}/logon-order-web"/>
+    <property name="subcomponent.cust-web"               	location="${masterbuild.dir}/logon-cust-web"/>
+    <property name="subcomponent.terminal-web"              location="${masterbuild.dir}/logon-terminal-web"/>
+    <property name="subcomponent.application"            	location="${masterbuild.dir}/logon-application"/>
+    <property name="subcomponent.ws-simulator"           	location="${masterbuild.dir}/logon-simulator"/>
+    <property name="subcomponent.container"              	location="${masterbuild.dir}/container"/>
+	
+	<!-- test components -->
+    <property name="subcomponent.test-load"              	location="${masterbuild.dir}/logon-test-load"/>
+
+    <path id="subcomponents.path">
+        <pathelement location="${subcomponent.common}"/>
+        <pathelement location="${subcomponent.pdf-generator}"/>
+        <pathelement location="${subcomponent.persistence}"/>
+    	<pathelement location="${subcomponent.webservices-client}"/>
+        <pathelement location="${subcomponent.business}"/>
+        <pathelement location="${subcomponent.common-web}"/>
+        <pathelement location="${subcomponent.security}"/>
+        <pathelement location="${subcomponent.init-web}"/>
+        <pathelement location="${subcomponent.webservices}"/>
+        <pathelement location="${subcomponent.webservices-mop-incoming}"/>
+		<pathelement location="${subcomponent.webservices-pws-incoming}"/>
+		<pathelement location="${subcomponent.webservices-oc-incoming}"/>
+        <pathelement location="${subcomponent.admin-web}"/>
+        <pathelement location="${subcomponent.order-web}"/>
+        <pathelement location="${subcomponent.cust-web}"/>
+        <pathelement location="${subcomponent.terminal-web}"/>
+        <pathelement location="${subcomponent.application}"/>
+        <pathelement location="${subcomponent.ws-simulator}"/>
+        <pathelement location="${subcomponent.container}"/>
+    </path>
+
+    <fileset id="allproperties-sourcefiles" dir="${masterbuild.dir}">
+        <include name="config/*.properties"/>
+    </fileset>
+
+    <fileset id="toolbox-sourcefiles" dir="${masterbuild.dir}">
+        <include name="config/*.*"/>
+        <include name="properties.xml"/>
+        <include name="*/build.xml"/>
+        <include name="*/properties.xml"/>
+    </fileset>
+
+    <!-- ================================================================ -->
+    <!--  parametrize own libraries built in sub-components               -->
+    <!-- ================================================================ -->
+    <!-- NOTE: the 'loc' prevents 'updatedotclasspath' from automatically adding these jars to the .classpath files -->
+    <!-- we don't want them there because we want to see the sources directly in eclipse -->
+    <property name="adntrace2-templates.jar"             location="${run.dir}/buildlib/adntrace2-templates.jar"/>
+    
+
+    <property name="project-init-webapp-int.war.name"    value="logon-init-webapp.war"/>
+    <property name="project-init-webapp-int.war"         location="${subcomponent.init-web}/${build.dir.name}/webapps/${project-init-webapp-int.war.name}"/>
+    <property name="project-admin-webapp-int.war.name"   value="logon-admin-webapp.war"/>
+    <property name="project-admin-webapp-int.war"        location="${subcomponent.admin-web}/${build.dir.name}/webapps/${project-admin-webapp-int.war.name}"/>
+    <property name="project-cust-webapp-int.war.name"   value="logon-cust-webapp.war"/>
+    <property name="project-cust-webapp-int.war"        location="${subcomponent.cust-web}/${build.dir.name}/webapps/${project-cust-webapp-int.war.name}"/>
+    <property name="project-order-webapp-int.war.name"   value="logon-order-webapp.war"/>
+    <property name="project-order-webapp-int.war"        location="${subcomponent.order-web}/${build.dir.name}/webapps/${project-order-webapp-int.war.name}"/>
+    
+    <property name="project-init-webapp-ext.war.name"    value="logon-init-webapp-ext.war"/>
+    <property name="project-init-webapp-ext.war"         location="${subcomponent.init-web}/${build.dir.name}/webapps/${project-init-webapp-ext.war.name}"/>
+    <property name="project-admin-webapp-ext.war.name"   value="logon-admin-webapp-ext.war"/>
+    <property name="project-admin-webapp-ext.war"        location="${subcomponent.admin-web}/${build.dir.name}/webapps/${project-admin-webapp-ext.war.name}"/>
+    <property name="project-cust-webapp-ext.war.name"        value="logon-cust-webapp-ext.war"/>
+    <property name="project-cust-webapp-ext.war"             location="${subcomponent.cust-web}/${build.dir.name}/webapps/${project-cust-webapp-ext.war.name}"/>
+    <property name="project-order-webapp-ext.war.name"   value="logon-order-webapp-ext.war"/>
+    <property name="project-order-webapp-ext.war"        location="${subcomponent.order-web}/${build.dir.name}/webapps/${project-order-webapp-ext.war.name}"/>
+    <property name="project-terminal-webapp-ext.war.name"   value="logon-terminal-webapp-ext.war"/>
+    <property name="project-terminal-webapp-ext.war"        location="${subcomponent.terminal-web}/${build.dir.name}/webapps/${project-terminal-webapp-ext.war.name}"/>
+
+	<property name="project-persistence.jar.name"        value="logon-persistence.jar"/>
+	<property name="project-persistence.jar.loc"         location="${subcomponent.persistence}/${build.dir.name}/lib/${project-persistence.jar.name}"/>
+	<property name="project-persistence-daojdbc.jar.name"  value="logon-persistence-daojdbc.jar"/>
+	<property name="project-persistence-daojdbc.jar.loc" location="${subcomponent.persistence}/${build.dir.name}/lib/${project-persistence-daojdbc.jar.name}"/>
+	<property name="project-persistence-client.jar.name" value="logon-persistence-client.jar"/>
+	<property name="project-persistence-client.jar.loc"  location="${subcomponent.persistence}/${build.dir.name}/lib/${project-persistence-client.jar.name}"/>
+	<property name="project-persistence.dist.loc"        location="${subcomponent.persistence}/${build.dir.name}/dist"/>
+	<property name="opt.ora.dialect.jar.name"            value="optimized-oracle-dialect.jar"/>
+        <property name="opt.ora.dialect.jar.loc"             location="${subcomponent.persistence}/${build.dir.name}/lib/${opt.ora.dialect.jar.name}"/>
+	<property name="project-business.jar.name"           value="logon-business.jar"/>
+	<property name="project-business.jar.loc"            location="${subcomponent.business}/${build.dir.name}/lib/${project-business.jar.name}"/>
+ 	<property name="project-business-client.jar.name"    value="logon-business-client.jar"/>
+	<property name="project-business-client.jar.loc"     location="${subcomponent.business}/${build.dir.name}/lib/${project-business-client.jar.name}"/> 
+	<property name="project-common.jar.name"             value="logon-common.jar"/>
+	<property name="project-common.jar.loc"              location="${subcomponent.common}/${build.dir.name}/lib/${project-common.jar.name}"/>
+	<property name="project-common-web.webapp.dir"       location="${subcomponent.common-web}/${src.dir.name}/main/webapp"/>
+	<property name="project-common-web.resources.dir"    location="${subcomponent.common-web}/${build.dir.name}/resources"/>
+	<property name="project-common-web.classes.dir"        location="${subcomponent.common-web}/${build.dir.name}/classes"/>
+	<property name="project-common-web.generated.dir"    location="${subcomponent.common-web}/build/generated"/>
+	<property name="project-security.jar.name"      	 value="logon-security.jar"/>
+	<property name="project-security.jar.loc"            location="${subcomponent.security}/${build.dir.name}/lib/${project-security.jar.name}"/>
+	<property name="project-int.name"                    value="logon-int"/>
+	<property name="project-int.ear.name"      	         value="${project-int.name}.ear"/>
+    <property name="project-int.ear"                     location="${subcomponent.application}/${build.dir.name}/apps/${project-int.ear.name}"/>
+    <property name="project-ext.name"      	             value="logon-ext"/>
+    <property name="project-ext.ear.name"      	         value="${project-ext.name}.ear"/>
+    <property name="project-ext.ear"                     location="${subcomponent.application}/${build.dir.name}/apps/${project-ext.ear.name}"/>
+    <property name="project-terminal.name"               value="logon-terminal"/>
+    <property name="project-terminal.ear.name"           value="${project-terminal.name}.ear"/>
+	<property name="project-terminal.ear"                location="${subcomponent.application}/${build.dir.name}/apps/${project-terminal.ear.name}"/>
+	<property name="project-webservices.war.name"      	 value="logon-webservices.war"/>
+    <property name="project-webservices.war"        	 location="${subcomponent.webservices}/${build.dir.name}/${dist.dir.name}/lib/wars/${project-webservices.war.name}"/>
+    <property name="webservices.entities.jar.name"       value="logon-webservices-persistence.jar" />
+    <property name="webservices.ejbs.jar.name"           value="logon-webservices-ejbs.jar" />
+    <property name="project-webservices-ejbs.jar.loc"    value="${subcomponent.webservices}/${build.dir.name}/${dist.dir.name}/lib/ejbs/${webservices.ejbs.jar.name}" />
+	<property name="project-webservices-client.jar.name" value="logon-webservices-client.jar"/>
+	<property name="project-webservices-client.dist.loc" location="${subcomponent.webservices-client}/${build.dir.name}/dist"/>
+    <property name="project-webservices-mop-incoming.war.name"    value="logon-webservices-mop-incoming.war"/>
+    <property name="project-webservices-mop-incoming.war"         location="${subcomponent.webservices-mop-incoming}/${build.dir.name}/${dist.dir.name}/lib/wars/${project-webservices-mop-incoming.war.name}"/>
+    <property name="project-webservices-pws-incoming.war.name"    value="logon-webservices-pws-incoming.war"/>
+    <property name="project-webservices-pws-incoming.war"
+			  location="${subcomponent.webservices-pws-incoming}/${build.dir.name}/${dist.dir.name}/lib/wars/${project-webservices-pws-incoming.war.name}"/>
+	<property name="project-webservices-oc-incoming.war.name"    value="logon-webservices-oc-incoming.war"/>
+	<property name="project-webservices-oc-incoming.war"
+			  location="${subcomponent.webservices-oc-incoming}/${build.dir.name}/${dist.dir.name}/lib/wars/${project-webservices-oc-incoming.war.name}"/>
+	<property name="project-pdf-generator.jar.name"      value="logon-pdf-generator.jar"/>
+    <property name="project-pdf-generator.jar.loc"       location="${subcomponent.pdf-generator}/${build.dir.name}/lib/${project-pdf-generator.jar.name}"/>
+    
+    <!-- test -->
+
+	<property name="junit.jar"             location="${MPOSITORY_DIR}/junit/junit/4.12/junit-4.12.jar"/>
+	<property name="hamcrest.jar"          location="${MPOSITORY_DIR}/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar"/> <!-- Transitive dependency for junit -->
+	<property name="selenium-rc.jar"       location="${SELENIUM_HOME}/dist-bin/selenium-java-2.53.0.jar"/>
+	<property name="selenium.java.lib.dir" location="${SELENIUM_HOME}/dist-bin/libs"/>
+	<property name="mockito.jar"    	   location="${MPOSITORY_DIR}/org/mockito/mockito-all/1.9.5/mockito-all-1.9.5.jar"/>
+	
+	<path id="selenium.classpath">
+	    <pathelement location="${selenium-rc.jar}"/>
+	    <fileset dir="${selenium.java.lib.dir}" includes="*.jar" />
+	</path>
+	
+    <property name="coverman-reporting.jar"       location="${COVERMAN_HOME}/lib/coverman-reporting.jar"/>
+    <property name="coverman-agent.jar"           location="${COVERMAN_HOME}/lib/coverman-agent.jar"/>
+    <property name="grinder.jar"                  location="${GRINDER_HOME}/lib/grinder.jar" />
+
+    <path id="coverman.classpath">
+        <pathelement location="${coverman-reporting.jar}"/>
+    </path>
+
+    <taskdef resource="coverman-antlib.xml" classpathref="coverman.classpath"/>
+    <taskdef resource="org/jacoco/ant/antlib.xml" classpathref="coverman.classpath"/>
+
+    <!-- SOAPUI crap -->
+    <property name="soapui.jar"                     location="${SOAPUI_HOME}/bin/soapui-4.5.1.jar"/> <!-- business, compile-test -->
+    <property name="soapui-xmlbeans.jar"            location="${SOAPUI_HOME}/lib/soapui-xmlbeans-4.5.1.jar"/> <!-- business, compile-test -->
+    <property name="soap-xmlbeans.jar"              location="${SOAPUI_HOME}/lib/soap-xmlbeans-1.2.jar"/> <!-- business, compile-test -->
+    <property name="ext-xmlbeans.jar"               location="${SOAPUI_HOME}/lib/ext-xmlbeans-1.2.jar"/> <!-- business, compile-test -->
+    <property name="j2ee-xmlbeans.jar"              location="${SOAPUI_HOME}/lib/j2ee-xmlbeans-1.4.jar"/> <!-- business, compile-test -->
+    <property name="wadl-xmlbeans.jar"              location="${SOAPUI_HOME}/lib/wadl-xmlbeans-1.1.jar"/> <!-- business, compile-test -->
+    <property name="xbean.jar"                      location="${XMLBEANS_HOME}/lib/xbean.jar"/> <!-- business, compile-test -->
+    <property name="commons-cli.jar"                location="${COMMONS_CLI_HOME}/commons-cli-1.2.jar"/> <!-- business, compile-test -->
+    
+    <!-- build time only -->
+    <property name="jaxb-xjc.jar"       location="${JAXB_HOME}/lib/jaxb-xjc.jar"/>
+    <property name="xjc-if-ins.jar"     location="${XJC_IF_INS_HOME}/xjc-if-ins.jar"/>
+    <property name="yuicompressor.jar"          location="${YUI_COMPRESSOR_HOME}/build/yuicompressor-2.4.2.jar"/>
+    <property name="groovy.jar"                    location="${GROOVY_HOME}/groovy-all-1.6.3.jar"/>
+
+	<property name="commons-beanutils.jar"      location="${MPOSITORY_DIR}/commons-beanutils/commons-beanutils/1.9.3/commons-beanutils-1.9.3.jar"/> <!-- common, compile -->
+	<property name="commons-collections.jar" location="${MPOSITORY_DIR}/commons-collections/commons-collections/3.2.2/commons-collections-3.2.2.jar"/> <!-- common, compile -->
+	<property name="commons-codec.jar"          location="${COMMONS_CODEC_HOME}/commons-codec-1.3.jar"/>  <!-- common, compile -->
+    <property name="commons-digester.jar"       location="${STRUTS_HOME}/lib/commons-digester.jar"/> <!-- common-web, runtime -->
+    <property name="commons-fileupload.jar"     location="${STRUTS_HOME}/lib/commons-fileupload.jar"/> <!-- common-web, runtime -->
+    <property name="commons-lang.jar"           location="${COMMONS_LANG_HOME}/commons-lang-2.3.jar"/> <!-- common, compile -->
+    <property name="commons-logging.jar"        location="${STRUTS_HOME}/lib/commons-logging.jar"/> <!-- common-web, runtime -->
+    <property name="commons-net.jar"            location="${COMMONS_NET_HOME}/commons-net-2.0.jar"/> <!-- business, compile -->
+    <property name="commons-validator.jar"      location="${STRUTS_HOME}/lib/commons-validator.jar"/> <!-- common-web, runtime -->
+    <property name="commons-io.jar"             location="${COMMONS_IO_HOME}/commons-io-2.4.jar"/> <!-- pdf, runtime -->
+    <property name="dwr.jar"                    location="${DWR_HOME}/dwr.jar"/> <!-- common-web, compile -->
+    <property name="espace.jar"                 location="${ESPACE2_HOME}/adn.struts.servlet23/lib/espace.jar"/> <!-- common-web, runtime -->
+    <property name="flexjson.jar"               location="${FLEXJSON_HOME}/flexjson.jar"/>  <!-- admin, compile -->
+    <property name="hibernate-jpa2.jar"             location="${MPOSITORY_DIR}/org/hibernate/javax/persistence/hibernate-jpa-2.0-api/1.0.1.Final/hibernate-jpa-2.0-api-1.0.1.Final.jar"/> <!-- persistence, compile -->
+    <property name="hibernate-entitymanager.jar"             location="${MPOSITORY_DIR}/org/hibernate/hibernate-entitymanager/4.2.1.Final/hibernate-entitymanager-4.2.1.Final.jar"/>
+    <property name="hyperjaxb3-runtime.jar"     location="${HYPERJAXB3_HOME}/dist-src/lib/runtime-0.2.GA.jar"/>
+    <property name="hyperjaxb3-ejb-runtime.jar" location="${HYPERJAXB3_HOME}/hyperjaxb3-ejb-runtime-0.3.jar"/>
+    <property name="hyperjaxb3-tools.jar"       location="${HYPERJAXB3_HOME}/dist-src/lib/tools-0.2.GA.jar"/>
+    <!-- <property name="j2ee.jar"                   location="${JAVAEE_HOME}/lib/javaee.jar"/> --><!-- persistence, compile -->
+    <!-- <property name="jakarta-oro.jar"                location="${JAKARTA_ORO_HOME}/jakarta-oro-2.0.8.jar"/> --> <!-- common-web, runtime -->
+    <property name="jakarta-oro.jar"            location="${STRUTS_HOME}/lib/jakarta-oro.jar"/> <!-- common-web, runtime -->
+    <property name="jaxb-api.jar"               location="${HYPERJAXB3_HOME}/dist-src/lib/jaxb-api-2.1.jar"/>
+    <!-- property name="jbossall-client.jar"        location="${JBOSS_HOME}/dist-bin/client/jbossall-client.jar"/ --> <!-- common, compile -->
+    <!-- property name="jboss-client.jar"        	location="${JBOSS7_HOME}/dist-bin/bin/client/jboss-client.jar"/ --> <!-- security, compile -->
+
+    <!-- property name="jboss-common.jar"           location="${JBOSS_HOME}/lib/jboss-common.jar"/ --> <!-- security, compile -->
+    <!-- property name="jbosssx.jar"                location="${JBOSS_HOME}/server/default/lib/jbosssx.jar"/ --> <!-- security, compile -->
+    <property name="jcan-log.jar"               location="${JCAN_LOG_HOME}/log/lib/jcan-log.jar"/> <!-- common, compile -->
+    <property name="jcan-optrace.jar"           location="${JCAN_OPTRACE_HOME}/lib/jcan-optrace.jar"/> <!-- common-web, runtime -->
+    <property name="jcan-print.jar"             location="${JCAN_PRINT_HOME}/lib/jcan-print.jar"/> <!-- business, compile -->
+    <property name="jcan-commons.jar"           location="${JCAN_COMMONS_HOME}/lib/jcan-commons.jar"/> <!-- pdf, compile -->
+    <property name="jfreechart.jar"             location="${JFREECHART_HOME}/dist-bin/lib/jfreechart-1.0.11.jar"/> <!-- common-web, compile -->
+    <property name="jfreechart-common.jar"      location="${JFREECHART_HOME}/dist-bin/lib/jcommon-1.0.14.jar"/> <!-- common-web, compile -->
+    <property name="jstl.jar"                   location="${STRUTS_HOME}/contrib/struts-el/lib/jstl.jar"/> <!-- common-web, compile -->
+    <property name="jsch.jar"                   location="${JSCH_HOME}/jsch-0.1.50.jar"/> <!-- business, compile -->
+    <property name="log4j.jar"                  location="${LOG4J_HOME}/dist-bin/log4j-1.2.16.jar"/> <!-- common, compile -->
+    <property name="mail.jar"                   location="${JAVAMAIL_HOME}/dist-bin/mail.jar"/> <!-- business, compile -->
+    <property name="opencsv.jar"                location="${OPENCSV_HOME}/deploy/opencsv-1.8.jar"/> <!-- persistence, compile -->
+    <property name="oracle.jar"                 location="${ORACLE_HOME}/dist-bin/ojdbc6.jar"/> <!-- business, runtime -->
+	<property name="oracle8.jar"                 location="${container.modules.dir}/ojdbc8-19.3.0.0.jar"/>
+    <property name="servlet.jar"                location="${SERVLET_HOME}/lib/servlet.jar"/> <!-- common-web, compile -->
+    <property name="spring.jar"                 location="${SPRING_HOME}/dist/spring.jar"/> <!-- common-web, compile -->
+    <property name="standard.jar"               location="${STRUTS_HOME}/contrib/struts-el/lib/standard.jar"/> <!-- common-web, compile -->
+    <property name="struts.jar"                 location="${STRUTS_HOME}/lib/struts.jar"/> <!-- common-web, compile -->
+    <property name="struts-el.jar"              location="${STRUTS_HOME}/contrib/struts-el/lib/struts-el.jar"/> <!-- common-web, runtime -->
+    <property name="ostermillerutils.jar"       location="${OSTERMILLER_HOME}/ostermillerutils_1_07_00.jar" />
+    <property name="poi.jar"                    location="${POI_HOME}/poi-3.8-20120326.jar"/>
+    <property name="poi-ooxml.jar"              location="${POI_HOME}/poi-ooxml-3.8-20120326.jar"/>
+	<property name="poi-ooxml-schemas.jar"      location="${POI_HOME}/poi-ooxml-schemas-3.8-20120326.jar"/>
+    <property name="icu4j.jar"                  location="${ICU4j_HOME}/icu4j-51_2.jar"/> <!-- business, compile --> 
+    <property name="aspose-words.jar"           location="${ASPOSE_WORDS_HOME}/Aspose.Words.jdk16.jar"/> <!-- pdf generator -->
+    <property name="fonts.jar"                  location="${PD4ML_FONTS_HOME}/fonts.jar"/> <!-- fonts for pdf generator -->
+    
+    <!-- these are not referenced directly, but are needed for update.classpath -->
+    <property name="axis2-kernel.jar"           location="${AXIS2_HOME}/lib/axis2-kernel-1.7.8.jar"/>
+    <property name="axis2-adb.jar"              location="${AXIS2_HOME}/lib/axis2-adb-1.7.8.jar"/>
+    <property name="axis2-xmlbeans.jar"         location="${AXIS2_HOME}/lib/axis2-xmlbeans-1.7.8.jar"/>
+    <property name="axis2-transport-http.jar"   location="${AXIS2_HOME}/lib/axis2-transport-http-1.7.8.jar"/>
+    <property name="axiom-api.jar"              location="${AXIS2_HOME}/lib/axiom-api-1.2.20.jar"/>
+    <property name="jaxen.jar"                  location="${AXIS2_HOME}/lib/jaxen-1.1.6.jar"/>
+
+	<!-- Property overrides for test-static target -->
+	<property name="test.log.dir.name"            value="test/log"/><!-- (note: no "build/", required to make test-static fail in case of errors) -->
+	<property name="test.static.js.includes" value="*/${webapp.src.dir.name}/js/**/*.js"/>
+	<!-- demandPlanning.js uses a modern syntax that the tool doesn't recognise -->
+	<property name="test.static.js.excludes" value="**jquery*,**/ext-ux/,**/demandPlanning.js"/>
+	<property name="test.static.js.options" value="asi=true,curly=false,undef=false,strict=false,white=false,eqeqeq=false,onevar=false,nomen=false,eqnull=true,laxbreak=true,laxcomma=true,smarttabs=true,esnext=true"/>
+	<property name="test.static.css.includes"         value="*/${webapp.src.dir.name}/css/**/*.css"/>
+	<!-- demandplanning.css uses a modern syntax that the tool doesn't recognise -->
+	<property name="test.static.css.excludes"         value="**/demandplanning.css"/>
+	<property name="test.static.css.options.warnings" value="empty-rules,compatible-vendor-prefixes,vendor-prefix,gradients,text-indent"/>
+
+	<property name="jcan-commons.jar"           location="${JCAN_COMMONS_HOME}/lib/jcan-commons.jar"/>
+    <property name="xercesImpl.jar"             location="${XERCES_HOME}/xercesImpl.jar"/>
+	<property name="ojdbc6.jar" location="${oracle.jar}"/>
+	<property name="ojdbc8.jar" location="${oracle8.jar}"/>
+
+	<!-- marius/CRHLOGON-177: The following property is accessed by aal-db-oracle-base.xml after adnant upgrade. -->
+	<property name="com.oracle:ojdbc6:jar"      location="${oracle.jar}"/>
+
+	<property name="ojdbc8.module.xml"			location="${container.modules.dir}/module.xml"/>
+	<property name="hibernate4.jar"             location="${MPOSITORY_DIR}/org/hibernate/hibernate-core/4.2.1.Final/hibernate-core-4.2.1.Final.jar"/>
+    <!-- property name="picketbox.jar"				location="${JBOSS7_HOME}/modules/system/layers/base/org/picketbox/main/picketbox-4.0.15.Final.jar"/ -->
+	
+	<property name="logon.ear.ctx"              value="/logon"/>
+	<path id="application.ctxpath">
+		<pathelement location="${logon.ear.ctx}"/>
+	</path>
+	<property name="coverage.enabled"           value="false"/>
+	<property name="jboss.src.conf.dir"         location="${masterbuild.dir}/container/jboss7"/>
+	<property name="container.module.layers.conf"         location="${jboss.src.conf.dir}/layers.conf"/>
+    	
+    	<property name="adntrace.processor.enabled" value="true"/>
+    	<property name="jcan-log.version" value="1.8.3.0"/>
+
+	<!-- ===================================== -->
+	<!--   Sonar properties to ignore issues   -->
+	<!-- ===================================== -->
+
+	<property name="sonar.issue.ignore.multicriteria" value="e1" />
+	<property name="sonar.issue.ignore.multicriteria.e1.ruleKey" value="java:S1213" />
+	<property name="sonar.issue.ignore.multicriteria.e1.resourceKey" value="**/*.java" />
+
+    <!-- ================================================================ -->
+    <!--  adntrace2 source code tracing instrumentation properties        -->
+    <!-- ================================================================ -->
+    <path id="adntrace2.classpath">
+        <fileset file="${adntrace2-templates.jar}"/>
+        <fileset dir="${ANT_HOME}/adnovum/adntrace2/lib">
+            <include name="**/*.jar"/>
+        </fileset>
+    </path>
+
+    <path id="gdi.classpath">
+        <fileset dir="${GDI_HOME}/lib">
+            <include name="**/*.jar"/>
+        </fileset>
+	<!--<fileset dir="${GDI_JPA_HOME}/lib">
+	    <include name="**/*.jar"/>
+        </fileset>-->
+	<fileset dir="${GDI_DDL_HOME}/lib">
+		<include name="**/*.jar"/>
+        </fileset>
+        <fileset file="${ORACLE_HOME}/dist-bin/ojdbc6.jar"/>
+    </path>
+
+    <taskdef name="gditask" classname="ch.nevis.gdi.main.GdiTask" classpathref="gdi.classpath"/>
+    
+    <path id="axis2.runtime.classpath">
+		<fileset dir="${AXIS2_HOME}/lib">
+			<include name="*.jar" />
+			<exclude name="**servlet**" />
+	    	<exclude name="ant*" />
+	    	<exclude name="axis2-adb-codegen*"/>
+	    	<exclude name="axis2-codegen*"/>
+	    	<exclude name="jibx-bind*"/>
+	    	<exclude name="log4j*"/>
+	   	</fileset>
+    </path>
+</project>

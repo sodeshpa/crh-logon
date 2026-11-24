@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNM_TRAILER_POSITION" description="Contains the latest known position of the trailers, and bizevent_id linking to the more detailed vlgnc_bizevent_map.">
+
+        <column name="TRAILER_POSITION_ID" primaryKey="true" required="true" type="DECIMAL" size="12" description="PK."/>
+        
+        <column name="TRAILER_ID" required="true" type="DECIMAL" size="12" description="FK tlgnc_trailer. The trailer related to this position."/>
+        
+        <!-- Location related things -->
+        <column name="COORD_LAT" required="true" type="DOUBLE"
+                description="Latitude coordinates of the trailers at the time the event occurred."/>
+        <column name="COORD_LON" required="true" type="DOUBLE"
+                description="Longitute coordinates of the trailers at the time the event occurred."/>
+       
+        <!-- orsika, 04.02.2013: The bizevent itself is not linked to this record in Java (by Hibernate), to avoid eager loading of bizevents (would be slow). Not yet FK: see LOGON-6426. -->
+        <column name="BIZEVENT_ID" required="true" type="DECIMAL" size="12" description="Id of the bizevent related to this position (not yet FK). Used by Live map for a marker, where not only data from this table is displayed, but related data from vlgnc_bizevent_map also."/>
+        
+        <column name="BIZEVENT_TYPE_CD" required="true" type="DECIMAL" size="3" description="FK tlgnr_bizevent_type_bs. Type code of the bizevent related to this position, needed for drawing different markers on the Live map start page. It is stored here directly, because such way we do not need to load the bizevent itself."/>
+        
+        <column name="EVENT_TS" type="TIMESTAMP" required="true" description="Creation Timestamp (Date and Time) of the event."/>
+        
+        <foreign-key foreignTable="TLGNC_TRAILER" name="FK_TLGNM_TRAILER_POS_TRAILER">
+            <reference local="TRAILER_ID" foreign="TRAILER_ID"/>
+        </foreign-key>        
+
+        <foreign-key foreignTable="TLGNR_BIZEVENT_TYPE_BS" name="FK_TLGNM_TRAILER_BIZ_TYPE">
+            <reference local="BIZEVENT_TYPE_CD" foreign="BIZEVENT_TYPE_CD"/>
+        </foreign-key>
+        
+        <!--orsika, 17.01.2013: BIZEVENT_ID column is not a foreign key, because we want to avoid that 
+        hibernate loads bizevent entity when loading trailerPosition entity. LOGON-4739.
+        No lazy loading possibility.-->
+        
+        <index name="I_TLGNM_TRAILER_POS_TID">
+          <index-column name="TRAILER_ID"/>
+        </index>
+        
+        <unique name="UQ_TLGNM_TRAILER_POS_TID">
+            <unique-column name="TRAILER_ID"/>
+        </unique>
+    </table>
+</database>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="VLGNC_TRUCK_ROUTE_SEARCH" mappingType="view" skipSql="true">
+        <column name="TRUCK_ROUTE_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="START_SHIPPINGPOINT_ID" type="DECIMAL" size="12"/>
+        <column name="START_SHIPPINGPOINT_NAME" type="VARCHAR" size="80"/>
+        <column name="END_SHIPTO_BP_ID" type="DECIMAL" size="12"/>
+        <column name="END_SHIPTO_BP_SAP_ID" type="VARCHAR" size="10"/>
+        <column name="END_SHIPTO_BP_NAME1" type="VARCHAR" size="35"/>
+        <column name="END_SHIPTO_BP_POSTAL_CODE" type="VARCHAR" size="10"/>
+        <column name="END_SHIPTO_BP_CITY" type="VARCHAR" size="35"/>
+        <column name="TIME_CALCULATED_MIN" type="DECIMAL" size="6"/>
+        <column name="TIME_CORRECTION_FACTOR" type="DECIMAL" size="4,2"/>
+        <column name="TIME_PLANNED" type="DOUBLE"/>
+        <column name="DISTANCE_CALCULATED_M" type="DECIMAL" size="10"/>
+        <column name="ROUTE_COMMENT" type="VARCHAR" size="200"/>
+        <column name="SAP_TRSP_MODE_CD" required="true" type="VARCHAR" size="2"/>
+        <column name="LANG_CD" type="VARCHAR" size="2"/>
+        <column name="SAP_TRSP_MODE_TXT" type="VARCHAR" size="40"/>
+    </table>
+</database>

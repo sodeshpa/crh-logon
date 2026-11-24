@@ -1,0 +1,6 @@
+# $Revision$
+# $Date$
+# Status: Generated into INSERT OR UPDATE sql script by csv2sql generator. Do not change columns;;;;;;;;;# TODO;;;;;;
+#;;;# Is used as part of identifier for update!;;;;;;# Lookup in tlgnr_printer_bs;;;;;;
+# File updated by FBI on 09/04/2013 with Cluster 2 data.;;;;;;;;;;;;;;;
+# SHIPPINGPOINT_ID;PLANT_CD;SAP_SHIPPINGPOINT_NO;LOADINGPOINT_NAME;LOADINGPOINT_OBJECT_LABEL;PACKAGE_TYPE_CD;WEIGH_SYSTEM_LP_CD;DELIV_NOTE_PRINT_TYPE_CD;PARALLEL_LSID;PRINTER_NAME;LOADINGPOINT_COMMENT;ACTIVE_FLAG;LOADING_TIME;GROSS_WEIGHT_LIMIT_KG;RFIDOBJECT_ID;EOL

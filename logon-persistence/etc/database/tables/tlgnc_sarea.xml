@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database xmlns="http://db.apache.org/schemas" name="Logon">
+  <table name="TLGNC_SAREA" description="Reference data table for the Sales Areas. A Sales Area consists of a Sales Organisation (aka VKO/VKORG) + Distribution Channel + Division and does otherwise not have a special name.">
+    <!-- Technical PK. SORG is referenced by many tables, and having compound FK is a pain in the ass. -->
+    <column name="SAREA_ID" primaryKey="true" required="true" type="DECIMAL" size="12" description="PK. This is a Logon-internal, technical identifier. SAP does not have an identifier for a Sales Area; a Sales Area consists of a Sales Organisation (aka VKO/VKORG) + Distribution Channel + Division."/>
+    <!-- START: Backward compatibility columns -->
+    <column name="SATURDAY_WORKING_DAY_FLAG" type="BOOLEAN" description="Indicates if a certain Sales Area regards Saturdays as working days."/>
+    <!--   END: Backward compatibility columns -->
+    <!-- Identifier -->
+    <column name="SORG_CD" required="true" type="VARCHAR" size="4" description="FK tlgnr_sorg_bs. Part of the logical identifier. The Sales Organisation of this Sales Areas, e.g. S101, S128, S160, ..."/>
+    <column name="DISTRIBUTION_CHANNEL" required="true" type="VARCHAR" size="2" description="Part of the logical identifier. The Distribution Channel of this Sales Area, e.g. 10=Domestic, 20=Export"/>
+    <column name="DIVISION_CD" required="true" type="VARCHAR" size="2" description="Part of the logical identifier. The Division of this Sales Area, e.g. 10=Cement, 11=AFR (Alternative Fuel and Raw Materials), 12=Mineral Components, 13=trading cemetitious, 50=Aggregates, 60=Concrete, 81=OPSo (Waste trading) "/>
+    <!-- Attributes -->
+    <column name="SAREA_DISPLAY_LONGNAME" required="true" type="VARCHAR" size="30" description="Long name of the Sales Area used by the application in selected places. Initially loaded with e.g. S170-10-60, but can be changed to 'Vorarlberg Concrete' etc."/>
+    <!-- We don't want to generate the long name as we do for the short names, because '10' for Domestic is standard, and would just confuse the user if it appears all the time. Rather include just the remarkable, special aspects in the longname. Therefore set manually. Also, it would be possible to move this LONGNAME into a sarea_tx table and make language dependent. Crh decided on 27.2.2009 that this is not necessary. -->
+    <column name="DELNOTE_USES_WS_NUMBER_FLAG" required="true" type="BOOLEAN" description="Defines which number to use as main number on the delivery. note: 1 = the one from the weighing system/local dispatching system (such as WeWas or Fenics), 0 = the standard LOGON order number (order.order_number))"/>
+    <column name="DOCUMENT_DEL_TIME_WINDOW_FLAG" required="true" type="BOOLEAN" description="Defines to show or hide Label and Delivery Time Window on generated PDF documents"/>
+    <column name="DOCUMENT_DISTANCE_FLAG" required="true" type="BOOLEAN" description="Defines to show or hide Label and Distance on generated PDF documents"/>
+    <column name="DOCUMENT_COMM_CARRIER_FLAG" required="true" type="BOOLEAN" description="Defines to show or hide Commercial Carrier on generated PDF documents"/>
+    <column name="DOCUMENT_EXEC_CARRIER_FLAG" required="true" type="BOOLEAN" description="Defines to show or hide Executing Carrier on generated PDF documents"/>
+    <column name="EXP_SHOW_ZCODE1_2_FLAG" required="true" type="BOOLEAN" description="If set to 1, show the TLGNS_SAP_MAT_PLANT_NORM.ZCODE1 and ZCODE2 on the delivery note if the source of the Logo/lines is tlgns_sap_mat_plant_norm. Used on the general Delivery Note, not only on Export Invoice."/>
+    <column name="CUST_COMM_FLAG" required="true" type="BOOLEAN" description="Defines whether to show or hide a checkbox for copying the custommer comment to the driver in the web order form"/>
+    <column name="ALLOW_SD_WEB_ORDER_UNTIL_MI" type="DECIMAL" size="4" description="[min after midnight] Allow web-orders for the same day (before APPLY_SD_LEADTIME_CHK_FROM_MI) only until this time. Mussmaller than APPLY_SD_LEADTIME_CHK_FROM_MI and smalleror equal to ALLOW_ND_WEB_ORDER_UNTIl_MI. This value overrides the config table entry with key “app.default.sarea.leadtime.sameday.allowWebOrderUntilMi”."/>
+    <column name="ALLOW_ND_WEB_ORDER_UNTIL_MI" type="DECIMAL" size="4" description="[min after midnight] Allow web orders for the next day (before APPLY_ND_LEADTIME_CHK_UNTIL_MI) only until this time. Must be larger than or equal to ALLOW_SD_WEB_ORDER_UNTIL_MI. This value overrides the config table entry with key “app.default.sarea.leadtime.nextday.allowWebOrderUntilMi”."/>
+    <column name="APPLY_SD_LEADTIME_CHK_FROM_MI" type="DECIMAL" size="4" description="[min after midnight] Apply the same-day lead-time check for web orders with delivery to time larger than or equal to this value (of the same day). Earlier delivery to times are not possible. Must be larger than ALLOW_SD_WEB_ORDER_UNTIl_MI. This value is overridden by TLGNC_SHIPTO_SAREA.APPLY_SD_LEADTIME_CHK_FROM_MI and overrides the config table entry with key “app.default.sarea.leadtime.sameday.applyCheckUntilMi”."/>
+    <column name="APPLY_ND_LEADTIME_CHK_UNTIL_MI" type="DECIMAL" size="4" description="[min after midnight] Apply the next-day lead-time check only for web orders with delivery to time smaller than this value (of the next day). This value is overridden by TLGNC_SHIPTO_SAREA.APPLY_ND_LEADTIME_CHK_UNTIL_MI and overrides the config table entry with key “app.default.sarea.leadtime.nextday.applyCheckUntilMi”."/>
+    <column name="SHORT_TERM_ORDER_THRESHOLD_MI" type="DECIMAL" size="5" description="[min] When freezing order the O_SHORT_TERM_ORDER flag is set if the (net) reaction time order management is below this value. If 'NULL' global default from TLGNR_CONFIG will be used: 'app.default.frozenorder.short_term_order_flag_threshold'"/>
+    <column name="ALLOW_BIMODAL_CREATION_TILL_MI" type="DECIMAL" size="4" description="[min after midnight] Allow creation of bimodal orders via weborder interface only until this time. Application respects latest possible departure time for rail orders + offset days in timetable. Example: Order taking even at 20:00 at night is allowed, if the latest possible train departure is on the next day only or even later. If 'NULL' global default from TLGNR_CONFIG will be used:'app.default.weborder.allow_bimodal_creation_until_min'"/>
+    <column name="EXACT_QUANTITY_ORDER_TOLERANCE" type="DECIMAL" size="10" description="Tolerance in kg. Used in the Exact Customer Order Quantity calculation to determine if new delivery/deliveries have to be adapted and/or created. The algorithm will create new deliveries if the sum of deliveries plus this tolerance is less than the Customer Order Quantity"/>
+    <column name="SHIPTO_OPEN_1_FROM" type="DECIMAL" size="4" description="[min after midnight] Customer opening hours: Morning FROM. Defaults that will be used for every new dispcard (ship-to). If 'NULL' global default from TLGNR_CONFIG will be used:'app.default.shipto.Open1From_min'"/>
+    <column name="SHIPTO_OPEN_1_TO" type="DECIMAL" size="4" description="[min after midnight] Customer opening hours: Morning TO. Defaults that will be used for every new dispcard (ship-to). If 'NULL' global default from TLGNR_CONFIG will be used:'app.default.shipto.Open1To_min'"/>
+    <column name="SHIPTO_OPEN_2_FROM" type="DECIMAL" size="4" description="[min after midnight] Customer opening hours: Afternoon FROM. Defaults that will be used for every new dispcard (ship-to). If 'NULL' global default from TLGNR_CONFIG will be used:'app.default.shipto.Open2From_min'"/>
+    <column name="SHIPTO_OPEN_2_TO" type="DECIMAL" size="4" description="[min after midnight] Customer opening hours: Afternoon TO. Defaults that will be used for every new dispcard (ship-to). If 'NULL' global default from TLGNR_CONFIG will be used:'app.default.shipto.Open2To_min'"/>
+    <column name="MAIL_FROM" type="VARCHAR" size="80" description="Return address. If 'NULL' global default from TLGNR_CONFIG will be used: 'mail.from'"/>
+    <column name="MAIL_TEST_TO" type="VARCHAR" size="200" description="Email addresses to use in case test mode is enabled. If 'NULL' global default from TLGNR_CONFIG will be used: 'mail.test.to'"/>
+    <column name="MAIL_BCC" type="VARCHAR" size="200" description="Email addresses to which every outgoing email is BCC'd. If 'NULL' global default from TLGNR_CONFIG will be used:'mail.bcc'"/>
+    <column name="MAIL_RAILADMIN" type="VARCHAR" size="80" description="Return address of rail admin. If 'NULL' global default from TLGNR_CONFIG will be used: 'mail.railadmin'"/>
+    <column name="MAIL_ENCODING" type="VARCHAR" size="32" description="Mail encoding. If 'NULL' global default from TLGNR_CONFIG will be used: 'mail.encoding'"/>
+    <!-- contract hierarchy attributes -->
+    <column name="ORDER_TAKING_CLEVEL3_FLAG" type="BOOLEAN" required="true" description="Set to 1 to allow to use level 3 contracts ('One Time Customer Contracts') for a given material at order taking even if there are level 1 or 2 contracts available."/>
+    <column name="ORDER_TAKING_CLEVEL2_FLAG" type="BOOLEAN" required="true" description="Set to 1 to allow to use level 2 contracts ('Frame Contract') for a given material at order taking even if there is a level 1 contract available."/>
+    <column name="DELAY_SEND_TO_SAP_MI" type="DECIMAL" size="10" description="[minutes] Delay between the time when a non-PDA order has been (or will be) delivered (tlgnc_order.actual_delivery_dat) and when it is actually being sent to SAP (all interface types) in case it is configured to '15=after delivery'. The idea of this flag is to give more reaction time in case updates/corrections to the order are necessary. For PDA orders this delay is not necessary because there the PDA can inform LOGON to hold-back sending to SAP. tlgnc_order.NO_PDA_OR_RAIL_EVENTS_FLAG controls whether this delay is applied or not."/>
+    <column name="AUTO_PAYER_DETERM_FLAG" required="true" type="BOOLEAN" description="If sales area and contract AUTO_PAYER_DETERM_FLAG are set to true: Restrict to empty payer at LOGON order creation. Payer determination will be performed on SAP side. (LOGON-6762)."/>
+    <column name="ALLOW_PLANNING_MATERIAL_FLAG" required="true" type="BOOLEAN" description="Activate Planning Material functionality per Sales Area"/>
+    <!-- Cash Sales Invoice Form attributes -->
+    <column name="CS_SHOW_PAYMENT_MTH_FLAG" type="BOOLEAN" required="true" description="If set to 1, show the payment method in the Order Header section on the cash sales invoice."/>
+    <column name="CS_PRICE_TYPE" type="DECIMAL" required="true" size="2" description="0 - Standard format (net amount, VAT amount, gross amount); 1 - Bulgarian format (net amount, VAT rate, VAT amount, total); 2 - Czech format (net price per ton, actual net price). Introduced with LOGON-6636 for Eastern Europe requirements"/>
+    <column name="CS_SHOW_TOTALS_TEXT_FLAG" type="BOOLEAN" required="true" description="If set to 1, the total sum on the Cash Sales invoice will be written additionally in words below the normal totals line."/>
+    <column name="CS_SHOW_CUST_TAX_CODE_FLAG" type="BOOLEAN" required="true" description="If set to 1, the tax code of the SoldTo is printed on the Cash Sales Invoice (if it exists)."/>
+    <column name="CS_SHOW_CONTRACT_CURRENCY_FLAG" type="BOOLEAN" required="true" description="If set to 1, show the currency of the contract below the pricing information."/>
+    <column name="CS_ENABLE_ONE_TIME_CUST_FLAG" type="BOOLEAN" required="true" description="If set to 1, use cash sales invoice form for ZONC contract types and OneTime Soldto"/>
+    <!-- Delivery Note for Eastern Europe -->
+    <column name="DN_SHOW_TRAILER_FLAG" required="true" type="BOOLEAN" description="If set to 1, show the trailer plate number Order Header section on the delivery note."/>
+    <column name="DN_SHOW_SEALS_INFO_FLAG" required="true" type="BOOLEAN" description="If set to 1, show the Crh seal numbers Order Header section on the delivery note."/>
+    <column name="DN_SHOW_SILO_NO_FLAG" required="true" type="BOOLEAN" description="If set to 1, show the SILO number Order Header section on the delivery note."/>
+    <column name="DN_SHOW_PLANT_CYCLE_FLAG" required="true" type="BOOLEAN" description="If set to 1, show the plant cycle information (i.e. Plant Entrance TS and Plant Exit TS) Order Header section on the delivery note."/>
+    <column name="DN_SHOW_FIX_TEXT" required="true" type="BOOLEAN" description="If set to 1, show the fix text in the Remark section on the delivery note."/>
+    <column name="DN_SHOW_DISPATCHER_DRIVER_FLAG" required="true" type="BOOLEAN" description="If set to 1, show the Dispatcher Information (dispatcher_name, dispatcher_tel and dispatcher_id) and the Driver Information (driver_name, driver_card_no and driver_id) in the Remark section on the delivery note."/>
+    <column name="DN_SHOW_CARRIER_CRM_FLAG" required="true" type="BOOLEAN" description="If set to 1, show Carrier CRM for crossboundary-shipments"/>
+    <column name="DN_SHOW_SHIPTO_CONTACT_FLAG" required="true" type="BOOLEAN" default="0" description="If set to 1, show Shipto contact information"/>
+    <!-- Export Invoice Changes for Eastern Europe attributes -->
+    <column name="EXP_SHOW_TOTAL_TXT_FLAG" required="true" type="BOOLEAN" description="If set to 1, show the total text in the total material price information section on the export invoice."/>
+    <column name="EXP_SHOW_LEGAL_TEXT_1_FLAG" required="true" type="BOOLEAN" description="If set to 1, show the legal text 1 in the chromate reduction section on the export invoice."/>
+    <column name="EXP_SHOW_LEGAL_TEXT_2_FLAG" required="true" type="BOOLEAN" description="If set to 1, show the legal text 2 in the chromate reduction section on the export invoice."/>
+    <column name="EXP_SHOW_ISSUE_DAT_LOC_FLAG" required="true" type="BOOLEAN" description="If set to 1, show issue date instead of version and show the issue location in the header section of the export invoice."/>
+    <column name="EXP_SHOW_AD_INVOICE_NO_FLAG" required="true" type="BOOLEAN" description="If set to 1, show advance invoice number in the export invoice header section."/>
+    <column name="EXP_SHOW_CTRL_NO_FLAG" required="true" type="BOOLEAN" description="If set to 1, show controller number in the export invoice header section."/>
+    <column name="EXP_MAT_PRICE_TYPE" required="true" type="DECIMAL" size="3" description="0 - Do not display, 1 - Display Material Price only, 2 - Display Material Price and Extra Line if contract currency is not EUR"/>
+    <!-- Enable Pricing Call -->
+    <column name="ENABLE_PRICING_CALL_FLAG" required="true" type="BOOLEAN" description="if activated, the pricing call will be performed for cash sales related scenarios in this particular SAREA."/>
+    <!--Enable Delivery plant in the Web Order material drop-down list -->
+    <column name="SHOW_DELPLANT_WEB_ORDER_FLAG" required="true" type="BOOLEAN" description="If set to 1, show the delivery plant in the Web Order material drop-down list."/>
+    <!-- Enable Sales Prices for Customer Web Order material drop-down list -->
+    <column name="SHOW_PRICE_IN_WEB_ORDER_FLAG" required="true" type="BOOLEAN" description="If set to 1, show the net price, currency and vat in the Web Order material drop-down list."/>
+    <!-- Enable Rail Return for Sarea to filter wagon return/maintenance orders -->
+    <column name="RAIL_RETURN_SAREA_FLAG" required="true" type="BOOLEAN" default="0" description="0=inactive/deleted,1=active."/>
+
+    <!-- The next columns needed for lead time validations -->
+    <column name="DBLT_DISTANCE_L1" required="false" type="DECIMAL" size="10" description="Lower distance limit for distance based lead time check for delivery_from_dat."/>
+    <column name="DBLT_DISTANCE_L2" required="false" type="DECIMAL" size="10" description="Upper distance limit for distance based lead time check for delivery_from_dat."/>
+    <column name="H1_EARLY_ORDER_LIMIT" required="false" type="DECIMAL" size="4" description="Defines 'if ordered before' rule for distance based lead time check for delivery_from_dat."/>
+    <column name="H2_EARLIEST_DELIVERY_FROM" required="false" type="DECIMAL" size="4" description="Earliest possible delivery from time for delivery_from_dat for distance based lead time check."/>
+    <column name="DBLT_OFFSET_D1" required="false" type="DECIMAL" size="4" description="Offset value for distance based lead time check."/>
+    <column name="DBLT_OFFSET_D2" required="false" type="DECIMAL" size="4" description="Offset value for distance based lead time check."/>
+    <column name="DBLT_OFFSET_D3" required="false" type="DECIMAL" size="4" description="Offset value for distance based lead time check."/>
+    <column name="DBLT_OFFSET_D4" required="false" type="DECIMAL" size="4" description="Offset value for distance based lead time check."/>
+    <column name="DBLT_OFFSET_D5" required="false" type="DECIMAL" size="4" description="Offset value for distance based lead time check."/>
+    <column name="DBLT_OFFSET_D6" required="false" type="DECIMAL" size="4" description="Offset value for distance based lead time check."/>
+
+    <!-- Technical Attributes -->
+    <column name="CTL_ACT_CD" required="true" type="BOOLEAN" description="Active Flag. When new data is entered, only reference data with active flag are available for selection normally."/>
+    <column name="ALLOW_WEB_ORDER_ON_WEEKEND" type="DECIMAL" size="3" description="Allow web order on weekends."/>
+    <column name="FORCE_TO_SAP_FLAG" required="true" type="BOOLEAN" description="If set to 1, the update_orders cron job will send the order's of the sales area to SAP no matter what is the actual delivery date"/>
+    <column name="ENABLE_DEMAND_PLANNING_FLAG" required="true" type="BOOLEAN" description="Tells whether demand planning functionality is enabled for the sales area."/>
+    <column name="DEMAND_PLAN_LATEST_UNTIL_H" required="false" type="DECIMAL" size="4" description="Tells how many hours before Monday 00:00 on week X can customers issue forecast to that week (e.g. 58 hours in case forecast should be closed by Friday 14:00 week X-1)."/>
+    <column name="ITRACK_AVAILABLE_FLAG" required="false" type="BOOLEAN"
+            description="Set if the truck is equipped with iTrack. If set the order gets to Shipping status after loading."/>
+    <foreign-key foreignTable="TLGNR_SORG_BS" name="FK_TLGNR_SAREA_SORG">
+      <reference local="SORG_CD" foreign="SORG_CD"/>
+    </foreign-key>
+    <foreign-key foreignTable="TLGNR_DIVISION_BS" name="FK_TLGNR_SAREA_DIVISION_BS">
+      <reference local="DIVISION_CD" foreign="DIVISION_CD"/>
+    </foreign-key>
+    <unique name="UQ_TLGNS_SAREA_SORG_DIST_DIV">
+      <unique-column name="SORG_CD"/>
+      <unique-column name="DISTRIBUTION_CHANNEL"/>
+      <unique-column name="DIVISION_CD"/>
+    </unique>
+  </table>
+</database>

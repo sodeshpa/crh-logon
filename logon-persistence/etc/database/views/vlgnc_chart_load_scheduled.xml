@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="VLGNC_CHART_LOAD_SCHEDULED" mappingType="view" skipSql="true">
+        <column name="ASSIGNMENT_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="TRUCK_ID" type="DECIMAL" size="12"/>
+        <column name="WAGON_ID" type="DECIMAL" size="12"/>
+        <column name="CARRIER_ID" type="DECIMAL" size="12"/>
+        <column name="TRUCK_TYPE_CD" type="DECIMAL" size="3"/>
+        <column name="WAGON_TYPE_CD" type="DECIMAL" size="2"/>
+        <column name="SAP_MATERIAL_ID" type="DECIMAL" size="12"/>
+        <column name="POOL_ID" type="DECIMAL" size="12"/>
+        <column name="DELIVERY_TYPE_CD" type="DECIMAL" size="2"/>
+        <column name="PLANT_CD" type="VARCHAR" size="4"/>
+        <column name="SHIPPINGPOINT_ID" type="DECIMAL" size="12"/>
+        <column name="MATERIAL_PACKAGE_CD" type="VARCHAR" size="4"/>
+        <column name="MATERIAL_IS_AGG" type="BOOLEAN"/>
+        <column name="MATERIAL_IS_CEM" type="BOOLEAN"/>
+        <column name="MATERIAL_IS_LF" type="BOOLEAN"/>
+        <column name="FIRST_LOAD_DAT" type="DATE"/>
+        <column name="FIRST_TO_DAT" type="DATE"/>
+    </table>
+</database>

@@ -1,0 +1,117 @@
+##
+## namespace constants
+##
+#set ($NS_WSDL = 'http://schemas.xmlsoap.org/wsdl/')
+#set ($NS_WSDL_SOAP = 'http://schemas.xmlsoap.org/wsdl/soap/')
+#set ($NS_XSD = 'http://www.w3.org/2001/XMLSchema')
+#set ($NS_SAP_WS = 'http://sap.com/xi/WebService/xi2.0')
+##
+## namespace declare constants
+##
+#set ($DECL_NS_WSDL = "declare namespace wsdl='$NS_WSDL';")
+#set ($DECL_NS_XSD = "declare namespace xsd='$NS_XSD';")
+##
+###############################
+## parse the input wsdl file
+##
+#set ($xmlobject = $xml.parse($file.path))
+##
+## get target namespace
+##
+#foreach ($xmlselection in $xmlobject.selectPath("$DECL_NS_WSDL wsdl:definitions/@targetNamespace"))
+#set ($xmlcursor = $xmlselection.newCursor())
+#set ($targetNamespace = $xmlcursor.textValue)
+#set ($dummy = $xmlcursor.dispose())
+#end
+##
+## add a wsdl:fault portType operation
+##
+#foreach ($xmlselection in $xmlobject.selectPath("$DECL_NS_WSDL wsdl:definitions/wsdl:portType/wsdl:operation"))
+#set ($xmlcursor = $xmlselection.newCursor())
+#set ($dummy = $xmlcursor.toLastChild())
+#set ($dummy = $xmlcursor.toEndToken())
+#set ($dummy = $xmlcursor.toNextToken())
+#set ($dummy = $xmlcursor.beginElement("fault", $NS_WSDL))
+#set ($dummy = $xmlcursor.insertAttributeWithValue("name", "SystemError"))
+#set ($dummy = $xmlcursor.insertAttributeWithValue("message", "p1:SystemError"))
+#set ($dummy = $xmlcursor.dispose())
+#end
+##
+## add a wsdl:fault Binding operation
+##
+#foreach ($xmlselection in $xmlobject.selectPath("$DECL_NS_WSDL wsdl:definitions/wsdl:binding/wsdl:operation"))
+#set ($xmlcursor = $xmlselection.newCursor())
+#set ($dummy = $xmlcursor.toLastChild())
+#set ($dummy = $xmlcursor.toEndToken())
+#set ($dummy = $xmlcursor.toNextToken())
+#set ($dummy = $xmlcursor.beginElement("fault", $NS_WSDL))
+#set ($dummy = $xmlcursor.insertAttributeWithValue("name", "SystemError"))
+#set ($dummy = $xmlcursor.beginElement("body", $NS_WSDL_SOAP))
+#set ($dummy = $xmlcursor.insertAttributeWithValue("use", "literal"))
+#set ($dummy = $xmlcursor.insertNamespace("soap", $NS_WSDL_SOAP))
+#set ($dummy = $xmlcursor.dispose())
+#end
+##
+## add a wsdl:message for SystemError
+##
+#foreach ($xmlselection in $xmlobject.selectPath("$DECL_NS_WSDL wsdl:definitions/wsdl:message"))
+#set ($xmlcursor = $xmlselection.newCursor())
+#set ($dummy = $xmlcursor.toEndToken())
+#set ($dummy = $xmlcursor.toNextToken())
+#set ($dummy = $xmlcursor.beginElement("message", $NS_WSDL))
+#set ($dummy = $xmlcursor.insertAttributeWithValue("name", "SystemError"))
+#set ($dummy = $xmlcursor.beginElement("part", $NS_WSDL))
+#set ($dummy = $xmlcursor.insertAttributeWithValue("name", "SystemError"))
+#set ($dummy = $xmlcursor.insertAttributeWithValue("element", "s:SystemError"))
+#set ($dummy = $xmlcursor.insertNamespace("wsdl", $NS_WSDL))
+#set ($dummy = $xmlcursor.insertNamespace("s", $NS_SAP_WS))
+#set ($dummy = $xmlcursor.dispose())
+#end
+##
+## add the schema definition for the wsdl:fault SystemError
+##
+#foreach ($xmlselection in $xmlobject.selectPath("$DECL_NS_WSDL wsdl:definitions/wsdl:types"))
+#set ($xmlcursor = $xmlselection.newCursor())
+#set ($dummy = $xmlcursor.toLastChild())
+#set ($dummy = $xmlcursor.toEndToken())
+#set ($dummy = $xmlcursor.toNextToken())
+#set ($dummy = $xmlcursor.beginElement("schema", $NS_XSD))
+#set ($dummy = $xmlcursor.insertAttributeWithValue("targetNamespace", $NS_SAP_WS))
+#set ($dummy = $xmlcursor.insertNamespace("xsd", $NS_XSD))
+#set ($dummy = $xmlcursor.beginElement("element", $NS_XSD))
+#set ($dummy = $xmlcursor.insertAttributeWithValue("name", "SystemError"))
+#set ($dummy = $xmlcursor.beginElement("complexType", $NS_XSD))
+#set ($dummy = $xmlcursor.beginElement("sequence", $NS_XSD))
+#set ($dummy = $xmlcursor.beginElement("element", $NS_XSD))
+#set ($dummy = $xmlcursor.insertAttributeWithValue("name", "context"))
+#set ($dummy = $xmlcursor.insertAttributeWithValue("type", "xsd:string"))
+#set ($dummy = $xmlcursor.beginElement("annotation", $NS_XSD))
+#set ($dummy = $xmlcursor.beginElement("documentation", $NS_XSD))
+#set ($dummy = $xmlcursor.insertChars("Error location"))
+#set ($dummy = $xmlcursor.toParent())
+#set ($dummy = $xmlcursor.toParent())
+#set ($dummy = $xmlcursor.toParent())
+#set ($dummy = $xmlcursor.toEndToken())
+#set ($dummy = $xmlcursor.toNextToken())
+#set ($dummy = $xmlcursor.beginElement("element", $NS_XSD))
+#set ($dummy = $xmlcursor.insertAttributeWithValue("name", "code"))
+#set ($dummy = $xmlcursor.insertAttributeWithValue("type", "xsd:string"))
+#set ($dummy = $xmlcursor.insertAttributeWithValue("minOccurs", "0"))
+#set ($dummy = $xmlcursor.beginElement("annotation", $NS_XSD))
+#set ($dummy = $xmlcursor.beginElement("documentation", $NS_XSD))
+#set ($dummy = $xmlcursor.insertChars("Error code"))
+#set ($dummy = $xmlcursor.toParent())
+#set ($dummy = $xmlcursor.toParent())
+#set ($dummy = $xmlcursor.toParent())
+#set ($dummy = $xmlcursor.toEndToken())
+#set ($dummy = $xmlcursor.toNextToken())
+#set ($dummy = $xmlcursor.beginElement("element", $NS_XSD))
+#set ($dummy = $xmlcursor.insertAttributeWithValue("name", "text"))
+#set ($dummy = $xmlcursor.insertAttributeWithValue("type", "xsd:string"))
+#set ($dummy = $xmlcursor.insertAttributeWithValue("minOccurs", "0"))
+#set ($dummy = $xmlcursor.beginElement("annotation", $NS_XSD))
+#set ($dummy = $xmlcursor.beginElement("documentation", $NS_XSD))
+#set ($dummy = $xmlcursor.insertChars("Detailed error description"))
+#set ($dummy = $xmlcursor.dispose())
+#end
+$xmlobject

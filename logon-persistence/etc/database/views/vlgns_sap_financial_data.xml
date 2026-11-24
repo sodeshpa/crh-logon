@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="VLGNS_SAP_FINANCIAL_DATA" mappingType="view" skipSql="true">
+        <column name="COMPOSITE_KEY" type="VARCHAR" size="204"/>
+        <column name="SOLDTO_ID" type="VARCHAR" size="10"/>
+        <column name="SHIPTO_ID" type="VARCHAR" size="10"/>
+        <column name="SOLDTO_SAP_BP_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="SHIPTO_SAP_BP_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="SAREA_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="SOLDTO_CUST_ORDER_BLOCK" type="BOOLEAN"/>
+        <column name="SOLDTO_CUST_DELIVERY_BLOCK" type="BOOLEAN"/>
+        <column name="SOLDTO_CUST_POSTING_BLOCK" type="BOOLEAN"/>
+        <column name="SHIPTO_SAREA_MARKED_FOR_DEL" required="true" type="VARCHAR" size="1"/>
+        <column name="SHIPTO_SGROUP_ACT_CD" type="BOOLEAN"/>
+        <column name="SHIPTO_SOFFICE_ACT_CD" type="BOOLEAN"/>
+        <column name="BILLTO_SAP_BP_ID" type="DECIMAL" size="12"/>
+        <column name="SOLDTO_CC_POSTING_BLOCK" type="BOOLEAN"/>
+        <column name="PAYER_SAP_BP_ID" type="DECIMAL" size="12"/>
+    </table>
+</database>

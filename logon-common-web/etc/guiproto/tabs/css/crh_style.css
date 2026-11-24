@@ -1,0 +1,799 @@
+/* CRH CASCADING STYLESHEET DEFINITION */
+/* V.0.5 */
+
+
+/* font-family definitions according to CI */
+body, h1, h2, h3, h4, p, ul, ol, li, input, select,
+    dl, dt, dd, div, td, th, address, blockquote {
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+
+pre {
+	font-family: monospace;
+}
+
+/* --- TYPOGRAPHIC definitions --- */
+
+
+/* titles: font-size and margin definitions */
+
+.maintitle {
+	font-size: 24px;
+	font-weight:bold;
+	color:#333333;
+	margin-bottom: 18px;
+}
+.subtitle1 {
+	font-size: 19px;
+	font-weight:bold;
+	color:#333333;
+	margin-bottom: 18px;
+}
+.subtitle2 {
+	font-size: 16px;
+	font-weight:bold;
+	color:#333333;
+	margin-bottom: 10px;
+}
+.label {
+	font-size: 14px;
+	font-weight: bold;
+	color: #333;
+	margin-bottom: 4px;
+}
+.labelblue{
+	font-size: 14px;	
+	color: #3333CC;
+	font-weight: bold;
+}
+.formtitle {
+	font-size: 12px;
+	font-weight:bold;
+	color:#333333;
+	margin-bottom: 4px;
+}
+
+
+
+/* titles: classic */
+h1 {
+	font-size: 24px;
+	color:#333333;
+	margin-bottom: 18px;
+}
+h2 {
+	font-size: 19px;
+	color:#333333;
+	margin-bottom: 18px;
+}
+h3 {
+	font-size: 16px;
+	color:#333333;
+	margin-bottom: 10px;
+}
+h4 {
+	font-size: 14px;
+	color:#333333;
+	margin-bottom: 4px;
+}
+h5 {
+	font-size: 12px;
+	font-weight:bold;
+	color:#333333;
+	margin-bottom: 4px;
+}
+
+
+p, ul, ol, li, dl, dt, dd, div, td, th, pre, address, blockquote {
+	font-size: 14px;
+}
+
+body {
+	margin: 0px;
+	background-color: #F0F0F0;
+	color: #000000;
+}
+
+
+/* --------- SCREEN RESOLUTIONS --------- */
+
+
+/* Calculate minus 30px in width and minus ca. 180px in height: */
+
+
+/*employee minimum 1280px width and 100% width */
+.customer_max {
+	margin: 0px 0px 0px 0px;
+	border: 0px solid #CCC;
+	padding: 10px 0px 10px 00px;
+	background-color: #E8E8E8;
+	width: 100%;
+}
+
+
+/*special terminal 1024x768*/
+.terminal_width {
+	margin:10px;
+	border: 1px solid #CCC;
+	padding: 8px;
+	background-color: #E8E8E8;
+	width: 984px;
+	max-width: 984px;
+	/*height:495px; without scrollbars */
+}
+
+/*employee 1280x1024*/
+.customer_width {
+	margin:10px;
+	border: 1px solid #CCC;
+	padding: 8px;
+	background-color: #E8E8E8;
+	width: 1250px;
+	max-width: 1250px;
+}
+
+/*employee 1600x1200*/
+.employee_width {
+	border: 1px solid #CCC;
+	margin:10px 0px 0px 10px;
+	padding: 8px;
+	background-color: #E8E8E8;
+	width: 1557px;
+	max-width: 1557px;
+}
+
+
+/* --------- BASIC COLORS --------- */
+
+td.stroke			{ background-color: #CCCCCC; }
+td.orange			{ background-color: #FF9900; }
+td.olive			{ background-color: #CCCC00; }
+td.green			{ background-color: #66CC33; }
+td.azure			{ background-color: #66CCFF; }
+td.blue				{ background-color: #6699FF; }
+td.purple			{ background-color: #CC99FF; }
+/*red*/
+td.home				{ background-color: #FF0000; }
+
+
+
+/* --------- TAB NAVIGATION --------- */
+
+#navigation a
+{
+color: #333;
+background: #f0f0f0 url(../images/img_tab_left_lo.gif) left top no-repeat;
+text-decoration: none;
+padding-left: 10px;
+margin: 0px 1px 0px 0px;
+font-family:Arial, Helvetica, sans-serif;
+font-size:14px;
+font-weight:bold;
+}
+
+#navigation a span.outer
+{
+background: url(../images/img_tab_right_lo.gif) right top no-repeat;
+padding: 1px 10px 0px 0px;
+}
+
+#navigation a, #navigation a span.outer
+{
+display: block;
+float: left;
+}
+
+ #navigation a span.inner
+{
+border-top: thin solid  #6699ff;
+padding: 2px 0px 2px 0px;
+}
+ 
+/* Hide from IE5-Mac \*/
+#navigation a, #navigation a span.outer
+{
+float: none
+}
+/* End hide */
+
+#navigation a:hover
+{
+color: #fff;
+background: #6699ff url(../images/img_tab_left_hi.gif) left top no-repeat;
+padding-left: 10px;
+}
+
+#navigation a:hover span.outer /*rechte seite*/
+{
+background: url(../images/img_tab_right_hi.gif) right top no-repeat;
+padding-right: 10px
+}
+
+#navigation a:hover span.inner /*rechte seite*/
+{
+color: #fff;
+background: #6699ff;
+}
+
+#navigation ul
+{
+list-style: none;
+padding: 0;
+margin: 0
+}
+
+#navigation li
+{
+float: left;
+margin: 0;
+list-style:none;
+} 
+
+#navigation a.highlight /*highlight links auf span*/
+{
+color: #fff;
+background: #6699ff url(../images/img_tab_left_hi.gif) left top no-repeat;
+padding-left: 10px;
+}
+
+#navigation a.highlight span.outer /*highlight auf tab-rechts*/
+{
+background: url(../images/img_tab_right_hi.gif) right top no-repeat;
+padding-right: 10px
+}
+
+table.navigation {
+	border-bottom: 6px solid #6699ff;
+}
+
+/* --------- TAB SUBNAVIGATION --------- */
+
+#subnavigation a, #subnavigation2 a, #subnavigation3 a, #subnavigation4 a, #subnavigation5 a, #subnavigation6 a
+{
+color: #333;
+background: transparent url(../images/img_innertab_left_lo.png) left top no-repeat;
+text-decoration: none;
+padding-left: 10px;
+margin: 0px 1px 0px 0px;
+font-family:Arial, Helvetica, sans-serif;
+font-size:12px;
+font-weight:bold;
+display: block;
+float: left;
+}
+
+#subnavigation a span.outer, #subnavigation2 a span.outer, #subnavigation3 a span.outer, #subnavigation4 a span.outer, #subnavigation5 a span.outer, #subnavigation6 a span.outer
+{
+background: url(../images/img_innertab_right_lo.png) right top no-repeat;
+padding: 1px 10px 0px 0px;
+display: block;
+float: left;
+}
+
+
+#subnavigation a span.inner,#subnavigation2 a span.inner,#subnavigation3 a span.inner,#subnavigation4 a span.inner,#subnavigation5 a span.inner,#subnavigation6 a span.inner
+{
+border-top: 1px solid  #ccc;
+padding: 3px 0px 2px 0px;
+background-color:#ccc;
+}
+ 
+/* Hide from IE5-Mac \*/
+#subnavigation a, #subnavigation a span.outer
+{
+float: none
+}
+/* End hide */
+
+#subnavigation a:hover, #subnavigation2 a:hover, #subnavigation3 a:hover, #subnavigation4 a:hover, #subnavigation5 a:hover, #subnavigation6 a:hover
+{
+color: #333;
+background: transparent url(../images/img_innertab_left_hi.png) left top no-repeat;
+padding-left: 10px;
+
+}
+
+/*right side*/
+#subnavigation a:hover span.outer, #subnavigation2 a:hover span.outer, #subnavigation3 a:hover span.outer, #subnavigation4 a:hover span.outer, #subnavigation5 a:hover span.outer, #subnavigation6 a:hover span.outer
+{
+background: url(../images/img_innertab_right_hi.png) right top no-repeat;
+padding-right: 10px;
+background-color: transparent;
+}
+
+/*right side*/
+#subnavigation a:hover span.inner, #subnavigation2 a:hover span.inner, #subnavigation3 a:hover span.inner, #subnavigation4 a:hover span.inner, #subnavigation5 a:hover span.inner, #subnavigation6 a:hover span.inner  
+{
+color: #333;
+background-color: transparent;
+}
+
+/*inner box*/
+#subnavigation a:hover span.outer span.inner, #subnavigation2 a:hover span.outer span.inner, #subnavigation3 a:hover span.outer span.inner, #subnavigation4 a:hover span.outer span.inner, #subnavigation5 a:hover span.outer span.inner, #subnavigation6 a:hover span.outer span.inner {
+background-color:#fff;
+}
+
+
+#subnavigation ul, #subnavigation2 ul, #subnavigation3 ul, #subnavigation4 ul, #subnavigation5 ul, #subnavigation6 ul
+{
+list-style: none;
+padding: 0;
+margin: 0
+}
+
+#subnavigation li, #subnavigation2 li, #subnavigation3 li, #subnavigation4 li, #subnavigation5 li, #subnavigation6 li 
+{
+float: left;
+margin: 0;
+list-style:none;
+} 
+
+/*highlight left on span*/
+#subnavigation a.highlight, #subnavigation2 a.highlight, #subnavigation3 a.highlight, #subnavigation4 a.highlight, #subnavigation5 a.highlight, #subnavigation6 a.highlight 
+{
+color: #333;
+background: transparent url(../images/img_innertab_left_hi.png) left top no-repeat;
+padding-left: 10px;
+}
+
+/*highlight right-part of tab*/
+#subnavigation a.highlight span.outer, #subnavigation2 a.highlight span.outer, #subnavigation3 a.highlight span.outer, #subnavigation4 a.highlight span.outer, #subnavigation5 a.highlight span.outer, #subnavigation6 a.highlight span.outer 
+{
+background: url(../images/img_innertab_right_hi.png) right top no-repeat;
+padding-right: 10px
+}
+
+#subnavigation a.highlight span.inner, #subnavigation2 a.highlight span.inner, #subnavigation3 a.highlight span.inner, #subnavigation4 a.highlight span.inner, #subnavigation5 a.highlight span.inner, #subnavigation6 a.highlight span.inner {
+background-color:#FFFFFF;
+}
+
+table.subnavigation {
+	border-bottom: 0px solid #cccccc;
+}
+
+
+
+/* --------- LISTS --------- */
+
+ul		{ 	
+		list-style-type: none; 
+		list-style-image:url(../images/bullet.gif); 
+		line-height:140%;
+		padding: 0px 0px 0px 15px;
+		margin:0px;
+		display:block;
+}
+
+li {
+	color:#000;
+	margin:0px;
+	padding:0px;
+}
+
+/* hack for line-height bug */
+* html li a img { margin: 4px 0; vertical-align:middle; }
+
+
+
+
+
+/* --------- LINKS Default -------- */
+
+
+a:link, a:visited {
+	color: #666666;
+	text-decoration: none;
+}
+a:active, a:hover {
+	color: #FF0000;
+	text-decoration: none;
+	cursor:pointer;
+}
+
+a {
+	outline: none;
+}
+
+
+/* --------- HEADER BAR -------- */
+
+.application_name {
+	padding-bottom: 2px;
+	font-weight: bold;
+	text-indent: 2px;
+	vertical-align: bottom;
+}
+.application_name_white {
+	color:#FFFFFF;
+	padding: 1px 0px 2px 0px;
+	font-weight: bold;
+	text-indent: 2px;
+	vertical-align: bottom;
+}
+
+
+
+
+
+/* --------- FORMS -------- */
+
+form.seamless {
+	background-color: inherit;
+}
+
+.big_form {
+	border: 1px solid #CCC;
+	padding: 4px;
+	background-color: #E8E8E8;
+	width: 1024px;
+	max-width: 1024px;
+}
+.big_form table {
+	border: none;
+	margin: 0px;
+	padding: 0px;
+	border-collapse: collapse;
+	width: 100%;
+}
+.big_form td {
+	vertical-align: top;
+	padding: 4px 12px 4px 12px;
+}
+.big_form select {
+	width: 100%;
+	border: 1px solid #999;
+}
+
+.big_form textarea {
+	width: 100%;
+	border: 1px solid #999;
+}
+.big_form .textfield {
+	width: 100%;
+	border: 1px solid #999;
+	text-indent: 3px;
+}
+
+.bordertextfield {
+	border: 1px solid #999;
+	text-indent: 3px;
+}
+
+table .noborder td{
+	border:0px;
+}
+
+.big_form .statictext {
+	display: block;
+	width: 99%;
+	text-indent: 3px;
+	padding: 0px;
+	padding-top: 1px;
+	border: 1px solid #FFF;
+	color: #333;
+}
+
+table.big_form  {
+	background-color: #FFF;
+	border: 1px solid #CCC;
+	padding: 0px;
+}
+
+table.big_form .statictext {
+	text-indent: 0px;
+	border: 0px solid #BBB;
+}
+
+.big_form .label {
+	color: #333;
+	font-weight: bold;
+}
+
+td.bannerblue {
+	font-size:24px;
+	font-weight:bolder;
+	background-color:#6699FF;
+	color:#FFFFFF;
+}
+
+
+.big_form .buttons {
+	padding:0px; 
+	margin:0px;border:0px;
+}
+
+/* --------- big_form2 1600x1280 --------- */
+
+table.big_form2  {
+	background-color: #FFF;
+	border: 0px solid #CCC;
+	padding: 6px;
+	width: 100%;
+	border-collapse: separate;
+	border-spacing:4px;	
+}
+
+table.big_form2 td {
+	border: 1px solid #CCC;
+	padding: 4px;
+	border-spacing:4px;
+	vertical-align:top;
+}
+
+.big_form2 td {
+	vertical-align: top;
+	padding: 4px 12px 4px 12px;
+}
+.big_form2 select {
+	width: 100%;
+	border: 1px solid #999;
+}
+
+.big_form2 textarea {
+	width: 100%;
+	border: 1px solid #999;
+}
+.big_form2 .textfield {
+	width: 100%;
+	border: 1px solid #999;
+	padding-left:3px;
+}
+
+.big_form2 .statictext {
+	display: block;
+	width: 99%;
+	text-indent: 3px;
+	padding: 0px;
+	padding-top: 1px;
+	border: 1px solid #FFF;
+	color: #333;
+}
+
+table.big_form2 .statictext {
+	text-indent: 0px;
+	border: 0px solid #BBB;
+}
+
+.big_form2 .label {
+	font-weight: bold;
+	color: #333;
+}
+
+
+/* ----- table compact (extra small spaces) ----- */
+table.compact {
+	margin: 0px; 
+	padding:0px;
+	width: auto;
+	border: 0px;
+}
+
+table.compact td{
+	margin: 0px; 
+	padding:0px;
+	border: 0px;
+	width: auto;
+}
+
+table.compact input{
+	margin: 0px; 
+	padding:0px;
+	width: auto;
+	border: 1px solid #999;
+	text-indent: 3px;
+}
+
+table.compact select{
+	margin: 0px; 
+	padding:0px;
+	width: 100%;
+	border: 1px solid #999;
+	text-indent: 3px;
+}
+
+
+/* for ie only */
+table.compact input.checkbox {
+	border:0px; 
+	margin:0px;
+}
+
+/* Tables without border */
+table.noborder td { 
+	border:0px;
+	padding:0px 2px 0px 0px;
+	margin: 0px;
+	text-align:left;
+	vertical-align:baseline;
+	}
+	
+table .noborder select {
+	width: 100%;
+	border: 1px solid #999;
+}
+	
+	
+
+/* Subform inside bigform */
+
+.subform {
+	border: 1px solid #CCC;
+	padding: 4px;
+	vertical-align:top;
+}
+
+/* Scrollable DIV for table with checkboxes */
+.subformlist {
+	border: 1px solid #CCC;
+	padding: 4px;
+	vertical-align:top;
+	height: 80px; 
+	overflow:auto; 
+	width:auto;
+}
+
+.subformlist .highlight {
+	background-color:#6699FF; 
+	color:#FFFFFF;
+}
+
+.subformlist input.checkbox {
+	margin: 0px;
+	padding: 0px;
+}
+
+.subformlist table td {
+	margin: 0px;
+	padding: 2px;
+	border: 0px;
+	vertical-align:baseline;
+
+}
+
+/* table with border and 100% wide */
+table .simpleborder { 
+	border: 1px solid #cccccc;
+	border-collapse:collapse;
+	width: 100%;
+}
+
+
+/* --------- TABLES -------- */
+
+table.classic {
+	border: 1px solid #CCC;
+	color: #000;
+	background-color: #FFF;
+	border-collapse: separate;
+}
+table.classic th {
+	background-color: #CCC;
+	vertical-align: top;
+	text-align: left;
+	font-weight: bold;
+	padding: 1px 6px 1px 6px;
+	border-bottom: 1px solid #777;
+}
+table.classic td {
+	vertical-align: top;
+	text-align: left;
+	font-weight: normal;
+	padding: 2px 6px 2px 6px;
+}
+
+/* Table with blue header-title */
+
+table.classicblue {
+	border: 1px solid #CCC;
+	color: #000;
+	background-color: #FFF;
+	border-collapse: separate;
+}
+
+table.classicblue th {
+	background-color: #6699FF;
+	vertical-align: top;
+	text-align: left;
+	font-weight: bold;
+	padding: 1px 6px 1px 6px;
+	border-bottom: 1px solid #777;
+	color:#FFFFFF;
+}
+
+th.classicblue {
+	background-color: #6699FF;
+	vertical-align: top;
+	text-align: left;
+	font-weight: bold;
+	padding: 1px 6px 1px 6px;
+	border-bottom: 1px solid #777;
+	color:#FFFFFF;
+}
+
+
+
+
+table.classicblue td {
+	vertical-align: top;
+	text-align: left;
+	font-weight: normal;
+	padding: 2px 6px 2px 6px;
+}
+
+/* Table row colors */
+
+.zebra0 td {
+	background-color: #FCFCFC;
+}
+.zebra1 td {
+	background-color: #EEE;
+}
+
+table td.inactive {
+background-color:#999999;
+}
+
+
+/* --------- BOXES -------- */
+
+/* box for source code */
+pre.source {
+	border: 1px solid #99CCCC;
+	margin-left: 4px;
+	margin-right: 3em;
+	padding: 8px;
+	background-color: #DEEFEE;
+	color: #315B6E;
+	white-space: pre;
+}
+
+/* blue info box with darkblue outline */
+div.info {
+	border: 1px solid #4d7dcd;
+	background: url(../images/information.gif) no-repeat scroll 10px 10px;
+	background-color: #D8E4F1;
+	padding: 8px 8px 8px 36px;
+	margin-bottom: 2px;
+}
+/* yellow info box with orange outline */
+div.warn {
+	border: 1px solid #F70;
+	background: url(../images/warning.gif) no-repeat scroll 10px 10px;
+	background-color: #FEA;
+	padding: 8px 8px 8px 36px;
+	margin-bottom: 2px;
+}
+/* pink error box with red outline */
+div.error {
+	border: 1px solid #F00;
+	background: url(../images/error.gif) no-repeat scroll 10px 10px;
+	background-color: #FCC;
+	padding: 8px 8px 8px 36px;
+	margin-bottom: 2px;
+}
+
+.succeeded {
+	color: #00FF00;/*light green*/
+}
+.running {
+	color: #FF8000; /* orange hell*/
+}
+.warning {
+	color: #FFCC00; /* gelb*/
+}
+
+.sitetool			{ font-size: 10px; text-decoration: none; color: #999999; background-color: transparent;}
+a.sitetool			{ font-size: 10px; text-decoration: none; color: #999999; background-color: transparent;}
+a:hover.sitetool	{ font-size: 10px; text-decoration: none; color: #FF0000; background-color: transparent;}
+
+
+/* --------- EXTRA COLORS --------- */
+
+.tablerottitle {
+	background-color: #CC3366;
+}
+
+.applicationheader {
+	background-color: #FFFFFF;
+}

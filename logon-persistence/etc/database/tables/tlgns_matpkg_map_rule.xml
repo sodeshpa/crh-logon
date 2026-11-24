@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNS_MATPKG_MAP_RULE"
+           description="Configuration Table for Mapping Material Packaging Types (rules).">
+
+        <column name="MATPKG_MAP_RULE_ID" primaryKey="true" required="true" type="DECIMAL" size="12"
+                description="PK"/>
+        <column name="MATPKG_MAP_RULE_NO" required="true" type="DECIMAL" size="12"
+                description="Rule order (processing goes from lowerest first to higher ones)"/>
+        
+        <column name="MATERIAL_PACKAGE_CD" required="true" type="VARCHAR" size="4"
+                description="FK tlgnr_material_package_bs. Resulting material package type, if all attached conditions evaluate to true."/>
+        
+        <column name="RULE_COMMENT" required="false" type="VARCHAR" size="250"
+                description="Comment about the rule itself."/>   
+        
+        <foreign-key foreignTable="TLGNR_MATERIAL_PACKAGE_BS" name="FK_TLGNS_MATPKG_MAP_RULE">
+            <reference local="MATERIAL_PACKAGE_CD" foreign="MATERIAL_PACKAGE_CD"/>
+        </foreign-key>
+        
+        <unique name="UQ_TLGNS_MATPKG_MAP_RULE_NO">
+            <unique-column name="MATPKG_MAP_RULE_NO"/>
+        </unique>
+    </table>
+</database>

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="VLGNC_ORD_ITEM_ASSIGNMT_LOAD" mappingType="view" skipSql="true">
+        <column name="COMPOSITE_ID" type="VARCHAR" size="81"/>
+        <column name="ORDER_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="SHIPTO_SAP_BP_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="SAREA_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="ORDER_NUMBER" type="DECIMAL" size="12"/>
+        <column name="ORDER_STATUS_CD" required="true" type="DECIMAL" size="2"/>
+        <column name="DELIVERY_FROM_DAT" required="true" type="DATE"/>
+        <column name="DELIVERY_TO_DAT" required="true" type="DATE"/>
+        <column name="DELIVERY_TYPE_CD" required="true" type="DECIMAL" size="2"/>
+        <column name="SHIPPINGPOINT_ID" type="DECIMAL" size="12"/>
+        <column name="POOL_ID" type="DECIMAL" size="12"/>
+        <column name="COMM_CARRIER_ID" type="DECIMAL" size="12"/>
+        <column name="EXEC_CARRIER_ID" type="DECIMAL" size="12"/>
+        <column name="BILLTO_SAP_BP_ID" type="DECIMAL" size="12"/>
+        <column name="NOTE_ORDER_MGMT" type="VARCHAR" size="256"/>
+        <column name="DELIVERED_DRIVER_ID" type="DECIMAL" size="12"/>
+        <column name="NOTE_DELIVERY" type="VARCHAR" size="300"/>
+        <column name="CUST_WEBORDER_NOTE" type="VARCHAR" size="1000"/>
+        <column name="NOTE_DISPATCHING" type="VARCHAR" size="256"/>
+        <column name="NOTE_TRUCK_DRIVER" type="VARCHAR" size="256"/>
+        <column name="NOTE_RAILWAY_DISP" type="VARCHAR" size="256"/>
+        <column name="TRANSPORT_DURATION_MIN" type="DECIMAL" size="5"/>
+        <column name="SOLDTO_BP_NAME" type="VARCHAR" size="35"/>
+        <column name="SHIPTO_BP_NAME" type="VARCHAR" size="35"/>
+        <column name="ORDER_ITEM_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="ORDER_ITEM_NO" required="true" type="DECIMAL" size="3"/>
+        <column name="SAP_MATERIAL_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="CURRENCY_CD" required="true" type="VARCHAR" size="3"/>
+        <column name="RATE" type="DECIMAL" size="10,3"/>
+        <column name="ORDERED_QUANTITY" type="DECIMAL" size="12,4"/>
+        <column name="ORDERED_UOM_CD" type="VARCHAR" size="3"/>
+        <column name="DELIVERED_UOM_CD" type="VARCHAR" size="3"/>
+        <column name="DELIVERED_QUANTITY" type="DECIMAL" size="12,4"/>
+        <column name="SHIPTO_SILO_ID" type="DECIMAL" size="12"/>
+        <column name="LOADED_QUANTITY" type="DECIMAL" size="12,4"/>
+        <column name="LOADED_UOM_CD" type="VARCHAR" size="3"/>
+        <column name="PRODUCTION_PLANT_CD" type="VARCHAR" size="4"/>
+        <column name="SAP_TRSP_MODE_CD" required="true" type="VARCHAR" size="2"/>
+        <column name="PRODUCTION_PLANT_NAME" required="true" type="VARCHAR" size="80"/>
+        <column name="MATERIAL_NO" required="true" type="VARCHAR" size="18"/>
+        <column name="MATERIAL_PACKAGE_CD" required="true" type="VARCHAR" size="4"/>
+        <column name="IS_LANDFILL" required="true" type="BOOLEAN"/>
+        <column name="BASE_UOM_CD" required="true" type="VARCHAR" size="3"/>
+        <column name="ORDER_UOM_DIMENSION_CD" type="VARCHAR" size="3"/>
+        <column name="LOGON_PACKAGE_TYPE_CD" type="DECIMAL" size="2"/>
+        <column name="STATUS_TXT" type="VARCHAR" size="50"/>
+        <column name="LANG_CD" type="VARCHAR" size="2"/>
+        <column name="BP_NAME" type="VARCHAR" size="35"/>
+        <column name="COMM_CARRIER_NAME" type="VARCHAR" size="40"/>
+        <column name="EXEC_CARRIER_NAME" type="VARCHAR" size="40"/>
+        <column name="SHIPPINGPOINT_NAME" type="VARCHAR" size="80"/>
+        <column name="SHIPPPOINT_TYPE_CD" type="DECIMAL" size="2"/>
+        <column name="PLANT_CD" type="VARCHAR" size="4"/>
+        <column name="TIMEZONE_CD" required="true" type="VARCHAR" size="32"/>
+        <column name="LOADINGPOINT_ID" type="DECIMAL" size="12"/>
+        <column name="LOAD_ID" type="DECIMAL" size="12"/>
+        <column name="LOAD_PRODUCTION_PLANT_CD" type="VARCHAR" size="4"/>
+        <column name="LOAD_TRUCK_ID" type="DECIMAL" size="12"/>
+        <column name="LOADING_TS" type="DATE"/>
+        <column name="UNLOADING_TS" type="DATE"/>
+        <column name="TARE_QUANTITY" type="DECIMAL" size="12,4"/>
+        <column name="NET_QUANTITY" type="DECIMAL" size="12,4"/>
+        <column name="LOAD_TARE_MEASURE" type="DECIMAL" size="12,4"/>
+        <column name="CHAMBER_NUMBER" type="DECIMAL" size="2"/>
+        <column name="LOADING_PLANNED_START" type="DATE"/>
+        <column name="LOADING_REAL_START" type="DATE"/>
+        <column name="ASSIGNMENT_ID" type="DECIMAL" size="12"/>
+        <column name="ASSIGN_STATUS_CD" type="DECIMAL" size="2"/>
+        <column name="LDS_DRIVER_NAME" type="VARCHAR" size="64"/>
+	    <column name="LDS_DRIVER_CARD_NO" type="VARCHAR" size="64"/>
+	    <column name="LDS_DRIVER_ID" type="VARCHAR" size="64"/>
+		<column name="LDS_ATTORNEY_NAME" type="VARCHAR" size="64"/>
+	    <column name="LDS_ATTORNEY_START" type="DATE"/>
+	    <column name="LDS_DISPATCHER_NAME" type="VARCHAR" size="64"/>
+	    <column name="LDS_DISPATCHER_TEL" type="VARCHAR" size="64"/>
+	    <column name="LDS_DISPATCHER_ID" type="VARCHAR" size="64"/>
+	    <column name="LDS_CARRIER_CRM" type="VARCHAR" size="15"/>
+	    <column name="LDS_SEAL_NUMBERS" type="VARCHAR" size="256"/>
+        <column name="LOAD_ORDER_ID" type="DECIMAL" size="12"/>
+        <column name="ORDER_UNIT_TXT" type="VARCHAR" size="20"/>
+        <column name="ORDER_UOM_DIMENSION_TXT" type="VARCHAR" size="20"/>
+        <column name="ORDERED_UOM_FUZZY" type="BOOLEAN"/>
+        <column name="DELIVERYNOTE_OUTPUTDOC_ID" type="DECIMAL" size="12"/>
+        <column name="POOL_NAME" type="VARCHAR" size="30"/>
+        <column name="PUSH_MODE_ON" type="BOOLEAN"/>
+        <column name="LOAD_UNIT_TXT" type="VARCHAR" size="20"/>
+        <column name="LOAD_UOM_DIMENSION_TXT" type="VARCHAR" size="20"/>
+        <column name="LOAD_NET_MEASURE" type="DOUBLE"/>
+        <column name="LOADED_NET_MEASURE" type="DECIMAL" size="12,4"/>
+        <column name="MATERIAL_TXT" type="VARCHAR" size="40"/>
+        <column name="BASE_UNIT_TXT" type="VARCHAR" size="20"/>
+        <column name="TRUCK_ID" type="DECIMAL" size="12"/>
+        <column name="TRUCK_PLATE_NO" type="VARCHAR" size="20"/>
+        <column name="TRUCK_NAME" type="VARCHAR" size="30"/>
+        <column name="TARE_WEIGHT_T" type="DECIMAL" size="12,4"/>
+        <column name="SAP_VEHICLE_CHAR_CD" type="DECIMAL" size="2"/>
+        <column name="TRAILER_TARE_WEIGHT_T" type="DECIMAL" size="12,4"/>
+        <column name="CONTAINER_NAME" type="VARCHAR" size="30"/>
+        <column name="CONTAINER_TARE_WEIGHT_T" type="DECIMAL" size="12,4"/>
+        <column name="LOADINGPOINT_NAME" type="VARCHAR" size="50"/>
+        <column name="WEIGH_SYSTEM_LP_CD" type="DECIMAL" size="2"/>
+        <column name="PACKAGE_TYPE_CD" type="DECIMAL" size="2"/>
+        <column name="LOADING_MIN_PLANNED_START" type="DATE"/>
+        <column name="TRUCK_MAX_NET_WEIGHT_T" type="DOUBLE"/>
+        <column name="CONTAINER_MAX_NET_WEIGHT_T" type="DOUBLE"/>
+        <column name="DRIVER_NAME" type="VARCHAR" size="81"/>
+        <column name="ORDERED_MEASURE" type="DOUBLE"/>
+        <column name="SIMPLE_VEHICLE_NAME" type="VARCHAR" size="30"/>
+        <column name="SIMPLE_VEHICLE_REG_NO" type="VARCHAR" size="20"/>
+        <column name="SIMPLE_VEHICLE_TARE_WEIGHT_T" type="DECIMAL" size="12,4"/>
+    </table>
+</database>

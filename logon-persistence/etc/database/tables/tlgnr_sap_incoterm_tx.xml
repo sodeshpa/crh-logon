@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+	<table name="TLGNR_SAP_INCOTERM_TX" refData="true"
+			description="SAP contract incoterm types.">
+			
+		<column name="SAP_INCOTERM_CD" primaryKey="true" required="true" type="VARCHAR" size="3"
+				description="Part of PK. FK tlgnr_sap_incoterm_bs. SAP contract incoterm type."/>
+		<column name="LANG_CD" primaryKey="true" required="true" type="VARCHAR" size="2"
+				description="Part of PK. FK tlgnr_lang_bs. For example de, en, ..."/>
+		<column name="TXT" required="true" type="VARCHAR" size="40"
+				description="SAP contract incoterm description."/>
+
+		<foreign-key foreignTable="TLGNR_SAP_INCOTERM_BS" name="FK_TLGNR_SAP_INCOTERM_TX">
+			<reference local="SAP_INCOTERM_CD" foreign="SAP_INCOTERM_CD"/>
+		</foreign-key>
+		<foreign-key foreignTable="TLGNR_LANG_BS" name="FK_TLGNR_SAP_INCOTERM_LANG">
+			<reference local="LANG_CD" foreign="LANG_CD"/>
+		</foreign-key>
+
+	</table>
+</database>

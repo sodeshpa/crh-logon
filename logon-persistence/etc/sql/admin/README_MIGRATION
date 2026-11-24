@@ -1,0 +1,48 @@
+Pre Task DBA:
+
+als adndba:
+
+- alle jobs deaktivieren
+
+als sys:
+
+ - backup von P neu erstellen.
+    - sqlplus als adndba: SQL>exec dbms_scheduler.run_job('EXPDP_LOGON'); Die Dateien müssen weggemoved werden, sonst failt der reguläre Backup Job.
+ 
+ - das backup als test in Q als ulgnmig importieren.
+
+
+Migration Daten Import DBA:
+
+ - import: impdp '/ as sysdba' dumpfile=EXPDP_LOGON_20091020.DMP parfile=c:\adnoracle\admin\PLGNSIG1\dpdump\impdp_mig_exclude.par
+ (je nach Umgebung Pfad anpassen und/oder single quotes mit \(unix ksh) maskieren)
+    
+ - nach der Migration, die Passwörter per default anpassen: SQL> alter user ulgnmig identified by ulgnmig;
+
+
+
+Migration Application Manager:
+
+ - ulgn01,02,03,sap droppen und mit scripts neu erstellen.
+ 
+ - ulgn01,02,03,sap mit sql scripts(inklusive create/grant rl_lgn_mig role)  neu erstellen.
+ 
+ 
+Migration Application Manager:
+
+ - Migration starten
+
+ - Migration verifizieren
+
+ - Applikation testen
+
+
+Post Task DBA
+
+als sys:
+
+ - auf P mig user droppen
+
+ - auf P mig rolle droppen
+
+ - jobs aktivieren

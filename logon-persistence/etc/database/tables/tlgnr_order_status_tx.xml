@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNR_ORDER_STATUS_TX" refData="true"
+           description="Language dependent attributes for Order Status.">
+
+        <column name="ORDER_STATUS_CD" primaryKey="true" required="true" type="DECIMAL" size="2"
+                description="Part of PK. FK tlgnr_order_status_bs. Code of the Reference Data."/>
+        <column name="LANG_CD" primaryKey="true" required="true" type="VARCHAR" size="2"
+                description="Part of PK. FK tlgnr_lang_bs."/>
+        <column name="TXT" required="true" type="VARCHAR" size="50"
+                description="Description of the Order Status in the language lang_cd."/>
+        <column name="WARN_TXT" type="VARCHAR" size="40"
+                description="Text to be displayed for this order status, if it is considered delayed (also known as yellow/red status), see config values app.default.monitoring.threshold.X.yellow/red"/>
+
+        <foreign-key foreignTable="TLGNR_ORDER_STATUS_BS" name="FK_TLGNR_ORDER_STATUS_TX">
+            <reference local="ORDER_STATUS_CD" foreign="ORDER_STATUS_CD"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_LANG_BS" name="FK_TLGNR_ORDER_STATUS_LANG">
+            <reference local="LANG_CD" foreign="LANG_CD"/>
+        </foreign-key>
+    </table>
+</database>

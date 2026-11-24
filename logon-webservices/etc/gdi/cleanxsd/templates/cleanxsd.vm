@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+##
+#set ($REQUEST_NAMESPACE = "request.sapdata.logon.crh.com")
+##
+#set ($type = "undef")
+#set ($firsttag = "undef")
+##
+## main loop
+##
+#foreach ($line in $current.toString().split("\n"))
+##
+## extend schema definition with naspace info
+##
+#if ($line.matches("<xsd:schema[^>]+>"))
+#set ($line = $line.replaceAll('(<xsd:schema[^>]+)>', "$1 targetNamespace=\"$REQUEST_NAMESPACE\" xmlns:partns=\"$REQUEST_NAMESPACE\">"))
+#end
+##
+## our first tag definition
+##
+#if (($type == "undef") && ($line.contains("name=")))
+#set ($firsttag = $line.replaceAll('.*<xsd:([^ ]+).*', '$1'))
+#set ($type = $line.replaceAll('.*name="([^"]+)".*', '$1'))
+#end
+##
+## element[name]/complexType will be complexType[name]
+##
+#if ($firsttag == "element")
+#if ($line.matches(".*<xsd:complexType>.*"))
+#set ($line = $line.replaceAll("<xsd:complexType>", "<xsd:complexType name=\"$type\">"))
+#elseif ($line.contains('</xsd:element'))
+#set ($line = "<!--  " + $line + "  -->")
+#set ($firsttag = "undef")
+#elseif ($line.matches(".*<xsd:element([^>]+)name=\"$type\".*"))
+#set ($line = "<!--  " + $line + "  -->")
+#end
+#end
+##
+## add namespace information to every type reference
+##
+$line.replaceAll('type="([^:"]+)"', 'type="partns:$1"')
+#end

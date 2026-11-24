@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNR_RFIDOBJECT_TYPE_TX" refData="true"
+           description="Reference table for the different types of RFID object.">
+
+        <column name="RFIDOBJECT_TYPE_CD" primaryKey="true" required="true" type="DECIMAL" size="2"
+        		description="Part of PK. FK to TLGNR_RFIDOBJECT_TYPE_BS Code of the Reference Data."/>
+        <column name="LANG_CD" primaryKey="true" required="true" type="VARCHAR" size="2"
+                description="Part of PK. FK to TLGNR_LANG_BS."/>
+        <column name="TXT" required="true" type="VARCHAR" size="30"
+                description="Description of the status in the language LANG_CD."/>
+
+        <foreign-key foreignTable="TLGNR_RFIDOBJECT_TYPE_BS" name="FK_TLGNR_RFIDOBJECT_TYPE_TX">
+            <reference local="RFIDOBJECT_TYPE_CD" foreign="RFIDOBJECT_TYPE_CD"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_LANG_BS" name="FK_TLGNR_RFIDOBJECT_TYPE_LANG">
+            <reference local="LANG_CD" foreign="LANG_CD"/>
+        </foreign-key>
+
+    </table>
+</database>

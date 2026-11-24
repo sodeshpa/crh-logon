@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<taglib version="2.0" xmlns="http://java.sun.com/xml/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd">
+	<tlib-version>1.0</tlib-version>
+	<jsp-version>2.0</jsp-version>
+	<short-name>crh-order</short-name>
+	<uri>http://com.crh.logon/tags/order-taglib.tld</uri>
+	<display-name>AdNovum Crh Order Tags</display-name>
+	<description>Tags for order subproject of Adnovum Crh</description>
+
+	<tag>
+		<name>disableSimpleChangeFunctionality</name>
+		<tag-class>
+			com.crh.logon.order.taglib.OrderSimpleChangeFunctionDisabledTag
+		</tag-class>
+		<body-content>JSP</body-content>
+		<description>
+			Determines whether a certain functionality is available on the
+			given order.
+		</description>	
+		<attribute>
+			<name>functionality</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				An integer that corresponds to one of the static constants
+				(named like FUNCTIONALITY_...) in OrderChangeLogic
+			</description>
+		</attribute>
+		<attribute>
+			<name>orderKey</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				A context key under which the OrdItemAssignmentEntity can be found.
+			</description>
+		</attribute>
+		<attribute>
+			<name>orderList</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				The orderList, in which the tag can find the order with the orderId parameter.
+			</description>
+		</attribute>
+		<attribute>
+			<name>loadId</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				The id of the load. Will be retrieved from the orderList.
+			</description>
+		</attribute>				
+	</tag>
+	<tag>
+		<name>simpleChangeDisabledBody</name>
+		<tag-class>
+			com.crh.logon.order.taglib.OrderSimpleChangeFunctionDisabledBodyTag
+		</tag-class>
+		<body-content>JSP</body-content>
+		<description>
+			Body is going to be printed in case parent disableSimpleChangeFunctionality says that the functionality 
+			should not be available.
+		</description>
+	</tag>	
+	<tag>
+		<name>simpleChangeEnabledBody</name>
+		<tag-class>
+			com.crh.logon.order.taglib.OrderSimpleChangeFunctionEnabledBodyTag
+		</tag-class>
+		<body-content>JSP</body-content>
+		<description>
+			Body is going to be printed in case parent disableSimpleChangeFunctionality says that the functionality 
+			should be available.
+		</description>
+	</tag>
+	<tag>
+		<name>terminalRowspan</name>
+		<tag-class>
+			com.crh.logon.order.taglib.OrderSimpleChangeRowSpan
+		</tag-class>
+		<body-content>JSP</body-content>
+		<description>
+			Prints out the number of terminal screen entries, which have equal attribute named in attribute field. Needed in order
+			to merge rows for identical entries. 
+		</description>
+		<attribute>
+			<name>terminalItemIndex</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				The item number, which is currently under processing.
+			</description>
+		</attribute>
+		<attribute>
+			<name>checkIdentityAccording</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				A string value which terminal item attribute has to be checked.
+			</description>
+		</attribute>
+		<attribute>
+			<name>printInTd</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				Will be printed in the td tag. Write here everything else you want to have in the td tag such as id, style.
+			</description>
+		</attribute>
+		<attribute>
+			<name>printTdTag</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				Defines if the tag should print the surrounding td rowspan tag. In case this value is false, it will not print the tag, only skips the content.
+			</description>
+		</attribute>
+	</tag>
+		<tag>
+		<name>terminalOrderedMeasureTag</name>
+		<tag-class>
+			com.crh.logon.order.taglib.OrderSimpleChangeOrderedMeasureTag
+		</tag-class>
+		<body-content>JSP</body-content>
+		<description>
+			Prints out the ordered measure depending on certain rules for terminal screen. 
+		</description>
+		<attribute>
+			<name>orderKey</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				A context key under which the OrdItemAssignmentEntity can be found.
+			</description>
+		</attribute>
+	</tag>
+	<tag>
+		<name>dispokarteInvalidAttributeMarker</name>
+		<tag-class>
+			com.crh.logon.order.taglib.DispokarteInvalidAttributeMarkerTag
+		</tag-class>
+		<body-content>JSP</body-content>
+		<description>
+			Body is going to be included in a del tag because it is invalid.
+		</description>
+		<attribute>
+			<name>attributeObject</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Object</type>
+			<description>
+				The object which will be searched in DispokarteForm invalid Map.
+			</description>
+		</attribute>
+		<attribute>
+			<name>screen</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				Screen which is the caller.
+			</description>
+		</attribute>		
+		<attribute>
+			<name>checkForErrorCode</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				In case this error code is present in the error list related to the attributeobject the del tag will be printed around the
+				body of the tag. In case not specified any any error will cause to mark the line invalid.
+			</description>
+		</attribute>				
+	</tag>	
+	<tag>
+		<name>dispokarteInvalidAttributeTrTag</name>
+		<tag-class>
+			com.crh.logon.order.taglib.DispokarteInvalidAttributeTrTag
+		</tag-class>
+		<body-content>JSP</body-content>
+		<description>
+			Tr tag will be rendered alerted or not depengind if it is invalid.
+		</description>
+		<attribute>
+			<name>attributeObject</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Object</type>
+			<description>
+				The object which will be searched in DispokarteForm invalid Map.
+			</description>
+		</attribute>
+		<attribute>
+			<name>screen</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				Screen which is the caller.
+			</description>
+		</attribute>		
+		<attribute>
+			<name>id</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				id of the tag.
+			</description>
+		</attribute>		
+		<attribute>
+			<name>clazz</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				THis is the original class attribute, and will be replced if data is invalid.
+			</description>
+		</attribute>				
+	</tag>	
+	<tag>
+		<name>wagonClass</name>
+		<tag-class>
+			com.crh.logon.order.taglib.WagonClassTag
+		</tag-class>
+		<body-content>JSP</body-content>
+		<description>
+			Defines the class attribute of the wagon row, which will have an effect on the color of the table row.
+		</description>
+		<attribute>
+			<name>wagon</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>com.crh.logon.persistence.entities.views.RailcarOptLoadedCarsEntity</type>
+			<description>
+				The wagon for which class will be defined.
+			</description>
+		</attribute>
+	</tag>
+	<tag>
+		<name>bimodalMonitoringResultRowSpan</name>
+		<tag-class>
+			com.crh.logon.order.taglib.BimodalRailcarMonitoringRowSpanTag
+		</tag-class>
+		<body-content>JSP</body-content>
+		<description>
+			TODO describe
+		</description>
+		<attribute>
+			<name>itemIndex</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				The item number, which is currently under processing.
+			</description>
+		</attribute>
+		<attribute>
+			<name>printInTd</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				Will be printed in the td tag. Write here everything else you want to have in the td tag such as id, style.
+			</description>
+		</attribute>
+		<attribute>
+			<name>printTdTag</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				Defines if the tag should print the surrounding td rowspan tag. In case this value is false, it will not print the tag, only skips the content.
+			</description>
+		</attribute>
+	</tag>
+	
+	<tag>
+		<name>bizeventAuditValuePrint</name>
+		<tag-class>
+			com.crh.logon.order.taglib.BizeventAuditValuePrintTag
+		</tag-class>
+		<body-content>JSP</body-content>
+		<description>
+			Prints out the value for a certain BizeventAuditWrapper. Depending on the auditConfigCd of the wrapper will print out
+			value of surrounding wrappers in different color to be able to interpret the whole change.
+		</description>
+		<attribute>
+			<name>itemIndex</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				The item number, which is currently under processing.
+			</description>
+		</attribute>
+		<attribute>
+			<name>fieldName</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				Specify if old or new value has to be printed.
+			</description>
+		</attribute>		
+	</tag>
+	
+ 		
+</taglib>

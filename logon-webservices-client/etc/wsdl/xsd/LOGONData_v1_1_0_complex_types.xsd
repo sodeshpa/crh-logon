@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://schemas.datacontract.org/2004/07/ComSvr" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/ComSvr">
+    <xs:complexType name="LOGONMessage">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="logonEventList" nillable="true" type="tns:ArrayOfLOGONEvent"/>
+            <xs:element minOccurs="0" name="sendersTime" type="xs:dateTime"/>
+            <xs:element minOccurs="0" name="sessionID" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="targetPDAID" nillable="true" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="LOGONMessage" nillable="true" type="tns:LOGONMessage"/>
+    <xs:complexType name="ArrayOfLOGONEvent">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="LOGONEvent" nillable="true" type="tns:LOGONEvent"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="ArrayOfLOGONEvent" nillable="true" type="tns:ArrayOfLOGONEvent"/>
+    <xs:complexType name="LOGONEvent">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="LOGONData" nillable="true" type="tns:LOGONEventLOGONData"/>
+            <xs:element minOccurs="0" name="eventID" type="xs:int"/>
+            <xs:element minOccurs="0" name="eventName" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="eventTime" type="xs:dateTime"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="LOGONEvent" nillable="true" type="tns:LOGONEvent"/>
+    <xs:complexType name="LOGONEventLOGONData">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="Field" nillable="true" type="tns:ArrayOfLOGONEventLOGONDataField"/>
+            <xs:element minOccurs="0" name="rfidObject" nillable="true" type="tns:ArrayOfrfidObjectDataField"/>
+            <xs:element minOccurs="0" name="unloadOrderItem" nillable="true" type="tns:ArrayOfunloadOrderItemDataField"/>
+            <xs:element minOccurs="0" name="loadingPoint" nillable="true" type="tns:ArrayOfLoadingPointDataField"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="LOGONEventLOGONData" nillable="true" type="tns:LOGONEventLOGONData"/>
+    <xs:complexType name="ArrayOfLOGONEventLOGONDataField">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="LOGONEventLOGONDataField" nillable="true" type="tns:LOGONEventLOGONDataField"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="ArrayOfLOGONEventLOGONDataField" nillable="true" type="tns:ArrayOfLOGONEventLOGONDataField"/>
+    <xs:complexType name="LOGONEventLOGONDataField">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="name" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="value" nillable="true" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="LOGONEventLOGONDataField" nillable="true" type="tns:LOGONEventLOGONDataField"/>
+    <xs:complexType name="ArrayOfrfidObjectDataField">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="rfidObjectDataField" nillable="true" type="tns:rfidObjectDataField"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="ArrayOfrfidObjectDataField" nillable="true" type="tns:ArrayOfrfidObjectDataField"/>
+    <xs:complexType name="unloadOrderItemDataField">
+        <xs:sequence>
+        	<xs:element minOccurs="0" name="Field" nillable="true" type="tns:ArrayOfLOGONEventLOGONDataField"/>
+            <xs:element minOccurs="0" name="rfidObject" nillable="true" type="tns:ArrayOfrfidObjectDataField"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="unloadOrderItemDataField" nillable="true" type="tns:unloadOrderItemDataField"/>
+    <xs:complexType name="ArrayOfunloadOrderItemDataField">
+        <xs:sequence>
+			<xs:element maxOccurs="unbounded" minOccurs="0" name="unloadOrderItemDataField" nillable="true" type="tns:unloadOrderItemDataField"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="ArrayOfunloadOrderItemDataField" nillable="true" type="tns:ArrayOfunloadOrderItemDataField"/>
+    <xs:complexType name="rfidObjectDataField">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="name" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="value" nillable="true" type="tns:ArrayOfrfidObject"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="rfidObjectDataField" nillable="true" type="tns:rfidObjectDataField"/>
+    <xs:complexType name="ArrayOfrfidObject">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="rfidObject" nillable="true" type="tns:rfidObject"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="ArrayOfrfidObject" nillable="true" type="tns:ArrayOfrfidObject"/>
+    <xs:complexType name="rfidObject">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="objectID" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="objectName" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="rfidTag" nillable="true" type="tns:ArrayOfrfid"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="rfidObject" nillable="true" type="tns:rfidObject"/>
+    <xs:complexType name="ArrayOfrfid">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="rfid" nillable="true" type="tns:rfid"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="ArrayOfrfid" nillable="true" type="tns:ArrayOfrfid"/>
+    <xs:complexType name="rfid">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="rfidIdentity" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="rfidLabel" nillable="true" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="rfid" nillable="true" type="tns:rfid"/>
+    <xs:complexType name="LOGONMessageStatus">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="logonEventStatusList" nillable="true" type="tns:ArrayOfLOGONEventStatus"/>
+            <xs:element minOccurs="0" name="messageStatus" type="xs:int"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="LOGONMessageStatus" nillable="true" type="tns:LOGONMessageStatus"/>
+    <xs:complexType name="ArrayOfLOGONEventStatus">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="LOGONEventStatus" nillable="true" type="tns:LOGONEventStatus"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="ArrayOfLOGONEventStatus" nillable="true" type="tns:ArrayOfLOGONEventStatus"/>
+    <xs:complexType name="LOGONEventStatus">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="code" type="xs:int"/>
+            <xs:element minOccurs="0" name="contextValue" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="eventID" type="xs:int"/>
+            <xs:element minOccurs="0" name="txt" nillable="true" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="LOGONEventStatus" nillable="true" type="tns:LOGONEventStatus"/>
+    <xs:complexType name="loadingPointDataField">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="Field" nillable="true" type="tns:ArrayOfLOGONEventLOGONDataField"/>
+            <xs:element minOccurs="0" name="rfidObject" nillable="true" type="tns:rfidObject"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="loadingPointDataField" nillable="true" type="tns:loadingPointDataField"/>
+    <xs:complexType name="ArrayOfLoadingPointDataField">
+        <xs:sequence>
+			<xs:element maxOccurs="unbounded" minOccurs="0" name="loadingPointDataField" nillable="true" type="tns:loadingPointDataField"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="ArrayOfLoadingPointDataField" nillable="true" type="tns:ArrayOfLoadingPointDataField"/>
+</xs:schema>

@@ -1,0 +1,1536 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SalesDocumentNotification xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="file:/home/schuler/projects/logon/logon-webservices/etc/xsd/original/SalesDocumentNotification.xsd">
+    <sales_document_notification>
+        <function_code>
+            <MESCOD></MESCOD><!-- not used -->
+        </function_code>
+        <document_header_general_data>
+            <KZABS></KZABS><!-- not used -->
+            <CURCY>CHF</CURCY><!-- Currency, LOGON table: tlgns_sap_contract.currency_cd -->
+            <ZTERM></ZTERM><!-- Terms of payment key, Saved to tlgns_sap_contract.PAYMENT_METHOD -->
+            <KUNDEUINR></KUNDEUINR><!-- not used -->
+            <BELNR>1208869-01</BELNR><!-- Document number, Internal number assigned by SAP. Contract number. Unique identification, e.g primary key of a contract object. LOGON table: tlgns_sap_contract.sap_contract_no -->
+            <BSTZD></BSTZD><!-- not used -->
+            <VSART>E1</VSART><!-- Shipping Conditions, LOGON table: tlgns_sap_contract.sap_shipping_cond_cd -->
+            <AUTLF></AUTLF><!-- not used -->
+            <AUGRU></AUGRU><!-- Order reason (reason for the business transaction), External tools use this field to determine if the quantity of the contract can be exceeded or not -->
+            <AUGRU_BEZ></AUGRU_BEZ><!-- not used -->
+            <ABRVW></ABRVW><!-- not used -->
+            <LIFSK></LIFSK><!-- Delivery block (document header) -->
+            <document_audit>
+            	<ERDAT/><!-- not used -->
+            	<ERZET/><!-- not used -->
+            	<ERNAM/><!-- not used -->
+            	<AENAM/><!-- not used -->
+            	<AEDAT/><!-- not used -->
+            	<UTIME/><!-- not used -->
+            </document_audit>
+            <pricing_related_info>
+                <ZWAIT></ZWAIT><!-- not used -->
+                <ZINCLOAD></ZINCLOAD><!-- not used -->
+                <ZMINLOAD></ZMINLOAD><!-- not used -->
+                <ZNGPAMP></ZNGPAMP><!-- not used -->
+                <ZWTSURCH></ZWTSURCH><!-- not used -->
+                <ZTRATY></ZTRATY><!-- not used -->
+                <ZROUTE></ZROUTE><!-- not used -->
+                <ZPERFK></ZPERFK><!-- not used -->
+                <ZUNAME></ZUNAME><!-- not used -->
+                <ZFAKSK></ZFAKSK><!-- not used -->
+                <ZLOEKZ></ZLOEKZ><!-- not used -->
+                <ZKURST></ZKURST><!-- not used -->
+                <ZSPRAS_ISO></ZSPRAS_ISO><!-- not used -->
+                <ZUONR></ZUONR><!-- not used -->
+                <ZEKOTX></ZEKOTX><!-- not used -->
+                <ZEKNAM></ZEKNAM><!-- not used -->
+                <ZSTCEG_L></ZSTCEG_L><!-- not used -->
+                <ZLANDTX></ZLANDTX><!-- not used -->
+                <ZBRSCH></ZBRSCH><!-- not used -->
+                <ZSTAT></ZSTAT><!-- not used -->
+                <ZZBAHNALB></ZZBAHNALB><!-- not used -->
+                <ZZBAHNAB></ZZBAHNAB><!-- not used -->
+                <ZZBAHNAL></ZZBAHNAL><!-- not used -->
+                <ZZBAHNA></ZZBAHNA><!-- not used -->
+                <ZZBAHNZLB></ZZBAHNZLB><!-- not used -->
+                <ZZBAHNZB></ZZBAHNZB><!-- not used -->
+                <ZZBAHNZL></ZZBAHNZL><!-- not used -->
+                <ZZBAHNZ></ZZBAHNZ><!-- not used -->
+                <ZCHANG></ZCHANG><!-- not used -->
+                <ZVATM></ZVATM><!-- not used -->
+                <RECDIV></RECDIV><!-- not used -->
+                <PINCODE></PINCODE><!-- Mapped to LOGON table: tlgns_sap_contract.validation_code -->
+            </pricing_related_info>
+            <credit_related_info>
+                <ZKKBER></ZKKBER><!-- Credit control area, LOGON table: tlgns_sap_contract.credit_control_area_cd -->
+                <ZKNKLI></ZKNKLI><!-- Customer's account number with credit limit reference, LOGON table: tlgns_sap_contract.customer_limit_account_no -->
+                <ZGRUPP></ZGRUPP><!-- Customer credit group, LOGON table: tlgns_sap_contract.customer_credit_group -->
+                <ZSBGRP></ZSBGRP><!-- Credit representative group for credit management, LOGON table: tlgns_sap_contract.credit_management_group -->
+                <ZCTLPC></ZCTLPC><!-- Credit management: Risk category, LOGON table: tlgns_sap_contract.credit_risk_category -->
+                <ZCMWAE></ZCMWAE><!-- Currency key of credit control area, LOGON table: tlgns_sap_contract.credit_currency_cd -->
+            </credit_related_info>
+            <header_extra_data>
+            	<ZQUALZ/>
+            	<ZCUSADD/>
+            	<ZCUSADD_BEZ/>
+            </header_extra_data>
+        </document_header_general_data>
+        <document_header_organizational_data>
+            <BSART>ZCQ</BSART><!-- document type, LOGON Table: tlgns_sap_contract.sap_contract_type_cd -->
+            <VKORG>AD02</VKORG><!-- sales organization -->
+            <VTWEG>10</VTWEG><!-- distribution channel -->
+            <SPART>10</SPART><!-- division -->
+            <VKGRP></VKGRP><!-- not used -->
+            <VKBUR></VKBUR><!-- not used -->
+            <BUKRS></BUKRS><!-- not used -->
+            <EKORG></EKORG><!-- not used -->
+            <EKGRP></EKGRP><!-- not used -->            
+            <RESWK></RESWK><!-- RULE Supply Plant Determination: IF the contract has the contract type "LU" (=Scheduling Agreement) value in the field BSART (header) then the supply plant for all contract items are taken from the field RESWK (header) ELSE for all other contract types it is taken for each contract item from the field WERK (item related) -->
+            <BUKRS_VF></BUKRS_VF><!-- not used -->
+            <BZIRK></BZIRK><!-- Sales district, LOGON table: tlgns_sap_contract.sales_district_cd -->
+        </document_header_organizational_data>
+        <document_header_date>
+            <BEDAT></BEDAT><!-- not used -->  
+            <AEDAT></AEDAT><!-- not used -->  
+            <KDATB>20100101</KDATB><!-- valid from date, LOGON table: tlgns_sap_contract.valid_from_dat -->
+            <KDATE>20481231</KDATE><!-- valid to  date, LOGON table: tlgns_sap_contract.valid_until_dat -->
+            <VDATU></VDATU><!-- not used -->  
+            <REQDELDATE></REQDELDATE><!-- not used -->  
+            <PRSTD></PRSTD><!-- not used -->  
+        </document_header_date>
+        <document_header_partner_information><!-- We have to expect at least 4 elements: shipto,billto, soldto and payer -->
+            <PARVW>AG</PARVW><!-- Partner function, Soldto: AG, Shipto: WE, Billto: RE, Payer: RG, Vendor: LF -->
+            <PARTN>ADN73031</PARTN><!-- Partner number -->
+            <LIFNR></LIFNR><!-- not used -->  
+            <NAME1></NAME1><!-- not used -->  
+            <NAME2></NAME2><!-- not used -->  
+            <NAME3></NAME3><!-- not used -->  
+            <NAME4></NAME4><!-- not used -->  
+            <STRAS></STRAS><!-- not used -->  
+            <STRS2></STRS2><!-- not used -->  
+            <PFACH></PFACH><!-- not used -->  
+            <ORT01></ORT01><!-- not used -->  
+            <PSTLZ></PSTLZ><!-- not used -->  
+            <PSTL2></PSTL2><!-- not used -->  
+            <LAND1></LAND1><!-- not used -->  
+            <TELF1></TELF1><!-- not used -->  
+            <TELFX></TELFX><!-- not used -->  
+            <SPRAS></SPRAS><!-- not used -->  
+            <ORT02></ORT02><!-- not used -->  
+            <HAUSN></HAUSN><!-- not used -->  
+            <STOCK></STOCK><!-- not used -->  
+            <REGIO></REGIO><!-- not used -->  
+            <ORGTX></ORGTX><!-- not used -->  
+            <ILNNR></ILNNR><!-- not used -->  
+            <PFORT></PFORT><!-- not used -->  
+            <SPRAS_ISO></SPRAS_ISO><!-- not used -->  
+            <TITLE></TITLE><!-- not used -->  
+        </document_header_partner_information>
+        <document_header_partner_information><!-- We have to expect at least 4 elements: shipto,billto, soldto and payer -->
+            <PARVW>WE</PARVW><!-- Partner function, Soldto: AG, Shipto: WE, Billto: RE, Payer: RG, Vendor: LF -->
+            <PARTN>ADN1208869</PARTN><!-- Partner number -->
+            <LIFNR></LIFNR><!-- not used -->  
+            <NAME1></NAME1><!-- not used -->  
+            <NAME2></NAME2><!-- not used -->  
+            <NAME3></NAME3><!-- not used -->  
+            <NAME4></NAME4><!-- not used -->  
+            <STRAS></STRAS><!-- not used -->  
+            <STRS2></STRS2><!-- not used -->  
+            <PFACH></PFACH><!-- not used -->  
+            <ORT01></ORT01><!-- not used -->  
+            <PSTLZ></PSTLZ><!-- not used -->  
+            <PSTL2></PSTL2><!-- not used -->  
+            <LAND1></LAND1><!-- not used -->  
+            <TELF1></TELF1><!-- not used -->  
+            <TELFX></TELFX><!-- not used -->  
+            <SPRAS></SPRAS><!-- not used -->  
+            <ORT02></ORT02><!-- not used -->  
+            <HAUSN></HAUSN><!-- not used -->  
+            <STOCK></STOCK><!-- not used -->  
+            <REGIO></REGIO><!-- not used -->  
+            <ORGTX></ORGTX><!-- not used -->  
+            <ILNNR></ILNNR><!-- not used -->  
+            <PFORT></PFORT><!-- not used -->  
+            <SPRAS_ISO></SPRAS_ISO><!-- not used -->  
+            <TITLE></TITLE><!-- not used -->  
+        </document_header_partner_information>
+        <document_header_reference_data>
+            <BSTNK>Test AdN 401 -regli zumdor-CHE truc</BSTNK><!-- Customer purchase order number, LOGON table: tlgns_sap_contract.cust_pruchase_order_no -->
+            <LCNUM></LCNUM><!-- not used -->
+            <XBLNR></XBLNR><!-- not used -->
+        </document_header_reference_data>
+        <document_header_terms_of_delivery>
+            <INCO1>DDP</INCO1><!-- Incoterms (part 1), Incoterm of the contract [LOGON-4289], Tlgns_sap_contract.incoterms_cd -->
+            <INCO2></INCO2><!-- not used -->
+        </document_header_terms_of_delivery>
+        <document_header_additional_data>
+            <KDKG1></KDKG1><!-- not used -->
+            <KDKG2></KDKG2><!-- not used -->
+            <KDKG3></KDKG3><!-- not used -->
+            <KDKG4></KDKG4><!-- not used -->
+            <KDKG5></KDKG5><!-- not used -->
+            <KVGR1></KVGR1><!-- not used -->
+            <KVGR2></KVGR2><!-- not used -->
+            <KVGR3></KVGR3><!-- not used -->
+            <KVGR4></KVGR4><!-- not used -->
+            <KVGR5></KVGR5><!-- not used -->
+        </document_header_additional_data>
+        <document_header_payment_cards>
+            <CCINS></CCINS><!-- not used -->
+            <CCINS_BEZEI></CCINS_BEZEI><!-- not used -->
+            <CCNUM></CCNUM><!-- not used -->
+            <EXDATBI></EXDATBI><!-- not used -->
+            <CCNAME></CCNAME><!-- not used -->
+        </document_header_payment_cards>
+        <document_header_text_identification>
+            <TDID></TDID><!-- text id -->
+            <TSSPRAS_ISO></TSSPRAS_ISO><!-- Language according to ISO 639 -->
+            <document_header_texts>
+                <TDLINE></TDLINE><!-- First repetition of TDLINE for TDID = “0003” and TSSPRAS_ISO equals to the sap ship to language (tlgns_sap_bp.SAP_LANGUAGE_CD and contract type is an Advanced Payment Contract. -->
+            </document_header_texts>
+        </document_header_text_identification>
+        <document_item_general_data>
+            <POSEX>10</POSEX><!--- Item number, LOGON table: tlgns_sap_contract_item.contract_item_no -->
+            <MENGE></MENGE><!-- not used -->
+            <MENEE></MENEE><!-- not used -->
+            <BMNG2></BMNG2><!-- not used -->
+            <PMENE></PMENE><!-- not used -->
+            <ABFTZ></ABFTZ><!-- not used -->
+            <VPREI></VPREI><!-- not used -->
+            <PEINH></PEINH><!-- not used -->
+            <NETWR></NETWR><!-- Net value of item in document currency, LOGON table: tlgns_sap_contract_item.net_value -->
+            <NTGEW></NTGEW><!-- not used -->
+            <GEWEI></GEWEI><!-- not used -->
+            <PREIS></PREIS><!-- not used -->
+            <MATKL></MATKL><!-- not used -->
+            <UEPOS></UEPOS><!-- not used -->
+            <GRKOR></GRKOR><!-- not used -->
+            <ABGRU></ABGRU><!-- Reason for rejection of quotations and sales orders, If the element is empty/not sent (order entry is allowed) tlgns_sap_contract_item. MARKED_FOR_REJECT_OR_DELETION = 0 else 1 -->
+            <EVERS></EVERS><!-- not used -->
+            <FIXMG></FIXMG><!-- not used -->
+            <BRGEW></BRGEW><!-- not used -->
+            <PSTYV></PSTYV><!-- Document item category, LOGON table: tlgns_sap_contract_item.item_category -->
+            <ABRVW></ABRVW><!-- not used -->
+            <WERKS></WERKS><!-- Plant -->
+            <LPRIO></LPRIO><!-- not used -->
+            <ROUTE></ROUTE><!-- not used -->
+            <LGORT></LGORT><!-- not used -->
+            <VSTEL></VSTEL><!-- not used -->
+            <IUID_RELEVANT></IUID_RELEVANT>
+            <order_item_additional_data>
+                <ZPTENTR></ZPTENTR><!-- Target quantity in sales units, LOGON table: tlgns_sap_contract_item.target_quantity -->
+                <ZRETURN></ZRETURN><!-- not used -->
+                <ZFREECHR></ZFREECHR><!-- not used -->
+                <ZPVKORG></ZPVKORG><!-- not used -->
+                <ZPVTWEG></ZPVTWEG><!-- not used -->
+                <ZPSPART></ZPSPART><!-- not used -->
+                <ZPZTERM></ZPZTERM><!-- not used -->
+                <ZLOEKZ></ZLOEKZ><!-- Deletion indicator purchasing doc, Relevant only for STPOs (for contracts the element ABGRU is used). Decision of which contract types are considered as STPOs is based on tlgnr_sap_contract_type_bs.CONTRACT_TYPE_IS_STPO_FLAG = true.) If the element value is "X" (order entry is not allowed, dispocard restriction invalidated) -->                
+                <ZKBMENG></ZKBMENG><!-- not used -->
+                <ZKLMENG></ZKLMENG><!-- not used -->
+                <ZBPREME></ZBPREME><!-- not used -->
+                <ZSMEINS></ZSMEINS><!-- not used -->
+                <ZBMEINS></ZBMEINS><!-- Base unit of measure, LOGON table: tlgns_sap_contract_item.target_quantity_uom_cd -->
+                <ZLFMNG></ZLFMNG><!-- not used -->
+                <ZLADGR></ZLADGR><!-- not used -->
+                <ZKONDM></ZKONDM><!-- not used -->
+                <ZVSBED></ZVSBED><!-- not used -->
+                <ZPKZTLF></ZPKZTLF><!-- not used -->
+                <ZBSTAE></ZBSTAE><!-- not used -->
+                <ZPPLTYP></ZPPLTYP><!-- not used -->
+                <ZPCMPRE></ZPCMPRE><!-- not used -->
+                <ZPPERFK></ZPPERFK><!-- not used -->
+                <ZPPERRL></ZPPERRL><!-- not used -->
+                <ZKURSK></ZKURSK><!-- not used -->
+                <ZFPLNR></ZFPLNR><!-- not used -->
+                <ZPFAKSP></ZPFAKSP><!-- not used -->
+                <ZPVAT></ZPVAT><!-- VAT, mapped to TLGNS_SAP_CONTRACT_ITEM.VAT_CODE -->
+                <ZVOLUM></ZVOLUM><!-- not used -->
+                <ZVOLEH></ZVOLEH><!-- not used -->
+                <ZMAGRV></ZMAGRV><!-- not used -->
+                <ZTRMTYP></ZTRMTYP><!-- not used -->
+            </order_item_additional_data>
+            <order_item_transport_data>
+                <TPRICE></TPRICE><!-- not used -->
+                <ZPTRATY></ZPTRATY><!-- not used -->
+                <ZCBST></ZCBST><!-- not used -->
+                <Z_WTN></Z_WTN><!-- not used -->
+                <ZCBSD></ZCBSD><!-- not used -->
+                <Z_ADR1></Z_ADR1><!-- not used -->
+                <Z_ADR2></Z_ADR2><!-- not used -->
+                <Z_WAD></Z_WAD><!-- not used -->
+                <Z_ADR3></Z_ADR3><!-- not used -->
+                <ZTRAGR></ZTRAGR><!-- not used -->
+                <ZZKMSD></ZZKMSD><!-- not used -->
+                <ZRADIAL></ZRADIAL><!-- not used -->
+            </order_item_transport_data>
+            <order_item_afr_data>
+                <Z_QCRFP></Z_QCRFP><!-- not used -->
+                <Z_WAD></Z_WAD><!-- not used -->
+                <Z_EWC></Z_EWC><!-- not used -->
+                <Z_NATIONALCODE></Z_NATIONALCODE><!-- not used -->
+                <Z_OPERATIONALPROCESS></Z_OPERATIONALPROCESS><!-- not used -->
+                <Z_HAZARDOUSCRITERIA1></Z_HAZARDOUSCRITERIA1><!-- not used -->
+                <Z_SPLITTNEDDED></Z_SPLITTNEDDED><!-- not used -->
+                <Z_YNOPLAN></Z_YNOPLAN><!-- not used -->
+                <Z_ADR1></Z_ADR1><!-- not used -->
+                <Z_ADR2></Z_ADR2><!-- not used -->
+                <Z_ADR3></Z_ADR3><!-- not used -->
+                <ZCBSD></ZCBSD>
+            </order_item_afr_data>
+            <order_item_extra_data>
+            	<ZQUALZ></ZQUALZ><!-- Qualifier for IDoc additional data, Used for Advance Payment contracts (LOGON-6624) in the course of pringing the export invoice (LOGON-6647). -->
+            	<ZCUSADD></ZCUSADD><!-- Character String 60, Advance Invoice Number; In case ZQUALZ == “ADV” Tlgns_sap_contract_item. ADVANCE_INVOICE_NO -->
+            	<ZCUSADD_BEZ></ZCUSADD_BEZ><!-- not used -->
+            </order_item_extra_data>
+            <document_item_reference_data>
+                <VBELV></VBELV><!-- not used -->
+                <POSNV></POSNV><!-- not used -->
+                <VGBEL></VGBEL><!-- not used -->
+                <VGPOS></VGPOS><!-- not used -->
+                <BSTKD_E></BSTKD_E><!-- not used -->
+            </document_item_reference_data>
+            <document_item_date>
+                <FKDAT></FKDAT><!-- not used -->
+            </document_item_date>
+            <document_item_taxes>
+                <MWSBT></MWSBT><!-- not used -->
+            </document_item_taxes>
+            <document_item_schedule_lines>
+                <WMENG></WMENG><!-- not used -->
+            </document_item_schedule_lines>
+            <document_item_object_identification>
+                <MATNR>ADN1101870</MATNR><!-- Material number, LOGON table: tlgns_sap_contract_item.sap_material_id -->
+                <CHARG></CHARG><!-- not used -->
+                <ARKTX></ARKTX><!-- not used -->
+                <KDMAT></KDMAT><!-- not used -->
+                <EAN11></EAN11><!-- not used -->
+            </document_item_object_identification>
+            <document_item_text_identification>
+                <TDID></TDID><!-- Text id, first repetition of TDLINE for TDID = “0003” and TSSPRAS_ISO equals to the shipto language and contract type is an Advanced Payment Contract.-->
+                <TSSPRAS_ISO></TSSPRAS_ISO><!-- not used -->
+                <document_item_texts>
+                    <TDLINE></TDLINE><!-- not used -->
+                </document_item_texts>
+            </document_item_text_identification>
+            <document_item_additional_data>
+                <KZWI1></KZWI1><!-- not used -->
+                <KZWI2></KZWI2><!-- not used -->
+                <KZWI3></KZWI3><!-- not used -->
+                <KZWI4></KZWI4><!-- not used -->
+                <KZWI5></KZWI5><!-- not used -->
+                <KZWI6></KZWI6><!-- not used -->
+                <MVGR1></MVGR1><!-- Material group 1, LOGON table: tlgns_sap_contract_item.material_group_1 -->
+                <MVGR2></MVGR2><!-- Material group 2, LOGON table: tlgns_sap_contract_item.material_group_2 -->
+                <MVGR3></MVGR3><!-- Material group 3, LOGON table: tlgns_sap_contract_item.material_group_3 -->
+                <MVGR4></MVGR4><!-- Material group 4, LOGON table: tlgns_sap_contract_item.material_group_4 -->
+                <MVGR5></MVGR5><!-- Material group 5, LOGON table: tlgns_sap_contract_item.material_group_5 -->
+                <KDKG1></KDKG1><!-- not used -->
+                <KDKG2></KDKG2><!-- not used -->
+                <KDKG3></KDKG3><!-- not used -->
+                <KDKG4></KDKG4><!-- not used -->
+                <KDKG5></KDKG5><!-- not used -->
+            </document_item_additional_data>
+            <document_item_terms_of_delivery>
+                <LKOND></LKOND><!-- not used -->
+            </document_item_terms_of_delivery>
+            <document_item_partner_information>
+                <PARVW></PARVW><!-- not used -->
+                <PARTN></PARTN><!-- not used -->
+                <LIFNR></LIFNR><!-- not used -->
+                <NAME1></NAME1><!-- not used -->
+                <NAME2></NAME2><!-- not used -->
+                <NAME3></NAME3><!-- not used -->
+                <NAME4></NAME4><!-- not used -->
+                <STRAS></STRAS><!-- not used -->
+                <STRS2></STRS2><!-- not used -->
+                <PFACH></PFACH><!-- not used -->
+                <ORT01></ORT01><!-- not used -->
+                <COUNC></COUNC><!-- not used -->
+                <PSTLZ></PSTLZ><!-- not used -->
+                <PSTL2></PSTL2><!-- not used -->
+                <LAND1></LAND1><!-- not used -->
+                <ABLAD></ABLAD><!-- not used -->
+                <PERNR></PERNR><!-- not used -->
+                <PARNR></PARNR><!-- not used -->
+                <TELF1></TELF1><!-- not used -->
+                <TELF2></TELF2><!-- not used -->
+                <TELBX></TELBX><!-- not used -->
+                <TELFX></TELFX><!-- not used -->
+                <TELTX></TELTX><!-- not used -->
+                <TELX1></TELX1><!-- not used -->
+                <SPRAS></SPRAS><!-- not used -->
+                <ANRED></ANRED><!-- not used -->
+                <ORT02></ORT02><!-- not used -->
+                <HAUSN></HAUSN><!-- not used -->
+                <STOCK></STOCK><!-- not used -->
+                <REGIO></REGIO><!-- not used -->
+                <PARGE></PARGE><!-- not used -->
+                <ISOAL></ISOAL><!-- not used -->
+                <ISONU></ISONU><!-- not used -->
+                <FCODE></FCODE><!-- not used -->
+                <IHREZ></IHREZ><!-- not used -->
+                <BNAME></BNAME><!-- not used -->
+                <PAORG></PAORG><!-- not used -->
+                <ORGTX></ORGTX><!-- not used -->
+                <PAGRU></PAGRU><!-- not used -->
+                <KNREF></KNREF><!-- not used -->
+                <ILNNR></ILNNR><!-- not used -->
+                <PFORT></PFORT><!-- not used -->
+                <SPRAS_ISO></SPRAS_ISO><!-- not used -->
+                <TITLE></TITLE><!-- not used -->
+            </document_item_partner_information>
+        </document_item_general_data>
+    <document_item_general_data>
+            <POSEX>20</POSEX><!--- Item number, LOGON table: tlgns_sap_contract_item.contract_item_no -->
+            <MENGE></MENGE><!-- not used -->
+            <MENEE></MENEE><!-- not used -->
+            <BMNG2></BMNG2><!-- not used -->
+            <PMENE></PMENE><!-- not used -->
+            <ABFTZ></ABFTZ><!-- not used -->
+            <VPREI></VPREI><!-- not used -->
+            <PEINH></PEINH><!-- not used -->
+            <NETWR></NETWR><!-- Net value of item in document currency, LOGON table: tlgns_sap_contract_item.net_value -->
+            <NTGEW></NTGEW><!-- not used -->
+            <GEWEI></GEWEI><!-- not used -->
+            <PREIS></PREIS><!-- not used -->
+            <MATKL></MATKL><!-- not used -->
+            <UEPOS></UEPOS><!-- not used -->
+            <GRKOR></GRKOR><!-- not used -->
+            <ABGRU></ABGRU><!-- Reason for rejection of quotations and sales orders, If the element is empty/not sent (order entry is allowed) tlgns_sap_contract_item. MARKED_FOR_REJECT_OR_DELETION = 0 else 1 -->
+            <EVERS></EVERS><!-- not used -->
+            <FIXMG></FIXMG><!-- not used -->
+            <BRGEW></BRGEW><!-- not used -->
+            <PSTYV></PSTYV><!-- Document item category, LOGON table: tlgns_sap_contract_item.item_category -->
+            <ABRVW></ABRVW><!-- not used -->
+            <WERKS></WERKS><!-- Plant -->
+            <LPRIO></LPRIO><!-- not used -->
+            <ROUTE></ROUTE><!-- not used -->
+            <LGORT></LGORT><!-- not used -->
+            <VSTEL></VSTEL><!-- not used -->
+            <IUID_RELEVANT></IUID_RELEVANT>
+            <order_item_additional_data>
+                <ZPTENTR></ZPTENTR><!-- Target quantity in sales units, LOGON table: tlgns_sap_contract_item.target_quantity -->
+                <ZRETURN></ZRETURN><!-- not used -->
+                <ZFREECHR></ZFREECHR><!-- not used -->
+                <ZPVKORG></ZPVKORG><!-- not used -->
+                <ZPVTWEG></ZPVTWEG><!-- not used -->
+                <ZPSPART></ZPSPART><!-- not used -->
+                <ZPZTERM></ZPZTERM><!-- not used -->
+                <ZLOEKZ></ZLOEKZ><!-- Deletion indicator purchasing doc, Relevant only for STPOs (for contracts the element ABGRU is used). Decision of which contract types are considered as STPOs is based on tlgnr_sap_contract_type_bs.CONTRACT_TYPE_IS_STPO_FLAG = true.) If the element value is "X" (order entry is not allowed, dispocard restriction invalidated) -->                
+                <ZKBMENG></ZKBMENG><!-- not used -->
+                <ZKLMENG></ZKLMENG><!-- not used -->
+                <ZBPREME></ZBPREME><!-- not used -->
+                <ZSMEINS></ZSMEINS><!-- not used -->
+                <ZBMEINS></ZBMEINS><!-- Base unit of measure, LOGON table: tlgns_sap_contract_item.target_quantity_uom_cd -->
+                <ZLFMNG></ZLFMNG><!-- not used -->
+                <ZLADGR></ZLADGR><!-- not used -->
+                <ZKONDM></ZKONDM><!-- not used -->
+                <ZVSBED></ZVSBED><!-- not used -->
+                <ZPKZTLF></ZPKZTLF><!-- not used -->
+                <ZBSTAE></ZBSTAE><!-- not used -->
+                <ZPPLTYP></ZPPLTYP><!-- not used -->
+                <ZPCMPRE></ZPCMPRE><!-- not used -->
+                <ZPPERFK></ZPPERFK><!-- not used -->
+                <ZPPERRL></ZPPERRL><!-- not used -->
+                <ZKURSK></ZKURSK><!-- not used -->
+                <ZFPLNR></ZFPLNR><!-- not used -->
+                <ZPFAKSP></ZPFAKSP><!-- not used -->
+                <ZPVAT></ZPVAT><!-- VAT, mapped to TLGNS_SAP_CONTRACT_ITEM.VAT_CODE -->
+                <ZVOLUM></ZVOLUM><!-- not used -->
+                <ZVOLEH></ZVOLEH><!-- not used -->
+                <ZMAGRV></ZMAGRV><!-- not used -->
+                <ZTRMTYP></ZTRMTYP><!-- not used -->
+            </order_item_additional_data>
+            <order_item_transport_data>
+                <TPRICE></TPRICE><!-- not used -->
+                <ZPTRATY></ZPTRATY><!-- not used -->
+                <ZCBST></ZCBST><!-- not used -->
+                <Z_WTN></Z_WTN><!-- not used -->
+                <ZCBSD></ZCBSD><!-- not used -->
+                <Z_ADR1></Z_ADR1><!-- not used -->
+                <Z_ADR2></Z_ADR2><!-- not used -->
+                <Z_WAD></Z_WAD><!-- not used -->
+                <Z_ADR3></Z_ADR3><!-- not used -->
+                <ZTRAGR></ZTRAGR><!-- not used -->
+                <ZZKMSD></ZZKMSD><!-- not used -->
+                <ZRADIAL></ZRADIAL><!-- not used -->
+            </order_item_transport_data>
+            <order_item_afr_data>
+                <Z_QCRFP></Z_QCRFP><!-- not used -->
+                <Z_WAD></Z_WAD><!-- not used -->
+                <Z_EWC></Z_EWC><!-- not used -->
+                <Z_NATIONALCODE></Z_NATIONALCODE><!-- not used -->
+                <Z_OPERATIONALPROCESS></Z_OPERATIONALPROCESS><!-- not used -->
+                <Z_HAZARDOUSCRITERIA1></Z_HAZARDOUSCRITERIA1><!-- not used -->
+                <Z_SPLITTNEDDED></Z_SPLITTNEDDED><!-- not used -->
+                <Z_YNOPLAN></Z_YNOPLAN><!-- not used -->
+                <Z_ADR1></Z_ADR1><!-- not used -->
+                <Z_ADR2></Z_ADR2><!-- not used -->
+                <Z_ADR3></Z_ADR3><!-- not used -->
+                <ZCBSD></ZCBSD>
+            </order_item_afr_data>
+            <order_item_extra_data>
+            	<ZQUALZ></ZQUALZ><!-- Qualifier for IDoc additional data, Used for Advance Payment contracts (LOGON-6624) in the course of pringing the export invoice (LOGON-6647). -->
+            	<ZCUSADD></ZCUSADD><!-- Character String 60, Advance Invoice Number; In case ZQUALZ == “ADV” Tlgns_sap_contract_item. ADVANCE_INVOICE_NO -->
+            	<ZCUSADD_BEZ></ZCUSADD_BEZ><!-- not used -->
+            </order_item_extra_data>
+            <document_item_reference_data>
+                <VBELV></VBELV><!-- not used -->
+                <POSNV></POSNV><!-- not used -->
+                <VGBEL></VGBEL><!-- not used -->
+                <VGPOS></VGPOS><!-- not used -->
+                <BSTKD_E></BSTKD_E><!-- not used -->
+            </document_item_reference_data>
+            <document_item_date>
+                <FKDAT></FKDAT><!-- not used -->
+            </document_item_date>
+            <document_item_taxes>
+                <MWSBT></MWSBT><!-- not used -->
+            </document_item_taxes>
+            <document_item_schedule_lines>
+                <WMENG></WMENG><!-- not used -->
+            </document_item_schedule_lines>
+            <document_item_object_identification>
+                <MATNR>ADN1404883</MATNR><!-- Material number, LOGON table: tlgns_sap_contract_item.sap_material_id -->
+                <CHARG></CHARG><!-- not used -->
+                <ARKTX></ARKTX><!-- not used -->
+                <KDMAT></KDMAT><!-- not used -->
+                <EAN11></EAN11><!-- not used -->
+            </document_item_object_identification>
+            <document_item_text_identification>
+                <TDID></TDID><!-- Text id, first repetition of TDLINE for TDID = “0003” and TSSPRAS_ISO equals to the shipto language and contract type is an Advanced Payment Contract.-->
+                <TSSPRAS_ISO></TSSPRAS_ISO><!-- not used -->
+                <document_item_texts>
+                    <TDLINE></TDLINE><!-- not used -->
+                </document_item_texts>
+            </document_item_text_identification>
+            <document_item_additional_data>
+                <KZWI1></KZWI1><!-- not used -->
+                <KZWI2></KZWI2><!-- not used -->
+                <KZWI3></KZWI3><!-- not used -->
+                <KZWI4></KZWI4><!-- not used -->
+                <KZWI5></KZWI5><!-- not used -->
+                <KZWI6></KZWI6><!-- not used -->
+                <MVGR1></MVGR1><!-- Material group 1, LOGON table: tlgns_sap_contract_item.material_group_1 -->
+                <MVGR2></MVGR2><!-- Material group 2, LOGON table: tlgns_sap_contract_item.material_group_2 -->
+                <MVGR3></MVGR3><!-- Material group 3, LOGON table: tlgns_sap_contract_item.material_group_3 -->
+                <MVGR4></MVGR4><!-- Material group 4, LOGON table: tlgns_sap_contract_item.material_group_4 -->
+                <MVGR5></MVGR5><!-- Material group 5, LOGON table: tlgns_sap_contract_item.material_group_5 -->
+                <KDKG1></KDKG1><!-- not used -->
+                <KDKG2></KDKG2><!-- not used -->
+                <KDKG3></KDKG3><!-- not used -->
+                <KDKG4></KDKG4><!-- not used -->
+                <KDKG5></KDKG5><!-- not used -->
+            </document_item_additional_data>
+            <document_item_terms_of_delivery>
+                <LKOND></LKOND><!-- not used -->
+            </document_item_terms_of_delivery>
+            <document_item_partner_information>
+                <PARVW></PARVW><!-- not used -->
+                <PARTN></PARTN><!-- not used -->
+                <LIFNR></LIFNR><!-- not used -->
+                <NAME1></NAME1><!-- not used -->
+                <NAME2></NAME2><!-- not used -->
+                <NAME3></NAME3><!-- not used -->
+                <NAME4></NAME4><!-- not used -->
+                <STRAS></STRAS><!-- not used -->
+                <STRS2></STRS2><!-- not used -->
+                <PFACH></PFACH><!-- not used -->
+                <ORT01></ORT01><!-- not used -->
+                <COUNC></COUNC><!-- not used -->
+                <PSTLZ></PSTLZ><!-- not used -->
+                <PSTL2></PSTL2><!-- not used -->
+                <LAND1></LAND1><!-- not used -->
+                <ABLAD></ABLAD><!-- not used -->
+                <PERNR></PERNR><!-- not used -->
+                <PARNR></PARNR><!-- not used -->
+                <TELF1></TELF1><!-- not used -->
+                <TELF2></TELF2><!-- not used -->
+                <TELBX></TELBX><!-- not used -->
+                <TELFX></TELFX><!-- not used -->
+                <TELTX></TELTX><!-- not used -->
+                <TELX1></TELX1><!-- not used -->
+                <SPRAS></SPRAS><!-- not used -->
+                <ANRED></ANRED><!-- not used -->
+                <ORT02></ORT02><!-- not used -->
+                <HAUSN></HAUSN><!-- not used -->
+                <STOCK></STOCK><!-- not used -->
+                <REGIO></REGIO><!-- not used -->
+                <PARGE></PARGE><!-- not used -->
+                <ISOAL></ISOAL><!-- not used -->
+                <ISONU></ISONU><!-- not used -->
+                <FCODE></FCODE><!-- not used -->
+                <IHREZ></IHREZ><!-- not used -->
+                <BNAME></BNAME><!-- not used -->
+                <PAORG></PAORG><!-- not used -->
+                <ORGTX></ORGTX><!-- not used -->
+                <PAGRU></PAGRU><!-- not used -->
+                <KNREF></KNREF><!-- not used -->
+                <ILNNR></ILNNR><!-- not used -->
+                <PFORT></PFORT><!-- not used -->
+                <SPRAS_ISO></SPRAS_ISO><!-- not used -->
+                <TITLE></TITLE><!-- not used -->
+            </document_item_partner_information>
+        </document_item_general_data>
+        <document_item_general_data>
+            <POSEX>30</POSEX><!--- Item number, LOGON table: tlgns_sap_contract_item.contract_item_no -->
+            <MENGE></MENGE><!-- not used -->
+            <MENEE></MENEE><!-- not used -->
+            <BMNG2></BMNG2><!-- not used -->
+            <PMENE></PMENE><!-- not used -->
+            <ABFTZ></ABFTZ><!-- not used -->
+            <VPREI></VPREI><!-- not used -->
+            <PEINH></PEINH><!-- not used -->
+            <NETWR></NETWR><!-- Net value of item in document currency, LOGON table: tlgns_sap_contract_item.net_value -->
+            <NTGEW></NTGEW><!-- not used -->
+            <GEWEI></GEWEI><!-- not used -->
+            <PREIS></PREIS><!-- not used -->
+            <MATKL></MATKL><!-- not used -->
+            <UEPOS></UEPOS><!-- not used -->
+            <GRKOR></GRKOR><!-- not used -->
+            <ABGRU></ABGRU><!-- Reason for rejection of quotations and sales orders, If the element is empty/not sent (order entry is allowed) tlgns_sap_contract_item. MARKED_FOR_REJECT_OR_DELETION = 0 else 1 -->
+            <EVERS></EVERS><!-- not used -->
+            <FIXMG></FIXMG><!-- not used -->
+            <BRGEW></BRGEW><!-- not used -->
+            <PSTYV></PSTYV><!-- Document item category, LOGON table: tlgns_sap_contract_item.item_category -->
+            <ABRVW></ABRVW><!-- not used -->
+            <WERKS></WERKS><!-- Plant -->
+            <LPRIO></LPRIO><!-- not used -->
+            <ROUTE></ROUTE><!-- not used -->
+            <LGORT></LGORT><!-- not used -->
+            <VSTEL></VSTEL><!-- not used -->
+            <IUID_RELEVANT></IUID_RELEVANT>
+            <order_item_additional_data>
+                <ZPTENTR></ZPTENTR><!-- Target quantity in sales units, LOGON table: tlgns_sap_contract_item.target_quantity -->
+                <ZRETURN></ZRETURN><!-- not used -->
+                <ZFREECHR></ZFREECHR><!-- not used -->
+                <ZPVKORG></ZPVKORG><!-- not used -->
+                <ZPVTWEG></ZPVTWEG><!-- not used -->
+                <ZPSPART></ZPSPART><!-- not used -->
+                <ZPZTERM></ZPZTERM><!-- not used -->
+                <ZLOEKZ></ZLOEKZ><!-- Deletion indicator purchasing doc, Relevant only for STPOs (for contracts the element ABGRU is used). Decision of which contract types are considered as STPOs is based on tlgnr_sap_contract_type_bs.CONTRACT_TYPE_IS_STPO_FLAG = true.) If the element value is "X" (order entry is not allowed, dispocard restriction invalidated) -->                
+                <ZKBMENG></ZKBMENG><!-- not used -->
+                <ZKLMENG></ZKLMENG><!-- not used -->
+                <ZBPREME></ZBPREME><!-- not used -->
+                <ZSMEINS></ZSMEINS><!-- not used -->
+                <ZBMEINS></ZBMEINS><!-- Base unit of measure, LOGON table: tlgns_sap_contract_item.target_quantity_uom_cd -->
+                <ZLFMNG></ZLFMNG><!-- not used -->
+                <ZLADGR></ZLADGR><!-- not used -->
+                <ZKONDM></ZKONDM><!-- not used -->
+                <ZVSBED></ZVSBED><!-- not used -->
+                <ZPKZTLF></ZPKZTLF><!-- not used -->
+                <ZBSTAE></ZBSTAE><!-- not used -->
+                <ZPPLTYP></ZPPLTYP><!-- not used -->
+                <ZPCMPRE></ZPCMPRE><!-- not used -->
+                <ZPPERFK></ZPPERFK><!-- not used -->
+                <ZPPERRL></ZPPERRL><!-- not used -->
+                <ZKURSK></ZKURSK><!-- not used -->
+                <ZFPLNR></ZFPLNR><!-- not used -->
+                <ZPFAKSP></ZPFAKSP><!-- not used -->
+                <ZPVAT></ZPVAT><!-- VAT, mapped to TLGNS_SAP_CONTRACT_ITEM.VAT_CODE -->
+                <ZVOLUM></ZVOLUM><!-- not used -->
+                <ZVOLEH></ZVOLEH><!-- not used -->
+                <ZMAGRV></ZMAGRV><!-- not used -->
+                <ZTRMTYP></ZTRMTYP><!-- not used -->
+            </order_item_additional_data>
+            <order_item_transport_data>
+                <TPRICE></TPRICE><!-- not used -->
+                <ZPTRATY></ZPTRATY><!-- not used -->
+                <ZCBST></ZCBST><!-- not used -->
+                <Z_WTN></Z_WTN><!-- not used -->
+                <ZCBSD></ZCBSD><!-- not used -->
+                <Z_ADR1></Z_ADR1><!-- not used -->
+                <Z_ADR2></Z_ADR2><!-- not used -->
+                <Z_WAD></Z_WAD><!-- not used -->
+                <Z_ADR3></Z_ADR3><!-- not used -->
+                <ZTRAGR></ZTRAGR><!-- not used -->
+                <ZZKMSD></ZZKMSD><!-- not used -->
+                <ZRADIAL></ZRADIAL><!-- not used -->
+            </order_item_transport_data>
+            <order_item_afr_data>
+                <Z_QCRFP></Z_QCRFP><!-- not used -->
+                <Z_WAD></Z_WAD><!-- not used -->
+                <Z_EWC></Z_EWC><!-- not used -->
+                <Z_NATIONALCODE></Z_NATIONALCODE><!-- not used -->
+                <Z_OPERATIONALPROCESS></Z_OPERATIONALPROCESS><!-- not used -->
+                <Z_HAZARDOUSCRITERIA1></Z_HAZARDOUSCRITERIA1><!-- not used -->
+                <Z_SPLITTNEDDED></Z_SPLITTNEDDED><!-- not used -->
+                <Z_YNOPLAN></Z_YNOPLAN><!-- not used -->
+                <Z_ADR1></Z_ADR1><!-- not used -->
+                <Z_ADR2></Z_ADR2><!-- not used -->
+                <Z_ADR3></Z_ADR3><!-- not used -->
+                <ZCBSD></ZCBSD>
+            </order_item_afr_data>
+            <order_item_extra_data>
+            	<ZQUALZ></ZQUALZ><!-- Qualifier for IDoc additional data, Used for Advance Payment contracts (LOGON-6624) in the course of pringing the export invoice (LOGON-6647). -->
+            	<ZCUSADD></ZCUSADD><!-- Character String 60, Advance Invoice Number; In case ZQUALZ == “ADV” Tlgns_sap_contract_item. ADVANCE_INVOICE_NO -->
+            	<ZCUSADD_BEZ></ZCUSADD_BEZ><!-- not used -->
+            </order_item_extra_data>
+            <document_item_reference_data>
+                <VBELV></VBELV><!-- not used -->
+                <POSNV></POSNV><!-- not used -->
+                <VGBEL></VGBEL><!-- not used -->
+                <VGPOS></VGPOS><!-- not used -->
+                <BSTKD_E></BSTKD_E><!-- not used -->
+            </document_item_reference_data>
+            <document_item_date>
+                <FKDAT></FKDAT><!-- not used -->
+            </document_item_date>
+            <document_item_taxes>
+                <MWSBT></MWSBT><!-- not used -->
+            </document_item_taxes>
+            <document_item_schedule_lines>
+                <WMENG></WMENG><!-- not used -->
+            </document_item_schedule_lines>
+            <document_item_object_identification>
+                <MATNR>ADN1404839</MATNR><!-- Material number, LOGON table: tlgns_sap_contract_item.sap_material_id -->
+                <CHARG></CHARG><!-- not used -->
+                <ARKTX></ARKTX><!-- not used -->
+                <KDMAT></KDMAT><!-- not used -->
+                <EAN11></EAN11><!-- not used -->
+            </document_item_object_identification>
+            <document_item_text_identification>
+                <TDID></TDID><!-- Text id, first repetition of TDLINE for TDID = “0003” and TSSPRAS_ISO equals to the shipto language and contract type is an Advanced Payment Contract.-->
+                <TSSPRAS_ISO></TSSPRAS_ISO><!-- not used -->
+                <document_item_texts>
+                    <TDLINE></TDLINE><!-- not used -->
+                </document_item_texts>
+            </document_item_text_identification>
+            <document_item_additional_data>
+                <KZWI1></KZWI1><!-- not used -->
+                <KZWI2></KZWI2><!-- not used -->
+                <KZWI3></KZWI3><!-- not used -->
+                <KZWI4></KZWI4><!-- not used -->
+                <KZWI5></KZWI5><!-- not used -->
+                <KZWI6></KZWI6><!-- not used -->
+                <MVGR1></MVGR1><!-- Material group 1, LOGON table: tlgns_sap_contract_item.material_group_1 -->
+                <MVGR2></MVGR2><!-- Material group 2, LOGON table: tlgns_sap_contract_item.material_group_2 -->
+                <MVGR3></MVGR3><!-- Material group 3, LOGON table: tlgns_sap_contract_item.material_group_3 -->
+                <MVGR4></MVGR4><!-- Material group 4, LOGON table: tlgns_sap_contract_item.material_group_4 -->
+                <MVGR5></MVGR5><!-- Material group 5, LOGON table: tlgns_sap_contract_item.material_group_5 -->
+                <KDKG1></KDKG1><!-- not used -->
+                <KDKG2></KDKG2><!-- not used -->
+                <KDKG3></KDKG3><!-- not used -->
+                <KDKG4></KDKG4><!-- not used -->
+                <KDKG5></KDKG5><!-- not used -->
+            </document_item_additional_data>
+            <document_item_terms_of_delivery>
+                <LKOND></LKOND><!-- not used -->
+            </document_item_terms_of_delivery>
+            <document_item_partner_information>
+                <PARVW></PARVW><!-- not used -->
+                <PARTN></PARTN><!-- not used -->
+                <LIFNR></LIFNR><!-- not used -->
+                <NAME1></NAME1><!-- not used -->
+                <NAME2></NAME2><!-- not used -->
+                <NAME3></NAME3><!-- not used -->
+                <NAME4></NAME4><!-- not used -->
+                <STRAS></STRAS><!-- not used -->
+                <STRS2></STRS2><!-- not used -->
+                <PFACH></PFACH><!-- not used -->
+                <ORT01></ORT01><!-- not used -->
+                <COUNC></COUNC><!-- not used -->
+                <PSTLZ></PSTLZ><!-- not used -->
+                <PSTL2></PSTL2><!-- not used -->
+                <LAND1></LAND1><!-- not used -->
+                <ABLAD></ABLAD><!-- not used -->
+                <PERNR></PERNR><!-- not used -->
+                <PARNR></PARNR><!-- not used -->
+                <TELF1></TELF1><!-- not used -->
+                <TELF2></TELF2><!-- not used -->
+                <TELBX></TELBX><!-- not used -->
+                <TELFX></TELFX><!-- not used -->
+                <TELTX></TELTX><!-- not used -->
+                <TELX1></TELX1><!-- not used -->
+                <SPRAS></SPRAS><!-- not used -->
+                <ANRED></ANRED><!-- not used -->
+                <ORT02></ORT02><!-- not used -->
+                <HAUSN></HAUSN><!-- not used -->
+                <STOCK></STOCK><!-- not used -->
+                <REGIO></REGIO><!-- not used -->
+                <PARGE></PARGE><!-- not used -->
+                <ISOAL></ISOAL><!-- not used -->
+                <ISONU></ISONU><!-- not used -->
+                <FCODE></FCODE><!-- not used -->
+                <IHREZ></IHREZ><!-- not used -->
+                <BNAME></BNAME><!-- not used -->
+                <PAORG></PAORG><!-- not used -->
+                <ORGTX></ORGTX><!-- not used -->
+                <PAGRU></PAGRU><!-- not used -->
+                <KNREF></KNREF><!-- not used -->
+                <ILNNR></ILNNR><!-- not used -->
+                <PFORT></PFORT><!-- not used -->
+                <SPRAS_ISO></SPRAS_ISO><!-- not used -->
+                <TITLE></TITLE><!-- not used -->
+            </document_item_partner_information>
+        </document_item_general_data>
+        <document_item_general_data>
+            <POSEX>40</POSEX><!--- Item number, LOGON table: tlgns_sap_contract_item.contract_item_no -->
+            <MENGE></MENGE><!-- not used -->
+            <MENEE></MENEE><!-- not used -->
+            <BMNG2></BMNG2><!-- not used -->
+            <PMENE></PMENE><!-- not used -->
+            <ABFTZ></ABFTZ><!-- not used -->
+            <VPREI></VPREI><!-- not used -->
+            <PEINH></PEINH><!-- not used -->
+            <NETWR></NETWR><!-- Net value of item in document currency, LOGON table: tlgns_sap_contract_item.net_value -->
+            <NTGEW></NTGEW><!-- not used -->
+            <GEWEI></GEWEI><!-- not used -->
+            <PREIS></PREIS><!-- not used -->
+            <MATKL></MATKL><!-- not used -->
+            <UEPOS></UEPOS><!-- not used -->
+            <GRKOR></GRKOR><!-- not used -->
+            <ABGRU></ABGRU><!-- Reason for rejection of quotations and sales orders, If the element is empty/not sent (order entry is allowed) tlgns_sap_contract_item. MARKED_FOR_REJECT_OR_DELETION = 0 else 1 -->
+            <EVERS></EVERS><!-- not used -->
+            <FIXMG></FIXMG><!-- not used -->
+            <BRGEW></BRGEW><!-- not used -->
+            <PSTYV></PSTYV><!-- Document item category, LOGON table: tlgns_sap_contract_item.item_category -->
+            <ABRVW></ABRVW><!-- not used -->
+            <WERKS></WERKS><!-- Plant -->
+            <LPRIO></LPRIO><!-- not used -->
+            <ROUTE></ROUTE><!-- not used -->
+            <LGORT></LGORT><!-- not used -->
+            <VSTEL></VSTEL><!-- not used -->
+            <IUID_RELEVANT></IUID_RELEVANT>
+            <order_item_additional_data>
+                <ZPTENTR></ZPTENTR><!-- Target quantity in sales units, LOGON table: tlgns_sap_contract_item.target_quantity -->
+                <ZRETURN></ZRETURN><!-- not used -->
+                <ZFREECHR></ZFREECHR><!-- not used -->
+                <ZPVKORG></ZPVKORG><!-- not used -->
+                <ZPVTWEG></ZPVTWEG><!-- not used -->
+                <ZPSPART></ZPSPART><!-- not used -->
+                <ZPZTERM></ZPZTERM><!-- not used -->
+                <ZLOEKZ></ZLOEKZ><!-- Deletion indicator purchasing doc, Relevant only for STPOs (for contracts the element ABGRU is used). Decision of which contract types are considered as STPOs is based on tlgnr_sap_contract_type_bs.CONTRACT_TYPE_IS_STPO_FLAG = true.) If the element value is "X" (order entry is not allowed, dispocard restriction invalidated) -->                
+                <ZKBMENG></ZKBMENG><!-- not used -->
+                <ZKLMENG></ZKLMENG><!-- not used -->
+                <ZBPREME></ZBPREME><!-- not used -->
+                <ZSMEINS></ZSMEINS><!-- not used -->
+                <ZBMEINS></ZBMEINS><!-- Base unit of measure, LOGON table: tlgns_sap_contract_item.target_quantity_uom_cd -->
+                <ZLFMNG></ZLFMNG><!-- not used -->
+                <ZLADGR></ZLADGR><!-- not used -->
+                <ZKONDM></ZKONDM><!-- not used -->
+                <ZVSBED></ZVSBED><!-- not used -->
+                <ZPKZTLF></ZPKZTLF><!-- not used -->
+                <ZBSTAE></ZBSTAE><!-- not used -->
+                <ZPPLTYP></ZPPLTYP><!-- not used -->
+                <ZPCMPRE></ZPCMPRE><!-- not used -->
+                <ZPPERFK></ZPPERFK><!-- not used -->
+                <ZPPERRL></ZPPERRL><!-- not used -->
+                <ZKURSK></ZKURSK><!-- not used -->
+                <ZFPLNR></ZFPLNR><!-- not used -->
+                <ZPFAKSP></ZPFAKSP><!-- not used -->
+                <ZPVAT></ZPVAT><!-- VAT, mapped to TLGNS_SAP_CONTRACT_ITEM.VAT_CODE -->
+                <ZVOLUM></ZVOLUM><!-- not used -->
+                <ZVOLEH></ZVOLEH><!-- not used -->
+                <ZMAGRV></ZMAGRV><!-- not used -->
+                <ZTRMTYP></ZTRMTYP><!-- not used -->
+            </order_item_additional_data>
+            <order_item_transport_data>
+                <TPRICE></TPRICE><!-- not used -->
+                <ZPTRATY></ZPTRATY><!-- not used -->
+                <ZCBST></ZCBST><!-- not used -->
+                <Z_WTN></Z_WTN><!-- not used -->
+                <ZCBSD></ZCBSD><!-- not used -->
+                <Z_ADR1></Z_ADR1><!-- not used -->
+                <Z_ADR2></Z_ADR2><!-- not used -->
+                <Z_WAD></Z_WAD><!-- not used -->
+                <Z_ADR3></Z_ADR3><!-- not used -->
+                <ZTRAGR></ZTRAGR><!-- not used -->
+                <ZZKMSD></ZZKMSD><!-- not used -->
+                <ZRADIAL></ZRADIAL><!-- not used -->
+            </order_item_transport_data>
+            <order_item_afr_data>
+                <Z_QCRFP></Z_QCRFP><!-- not used -->
+                <Z_WAD></Z_WAD><!-- not used -->
+                <Z_EWC></Z_EWC><!-- not used -->
+                <Z_NATIONALCODE></Z_NATIONALCODE><!-- not used -->
+                <Z_OPERATIONALPROCESS></Z_OPERATIONALPROCESS><!-- not used -->
+                <Z_HAZARDOUSCRITERIA1></Z_HAZARDOUSCRITERIA1><!-- not used -->
+                <Z_SPLITTNEDDED></Z_SPLITTNEDDED><!-- not used -->
+                <Z_YNOPLAN></Z_YNOPLAN><!-- not used -->
+                <Z_ADR1></Z_ADR1><!-- not used -->
+                <Z_ADR2></Z_ADR2><!-- not used -->
+                <Z_ADR3></Z_ADR3><!-- not used -->
+                <ZCBSD></ZCBSD>
+            </order_item_afr_data>
+            <order_item_extra_data>
+            	<ZQUALZ></ZQUALZ><!-- Qualifier for IDoc additional data, Used for Advance Payment contracts (LOGON-6624) in the course of pringing the export invoice (LOGON-6647). -->
+            	<ZCUSADD></ZCUSADD><!-- Character String 60, Advance Invoice Number; In case ZQUALZ == “ADV” Tlgns_sap_contract_item. ADVANCE_INVOICE_NO -->
+            	<ZCUSADD_BEZ></ZCUSADD_BEZ><!-- not used -->
+            </order_item_extra_data>
+            <document_item_reference_data>
+                <VBELV></VBELV><!-- not used -->
+                <POSNV></POSNV><!-- not used -->
+                <VGBEL></VGBEL><!-- not used -->
+                <VGPOS></VGPOS><!-- not used -->
+                <BSTKD_E></BSTKD_E><!-- not used -->
+            </document_item_reference_data>
+            <document_item_date>
+                <FKDAT></FKDAT><!-- not used -->
+            </document_item_date>
+            <document_item_taxes>
+                <MWSBT></MWSBT><!-- not used -->
+            </document_item_taxes>
+            <document_item_schedule_lines>
+                <WMENG></WMENG><!-- not used -->
+            </document_item_schedule_lines>
+            <document_item_object_identification>
+                <MATNR>ADN1404860</MATNR><!-- Material number, LOGON table: tlgns_sap_contract_item.sap_material_id -->
+                <CHARG></CHARG><!-- not used -->
+                <ARKTX></ARKTX><!-- not used -->
+                <KDMAT></KDMAT><!-- not used -->
+                <EAN11></EAN11><!-- not used -->
+            </document_item_object_identification>
+            <document_item_text_identification>
+                <TDID></TDID><!-- Text id, first repetition of TDLINE for TDID = “0003” and TSSPRAS_ISO equals to the shipto language and contract type is an Advanced Payment Contract.-->
+                <TSSPRAS_ISO></TSSPRAS_ISO><!-- not used -->
+                <document_item_texts>
+                    <TDLINE></TDLINE><!-- not used -->
+                </document_item_texts>
+            </document_item_text_identification>
+            <document_item_additional_data>
+                <KZWI1></KZWI1><!-- not used -->
+                <KZWI2></KZWI2><!-- not used -->
+                <KZWI3></KZWI3><!-- not used -->
+                <KZWI4></KZWI4><!-- not used -->
+                <KZWI5></KZWI5><!-- not used -->
+                <KZWI6></KZWI6><!-- not used -->
+                <MVGR1></MVGR1><!-- Material group 1, LOGON table: tlgns_sap_contract_item.material_group_1 -->
+                <MVGR2></MVGR2><!-- Material group 2, LOGON table: tlgns_sap_contract_item.material_group_2 -->
+                <MVGR3></MVGR3><!-- Material group 3, LOGON table: tlgns_sap_contract_item.material_group_3 -->
+                <MVGR4></MVGR4><!-- Material group 4, LOGON table: tlgns_sap_contract_item.material_group_4 -->
+                <MVGR5></MVGR5><!-- Material group 5, LOGON table: tlgns_sap_contract_item.material_group_5 -->
+                <KDKG1></KDKG1><!-- not used -->
+                <KDKG2></KDKG2><!-- not used -->
+                <KDKG3></KDKG3><!-- not used -->
+                <KDKG4></KDKG4><!-- not used -->
+                <KDKG5></KDKG5><!-- not used -->
+            </document_item_additional_data>
+            <document_item_terms_of_delivery>
+                <LKOND></LKOND><!-- not used -->
+            </document_item_terms_of_delivery>
+            <document_item_partner_information>
+                <PARVW></PARVW><!-- not used -->
+                <PARTN></PARTN><!-- not used -->
+                <LIFNR></LIFNR><!-- not used -->
+                <NAME1></NAME1><!-- not used -->
+                <NAME2></NAME2><!-- not used -->
+                <NAME3></NAME3><!-- not used -->
+                <NAME4></NAME4><!-- not used -->
+                <STRAS></STRAS><!-- not used -->
+                <STRS2></STRS2><!-- not used -->
+                <PFACH></PFACH><!-- not used -->
+                <ORT01></ORT01><!-- not used -->
+                <COUNC></COUNC><!-- not used -->
+                <PSTLZ></PSTLZ><!-- not used -->
+                <PSTL2></PSTL2><!-- not used -->
+                <LAND1></LAND1><!-- not used -->
+                <ABLAD></ABLAD><!-- not used -->
+                <PERNR></PERNR><!-- not used -->
+                <PARNR></PARNR><!-- not used -->
+                <TELF1></TELF1><!-- not used -->
+                <TELF2></TELF2><!-- not used -->
+                <TELBX></TELBX><!-- not used -->
+                <TELFX></TELFX><!-- not used -->
+                <TELTX></TELTX><!-- not used -->
+                <TELX1></TELX1><!-- not used -->
+                <SPRAS></SPRAS><!-- not used -->
+                <ANRED></ANRED><!-- not used -->
+                <ORT02></ORT02><!-- not used -->
+                <HAUSN></HAUSN><!-- not used -->
+                <STOCK></STOCK><!-- not used -->
+                <REGIO></REGIO><!-- not used -->
+                <PARGE></PARGE><!-- not used -->
+                <ISOAL></ISOAL><!-- not used -->
+                <ISONU></ISONU><!-- not used -->
+                <FCODE></FCODE><!-- not used -->
+                <IHREZ></IHREZ><!-- not used -->
+                <BNAME></BNAME><!-- not used -->
+                <PAORG></PAORG><!-- not used -->
+                <ORGTX></ORGTX><!-- not used -->
+                <PAGRU></PAGRU><!-- not used -->
+                <KNREF></KNREF><!-- not used -->
+                <ILNNR></ILNNR><!-- not used -->
+                <PFORT></PFORT><!-- not used -->
+                <SPRAS_ISO></SPRAS_ISO><!-- not used -->
+                <TITLE></TITLE><!-- not used -->
+            </document_item_partner_information>
+        </document_item_general_data>
+        <document_item_general_data>
+            <POSEX>50</POSEX><!--- Item number, LOGON table: tlgns_sap_contract_item.contract_item_no -->
+            <MENGE></MENGE><!-- not used -->
+            <MENEE></MENEE><!-- not used -->
+            <BMNG2></BMNG2><!-- not used -->
+            <PMENE></PMENE><!-- not used -->
+            <ABFTZ></ABFTZ><!-- not used -->
+            <VPREI></VPREI><!-- not used -->
+            <PEINH></PEINH><!-- not used -->
+            <NETWR></NETWR><!-- Net value of item in document currency, LOGON table: tlgns_sap_contract_item.net_value -->
+            <NTGEW></NTGEW><!-- not used -->
+            <GEWEI></GEWEI><!-- not used -->
+            <PREIS></PREIS><!-- not used -->
+            <MATKL></MATKL><!-- not used -->
+            <UEPOS></UEPOS><!-- not used -->
+            <GRKOR></GRKOR><!-- not used -->
+            <ABGRU></ABGRU><!-- Reason for rejection of quotations and sales orders, If the element is empty/not sent (order entry is allowed) tlgns_sap_contract_item. MARKED_FOR_REJECT_OR_DELETION = 0 else 1 -->
+            <EVERS></EVERS><!-- not used -->
+            <FIXMG></FIXMG><!-- not used -->
+            <BRGEW></BRGEW><!-- not used -->
+            <PSTYV></PSTYV><!-- Document item category, LOGON table: tlgns_sap_contract_item.item_category -->
+            <ABRVW></ABRVW><!-- not used -->
+            <WERKS></WERKS><!-- Plant -->
+            <LPRIO></LPRIO><!-- not used -->
+            <ROUTE></ROUTE><!-- not used -->
+            <LGORT></LGORT><!-- not used -->
+            <VSTEL></VSTEL><!-- not used -->
+            <IUID_RELEVANT></IUID_RELEVANT>
+            <order_item_additional_data>
+                <ZPTENTR></ZPTENTR><!-- Target quantity in sales units, LOGON table: tlgns_sap_contract_item.target_quantity -->
+                <ZRETURN></ZRETURN><!-- not used -->
+                <ZFREECHR></ZFREECHR><!-- not used -->
+                <ZPVKORG></ZPVKORG><!-- not used -->
+                <ZPVTWEG></ZPVTWEG><!-- not used -->
+                <ZPSPART></ZPSPART><!-- not used -->
+                <ZPZTERM></ZPZTERM><!-- not used -->
+                <ZLOEKZ></ZLOEKZ><!-- Deletion indicator purchasing doc, Relevant only for STPOs (for contracts the element ABGRU is used). Decision of which contract types are considered as STPOs is based on tlgnr_sap_contract_type_bs.CONTRACT_TYPE_IS_STPO_FLAG = true.) If the element value is "X" (order entry is not allowed, dispocard restriction invalidated) -->                
+                <ZKBMENG></ZKBMENG><!-- not used -->
+                <ZKLMENG></ZKLMENG><!-- not used -->
+                <ZBPREME></ZBPREME><!-- not used -->
+                <ZSMEINS></ZSMEINS><!-- not used -->
+                <ZBMEINS></ZBMEINS><!-- Base unit of measure, LOGON table: tlgns_sap_contract_item.target_quantity_uom_cd -->
+                <ZLFMNG></ZLFMNG><!-- not used -->
+                <ZLADGR></ZLADGR><!-- not used -->
+                <ZKONDM></ZKONDM><!-- not used -->
+                <ZVSBED></ZVSBED><!-- not used -->
+                <ZPKZTLF></ZPKZTLF><!-- not used -->
+                <ZBSTAE></ZBSTAE><!-- not used -->
+                <ZPPLTYP></ZPPLTYP><!-- not used -->
+                <ZPCMPRE></ZPCMPRE><!-- not used -->
+                <ZPPERFK></ZPPERFK><!-- not used -->
+                <ZPPERRL></ZPPERRL><!-- not used -->
+                <ZKURSK></ZKURSK><!-- not used -->
+                <ZFPLNR></ZFPLNR><!-- not used -->
+                <ZPFAKSP></ZPFAKSP><!-- not used -->
+                <ZPVAT></ZPVAT><!-- VAT, mapped to TLGNS_SAP_CONTRACT_ITEM.VAT_CODE -->
+                <ZVOLUM></ZVOLUM><!-- not used -->
+                <ZVOLEH></ZVOLEH><!-- not used -->
+                <ZMAGRV></ZMAGRV><!-- not used -->
+                <ZTRMTYP></ZTRMTYP><!-- not used -->
+            </order_item_additional_data>
+            <order_item_transport_data>
+                <TPRICE></TPRICE><!-- not used -->
+                <ZPTRATY></ZPTRATY><!-- not used -->
+                <ZCBST></ZCBST><!-- not used -->
+                <Z_WTN></Z_WTN><!-- not used -->
+                <ZCBSD></ZCBSD><!-- not used -->
+                <Z_ADR1></Z_ADR1><!-- not used -->
+                <Z_ADR2></Z_ADR2><!-- not used -->
+                <Z_WAD></Z_WAD><!-- not used -->
+                <Z_ADR3></Z_ADR3><!-- not used -->
+                <ZTRAGR></ZTRAGR><!-- not used -->
+                <ZZKMSD></ZZKMSD><!-- not used -->
+                <ZRADIAL></ZRADIAL><!-- not used -->
+            </order_item_transport_data>
+            <order_item_afr_data>
+                <Z_QCRFP></Z_QCRFP><!-- not used -->
+                <Z_WAD></Z_WAD><!-- not used -->
+                <Z_EWC></Z_EWC><!-- not used -->
+                <Z_NATIONALCODE></Z_NATIONALCODE><!-- not used -->
+                <Z_OPERATIONALPROCESS></Z_OPERATIONALPROCESS><!-- not used -->
+                <Z_HAZARDOUSCRITERIA1></Z_HAZARDOUSCRITERIA1><!-- not used -->
+                <Z_SPLITTNEDDED></Z_SPLITTNEDDED><!-- not used -->
+                <Z_YNOPLAN></Z_YNOPLAN><!-- not used -->
+                <Z_ADR1></Z_ADR1><!-- not used -->
+                <Z_ADR2></Z_ADR2><!-- not used -->
+                <Z_ADR3></Z_ADR3><!-- not used -->
+                <ZCBSD></ZCBSD>
+            </order_item_afr_data>
+            <order_item_extra_data>
+            	<ZQUALZ></ZQUALZ><!-- Qualifier for IDoc additional data, Used for Advance Payment contracts (LOGON-6624) in the course of pringing the export invoice (LOGON-6647). -->
+            	<ZCUSADD></ZCUSADD><!-- Character String 60, Advance Invoice Number; In case ZQUALZ == “ADV” Tlgns_sap_contract_item. ADVANCE_INVOICE_NO -->
+            	<ZCUSADD_BEZ></ZCUSADD_BEZ><!-- not used -->
+            </order_item_extra_data>
+            <document_item_reference_data>
+                <VBELV></VBELV><!-- not used -->
+                <POSNV></POSNV><!-- not used -->
+                <VGBEL></VGBEL><!-- not used -->
+                <VGPOS></VGPOS><!-- not used -->
+                <BSTKD_E></BSTKD_E><!-- not used -->
+            </document_item_reference_data>
+            <document_item_date>
+                <FKDAT></FKDAT><!-- not used -->
+            </document_item_date>
+            <document_item_taxes>
+                <MWSBT></MWSBT><!-- not used -->
+            </document_item_taxes>
+            <document_item_schedule_lines>
+                <WMENG></WMENG><!-- not used -->
+            </document_item_schedule_lines>
+            <document_item_object_identification>
+                <MATNR>ADN1404863</MATNR><!-- Material number, LOGON table: tlgns_sap_contract_item.sap_material_id -->
+                <CHARG></CHARG><!-- not used -->
+                <ARKTX></ARKTX><!-- not used -->
+                <KDMAT></KDMAT><!-- not used -->
+                <EAN11></EAN11><!-- not used -->
+            </document_item_object_identification>
+            <document_item_text_identification>
+                <TDID></TDID><!-- Text id, first repetition of TDLINE for TDID = “0003” and TSSPRAS_ISO equals to the shipto language and contract type is an Advanced Payment Contract.-->
+                <TSSPRAS_ISO></TSSPRAS_ISO><!-- not used -->
+                <document_item_texts>
+                    <TDLINE></TDLINE><!-- not used -->
+                </document_item_texts>
+            </document_item_text_identification>
+            <document_item_additional_data>
+                <KZWI1></KZWI1><!-- not used -->
+                <KZWI2></KZWI2><!-- not used -->
+                <KZWI3></KZWI3><!-- not used -->
+                <KZWI4></KZWI4><!-- not used -->
+                <KZWI5></KZWI5><!-- not used -->
+                <KZWI6></KZWI6><!-- not used -->
+                <MVGR1></MVGR1><!-- Material group 1, LOGON table: tlgns_sap_contract_item.material_group_1 -->
+                <MVGR2></MVGR2><!-- Material group 2, LOGON table: tlgns_sap_contract_item.material_group_2 -->
+                <MVGR3></MVGR3><!-- Material group 3, LOGON table: tlgns_sap_contract_item.material_group_3 -->
+                <MVGR4></MVGR4><!-- Material group 4, LOGON table: tlgns_sap_contract_item.material_group_4 -->
+                <MVGR5></MVGR5><!-- Material group 5, LOGON table: tlgns_sap_contract_item.material_group_5 -->
+                <KDKG1></KDKG1><!-- not used -->
+                <KDKG2></KDKG2><!-- not used -->
+                <KDKG3></KDKG3><!-- not used -->
+                <KDKG4></KDKG4><!-- not used -->
+                <KDKG5></KDKG5><!-- not used -->
+            </document_item_additional_data>
+            <document_item_terms_of_delivery>
+                <LKOND></LKOND><!-- not used -->
+            </document_item_terms_of_delivery>
+            <document_item_partner_information>
+                <PARVW></PARVW><!-- not used -->
+                <PARTN></PARTN><!-- not used -->
+                <LIFNR></LIFNR><!-- not used -->
+                <NAME1></NAME1><!-- not used -->
+                <NAME2></NAME2><!-- not used -->
+                <NAME3></NAME3><!-- not used -->
+                <NAME4></NAME4><!-- not used -->
+                <STRAS></STRAS><!-- not used -->
+                <STRS2></STRS2><!-- not used -->
+                <PFACH></PFACH><!-- not used -->
+                <ORT01></ORT01><!-- not used -->
+                <COUNC></COUNC><!-- not used -->
+                <PSTLZ></PSTLZ><!-- not used -->
+                <PSTL2></PSTL2><!-- not used -->
+                <LAND1></LAND1><!-- not used -->
+                <ABLAD></ABLAD><!-- not used -->
+                <PERNR></PERNR><!-- not used -->
+                <PARNR></PARNR><!-- not used -->
+                <TELF1></TELF1><!-- not used -->
+                <TELF2></TELF2><!-- not used -->
+                <TELBX></TELBX><!-- not used -->
+                <TELFX></TELFX><!-- not used -->
+                <TELTX></TELTX><!-- not used -->
+                <TELX1></TELX1><!-- not used -->
+                <SPRAS></SPRAS><!-- not used -->
+                <ANRED></ANRED><!-- not used -->
+                <ORT02></ORT02><!-- not used -->
+                <HAUSN></HAUSN><!-- not used -->
+                <STOCK></STOCK><!-- not used -->
+                <REGIO></REGIO><!-- not used -->
+                <PARGE></PARGE><!-- not used -->
+                <ISOAL></ISOAL><!-- not used -->
+                <ISONU></ISONU><!-- not used -->
+                <FCODE></FCODE><!-- not used -->
+                <IHREZ></IHREZ><!-- not used -->
+                <BNAME></BNAME><!-- not used -->
+                <PAORG></PAORG><!-- not used -->
+                <ORGTX></ORGTX><!-- not used -->
+                <PAGRU></PAGRU><!-- not used -->
+                <KNREF></KNREF><!-- not used -->
+                <ILNNR></ILNNR><!-- not used -->
+                <PFORT></PFORT><!-- not used -->
+                <SPRAS_ISO></SPRAS_ISO><!-- not used -->
+                <TITLE></TITLE><!-- not used -->
+            </document_item_partner_information>
+        </document_item_general_data>
+        <document_item_general_data>
+            <POSEX>60</POSEX><!--- Item number, LOGON table: tlgns_sap_contract_item.contract_item_no -->
+            <MENGE></MENGE><!-- not used -->
+            <MENEE></MENEE><!-- not used -->
+            <BMNG2></BMNG2><!-- not used -->
+            <PMENE></PMENE><!-- not used -->
+            <ABFTZ></ABFTZ><!-- not used -->
+            <VPREI></VPREI><!-- not used -->
+            <PEINH></PEINH><!-- not used -->
+            <NETWR></NETWR><!-- Net value of item in document currency, LOGON table: tlgns_sap_contract_item.net_value -->
+            <NTGEW></NTGEW><!-- not used -->
+            <GEWEI></GEWEI><!-- not used -->
+            <PREIS></PREIS><!-- not used -->
+            <MATKL></MATKL><!-- not used -->
+            <UEPOS></UEPOS><!-- not used -->
+            <GRKOR></GRKOR><!-- not used -->
+            <ABGRU></ABGRU><!-- Reason for rejection of quotations and sales orders, If the element is empty/not sent (order entry is allowed) tlgns_sap_contract_item. MARKED_FOR_REJECT_OR_DELETION = 0 else 1 -->
+            <EVERS></EVERS><!-- not used -->
+            <FIXMG></FIXMG><!-- not used -->
+            <BRGEW></BRGEW><!-- not used -->
+            <PSTYV></PSTYV><!-- Document item category, LOGON table: tlgns_sap_contract_item.item_category -->
+            <ABRVW></ABRVW><!-- not used -->
+            <WERKS></WERKS><!-- Plant -->
+            <LPRIO></LPRIO><!-- not used -->
+            <ROUTE></ROUTE><!-- not used -->
+            <LGORT></LGORT><!-- not used -->
+            <VSTEL></VSTEL><!-- not used -->
+            <IUID_RELEVANT></IUID_RELEVANT>
+            <order_item_additional_data>
+                <ZPTENTR></ZPTENTR><!-- Target quantity in sales units, LOGON table: tlgns_sap_contract_item.target_quantity -->
+                <ZRETURN></ZRETURN><!-- not used -->
+                <ZFREECHR></ZFREECHR><!-- not used -->
+                <ZPVKORG></ZPVKORG><!-- not used -->
+                <ZPVTWEG></ZPVTWEG><!-- not used -->
+                <ZPSPART></ZPSPART><!-- not used -->
+                <ZPZTERM></ZPZTERM><!-- not used -->
+                <ZLOEKZ></ZLOEKZ><!-- Deletion indicator purchasing doc, Relevant only for STPOs (for contracts the element ABGRU is used). Decision of which contract types are considered as STPOs is based on tlgnr_sap_contract_type_bs.CONTRACT_TYPE_IS_STPO_FLAG = true.) If the element value is "X" (order entry is not allowed, dispocard restriction invalidated) -->                
+                <ZKBMENG></ZKBMENG><!-- not used -->
+                <ZKLMENG></ZKLMENG><!-- not used -->
+                <ZBPREME></ZBPREME><!-- not used -->
+                <ZSMEINS></ZSMEINS><!-- not used -->
+                <ZBMEINS></ZBMEINS><!-- Base unit of measure, LOGON table: tlgns_sap_contract_item.target_quantity_uom_cd -->
+                <ZLFMNG></ZLFMNG><!-- not used -->
+                <ZLADGR></ZLADGR><!-- not used -->
+                <ZKONDM></ZKONDM><!-- not used -->
+                <ZVSBED></ZVSBED><!-- not used -->
+                <ZPKZTLF></ZPKZTLF><!-- not used -->
+                <ZBSTAE></ZBSTAE><!-- not used -->
+                <ZPPLTYP></ZPPLTYP><!-- not used -->
+                <ZPCMPRE></ZPCMPRE><!-- not used -->
+                <ZPPERFK></ZPPERFK><!-- not used -->
+                <ZPPERRL></ZPPERRL><!-- not used -->
+                <ZKURSK></ZKURSK><!-- not used -->
+                <ZFPLNR></ZFPLNR><!-- not used -->
+                <ZPFAKSP></ZPFAKSP><!-- not used -->
+                <ZPVAT></ZPVAT><!-- VAT, mapped to TLGNS_SAP_CONTRACT_ITEM.VAT_CODE -->
+                <ZVOLUM></ZVOLUM><!-- not used -->
+                <ZVOLEH></ZVOLEH><!-- not used -->
+                <ZMAGRV></ZMAGRV><!-- not used -->
+                <ZTRMTYP></ZTRMTYP><!-- not used -->
+            </order_item_additional_data>
+            <order_item_transport_data>
+                <TPRICE></TPRICE><!-- not used -->
+                <ZPTRATY></ZPTRATY><!-- not used -->
+                <ZCBST></ZCBST><!-- not used -->
+                <Z_WTN></Z_WTN><!-- not used -->
+                <ZCBSD></ZCBSD><!-- not used -->
+                <Z_ADR1></Z_ADR1><!-- not used -->
+                <Z_ADR2></Z_ADR2><!-- not used -->
+                <Z_WAD></Z_WAD><!-- not used -->
+                <Z_ADR3></Z_ADR3><!-- not used -->
+                <ZTRAGR></ZTRAGR><!-- not used -->
+                <ZZKMSD></ZZKMSD><!-- not used -->
+                <ZRADIAL></ZRADIAL><!-- not used -->
+            </order_item_transport_data>
+            <order_item_afr_data>
+                <Z_QCRFP></Z_QCRFP><!-- not used -->
+                <Z_WAD></Z_WAD><!-- not used -->
+                <Z_EWC></Z_EWC><!-- not used -->
+                <Z_NATIONALCODE></Z_NATIONALCODE><!-- not used -->
+                <Z_OPERATIONALPROCESS></Z_OPERATIONALPROCESS><!-- not used -->
+                <Z_HAZARDOUSCRITERIA1></Z_HAZARDOUSCRITERIA1><!-- not used -->
+                <Z_SPLITTNEDDED></Z_SPLITTNEDDED><!-- not used -->
+                <Z_YNOPLAN></Z_YNOPLAN><!-- not used -->
+                <Z_ADR1></Z_ADR1><!-- not used -->
+                <Z_ADR2></Z_ADR2><!-- not used -->
+                <Z_ADR3></Z_ADR3><!-- not used -->
+                <ZCBSD></ZCBSD>
+            </order_item_afr_data>
+            <order_item_extra_data>
+            	<ZQUALZ></ZQUALZ><!-- Qualifier for IDoc additional data, Used for Advance Payment contracts (LOGON-6624) in the course of pringing the export invoice (LOGON-6647). -->
+            	<ZCUSADD></ZCUSADD><!-- Character String 60, Advance Invoice Number; In case ZQUALZ == “ADV” Tlgns_sap_contract_item. ADVANCE_INVOICE_NO -->
+            	<ZCUSADD_BEZ></ZCUSADD_BEZ><!-- not used -->
+            </order_item_extra_data>
+            <document_item_reference_data>
+                <VBELV></VBELV><!-- not used -->
+                <POSNV></POSNV><!-- not used -->
+                <VGBEL></VGBEL><!-- not used -->
+                <VGPOS></VGPOS><!-- not used -->
+                <BSTKD_E></BSTKD_E><!-- not used -->
+            </document_item_reference_data>
+            <document_item_date>
+                <FKDAT></FKDAT><!-- not used -->
+            </document_item_date>
+            <document_item_taxes>
+                <MWSBT></MWSBT><!-- not used -->
+            </document_item_taxes>
+            <document_item_schedule_lines>
+                <WMENG></WMENG><!-- not used -->
+            </document_item_schedule_lines>
+            <document_item_object_identification>
+                <MATNR>ADN1405002</MATNR><!-- Material number, LOGON table: tlgns_sap_contract_item.sap_material_id -->
+                <CHARG></CHARG><!-- not used -->
+                <ARKTX></ARKTX><!-- not used -->
+                <KDMAT></KDMAT><!-- not used -->
+                <EAN11></EAN11><!-- not used -->
+            </document_item_object_identification>
+            <document_item_text_identification>
+                <TDID></TDID><!-- Text id, first repetition of TDLINE for TDID = “0003” and TSSPRAS_ISO equals to the shipto language and contract type is an Advanced Payment Contract.-->
+                <TSSPRAS_ISO></TSSPRAS_ISO><!-- not used -->
+                <document_item_texts>
+                    <TDLINE></TDLINE><!-- not used -->
+                </document_item_texts>
+            </document_item_text_identification>
+            <document_item_additional_data>
+                <KZWI1></KZWI1><!-- not used -->
+                <KZWI2></KZWI2><!-- not used -->
+                <KZWI3></KZWI3><!-- not used -->
+                <KZWI4></KZWI4><!-- not used -->
+                <KZWI5></KZWI5><!-- not used -->
+                <KZWI6></KZWI6><!-- not used -->
+                <MVGR1></MVGR1><!-- Material group 1, LOGON table: tlgns_sap_contract_item.material_group_1 -->
+                <MVGR2></MVGR2><!-- Material group 2, LOGON table: tlgns_sap_contract_item.material_group_2 -->
+                <MVGR3></MVGR3><!-- Material group 3, LOGON table: tlgns_sap_contract_item.material_group_3 -->
+                <MVGR4></MVGR4><!-- Material group 4, LOGON table: tlgns_sap_contract_item.material_group_4 -->
+                <MVGR5></MVGR5><!-- Material group 5, LOGON table: tlgns_sap_contract_item.material_group_5 -->
+                <KDKG1></KDKG1><!-- not used -->
+                <KDKG2></KDKG2><!-- not used -->
+                <KDKG3></KDKG3><!-- not used -->
+                <KDKG4></KDKG4><!-- not used -->
+                <KDKG5></KDKG5><!-- not used -->
+            </document_item_additional_data>
+            <document_item_terms_of_delivery>
+                <LKOND></LKOND><!-- not used -->
+            </document_item_terms_of_delivery>
+            <document_item_partner_information>
+                <PARVW></PARVW><!-- not used -->
+                <PARTN></PARTN><!-- not used -->
+                <LIFNR></LIFNR><!-- not used -->
+                <NAME1></NAME1><!-- not used -->
+                <NAME2></NAME2><!-- not used -->
+                <NAME3></NAME3><!-- not used -->
+                <NAME4></NAME4><!-- not used -->
+                <STRAS></STRAS><!-- not used -->
+                <STRS2></STRS2><!-- not used -->
+                <PFACH></PFACH><!-- not used -->
+                <ORT01></ORT01><!-- not used -->
+                <COUNC></COUNC><!-- not used -->
+                <PSTLZ></PSTLZ><!-- not used -->
+                <PSTL2></PSTL2><!-- not used -->
+                <LAND1></LAND1><!-- not used -->
+                <ABLAD></ABLAD><!-- not used -->
+                <PERNR></PERNR><!-- not used -->
+                <PARNR></PARNR><!-- not used -->
+                <TELF1></TELF1><!-- not used -->
+                <TELF2></TELF2><!-- not used -->
+                <TELBX></TELBX><!-- not used -->
+                <TELFX></TELFX><!-- not used -->
+                <TELTX></TELTX><!-- not used -->
+                <TELX1></TELX1><!-- not used -->
+                <SPRAS></SPRAS><!-- not used -->
+                <ANRED></ANRED><!-- not used -->
+                <ORT02></ORT02><!-- not used -->
+                <HAUSN></HAUSN><!-- not used -->
+                <STOCK></STOCK><!-- not used -->
+                <REGIO></REGIO><!-- not used -->
+                <PARGE></PARGE><!-- not used -->
+                <ISOAL></ISOAL><!-- not used -->
+                <ISONU></ISONU><!-- not used -->
+                <FCODE></FCODE><!-- not used -->
+                <IHREZ></IHREZ><!-- not used -->
+                <BNAME></BNAME><!-- not used -->
+                <PAORG></PAORG><!-- not used -->
+                <ORGTX></ORGTX><!-- not used -->
+                <PAGRU></PAGRU><!-- not used -->
+                <KNREF></KNREF><!-- not used -->
+                <ILNNR></ILNNR><!-- not used -->
+                <PFORT></PFORT><!-- not used -->
+                <SPRAS_ISO></SPRAS_ISO><!-- not used -->
+                <TITLE></TITLE><!-- not used -->
+            </document_item_partner_information>
+        </document_item_general_data>
+        <document_item_general_data>
+            <POSEX>70</POSEX><!--- Item number, LOGON table: tlgns_sap_contract_item.contract_item_no -->
+            <MENGE></MENGE><!-- not used -->
+            <MENEE></MENEE><!-- not used -->
+            <BMNG2></BMNG2><!-- not used -->
+            <PMENE></PMENE><!-- not used -->
+            <ABFTZ></ABFTZ><!-- not used -->
+            <VPREI></VPREI><!-- not used -->
+            <PEINH></PEINH><!-- not used -->
+            <NETWR></NETWR><!-- Net value of item in document currency, LOGON table: tlgns_sap_contract_item.net_value -->
+            <NTGEW></NTGEW><!-- not used -->
+            <GEWEI></GEWEI><!-- not used -->
+            <PREIS></PREIS><!-- not used -->
+            <MATKL></MATKL><!-- not used -->
+            <UEPOS></UEPOS><!-- not used -->
+            <GRKOR></GRKOR><!-- not used -->
+            <ABGRU></ABGRU><!-- Reason for rejection of quotations and sales orders, If the element is empty/not sent (order entry is allowed) tlgns_sap_contract_item. MARKED_FOR_REJECT_OR_DELETION = 0 else 1 -->
+            <EVERS></EVERS><!-- not used -->
+            <FIXMG></FIXMG><!-- not used -->
+            <BRGEW></BRGEW><!-- not used -->
+            <PSTYV></PSTYV><!-- Document item category, LOGON table: tlgns_sap_contract_item.item_category -->
+            <ABRVW></ABRVW><!-- not used -->
+            <WERKS></WERKS><!-- Plant -->
+            <LPRIO></LPRIO><!-- not used -->
+            <ROUTE></ROUTE><!-- not used -->
+            <LGORT></LGORT><!-- not used -->
+            <VSTEL></VSTEL><!-- not used -->
+            <IUID_RELEVANT></IUID_RELEVANT>
+            <order_item_additional_data>
+                <ZPTENTR></ZPTENTR><!-- Target quantity in sales units, LOGON table: tlgns_sap_contract_item.target_quantity -->
+                <ZRETURN></ZRETURN><!-- not used -->
+                <ZFREECHR></ZFREECHR><!-- not used -->
+                <ZPVKORG></ZPVKORG><!-- not used -->
+                <ZPVTWEG></ZPVTWEG><!-- not used -->
+                <ZPSPART></ZPSPART><!-- not used -->
+                <ZPZTERM></ZPZTERM><!-- not used -->
+                <ZLOEKZ></ZLOEKZ><!-- Deletion indicator purchasing doc, Relevant only for STPOs (for contracts the element ABGRU is used). Decision of which contract types are considered as STPOs is based on tlgnr_sap_contract_type_bs.CONTRACT_TYPE_IS_STPO_FLAG = true.) If the element value is "X" (order entry is not allowed, dispocard restriction invalidated) -->                
+                <ZKBMENG></ZKBMENG><!-- not used -->
+                <ZKLMENG></ZKLMENG><!-- not used -->
+                <ZBPREME></ZBPREME><!-- not used -->
+                <ZSMEINS></ZSMEINS><!-- not used -->
+                <ZBMEINS></ZBMEINS><!-- Base unit of measure, LOGON table: tlgns_sap_contract_item.target_quantity_uom_cd -->
+                <ZLFMNG></ZLFMNG><!-- not used -->
+                <ZLADGR></ZLADGR><!-- not used -->
+                <ZKONDM></ZKONDM><!-- not used -->
+                <ZVSBED></ZVSBED><!-- not used -->
+                <ZPKZTLF></ZPKZTLF><!-- not used -->
+                <ZBSTAE></ZBSTAE><!-- not used -->
+                <ZPPLTYP></ZPPLTYP><!-- not used -->
+                <ZPCMPRE></ZPCMPRE><!-- not used -->
+                <ZPPERFK></ZPPERFK><!-- not used -->
+                <ZPPERRL></ZPPERRL><!-- not used -->
+                <ZKURSK></ZKURSK><!-- not used -->
+                <ZFPLNR></ZFPLNR><!-- not used -->
+                <ZPFAKSP></ZPFAKSP><!-- not used -->
+                <ZPVAT></ZPVAT><!-- VAT, mapped to TLGNS_SAP_CONTRACT_ITEM.VAT_CODE -->
+                <ZVOLUM></ZVOLUM><!-- not used -->
+                <ZVOLEH></ZVOLEH><!-- not used -->
+                <ZMAGRV></ZMAGRV><!-- not used -->
+                <ZTRMTYP></ZTRMTYP><!-- not used -->
+            </order_item_additional_data>
+            <order_item_transport_data>
+                <TPRICE></TPRICE><!-- not used -->
+                <ZPTRATY></ZPTRATY><!-- not used -->
+                <ZCBST></ZCBST><!-- not used -->
+                <Z_WTN></Z_WTN><!-- not used -->
+                <ZCBSD></ZCBSD><!-- not used -->
+                <Z_ADR1></Z_ADR1><!-- not used -->
+                <Z_ADR2></Z_ADR2><!-- not used -->
+                <Z_WAD></Z_WAD><!-- not used -->
+                <Z_ADR3></Z_ADR3><!-- not used -->
+                <ZTRAGR></ZTRAGR><!-- not used -->
+                <ZZKMSD></ZZKMSD><!-- not used -->
+                <ZRADIAL></ZRADIAL><!-- not used -->
+            </order_item_transport_data>
+            <order_item_afr_data>
+                <Z_QCRFP></Z_QCRFP><!-- not used -->
+                <Z_WAD></Z_WAD><!-- not used -->
+                <Z_EWC></Z_EWC><!-- not used -->
+                <Z_NATIONALCODE></Z_NATIONALCODE><!-- not used -->
+                <Z_OPERATIONALPROCESS></Z_OPERATIONALPROCESS><!-- not used -->
+                <Z_HAZARDOUSCRITERIA1></Z_HAZARDOUSCRITERIA1><!-- not used -->
+                <Z_SPLITTNEDDED></Z_SPLITTNEDDED><!-- not used -->
+                <Z_YNOPLAN></Z_YNOPLAN><!-- not used -->
+                <Z_ADR1></Z_ADR1><!-- not used -->
+                <Z_ADR2></Z_ADR2><!-- not used -->
+                <Z_ADR3></Z_ADR3><!-- not used -->
+                <ZCBSD></ZCBSD>
+            </order_item_afr_data>
+            <order_item_extra_data>
+            	<ZQUALZ></ZQUALZ><!-- Qualifier for IDoc additional data, Used for Advance Payment contracts (LOGON-6624) in the course of pringing the export invoice (LOGON-6647). -->
+            	<ZCUSADD></ZCUSADD><!-- Character String 60, Advance Invoice Number; In case ZQUALZ == “ADV” Tlgns_sap_contract_item. ADVANCE_INVOICE_NO -->
+            	<ZCUSADD_BEZ></ZCUSADD_BEZ><!-- not used -->
+            </order_item_extra_data>
+            <document_item_reference_data>
+                <VBELV></VBELV><!-- not used -->
+                <POSNV></POSNV><!-- not used -->
+                <VGBEL></VGBEL><!-- not used -->
+                <VGPOS></VGPOS><!-- not used -->
+                <BSTKD_E></BSTKD_E><!-- not used -->
+            </document_item_reference_data>
+            <document_item_date>
+                <FKDAT></FKDAT><!-- not used -->
+            </document_item_date>
+            <document_item_taxes>
+                <MWSBT></MWSBT><!-- not used -->
+            </document_item_taxes>
+            <document_item_schedule_lines>
+                <WMENG></WMENG><!-- not used -->
+            </document_item_schedule_lines>
+            <document_item_object_identification>
+                <MATNR>ADN0006000</MATNR><!-- Material number, LOGON table: tlgns_sap_contract_item.sap_material_id -->
+                <CHARG></CHARG><!-- not used -->
+                <ARKTX></ARKTX><!-- not used -->
+                <KDMAT></KDMAT><!-- not used -->
+                <EAN11></EAN11><!-- not used -->
+            </document_item_object_identification>
+            <document_item_text_identification>
+                <TDID></TDID><!-- Text id, first repetition of TDLINE for TDID = “0003” and TSSPRAS_ISO equals to the shipto language and contract type is an Advanced Payment Contract.-->
+                <TSSPRAS_ISO></TSSPRAS_ISO><!-- not used -->
+                <document_item_texts>
+                    <TDLINE></TDLINE><!-- not used -->
+                </document_item_texts>
+            </document_item_text_identification>
+            <document_item_additional_data>
+                <KZWI1></KZWI1><!-- not used -->
+                <KZWI2></KZWI2><!-- not used -->
+                <KZWI3></KZWI3><!-- not used -->
+                <KZWI4></KZWI4><!-- not used -->
+                <KZWI5></KZWI5><!-- not used -->
+                <KZWI6></KZWI6><!-- not used -->
+                <MVGR1></MVGR1><!-- Material group 1, LOGON table: tlgns_sap_contract_item.material_group_1 -->
+                <MVGR2></MVGR2><!-- Material group 2, LOGON table: tlgns_sap_contract_item.material_group_2 -->
+                <MVGR3></MVGR3><!-- Material group 3, LOGON table: tlgns_sap_contract_item.material_group_3 -->
+                <MVGR4></MVGR4><!-- Material group 4, LOGON table: tlgns_sap_contract_item.material_group_4 -->
+                <MVGR5></MVGR5><!-- Material group 5, LOGON table: tlgns_sap_contract_item.material_group_5 -->
+                <KDKG1></KDKG1><!-- not used -->
+                <KDKG2></KDKG2><!-- not used -->
+                <KDKG3></KDKG3><!-- not used -->
+                <KDKG4></KDKG4><!-- not used -->
+                <KDKG5></KDKG5><!-- not used -->
+            </document_item_additional_data>
+            <document_item_terms_of_delivery>
+                <LKOND></LKOND><!-- not used -->
+            </document_item_terms_of_delivery>
+            <document_item_partner_information>
+                <PARVW></PARVW><!-- not used -->
+                <PARTN></PARTN><!-- not used -->
+                <LIFNR></LIFNR><!-- not used -->
+                <NAME1></NAME1><!-- not used -->
+                <NAME2></NAME2><!-- not used -->
+                <NAME3></NAME3><!-- not used -->
+                <NAME4></NAME4><!-- not used -->
+                <STRAS></STRAS><!-- not used -->
+                <STRS2></STRS2><!-- not used -->
+                <PFACH></PFACH><!-- not used -->
+                <ORT01></ORT01><!-- not used -->
+                <COUNC></COUNC><!-- not used -->
+                <PSTLZ></PSTLZ><!-- not used -->
+                <PSTL2></PSTL2><!-- not used -->
+                <LAND1></LAND1><!-- not used -->
+                <ABLAD></ABLAD><!-- not used -->
+                <PERNR></PERNR><!-- not used -->
+                <PARNR></PARNR><!-- not used -->
+                <TELF1></TELF1><!-- not used -->
+                <TELF2></TELF2><!-- not used -->
+                <TELBX></TELBX><!-- not used -->
+                <TELFX></TELFX><!-- not used -->
+                <TELTX></TELTX><!-- not used -->
+                <TELX1></TELX1><!-- not used -->
+                <SPRAS></SPRAS><!-- not used -->
+                <ANRED></ANRED><!-- not used -->
+                <ORT02></ORT02><!-- not used -->
+                <HAUSN></HAUSN><!-- not used -->
+                <STOCK></STOCK><!-- not used -->
+                <REGIO></REGIO><!-- not used -->
+                <PARGE></PARGE><!-- not used -->
+                <ISOAL></ISOAL><!-- not used -->
+                <ISONU></ISONU><!-- not used -->
+                <FCODE></FCODE><!-- not used -->
+                <IHREZ></IHREZ><!-- not used -->
+                <BNAME></BNAME><!-- not used -->
+                <PAORG></PAORG><!-- not used -->
+                <ORGTX></ORGTX><!-- not used -->
+                <PAGRU></PAGRU><!-- not used -->
+                <KNREF></KNREF><!-- not used -->
+                <ILNNR></ILNNR><!-- not used -->
+                <PFORT></PFORT><!-- not used -->
+                <SPRAS_ISO></SPRAS_ISO><!-- not used -->
+                <TITLE></TITLE><!-- not used -->
+            </document_item_partner_information>
+        </document_item_general_data>
+        </sales_document_notification>
+</SalesDocumentNotification>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNC_ORDER_ITEM_CONTRACT_ITEM"
+           description="Stores the exact relation between order items and corresponding contract item for contracts of type Advance Payment Contracts (type=ZADV)">
+
+        <!-- Item Identifiers -->
+        <column name="ORDER_ITEM_CONTRACT_ITEM_ID" primaryKey="true" required="true" type="DECIMAL" size="12"
+                description="PK"/>
+        <column name="ORDER_ITEM_ID" type="DECIMAL" size="12"
+                description="FK tlgnc_order_item. Not required to allow for dummy entries blocking simply the contract item quantity, without any order item."/>
+        <column name="SAP_CONTRACT_ITEM_ID" required="true" type="DECIMAL" size="12"
+                description="FK tlgns_sap_contract_item."/>
+        <column name="SENT_ORDER_ITEM_NO" required="true" type="DECIMAL" size="3"
+                description="Order item number as being sent to SAP in the outgoing interfaces."/>
+        <column name="DELIVERED_QUANTITY" type="DECIMAL" size="12,4"
+                description="Delivered quantity per order item / contract item entry stored in the TARGET_QUANTITY_UOM_CD units of the SAP contract item."/>
+        <column name="DELETED_FLAG" required="true" type="BOOLEAN"
+                description="Indicator if order item / contract item entry has been deleted."/>
+
+        <!-- When adding new references and FK, please put them in the same order as they are as attributes! -->
+        <foreign-key foreignTable="TLGNC_ORDER_ITEM" name="FK_TLGNC_ORD_CONTR_ITEM_ORD_OI">
+            <reference local="ORDER_ITEM_ID" foreign="ORDER_ITEM_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNS_SAP_CONTRACT_ITEM" name="FK_TLGNC_ORD_CONTR_ITEM_ORD_CI">
+            <reference local="SAP_CONTRACT_ITEM_ID" foreign="SAP_CONTRACT_ITEM_ID"/>
+        </foreign-key>
+
+    </table>
+</database>

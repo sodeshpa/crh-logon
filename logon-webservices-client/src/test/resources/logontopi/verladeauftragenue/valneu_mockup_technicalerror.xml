@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<log:LKWVerladeAuftragNeu xmlns:log="http://194.11.246.115/LogonToPISrv">
+	<log:verladeauftrag_id>100</log:verladeauftrag_id>
+	<log:logon_nr>100</log:logon_nr>
+	<!--Optional:-->
+	<log:verladestrasse_id>?</log:verladestrasse_id>
+	<!--Optional:-->
+	<log:kunnr>?</log:kunnr>
+	<!--Optional:-->
+	<log:wempf>?</log:wempf>
+	<!--Optional:-->
+	<log:rempf>?</log:rempf>
+	<!--Optional:-->
+	<log:regul>?</log:regul>
+	<!--Optional:-->
+	<log:werks>?</log:werks>
+	<!--Optional:-->
+	<log:matnr>?</log:matnr>
+	<!--Optional:-->
+	<log:fznum>?</log:fznum>
+	<log:verlzp />
+	<log:maxweight>100</log:maxweight>
+	<log:maxweight_brutto>100</log:maxweight_brutto>
+	<log:suppress_ls>true</log:suppress_ls>
+	<log:tara>100</log:tara>
+	<log:zanmnr>100</log:zanmnr>
+</log:LKWVerladeAuftragNeu>

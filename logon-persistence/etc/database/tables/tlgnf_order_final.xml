@@ -1,0 +1,916 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNF_ORDER_FINAL"
+           description="Frozen data of an order at the time it is set to 'finished', i.e. transition from status 15=delivered to status 16=finished . For truck orders, this is the same moment when also sending the order data to SAP. For rail orders sending to SAP happens earlier (to transmit the transportation request to the rail company via SAP), but the freeze of order data happens at the end still. The purpose of the table is to provide a snapshot of all relevant objects and their attributes at the time the order was completed, i.e. including address data of the business partners, load limits of the vehicles, optimial transport type as entered on the Dispokarte at that moment, etc. The data can then be used as a source for advanced reporting and statistics (currently outside of Logon).">
+
+        <column name="ORDER_FINAL_ID" primaryKey="true" required="true" type="DECIMAL" size="12"
+                description="PK"/>
+        <column name="O_ORDER_ID" required="true" type="DECIMAL" size="12"
+                description="tlgnc_order.order_id. Unique. If an order changes after the original 'finish' operation (Examples: Update delivery quantities due to credit note, updated costs, changed Billto, ...) the original order_final record is updated."/>
+        <column name="O_ORDER_NUMBER" type="DECIMAL" size="12"
+                description="tlgnc_order.order_number."/>
+        <column name="O_ORDER_STATUS_CD" required="true" type="DECIMAL" size="2"
+                description="tlgnc_order.order_status_cd."/>
+		<column name="O_SHIPTO_SAP_BP_ID" required="true" type="DECIMAL" size="12"
+                description="tlgnc_order.shipto_sap_bp_id. This is the Waren-Empfaenger, all following columns WE_... belong to this."/>
+
+		<!-- SHIPTO_SAP_BP_ID : Content of tlgns_sap_bp.-->
+        <column name="WE_SAP_ID" type="VARCHAR" size="10"
+                description="tlgns_sap_bp.sap_id, referenced by tlgnc_order.shipto_sap_bp_id -> tlgns_sap_bp"/>
+		<!-- SAP_IFC_ID: ignore, is only for technical reasons. --> 
+		<column name="WE_MARKED_FOR_DELETION" type="VARCHAR" size="1"
+                description="tlgns_sap_bp.marked_for_deletion, referenced by tlgnc_order.shipto_sap_bp_id -> tlgns_sap_bp"/>
+        <column name="WE_NAME1" type="VARCHAR" size="35"
+                description="tlgns_sap_bp.name1, referenced by tlgnc_order.shipto_sap_bp_id -> tlgns_sap_bp"/>
+        <column name="WE_NAME2" type="VARCHAR" size="35"
+                description="tlgns_sap_bp.name2, referenced by tlgnc_order.shipto_sap_bp_id -> tlgns_sap_bp"/>
+        <column name="WE_COUNTRY" type="VARCHAR" size="3"
+                description="tlgns_sap_bp.country, referenced by tlgnc_order.shipto_sap_bp_id -> tlgns_sap_bp"/>
+        <column name="WE_POSTAL_CODE" type="VARCHAR" size="10"
+                description="tlgns_sap_bp.postal_code, referenced by tlgnc_order.shipto_sap_bp_id -> tlgns_sap_bp"/>
+		<column name="WE_CITY" type="VARCHAR" size="35"
+                description="tlgns_sap_bp.city, referenced by tlgnc_order.shipto_sap_bp_id -> tlgns_sap_bp"/>
+		<column name="WE_REGION" type="VARCHAR" size="3"
+                description="tlgns_sap_bp.region, referenced by tlgnc_order.shipto_sap_bp_id -> tlgns_sap_bp"/>
+        <column name="WE_STREET" type="VARCHAR" size="35"
+                description="tlgns_sap_bp.street, referenced by tlgnc_order.shipto_sap_bp_id -> tlgns_sap_bp"/>
+        <column name="WE_HOUSE_NUMBER" type="VARCHAR" size="10"
+                description="tlgns_sap_bp.house_number, referenced by tlgnc_order.shipto_sap_bp_id -> tlgns_sap_bp"/>
+        <column name="WE_LANG_CD" type="VARCHAR" size="2"
+                description="tlgns_sap_bp.lang_cd, referenced by tlgnc_order.shipto_sap_bp_id -> tlgns_sap_bp"/>
+        <column name="WE_CUSTOMER_CLASSIFICATION" type="VARCHAR" size="2"
+                description="tlgns_sap_bp.customer_classification, referenced by tlgnc_order.shipto_sap_bp_id -> tlgns_sap_bp"/>
+		<column name="WE_RAILWAY_STATION_ID" type="DECIMAL" size="12"
+                description="tlgns_sap_bp.railway_station_id, referenced by tlgnc_order.shipto_sap_bp_id -> tlgns_sap_bp"/>
+		<column name="WE_RS_UIC_COUNTRY_CD" type="DECIMAL" size="2"
+                description="tlgnc_railway_station.uic_country_cd referenced by tlgns_sap_bp.railway_station_id->tlgnc_railway_station_comm.op_railway_station_id -> tlgnc_railway_station"/>
+		<column name="WE_RS_STATION_NO" type="VARCHAR" size="6"
+                description="tlgnc_railway_station.railway_station_no referenced by tlgns_sap_bp.railway_station_id->tlgnc_railway_station_comm.op_railway_station_id -> tlgnc_railway_station"/>
+		<column name="WE_RS_STATION_NAME" type="VARCHAR" size="50"		
+                description="tlgnc_railway_station.railway_station_name referenced by tlgns_sap_bp.railway_station_id->tlgnc_railway_station_comm.op_railway_station_id -> tlgnc_railway_station"/>
+		<column name="WE_RS_COM_UIC_COUNTRY_CD" type="DECIMAL" size="2"
+                description="tlgnc_railway_station.uic_country_cd referenced by tlgns_sap_bp.railway_station_id->tlgnc_railway_station_comm.comm_railway_station_id -> tlgnc_railway_station"/>
+		<column name="WE_RS_COM_STATION_NO" type="VARCHAR" size="6"
+                description="tlgnc_railway_station.railway_station_no referenced by tlgns_sap_bp.railway_station_id->tlgnc_railway_station_comm.comm_railway_station_id -> tlgnc_railway_station"/>
+		<column name="WE_RS_COM_STATION_NAME" type="VARCHAR" size="50"
+                description="tlgnc_railway_station.railway_station_name referenced by tlgns_sap_bp.railway_station_id->tlgnc_railway_station_comm.comm_railway_station_id -> tlgnc_railway_station"/>                
+        <column name="WE_TRAIN_ST_UNLOADING_POINT" type="VARCHAR" size="4"
+                description="tlgns_sap_bp.train_station_unloading_point, referenced by tlgnc_order.shipto_sap_bp_id -> tlgns_sap_bp"/>
+        <column name="WE_SBB_CUSTOMER_NUMBER" type="VARCHAR" size="15"
+                description="tlgns_sap_bp.sbb_customer_number, referenced by tlgnc_order.shipto_sap_bp_id -> tlgns_sap_bp"/>
+        <column name="WE_BP_IS_SHIPTO" required="true" type="BOOLEAN"
+                description="tlgns_sap_bp.bp_is_shipto, referenced by tlgnc_order.shipto_sap_bp_id -> tlgns_sap_bp"/>
+        <column name="WE_BP_IS_SOLDTO" required="true" type="BOOLEAN"
+                description="tlgns_sap_bp.bp_is_soldto, referenced by tlgnc_order.shipto_sap_bp_id -> tlgns_sap_bp"/>
+        <column name="WE_BP_IS_BILLTO" required="true" type="BOOLEAN"
+                description="tlgns_sap_bp.bp_is_billto, referenced by tlgnc_order.shipto_sap_bp_id -> tlgns_sap_bp"/>
+	
+		<!-- SHIPTO_SAP_BP_ID : Content of tlgns_sap_bp_sarea for the sarea_id of the order. -->
+		<column name="WE_SAP_BP_SAREA_ID" type="DECIMAL" size="12"
+                description="tlgns_sap_bp_sarea.sap_bp_sarea_id, referenced by tlgnc_order.shipto_sap_bp_id -> tlgns_sap_bp_sarea.sap_bp_id and tlgnc_order.sarea_id -> tlgns_sap_bp_sarea"/>
+		<column name="WE_SAREA_MARKED_FOR_DELETION" type="VARCHAR" size="1"
+                description="tlgns_sap_bp_sarea.marked_for_deletion, referenced by tlgnc_order.shipto_sap_bp_id -> tlgns_sap_bp_sarea.sap_bp_id and tlgnc_order.sarea_id -> tlgns_sap_bp_sarea"/>
+        <column name="WE_SALES_DISTRICT" type="VARCHAR" size="6"
+                description="tlgns_sap_bp_sarea.sales_district, referenced by tlgnc_order.shipto_sap_bp_id -> tlgns_sap_bp_sarea.sap_bp_id and tlgnc_order.sarea_id -> tlgns_sap_bp_sarea"/>
+        <column name="WE_SOFFICE_CD" type="VARCHAR" size="4"
+                description="tlgns_sap_bp_sarea.soffice_cd, referenced by tlgnc_order.shipto_sap_bp_id -> tlgns_sap_bp_sarea.sap_bp_id and tlgnc_order.sarea_id -> tlgns_sap_bp_sarea"/>
+        <column name="WE_SOFFICE_NAME" type="VARCHAR" size="30"
+                description="tlgnr_soffice_bs.soffice_name, referenced by tlgnc_order.shipto_sap_bp_id -> tlgns_sap_bp_sarea.sap_bp_id and tlgnc_order.sarea_id -> tlgns_sap_bp_sarea -> tlgnr_soffice_bs"/>                
+        <column name="WE_SGROUP_CD" type="VARCHAR" size="4"
+                description="tlgns_sap_bp_sarea.sgroup_cd, referenced by tlgnc_order.shipto_sap_bp_id -> tlgns_sap_bp_sarea.sap_bp_id and tlgnc_order.sarea_id -> tlgns_sap_bp_sarea"/>
+        <column name="WE_SGROUP_NAME" type="VARCHAR" size="30"
+                description="tlgnr_sgroup_bs.sgroup_name referenced by tlgnc_order.shipto_sap_bp_id -> tlgns_sap_bp_sarea.sap_bp_id and tlgnc_order.sarea_id -> tlgns_sap_bp_sarea ->tlgnr_sgroup_bs"/>
+        <column name="WE_SGROUP_EMAIL_ADDRESSES" type="VARCHAR" size="200"
+                description="tlgnr_sgroup_bs.email_addresses referenced by tlgnc_order.shipto_sap_bp_id -> tlgns_sap_bp_sarea.sap_bp_id and tlgnc_order.sarea_id -> tlgns_sap_bp_sarea ->tlgnr_sgroup_bs"/>                                
+        <column name="WE_CUSTOMER_GROUP" type="VARCHAR" size="2"
+                description="tlgns_sap_bp_sarea.customer_group, referenced by tlgnc_order.shipto_sap_bp_id -> tlgns_sap_bp_sarea.sap_bp_id and tlgnc_order.sarea_id -> tlgns_sap_bp_sarea"/>
+        <column name="WE_ABC_CLASS" type="VARCHAR" size="2"
+                description="tlgns_sap_bp_sarea.abc_class, referenced by tlgnc_order.shipto_sap_bp_id -> tlgns_sap_bp_sarea.sap_bp_id and tlgnc_order.sarea_id -> tlgns_sap_bp_sarea"/>
+        <column name="WE_CURRENCY_CD" type="VARCHAR" size="5"
+                description="tlgns_sap_bp_sarea.currency_cd, referenced by tlgnc_order.shipto_sap_bp_id -> tlgns_sap_bp_sarea.sap_bp_id and tlgnc_order.sarea_id -> tlgns_sap_bp_sarea"/>
+        <column name="WE_DISTRIBUTION_DEST_CD" type="VARCHAR" size="4"
+                description="tlgns_sap_bp_sarea.distribution_dest_cd, referenced by tlgnc_order.shipto_sap_bp_id -> tlgns_sap_bp_sarea.sap_bp_id and tlgnc_order.sarea_id -> tlgns_sap_bp_sarea"/>
+        <column name="WE_CUSTOMER_ORDER_BLOCK" type="BOOLEAN"
+                description="tlgns_sap_bp_sarea.customer_order_block, referenced by tlgnc_order.shipto_sap_bp_id -> tlgns_sap_bp_sarea.sap_bp_id and tlgnc_order.sarea_id -> tlgns_sap_bp_sarea"/>
+        <column name="WE_CUSTOMER_DELIVERY_BLOCK" type="BOOLEAN"
+                description="tlgns_sap_bp_sarea.customer_delivery_block, referenced by tlgnc_order.shipto_sap_bp_id -> tlgns_sap_bp_sarea.sap_bp_id and tlgnc_order.sarea_id -> tlgns_sap_bp_sarea"/>
+        <column name="WE_CUSTOM_OFFICE" type="VARCHAR" size="20"
+                description="tlgns_sap_bp_sarea.custom_office, referenced by tlgnc_order.shipto_sap_bp_id -> tlgns_sap_bp_sarea.sap_bp_id and tlgnc_order.sarea_id -> tlgns_sap_bp_sarea"/>
+        <column name="WE_CHROMAT_REDUCTION_MONTHS" type="DECIMAL" size="1,0"
+                description="tlgns_sap_bp_sarea.chromat_reduction_months, referenced by tlgnc_order.shipto_sap_bp_id -> tlgns_sap_bp_sarea.sap_bp_id and tlgnc_order.sarea_id -> tlgns_sap_bp_sarea"/>
+        <column name="WE_DEFAULT_PLANT_CD" type="VARCHAR" size="4"
+                description="tlgns_sap_bp_sarea.default_plant_cd, referenced by tlgnc_order.shipto_sap_bp_id -> tlgns_sap_bp_sarea.sap_bp_id and tlgnc_order.sarea_id -> tlgns_sap_bp_sarea"/>
+	
+		<!-- SHIPTO_SAP_BP_ID : Content of tlgnc_shipto.-->
+		<column name="WE_SHIPTO_ID" type="DECIMAL" size="12"
+                description="tlgnc_shipto.shipto_id, referenced by tlgnc_order.shipto_sap_bp_id -> tlgns_shipto.shipto_sap_bp_id."/>
+        <column name="WE_ACTIVE_FLAG" type="BOOLEAN"
+                description="tlgnc_shipto.active_flag, referenced by tlgnc_order.shipto_sap_bp_id -> tlgns_shipto.shipto_sap_bp_id."/>
+        <column name="WE_SHIPTO_TYPE_CD" type="DECIMAL" size="2"
+                description="tlgnc_shipto.shipto_type_cd, referenced by tlgnc_order.shipto_sap_bp_id -> tlgns_shipto.shipto_sap_bp_id."/>   
+		<!-- OPEN1_FROM: ignore. The meaningful varlue is on the order already, we don't want the default in addition.-->
+		<!-- OPEN1_TO: ignore. The meaningful varlue is on the order already, we don't want the default in addition.-->
+		<!-- OPEN2_FROM: ignore. The meaningful varlue is on the order already, we don't want the default in addition.-->
+		<!-- OPEN2_TO: ignore. The meaningful varlue is on the order already, we don't want the default in addition.-->
+		<!-- CONTACT_PERSON_ID: ignore. We have the contact person NAME on the order, that's enough.-->
+		<!-- SELF_SERVICE_FLAG: ignore. The meaningful varlue is on the order already, we don't want the default in addition.-->
+		<!-- DAILY_ORDER_CONTACT_FLAG: ignore. This is data from the special business case "daily order", and is irrelevant on the order itself.-->
+		<!-- DAILY_ORDER_LAST_CONTACT_DAT ignore. This is data from the special business case "daily order", and is irrelevant on the order itself.-->
+		<!-- DAILY_ORDER_STATUS_CD: ignore. This is data from the special business case "daily order", and is irrelevant on the order itself.-->	
+		<!-- PAPER_DELIVNOTE_FLAG: ignore. The meaningful comment is on the order already, we don't want the default in addition on the order.-->
+		<!-- EMAIL_DELIVNOTE_FLAG: ignore. The meaningful comment is on the order already, we don't want the default in addition on the order.-->
+		<!-- FAX_DELIVNOTE_FLAG: ignore. The meaningful comment is on the order already, we don't want the default in addition on the order.-->
+		<!-- ORDER_CONF_EMAIL_FLAG: ignore. The meaningful comment is on the order already, we don't want the default in addition on the order.-->
+		<!-- ORDER_CONF_EMAIL_ADDRESSES: ignore. The meaningful comment is on the order already, we don't want the default in addition on the order.-->
+		<!-- ORDER_CONF_FAX_FLAG: ignore. The meaningful comment is on the order already, we don't want the default in addition on the order.-->
+		<!-- ORDER_CONF_FAX_NUMBER: ignore. The meaningful comment is on the order already, we don't want the default in addition on the order.-->
+		<!-- ORDER_CONF_SMS_FLAG: ignore. The meaningful comment is on the order already, we don't want the default in addition on the order.-->
+		<!-- ORDER_CONF_SMS_NUMBER: ignore. The meaningful comment is on the order already, we don't want the default in addition on the order.-->
+		<!-- NOTE_ORDER_MGMT: ignore. The meaningful comment is on the order already, we don't want the default in addition on the order.-->
+		<!-- NOTE_ORDER_MGMT: ignore. The meaningful comment is on the order already, we don't want the default in addition on the order.-->
+		<!-- NOTE_DELIVERY: ignore. The meaningful comment is on the order already, we don't want the default in addition on the order.-->
+		<!-- NOTE_DISPATCHING: ignore. The meaningful comment is on the order already, we don't want the default in addition on the order.-->
+		<!-- NOTE_TRUCK_DRIVER: ignore. The meaningful comment is on the order already, we don't want the default in addition on the order.-->
+		<!-- NOTE_RAILWAY_DISP: ignore. The meaningful comment is on the order already, we don't want the default in addition on the order.-->
+		<column name="WE_SIGNATURE_TYPE_CD" type="DECIMAL" size="2"
+                description="tlgnc_shipto.signature_type_cd, referenced by tlgnc_order.shipto_sap_bp_id -> tlgns_shipto.shipto_sap_bp_id."/>
+        <column name="WE_COORD_LAT" type="DOUBLE"
+                description="tlgnc_shipto.coord_lat, referenced by tlgnc_order.shipto_sap_bp_id -> tlgns_shipto.shipto_sap_bp_id."/>
+        <column name="WE_COORD_LON" type="DOUBLE"
+                description="tlgnc_shipto.coord_lon, referenced by tlgnc_order.shipto_sap_bp_id -> tlgns_shipto.shipto_sap_bp_id."/>
+        <column name="WE_COORD_FIX_FLAG" type="BOOLEAN"
+                description="tlgnc_shipto.coord_fix_flag, referenced by tlgnc_order.shipto_sap_bp_id -> tlgns_shipto.shipto_sap_bp_id."/>
+        <column name="WE_GEOFENCE_RADIUS" type="DECIMAL" size="10"
+                description="tlgnc_shipto.geofence_radius, referenced by tlgnc_order.shipto_sap_bp_id -> tlgns_shipto.shipto_sap_bp_id."/>
+        <column name="WE_UNLOADING_TIME" type="DECIMAL" size="10"
+                description="tlgnc_shipto.unloading_time, referenced by tlgnc_order.shipto_sap_bp_id -> tlgns_shipto.shipto_sap_bp_id."/>
+
+        <column name="WE_RAIL_CHAIN_SHIPPINGPOINT_ID" type="DECIMAL" size="12"
+                description="tlgnc_shipto.rail_chain_shippingpoint_id, referenced by tlgnc_order.shipto_sap_bp_id -> tlgns_shipto.shipto_sap_bp_id."/>
+        <!-- RAIL_CHAIN_SHIPPINGPOINT_ID: Content of tlgnc_shippingpoint.-->
+        <column name="WE_RAIL_CHAIN_SP_PLANT_CD" type="VARCHAR" size="4"
+                description="tlgnc_shippingpoint.plant_cd, referenced by tlgnc_order.shipto_sap_bp_id -> tlgns_shipto.rail_chain_shippingpoint_id -> tlgnc_shippingpoint"/>
+        <column name="WE_RAIL_CHAIN_SP_SAP_SHIPPT_NO" type="VARCHAR" size="4"
+                description="tlgnc_shippingpoint.sap_shippingpoint_no, referenced by tlgnc_order.shipto_sap_bp_id -> tlgns_shipto.rail_chain_shippingpoint_id -> tlgnc_shippingpoint"/>
+        <column name="WE_RAIL_CHAIN_SP_SHIPPT_NAME" type="VARCHAR" size="80"
+                description="tlgnc_shippingpoint.shippingpoint_name, referenced by tlgnc_order.shipto_sap_bp_id -> tlgns_shipto.rail_chain_shippingpoint_id -> tlgnc_shippingpoint"/>
+
+        <column name="WE_MAT_CHAIN_SHIPPINGPOINT_ID" type="DECIMAL" size="12"
+                description="tlgnc_shipto.rail_chain_shippingpoint_id, referenced by tlgnc_order.shipto_sap_bp_id -> tlgns_shipto.shipto_sap_bp_id."/>
+        <!-- MAT_CHAIN_SHIPPINGPOINT_ID: Content of tlgnc_shippingpoint.-->
+        <column name="WE_MAT_CHAIN_SP_PLANT_CD" type="VARCHAR" size="4"
+                description="tlgnc_shippingpoint.plant_cd, referenced by tlgnc_order.shipto_sap_bp_id -> tlgns_shipto.mat_chain_shippingpoint_id -> tlgnc_shippingpoint"/>
+        <column name="WE_MAT_CHAIN_SP_SAP_SHIPPT_NO" type="VARCHAR" size="4"
+                description="tlgnc_shippingpoint.sap_shippingpoint_no, referenced by tlgnc_order.shipto_sap_bp_id -> tlgns_shipto.mat_chain_shippingpoint_id -> tlgnc_shippingpoint"/>
+        <column name="WE_MAT_CHAIN_SP_SHIPPT_NAME" type="VARCHAR" size="80"
+                description="tlgnc_shippingpoint.shippingpoint_name, referenced by tlgnc_order.shipto_sap_bp_id -> tlgns_shipto.mat_chain_shippingpoint_id -> tlgnc_shippingpoint"/>
+
+        <column name="WE_RAIL_HOLD_BACK_RE_ORDER" type="BOOLEAN"
+                description="tlgnc_shipto.rail_hold_back_re_order_flag, referenced by tlgnc_order.shipto_sap_bp_id -> tlgnc_shipto.shipto_sap_bp_id."/>
+
+        <!-- SHIPTO_ID : Content of tlgnc_shipto_truck_type.-->
+        <column name="WE_OPTIMAL_TRUCK_TYPE_CD" type="DECIMAL" size="3"
+                description="tlgnc_shipto_truck_type.truck_type_cd, referenced by tlgnc_shipto_truck_type.shipto_id -> tlgnc_shipto."/>	
+        <!-- SHIPTO_ID : Content of tlgnc_shipto_wagon_type.-->
+        <column name="WE_OPTIMAL_WAGON_TYPE_CD" type="DECIMAL" size="2"
+                description="tlgnc_shipto_wagon_type.wagon_type_cd, referenced by tlgnc_shipto_wagon_type.shipto_id -> tlgnc_shipto."/>	
+		 
+		<!-- TLGNC_ORDER.SAREA_ID and TLGNC_SHIPTO.SHIPTO_ID : Content of tlgnc_shipto_sarea.-->
+		<column name="WE_ST_SAREA_SHIPTO_SAREA_ID" type="DECIMAL" size="12"
+				description="tlgnc_shipto_sarea.shipto_sarea_id, referenced by tlgnc_order.shipto_sap_bp_id -> tlgns_shipto.shipto_id -> tlgnc_shipto_sarea.shipto_id and tlgnc_order.sarea_id -> tlgnc_shipto_sarea"/>
+		<column name="WE_ST_SAREA_FREE_DELIVERY" type="BOOLEAN"
+				description="tlgnc_shipto_sarea.free_delivery_flag, referenced by tlgnc_order.shipto_sap_bp_id -> tlgns_shipto.shipto_id -> tlgnc_shipto_sarea.shipto_id and tlgnc_order.sarea_id -> tlgnc_shipto_sarea"/>
+		<column name="WE_ST_SAREA_RELEASE_SAP_OPT" type="BOOLEAN"
+				description="tlgnc_shipto_sarea.release_sap_oprtional_flag, referenced by tlgnc_order.shipto_sap_bp_id -> tlgns_shipto.shipto_id -> tlgnc_shipto_sarea.shipto_id and tlgnc_order.sarea_id -> tlgnc_shipto_sarea"/>
+        <column name="WE_ST_DISTRIBUTION_DEST_CD" type="VARCHAR" size="4"
+                description="tlgnc_shipto_sarea.distribution_dest_cd,  referenced by tlgnc_order.shipto_sap_bp_id -> tlgns_shipto.shipto_id -> tlgnc_shipto_sarea.shipto_id and tlgnc_order.sarea_id -> tlgnc_shipto_sarea"/>
+                
+        <column name="O_SOLDTO_SAP_BP_ID" required="true" type="DECIMAL" size="12"
+                description="tlgnc_order.soldto_sap_bp_id. This is the Auftrag-Geber, all following columns AG_... belong to this."/>
+                
+        <column name="ACTUAL_DRIVING_TIME_MIN" type="DECIMAL" size="12"
+                description="Net driving time in minutes between leaving the shipping point and entering the ship-to."/>
+                
+        <!-- SOLDTO_SAP_BP_ID : Content of tlgns_sap_bp.-->
+        <column name="AG_SAP_ID" type="VARCHAR" size="10"
+                description="tlgns_sap_bp.sap_id, referenced by tlgnc_order.soldto_sap_bp_id -> tlgns_sap_bp"/>
+        <!-- SAP_IFC_ID: ignore, is only for technical reasons. -->
+        <column name="AG_MARKED_FOR_DELETION" type="VARCHAR" size="1"
+                description="tlgns_sap_bp.marked_for_deletion, referenced by tlgnc_order.soldto_sap_bp_id -> tlgns_sap_bp"/>
+        <column name="AG_NAME1" type="VARCHAR" size="35"
+                description="tlgns_sap_bp.name1, referenced by tlgnc_order.soldto_sap_bp_id -> tlgns_sap_bp"/>
+        <column name="AG_NAME2" type="VARCHAR" size="35"
+                description="tlgns_sap_bp.name2, referenced by tlgnc_order.soldto_sap_bp_id -> tlgns_sap_bp"/>
+        <column name="AG_COUNTRY" type="VARCHAR" size="3"
+                description="tlgns_sap_bp.country, referenced by tlgnc_order.soldto_sap_bp_id -> tlgns_sap_bp"/>
+        <column name="AG_POSTAL_CODE" type="VARCHAR" size="10"
+                description="tlgns_sap_bp.postal_code, referenced by tlgnc_order.soldto_sap_bp_id -> tlgns_sap_bp"/>
+        <column name="AG_CITY" type="VARCHAR" size="35"
+                description="tlgns_sap_bp.city, referenced by tlgnc_order.soldto_sap_bp_id -> tlgns_sap_bp"/>
+        <column name="AG_REGION" type="VARCHAR" size="3"
+                description="tlgns_sap_bp.region, referenced by tlgnc_order.soldto_sap_bp_id -> tlgns_sap_bp"/>
+        <column name="AG_STREET" type="VARCHAR" size="35"
+                description="tlgns_sap_bp.street, referenced by tlgnc_order.soldto_sap_bp_id -> tlgns_sap_bp"/>
+        <column name="AG_HOUSE_NUMBER" type="VARCHAR" size="10"
+                description="tlgns_sap_bp.house_number, referenced by tlgnc_order.soldto_sap_bp_id -> tlgns_sap_bp"/>
+        <column name="AG_LANG_CD" type="VARCHAR" size="2"
+                description="tlgns_sap_bp.lang_cd, referenced by tlgnc_order.soldto_sap_bp_id -> tlgns_sap_bp"/>
+        <column name="AG_CUSTOMER_CLASSIFICATION" type="VARCHAR" size="2"
+                description="tlgns_sap_bp.customer_classification, referenced by tlgnc_order.soldto_sap_bp_id -> tlgns_sap_bp"/>
+        <column name="AG_RAILWAY_STATION_ID" type="DECIMAL" size="12"
+                description="tlgns_sap_bp.railway_station_id, referenced by tlgnc_order.soldto_sap_bp_id -> tlgns_sap_bp"/>	
+        <column name="AG_TRAIN_ST_UNLOADING_POINT" type="VARCHAR" size="4"
+                description="tlgns_sap_bp.train_station_unloading_point, referenced by tlgnc_order.soldto_sap_bp_id -> tlgns_sap_bp"/>
+        <column name="AG_SBB_CUSTOMER_NUMBER" type="VARCHAR" size="15"
+                description="tlgns_sap_bp.sbb_customer_number, referenced by tlgnc_order.soldto_sap_bp_id -> tlgns_sap_bp"/>
+        <column name="AG_BP_IS_SHIPTO" required="true" type="BOOLEAN"
+                description="tlgns_sap_bp.bp_is_shipto, referenced by tlgnc_order.soldto_sap_bp_id -> tlgns_sap_bp"/>
+        <column name="AG_BP_IS_SOLDTO" required="true" type="BOOLEAN"
+                description="tlgns_sap_bp.bp_is_soldto, referenced by tlgnc_order.soldto_sap_bp_id -> tlgns_sap_bp"/>
+        <column name="AG_BP_IS_BILLTO" required="true" type="BOOLEAN"
+                description="tlgns_sap_bp.bp_is_billto, referenced by tlgnc_order.soldto_sap_bp_id -> tlgns_sap_bp"/>
+
+        <!-- SOLDTO_SAP_BP_ID : Content of tlgns_sap_bp_sarea for the sarea_id of the order. -->
+        <column name="AG_SAP_BP_SAREA_ID" type="DECIMAL" size="12"
+                description="tlgns_sap_bp_sarea.sap_bp_sarea_id, referenced by tlgnc_order.soldto_sap_bp_id -> tlgns_sap_bp_sarea.sap_bp_id and tlgnc_order.sarea_id -> tlgns_sap_bp_sarea"/>
+        <column name="AG_SAREA_MARKED_FOR_DELETION" type="VARCHAR" size="1"
+                description="tlgns_sap_bp_sarea.marked_for_deletion, referenced by tlgnc_order.soldto_sap_bp_id -> tlgns_sap_bp_sarea.sap_bp_id and tlgnc_order.sarea_id -> tlgns_sap_bp_sarea"/>
+        <column name="AG_SALES_DISTRICT" type="VARCHAR" size="6"
+                description="tlgns_sap_bp_sarea.sales_district, referenced by tlgnc_order.soldto_sap_bp_id -> tlgns_sap_bp_sarea.sap_bp_id and tlgnc_order.sarea_id -> tlgns_sap_bp_sarea"/>
+        <column name="AG_SOFFICE_CD" type="VARCHAR" size="4"
+                description="tlgns_sap_bp_sarea.soffice_cd, referenced by tlgnc_order.soldto_sap_bp_id -> tlgns_sap_bp_sarea.sap_bp_id and tlgnc_order.sarea_id -> tlgns_sap_bp_sarea"/>
+        <column name="AG_SOFFICE_NAME" type="VARCHAR" size="30"
+                description="tlgnr_soffice_bs.soffice_name, referenced by tlgnc_order.soldto_sap_bp_id -> tlgns_sap_bp_sarea.sap_bp_id and tlgnc_order.sarea_id -> tlgns_sap_bp_sarea -> tlgnr_soffice_bs"/>                      
+        <column name="AG_SGROUP_CD" type="VARCHAR" size="4"
+                description="tlgns_sap_bp_sarea.sgroup_cd, referenced by tlgnc_order.soldto_sap_bp_id -> tlgns_sap_bp_sarea.sap_bp_id and tlgnc_order.sarea_id -> tlgns_sap_bp_sarea"/>
+        <column name="AG_SGROUP_NAME" type="VARCHAR" size="30"
+                description="tlgnr_sgroup_bs.sgroup_name referenced by tlgnc_order.soldto_sap_bp_id -> tlgns_sap_bp_sarea.sap_bp_id and tlgnc_order.sarea_id -> tlgns_sap_bp_sarea ->tlgnr_sgroup_bs"/>
+        <column name="AG_SGROUP_EMAIL_ADDRESSES" type="VARCHAR" size="200"
+                description="tlgnr_sgroup_bs.email_addresses referenced by tlgnc_order.soldto_sap_bp_id -> tlgns_sap_bp_sarea.sap_bp_id and tlgnc_order.sarea_id -> tlgns_sap_bp_sarea ->tlgnr_sgroup_bs"/>                                                
+        <column name="AG_CUSTOMER_GROUP" type="VARCHAR" size="2"
+                description="tlgns_sap_bp_sarea.customer_group, referenced by tlgnc_order.soldto_sap_bp_id -> tlgns_sap_bp_sarea.sap_bp_id and tlgnc_order.sarea_id -> tlgns_sap_bp_sarea"/>
+        <column name="AG_ABC_CLASS" type="VARCHAR" size="2"
+                description="tlgns_sap_bp_sarea.abc_class, referenced by tlgnc_order.soldto_sap_bp_id -> tlgns_sap_bp_sarea.sap_bp_id and tlgnc_order.sarea_id -> tlgns_sap_bp_sarea"/>
+        <column name="AG_CURRENCY_CD" type="VARCHAR" size="5"
+                description="tlgns_sap_bp_sarea.currency_cd, referenced by tlgnc_order.soldto_sap_bp_id -> tlgns_sap_bp_sarea.sap_bp_id and tlgnc_order.sarea_id -> tlgns_sap_bp_sarea"/>
+        <column name="AG_DISTRIBUTION_DEST_CD" type="VARCHAR" size="4"
+                description="tlgns_sap_bp_sarea.distribution_dest_cd, referenced by tlgnc_order.soldto_sap_bp_id -> tlgns_sap_bp_sarea.sap_bp_id and tlgnc_order.sarea_id -> tlgns_sap_bp_sarea"/>
+        <column name="AG_CUSTOMER_ORDER_BLOCK" type="BOOLEAN"
+                description="tlgns_sap_bp_sarea.customer_order_block, referenced by tlgnc_order.soldto_sap_bp_id -> tlgns_sap_bp_sarea.sap_bp_id and tlgnc_order.sarea_id -> tlgns_sap_bp_sarea"/>
+        <column name="AG_CUSTOMER_DELIVERY_BLOCK" type="BOOLEAN"
+                description="tlgns_sap_bp_sarea.customer_delivery_block, referenced by tlgnc_order.soldto_sap_bp_id -> tlgns_sap_bp_sarea.sap_bp_id and tlgnc_order.sarea_id -> tlgns_sap_bp_sarea"/>
+        <column name="AG_CUSTOM_OFFICE" type="VARCHAR" size="20"
+                description="tlgns_sap_bp_sarea.custom_office, referenced by tlgnc_order.soldto_sap_bp_id -> tlgns_sap_bp_sarea.sap_bp_id and tlgnc_order.sarea_id -> tlgns_sap_bp_sarea"/>
+        <column name="AG_CHROMAT_REDUCTION_MONTHS" type="DECIMAL" size="1,0"
+                description="tlgns_sap_bp_sarea.chromat_reduction_months, referenced by tlgnc_order.soldto_sap_bp_id -> tlgns_sap_bp_sarea.sap_bp_id and tlgnc_order.sarea_id -> tlgns_sap_bp_sarea"/>
+        <column name="AG_DEFAULT_PLANT_CD" type="VARCHAR" size="4"
+                description="tlgns_sap_bp_sarea.default_plant_cd, referenced by tlgnc_order.soldto_sap_bp_id -> tlgns_sap_bp_sarea.sap_bp_id and tlgnc_order.sarea_id -> tlgns_sap_bp_sarea"/>
+
+
+		<column name="O_BILLTO_SAP_BP_ID" type="DECIMAL" size="12"
+                description="tlgnc_order.billto_sap_bp_id. This is the Rechnungs-Empfaenger, all following columns RE_... belong to this."/>
+	
+		<!-- BILLTO_SAP_BP_ID : Content of tlgns_sap_bp.-->
+        <column name="RE_SAP_ID" type="VARCHAR" size="10"
+                description="tlgns_sap_bp.sap_id, referenced by tlgnc_order.billto_sap_bp_id -> tlgns_sap_bp"/>
+		<!-- SAP_IFC_ID: ignore, is only for technical reasons. -->
+		<column name="RE_MARKED_FOR_DELETION" type="VARCHAR" size="1"
+                description="tlgns_sap_bp.marked_for_deletion, referenced by tlgnc_order.billto_sap_bp_id -> tlgns_sap_bp"/>
+        <column name="RE_NAME1" type="VARCHAR" size="35"
+                description="tlgns_sap_bp.name1, referenced by tlgnc_order.billto_sap_bp_id -> tlgns_sap_bp"/>
+        <column name="RE_NAME2" type="VARCHAR" size="35"
+                description="tlgns_sap_bp.name2, referenced by tlgnc_order.billto_sap_bp_id -> tlgns_sap_bp"/>
+        <column name="RE_COUNTRY" type="VARCHAR" size="3"
+                description="tlgns_sap_bp.country, referenced by tlgnc_order.billto_sap_bp_id -> tlgns_sap_bp"/>
+        <column name="RE_POSTAL_CODE" type="VARCHAR" size="10"
+                description="tlgns_sap_bp.postal_code, referenced by tlgnc_order.billto_sap_bp_id -> tlgns_sap_bp"/>
+		<column name="RE_CITY" type="VARCHAR" size="35"
+                description="tlgns_sap_bp.city, referenced by tlgnc_order.billto_sap_bp_id -> tlgns_sap_bp"/>
+		<column name="RE_REGION" type="VARCHAR" size="3"
+                description="tlgns_sap_bp.region, referenced by tlgnc_order.billto_sap_bp_id -> tlgns_sap_bp"/>
+        <column name="RE_STREET" type="VARCHAR" size="35"
+                description="tlgns_sap_bp.street, referenced by tlgnc_order.billto_sap_bp_id -> tlgns_sap_bp"/>
+        <column name="RE_HOUSE_NUMBER" type="VARCHAR" size="10"
+                description="tlgns_sap_bp.house_number, referenced by tlgnc_order.billto_sap_bp_id -> tlgns_sap_bp"/>
+        <column name="RE_LANG_CD" type="VARCHAR" size="2"
+                description="tlgns_sap_bp.lang_cd, referenced by tlgnc_order.billto_sap_bp_id -> tlgns_sap_bp"/>
+        <column name="RE_CUSTOMER_CLASSIFICATION" type="VARCHAR" size="2"
+                description="tlgns_sap_bp.customer_classification, referenced by tlgnc_order.billto_sap_bp_id -> tlgns_sap_bp"/>
+		<column name="RE_RAILWAY_STATION_ID" type="DECIMAL" size="12"
+                description="tlgns_sap_bp.railway_station_id, referenced by tlgnc_order.billto_sap_bp_id -> tlgns_sap_bp"/>	
+        <column name="RE_TRAIN_ST_UNLOADING_POINT" type="VARCHAR" size="4"
+                description="tlgns_sap_bp.train_station_unloading_point, referenced by tlgnc_order.billto_sap_bp_id -> tlgns_sap_bp"/>
+        <column name="RE_SBB_CUSTOMER_NUMBER" type="VARCHAR" size="15"
+                description="tlgns_sap_bp.sbb_customer_number, referenced by tlgnc_order.billto_sap_bp_id -> tlgns_sap_bp"/>
+        <column name="RE_BP_IS_SHIPTO" type="BOOLEAN"
+                description="tlgns_sap_bp.bp_is_shipto, referenced by tlgnc_order.billto_sap_bp_id -> tlgns_sap_bp"/>
+        <column name="RE_BP_IS_SOLDTO" type="BOOLEAN"
+                description="tlgns_sap_bp.bp_is_soldto, referenced by tlgnc_order.billto_sap_bp_id -> tlgns_sap_bp"/>
+        <column name="RE_BP_IS_BILLTO" type="BOOLEAN"
+                description="tlgns_sap_bp.bp_is_billto, referenced by tlgnc_order.billto_sap_bp_id -> tlgns_sap_bp"/>
+	
+		<!-- SOLDTO_SAP_BP_ID : Content of tlgns_sap_bp_sarea for the sarea_id of the order. -->
+		<column name="RE_SAP_BP_SAREA_ID" type="DECIMAL" size="12"
+                description="tlgns_sap_bp_sarea.sap_bp_sarea_id, referenced by tlgnc_order.billto_sap_bp_id -> tlgns_sap_bp_sarea.sap_bp_id and tlgnc_order.sarea_id -> tlgns_sap_bp_sarea"/>
+		<column name="RE_SAREA_MARKED_FOR_DELETION" type="VARCHAR" size="1"
+                description="tlgns_sap_bp_sarea.marked_for_deletion, referenced by tlgnc_order.billto_sap_bp_id -> tlgns_sap_bp_sarea.sap_bp_id and tlgnc_order.sarea_id -> tlgns_sap_bp_sarea"/>
+        <column name="RE_SALES_DISTRICT" type="VARCHAR" size="6"
+                description="tlgns_sap_bp_sarea.sales_district, referenced by tlgnc_order.billto_sap_bp_id -> tlgns_sap_bp_sarea.sap_bp_id and tlgnc_order.sarea_id -> tlgns_sap_bp_sarea"/>
+        <column name="RE_SOFFICE_CD" type="VARCHAR" size="4"
+                description="tlgns_sap_bp_sarea.soffice_cd, referenced by tlgnc_order.billto_sap_bp_id -> tlgns_sap_bp_sarea.sap_bp_id and tlgnc_order.sarea_id -> tlgns_sap_bp_sarea"/>
+        <column name="RE_SGROUP_CD" type="VARCHAR" size="4"
+                description="tlgns_sap_bp_sarea.sgroup_cd, referenced by tlgnc_order.billto_sap_bp_id -> tlgns_sap_bp_sarea.sap_bp_id and tlgnc_order.sarea_id -> tlgns_sap_bp_sarea"/>
+        <column name="RE_CUSTOMER_GROUP" type="VARCHAR" size="2"
+                description="tlgns_sap_bp_sarea.customer_group, referenced by tlgnc_order.billto_sap_bp_id -> tlgns_sap_bp_sarea.sap_bp_id and tlgnc_order.sarea_id -> tlgns_sap_bp_sarea"/>
+        <column name="RE_ABC_CLASS" type="VARCHAR" size="2"
+                description="tlgns_sap_bp_sarea.abc_class, referenced by tlgnc_order.billto_sap_bp_id -> tlgns_sap_bp_sarea.sap_bp_id and tlgnc_order.sarea_id -> tlgns_sap_bp_sarea.sarea_id"/>
+        <column name="RE_CURRENCY_CD" type="VARCHAR" size="5"
+                description="tlgns_sap_bp_sarea.currency_cd, referenced by tlgnc_order.billto_sap_bp_id -> tlgns_sap_bp_sarea.sap_bp_id and tlgnc_order.sarea_id -> tlgns_sap_bp_sarea"/>
+        <column name="RE_DISTRIBUTION_DEST_CD" type="VARCHAR" size="4"
+                description="tlgns_sap_bp_sarea.distribution_dest_cd, referenced by tlgnc_order.billto_sap_bp_id -> tlgns_sap_bp_sarea.sap_bp_id and tlgnc_order.sarea_id -> tlgns_sap_bp_sarea"/>
+        <column name="RE_CUSTOMER_ORDER_BLOCK" type="BOOLEAN"
+                description="tlgns_sap_bp_sarea.customer_order_block, referenced by tlgnc_order.billto_sap_bp_id -> tlgns_sap_bp_sarea.sap_bp_id and tlgnc_order.sarea_id -> tlgns_sap_bp_sarea"/>
+        <column name="RE_CUSTOMER_DELIVERY_BLOCK" type="BOOLEAN"
+                description="tlgns_sap_bp_sarea.customer_delivery_block, referenced by tlgnc_order.billto_sap_bp_id -> tlgns_sap_bp_sarea.sap_bp_id and tlgnc_order.sarea_id -> tlgns_sap_bp_sarea"/>
+        <column name="RE_CUSTOM_OFFICE" type="VARCHAR" size="20"
+                description="tlgns_sap_bp_sarea.custom_office, referenced by tlgnc_order.billto_sap_bp_id -> tlgns_sap_bp_sarea.sap_bp_id and tlgnc_order.sarea_id -> tlgns_sap_bp_sarea"/>
+		<column name="RE_CHROMAT_REDUCTION_MONTHS" type="DECIMAL" size="1,0"
+                description="tlgns_sap_bp_sarea.chromat_reduction_months, referenced by tlgnc_order.billto_sap_bp_id -> tlgns_sap_bp_sarea.sap_bp_id and tlgnc_order.sarea_id -> tlgns_sap_bp_sarea"/>
+        <column name="RE_DEFAULT_PLANT_CD" type="VARCHAR" size="4"
+                description="tlgns_sap_bp_sarea.default_plant_cd, referenced by tlgnc_order.billto_sap_bp_id -> tlgns_sap_bp_sarea.sap_bp_id and tlgnc_order.sarea_id -> tlgns_sap_bp_sarea"/>
+
+
+		<column name="O_SAREA_ID" required="true" type="DECIMAL" size="12"
+                description="tlgnc_order.sarea_id. This is the Sales Area of the Order, all following columns SAREA_... belong to this."/>
+        <column name="SAREA_DISPLAY_LONGNAME" type="VARCHAR" size="30"
+                description="TLGNC_SAREA.sarea_display_longname, referenced by tlgnc_order.sarea_id."/>
+                        
+		<!-- SAREA_ID: Content of tlgnr_sarea.-->
+        <column name="SAREA_SORG_CD" required="true" type="VARCHAR" size="4"
+                description="tlgnr_sarea.sorg_cd, referenced by tlgnc_order.sarea_id -> tlgnr_sarea"/>
+        <column name="SAREA_DISTRIBUTION_CHANNEL" required="true" type="VARCHAR" size="2"
+                description="tlgnr_sarea.distribution_channel, referenced by tlgnc_order.sarea_id -> tlgnr_sarea"/>
+        <column name="SAREA_DIVISION_CD" required="true" type="VARCHAR" size="2"
+                description="tlgnr_sarea.division, referenced by tlgnc_order.sarea_id -> tlgnr_sarea"/>
+		<column name="SAREA_DIVISION_SEGMENT_CD " required="true" type="VARCHAR" size="2"
+                description="tlgnc_order.sarea_id -> tlgnr_sarea.division_cd -> tlgnr_division_bs.segment_code"/>
+		<column name="SAREA_COMPANYCODE_CD" required="true" type="VARCHAR" size="4"
+                description="tlgnc_sarea.sorg_cd -> tlgnr_sorg_bs.companycode_cd -> tlgnr_companycode_bs"/>
+		<column name="SAREA_COUNTRY_CD" required="true" type="VARCHAR" size="3"
+                description="tlgnc_sarea.sorg_cd -> tlgnr_sorg_bs.companycode_cd -> tlgnr_companycode_bs.country_cd"/>
+                
+		<!-- POOL_ID: Content of tlgnc_pool.-->
+        <column name="O_POOL_ID" type="DECIMAL" size="12"
+                description="tlgnc_order.pool_id."/>
+		<!-- CARRIER_ID: Content of tlgnc_carrier (the commercial).-->
+        <column name="O_COMM_CARRIER_ID" type="DECIMAL" size="12"
+                description="tlgnc_order.comm_carrier_id. This is the Carrier/Vendor of the order, all following columns COMM_CARRIER_... or COMM_CARRIER_V_... belong to this."/>
+        <column name="COMM_CARRIER_DISPLAY_NAME" type="VARCHAR" size="40"
+                description="tlgnr_sarea.display_name, referenced by tlgnc_order.comm_carrier_id -> tlgnc_carrier"/>
+        <column name="COMM_CARRIER_SAP_VENDOR_ID" type="DECIMAL" size="12"
+                description="tlgnr_sarea.sap_vendor_id, referenced by tlgnc_order.comm_carrier_id -> tlgnc_carrier"/>
+		
+		<!-- SAP_VENDOR_ID: Content of tlgns_sap_vendor commercial.-->
+        <column name="COMM_CARRIER_V_SAP_ID" type="VARCHAR" size="10"
+                description="tlgns_sap_vendor.sap_id, referenced by tlgnc_order.comm_carrier_id -> tlgnc_carrier.sap_vendor_id -> tlgns_sap_vendor"/>
+		<!-- SAP_IFC_ID: ignore, is only for technical reasons. -->
+        <column name="COMM_CARRIER_V_ACCOUNT_GROUP" type="VARCHAR" size="4"
+                description="tlgns_sap_vendor.account_group, referenced by tlgnc_order.comm_carrier_id -> tlgnc_carrier.sap_vendor_id -> tlgns_sap_vendor"/>
+        <column name="COMM_CARRIER_V_MARKED_FOR_DEL" type="VARCHAR" size="1"
+                description="tlgns_sap_vendor.marked_for_deletion, referenced by tlgnc_order.comm_carrier_id -> tlgnc_carrier.sap_vendor_id -> tlgns_sap_vendor"/>
+        <column name="COMM_CARRIER_V_NAME1" type="VARCHAR" size="35"
+                description="tlgns_sap_vendor.name1, referenced by tlgnc_order.comm_carrier_id -> tlgnc_carrier.sap_vendor_id -> tlgns_sap_vendor"/>
+        <column name="COMM_CARRIER_V_NAME2" type="VARCHAR" size="35"
+                description="tlgns_sap_vendor.name2, referenced by tlgnc_order.comm_carrier_id -> tlgnc_carrier.sap_vendor_id -> tlgns_sap_vendor"/>
+        <column name="COMM_CARRIER_V_COUNTRY_CD" type="VARCHAR" size="3"
+                description="tlgns_sap_vendor.country_cd, referenced by tlgnc_order.comm_carrier_id -> tlgnc_carrier.sap_vendor_id -> tlgns_sap_vendor"/>
+        <column name="COMM_CARRIER_V_POSTAL_CODE" type="VARCHAR" size="10"
+                description="tlgns_sap_vendor.postal_code, referenced by tlgnc_order.comm_carrier_id -> tlgnc_carrier.sap_vendor_id -> tlgns_sap_vendor"/>
+        <column name="COMM_CARRIER_V_CITY" type="VARCHAR" size="35"
+                description="tlgns_sap_vendor.city, referenced by tlgnc_order.comm_carrier_id -> tlgnc_carrier.sap_vendor_id -> tlgns_sap_vendor"/>
+        <column name="COMM_CARRIER_V_LOCATION_DIST" type="VARCHAR" size="40"
+                description="tlgns_sap_vendor.loacation_district, referenced by tlgnc_order.comm_carrier_id -> tlgnc_carrier.sap_vendor_id -> tlgns_sap_vendor"/>
+        <column name="COMM_CARRIER_V_REGION" type="VARCHAR" size="3"
+                description="tlgns_sap_vendor.region, referenced by tlgnc_order.comm_carrier_id -> tlgnc_carrier.sap_vendor_id -> tlgns_sap_vendor"/>
+        <column name="COMM_CARRIER_V_STREET" type="VARCHAR" size="35"
+                description="tlgns_sap_vendor.street, referenced by tlgnc_order.comm_carrier_id -> tlgnc_carrier.sap_vendor_id -> tlgns_sap_vendor"/>
+        <column name="COMM_CARRIER_V_HOUSE_NUMBER" type="VARCHAR" size="10"
+                description="tlgns_sap_vendor.house_number, referenced by tlgnc_order.comm_carrier_id -> tlgnc_carrier.sap_vendor_id -> tlgns_sap_vendor"/>
+        <column name="COMM_CARRIER_V_LANG_CD" type="VARCHAR" size="2"
+                description="tlgns_sap_vendor.lang_cd, referenced by tlgnc_order.comm_carrier_id -> tlgnc_carrier.sap_vendor_id -> tlgns_sap_vendor"/>
+        <column name="COMM_CARRIER_V_VAT_REGIST_NO" type="VARCHAR" size="20"
+                description="tlgns_sap_vendor.registration_number, referenced by tlgnc_order.comm_carrier_id -> tlgnc_carrier.sap_vendor_id -> tlgns_sap_vendor"/>
+        <column name="COMM_CARRIER_IS_INTERNAL" type="BOOLEAN"
+                description="tlgns_sap_vendor.vn_is_internal, referenced by tlgnc_order.comm_carrier_id -> tlgnc_carrier.sap_vendor_id -> tlgns_sap_vendor"/>    
+
+		<!-- CARRIER_ID: Content of tlgnc_carrier (the executional).-->
+        <column name="O_EXEC_CARRIER_ID" type="DECIMAL" size="12"
+                description="tlgnc_order.exec_carrier_id. This is the Carrier/Vendor of the order, all following columns EXEC_CARRIER_... or EXEC_CARRIER_V_... belong to this."/>		
+        <column name="EXEC_CARRIER_DISPLAY_NAME" type="VARCHAR" size="40"
+                description="tlgnr_sarea.display_name, referenced by tlgnc_order.exec_carrier_id -> tlgnc_carrier"/>
+        <column name="EXEC_CARRIER_SAP_VENDOR_ID" type="DECIMAL" size="12"
+                description="tlgnr_sarea.sap_vendor_id, referenced by tlgnc_order.exec_carrier_id -> tlgnc_carrier"/>
+                                
+		<!-- SAP_VENDOR_ID: Content of tlgns_sap_vendor executional.-->
+        <column name="EXEC_CARRIER_V_SAP_ID" type="VARCHAR" size="10"
+                description="tlgns_sap_vendor.sap_id, referenced by tlgnc_order.exec_carrier_id -> tlgnc_carrier.sap_vendor_id -> tlgns_sap_vendor"/>
+		<!-- SAP_IFC_ID: ignore, is only for technical reasons. -->
+        <column name="EXEC_CARRIER_V_ACCOUNT_GROUP" type="VARCHAR" size="4"
+                description="tlgns_sap_vendor.account_group, referenced by tlgnc_order.exec_carrier_id -> tlgnc_carrier.sap_vendor_id -> tlgns_sap_vendor"/>
+        <column name="EXEC_CARRIER_V_MARKED_FOR_DEL" type="VARCHAR" size="1"
+                description="tlgns_sap_vendor.marked_for_deletion, referenced by tlgnc_order.exec_carrier_id -> tlgnc_carrier.sap_vendor_id -> tlgns_sap_vendor"/>
+        <column name="EXEC_CARRIER_V_NAME1" type="VARCHAR" size="35"
+                description="tlgns_sap_vendor.name1, referenced by tlgnc_order.exec_carrier_id -> tlgnc_carrier.sap_vendor_id -> tlgns_sap_vendor"/>
+        <column name="EXEC_CARRIER_V_NAME2" type="VARCHAR" size="35"
+                description="tlgns_sap_vendor.name2, referenced by tlgnc_order.exec_carrier_id -> tlgnc_carrier.sap_vendor_id -> tlgns_sap_vendor"/>
+        <column name="EXEC_CARRIER_V_COUNTRY_CD" type="VARCHAR" size="3"
+                description="tlgns_sap_vendor.country_cd, referenced by tlgnc_order.exec_carrier_id -> tlgnc_carrier.sap_vendor_id -> tlgns_sap_vendor"/>
+        <column name="EXEC_CARRIER_V_POSTAL_CODE" type="VARCHAR" size="10"
+                description="tlgns_sap_vendor.postal_code, referenced by tlgnc_order.exec_carrier_id -> tlgnc_carrier.sap_vendor_id -> tlgns_sap_vendor"/>
+        <column name="EXEC_CARRIER_V_CITY" type="VARCHAR" size="35"
+                description="tlgns_sap_vendor.city, referenced by tlgnc_order.exec_carrier_id -> tlgnc_carrier.sap_vendor_id -> tlgns_sap_vendor"/>
+        <column name="EXEC_CARRIER_V_LOCATION_DIST" type="VARCHAR" size="40"
+                description="tlgns_sap_vendor.loacation_district, referenced by tlgnc_order.exec_carrier_id -> tlgnc_carrier.sap_vendor_id -> tlgns_sap_vendor"/>
+        <column name="EXEC_CARRIER_V_REGION" type="VARCHAR" size="3"
+                description="tlgns_sap_vendor.region, referenced by tlgnc_order.exec_carrier_id -> tlgnc_carrier.sap_vendor_id -> tlgns_sap_vendor"/>
+        <column name="EXEC_CARRIER_V_STREET" type="VARCHAR" size="35"
+                description="tlgns_sap_vendor.street, referenced by tlgnc_order.exec_carrier_id -> tlgnc_carrier.sap_vendor_id -> tlgns_sap_vendor"/>
+        <column name="EXEC_CARRIER_V_HOUSE_NUMBER" type="VARCHAR" size="10"
+                description="tlgns_sap_vendor.house_number, referenced by tlgnc_order.exec_carrier_id -> tlgnc_carrier.sap_vendor_id -> tlgns_sap_vendor"/>
+        <column name="EXEC_CARRIER_V_LANG_CD" type="VARCHAR" size="2"
+                description="tlgns_sap_vendor.lang_cd, referenced by tlgnc_order.exec_carrier_id -> tlgnc_carrier.sap_vendor_id -> tlgns_sap_vendor"/>
+        <column name="EXEC_CARRIER_V_VAT_REGIST_NO" type="VARCHAR" size="20"
+                description="tlgns_sap_vendor.registration_number, referenced by tlgnc_order.exec_carrier_id -> tlgnc_carrier.sap_vendor_id -> tlgns_sap_vendor"/>
+        <column name="EXEC_CARRIER_IS_INTERNAL" type="BOOLEAN"
+                description="tlgns_sap_vendor.vn_is_internal, referenced by tlgnc_order.exec_carrier_id -> tlgnc_carrier.sap_vendor_id -> tlgns_sap_vendor"/>                              
+
+		<column name="O_SHIPPINGPOINT_ID" type="DECIMAL" size="12"
+                description="tlgnc_order.shippingpoint_id"/>
+        <column name="SENT_KPI_TO_SAP_BW_TS" type="TIMESTAMP" description="Null by default. Timestamp of order sent to SAP as report."/>
+		<!-- SHIPPINGPOINT_ID: Content of tlgnc_shippingpoint.-->
+		<column name="SP_PLANT_CD" type="VARCHAR" size="4"
+                description="tlgnc_shippingpoint.plant_cd, referenced by tlgnc_order.shippingpoint_id -> tlgnc_shippingpoint"/>
+		<column name="SP_PLANT_NAME" type="VARCHAR" size="80"                
+                description="tlgnr_plant_bs.plant_name, referenced by tlgnc_order.shippingpoint_id -> tlgnc_shippingpoint -> tlgnr_plant_bs"/>                
+        <column name="SP_SAP_SHIPPINGPOINT_NO" type="VARCHAR" size="4"
+                description="tlgnc_shippingpoint.shippingpoint_no, referenced by tlgnc_order.shippingpoint_id -> tlgnc_shippingpoint"/>
+        <column name="SP_SHIPPINGPOINT_NAME" type="VARCHAR" size="80"
+                description="tlgnc_shippingpoint.shippingpoint_name, referenced by tlgnc_order.shippingpoint_id -> tlgnc_shippingpoint"/>
+        <column name="SP_SHIPPPOINT_TYPE_CD" type="DECIMAL" size="2"
+                description="tlgnc_shippingpoint.shippingpoint_type_cd, referenced by tlgnc_order.shippingpoint_id -> tlgnc_shippingpoint"/>
+        <column name="SP_SAP_SHIPPING_COND_CD" type="VARCHAR" size="2"
+                description="tlgnc_shippingpoint.sap_shippingpoint_cond_cd, referenced by tlgnc_order.shippingpoint_id -> tlgnc_shippingpoint"/>
+        <column name="SP_STORAGE_LOCATION" type="VARCHAR" size="4"
+                description="tlgnc_shippingpoint.storage_location, referenced by tlgnc_order.shippingpoint_id -> tlgnc_shippingpoint"/>
+
+        <column name="SP_RAILWAY_STATION_ID" type="DECIMAL" size="12"
+                description="tlgnc_shippingpoint.railway_station_id, referenced by tlgnc_order.shippingpoint_id -> tlgnc_shippingpoint"/>
+        <!-- RAILWAY_STATION_ID: Content of tlgnc_railway_station.-->	
+        <column name="SP_RS_UIC_COUNTRY_CD" type="DECIMAL" size="2"
+                description="tlgnc_railway_station.uic_country_cd, referenced by tlgnc_order.shippingpoint_id -> tlgnc_shippingpoint.railway_station_id -> tlgnc_railway_station"/>
+        <column name="SP_RS_RAILWAY_STATION_NO" type="VARCHAR" size="6"
+                description="tlgnc_railway_station.railway_station_no, referenced by tlgnc_order.shippingpoint_id -> tlgnc_shippingpoint.railway_station_id -> tlgnc_railway_station"/>
+        <column name="SP_RS_RAILWAY_STATION_NAME" type="VARCHAR" size="50"
+                description="tlgnc_railway_station.railway_station_name, referenced by tlgnc_order.shippingpoint_id -> tlgnc_shippingpoint.railway_station_id -> tlgnc_railway_station"/>
+	
+		<column name="SP_RAILWAY_STATION_LP" type="VARCHAR" size="4"
+                description="tlgnc_shippingpoint.railway_station_loading_point, referenced by tlgnc_order.shippingpoint_id -> tlgnc_shippingpoint"/>	
+		<column name="SP_WEIGH_SYSTEM_SP_CD" type="DECIMAL" size="2"
+		        description="tlgnc_shippingpoint.weigh_system_sp_cd, referenced by tlgnc_order.shippingpoint_id -> tlgnc_shippingpoint"/>
+		<column name="SP_LDS_SERVER" type="VARCHAR" size="30"
+                description="tlgnc_shippingpoint.lds_server, referenced by tlgnc_order.shippingpoint_id -> tlgnc_shippingpoint"/>
+        <column name="SP_SHIPPINGPOINT_COMMENT" type="VARCHAR" size="255"
+                description="tlgnc_shippingpoint.shippingpoiint_comment, referenced by tlgnc_order.shippingpoint_id -> tlgnc_shippingpoint"/>
+        <column name="SP_COORD_LAT" type="DOUBLE"
+                description="tlgnc_shippingpoint.coord_lat, referenced by tlgnc_order.shippingpoint_id -> tlgnc_shippingpoint"/>
+        <column name="SP_COORD_LON" type="DOUBLE"
+                description="tlgnc_shippingpoint.coord_lon, referenced by tlgnc_order.shippingpoint_id -> tlgnc_shippingpoint"/>
+        <column name="SP_COORD_FIX_FLAG" type="BOOLEAN"
+                description="tlgnc_shippingpoint.coord_fix_flag, referenced by tlgnc_order.shippingpoint_id -> tlgnc_shippingpoint"/>
+        <column name="SP_GEOFENCE_RADIUS" type="DECIMAL" size="10"
+                description="tlgnc_shippingpoint.geofence_radius, referenced by tlgnc_order.shippingpoint_id -> tlgnc_shippingpoint"/>	
+        <column name="SP_FVL_MIX_SHIPTO_PER_WAGON_FL" type="BOOLEAN"
+                description="tlgnc_shippingpoint.fvl_mix_shipto_per_wagon_flag, referenced by tlgnc_order.shippingpoint_id -> tlgnc_shippingpoint"/>
+
+        <column name="SP_SEND_SAP_SHIPPINGPOINT_ID" type="DECIMAL" size="12"
+                description="tlgnc_shippingpoint.send_sap_shippingpoint_id, referenced by tlgnc_order.shippingpoint_id -> tlgnc_shippingpoint"/>
+        <!-- SEND_SAP_SHIPPINGPOINT_ID: Content of tlgnc_shippingpoint.-->
+        <column name="SP_SEND_SAP_SP_PLANT_CD" type="VARCHAR" size="4"
+                description="tlgnc_shippingpoint.plant_cd, referenced by tlgnc_order.shippingpoint_id -> tlgnc_shippingpoint.send_sap_shippingpoint_id -> tlgnc_shippingpoint"/>
+        <column name="SP_SEND_SAP_SP_SAP_SHIPPT_NO" type="VARCHAR" size="4"
+                description="tlgnc_shippingpoint.sap_shippingpoint_no, referenced by tlgnc_order.shippingpoint_id -> tlgnc_shippingpoint.send_sap_shippingpoint_id -> tlgnc_shippingpoint"/>
+        <column name="SP_SEND_SAP_SP_SHIPPT_NAME" type="VARCHAR" size="80"
+                description="tlgnc_shippingpoint.shippingpoint_name, referenced by tlgnc_order.shippingpoint_id -> tlgnc_shippingpoint.send_sap_shippingpoint_id -> tlgnc_shippingpoint"/>
+		<!-- UOM_CD: ignore - we don't want the raw data of costs in this table!-->
+		<!-- VAR_HANDLING_COST_MAT: ignore - we don't want the raw data of costs in this table!-->
+		<!-- FUTURE_VAR_HANDLING_COST_MAT: ignore - we don't want the raw data of costs in this table!-->
+		<!-- FUTURE_VALID_FROM_DAT: ignore - we don't want the raw data of costs in this table!-->
+		<!-- CURRENCY_CD: ignore - we don't want the raw data of costs in this table!-->
+
+        <column name="O_ACT_DEP_RAILWAY_STATION_ID" type="DECIMAL" size="12"
+                description="tlgnc_order.actual_dep_railway_station_id"/>
+        <!-- RAILWAY_STATION_ID: Content of tlgnc_railway_station refereenced by actual_dep_railway_station_id -->
+        <column name="O_ACT_DEP_RS_UIC_COUNTRY_CD" type="DECIMAL" size="2"
+                description="tlgnc_railway_station.uic_country_cd, referenced by tlgnc_order.actual_dep_railway_station_id -> tlgnc_railway_station"/>
+        <column name="O_ACT_DEP_RS_STATION_NO" type="VARCHAR" size="6"
+                description="tlgnc_railway_station.railway_station_no, referenced by tlgnc_order.actual_dep_railway_station_id -> tlgnc_railway_station"/>
+        <column name="O_ACT_DEP_RS_STATION_NAME" type="VARCHAR" size="50"
+                description="tlgnc_railway_station.railway_station_name, referenced by tlgnc_order.actual_dep_railway_station_id -> tlgnc_railway_station"/>
+		<column name="O_ACT_DEP_RS_COM_UIC_CNTRY_CD" type="DECIMAL" size="2"
+                description="tlgnc_railway_station.uic_country_cd referenced by tlgnc_order.actual_dep_railway_station_id -> tlgnc_railway_station ->tlgnc_railway_station_comm.comm_railway_station_id -> tlgnc_railway_station"/>
+		<column name="O_ACT_DEP_RS_COM_STATION_NO" type="VARCHAR" size="6"
+                description="tlgnc_railway_station.railway_station_no referenced by tlgnc_order.actual_dep_railway_station_id -> tlgnc_railway_station ->tlgnc_railway_station_comm.comm_railway_station_id -> tlgnc_railway_station"/>
+		<column name="O_ACT_DEP_RS_COM_STATION_NAME" type="VARCHAR" size="50"
+                description="tlgnc_railway_station.railway_station_name referenced by tlgnc_order.actual_dep_railway_station_id -> tlgnc_railway_station ->tlgnc_railway_station_comm.comm_railway_station_id -> tlgnc_railway_station"/>                                                                
+
+        <column name="O_ORDER_CREATION_TYPE_CD" required="true" type="DECIMAL" size="2"
+                description="tlgnc_order.order_creation_type_cd"/>
+		<column name="O_DELIVERY_TYPE_CD" required="true" type="DECIMAL" size="2"
+				description="tlgnc_order.delivery_type_cd"/>
+		<column name="O_DISTRIBUTION_DEST_CD" required="true" type="VARCHAR" size="4"
+                description="tlgnc_order.distribution_dest_cd"/>
+                
+        <column name="O_CALC_START_LOAD_FROM_DAT"  type="DATE"
+                description="o_calc_start_load_from_dat : o_calc_end_load_from_dat - o_plan_loading_time_min: Latest start load to arrive at begin of delivery window"/>
+        <column name="O_CALC_START_LOAD_TO_DAT" type="DATE"
+                description="o_calc_end_load_to_dat - o_plan_loading_time_min: Latest start load to arrive at end of delivery window"/>
+        <column name="O_PLAN_LOADING_TIME_MIN"  type="DECIMAL" size="10"
+                description="if 1 item only and lp.loading_time_min not null: take that. otherwise, app.default.loadingpoint.LoadingTime_min"/>                     
+		<column name="O_CALC_END_LOAD_FROM_DAT"  type="DATE"
+				description="o_delivery_from_dat - o_transport_duration_plan_min"/>
+		<column name="O_CALC_END_LOAD_TO_DAT"  type="DATE"
+				description="o_delivery_to_dat - o_transport_duration_plan_min"/>
+		<column name="O_ACTUAL_START_LOAD_DAT"  type="DATE"
+				description="Bizevent loading."/>
+		<column name="O_ACTUAL_END_LOAD_DAT"  type="DATE"
+				description="get from tlgnc_load.LOADING_TS"/>
+		<column name="O_CALC_LATE_START_LOAD_DAT"  type="BOOLEAN"
+				description="true if o_actual_start_load_dat > o_calc_start_load_to_dat"/>
+		<column name="O_CALC_LATE_END_LOAD_DAT"  type="BOOLEAN"
+				description="true if o_actual_end_load_dat > o_calc_end_load_to_dat"/>						
+				
+        <column name="O_DELIVERY_FROM_DAT" required="true" type="DATE"
+                description="tlgnc_order.delivery_from_dat"/>
+        <column name="O_DELIVERY_TO_DAT" required="true" type="DATE"
+                description="tlgnc_order.delivery_to_dat"/>
+        <column name="O_DELIVERY_NET_TIME_WINDOW" type="DECIMAL" size="10"
+                description="The delivery net time is in fact the time what crh had to deliver the product. This does not include weekends, and non working hours (non working hours are those, which are not in the time interval defined by open1 and open2 of the shipto."/>
+                
+        <column name="O_ACTUAL_DELIVERY_DAT" type="DATE"
+                description="tlgnc_order.actual_delivery_dat"/>
+        <column name="O_CALC_LATE_DELIVERY_FLAG" type="BOOLEAN"
+                description="true, if ACTUAL_DELIVERY after O_DELIVERY_TO_DAT"/>                
+        <column name="O_TRANSP_DUR_PLAN_GOOGLE_MIN" type="DECIMAL" size="5"
+                description="tlgnc_order.transport_duration_min"/>                
+        <column name="O_TRANSP_DUR_PLAN_MIN" type="DECIMAL" size="5"
+                description="tlgnc_order.transport_duration_min"/>
+        <column name="O_TRANSP_DISTANCE_PLAN_M" type="DECIMAL" size="10"
+                description="tlgnc_order.transport_distance_m"/>
+                
+        <column name="O_CUSTOMS_NOTIFICATION_NUMBER" type="DECIMAL" size="4"
+                description="tlgnc_order.customs_notification_number"/>
+        <column name="O_DELIVERY_TRSP_ZONE_CD" type="VARCHAR" size="10"
+                description="tlgnc_order.delivery_trsp_zone_cd"/>                
+        <column name="O_SPI_CD" type="VARCHAR" size="10"
+                description="tlgnc_order.spi_cd special process indicator code."/>                
+                
+        <!-- DELIVERYNOTE_SIGNATURE_ID: ignore-->
+        <column name="O_CONTACT_PERSON_TXT" type="VARCHAR" size="80"
+                description="tlgnc_order.contanct_person_txt"/>
+        <column name="O_CONTACT_PERSON_SIGNATURE_TXT" type="VARCHAR" size="40"
+                description="tlgnc_order.contact_person_signature_txt"/>
+        <column name="O_NO_PDA_OR_RAIL_EVENTS_FLAG" required="true" type="BOOLEAN"
+                description="tlgnc_order.no_pda_or_rail_events_flag"/>
+        <column name="O_RELEASE_SAP_FLAG" required="true" type="BOOLEAN"
+                description="tlgnc_order.release_sap_flag"/>
+        <column name="O_FORCE_TO_SAP_FLAG" required="true" type="BOOLEAN"
+                description="tlgnc_order.force_to_sap_flag"/>
+        <column name="O_FREE_DELIVERY_FLAG" required="true" type="BOOLEAN"
+                description="tlgnc_order.free_delivery_flag"/>
+		<column name="O_SAP_SUPPRESS_MIN_CHARGE_FLAG" required="false" type="BOOLEAN"
+                description="tlgnc_order.o_sap_suppress_min_charge_flag"/>
+        <column name="O_ORDER_CONF_EMAIL_FLAG" required="true" type="BOOLEAN"
+                description="tlgnc_order.order_conf_email_flag"/>
+        <column name="O_ORDER_CONF_EMAIL_ADRESSES" type="VARCHAR" size="200"
+                description="tlgnc_order.order_conf_email_adresses"/>
+        <column name="O_ORDER_CONF_FAX_FLAG" required="true" type="BOOLEAN"
+                description="tlgnc_order.order_conf_fax_flag"/>
+        <column name="O_ORDER_CONF_FAX_NUMBER" type="VARCHAR" size="80"
+                description="tlgnc_order.order_conf_fax_number"/>
+        <column name="O_ORDER_CONF_SMS_FLAG" required="true" type="BOOLEAN"
+                description="tlgnc_order.order_conf_sms_flag"/>
+        <column name="O_ORDER_CONF_SMS_NUMBER" type="VARCHAR" size="80"
+                description="tlgnc_order.order_conf_sms_number"/>
+        <column name="O_DELIVNOTE_EMAIL_FLAG" required="true" type="BOOLEAN"
+                description="tlgnc_order.delivnote_email_flag"/>
+        <column name="O_DELIVNOTE_FAX_FLAG" required="true" type="BOOLEAN"
+                description="tlgnc_order.delivnote_fax_flag"/>
+        <column name="O_DELIVNOTE_SINGLE_PAPER_FLAG" required="true" type="BOOLEAN"
+                description="tlgnc_order.delivnote_single_paper_flag"/>
+        <column name="O_CUST_WEBORDER_NOTE" type="VARCHAR" size="1000"
+                description="tlgnc_order.cust_weborder_note"/>
+        <column name="O_NOTE_ORDER_MGMT" type="VARCHAR" size="256"
+                description="tlgnc_order.note_order_mgmt"/>
+        <column name="O_NOTE_DELIVERY" type="VARCHAR" size="300"
+                description="tlgnc_order.note_delivery"/>
+        <column name="O_NOTE_DISPATCHING" type="VARCHAR" size="256"
+                description="tlgnc_order.note_dispatching"/>
+        <column name="O_NOTE_TRUCK_DRIVER" type="VARCHAR" size="256"
+                description="tlgnc_order.note_truck_driver"/>
+        <column name="O_NOTE_RAILWAY_DISP" type="VARCHAR" size="256"
+                description="tlgnc_order.note_railway_disp"/>
+        <column name="O_CARRIER_DELIVERY_NOTE" type="VARCHAR" size="600"
+                description="tlgnc_order.carrier_delivery_note"/>
+        <column name="O_CARRIER_TRUCK_DRIVER_NOTE" type="VARCHAR" size="256"
+                description="tlgnc_order.carrier_truck_driver_note"/>
+        <column name="O_CARRIER_DISPATCHING_NOTE" type="VARCHAR" size="256"
+                description="tlgnc_order.carrier_dispatching_note"/>
+        <column name="O_CUST_DELIVERY_NOTE_COMMENT" type="VARCHAR" size="600"
+                description="tlgnc_order.cust_delivery_note_comment"/>
+
+        <column name="O_DELIVERED_TRUCK_ID" type="DECIMAL" size="12"
+                description="tlgnc_order.delivered_truck_id"/>
+        <!--  DELIVERED_TRUCK_ID: Content of tlgnc_truck.-->
+        <column name="TRUCK_NAME" type="VARCHAR" size="30"
+                description="tlgnc_truck.truck_name, referenced by tlgnc_order.delivered_truck_id -> tlgnc_truck"/>
+        <column name="TRUCK_PLATE_NO" type="VARCHAR" size="20"
+                description="tlgnc_truck.truck_plate_no, referenced by tlgnc_order.delivered_truck_id -> tlgnc_truck"/>
+        <column name="TRUCK_TRANSPORT_CAT_CD" type="DECIMAL" size="2"
+                description="tlgnc_truck.truck_transport_cat_cd, referenced by tlgnc_order.delivered_truck_id -> tlgnc_truck" />
+        <column name="TRUCK_TYPE_CD" type="DECIMAL" size="3"
+                description="tlgnc_truck.truck_type_cd, referenced by tlgnc_order.delivered_truck_id -> tlgnc_truck" />
+        <column name="TRUCK_MAX_GROSS_WEIGHT_T" type="DECIMAL" size="12,4"
+                description="tlgnc_truck.max_gross_weight_t, referenced by tlgnc_order.delivered_truck_id -> tlgnc_truck" />
+        <column name="TRUCK_TARE_WEIGHT_T" type="DECIMAL" size="12,4"
+                description="tlgnc_truck.tare_weight_t, referenced by tlgnc_order.delivered_truck_id -> tlgnc_truck" />
+        <column name="TRUCK_NR_CHAMBERS" type="DECIMAL" size="1"
+                description="tlgnc_truck.nr_chambers, referenced by tlgnc_order.delivered_truck_id -> tlgnc_truck" />
+        <column name="TRUCK_MAX_NET_W_CHAMBER1_T" type="DECIMAL" size="12,4"
+                description="tlgnc_truck.max_net_weight_chamber1_t, referenced by tlgnc_order.delivered_truck_id -> tlgnc_truck" />
+        <column name="TRUCK_MAX_NET_W_CHAMBER2_T" type="DECIMAL" size="12,4"
+                description="tlgnc_truck.max_net_weight_chamber2_t, referenced by tlgnc_order.delivered_truck_id -> tlgnc_truck" />
+        <column name="TRUCK_SAP_INTERNAL_FLAG" type="BOOLEAN"
+                description="tlgnc_truck.sap_vehicle_is_internal_flag, referenced by tlgnc_order.delivered_truck_id -> tlgnc_truck"/> 
+        <!-- This flag is NOT reliable, because it could have been changed on the truck. Instead, take tlgnc_order.NO_PDA_OR_RAIL_EVENTS_FLAG
+        <column name="TRUCK_PDA_AVAILABLE_FLAG" type="BOOLEAN"
+                description="tlgnc_truck.pda_available_flag, referenced by tlgnc_order_item.delivered_load_truck_id -> tlgnc_truck."/>
+        -->
+
+        <column name="O_DELIVERED_WAGON_ID" type="DECIMAL" size="12"
+                description="tlgnc_order.delivered_wagon_id"/>
+        <!--  DELIVERED_LOAD_WAGON_ID: Content of tlgnc_wagon.-->
+        <column name="WAGON_NO" type="VARCHAR" size="12"
+                description="tlgnc_wagon.wagon_no, referenced by tlgnc_order.delivered_wagon_id -> tlgnc_wagon"/>
+        <column name="WAGON_TYPE_CD" type="DECIMAL" size="2"
+                description="tlgnc_wagon.wagon_type_cd, referenced by tlgnc_order.delivered_wagon_id -> tlgnc_wagon"/>
+        <column name="WAGON_TYPE_NAME" type="VARCHAR" size="20"
+                description="tlgnr_wagon_type_bs.wagon_type_name, referenced by tlgnc_order.delivered_wagon_id -> tlgnc_wagon.wagon_type_cd -> tlgnr_wagon_type_bs"/>
+        <column name="WAGON_UIC_CLASS_CD" type="VARCHAR" size="10"
+                description="tlgnr_wagon_type_bs.wagon_uic_class_cd, referenced by tlgnc_order.delivered_wagon_id -> tlgnc_wagon.wagon_type_cd -> tlgnr_wagon_type_bs"/>
+        <column name="WAGON_AXIS_COUNT" type="DECIMAL" size="2"
+                description="tlgnr_wagon_type_bs.axis_count, referenced by tlgnc_order.delivered_wagon_id -> tlgnc_wagon.wagon_type_cd -> tlgnr_wagon_type_bs"/>
+        <column name="WAGON_TRSP_CAT_CD" type="DECIMAL" size="2"
+                description="tlgnr_wagon_type_bs.wagon_trsp_cat_cd, referenced by tlgnc_order.delivered_wagon_id -> tlgnc_wagon.wagon_type_cd -> tlgnr_wagon_type_bs"/>
+        <column name="WAGON_LIMIT_CREDIT_NOTE_T" type="DECIMAL" size="7,3"
+                description="tlgnr_wagon_type_bs.limit_credit_note_t, referenced by tlgnc_order.delivered_wagon_id -> tlgnc_wagon.wagon_type_cd -> tlgnr_wagon_type_bs"/>
+        <column name="WAGON_TARE_WEIGHT_T" type="DECIMAL" size="12,4"
+                description="tlgnc_wagon.tare_weight_t, referenced by tlgnc_order.delivered_wagon_id -> tlgnc_wagon"/>
+        <column name="WAGON_MAX_GROSS_WEIGHT_T" type="DECIMAL" size="12,4"
+                description="tlgnc_wagon.max_gross_weight_t, referenced by tlgnc_order.delivered_wagon_id -> tlgnc_wagon. If null, use tlgnr_wagon_type_bs.max_gross_weight_t, referenced by tlgnc_order.delivered_wagon_id -> tlgnc_wagon.wagon_type_cd -> tlgnr_wagon_type_bs"/> 
+        <column name="WAGON_VOLUME_M3" type="DECIMAL" size="12,4"
+               description="tlgnc_wagon.volume_m3, referenced by tlgnc_order.delivered_wagon_id -> tlgnc_wagon. If null, use tlgnr_wagon_type_bs.volume_m3, referenced by tlgnc_order.delivered_wagon_id -> tlgnc_wagon.wagon_type_cd -> tlgnr_wagon_type_bs"/>
+
+        <column name="O_DELIVERED_SIMPLE_VEHICLE_ID" type="DECIMAL" size="12"
+                description="tlgnc_order.delivered_truck_id"/>
+        <!--  DELIVERED_SIMPLE_VEHICLE_ID: Content of tlgnc_simple_vehicle.-->
+        <column name="VEHICLE_NAME" type="VARCHAR" size="30"
+                description="tlgnc_simple_vehicle.vehicle_name, referenced by tlgnc_order.delivered_simple_vehicle_id -> tlgnc_simple_vehicle"/>
+        <column name="VEHICLE_REG_NO" type="VARCHAR" size="20"
+                description="tlgnc_simple_vehicle.truck_plate_no, referenced by tlgnc_order.delivered_simple_vehicle_id -> tlgnc_simple_vehicle"/>
+        <column name="VEHICLE_TRANSPORT_CAT_CD" type="DECIMAL" size="2"
+                description="tlgnc_simple_vehicle.truck_transport_cat_cd, referenced by tlgnc_order.delivered_simple_vehicle_id -> tlgnc_simple_vehicle" />
+        <column name="VEHICLE_TYPE_CD" type="DECIMAL" size="2"
+                description="tlgnc_simple_vehicle.vehicle_type_cd, referenced by tlgnc_order.delivered_simple_vehicle_id -> tlgnc_simple_vehicle" />
+        <column name="VEHICLE_MAX_GROSS_WEIGHT_T" type="DECIMAL" size="12,4"
+                description="tlgnc_simple_vehicle.max_gross_weight_t, referenced by tlgnc_order.delivered_simple_vehicle_id -> tlgnc_simple_vehicle" />
+        <column name="VEHICLE_TARE_WEIGHT_T" type="DECIMAL" size="12,4"
+                description="tlgnc_simple_vehicle.tare_weight_t, referenced by tlgnc_order.delivered_simple_vehicle_id -> tlgnc_simple_vehicle" />
+        <column name="VEHICLE_NR_CHAMBERS" type="DECIMAL" size="2"
+                description="tlgnc_simple_vehicle.nr_chambers, referenced by tlgnc_order.delivered_simple_vehicle_id -> tlgnc_simple_vehicle" />
+
+        <column name="O_DELIVERED_DRIVER_ID" type="DECIMAL" size="12"
+                description="tlgnc_order.delivered_driver_id"/>
+        <!-- DELIVERED_DRIVER_ID: Content of tlgnc_driver, tlgnu_user, tlgnc_person.-->
+        <column name="DRIVER_NAME" type="VARCHAR" size="40"
+                description="tlgnc_person.name, referenced by tlgnc_order.delivered_driver_id -> tlgnc_driver.ueser_id -> tlgnu_user.person_id -> tlgnc_person"/>
+        <column name="DRIVER_FIRSTNAME" type="VARCHAR" size="40"
+                description="tlgnc_person.firstname, referenced by tlgnc_order.delivered_driver_id -> tlgnc_driver.ueser_id -> tlgnu_user.person_id -> tlgnc_person"/>
+        <column name="DRIVER_USER_TYPE_CD" type="DECIMAL" size="2"
+                description="tlgnc_user.user_type_cd, referenced by tlgnc_order.delivered_driver_id -> tlgnc_driver.user_id -> tlgnu_user"/>
+        <column name="DRIVER_SAP_BP_NO" type="VARCHAR" size="10"
+                description="tlgns_sap_bp.sap_id, referenced by tlgnc_order.delivered_driver_id -> tlgnc_driver.user_id -> tlgnu_user.sap_bp_id -> tlgns_sap_bp"/>
+        <column name="DRIVER_SAP_VENDOR_NO" type="VARCHAR" size="10"
+                description="tlgns_sap_vendor.sap_id, referenced by tlgnc_order.delivered_driver_id -> tlgnc_driver.user_id -> tlgnu_user.sap_vendor_id -> tlgns_sap_vendor"/>
+        <column name="DRIVER_CERTIFIED_FROM_DAT" type="DATE"
+                description="tlgnc_driver.certified_from_dat, referenced by tlgnc_order.delivered_driver_id -> tlgnc_driver"/>
+        <column name="DRIVER_CERTIFIED_TO_DAT" type="DATE"
+                description="tlgnc_driver.certified_to_dat, referenced by tlgnc_order.delivered_driver_id -> tlgnc_driver"/>
+
+        <column name="O_SENT_SALESDOC_TO_SAP_TS" type="TIMESTAMP"
+                description="tlgnc_order.sent_salesdoc_to_sap_ts"/>
+        <column name="O_SENT_SHIPMENTDOC_TO_SAP_TS" type="TIMESTAMP"
+                description="tlgnc_order.sent_shipmentdoc_to_sap_ts"/>
+
+        <!-- ORDER_ID: Content of tlgnc_assignment_part.-->
+        <column name="ASSP_LOADING_PLANNED_START" type="DATE"
+                description="tlgnc_assignment_part.planned_start where assignment_part_type_cd=1, referenced by tlgnc_assignment_part.order_id -> tlgnc_order"/>
+        <column name="ASSP_LOADING_REAL_START" type="DATE"
+                description="tlgnc_assignment_part.real_start where assignment_part_type_cd=1, referenced by tlgnc_assignment_part.order_id -> tlgnc_order"/>
+        <column name="ASSP_UNLOADING_PLANNED_START" type="DATE"
+                description="tlgnc_assignment_part.planned_start where assignment_part_type_cd=3, referenced by tlgnc_assignment_part.order_id -> tlgnc_order"/>
+        <column name="ASSP_UNLOADING_REAL_START" type="DATE"
+                description="tlgnc_assignment_part.real_start where assignment_part_type_cd=3, referenced by tlgnc_assignment_part.order_id -> tlgnc_order"/>
+
+
+		<!-- ORDER_ID: Content of tlgnc_bizevent.-->
+        <column name="BIZ_NEW_TS" type="TIMESTAMP"
+                description="tlgnc_bizevent.EVENT_TS of the last entry with bizevent_type BIZEVENT_TYPE_NEW"/>
+        <column name="BIZ_TRANSM_POOL_TS" type="TIMESTAMP"
+                description="tlgnc_bizevent.EVENT_TS of the last entry with bizevent_type BIZEVENT_TYPE_TRANSMITTED_TO_POOL"/>
+        <column name="BIZ_TRANSM_POOL_ACK_TS" type="TIMESTAMP"
+                description="tlgnc_bizevent.EVENT_TS of the last entry with bizevent_type BIZEVENT_TYPE_TRANSMITTED_TO_POOL_ACK"/>
+        <column name="BIZ_TRANSM_COMM_CARRIER_TS" type="TIMESTAMP"
+                description="tlgnc_bizevent.EVENT_TS of the last entry with bizevent_type BIZEVENT_TYPE_TRANSMITTED_TO_COMM_CARRIER"/>
+        <column name="BIZ_TRANSM_COMM_CARRIER_ACK_TS" type="TIMESTAMP"
+                description="tlgnc_bizevent.EVENT_TS of the last entry with bizevent_type BIZEVENT_TYPE_TRANSMITTED_TO_COMM_CARRIER_ACK"/>
+        <column name="BIZ_TRANSM_EXEC_CARRIER_TS" type="TIMESTAMP"
+                description="tlgnc_bizevent.EVENT_TS of the last entry with bizevent_type BIZEVENT_TYPE_TRANSMITTED_TO_EXEC_CARRIER"/>           
+        <column name="BIZ_DISPATCHED_TS" type="TIMESTAMP"
+                description="tlgnc_bizevent.EVENT_TS of the last entry with bizevent_type BIZEVENT_TYPE_DISPATCHED"/>
+        <column name="BIZ_TRANSM_TRUCK_TS" type="TIMESTAMP"
+                description="tlgnc_bizevent.EVENT_TS of the last entry with bizevent_type BIZEVENT_TYPE_TRANSMITTED_TO_TRUCK"/>
+        <column name="BIZ_TRANSM_TRUCK_ACK_TS" type="TIMESTAMP"
+                description="tlgnc_bizevent.EVENT_TS of the last entry with bizevent_type BIZEVENT_TYPE_TRANSMITTED_TO_TRUCK_ACK"/>
+        <column name="BIZ_REACT_TIME_ORD_MNG_MIN" type="DECIMAL" size="12"
+                description="Reaction Time Order Management"/>
+        <column name="BIZ_REACT_TIME_POOL_MNG_MIN" type="DECIMAL" size="12"
+                description="Reaction Time Pool Manager"/>
+        <column name="BIZ_REACT_TIME_DISPATCHER_MIN" type="DECIMAL" size="12"
+                description="Reaction Time Dispatcher"/>
+        <column name="BIZ_REACT_TIME_TRUCK_DRV_MIN" type="DECIMAL" size="12"
+                description="Reaction Time Truck Driver"/>
+        <column name="BIZ_REACT_TIME_NET_WINDOW_MIN" type="DECIMAL" size="12"
+                description="Delivery Time Window (net)"/>                
+		<column name="BIZ_ENTER_SP_TS" type="TIMESTAMP"
+                description="tlgnc_bizevent.event_ts, referenced by tlgnc_bizevent.order_id -> tlgnc_order.order_id"/>
+		<column name="BIZ_START_LOAD_TS" type="TIMESTAMP"
+                description="tlgnc_bizevent.event_ts, referenced by tlgnc_bizevent.order_id -> tlgnc_order.order_id"/>
+		<column name="BIZ_WAITINGTIME_REASON_SP_CD" type="DECIMAL" size="2"
+				description="tlgnr_driver_waitingreason.waitingtime_reason_code, resolved by tlgnc_order.delivered_driver_id + tlgnc_order.shippingpoint_id"/>			
+		<column name="BIZ_END_LOAD_TS" type="TIMESTAMP"
+                description="tlgnc_bizevent.event_ts, referenced by tlgnc_bizevent.order_id -> tlgnc_order.order_id"/>
+        <column name="BIZ_LOADING_TIME_MIN" type="DECIMAL" size="12"
+                description="Loading Time"/>
+		<column name="BIZ_LEAVE_SP_TS" type="TIMESTAMP"
+                description="tlgnc_bizevent.event_ts, referenced by tlgnc_bizevent.order_id -> tlgnc_order.order_id"/>
+        <column name="BIZ_CYCLE_TIME_AT_SP_MIN" type="DECIMAL" size="12"
+                description="Cycle Time at Ship.Station"/>
+		<column name="BIZ_TRANS_RAIL_COMPANY_TS" type="TIMESTAMP"
+                description="tlgnc_bizevent.event_ts, referenced by tlgnc_bizevent.order_id -> tlgnc_order.order_id with bizevent_type BIZEVENT_TYPE_TRANSMITTED_TO_RAIL"/>                
+		<column name="BIZ_TRAFFICJAM_COUNT" type="DOUBLE"
+                description="Count of all bizevents (tlgnc_bizevent) of type traffic jam (210 and 211)."/>
+		<column name="BIZ_TRAFFICJAM_DURATION_MIN" type="DECIMAL" size="6"
+                description="Total duration of all trafficjams. SUM(traffic_jam_end - traffic_jam_start). Time is taken from tlgnc_bizevent.event_ts."/>        
+        <column name="BIZ_BREAK_DRIVING_COUNT" type="DECIMAL" size="12"
+                description="FIXME: This field is currently not used at all."/>
+		<column name="BIZ_BREAK_DRIVING_DURATION_MIN" type="DECIMAL" size="12"
+                description="FIXME: This field is currently not used at all."/>                                
+		<column name="BIZ_ENTER_ST_TS" type="TIMESTAMP"
+                description="tlgnc_bizevent.event_ts, referenced by tlgnc_bizevent.order_id -> tlgnc_order.order_id"/>
+        <column name="BIZ_CALC_DRIVING_TIME_MIN" type="DECIMAL" size="12"
+                description="FIXME: This field is currently not used at all."/>                
+        <column name="BIZ_CALC_NET_DRIVING_TIME_MIN" type="DECIMAL" size="12"
+                description="Calculated the driving net time, respecting the driver breaks."/>
+        <column name="BIZ_ACTUAL_DISTANCE_M" type="DECIMAL" size="10"
+                description="DEPRECATED - FIXME - still used in reports"/>
+		<column name="BIZ_START_UNLOAD_TS" type="TIMESTAMP"
+                description="tlgnc_bizevent.event_ts, referenced by tlgnc_bizevent.order_id -> tlgnc_order.order_id"/>
+		<column name="BIZ_WAITINGTIME_REASON_ST_CD" type="DECIMAL" size="2"
+				description="tlgnr_driver_waitingreason.waitingtime_reason_code, resolved by tlgnc_order.delivered_driver_id + tlgnc_shipto.shipto_id tlgnc_order.shipto_sap_bp_id -> tlgns_shipto.shipto_sap_bp_id"/>                
+		<column name="BIZ_END_UNLOAD_TS" type="TIMESTAMP"
+                description="tlgnc_bizevent.event_ts, referenced by tlgnc_bizevent.order_id -> tlgnc_order.order_id"/>
+        <column name="BIZ_UNLOADING_MIN" type="DECIMAL" size="12"
+                description="Unloading Time"/>
+		<column name="BIZ_LEAVE_ST_TS" type="TIMESTAMP"
+                description="tlgnc_bizevent.event_ts, referenced by tlgnc_bizevent.order_id -> tlgnc_order.order_id"/>
+        <column name="BIZ_CYCLE_TIME_AT_SHIPTO_MIN" type="DECIMAL" size="12"
+                description="Cycle Time at Ship-To"/>
+		<column name="BIZ_GEOEVENT_COUNT" type="DOUBLE"
+                description="Count of all bizevents (tlgnc_bizevent) of type position (118)."/>
+                
+        <column name="O_SHORT_TERM_ORDER_FLAG" required="true" type="BOOLEAN"
+                description="FIXME"/>
+        <column name="O_TRIP_INC_IN_STATISTICS_FLAG" required="true" type="BOOLEAN"
+                description="DEPRECATED - FIXME - still used in reports"/>
+		<column name="O_RESCHEDULING_FLAG" required="true" type="BOOLEAN"
+                description="FIXME"/>
+        <!-- O_CALL_OFF_ORDER_AND_LOCKED_FLAG: Not necessary/useful to freeze: It will always be 0 when it is dispatched. And 'deleted' orders are never frozen -->
+         <column name="O_ORDER_LIFEX_NO" type="VARCHAR"
+          size="12" 
+          description="External delivery number (also used in SalesDoc/LIFEX)" />
+         
+        <column name="O_LNF_COORD_LAT" type="DOUBLE"
+                description="tlgnc_order.lnf_coord_lat"/>
+        <column name="O_LNF_COORD_LON" type="DOUBLE"
+                description="tlgnc_order.lnf_coord_lat"/>
+        <column name="O_LNF_SITE_NAME" type="VARCHAR" size="80"
+                description="tlgnc_order.lnf_site_name"/>
+        <column name="O_LNF_SITE_STREET_HOUSE_NO" type="VARCHAR" size="45"
+                description="tlgnc_order.lnf_site_name."/>
+        <column name="O_LNF_SITE_COUNTRY" type="VARCHAR" size="3"
+                description="tlgnc_order.lnf_site_name."/>
+        <column name="O_LNF_SITE_POSTAL_CODE" type="VARCHAR" size="10"
+                description="tlgnc_order.lnf_site_name."/>
+        <column name="O_LNF_SITE_CITY" type="VARCHAR" size="35"
+                description="tlgnc_order.lnf_site_name."/>
+        <column name="O_LNF_SITE_VAT_NO" type="VARCHAR" size="20"
+                description="tlgnc_order.lnf_site_vat_no."/>
+
+        <column name="O_ONE_TIME_SOLDTO_NAME" type="VARCHAR" size="80"
+                description="tlgnc_order.one_time_soldto_name"/>
+        <column name="O_ONE_TIME_SOLDTO_STREET_HNO" type="VARCHAR" size="45"
+                description="tlgnc_order.one_time_soldto_street_houseno"/>
+        <column name="O_ONE_TIME_SOLDTO_CITY" type="VARCHAR" size="35"
+                description="tlgnc_order.one_time_soldto_city"/>
+        <column name="O_ONE_TIME_SOLDTO_POSTAL_CODE" type="VARCHAR" size="10"
+                description="tlgnc_order.one_time_soldto_postal_code"/>
+        <column name="O_ONE_TIME_SOLDTO_COUNTRY" type="VARCHAR" size="3"
+                description="tlgnc_order.one_time_soldto_country"/>        
+        <column name="O_ONE_TIME_SOLDTO_VAT_NO" type="VARCHAR" size="20"
+                description="tlgnc_order.one_time_soldto_vat_no."/>
+
+		<column name="REPORT_SVC_LEVEL_RELEVANT_FLAG" required="true" type="BOOLEAN"
+                description="EDITABLE Flag in Reporting tab"/>
+                
+        <column name="REPORT_NOTE_FROM_CRH" type="VARCHAR" size="256"
+                description="EDITABLE text area, similar to the order note fields"/>
+        <column name="REPORT_NOTE_FROM_CARRIER" type="VARCHAR" size="256"
+                description="EDITABLE text area, similar to the order note fields"/>
+
+        <column name="REPORT_FINISHED_COMM_FLAG" required="true" type="BOOLEAN"
+                description="1/true = the commercial aspects (cost, netprice, margin) of this order (and maybe other orders it depends on) are complete and OK. Data is meant to be included in reports where monetary aspects are relevant. Value is initially set during 'finish' operation. It can only be edited/set indirectly via later cost updates/recalculations of the order, triggered by netprice import interface or by manual recalculations called by the user."/>
+
+        <column name="O_CTL_CRE_UID" required="true" type="DECIMAL" size="12"
+                description="Technical field of order (tlgnc_order.ctl_cre_uid). Non-enforced foreign key to the UserEntity who created the tlgnc_order record."/>
+        <column name="O_CTL_CRE_UID_NAME" type="VARCHAR" size="80"
+                description="tlgnc_person.firstname + tlgnc_person.name resolved by tlgnc_order.ctl_cre_uid -> tlgnu_user -> tlgnc_person"/>
+        <column name="O_CTL_CRE_TS" required="true" type="TIMESTAMP"
+                description="Technical field (tlgnc_order.ctl_cre_ts). The time when the record got created."/>
+        <column name="O_CTL_MOD_UID" required="true" type="DECIMAL" size="12"
+                description="Technical field of order (tlgnc_order.ctl_mod_uid). Non-enforced foreign key to the UserEntity who last modified the tlgnc_order record."/>
+        <column name="O_CTL_MOD_UID_NAME" type="VARCHAR" size="80"
+                description="tlgnc_person.firstname + tlgnc_person.name resolved by tlgnc_order.ctl_cre_uid -> tlgnu_user -> tlgnc_person"/>
+        <column name="O_CTL_MOD_TS" required="true" type="TIMESTAMP"
+                description="Technical field.(tlgnc_order.ctl_mod_ts) The time when the record was last modified."/>
+
+        <column name="O_BP_CORRECTED_FLAG" required="false" type="BOOLEAN"
+                description="This flag is set to 1 if the business partner (soldto, shipto, billto, sarea) is modified after the order is in status delivered"/>
+                
+        <column name="EXTRA_COST_WAITING_TIME_MIN" type="DECIMAL" size="4" 
+        		description="Waiting time, only refunded to carrier."/>
+        		
+        <column name="EXTRA_COST_1" type="VARCHAR" size="20"
+        		description="1. extra cost SAP Code of the order."/>
+        <column name="EXTRA_COST_2" type="VARCHAR" size="20"
+        		description="2. extra cost SAP Code of the order."/>
+        <column name="EXTRA_COST_3" type="VARCHAR" size="20"
+        		description="3. extra cost SAP Code of the order."/>
+        <column name="EXTRA_COST_4" type="VARCHAR" size="20"
+        		description="4. extra cost SAP Code of the order."/>
+        		
+		<!-- Used as a KPI -->
+		<column name="O_DELIV_TYPE_PLAN_ACTUAL" type="BOOLEAN"
+        		description="True if the orders delivery type matches the dispo card"/>
+		<column name="O_ARRIVAL_TS" type="TIMESTAMP" 
+				description="Timestamp used for further calculate the O_CALC_LATE_DELIVERY_FLAG"/>
+				        		
+        <unique name="UQ_TLGNF_ORDER_FINAL_OID">
+            <unique-column name="O_ORDER_ID"/>
+        </unique>
+        
+        <index name="I_TLGNF_ORDER_F_DEL_ACT_DAT">
+            <index-column name="O_ACTUAL_DELIVERY_DAT"/>
+        </index>
+
+		<index name="I_TLGNF_ORDER_FINAL_SENT_KPI">
+			<index-column name="SENT_KPI_TO_SAP_BW_TS"/>
+			<index-column name="ORDER_FINAL_ID"/>
+		</index>
+		
+		<index name="I_TLGNF_ORDER_FINAL_O_CTLCRETS">
+			<index-column name="O_CTL_CRE_TS"/>
+		</index>
+
+    </table>
+</database>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="VLGNU_TABLE_INFO" mappingType="view" skipSql="true">
+        <column name="TABLE_NAME" required="true" type="VARCHAR" size="30"/>
+        <column name="TABLE_TYPE" type="VARCHAR" size="11"/>
+        <column name="COMMENTS" type="VARCHAR" size="4000"/>
+    </table>
+</database>

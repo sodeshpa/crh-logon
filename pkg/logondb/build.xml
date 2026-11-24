@@ -1,0 +1,258 @@
+<project name="logondb" basedir="./" default="all">
+	<!-- ============== configuration ============== -->
+	<property name="masterbuild.dir" location="${basedir}/../.." />
+	<property name="build.unit" location="${basedir}/../.." />
+
+	<import file="${masterbuild.dir}/properties.xml" />
+	<import file="../../common.xml" />
+
+	<taskdef resource="adnant-taskdefs.xml" />
+
+	<property file="${build.unit}/config/env-local.proj" />
+	<property file="${masterbuild.dir}/config/env-${OS}.proj" />
+	<property file="${build.unit}/config/env.proj" />
+	<property file="${build.unit}/config/build-local.properties" />
+	<property file="${build.unit}/config/build.properties" />
+
+	<!-- package variables (apply to .template files), its like a pkginfo -->
+	<property name="pkg.name" value="logondb" />
+	<property name="pkg.display.name" value="logondb" />
+	<property name="pkg.comp.name" value="logondb" />
+	<property name="pkg.desc" value="logondb" />
+	<property name="pkg.version" value="${version}" />
+	<property name="deploy.unit.name" value="logondb-${version}.zip" />
+
+	<property name="build.dir" location="build" />
+	<property name="logondb.srctree.dir" location="${build.dir}/srctree.logondb" />
+
+	<property name="PKG_DEST" value="destdir.local" />
+
+
+	<property name="logonDB.etc.persist" value="../../logon-persistence/etc/sql" />
+	<property name="logonDB.etc.webserv" value="../../logon-webservices/etc/entities" />
+	<property name="logonDB.sql.create" value="${basedir}/../../logon-persistence/build/generated/gdi/adxml2ddl/sql/create" />
+	<property name="logonDB.sql.drop" value="${basedir}/../../logon-persistence/build/generated/gdi/adxml2ddl/sql/create" />
+	<property name="logonDB.gen.csv2sql" value="${basedir}/../../logon-persistence/build/generated/gdi/csv2sql" />
+
+
+	<property name="app_sql.dist.dir"
+			  location="${logondb.srctree.dir}/sql" />
+
+	<target name="all" depends="build-zip" />
+
+	<target name="pkg-deploy">
+		<copy todir="${pkg.dest.dir}">
+			<fileset dir="${build.dir}/">
+				<include name="${deploy.unit.name}" />
+			</fileset>
+		</copy>
+		<property name="repoPath" value="com.crh.logon.app/logon-db/${version}/logon-db-${version}.zip" />
+		<binrepo-publish sourceFile="${build.dir}/${deploy.unit.name}" targetPath="${repoPath}" />
+		<binrepo-deliver artifactPath="${repoPath}" />
+	</target>
+	<target name="clean">
+		<delete dir="${build.dir}" />
+	</target>
+
+	<target name="init-tree">
+		<mkdir dir="${app_sql.dist.dir}" />
+
+	</target>
+
+	<target name="logondb-sql" depends="init-tree">
+		<copy todir="${app_sql.dist.dir}">
+			<fileset dir="${logonDB.etc.persist}">
+				<include name="*.sql" />
+			</fileset>
+			<filterset>
+				<filter token="VERSION" value="${version}" />
+			</filterset>
+
+		</copy>
+		<copy todir="${app_sql.dist.dir}/admin">
+			<fileset dir="${logonDB.etc.persist}/admin">
+				<include name="*.sql" />
+			</fileset>
+		</copy>
+		<!-- ADZA initialdata -->
+		<copy todir="${app_sql.dist.dir}/adza_initialdata">
+			<fileset dir="${logonDB.etc.persist}/adza_initialdata">
+				<include name="*.sql" />
+			</fileset>
+		</copy>
+		<copy todir="${app_sql.dist.dir}/adza_initialdata">
+			<fileset dir="${logonDB.gen.csv2sql}/adza_initialdata">
+				<include name="**" />
+			</fileset>
+		</copy>
+
+		<!-- ADZA testdata -->
+		<copy todir="${app_sql.dist.dir}/adza_testdata">
+			<fileset dir="${logonDB.etc.persist}/adza_testdata">
+				<include name="*.sql" />
+			</fileset>
+		</copy>
+		<copy todir="${app_sql.dist.dir}/adza_testdata">
+			<fileset dir="${logonDB.gen.csv2sql}/adza_testdata">
+				<include name="**" />
+			</fileset>
+		</copy>
+
+		<!-- Cluster 2 initialdata -->
+		<copy todir="${app_sql.dist.dir}/cl2_initialdata">
+			<fileset dir="${logonDB.etc.persist}/cl2_initialdata">
+				<include name="*.sql" />
+			</fileset>
+		</copy>
+		<copy todir="${app_sql.dist.dir}/cl2_initialdata">
+			<fileset dir="${logonDB.gen.csv2sql}/cl2_initialdata">
+				<include name="**" />
+			</fileset>
+		</copy>
+
+		<!-- Cluster 1 initialdata (CHE, SGE, NGE, ITA 2012 and newer) -->
+		<copy todir="${app_sql.dist.dir}/cl1_initialdata">
+			<fileset dir="${logonDB.etc.persist}/cl1_initialdata">
+				<include name="*.sql" />
+			</fileset>
+		</copy>
+		<copy todir="${app_sql.dist.dir}/cl1_initialdata">
+			<fileset dir="${logonDB.gen.csv2sql}/cl1_initialdata">
+				<include name="**" />
+			</fileset>
+		</copy>
+
+		<!-- Cities initialdata (aka cluster 5 ish?) -->
+		<copy todir="${app_sql.dist.dir}/cities_initialdata">
+			<fileset dir="${logonDB.etc.persist}/cities_initialdata">
+				<include name="*.sql" />
+			</fileset>
+		</copy>
+		<copy todir="${app_sql.dist.dir}/cities_initialdata">
+			<fileset dir="${logonDB.gen.csv2sql}/cities_initialdata">
+				<include name="**" />
+			</fileset>
+		</copy>
+
+		<!-- FBNL initialdata (aka cluster 0)-->
+		<copy todir="${app_sql.dist.dir}/fbnl_initialdata">
+			<fileset dir="${logonDB.etc.persist}/fbnl_initialdata">
+				<include name="*.sql" />
+			</fileset>
+		</copy>
+		<copy todir="${app_sql.dist.dir}/fbnl_initialdata">
+			<fileset dir="${logonDB.gen.csv2sql}/fbnl_initialdata">
+				<include name="**" />
+			</fileset>
+		</copy>
+
+		<!-- FBNL testdata -->
+		<copy todir="${app_sql.dist.dir}/fbnl_testdata">
+			<fileset dir="${logonDB.etc.persist}/fbnl_testdata">
+				<include name="*.sql" />
+			</fileset>
+		</copy>
+
+		<copy todir="${app_sql.dist.dir}/create">
+			<fileset dir="${logonDB.sql.create}">
+				<include name="*.sql" />
+			</fileset>
+		</copy>
+		<copy todir="${app_sql.dist.dir}/create_sap">
+			<fileset dir="${logonDB.etc.webserv}">
+				<include name="*.sql" />
+			</fileset>
+		</copy>
+
+		<copy todir="${app_sql.dist.dir}/drop">
+			<fileset dir="${logonDB.sql.drop}">
+				<include name="*.sql" />
+			</fileset>
+		</copy>
+
+		<!-- CHE initialdata: collect both explicit + generated files (CHE directory has no prefix, for historical reasons) -->
+		<copy todir="${app_sql.dist.dir}/initialdata">
+			<fileset dir="${logonDB.etc.persist}/initialdata">
+				<include name="*.sql" />
+			</fileset>
+		</copy>
+		<copy todir="${app_sql.dist.dir}/initialdata">
+			<fileset dir="${logonDB.gen.csv2sql}/initialdata">
+				<include name="**" />
+			</fileset>
+		</copy>
+
+		<!-- Loadtestdata: only generated SQL -->
+		<copy todir="${app_sql.dist.dir}/loadtestdata">
+			<fileset dir="${logonDB.gen.csv2sql}/loadtestdata">
+				<include name="**" />
+			</fileset>
+		</copy>
+
+		<!-- NGE initialdata: currently only explict SQL files -->
+		<copy todir="${app_sql.dist.dir}/nge_initialdata">
+			<fileset dir="${logonDB.etc.persist}/nge_initialdata">
+				<include name="*.sql" />
+			</fileset>
+		</copy>
+
+		<!-- Patch incl. all subdirectores -->
+		<copy todir="${app_sql.dist.dir}/patch">
+			<fileset dir="${logonDB.etc.persist}/patch">
+				<include name="**" />
+				<exclude name="*/CVS" />
+				<exclude name="*/.cvsignore" />
+				<exclude name="*/*%" />
+				<exclude name="*/*~" />
+			</fileset>
+			<filterset>
+				<filter token="VERSION" value="${version}" />
+			</filterset>
+		</copy>
+
+		<!-- GLOBAL refdata: Generated + explicit file. Need to deep-copy, and not just *.sql, due to images/blob loading -->
+		<copy todir="${app_sql.dist.dir}/refdata">
+			<fileset dir="${logonDB.etc.persist}/refdata">
+				<include name="**" />
+				<exclude name="*/CVS" />
+				<exclude name="*/.cvsignore" />
+				<exclude name="*/*%" />
+				<exclude name="*/*~" />
+			</fileset>
+		</copy>
+		<copy todir="${app_sql.dist.dir}/refdata">
+			<fileset dir="${logonDB.gen.csv2sql}/refdata">
+				<include name="**" />
+			</fileset>
+		</copy>
+
+		<!-- Testdata: collect both explicit + generated files -->
+		<copy todir="${app_sql.dist.dir}/testdata">
+			<fileset dir="${logonDB.etc.persist}/testdata">
+				<include name="*.sql" />
+			</fileset>
+		</copy>
+		<copy todir="${app_sql.dist.dir}/testdata">
+			<fileset dir="${logonDB.gen.csv2sql}/testdata">
+				<include name="**" />
+			</fileset>
+		</copy>
+	</target>
+
+
+	<!-- zip file distribution -->
+	<target name="build-zip" depends="logondb-sql" description="Build ZIP form of '${pkg.name}' package">
+		<!-- precondition: We never overwrite a package -->
+		<available file="${build.dir}/${deploy.unit.name}" property="zip.exists" />
+		<echo>${zip.exists}</echo>
+		<fail if="zip.exists">ERROR: Zip package ${build.dir}/${deploy.unit.name} exists</fail>
+		<!-- create a distributable single file -->
+		<zip destfile="${build.dir}/${deploy.unit.name}"
+			 basedir="${logondb.srctree.dir}" includes="*/**" />
+		<!-- thats what we got now -->
+		<echo>=====================================================================================================</echo>
+		<echo>DONE: ${build.dir}/${deploy.unit.name}</echo>
+		<echo>=====================================================================================================</echo>
+	</target>
+
+</project>

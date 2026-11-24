@@ -1,0 +1,8 @@
+#macro (includefile $filename)
+#set($includepath = $mergedir + "/" + $filename)
+#define($includetext)#evaluate($include.readFile($includepath))#end
+#if ($includetext != "")
+$includetext
+#else  <!-- $filename not found in merge dir -->
+#end
+#end

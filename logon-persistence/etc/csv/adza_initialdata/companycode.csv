@@ -1,0 +1,10 @@
+#COMPANYCODE_CD;COMPANYCODE_NAME;CTL_ACT_CD
+#Template EBM;;
+# /share/doc/crh/logon_2_0_ebm/input/sap/LRQ001.0_Organisational_structure/EBM_template_Values_v8_20110323.pdf;;
+AD01;AD01;AD;1
+AD02;AD02;AD;1
+AD03;AD03;AD;1
+ZA01;ZA01;ZA;1
+ZA02;ZA02;ZA;1
+ZA03;ZA03;ZA;1
+CH90;CH90;CH;1

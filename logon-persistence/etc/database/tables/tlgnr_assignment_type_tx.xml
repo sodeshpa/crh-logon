@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNR_ASSIGNMENT_TYPE_TX" refData="true"
+           description="Possible status of an order assignment.">
+
+        <column name="ASSIGNMENT_TYPE_CD" primaryKey="true" required="true" type="DECIMAL" size="2"
+                description="Part of PK. FK to TLGNR_ASSIGNMENT_TYPE_BS. Code of the Reference Data."/>
+        <column name="LANG_CD" primaryKey="true" required="true" type="VARCHAR" size="2"
+                description="Part of PK. FK to TLGNR_LANG_BS."/>
+        <column name="TXT" required="true" type="VARCHAR" size="30"
+                description="Description of the type in the language LANG_CD."/>
+
+        <foreign-key foreignTable="TLGNR_ASSIGNMENT_TYPE_BS" name="FK_TLGNR_ASSIGNMENT_TYPE_TX">
+            <reference local="ASSIGNMENT_TYPE_CD" foreign="ASSIGNMENT_TYPE_CD"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_LANG_BS" name="FK_TLGNR_ASSIGN_TYPE_LANG">
+            <reference local="LANG_CD" foreign="LANG_CD"/>
+        </foreign-key>
+    </table>
+</database>

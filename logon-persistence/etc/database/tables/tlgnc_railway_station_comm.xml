@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNC_RAILWAY_STATION_COMM"
+           description="Maps operational railway stations to commercial railway stations. Ususally the operational railway station is also the commercial railway station. Otherwise, there will be a mapping of the operational railway station to its commercial railway station in this table. The commercial railway station will be used to determine prices as for some operational railway stations, no prices are available. In the SAP export order interface, both operational and commercial railway stations will be sent for rail-order.">
+
+		<column name="RAILWAY_STATION_COMM_ID" primaryKey="true" 
+			required="true" type="DECIMAL" size="12"	
+			description="PK"/>
+
+        <column name="OP_RAILWAY_STATION_ID"
+			required="true" type="DECIMAL" size="12"
+			description="FK tlgnc_railway_station. Operational railway station as referenced in Shippingpoint or Ship-To and used in the timetable."/>
+        <column name="COMM_RAILWAY_STATION_ID" 
+			required="true" type="DECIMAL" size="12"	
+			description="FK tlgnc_railway_station. Commercial railway station which is used for billing/price determination instead of the operational railway station. In Logon, only needed in SAP export order interface."/>
+
+		<foreign-key foreignTable="TLGNC_RAILWAY_STATION" name="FK_TLGNC_RAILWAY_ST_COMM_OP">
+            <reference local="OP_RAILWAY_STATION_ID" foreign="RAILWAY_STATION_ID"/>
+        </foreign-key>
+		<foreign-key foreignTable="TLGNC_RAILWAY_STATION" name="FK_TLGNC_RAILWAY_ST_COMM_COMM">
+            <reference local="COMM_RAILWAY_STATION_ID" foreign="RAILWAY_STATION_ID"/>
+        </foreign-key>
+
+        <!-- There is no point of having a mapping twice in this table. It would just make queries more complicated (distinct needed). -->
+        <unique name="UQ_TLGNC_RAILWAY_STATION_COMM">
+            <unique-column name="OP_RAILWAY_STATION_ID"/>
+            <unique-column name="COMM_RAILWAY_STATION_ID"/>
+        </unique>
+
+    </table>
+</database>

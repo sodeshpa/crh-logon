@@ -1,0 +1,22 @@
+<jaxb:bindings
+		xmlns:jaxb="http://java.sun.com/xml/ns/jaxb"
+		xmlns:xsd="http://www.w3.org/2001/XMLSchema" jaxb:version="2.0"
+		xmlns:pr="http://logon.crh.com/eventbeans/in/parallel_rail">
+	<jaxb:globalBindings>
+		<jaxb:javaType name="java.util.Date" xmlType="xsd:dateTime"
+					   parseMethod="com.crh.logon.eventbeans.DateTimeAdapter.parseDate"
+					   printMethod="com.crh.logon.eventbeans.DateTimeAdapter.printDate" />
+		<jaxb:javaType name="java.lang.Integer" xmlType="xsd:int" />
+		<jaxb:javaType name="java.lang.Boolean" xmlType="xsd:boolean" />
+		<jaxb:javaType name="java.lang.Long" xmlType="xsd:long" />
+		<jaxb:serializable />
+	</jaxb:globalBindings>
+	<jaxb:bindings schemaLocation="logon_lds_interface.xsd">
+		<jaxb:bindings multiple="true"
+				node="(//xsd:element[@name='getOrdersForCarriersRequest' or @name='scheduleAssignmentRequest'] | //xsd:complexType[@name='orderListData'])//xsd:element[@type='xsd:dateTime']">
+			<jaxb:javaType name="java.time.OffsetDateTime"
+						   parseMethod="com.crh.logon.eventbeans.OffsetDateTimeAdapter.parseDate"
+						   printMethod="com.crh.logon.eventbeans.OffsetDateTimeAdapter.printDate" />
+		</jaxb:bindings>
+	</jaxb:bindings>
+</jaxb:bindings>

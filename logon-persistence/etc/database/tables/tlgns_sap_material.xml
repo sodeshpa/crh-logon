@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNS_SAP_MATERIAL"
+           description="Material data, received from SAP in Material Notification Interface.">
+
+        <column name="SAP_MATERIAL_ID" primaryKey="true" required="true" type="DECIMAL" size="12"
+                description="PK"/>
+        <column name="SAP_MATERIAL_NO" required="true" type="VARCHAR" size="18"
+                description="SAP material number/identifier, leading zeros are trimmed. SAP: material_general_data (MARA) / MATNR, trimmed."/>
+        <column name="SAP_MATERIAL_IFC_NO" required="true" type="VARCHAR" size="18"
+                description="SAP material number/identifier, exactly as received and also used for sending to other systems, i.e. including the leading zeros. SAP: material_general_data (MARA) / MATNR, original."/>
+        
+        <!-- Field used in master data import -->
+        <column name="UPDATE_BLOCKED_BY_HJID" type="DECIMAL" size="19"
+        		description="Contains the hjid of the notification that blocks any further updates if this is the case or 'null' if not blocked. Non-enforced FK to ULGNSAP.MN_MATERIALNOTIFICATION."/>
+        
+        <column name="MATERIAL_GROUP_DESC" type="VARCHAR" size="20"
+                description="Material group code (before Logon 2.0 Material group description). SAP: material_general_data.MATKL. From Logon 2.0 the original field SAP: T023T_WGBEZ is not received from SAP anymore. In reporting we need to provide at least the material group code of the material. Used to save into tlgnf_order_final_item.mat_material_group_desc'. Usage: only stored in field tlgnf_order_final_item.mat_material_group_desc. No further logic."/>
+        <column name="BASE_UOM_CD" required="true" type="VARCHAR" size="3"
+                description="FK tlgnr_uom_bs. Standard unit of measurement. Find alternative UOMs in tlgns_sap_material_alt_uom. SAP: material_general_data (MARA) / MEINS"/>
+        <column name="PRODUCT_HIERARCHY_DESC" type="VARCHAR" size="40"
+                description="tlgnc_mat_plant.norm_desc field was introduced 14.07.2010 and replaces this field in the application. The new field is maintained manually. This field is not used anymore, and is always empty."/>
+        <column name="DIVISION_CD" type="VARCHAR" size="2"
+                description="Division. SAP: material_general_data (MARA) / SPART. This is the same division which is part of an identifier for a sales area: sales org + division + distribution channel."/>
+        <column name="INDUSTRY_STANDARD_DESC" type="VARCHAR" size="18"
+                description="Industry standard description. SAP: material_general_data (MARA) / NORMT. No logic in Logon."/>
+        <column name="MATERIAL_PACKAGE_CD" required="true" type="VARCHAR" size="4"
+                description="FK tlgnr_material_package_bs. Material package type. Determined based on SAP: material_general_data (MARA) / MTART and material_sales_data (MVKE) / MTPOS and material_sales_data (MVKE) / MVGR2, Material group: Packaging materials."/>
+        <column name="MARKED_FOR_DELETION" type="BOOLEAN"
+                description="Deletion code in SAP (material_general_data (MARA) / LVORM). 0=active, 1=deleted. Note that Logon normally has active_flag, with inversed logic. We stick to SAP standards in the tlgns_sap_... tables."/>
+		<column name="PROD_PLANT_CD" type="VARCHAR" size="4"
+                description="FK tlgnr_plant_bs. The user can not selected another producing plant for the material. SAP does not sent it currently!"/>
+
+		<column name="material_is_agg" type="BOOLEAN" required="true" 
+				description="Technical flag for easier filtering: set if SAP material type MTART equals to 'ZAGG'."/>				
+		<column name="material_is_cem" type="BOOLEAN" required="true" 
+				description="Technical flag for easier filtering: set if SAP material type MTART equals to 'ZCEM'."/>
+		<column name="material_is_lf" type="BOOLEAN" required="true" 
+				description="Technical flag for easier filtering: set if SAP material type MTART equals to 'ZNST' and material pricing group KONDM of all sales areas of '32' OR '33'. For the purpose of landfill identification SAP will not maintain the values differently on the sales area level (makes no sense to have in one sales area identified as landfill and on another as a different type)."/>
+	
+        <foreign-key foreignTable="TLGNR_UOM_BS" name="FK_TLGNS_SAP_MATERIAL_UOM">
+            <reference local="BASE_UOM_CD" foreign="UOM_CD"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_MATERIAL_PACKAGE_BS" name="FK_TLGNS_SAP_MAT_MAT_PKG">
+            <reference local="MATERIAL_PACKAGE_CD" foreign="MATERIAL_PACKAGE_CD"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_DIVISION_BS" name="FK_TLGNS_SAP_MAT_DIVISION_BS">
+            <reference local="DIVISION_CD" foreign="DIVISION_CD"/>
+        </foreign-key>          
+		<foreign-key foreignTable="TLGNR_PLANT_BS" name="FK_TLGNS_SAP_MATERIAL_PROD_P">
+            <reference local="PROD_PLANT_CD" foreign="PLANT_CD"/>
+        </foreign-key>    
+        
+        
+    </table>
+</database>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-workspace name="Logon" soapui-version="5.2.1" xmlns:con="http://eviware.com/soapui/config">
+  <con:settings/>
+  <con:project name="integration-tests">/local/emoke/projects/crh-logon/logon-simulator/./etc/soapui/integration-tests/integration-tests-soapui-project.xml</con:project>
+  <con:project name="manual-tests">/local/emoke/projects/crh-logon/logon-simulator/./etc/soapui/manual-tests/manual-tests-soapui-project.xml</con:project>
+  <con:project name="SAP import test">/home/emoke/SAP_import_test-soapui-project_2021.xml</con:project>
+  <con:collectInfoForSupport>false</con:collectInfoForSupport>
+</con:soapui-workspace>

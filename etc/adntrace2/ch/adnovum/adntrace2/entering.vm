@@ -1,0 +1,39 @@
+##
+##	This template can be parameterized with the following variables provided in its context:
+##	returnType: is a string representation of the return type of the method.
+##	resultVar: a string value of which will be used as variable name for the result.
+##	parameters: is a map that is keyed on param name, the value for the parameter is the string that will be used to reference
+##	            the value for the parameter.
+##	methodName: is name of the method for which this template is producing the entering code.
+##  initValue : the init value to
+##  loggingCtx: the logging context object. Should be parametrized since static vs non-staic will have different values
+##
+##	NOTE: try to keep the comment end line as it is ('// [[' after the end of the comment). Putting it on the next line produces
+##	unwanted extra newline.
+##
+// [[
+#if( $returnType != "void" && $resultVar )
+${returnType} ${resultVar} = ${initValue};
+#end
+#if($parameters)
+#set ($count = 0)
+Object[][] params = {#foreach($param in $parameters.entrySet())
+#if($count == 0 && $parameters.size() == 1){"$param.key", $param.value}};
+#elseif($count == 0 && $parameters.size() != 1){"$param.key", $param.value},
+#elseif($count != $parameters.size() - 1)
+					{"$param.key", $param.value},
+#else
+					{"$param.key", $param.value}};
+#end
+#set($count = $count + 1)
+#end
+#end
+boolean logDebugEnabled = ${logVarName}.isDebugEnabled();
+if (logDebugEnabled) {
+#if(!$parameters)
+	${logVarName}.entering(${loggingCtx}, "${methodName}");
+#else
+	${logVarName}.entering(${loggingCtx}, "${methodName}", params);
+#end
+}
+// ]]

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNR_TRSP_ZONE_TX" refData="true"
+           description="Language dependent data of the Transport Zones.">
+
+        <column name="TRSP_ZONE_CD" primaryKey="true" required="true" type="VARCHAR" size="10"
+                description="Part of PK. FK to TLGNR_TRSP_ZONE_BS. Code of the Reference Data."/>
+        <column name="LANG_CD" primaryKey="true" required="true" type="VARCHAR" size="2"
+                description="Part of PK. FK to TLGNR_LANG_BS. Language in which reference data code is described in TXT."/>
+        <column name="TXT" required="true" type="VARCHAR" size="80"
+                description="Description of the Transport Zone in the language LANG_CD."/>
+
+        <foreign-key foreignTable="TLGNR_TRSP_ZONE_BS" name="FK_TLGNR_TRSP_ZONE_TX">
+            <reference local="TRSP_ZONE_CD" foreign="TRSP_ZONE_CD"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_LANG_BS" name="FK_TLGNR_TRSP_ZONE_LANG">
+            <reference local="LANG_CD" foreign="LANG_CD"/>
+        </foreign-key>
+    </table>
+</database>

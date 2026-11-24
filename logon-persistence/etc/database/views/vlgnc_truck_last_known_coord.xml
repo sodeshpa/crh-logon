@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="VLGNC_TRUCK_LAST_KNOWN_COORD" mappingType="view" skipSql="true">
+        <column name="TRUCK_ID" type="DECIMAL" size="12"/>
+        <column name="LAST_COORD_LAT" type="DOUBLE"/>
+        <column name="LAST_COORD_LON" type="DOUBLE"/>
+    </table>
+</database>

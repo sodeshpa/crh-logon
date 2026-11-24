@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNC_WAGON_REP_ATT" description="Table containing repair attachments for a wagon. The attachments are ment to be attached to the repair order, technically copied over to TLGNC_ORDER_REP_ATT (ATTACHMENT_TYPE = email (4) when the repair order is created. The attachments belonging to the wagon are going to be deleted when a repair order (tlgnc_order.DISTRIBUTION_DEST_CD = REP) is set to delivered.">
+    	
+        <column name="ATTACHMENT_ID" primaryKey="true" required="true" type="DECIMAL" size="12"
+                description="PK"/>
+        <column name="ATTACHMENT_NAME" required="true" type="VARCHAR" size="100"
+                description="Human readable name/description of the document. Never used as a reference and therefore changeable."/>
+		<column name="ATTACHMENT_TYPE_CD" required="true" type="DECIMAL" size="2"
+                description="FK tlgnr_rail_repair_attachement_type_bs. The type of the attchment. 1) offer 2) doku 3) invoice 4) email."/>
+        <column name="DATA" type="BLOB"
+                description="The binary data of the document"/>
+        <column name="DATA_MIME_TYPE_CD" required="true" type="DECIMAL" size="12"
+                description="FK tlgnr_mime_type_bs. The MIME type of the document, 4=application/pdf, 5=application/postscript..."/>
+        <column name="WAGON_ID" required="true" type="DECIMAL" size="12"
+                description="FK tlgnc_wagon. The wagon to which the attachment belongs to."/>
+						
+        <foreign-key foreignTable="TLGNR_ORDER_REP_ATT_TYPE_BS" name="FK_TLGNC_WAGON_REP_ATT_TYPE">
+            <reference local="ATTACHMENT_TYPE_CD" foreign="ATTACHMENT_TYPE_CD"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_MIME_TYPE_BS" name="FK_TLGNC_WAGON_REP_ATT_MIME">
+            <reference local="DATA_MIME_TYPE_CD" foreign="MIME_TYPE_CD"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNC_WAGON" name="FK_TLGNC_WAGON_REP_WAGON">
+            <reference local="WAGON_ID" foreign="WAGON_ID"/>
+        </foreign-key>
+    </table>
+</database>

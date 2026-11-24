@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="VLGNC_RETURN_STATIONS_IN_USE" mappingType="view" skipSql="true">
+        <column name="RAILWAY_STATION_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="RAILWAY_STATION_NAME" required="true" type="VARCHAR" size="50"/>
+        <column name="UIC_COUNTRY_CD" required="true" type="DECIMAL" size="2"/>
+        <column name="RAILWAY_STATION_NO" required="true" type="VARCHAR" size="6"/>
+    </table>
+</database>

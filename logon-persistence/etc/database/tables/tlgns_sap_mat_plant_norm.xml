@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+	<table name="TLGNS_SAP_MAT_PLANT_NORM"
+			description="For each material produced at a certain plant, additional material-norm information, i.e. certification data is maintained in SAP. This consists of a few lines of text, as well as a (reference to a) logo (image) which should be used when e.g. printing delivery notes. Both the additional text fields as well as the logos(!) are generally language dependent. An entry in the table is identified by the business identifier (material, plant, norm, language, [sorg])">
+		
+		<column name="SAP_MAT_PLANT_NORM_ID" primaryKey="true" required="true" type="DECIMAL" size="12"
+				description="PK. Technical ID, given by LOGON, based on a database sequence."/>
+		<column name="SAP_MATERIAL_ID" required="true" type="DECIMAL" size="12"
+				description="FK tlgns_sap_material. The material to what the entry belongs. (Origin matnorm interface SAP: material_norm_data / MATNR)."/>
+		<column name="PLANT_CD" required="true" type="VARCHAR" size="4"
+				description="FK tlgnr_plant_bs. The production plant. (Origin SAP mat-norm interface: material_norm_data / WERKS)."/>
+		<column name="SAP_MATERIAL_NORM_CD" required="true" type="VARCHAR" size="10"
+				description="FK tlgnr_sap_material_norm_bs. The code of the Norm according to SAP. (Origin SAP mat-norm interface: material_norm_data / ZNORM)."/>
+		<column name="SAP_LANGUAGE_CD" required="true" type="VARCHAR" size="2"
+				description="FK tlgnr_sap_language_bs. The language in which the texts are represented. (Origin SAP mat-norm interface: material_norm_data / SPRAS_ISO)."/>
+		<column name="SORG_CD" type="VARCHAR" size="4"
+				description="FK tlgnr_sorg_bs. Nullable. If defined,this row is only used for orders belonging to the same sales organization. If null: for all sales org. (Origin SAP mat-norm interface: material_norm_data / VKORG)."/>
+		<column name="SHOW_LOGO_FLAG" required="true" type="BOOLEAN"
+				description="1=Logo should be shown in delivery note, 0=Logo not to be shown. Display of zcode1/2, text1/2/3 is not affected by this flag, only the logo (image)."/>
+		<column name="ZCODE1" type="VARCHAR" size="10"
+				description="A text field which can be used in the delivery note, typically below the logo. Due to the shorth length, possibly on the same line as zcode2. (Origin SAP mat-norm interface: material_norm_data / ZCODE1)."/>
+		<column name="ZCODE2" type="VARCHAR" size="10"
+				description="A text field which can be used in the delivery note, typically below the logo. Due to the shorth length, possibly on the same line as zcode1. (Origin SAP mat-norm interface: material_norm_data / ZCODE2)."/>
+		<column name="text1" type="VARCHAR" size="132"
+				description="A text field which can be used in the delivery note, typically below the logo. Example values from SAP: 'CEM III/A 32,5 N - LH CE LA BENOR Vrac' (for FR), or 'CEM III/A 32,5 N - LH CE LA BENOR Bulk' (for NL). (Origin SAP mat-norm interface: material_norm_data / TEXT1."/>
+		<column name="text2" type="VARCHAR" size="132"
+				description="A text field which can be used in the delivery note, typically below the logo. Example values from SAP: 'EN 197-1, 0965-CPD-C131' (Origin SAP mat-norm interface: material_norm_data / TEXT2)."/>
+		<column name="text3" type="VARCHAR" size="132"
+				description="A text field which can be used in the delivery note, typically below the logo. (Origin SAP mat-norm interface: material_norm_data / TEXT3)."/>
+		<column name="MARKED_FOR_DELETION" required="true" type="BOOLEAN"
+				description="Deletion code (Origin SAP mat-norm interface: material_norm_data / ACTION, if 'D', set to deleted). If ACTION is missing, or U/I, value is set to 0, i.e not deleted."/>
+		<column name="DEST_COUNTRY" type="VARCHAR" size="3"
+				description="Destination country of the order, identified by the shipto of material. Received via the material norms IFC. Will be used for mat norm logos printing."/>
+		<column name="DN_LOGO_IMAGE_NAME" type="VARCHAR" size="10" 
+				description="Field to keep ID logo information."/>
+		<column name="DN_LOGO_ARCHIVDOCID" type="VARCHAR" size="40" 
+				description="Field to keep ID of the Archive document in the Content server (could be used in the future to download images from the server)."/>
+
+		<foreign-key foreignTable="TLGNS_SAP_MATERIAL" name="FK_TLGNS_SAP_MATNORM_MAT">
+				<reference local="SAP_MATERIAL_ID" foreign="SAP_MATERIAL_ID"/>
+		</foreign-key>
+		<foreign-key foreignTable="TLGNR_PLANT_BS" name="FK_TLGNS_SAP_MATNORM_PLANT">
+				<reference local="PLANT_CD" foreign="PLANT_CD"/>
+		</foreign-key>
+		<foreign-key foreignTable="TLGNR_SAP_MATERIAL_NORM_BS" name="FK_TLGNS_SAP_MATNORM_NORM">
+				<reference local="SAP_MATERIAL_NORM_CD" foreign="SAP_MATERIAL_NORM_CD"/>
+		</foreign-key>
+		<foreign-key foreignTable="TLGNR_SAP_LANGUAGE_BS" name="FK_TLGNS_SAP_MATNORM_LANGUAGE">
+				<reference local="SAP_LANGUAGE_CD" foreign="SAP_LANGUAGE_CD"/>
+		</foreign-key>
+		<foreign-key foreignTable="TLGNR_SORG_BS" name="FK_TLGNS_SAP_MATNORM_SORG">
+				<reference local="SORG_CD" foreign="SORG_CD"/>
+		</foreign-key>
+		
+		<unique name="UQ_TLGNR_SAP_MAT_PLANT_NORM">
+				<unique-column name="SAP_MATERIAL_ID"/>
+				<unique-column name="PLANT_CD"/>
+				<unique-column name="SAP_MATERIAL_NORM_CD"/>
+				<unique-column name="SAP_LANGUAGE_CD"/>
+				<unique-column name="SORG_CD"/>
+				<unique-column name="DEST_COUNTRY"/>
+		</unique>
+	</table>
+</database>

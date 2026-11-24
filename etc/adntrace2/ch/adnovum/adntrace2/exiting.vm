@@ -1,0 +1,19 @@
+##
+##  This template can be parameterized with the following variables provided in its context:
+##
+##  returnType - is a string representation of the return type of the method.
+##  resultVar  - a string, the value of which will be used for variable name of the result.
+##
+#if( $returnType != "void" && $resultVar)
+// [[
+	if (logDebugEnabled) {
+		${logVarName}.exiting(${resultVar});
+	}
+// ]]
+#else
+// [[
+	if (logDebugEnabled) {
+		${logVarName}.exiting();
+	}
+// ]]
+#end

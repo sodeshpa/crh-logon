@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNR_SAP_TRSP_MODE_BS" refData="true"
+           description="Transportation modes as expected by the LOGON->SAP Order Export Interface. 10=LKW/Truck, 50=Bahn/Train, 00=Ex Plant (Pickup).">
+
+        <column name="SAP_TRSP_MODE_CD" primaryKey="true" required="true" type="VARCHAR" size="2"
+                description="PK. Code of the Reference Data. Values are defined by SAP. 10=LKW/Truck, 50=Bahn/Train, 00=Ex Plant (Pickup). Note the leading zero for 00, therefore treat as text."/>
+        <column name="CTL_ACT_CD" required="true" type="BOOLEAN"
+                description="Active Flag. When new data is entered, only reference data with active flag are available for selection normally."/>
+
+    </table>
+</database>

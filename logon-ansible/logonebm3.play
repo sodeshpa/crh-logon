@@ -1,0 +1,33 @@
+---
+# An incomplete list of currently available modules can be found here: http://docs.ansible.com/list_of_windows_modules.html
+- name: install logonlan to logonebm3-int
+  gather_facts: false
+  hosts: logonebm3
+  tasks:
+# previous version of pkg is at this location {{logon_installed}}\\logonlan.msi.
+# ignore errors is there, so that even if the packages are not installed, the install continues.
+  - name: uninstall old logonlan msi
+    win_msi: path="{{logon_installed}}\\logonlan.msi" state=absent
+    ignore_errors: yes
+  - name: uninstall container
+    win_msi: path="{{logon_installed}}\\container.msi" state=absent
+    ignore_errors: yes
+#### Access is denied. We could have a workaround if we wrapped this command into a PS script. Copy works regardless
+#  - name: delete old msi
+#    raw: del "{{logon_installed}}\\logonlan.msi"
+# copy from share to local drive, but rename it, so the name will be version independent
+  - name: copy over container msi
+    script: files/wincopy.ps1 "{{container_location}} {{logon_installed}}\\container.msi"
+  - name: copy new msi
+    script: files/wincopy.ps1 "{{logonlan_location}} {{logon_installed}}\\logonlan.msi"
+  - name: install container
+    win_msi: path="{{logon_installed}}\\container.msi"
+# the registry should contain the values of the fields needed in the install
+  - name: install new msi
+    win_msi: path="{{logon_installed}}\\logonlan.msi"
+# Now comes the tricky part: install logonlan using adnjboss commands: logonlan-handover.bat
+  - name: install logonlan
+    script: files/logonlan-handover-daily.bat
+#  - name: start the service
+# logonlan is now installed and started
+

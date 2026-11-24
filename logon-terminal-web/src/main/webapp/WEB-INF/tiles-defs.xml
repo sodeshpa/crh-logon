@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Author            : AdNovum Informatik AG
+ Version Number    : $Revision$
+ Date of last edit : $Date$
+-->
+
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 1.1//EN"
+       "http://struts.apache.org/dtds/tiles-config_1_1.dtd">
+
+<!-- Definitions for Tiles documentation   -->
+
+<tiles-definitions>
+
+	<!-- =======================================================  -->
+	<!-- Master definitions                                       -->
+	<!-- =======================================================  -->
+
+	<!-- Main layout used as a root for other page definitions.   -->
+	
+	<!-- =======================================================  -->
+	<!-- Page definitions - login/logout                          -->
+	<!-- =======================================================  -->
+
+	<definition name="Logout.def" path="/WEB-INF/jsp/TerminalLogoutTile.jsp"/>
+	
+		
+	<definition name="terminalcommon" path="/WEB-INF/jsp/TerminalMainLayout.jsp">
+	    <put name="terminalheader" value="/WEB-INF/jsp/TerminalHeaderTile.jsp"/>
+	    <put name="errors" value="/WEB-INF/jsp/TerminalErrorsTile.jsp"/>
+	</definition>
+
+	<definition name="TerminalEntryTile.def" path="/WEB-INF/jsp/ApplicationEntry.jsp"/>
+	
+	<definition name="LogoutCounter.def" extends="terminalcommon">
+		<put name="body" value="/WEB-INF/jsp/TerminalLogoutCounterTile.jsp"/>
+	</definition>
+	<!-- ==================Pickup order ======================  -->	
+	
+	
+	<definition name="PickupListTile.def" extends="terminalcommon">
+		<put name="body" value="/WEB-INF/jsp/pickup/PickupListTile.jsp"/>
+	</definition>
+	<definition name="PickupCreateTile.def" extends="terminalcommon">
+		<put name="body" value="/WEB-INF/jsp/pickup/PickupCreateTile.jsp"/>
+	</definition>	
+	<definition name="PickupShiptoSelector.def" extends="terminalcommon">
+		<put name="body" value="/WEB-INF/jsp/pickup/PickupShiptoSelector.jsp"/>
+	</definition>
+		<definition name="PickupBilltoSelector.def" extends="terminalcommon">
+		<put name="body" value="/WEB-INF/jsp/pickup/PickupBilltoSelector.jsp"/>
+	</definition>
+		<definition name="PickupProductSelector.def" extends="terminalcommon">
+		<put name="body" value="/WEB-INF/jsp/pickup/PickupProductSelector.jsp"/>
+	</definition>
+	<definition name="PickupProductTypeSelector.def" extends="terminalcommon">
+		<put name="body" value="/WEB-INF/jsp/pickup/PickupProductTypeSelector.jsp"/>
+	</definition>
+	<definition name="PickupQuantitySelector.def" extends="terminalcommon">
+		<put name="body" value="/WEB-INF/jsp/pickup/PickupQuantitySelector.jsp"/>
+	</definition>	
+	<definition name="PickupOrderTile.def" extends="terminalcommon">
+		<put name="body" value="/WEB-INF/jsp/pickup/PickupOrderTile.jsp"/>
+	</definition>	
+	<definition name="ReturnPalletsTile.def" extends="terminalcommon">
+		<put name="body" value="/WEB-INF/jsp/pickup/PickupReturnPaletQuantitySelector.jsp"/>
+	</definition>
+	<definition name="PalletsTile.def" extends="terminalcommon">
+		<put name="body" value="/WEB-INF/jsp/pickup/PickupPaletQuantitySelector.jsp"/>
+	</definition>
+	<definition name="PickupDeliveryNoteTile.def" extends="terminalcommon">
+		<put name="body" value="/WEB-INF/jsp/pickup/PickupDeliveryNote.jsp"/>
+	</definition>	
+	
+	<!-- ==================Bag Terminal ======================  -->
+	<definition name="BagTerminalAssignmentListTile.def" extends="terminalcommon">
+		<put name="body" value="/WEB-INF/jsp/bagterminal/BagTerminalAssignmentList.jsp"/>
+	</definition>
+	
+	<definition name="SelectNewTruckTile.def" extends="terminalcommon">
+		<put name="body" value="/WEB-INF/jsp/bagterminal/BagTerminalNewTruckSelector.jsp"/>
+	</definition>
+	
+	<!-- ==================This fatal error is only called from the logout, ===================================  -->
+	<!-- ==================in other cases TerminalFatalError is called see global-forwards=====================  -->	
+	<definition name="LogoutFatalError.def" path="/WEB-INF/jsp/FatalErrorTile.jsp"/>
+</tiles-definitions>

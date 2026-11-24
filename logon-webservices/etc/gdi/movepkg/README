@@ -1,0 +1,11 @@
+the xjc and WSDL2Java generators create classes with the same name and same packages according to the xsd.
+This can't be used as is, therefore we use this generator to adjust the packges of the classes
+so that they don't clash.
+
+also, this cartridge makes entities serializable:
+
+xjc unfortunately has no easy way to generate serializable classes. (only through
+xjb binding configurations in the schema itself, which I don't want to touch).
+This cartridge simply makes those generated entities serializable. Note that
+it only works on those xjc-generated entities.
+

@@ -1,0 +1,564 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Author            : AdNovum Informatik AG
+ Version Number    : $Revision$
+ Date of last edit : $Date$
+-->
+
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 1.1//EN"
+       "http://struts.apache.org/dtds/tiles-config_1_1.dtd">
+
+<!-- Definitions for Tiles documentation   -->
+
+<tiles-definitions>
+
+	<!-- =======================================================  -->
+	<!-- Master definitions                                       -->
+	<!-- =======================================================  -->
+
+	<!-- Main layout used as a root for other page definitions.   -->
+
+	<definition name="common" path="/WEB-INF/jsp/MainLayout.jsp">
+		<put name="jslib" value="JsLibTile.jsp"/>
+		<put name="extra_header" value="EmptyExtraHeader.jsp"/>
+ 		<put name="header" value="HeaderTile.jsp"/>
+		<put name="navigation" value="NavigationTile.jsp"/>
+	  	<put name="errors" value="ErrorsTile.jsp"/>
+	  	<put name="footer" value="FooterTile.jsp"/>
+	</definition>
+
+	<definition name="part" path="/WEB-INF/jsp/PartLayout.jsp">
+		<put name="errors" value="ErrorsTile.jsp"/>
+	</definition>
+	
+	<definition name="part_popup" path="/WEB-INF/jsp/PopupPartLayout.jsp">
+	  	<put name="errors" value="ErrorsTile.jsp"/>
+	</definition>
+	
+	<definition name="FatalError.def" extends="common">
+		<put name="body" value="FatalErrorTile.jsp"/>
+	</definition>
+	
+	<definition name="FatalErrorPopup.def" extends="part_popup">
+		<put name="body" value="FatalErrorPopupTile.jsp"/>
+	</definition>
+
+	<!-- =======================================================  -->
+	<!-- Page definitions - login/logout/help                     -->
+	<!-- =======================================================  -->
+
+	<definition name="Logout.def" path="/WEB-INF/jsp/LogoutTile.jsp"/>	
+
+	<definition name="AdminEntryTile.def" extends="common">
+		<put name="body" value="/WEB-INF/jsp/ApplicationEntry.jsp"/>
+	</definition>
+	
+	<definition name="Help.def" extends="part_popup">
+		<put name="body" value="HelpTile.jsp"/>
+	</definition>
+	
+	<!-- =======================================================  -->
+	<!-- Function definitions                                 -->
+	<!-- =======================================================  -->
+
+	<definition name="UserAdminTile.def" extends="common">
+		<put name="body" value="useradmin/UserAdminTile.jsp"/>
+	</definition>	
+	
+	<definition name="UserAdminDetailTile.def" extends="common">
+		<put name="body" value="useradmin/UserAdminDetailTile.jsp"/>
+	</definition>
+	
+	<definition name="UserAdminDetail.def" extends="part">
+		<put name="body" value="useradmin/UserAdminDetail.jsp"/>
+	</definition>
+	
+	<definition name="UserAdminDetailReadonly.def" extends="part">
+		<put name="body" value="useradmin/UserAdminDetailReadonly.jsp"/>
+	</definition>
+	
+	<definition name="UserAdminType.def" extends="part">
+		<put name="body" value="useradmin/UserAdminType.jsp"/>
+	</definition>
+	
+	<definition name="UserAdminInternal.def" extends="part">
+		<put name="body" value="useradmin/UserAdminInternal.jsp"/>
+	</definition>
+	
+	<definition name="UserAdminExternalAccessTile.def" extends="part">
+		<put name="body" value="useradmin/UserAdminExternalAccess.jsp"/>
+	</definition>
+	
+	<definition name="UserAdminExtLoginPwdPopupTile.def" extends="part_popup">
+		<put name="body" value="useradmin/UserAdminExtLoginPwdPopupTile.jsp"/>
+	</definition>
+	
+	<definition name="UserAdminExtLoginPwdPopupClose.def" extends="part">
+		<put name="body" value="useradmin/UserAdminExtLoginPwdPopupClose.jsp"/>
+	</definition>
+	
+	<definition name="UserAdminAuthPopupTile.def" extends="part_popup">
+		<put name="body" value="useradmin/UserAdminAuthPopupTile.jsp"/>
+	</definition>
+	
+	<definition name="UserAdminAuthPopupClose.def" extends="part_popup">
+		<put name="body" value="useradmin/UserAdminAuthPopupClose.jsp"/>
+	</definition>
+	
+	<definition name="UserAdminSearch.def" extends="part">
+		<put name="body" value="useradmin/UserAdminSearch.jsp"/>
+	</definition>
+	
+	<definition name="UserAdminImageUploadPopupTile.def" extends="part_popup">
+		<put name="body" value="useradmin/UserAdminImageUploadPopupTile.jsp"/>
+	</definition>
+	
+	<definition name="UserAdminImageUploadPopupClose.def" extends="part_popup">
+		<put name="body" value="useradmin/UserAdminImageUploadPopupClose.jsp"/>
+	</definition>
+	
+	<definition name="SelfAdminTile.def" extends="common">
+		<put name="body" value="useradmin/SelfAdminTile.jsp"/>
+	</definition>
+	
+	<definition name="SelfAdminDetail.def" extends="part">
+		<put name="body" value="useradmin/SelfAdminDetail.jsp"/>
+	</definition>
+
+	<definition name="TableBrowserShowTile.def" extends="common">
+		<put name="body" value="tablebrowser/TableEditor.jsp"/>
+	</definition>
+
+	<definition name="TableBrowserShowTableTile.def" extends="part">
+		<put name="body" value="tablebrowser/TableTile.jsp"/>
+	</definition>
+
+	<definition name="TableBrowserEditTile.def" extends="common">
+		<put name="body" value="tablebrowser/RowEditTile.jsp"/>
+	</definition>
+
+	<definition name="ReferenceSearchTile.def" extends="part_popup">
+		<put name="body" value="tablebrowser/TableEditor.jsp"/>
+	</definition>
+	
+	<definition name="ZoneMapTile.def" extends="common">
+		<put name="body" value="masterdata/ZoneMapTile.jsp"/>
+	</definition>
+
+	<definition name="ZoneMapPolygon.def" extends="part">
+		<put name="body" value="masterdata/ZoneMapPolygon.jsp"/>
+	</definition>
+	
+	<definition name="ShippingPointTile.def" extends="common">
+		<put name="body" value="masterdata/ShippingPointTile.jsp"/>
+	</definition>
+		
+	<definition name="DispocardViewTile.def" extends="common">
+		<put name="body" value="masterdata/DispocardViewTile.jsp"/>
+	</definition>
+		
+	<definition name="CarrierTile.def" extends="common">
+		<put name="body" value="masterdata/CarrierTile.jsp"/>
+	</definition>
+	
+	<definition name="ShippingPoint.def" extends="part">
+		<put name="body" value="masterdata/ShippingPoint.jsp"/>
+	</definition>
+	
+	<definition name="MaterialEnhancementsTile.def" extends="common">
+		<put name="body" value="masterdata/MaterialEnhancementsTile.jsp"/>
+	</definition>
+	
+	<definition name="MaterialEnhancementsDeleteTile.def" path="/WEB-INF/jsp/masterdata/MaterialEnhancementsDeleteTile.jsp">
+	</definition>
+	
+	<definition name="MaterialEnhancementsDetailTile.def" extends="part_popup">
+		<put name="body" value="masterdata/MaterialEnhancementsDetailTile.jsp"/>
+	</definition>
+	
+	<definition name="MaterialEnhancementsDetailCloseTile.def" extends="part">
+		<put name="body" value="masterdata/MaterialEnhancementsDetailCloseTile.jsp"/>
+	</definition>
+	
+	<definition name="SalesAreaTile.def" extends="common">
+		<put name="body" value="masterdata/SalesAreaTile.jsp"/>
+	</definition>
+	
+	<definition name="SalesAreaDetailTile.def" extends="part_popup">
+		<put name="body" value="masterdata/SalesAreaDetailTile.jsp"/>
+	</definition>
+	
+	<definition name="SalesAreaDetailCloseTile.def" extends="part">
+		<put name="body" value="masterdata/SalesAreaDetailCloseTile.jsp"/>
+	</definition>
+	
+	<definition name="RailwayStationPopupTile.def" extends="part_popup">
+		<put name="body" value="masterdata/RailwayStationSearchPopup.jsp"/>
+	</definition>
+	
+	<definition name="RailTimetableTile.def" extends="common">
+		<put name="body" value="masterdata/RailTimetableTile.jsp"/>
+	</definition>
+	
+	<definition name="RailDistanceDetailTile.def" extends="part_popup">
+		<put name="body" value="masterdata/RailDistanceDetailTile.jsp"/>
+	</definition>
+	
+	<definition name="RailDistanceDetailCloseTile.def" extends="part">
+		<put name="body" value="masterdata/RailDistanceDetailCloseTile.jsp"/>
+	</definition>
+	
+	<definition name="RailTimetableDetailTile.def" extends="part_popup">
+		<put name="body" value="masterdata/RailTimetableDetailTile.jsp"/>
+	</definition>
+	
+	<definition name="RailTimetableDetailCloseTile.def" extends="part">
+		<put name="body" value="masterdata/RailTimetableDetailCloseTile.jsp"/>
+	</definition>
+	
+	<definition name="ProductChangeMatrixView.def" extends="common">
+		<put name="body" value="masterdata/ProductChangeMatrixViewTile.jsp"/>
+	</definition>
+	
+	<definition name="UserActivityTile.def" extends="common">
+		<put name="body" value="useractivity/UserActivityTile.jsp"/>
+	</definition>	
+	
+	<!-- ==================Wagon search======================  -->	
+	<definition name="WagonSearchTile.def" extends="common">
+		<put name="body" value="masterdata/wagonsearch/WagonSearchTile.jsp"/>
+	</definition>
+	
+	<!-- ==================Wagon detail======================  -->
+	
+	<definition name="WagonDetailTile.def" extends="common">
+		<put name="body" value="masterdata/wagondetail/WagonDetailTile.jsp"/>
+	</definition>
+	
+	<definition name="WagonDetailTileCopy.def" extends="part_popup">
+		<put name="body" value="masterdata/wagondetail/WagonDetailCopyWagonTile.jsp"/>
+	</definition>
+
+	<definition name="WagonDetailLoadTab.def" extends="part">
+		<put name="body" value="masterdata/wagondetail/LoadTab.jsp"/>
+	</definition>
+	
+	<definition name="WagonDetailMapTab.def" extends="part">
+		<put name="body" value="masterdata/wagondetail/MapTab.jsp"/>
+	</definition>
+	
+	<definition name="WagonDetailControlTab.def" extends="part">
+		<put name="body" value="masterdata/wagondetail/ControlTab.jsp"/>
+	</definition>
+
+	<definition name="WagonDetailWagonKeeperInfo.def" extends="part">
+		<put name="body" value="masterdata/wagondetail/WagonKeeperInfo.jsp"/>
+	</definition>
+	
+	<definition name="WagonDetailTypeTab.def" extends="part">
+		<put name="body" value="masterdata/wagondetail/TypeTab.jsp"/>
+	</definition>
+	
+	<definition name="WagonDetailWagonTypeInfo.def" extends="part">
+		<put name="body" value="masterdata/wagondetail/WagonTypeInfo.jsp"/>
+	</definition>
+	
+	<definition name="WagonDetailBuildTab.def" extends="part">
+		<put name="body" value="masterdata/wagondetail/BuildTab.jsp"/>
+	</definition>
+	
+	<definition name="WagonDetailWheelsetTab.def" extends="part">
+		<put name="body" value="masterdata/wagondetail/WheelsetTab.jsp"/>
+	</definition>
+		
+	<definition name="WagonDetailMaintenanceTab.def" extends="part">
+		<put name="body" value="masterdata/wagondetail/MaintenanceTab.jsp"/>
+	</definition>
+	
+	<definition name="WagonMaintenanceTable.def" extends="part">
+		<put name="body" value="masterdata/wagondetail/WagonMaintenanceTable.jsp"/>
+	</definition>
+	
+	<definition name="WagonMaintenanceDmgTile.def" extends="part">
+		<put name="body" value="masterdata/wagondetail/WagonMaintenanceDmgTile.jsp"/>
+	</definition>
+	
+	<definition name="WagonMaintenanceDmgCodeTile.def" extends="part">
+		<put name="body" value="masterdata/wagondetail/WagonMaintenanceDmgCodeTile.jsp"/>
+	</definition>
+	
+	<definition name="WagonMaintenanceDmgAttachmentTile.def" extends="part">
+		<put name="body" value="masterdata/wagondetail/WagonMaintenanceDmgAttachmentTile.jsp"/>
+	</definition>
+		
+	<definition name="WagonDetailRfidTab.def" extends="part">
+		<put name="body" value="masterdata/wagondetail/WagonRfidTab.jsp"/>
+	</definition>
+	
+	<definition name="ShowCreateSpecialOrderPopup.def" extends="part">
+		<put name="body" value="masterdata/wagondetail/ShowCreateSpecialOrderPopupTile.jsp"/>
+	</definition>
+	
+	<!-- ==================Shippingpoint======================  -->
+	<definition name="ShippingPointLdsServer.def" extends="part">
+		<put name="body" value="masterdata/LdsServer.jsp"/>
+	</definition>
+	
+	<definition name="LaodingPoint.def" extends="part">
+		<put name="body" value="masterdata/LoadingStreet.jsp"/>
+	</definition>
+	
+	<definition name="LaodingPointRfids.def" extends="part">
+		<put name="body" value="masterdata/Rfids.jsp"/>
+	</definition>
+	
+	<definition name="LaodingPointMaterials.def" extends="part">
+		<put name="body" value="masterdata/Materials.jsp"/>
+	</definition>
+	
+	<definition name="ShippingPointRFIDPopupTile.def" extends="part_popup">
+		<put name="body" value="masterdata/ShippingPointRFIDPopupTile.jsp"/>
+	</definition>
+	
+	<definition name="ShippingPointRFIDPopupClose.def" extends="part">
+		<put name="body" value="masterdata/ShippingPointRFIDPopupClose.jsp"/>
+	</definition>
+	
+	<definition name="RailwayStation.def" extends="part">
+		<put name="body" value="masterdata/RailwayStation.jsp"/>
+	</definition>
+	
+	<definition name="RailwayStationPopupClose.def" extends="part">
+		<put name="body" value="masterdata/RailwayStationPopupClose.jsp"/>
+	</definition>
+	
+	<definition name="ShippingPointCreatePopupTile.def" extends="part_popup">
+		<put name="body" value="masterdata/ShippingPointCreatePopupTile.jsp"/>
+	</definition>
+	
+	<definition name="ShippingPointCreatePopupClose.def" extends="part">
+		<put name="body" value="masterdata/ShippingPointCreatePopupClose.jsp"/>
+	</definition>
+	
+	<definition name="ShippingPointSendSapSpPopupTile.def" extends="part_popup">
+		<put name="body" value="masterdata/ShippingPointSendSapSpPopupTile.jsp"/>
+	</definition>
+	
+	<definition name="ShippingPointSendSapSpPopupClose.def" extends="part">
+		<put name="body" value="masterdata/ShippingPointSendSapSpPopupClose.jsp"/>
+	</definition>
+	
+	<!-- ==================Truck Administration======================  -->
+	<definition name="/truckadmin/TruckAdmin.def" extends="common">
+		<put name="body" value="truckadmin/LKWStammdatenTile.jsp"/>
+	</definition>
+	
+	<definition name="/truckadmin/CreateTruckPopup.def" extends="part_popup">
+		<put name="body" value="truckadmin/LKWStammdatenCreateTruckPopupTile.jsp"/>
+	</definition>	
+	
+	<definition name="/truckadmin/TruckAdminCarrier.def" extends="part">
+		<put name="body" value="truckadmin/LKWStammdatenCarrierTile.jsp"/>
+	</definition>
+	
+	<definition name="/truckadmin/StammDatenTile.def" extends="part">
+		<put name="body" value="truckadmin/LKWStammdatenDataTile.jsp"/>
+	</definition>
+	
+	<definition name="/truckadmin/StammDaten1Tile.def" extends="part">
+		<put name="body" value="truckadmin/LKWStammdatenData1Tile.jsp"/>
+	</definition>
+	
+	<definition name="/truckadmin/StammDaten2Tile.def" extends="part">
+		<put name="body" value="truckadmin/LKWStammdatenData2Tile.jsp"/>
+	</definition>
+	
+	<definition name="/truckadmin/StammDaten3Tile.def" extends="part">
+		<put name="body" value="truckadmin/LKWStammdatenData3Tile.jsp"/>
+	</definition>
+	
+	<definition name="/truckadmin/TruckListTile.def" extends="part">
+		<put name="body" value="truckadmin/LKWStammdatenTruckList.jsp"/>
+	</definition>
+	
+	<definition name="/truckadmin/ChangeFields.def" extends="part_popup">
+		<put name="body" value="truckadmin/LKWStammdatenChangeFields.jsp"/>
+	</definition>
+	
+	<definition name="/truckadmin/TruckRoute.def" extends="common">
+		<put name="body" value="truckadmin/TruckRouteTile.jsp"/>
+	</definition>
+	
+	<definition name="/truckadmin/TruckAdminPool.def" extends="common">
+		<put name="body" value="truckadmin/TruckAdminPoolTile.jsp"/>
+	</definition>
+	
+	<definition name="/truckadmin/TruckAdminPoolEdit.def" extends="part">
+		<put name="body" value="truckadmin/TruckAdminPoolEdit.jsp"/>
+	</definition>
+	  	
+	<!-- ==================Simple Vehicle Administration======================  -->
+	<definition name="/simplevehicleadmin/SimpleVehicleAdmin.def" extends="common">
+		<put name="body" value="simplevehicleadmin/SimpleVehicleStammdatenTile.jsp"/>
+	</definition>
+	
+	<definition name="/simplevehicleadmin/CreateSimpleVehiclePopup.def" extends="part_popup">
+		<put name="body" value="simplevehicleadmin/SimpleVehicleStammdatenCreateSimpleVehiclePopupTile.jsp"/>
+	</definition>	
+	
+	<definition name="/simplevehicleadmin/SimpleVehicleAdminCarrier.def" extends="part">
+		<put name="body" value="simplevehicleadmin/SimpleVehicleStammdatenCarrierTile.jsp"/>
+	</definition>
+	
+	<definition name="/simplevehicleadmin/StammDatenTile.def" extends="part">
+		<put name="body" value="simplevehicleadmin/SimpleVehicleStammdatenDataTile.jsp"/>
+	</definition>
+	
+	<definition name="/simplevehicleadmin/StammDaten1Tile.def" extends="part">
+		<put name="body" value="simplevehicleadmin/SimpleVehicleStammdatenData1Tile.jsp"/>
+	</definition>
+	
+	<definition name="/simplevehicleadmin/StammDaten2Tile.def" extends="part">
+		<put name="body" value="simplevehicleadmin/SimpleVehicleStammdatenData2Tile.jsp"/>
+	</definition>
+	
+	<definition name="/simplevehicleadmin/SimpleVehicleListTile.def" extends="part">
+		<put name="body" value="simplevehicleadmin/SimpleVehicleStammdatenSimpleVehicleList.jsp"/>
+	</definition>
+	
+	<definition name="/simplevehicleadmin/ChangeFields.def" extends="part_popup">
+		<put name="body" value="simplevehicleadmin/SimpleVehicleStammdatenChangeFields.jsp"/>
+	</definition>
+	  	
+	<!-- ==================Silo Administration======================  -->
+	<definition name="/siloadmin/SiloAdmin.def" extends="common">
+		<put name="body" value="siloadmin/BaustellenSiloTile.jsp"/>
+	</definition>
+
+	<definition name="/siloadmin/SiloShiptoSearch.def" extends="part_popup">
+		<put name="body" value="siloadmin/SiloShiptoSearchTile.jsp"/>
+	</definition>
+	<!-- ==================Carrier Assignment======================  -->
+	<definition name="/carrierassignment/CarrierAssignment.def" extends="common">
+		<put name="body" value="carrierassignment/CarrierAssignment.jsp"/>
+	</definition>
+	
+	<definition name="/carrierassignment/CarrierAssignmentTable.def" extends="part">
+		<put name="body" value="carrierassignment/CarrierAssignmentTable.jsp"/>
+	</definition>
+			
+	<!-- ==================RFID Popup ======================  -->	
+	<definition name="/AdminRFIDPopupTile.def" extends="part_popup">
+		<put name="body" value="/WEB-INF/jsp/AdminRFIDPopupTile.jsp"/>
+	</definition>
+	
+	<definition name="/AdminRFIDsTile.def" extends="part">
+		<put name="body" value="/WEB-INF/jsp/AdminRfidsTile.jsp"/>
+	</definition>
+	
+	<!-- ==================Trailer Administration======================  -->
+	<definition name="/traileradmin/TrailerAdmin.def" extends="common">
+		<put name="body" value="traileradmin/AufliegerAdminTile.jsp"/>
+	</definition>
+	
+	<definition name="/traileradmin/CreateTrailerPopup.def" extends="part_popup">
+		<put name="body" value="traileradmin/AufliegerCreateTrailerPopupTile.jsp"/>
+	</definition>
+	
+	<definition name="/traileradmin/UpdateChambers.def" extends="part">
+		<put name="body" value="traileradmin/AufliegerUpdateChambersTile.jsp"/>
+	</definition>		
+			
+	
+	<definition name="/traileradmin/TrailerAdminCarrier.def" extends="common">
+		<put name="body" value="traileradmin/AufliegerCarrierTile.jsp"/>
+	</definition>
+	
+	<definition name="/traileradmin/Auflieger1.def" extends="part">
+		<put name="body" value="traileradmin/AufliegerData1Tile.jsp"/>
+	</definition>
+	
+	<definition name="/traileradmin/Auflieger2.def" extends="part">
+		<put name="body" value="traileradmin/AufliegerData2Tile.jsp"/>
+	</definition>
+	
+	<definition name="/traileradmin/Auflieger3.def" extends="part">
+		<put name="body" value="traileradmin/AufliegerData3Tile.jsp"/>
+	</definition>
+	
+	<!-- ==================External Material======================  -->
+	<definition name="/externalmaterialadmin/ExternalMaterial.def" extends="common">
+		<put name="body" value="externalmaterialadmin/ExternalMaterialAdminTile.jsp"/>
+	</definition>
+	
+	<!-- ==================External Site======================  -->
+	<definition name="/externalsiteadmin/ExternalSite.def" extends="common">
+		<put name="body" value="externalsiteadmin/ExternalSiteAdminTile.jsp"/>
+	</definition>
+	
+	<!-- ==================Container Administration======================  -->	
+	<definition name="/containeradmin/ContainerAdmin.def" extends="common">
+		<put name="body" value="containeradmin/ContainerAdminTile.jsp"/>
+	</definition>
+	
+	<definition name="/containeradmin/CreateContainerPopup.def" extends="part_popup">
+		<put name="body" value="containeradmin/ContainerAdminPopupTile.jsp"/>
+	</definition>		
+	
+	
+	
+	<definition name="/rfidadmin/RFIDAdminTile.def" extends="common">
+		<put name="body" value="rfidadmin/RFIDAdminTile.jsp"/>
+	</definition>
+	
+	<definition name="/rfidadmin/RFIDAdminList.def" extends="part">
+		<put name="body" value="rfidadmin/RFIDList.jsp"/>
+	</definition>
+	
+	<definition name="/rfidadmin/RFIDAdminDetailTile.def" extends="common">
+		<put name="body" value="rfidadmin/RFIDAdminDetailTile.jsp"/>
+	</definition>
+	
+	<definition name="/pdaadmin/PDAAdminSearchTile.def" extends="common">
+		<put name="body" value="pdaadmin/PDAAdminSearchTile.jsp"/>
+	</definition>
+	
+	<definition name="/pdaadmin/PDAAdminTile.def" extends="common">
+		<put name="body" value="pdaadmin/PDAAdminTile.jsp"/>
+	</definition>
+	
+	<definition name="/pdaadmin/PDAAdminDetail.def" extends="part">
+		<put name="body" value="pdaadmin/PDAAdminDetail.jsp"/>
+	</definition>
+	
+	<definition name="/refdataeventtopda/RefDataEventToPDATile.def" extends="common">
+		<put name="body" value="refdataeventtopda/RefDataEventToPDATile.jsp"/>
+	</definition>
+	
+	<!-- ==================Test page======================  -->
+	<definition name="/test/ManualWebserviceTriggerTile.def" extends="common">
+		<put name="body" value="test/ManualWebserviceTriggerTile.jsp"/>
+	</definition>
+	
+	<definition name="/test/ManualFaxSmsTriggerTile.def" extends="common">
+		<put name="body" value="test/ManualFaxSmsTriggerTile.jsp"/>
+	</definition>
+	
+	<definition name="/test/ManualPDATriggerTile.def" extends="common">
+		<put name="body" value="test/ManualPDATriggerTile.jsp"/>
+	</definition>
+	
+	<definition name="/test/CronJobsTile.def" extends="common">
+		<put name="body" value="test/CronJobsTile.jsp"/>
+	</definition>
+	
+	<definition name="/test/PDAEventOptionsTile.def" extends="part">
+		<put name="body" value="test/PDAEventOptions.jsp"/>
+	</definition>
+	
+	<definition name="/test/OptionsTile.def" extends="part">
+		<put name="body" value="test/Options.jsp"/>
+	</definition>
+	
+</tiles-definitions>

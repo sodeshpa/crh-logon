@@ -1,0 +1,980 @@
+# $Revision$
+# $Date$
+# Status: Generated into INSERT OR UPDATE sql script by csv2sql generator. Do not change columns;;;
+#UIC_COUNTRY_CD;RAILWAY_STATION_NO;RAILWAY_STATION_NAME;ACTIVE_FLAG
+80;140863;Karlsruhe-Knieling;1
+80;145599;Singen;1
+80;293589;Dotternhausen;1
+81;010710;Linz Voestalpine;1
+81;012302;Bludenz;1
+81;022558;Vils;1
+81;023291;Dornbirn;1
+81;223024;Lorüns;1
+83;004721;Alessandria Smistam;1
+83;045419;Genova ;1
+83;058115;Ravenna ;1
+85;000117;Basel SBB Cargo;1
+85;000125;Basel Kleinhüningen Hafen;1
+85;000133;Basel SBB RB;1
+85;000141;Basel St. Johann Hafen;1
+85;000166;Basel St. Johann;1
+85;000182;Birsfelden Hafen;1
+85;000190;Schweizerhalle;1
+85;000208;Muttenz;1
+85;000216;Pratteln;1
+85;000224;Frenkendorf-Füllinsdorf;1
+85;000232;Liestal;1
+85;000240;Lausen;1
+85;000265;Sissach;1
+85;000273;Gelterkinden;1
+85;000356;Läufelfingen;1
+85;000398;Basel SBB RB ll;1
+85;000406;Basel SBB GB;1
+85;000430;Basel SBB CT;1
+85;000901;Basel Bad Bf;1
+85;000919;Basel Bad RBF;1
+85;001008;Tavannes;1
+85;001016;Reconvilier;1
+85;001040;Court;1
+85;001057;Moutier;1
+85;001073;Choindez;1
+85;001081;Courrendlin;1
+85;001099;Delémont;1
+85;001107;Soyhières;1
+85;001115;Liesberg;1
+85;001123;Bärschwil;1
+85;001131;Laufen;1
+85;001149;Zwingen;1
+85;001156;Grellingen;1
+85;001172;Aesch;1
+85;001180;Dornach-Arlesheim;1
+85;001198;Münchenstein;1
+85;001214;Courfaivre;1
+85;001230;Glovelier;1
+85;001248;St-Ursanne;1
+85;001255;Courgenay;1
+85;001263;Porrentruy;1
+85;001271;Courtemaîche;1
+85;001289;Boncourt;1
+85;001701;Tramelan;1
+85;001719;Reussilles, Les;1
+85;001735;Breuleux, Les;1
+85;001743;Noirmont, Le;1
+85;001776;Bois, Les;1
+85;001784;Ferrière, La;1
+85;001867;Alle;1
+85;001875;Vendlincourt;1
+85;001883;Bonfol;1
+85;001917;Saignelégier;1
+85;001941;Pré-Petitjean;1
+85;001958;Combe, La;1
+85;001966;Bollement;1
+85;001990;Combe-Tabeillon;1
+85;002006;Pieterlen;1
+85;002014;Lengnau;1
+85;002022;Grenchen Süd;1
+85;002048;Selzach;1
+85;002055;Bellach;1
+85;002063;Solothurn West;1
+85;002071;Solothurn;1
+85;002089;Luterbach-Attisholz;1
+85;002105;Wangen an der Aare;1
+85;002113;Niederbipp;1
+85;002121;Oensingen;1
+85;002139;Oberbuchsiten;1
+85;002147;Egerkingen;1
+85;002154;Hägendorf;1
+85;002162;Wangen bei Olten;1
+85;002170;Olten Hammer;1
+85;002188;Olten;1
+85;002204;Dotzigen;1
+85;002212;Büren an der Aare;1
+85;002238;Arch;1
+85;002246;Leuzigen;1
+85;002253;Lüsslingen;1
+85;002261;Derendingen;1
+85;002279;Subingen;1
+85;002329;Härkingen;1
+85;002618;Langendorf;1
+85;002626;Lommiswil;1
+85;002642;Oberdorf SO;1
+85;002659;Gänsbrunnen;1
+85;002675;Crémines;1
+85;002857;Flumenthal;1
+85;002865;Attiswil;1
+85;002873;Wiedlisbach;1
+85;002881;Oberbipp;1
+85;002899;Buchli;1
+85;002923;Klus;1
+85;002949;Balsthal;1
+85;003004;Kaiseraugst;1
+85;003012;Rheinfelden;1
+85;003020;Möhlin;1
+85;003053;Frick;1
+85;003087;Schinznach Dorf;1
+85;003095;Brugg AG;1
+85;003202;Stein-Säckingen;1
+85;003210;Sisseln;1
+85;003228;Laufenburg;1
+85;003244;Etzgen;1
+85;003269;Leibstadt;1
+85;003277;Full;1
+85;003285;Felsenau AG;1
+85;003293;Koblenz;1
+85;010017;Plaine, La;1
+85;010066;Vernier-Meyrin;1
+85;010090;Genève Cargo;1
+85;010223;Versoix;1
+85;010306;Nyon;1
+85;010314;Gland;1
+85;010322;Gilly-Bursinel;1
+85;010330;Rolle;1
+85;010348;Perroy;1
+85;010355;Allaman;1
+85;010363;St-Prex;1
+85;010371;Morges;1
+85;010496;Lausanne-Triage;1
+85;010926;Bussy-sur-Morges;1
+85;010934;Yens;1
+85;010942;Apples;1
+85;010967;Bière;1
+85;010983;Montricher;1
+85;010991;Isle-Mont-la-Ville, L';1
+85;011007;Pont, Le;1
+85;011023;Vallorbe-Frontière;1
+85;011031;Vallorbe;1
+85;011064;Croy-Romainmôtier;1
+85;011080;Sarraz, La;1
+85;011106;Ependes;1
+85;011122;Chavornay;1
+85;011148;Eclépens;1
+85;011155;Cossonay;1
+85;011171;Bussigny;1
+85;011189;Renens VD;1
+85;011197;Renens VD Entrepôts;1
+85;011247;Cully;1
+85;011262;Rivaz;1
+85;011288;Lausanne Cargo;1
+85;011403;Renens VD CT;1
+85;011460;Daillens;1
+85;011536;Lieu, Le;1
+85;011577;Sentier-Orient;1
+85;011593;Brassus, Le;1
+85;011668;Romanel-sur-Lausanne;1
+85;011692;Cheseaux;1
+85;011718;Etagnières;1
+85;011726;Assens;1
+85;011734;Echallens;1
+85;011759;Sugnens;1
+85;011767;Fey;1
+85;011775;Bercher;1
+85;011908;Orbe-Industrie;1
+85;011924;Bière-Casernes;1
+85;012005;Vevey;1
+85;012039;Clarens;1
+85;013003;Montreux;1
+85;013037;Villeneuve;1
+85;013045;Roche VD;1
+85;013524;Montreux MOB;1
+85;013755;Chernex;1
+85;013946;Château-d'Oex;1
+85;013987;Saanen BE;1
+85;014001;Aigle;1
+85;014019;St-Triphon;1
+85;014027;Bex;1
+85;014035;St-Maurice;1
+85;014043;Evionnaz;1
+85;014050;Vernayaz;1
+85;014209;Massongex;1
+85;014217;Monthey;1
+85;014266;Bouveret;1
+85;015008;Martigny;1
+85;015016;Charrat-Fully;1
+85;015024;Saxon;1
+85;015057;Ardon;1
+85;015065;Sion;1
+85;015073;St-Léonard;1
+85;015099;Sierre/Siders;1
+85;015727;Martigny-Bourg;1
+85;015735;Martigny-Croix;1
+85;015750;Bovernier;1
+85;015768;Sembrancher;1
+85;015784;Orsières;1
+85;015792;Châble, Le;1
+85;016014;Leuk;1
+85;016022;Turtmann;1
+85;016030;Gampel-Steg;1
+85;016048;Raron;1
+85;016055;Visp;1
+85;016063;Gamsen SBB;1
+85;016089;Iselle transito;1
+85;016097;Brig;1
+85;016378;Martigny-Bourg CT;1
+85;016402;Visp BVZ;1
+85;016618;Oberwald;1
+85;016634;Ulrichen;1
+85;016659;Münster VS;1
+85;016667;Reckingen;1
+85;016709;Niederwald;1
+85;016717;Fürgangen-Bellwald;1
+85;016725;Fiesch;1
+85;016758;Betten FO;1
+85;016766;Mörel;1
+85;016808;Gamsen;1
+85;016824;Ackersand;1
+85;016832;Stalden-Saas;1
+85;016840;Kalpetran;1
+85;016857;St. Niklaus;1
+85;016865;Herbriggen;1
+85;016873;Randa;1
+85;016881;Täsch;1
+85;016899;Zermatt;1
+85;020008;Aarburg-Oftringen;1
+85;020016;Zofingen;1
+85;020024;Brittnau-Wikon;1
+85;020032;Reiden;1
+85;020040;Dagmersellen;1
+85;020057;Nebikon;1
+85;020065;Wauwil;1
+85;020073;Sursee;1
+85;020099;Sempach-Neuenkirch;1
+85;020172;Waldibrücke;1
+85;020206;Rothenburg;1
+85;020214;Emmenbrücke;1
+85;020222;Eschenbach;1
+85;020230;Ballwil;1
+85;020248;Hochdorf;1
+85;020255;Baldegg;1
+85;020271;Hitzkirch;1
+85;020305;Seon;1
+85;020321;Boniswil-Seengen;1
+85;020347;Beinwil am See;1
+85;020362;Reinach SBB;1
+85;020370;Menziken SBB;1
+85;020388;Beromünster;1
+85;020503;Sursee Wassermatte;1
+85;020925;Geuensee, Chäppelimatt;1
+85;020933;Büron-Bad Knutwil;1
+85;020941;Triengen-Winikon;1
+85;021006;Safenwil;1
+85;021014;Kölliken;1
+85;021022;Oberentfelden;1
+85;021030;Suhr;1
+85;021048;Hunzenschwil;1
+85;021055;Othmarsingen;1
+85;021063;Mägenwil;1
+85;021071;Mellingen;1
+85;021097;Baden Oberstadt;1
+85;021105;Dulliken;1
+85;021113;Däniken;1
+85;021121;Schönenwerd SO;1
+85;021139;Aarau;1
+85;021147;Rupperswil;1
+85;021154;Wildegg;1
+85;021170;Niederlenz;1
+85;021188;Lenzburg Stadt;1
+85;021196;Lenzburg;1
+85;021378;Aarau CT;1
+85;021600;Gränichen;1
+85;021618;Teufenthal AG;1
+85;021634;Oberkulm;1
+85;021642;Gontenschwil;1
+85;021667;Leimbach AG;1
+85;021675;Reinach WSB;1
+85;021691;Menziken-Burg;1
+85;021998;Schöftland;1
+85;022004;Ebikon;1
+85;022012;Gisikon-Root;1
+85;022020;Rotkreuz;1
+85;022038;Cham;1
+85;022046;Zug;1
+85;022061;Baar;1
+85;022079;Sihlbrugg;1
+85;022087;Horgen Oberdorf;1
+85;022103;Birrfeld;1
+85;022111;Hendschiken;1
+85;022129;Dottikon-Dintikon;1
+85;022137;Wohlen;1
+85;022145;Boswil-Bünzen;1
+85;022152;Muri AG;1
+85;022186;Sins;1
+85;022194;Oberrüti;1
+85;022210;Birmensdorf ZH;1
+85;022228;Bonstetten-Wettswil;1
+85;022236;Hedingen;1
+85;022244;Affoltern am Albis;1
+85;022251;Mettmenstetten;1
+85;022277;Steinhausen;1
+85;022285;Dottikon-Dintikon Lagerha;1
+85;022368;Birrfeld CT;1
+85;022376;Lupfig;1
+85;022434;Birmensdorf Industrie;1
+85;022616;Villmergen;1
+85;022723;Bremgarten West;1
+85;023077;Filderen Birmensdorf (Bonstetten-Wettswil);1
+85;030015;Zürich Altstetten;1
+85;030049;Zürich Tiefenbrunnen;1
+85;030056;Zürich Zollfreilager;1
+85;030072;Zürich Seebach;1
+85;030098;Zürich Wollishofen;1
+85;030122;Zürich Herdern;1
+85;030148;Zürich HB Cargo;1
+85;030171;Zürich Mülligen CDS;1
+85;030197;Zürich Industrie;1
+85;030254;Zürich Vorbahnhof;1
+85;030338;Zürich HB CT;1
+85;030395;Zürich Mülligen;1
+85;030718;Höcklerbrücke;1
+85;030916;Zürich Giesshübel;1
+85;030932;Zürich Manegg;1
+85;030940;Zürich Leimbach;1
+85;030965;Adliswil;1
+85;030973;Langnau-Gattikon;1
+85;031013;Küsnacht ZH;1
+85;031047;Meilen;1
+85;031054;Uetikon;1
+85;031062;Männedorf;1
+85;031070;Stäfa;1
+85;031104;Rapperswil;1
+85;031153;Schmerikon;1
+85;031161;Uznach;1
+85;031179;Kaltbrunn;1
+85;031187;Benken;1
+85;031195;Schänis;1
+85;031211;Rüti ZH;1
+85;031229;Bubikon;1
+85;031237;Wetzikon;1
+85;031245;Aathal;1
+85;031252;Uster;1
+85;031278;Schwerzenbach ZH;1
+85;031286;Dübendorf;1
+85;031294;Wallisellen;1
+85;031302;Hinwil;1
+85;031328;Bäretswil;1
+85;031344;Bauma;1
+85;031385;Wald;1
+85;031963;Wolfhausen, Post;1
+85;032003;Kilchberg;1
+85;032011;Rüschlikon;1
+85;032029;Thalwil;1
+85;032045;Horgen;1
+85;032052;Au ZH;1
+85;032060;Wädenswil;1
+85;032078;Richterswil;1
+85;032094;Pfäffikon SZ;1
+85;032201;Lachen;1
+85;032219;Siebnen-Wangen;1
+85;032227;Schübelbach-Buttikon;1
+85;032235;Reichenburg;1
+85;032243;Bilten;1
+85;032250;Ziegelbrücke;1
+85;032268;Nieder- und Oberurnen;1
+85;032276;Näfels-Mollis;1
+85;032284;Netstal;1
+85;032300;Glarus;1
+85;032334;Schwanden;1
+85;032391;Linthal;1
+85;032805;Steinerberg;1
+85;032813;Sattel-Aegeri;1
+85;032821;Rothenthurm;1
+85;032839;Einsiedeln;1
+85;032847;Biberbrugg;1
+85;032854;Schindellegi-Feusisberg;1
+85;032862;Samstagern;1
+85;032870;Burghalden;1
+85;032888;Wollerau;1
+85;032896;Freienbach SOB;1
+85;033001;Kempten;1
+85;033019;Pfäffikon ZH;1
+85;033027;Fehraltorf;1
+85;033035;Illnau;1
+85;033043;Kemptthal;1
+85;033050;Effretikon;1
+85;033076;Bassersdorf;1
+85;033084;Kloten;1
+85;033100;Glattbrugg;1
+85;033118;Rümlang;1
+85;033134;Niederglatt;1
+85;033159;Dielsdorf;1
+85;033167;Steinmaur;1
+85;033191;Niederweningen;1
+85;033365;Werk Bäretswil (Hinwil);1
+85;033415;Niederglatt CT;1
+85;034009;Bülach;1
+85;034025;Eglisau;1
+85;034033;Hüntwangen-Wil;1
+85;034041;Rafz;1
+85;034058;Zweidlen;1
+85;034066;Weiach-Kaiserstuhl;1
+85;034082;Rekingen AG;1
+85;034090;Zurzach;1
+85;034215;Jestetten;1
+85;034231;Neuhausen;1
+85;034249;Schaffhausen;1
+85;034272;Schlatt;1
+85;034280;Diessenhofen;1
+85;034611;Thayngen;1
+85;034645;Beringen Bad Bf;1
+85;034652;Neunkirch;1
+85;034660;Wilchingen-Hallau;1
+85;034850;Siblingen, Post;1
+85;034884;Schleitheim, Station;1
+85;034918;Beggingen;1
+85;035014;Döttingen-Klingnau;1
+85;035022;Siggenthal-Würenlingen;1
+85;035048;Baden;1
+85;035055;Wettingen;1
+85;035063;Killwangen-Spreitenbach;1
+85;035071;Zürich RB Limmattal;1
+85;035089;Dietikon;1
+85;035097;Schlieren;1
+85;035261;Regensdorf-Watt;1
+85;035279;Buchs-Dällikon;1
+85;035287;Otelfingen;1
+85;035295;Würenlos;1
+85;035469;Zürich RB Limmattal Wagenrep.;1
+85;040121;Puidoux-Chexbres;1
+85;040147;Palézieux;1
+85;040170;Châtillens;1
+85;040188;Ecublens-Rue;1
+85;040212;Vauderens;1
+85;040238;Romont;1
+85;040253;Chénens;1
+85;040287;Rosé;1
+85;040600;Bossonnens;1
+85;040626;Châtel-St-Denis;1
+85;040634;Semsales;1
+85;040642;Verrerie, La;1
+85;040667;Vuadens-Sud;1
+85;040709;Montbovon;1
+85;040741;Grandvillard;1
+85;040758;Enney;1
+85;040774;Gruyères;1
+85;040816;Vuisternens-devant-Romont;1
+85;040832;Sâles;1
+85;040840;Vaulruz-Nord;1
+85;040865;Bulle;1
+85;040881;Broc-Village;1
+85;040899;Broc-Fabrique;1
+85;041004;Fribourg;1
+85;041012;Düdingen;1
+85;041020;Schmitten;1
+85;041046;Thörishaus;1
+85;041061;Bern Bümpliz Süd;1
+85;041202;Moudon;1
+85;041210;Lucens;1
+85;041228;Granges-Marnand;1
+85;041236;Corcelles-Nord;1
+85;041251;Domdidier;1
+85;041269;Avenches;1
+85;041285;Murten;1
+85;041293;Galmiz;1
+85;041301;Yvonand;1
+85;041327;Estavayer-le-Lac;1
+85;041335;Cugy FR;1
+85;041343;Payerne;1
+85;041350;Corcelles-Sud;1
+85;041368;Cousset;1
+85;041384;Grolley;1
+85;041814;Givisiez;1
+85;041822;Belfaux-Village;1
+85;041830;Pensier;1
+85;041848;Courtepin;1
+85;041855;Cressier FR;1
+85;041863;Münchenwiler-Courgevaux;1
+85;041889;Sugiez;1
+85;041921;Neuenegg;1
+85;041947;Laupen;1
+85;042002;Yverdon;1
+85;042010;Grandson;1
+85;042028;Onnens-Bonvillars;1
+85;042051;Gorgier-St-Aubin;1
+85;042085;Boudry;1
+85;042093;Colombier;1
+85;042101;Verrières-Frontière, Les;1
+85;042119;Verrières, Les;1
+85;042150;Travers;1
+85;042192;Auvernier;1
+85;042200;Neuchâtel-Serrières;1
+85;042218;Neuchâtel;1
+85;042234;Cornaux;1
+85;042259;Landeron, Le;1
+85;042366;Geneveys-sur-Coffrane, Le;1
+85;042374;Hauts-Geneveys, Les;1
+85;042853;Couvet RVT;1
+85;042861;Môtiers;1
+85;042879;Fleurier;1
+85;042887;Buttes;1
+85;042895;St-Sulpice NE;1
+85;042929;Valeyres-sous-Montagny;1
+85;042937;Essert-sous-Champvent;1
+85;042945;Vuiteboeuf;1
+85;042952;Baulmes;1
+85;042960;Six-Fontaines;1
+85;042986;Ste-Croix;1
+85;043000;Biel/Bienne;1
+85;043026;Reuchenette-Péry;1
+85;043042;Sonceboz-Sombeval;1
+85;043075;Courtelary;1
+85;043109;St-Imier;1
+85;043141;Chaux-de-Fonds, La;1
+85;043174;Locle-Col-des-Roches, Le;1
+85;043406;Biel/Bienne Rangierbhf.;1
+85;043422;Biel/Bienne CT;1
+85;044008;Kerzers;1
+85;044024;Kallnach;1
+85;044040;Aarberg;1
+85;044107;Zollikofen;1
+85;044115;Münchenbuchsee;1
+85;044123;Schüpfen;1
+85;044131;Suberg-Grossaffoltern;1
+85;044149;Lyss;1
+85;044156;Busswil;1
+85;044164;Brügg BE;1
+85;044198;Biel Mett;1
+85;044628;Lattrigen;1
+85;044636;Täuffelen;1
+85;044651;Lüscherz BTI;1
+85;044669;Siselen BE;1
+85;044677;Brüttelen;1
+85;044800;St-Blaise-Lac;1
+85;044818;Marin-Epagnier;1
+85;044826;Gampelen;1
+85;044834;Ins;1
+85;044842;Müntschemier;1
+85;044859;Ferenbalm-Gurbrü;1
+85;044867;Gümmenen;1
+85;044875;Rosshäusern;1
+85;044891;Bern Bümpliz Nord;1
+85;044925;Niederbottigen BN;1
+85;050013;Meggen;1
+85;050021;Küssnacht am Rigi;1
+85;050047;Arth-Goldau;1
+85;050054;Steinen;1
+85;050062;Schwyz;1
+85;050070;Brunnen;1
+85;050096;Luzern Cargo;1
+85;050492;Luzern CT;1
+85;051128;Flüelen;1
+85;051136;Altdorf;1
+85;051144;Erstfeld;1
+85;051151;Amsteg-Silenen;1
+85;051177;Gurtnellen;1
+85;051185;Wassen;1
+85;051193;Göschenen;1
+85;051631;Realp;1
+85;051656;Andermatt;1
+85;051722;Oberalppasshöhe-Calmot;1
+85;051730;Tschamut-Selva;1
+85;051763;Sedrun;1
+85;052019;Airolo;1
+85;052027;Ambri-Piotta;1
+85;052043;Centrale Faido (Lavorgo);1
+85;052050;Lavorgo;1
+85;052076;Bodio;1
+85;052092;Biasca;1
+85;052100;Osogna-Cresciano;1
+85;052118;Claro;1
+85;052126;Castione-Arbedo;1
+85;052134;Bellinzona;1
+85;052142;Giubiasco;1
+85;052167;Rivera-Bironico;1
+85;052183;Taverne-Torricella;1
+85;052852;S. Vittore;1
+85;052860;Roveredo GR;1
+85;052886;Grono;1
+85;052894;Leggia;1
+85;052902;Cama;1
+85;053025;Melide;1
+85;053033;Maroggia-Melano;1
+85;053058;Mendrisio;1
+85;053066;Balerna;1
+85;053074;Chiasso;1
+85;053082;Chiasso Cargo;1
+85;053090;Chiasso transito;1
+85;053108;Chiasso CT;1
+85;053454;Lugano Vedeggio;1
+85;053462;Lugano Vedeggio CT;1
+85;054007;Locarno;1
+85;054015;Tenero;1
+85;054031;Riazzino-Cugnasco;1
+85;054049;Cadenazzo;1
+85;054098;Pino transito;1
+85;058628;Pino-Tronzano;1
+85;060004;Winterthur;1
+85;060012;Winterthur Grüze;1
+85;060046;Kollbrunn;1
+85;060053;Rikon;1
+85;060079;Turbenthal;1
+85;060087;Wila;1
+85;060095;Saland;1
+85;060103;Sirnach;1
+85;060111;Eschlikon;1
+85;060137;Aadorf;1
+85;060145;Elgg;1
+85;060160;Oberwinterthur;1
+85;060194;Islikon;1
+85;060228;Thalheim-Altikon;1
+85;060236;Ossingen;1
+85;060244;Stammheim;1
+85;060251;Etzwilen;1
+85;060269;Hemishofen;1
+85;060277;Ramsen;1
+85;060335;Embrach Embraport CT;1
+85;060400;Embrach Embraport;1
+85;060418;Embrach-Rorbas;1
+85;060426;Pfungen-Neftenbach;1
+85;060434;Winterthur Wülflingen;1
+85;060442;Winterthur Töss;1
+85;060459;Hettlingen;1
+85;060467;Henggart;1
+85;060475;Andelfingen;1
+85;060483;Marthalen;1
+85;061002;Frauenfeld;1
+85;061010;Felben-Wellhausen;1
+85;061036;Müllheim-Wigoltingen;1
+85;061044;Märstetten;1
+85;061051;Weinfelden;1
+85;061069;Bürglen;1
+85;061077;Erlen;1
+85;061085;Oberaach;1
+85;061093;Amriswil;1
+85;061218;Romanshorn;1
+85;061242;Güttingen;1
+85;061283;Kreuzlingen Hafen;1
+85;061291;Konstanz;1
+85;061317;Kreuzlingen;1
+85;061325;Tägerwilen-Gottlieben;1
+85;061333;Ermatingen;1
+85;061366;Steckborn;1
+85;061382;Eschenz;1
+85;061390;Stein am Rhein;1
+85;061747;Matzingen;1
+85;061762;Wängi;1
+85;061770;Rosental;1
+85;061788;Münchwilen TG;1
+85;061820;Bettwiesen;1
+85;061838;Tobel-Affeltrangen;1
+85;061846;Märwil;1
+85;061887;Bronschhofen AMP;1
+85;061903;Bussnang;1
+85;061911;Weinfelden Süd;1
+85;061945;Berg;1
+85;061952;Siegershausen;1
+85;061960;Lengwil;1
+85;061978;Kreuzlingen Bernrain;1
+85;061986;Tägerwilen Dorf;1
+85;061994;Altishausen;1
+85;062000;Wattwil;1
+85;062018;Lichtensteig;1
+85;062034;Bütschwil;1
+85;062059;Bazenheid;1
+85;062067;Wil;1
+85;062075;Schwarzenbach SG;1
+85;062083;Uzwil;1
+85;062091;Flawil;1
+85;062109;Gossau SG;1
+85;062117;Arnegg;1
+85;062125;Hauptwil;1
+85;062133;Bischofszell Stadt;1
+85;062158;Bischofszell Nord;1
+85;062166;Kradolf;1
+85;062174;Sulgen;1
+85;062232;Bazenheid ZAB;1
+85;062810;Waldstatt;1
+85;062836;Urnäsch;1
+85;062851;Gonten;1
+85;062869;Appenzell;1
+85;062885;Weissbad;1
+85;062893;Wasserauen;1
+85;062901;Herisau;1
+85;062927;Degersheim;1
+85;062935;Mogelsberg;1
+85;062943;Brunnadern-Neckertal;1
+85;062976;Ebnat-Kappel;1
+85;062992;Nesslau-Neu St. Johann;1
+85;063008;St. Gallen Winkeln;1
+85;063016;St. Gallen Bruggen;1
+85;063032;St. Gallen St. Fiden;1
+85;063057;Goldach;1
+85;063073;Horn;1
+85;063081;Arbon;1
+85;063099;Egnach;1
+85;063107;St. Gallen Cargo;1
+85;063115;Rorschach;1
+85;063123;Staad;1
+85;063131;Rheineck;1
+85;063149;St. Margrethen;1
+85;063164;Au SG;1
+85;063172;Heerbrugg;1
+85;063180;Rebstein-Marbach;1
+85;063198;Altstätten SG;1
+85;063362;St. Gallen CT;1
+85;063404;St. Gallen GB;1
+85;063537;Wienacht-Tobel;1
+85;063552;Heiden;1
+85;063750;Teufen;1
+85;063776;Bühler;1
+85;063784;Gais;1
+85;063925;St. Gallen Haggen;1
+85;063933;Wittenbach;1
+85;063941;Roggwil-Berg;1
+85;063958;Häggenschwil-Winden;1
+85;063966;Muolen;1
+85;063974;Steinebrunn;1
+85;063982;Neukirch-Egnach;1
+85;070029;Ostermundigen;1
+85;070037;Gümligen;1
+85;070052;Rubigen;1
+85;070060;Münsingen;1
+85;070078;Wichtrach;1
+85;070094;Uttigen;1
+85;070102;Bern Cargo;1
+85;070425;Bern CT;1
+85;070672;Deisswil;1
+85;070680;Bolligen;1
+85;070698;Ittigen bei Bern;1
+85;070706;Uetendorf;1
+85;070722;Burgistein-Wattenwil;1
+85;070730;Thurnen;1
+85;070755;Toffen;1
+85;070763;Belp;1
+85;070771;Kehrsatz;1
+85;070789;Wabern bei Bern;1
+85;070797;Bern Weissenbühl;1
+85;070813;Bern Fischermätteli;1
+85;070839;Köniz;1
+85;070862;Niederscherli;1
+85;070870;Mittelhäusern;1
+85;070896;Schwarzenburg;1
+85;070912;Liebefeld;1
+85;071001;Thun;1
+85;072769;St. Stephan;1
+85;072793;Lenk im Simmental;1
+85;072900;Zweisimmen;1
+85;072926;Boltigen;1
+85;072967;Erlenbach im Simmental;1
+85;072975;Oey-Diemtigen;1
+85;072983;Wimmis;1
+85;073809;Grindelwald;1
+85;073833;Lütschental;1
+85;073841;Lauterbrunnen;1
+85;073882;Wilderswil;1
+85;073890;Zweilütschinen;1
+85;073981;Hondrich Süd;1
+85;074740;Goppenstein;1
+85;074757;Kandersteg;1
+85;074765;Blausee-Mitholz;1
+85;074781;Frutigen;1
+85;074807;Reichenbach im Kandertal;1
+85;074831;Spiez;1
+85;074880;Gwatt;1
+85;074922;Interlaken Ost;1
+85;074930;Interlaken West;1
+85;074948;Därligen;1
+85;074955;Leissigen;1
+85;074989;Leissigbad;1
+85;074997;Frutigen Lagerhaus;1
+85;080010;Schönbühl SBB;1
+85;080036;Hindelbank;1
+85;080051;Burgdorf;1
+85;080069;Wynigen;1
+85;080085;Herzogenbuchsee;1
+85;080549;Worblaufen;1
+85;080614;Fraubrunnen;1
+85;080648;Bätterkinden;1
+85;080663;Lohn-Lüterkofen;1
+85;080804;Oberburg;1
+85;080812;Burgdorf Steinhof;1
+85;080838;Burgdorf Buchmatt;1
+85;080846;Kirchberg-Alchenflüh;1
+85;080853;Aefligen;1
+85;080861;Utzenstorf;1
+85;080879;Wiler;1
+85;080887;Gerlafingen;1
+85;080895;Biberist RM;1
+85;081000;Langenthal;1
+85;081018;Roggwil-Wynau;1
+85;081026;Murgenthal;1
+85;081034;Rothrist;1
+85;081513;Langenthal Gaswerk;1
+85;081539;Aarwangen;1
+85;081554;Bannwil;1
+85;081620;Roggwil Dorf;1
+85;081638;St. Urban;1
+85;081646;St. Urban Ziegelei;1
+85;081653;Untersteckholz;1
+85;081661;Melchnau;1
+85;081810;Langenthal Süd;1
+85;081828;Lotzwil;1
+85;081836;Madiswil;1
+85;081844;Lindenholz;1
+85;081851;Kleindietwil;1
+85;081869;Rohrbach;1
+85;081877;Huttwil;1
+85;082008;Worb SBB;1
+85;082024;Konolfingen;1
+85;082032;Zäziwil;1
+85;082040;Bowil;1
+85;082057;Signau;1
+85;082065;Emmenmatt;1
+85;082073;Langnau;1
+85;082081;Trubschachen;1
+85;082099;Wiggen;1
+85;082107;Escholzmatt;1
+85;082115;Schüpfheim;1
+85;082123;Hasle LU;1
+85;082131;Entlebuch;1
+85;082156;Wolhusen;1
+85;082172;Schachen LU;1
+85;082180;Malters;1
+85;082198;Littau;1
+85;082511;Steffisburg;1
+85;082537;Heimberg;1
+85;082545;Brenzikofen;1
+85;082552;Oberdiessbach;1
+85;082560;Stalden im Emmental;1
+85;082602;Grosshöchstetten;1
+85;082610;Biglen;1
+85;082628;Walkringen;1
+85;082636;Bigenthal;1
+85;082644;Schafhausen im Emmental;1
+85;082651;Hasle-Rüegsau;1
+85;082669;Lützelflüh-Goldbach;1
+85;082677;Ramsei;1
+85;082685;Zollbrück;1
+85;082719;Grünenmatt;1
+85;082727;Sumiswald-Grünen;1
+85;082735;Wasen im Emmental;1
+85;082750;Affoltern-Weier;1
+85;082768;Häusernmoos;1
+85;082784;Dürrenroth;1
+85;082917;Gondiswil;1
+85;082925;Hüswil;1
+85;082933;Zell;1
+85;082941;Gettnau;1
+85;082958;Willisau;1
+85;082974;Menznau;1
+85;083014;Ringgenberg;1
+85;083063;Brienzwiler;1
+85;083089;Meiringen;1
+85;083121;Giswil;1
+85;083139;Sachseln;1
+85;083147;Sarnen;1
+85;083154;Kerns-Kägiswil;1
+85;083162;Alpnach Dorf;1
+85;083188;Hergiswil;1
+85;083592;Innertkirchen MIB;1
+85;083907;Stansstad;1
+85;083915;Stans;1
+85;083923;Dallenwil;1
+85;083949;Wolfenschiessen;1
+85;083998;Engelberg;1
+85;084517;Kupferhammer;1
+85;084525;Kriens;1
+85;090001;Chur;1
+85;090019;Zizers SBB;1
+85;090027;Landquart;1
+85;090043;Bad Ragaz;1
+85;090415;Zizers SBB (old);0
+85;090423;Felsberg Joos;1
+85;090514;Haldenstein;1
+85;090522;Trimmis;1
+85;090530;Untervaz;1
+85;090555;Igis;1
+85;090571;Malans;1
+85;090597;Grüsch;1
+85;090605;Schiers;1
+85;090613;Furna;1
+85;090621;Jenaz;1
+85;090639;Fideris;1
+85;090647;Küblis;1
+85;090662;Serneus;1
+85;090688;Klosters;1
+85;090720;Davos Dorf;1
+85;090738;Davos Platz;1
+85;090753;Betonanlage Oberrauch;1
+85;090761;Davos Glaris;1
+85;090787;Wiesen;1
+85;091496;Ems Werk CT;1
+85;091520;Lüen-Castiel;1
+85;091538;St. Peter-Molinis;1
+85;091546;Peist;1
+85;091553;Langwies GR;1
+85;091561;Litzirüti;1
+85;091579;Arosa;1
+85;091686;Versam-Safien;1
+85;091710;Ilanz;1
+85;091728;Beton Val Mulin AG;1
+85;091736;Rueun;1
+85;091744;Waltensburg/Vuorz;1
+85;091751;Tavanasa-Breil/Brigels;1
+85;091769;Trun;1
+85;091777;Rabius-Surrein;1
+85;091785;Sumvitg-Cumpadials;1
+85;091793;Disentis/Mustér;1
+85;091801;Felsberg;1
+85;091819;Domat/Ems;1
+85;091827;Ems Werk;1
+85;091835;Reichenau-Tamins;1
+85;091843;Bonaduz;1
+85;091850;Rhäzüns;1
+85;091868;Rothenbrunnen;1
+85;091876;Rodels-Realta;1
+85;091892;Thusis;1
+85;091900;Sils im Domleschg;1
+85;091926;Tiefencastel;1
+85;091934;Surava;1
+85;091959;Filisur;1
+85;091975;Bergün/Bravuogn;1
+85;091983;Preda;1
+85;092502;Bever;1
+85;092510;Samedan;1
+85;092528;Celerina;1
+85;092536;St. Moritz;1
+85;092544;Punt Muragl;1
+85;092551;Pontresina;1
+85;092569;Punt-Chamues-ch, La;1
+85;092585;Zuoz;1
+85;092593;S-chanf;1
+85;092601;Cinuos-chel-Brail;1
+85;092627;Zernez;1
+85;092635;Susch;1
+85;092643;Lavin;1
+85;092668;Ardez;1
+85;092684;Scuol-Tarasp;1
+85;093567;Ospizio Bernina;1
+85;093575;Alp Grüm;1
+85;093617;Poschiavo;1
+85;093682;Campocologno;1
+85;093690;Tirano;1
+85;094003;Oberriet;1
+85;094011;Rüthi SG;1
+85;094029;Salez-Sennwald;1
+85;094037;Haag-Gams;1
+85;094045;Buchs SG;1
+85;094060;Sevelen;1
+85;094086;Trübbach;1
+85;094094;Buchs SG CT;1
+85;094110;Sargans;1
+85;094128;Mels;1
+85;094136;Flums;1
+85;094144;Walenstadt;1
+85;094169;Unterterzen;1
+85;094177;Murg;1
+85;094185;Mühlehorn;1
+85;094193;Weesen;1
+85;094197;Glattbrugg (falsch);0
+85;151670;Fehraltorf Industrie;1
+85;151688;Horchental;1
+85;157784;Vernier-Meyrin Cargo;1
+85;162503;Basel SBB Cargo;1
+85;169334;Sigirino;1
+85;172148;Lausanne-Triage SALT;1
+85;173716;Buchs-Dällikon Industrie;1
+85;174193;Gettnau Güteranlage SYFA;1
+85;174987;Pasquerio;1
+85;180505;Otelfingen Industrie;1
+85;182683;Chur GB;1
+87;193409;Creutzwald F;1
+87;193409;Creutzwald F;1

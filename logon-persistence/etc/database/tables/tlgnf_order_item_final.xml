@@ -1,0 +1,462 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNF_ORDER_ITEM_FINAL"
+           description="Frozen data of an order item at the time the order was set to 'finished', i.e. i.e. transition from status 15=delivered to status 16=finished. See tlgnf_order_final for detailed description of the business purpose.">
+
+        <column name="ORDER_ITEM_FINAL_ID" primaryKey="true" required="true" type="DECIMAL" size="12"
+                description="PK"/>
+        <column name="ORDER_FINAL_ID" required="true" type="DECIMAL" size="12"
+                description="FK tlgnf_order_final."/>
+        <column name="OI_ORDER_ITEM_ID" required="true" type="DECIMAL" size="12"
+                description="tlgnc_order_item.order_item_id. Unique. If an order changes after the original 'finish' operation (Examples: Update delivery quantities due to credit note, updated costs, changed Billto, ...) the original order_final record together with its order_item_final records is updated."/>"/>
+        <column name="OI_ORDER_ID" required="true" type="DECIMAL" size="12"
+                description="tlgnc_order_item.order_id. FK tlgnf_order. The Order to which the Order Item belongs."/>
+        <column name="OI_ORDER_NUMBER" type="DECIMAL" size="12"
+                description="tlgnc_order.order_number."/>
+        <column name="OI_ORDER_ITEM_NO" required="true" type="DECIMAL" size="3"
+                description="tlgnc_order_item.order_item_no."/>
+        <column name="OI_LOAD_ID" type="DECIMAL" size="12"
+                description="tlgnc_order_item.load_id."/>
+        <column name="OI_MIX_DESIGN_ID" type="DECIMAL" size="12"
+                description="tlgnc_order_item.mix_design_id."/>
+        
+
+        <!-- LOAD_ID : Content of tlgnc_load.-->
+        <column name="LOAD_LOADED_FROM_LOAD_ID" type="DECIMAL" size="12"
+                description="tlgnc_load.loaded_from_load_id, referenced by tlgnc_order_item.load_id -> tlgnc_load.load_id."/>
+        <column name="LOAD_SAP_MATERIAL_ID" type="DECIMAL" size="12"
+                description="tlgnc_load.sap_material_id, referenced by tlgnc_order_item.load_id -> tlgnc_load.load_id."/>
+        <column name="LOAD_PRODUCTION_PLANT_CD" type="VARCHAR" size="4"
+                description="tlgnc_load.production_plant_cd, referenced by tlgnc_order_item.load_id -> tlgnc_load.load_id."/>
+        <column name="LOAD_TARE_QUANTITY" type="DECIMAL" size="12,4"
+                description="tlgnc_load.tare_weight_t, referenced by tlgnc_order_item.load_id -> tlgnc_load.load_id."/>
+        <column name="LOAD_NET_QUANTITY" type="DECIMAL" size="12,4"
+                description="tlgnc_load.net_quantity, referenced by tlgnc_order_item.load_id -> tlgnc_load.load_id."/>
+        <column name="LOAD_GROSS_QUANTITY" type="DECIMAL" size="12,4"
+                description="tlgnc_load.gross_weight_t, referenced by tlgnc_order_item.load_id -> tlgnc_load.load_id."/>
+        <column name="NET_QUANTITY_UOM_CD" type="VARCHAR" size="3"
+                description="tlgnc_load.net_quantity_uom_cd, referenced by tlgnc_order_item.load_id -> tlgnc_load.load_id."/>
+        <column name="LOAD_LOAD_ORDER_ID" type="DECIMAL" size="12"
+                description="tlgnc_load.load_order_id, referenced by tlgnc_order_item.load_id -> tlgnc_load.load_id."/>
+        <column name="LOAD_CHAMBER_NUMBER" type="DECIMAL" size="1"
+                description="tlgnc_load.chamber_number, referenced by tlgnc_order_item.load_id -> tlgnc_load.load_id."/>
+        <column name="LOAD_LOADING_TS" type="DATE"
+                description="tlgnc_load.loading_ts, referenced by tlgnc_order_item.load_id -> tlgnc_load.load_id."/>
+        <column name="LOAD_UNLOADING_TS" type="DATE"
+                description="tlgnc_load.unloading_ts, referenced by tlgnc_order_item.load_id -> tlgnc_load.load_id."/>
+        <column name="LOAD_WS_SILO_NO" type="VARCHAR" size="20"
+                description="tlgnc_load.ws_silo_no, referenced by tlgnc_order_item.load_id -> tlgnc_load.load_id."/>
+		<column name="LOAD_WS_SILO_NAME" type="VARCHAR" size="40"
+                description="tlgnc_load.ws_silo_name, referenced by tlgnc_order_item.load_id -> tlgnc_load.load_id."/>
+		<column name="LOAD_WS_SAMPLE_NO" type="VARCHAR" size="20"
+                description="tlgnc_load.ws_sample_no, referenced by tlgnc_order_item.load_id -> tlgnc_load.load_id."/>
+        <column name="LOAD_WS_TARE_QUIT_WARN_FLAG" type="BOOLEAN"
+        		description="tlgnc_load.ws_tare_quit_warn_flag, referenced by tlgnc_order_item.load_id -> tlgnc_load.load_id."/>
+        <column name="LOAD_WS_DELIVERY_NOTE_NO" type="VARCHAR" size="12"
+				description="tlgnc_load.ws_delivery_note_no, referenced by tlgnc_order_item.load_id -> tlgnc_load.load_id."/>
+		<column name="LOAD_WS_ORDER_TEMPLATE_NO" type="VARCHAR" size="12"
+				description="tlgnc_load.ws_order_template_no, referenced by tlgnc_order_item.load_id -> tlgnc_load.load_id."/>
+		<column name="LOAD_WS_EICHBELEG1" type="VARCHAR" size="40"
+				description="tlgnc_load.ws_eichbeleg1, referenced by tlgnc_order_item.load_id -> tlgnc_load.load_id."/>
+		<column name="LOAD_WS_EICHBELEG1_TIME" type="DATE"
+				description="tlgnc_load.ws_eichbeleg1_time, referenced by tlgnc_order_item.load_id -> tlgnc_load.load_id."/>
+        <column name="LOAD_WS_EICHBELEG1_BALANCE" type="VARCHAR" size="40"
+                description="tlgnc_load.ws_eichbeleg1_balance, referenced by tlgnc_order_item.load_id -> tlgnc_load.load_id."/>
+		<column name="LOAD_WS_EICHBELEG2" type="VARCHAR" size="40"
+				description="tlgnc_load.ws_eichbeleg2, referenced by tlgnc_order_item.load_id -> tlgnc_load.load_id."/>
+		<column name="LOAD_WS_EICHBELEG2_TIME" type="DATE"
+				description="tlgnc_load.ws_eichbeleg2, referenced by tlgnc_order_item.load_id -> tlgnc_load.load_id."/>
+        <column name="LOAD_WS_EICHBELEG2_BALANCE" type="VARCHAR" size="40"
+                description="tlgnc_load.ws_eichbeleg2_balance, referenced by tlgnc_order_item.load_id -> tlgnc_load.load_id."/>
+		<column name="LOAD_WS_CUSTOMER_ORDER_NO" type="VARCHAR" size="20"
+				description="tlgnc_load.ws_customer_order_no, referenced by tlgnc_order_item.load_id -> tlgnc_load.load_id."/>
+		<column name="LOAD_WS_ENTER_SHIPPPOINT_TIME" type="DATE"
+				description="tlgnc_load.ws_enter_shippingpoint_time, referenced by tlgnc_order_item.load_id -> tlgnc_load.load_id."/>
+		<column name="LOAD_WS_LEAVE_SHIPPPOINT_TIME" type="DATE"
+				description="tlgnc_load.ws_leave_shippingpoint_time, referenced by tlgnc_order_item.load_id -> tlgnc_load.load_id."/>
+        <column name="LOAD_WS_START_LOADINGPOINT_ID" type="DECIMAL" size="12"
+                description="tlgnc_load.ws_start_loadingpoint_id, referenced by tlgnc_order_item.load_id. Note: This is the LOGON PK, not from the weighing system."/>
+        <column name="LOAD_WS_END_LOADINGPOINT_ID" type="DECIMAL" size="12"
+                description="tlgnc_load.ws_end_loadingpoint_id, referenced by tlgnc_order_item.load_id. Note: This is the LOGON PK, not from the weighing system."/>
+        <column name="LOAD_WS_ORIG_TARE_MEASURE_T" type="DECIMAL" size="12,4"
+                description="tlgnc_load.ws_original_tare_measure_t, referenced by tlgnc_order_item.load_id"/>
+        <column name="LOAD_WS_ORIG_GROSS_MEASURE_T" type="DECIMAL" size="12,4"
+                description="tlgnc_load.ws_original_gross_measure_t, referenced by tlgnc_order_item.load_id"/>
+        <column name="LOAD_WS_TRUCK_PLATE_NO" type="VARCHAR" size="20"
+        		description="tlgnc_load.ws_truck_plate_no, referenced by tlgnc_order_item.load_id"/>
+		<column name="LOAD_WS_TRAILER_PLATE_NO" type="VARCHAR" size="20"
+        		description="tlgnc_load.ws_trailer_plate_no, referenced by tlgnc_order_item.load_id"/>
+        <column name="LOAD_WS_CARRIER" type="VARCHAR" size="35"
+        		description="tlgnc_load.ws_carrier, referenced by tlgnc_order_item.load_id"/>		
+        <column name="LOAD_LOADINGPOINT_ID" type="DECIMAL" size="12"
+                description="tlgnc_order_item.loadingpoint_id."/>
+        <column name="LOAD_STORAGE_LOCATION" type="VARCHAR" size="4"
+                description="Storage location (real) of the SAP known plant used for goods movement request."/>
+        <column name="LOAD_STORAGE_LOC_IN_TRANSIT" type="VARCHAR" size="4"
+                description="Storage location (in transit/SAP virtual) of the SAP known plant used for goods movement request."/>
+        <column name="LOAD_SENT_GOODSMOVE_TO_QUE_TS" type="TIMESTAMP"
+                description="Timestamp where the goods movement request was queued to be sent to SAP."/>
+        <column name="LOAD_SENT_GOODSMOVE_TO_SAP_TS" type="TIMESTAMP"
+                description="Timestamp where the goods movement request was actually sent to SAP."/>
+                
+        <column name="LDS_LOADED_FLAG" type="DECIMAL" size="1"
+                description="This indicator shows if an order has been loaded with an LDS or not."/>
+                
+        <!-- LOADINGPOINT_ID : Content of tlgnc_loadingpoint.-->
+        <!-- SHIPPINGPOINT_ID: ignore! is contained on the order -->
+        <column name="LP_LPOINT_NAME" type="VARCHAR" size="50"
+                description="tlgnc_loadingpoint.loadingpoint_name, referenced by tlgnc_order_item.loadingpoint_id -> tlgnc_loadingpoint.loadingpoint_id."/>
+        <column name="LP_LPOINT_OBJECT_LABEL" type="VARCHAR" size="50"
+                description="tlgnc_loadingpoint.loadingpoint_object_label, referenced by tlgnc_order_item.loadingpoint_id -> tlgnc_loadingpoint.loadingpoint_id."/>
+        <column name="LP_PACKAGE_TYPE_CD" type="DECIMAL" size="2"
+                description="tlgnc_loadingpoint.package_type_cd, referenced by tlgnc_order_item.loadingpoint_id -> tlgnc_loadingpoint.loadingpoint_id."/>
+        <column name="LP_WEIGH_SYSTEM_LP_CD" type="DECIMAL" size="2"
+                description="tlgnc_loadingpoint.weigh_system_lp_cd, referenced by tlgnc_order_item.loadingpoint_id -> tlgnc_loadingpoint.loadingpoint_id."/>
+        <column name="LP_DELIV_NOTE_PRINT_TYPE_CD" type="DECIMAL" size="2"
+                description="tlgnc_loadingpoint.deliv_note_print_type_cd, referenced by tlgnc_order_item.loadingpoint_id -> tlgnc_loadingpoint.loadingpoint_id."/>
+        <column name="LP_WEIGH_SYS_LOADINGPOINT_NO" type="VARCHAR" size="10"
+                description="tlgnc_loadingpoint.WEIGH_SYSTEM_LOADINGPOINT_NO, referenced by tlgnc_order_item.loadingpoint_id -> tlgnc_loadingpoint.loadingpoint_id."/>
+        <column name="LP_PRINTER_CD" type="DECIMAL" size="4"
+                description="tlgnc_loadingpoint.printer_cd, referenced by tlgnc_order_item.loadingpoint_id -> tlgnc_loadingpoint.loadingpoint_id."/>
+        <column name="LP_LOADINGPOINT_COMMENT" type="VARCHAR" size="250"
+                description="tlgnc_loadingpoint.loadingpoint_comment, referenced by tlgnc_order_item.loadingpoint_id -> tlgnc_loadingpoint.loadingpoint_id."/>
+        <column name="LP_ACTIVE_FLAG" type="BOOLEAN"
+                description="tlgnc_loadingpoint.active_flag, referenced by tlgnc_order_item.loadingpoint_id -> tlgnc_loadingpoint.loadingpoint_id."/>
+        <column name="LP_LOADING_TIME" type="DECIMAL" size="10"
+                description="tlgnc_loadingpoint.laoding_time, referenced by tlgnc_order_item.loadingpoint_id -> tlgnc_loadingpoint.loadingpoint_id."/>
+        <column name="LP_GROSS_WEIGHT_LIMIT_KG" type="DECIMAL" size="10"
+                description="tlgnc_loadingpoint.gross_weight_limit_kg, referenced by tlgnc_order_item.loadingpoint_id -> tlgnc_loadingpoint.loadingpoint_id."/>
+        <!-- RFIDOBJECT_ID : Content of tlgnc_rfidobject.-->
+        <column name="LP_RFID_OBJECT_LABEL" type="VARCHAR" size="200"
+                description="tlgnc_rfidobject.object_label, referenced by tlgnc_order_item.loadingpoint_id -> tlgnc_loadingpoint.rfidobject_id -> tlgnc_rfidobject.rfidobject_id"/>
+
+		<column name="OI_SAP_MATERIAL_ID" required="true" type="DECIMAL" size="12"
+                description="tlgnc_order_item.sap_material_id."/>
+
+		<!-- SAP_MATERIAL_ID : Content of tlgns_sap_material.-->
+		<column name="MAT_SAP_MATERIAL_NO" required="true" type="VARCHAR" size="18"
+                description="tlgns_sap_material.sap_material_no, referenced by tlgnc_order_item.sap_material_id -> tlgns_sap_material.sap_material_id."/>
+		<!-- SAP_IFC_ID: ignore, is only for technical reasons. --> 
+        <column name="MAT_MATERIAL_GROUP_DESC" type="VARCHAR" size="20"
+                description="tlgns_sap_material.material_group_desc, referenced by tlgnc_order_item.sap_material_id -> tlgns_sap_material.sap_material_id."/>
+        <column name="MAT_BASE_UOM_CD" required="true" type="VARCHAR" size="3"
+                description="tlgns_sap_material.base_uom_cd, referenced by tlgnc_order_item.sap_material_id -> tlgns_sap_material.sap_material_id."/>
+        <column name="MAT_NORM_DESC" type="VARCHAR" size="40"
+                description="Since LOGON 1.4: tlgnc_mat_plant.norm_desc of the material/oi_production_plant_cd. Before: tlgns_sap_material.product_hierarchy_desc, referenced by tlgnc_order_item.sap_material_id -> tlgns_sap_material.sap_material_id."/>
+        <column name="MAT_DIVISION_CD" type="VARCHAR" size="2"
+                description="tlgns_sap_material.division, referenced by tlgnc_order_item.sap_material_id -> tlgns_sap_material.sap_material_id."/>
+        <column name="MAT_IND_STANDARD_DESC" type="VARCHAR" size="18"
+                description="tlgns_sap_material.industry_standard_desc, referenced by tlgnc_order_item.sap_material_id -> tlgns_sap_material.sap_material_id."/>
+        <column name="MAT_MATERIAL_PACKAGE_CD" required="true" type="VARCHAR" size="4"
+                description="tlgns_sap_material.material_package_cd, referenced by tlgnc_order_item.sap_material_id -> tlgns_sap_material.sap_material_id."/>
+        <column name="MAT_MARKED_FOR_DELETION" type="BOOLEAN"
+                description="tlgns_sap_material.marked_for_deletion, referenced by tlgnc_order_item.sap_material_id -> tlgns_sap_material.sap_material_id."/>
+		
+		<!-- tlgns_sap_material_alt_uom: ignore (we don't use this in Logon currently) -->
+		<!-- tlgns_sap_mat_description: ignore (we don't include texts in this table) -->
+		<!-- tlgns_sap_material_plant:ignore (fields are not used, with exeption of the plant_cd itself, which is stored anyway on order_item) -->
+
+		<!-- SAP_MATERIAL_ID and TLGNC_ORDER.SAREA_CD: Content of tlgns_sap_material_sare.-->
+        <column name="MAT_SA_SALES_UOM_CD" type="VARCHAR" size="3"
+                description="tlgns_sap_material_sare.sales_uom_cd, referenced by tlgnc_order.sarea_cd -> tlgns_sap_material_sare.sales_uom_cd and tlgnc_order_item.sap_material_id -> tlgns_sap_material_sare.sap_material_id"/>
+		
+        <column name="OI_PRODUCTION_PLANT_CD" required="true" type="VARCHAR" size="4"
+                description="tlgnc_order_item.production_plant_cd."/>
+        <column name="OI_CURRENCY_CD" required="true" type="VARCHAR" size="3"
+                description="tlgnc_order_item.currency_cd."/>
+        <column name="OI_RATE" type="DECIMAL" size="10,3"
+                description="tlgnc_order_item.rate."/>
+        <column name="OI_ORDERED_UOM_CD" type="VARCHAR" size="3"
+                description="tlgnc_order_item.ordered_uom_cd."/>
+        <column name="OI_ORDERED_QUANTITY" type="DECIMAL" size="12,4"
+                description="tlgnc_order_item.ordered.quantity."/>
+        <column name="OI_ORDERED_UOM_NUMERATOR" type="DECIMAL" size="5"
+                description="tlgnc_order_item.ordered_uom_numerator."/>
+        <column name="OI_ORDERED_UOM_DENOMINATOR" type="DECIMAL" size="5"
+                description="tlgnc_order_item.ordered_uom.denominator."/>
+        <column name="OI_LOADED_UOM_CD" type="VARCHAR" size="3"
+                description="tlgnc_order_item.loaded_uom_cd."/>
+        <column name="OI_LOADED_QUANTITY" type="DECIMAL" size="12,4"
+                description="tlgnc_order_item.loaded_quantity."/>
+        <column name="OI_RETURNED_UOM_CD" type="VARCHAR" size="3"
+                description="tlgnc_order_item.returned_uom_cd."/>
+        <column name="OI_RETURNED_QUANTITY" type="DECIMAL" size="12,4"
+                description="tlgnc_order_item.returned_quantity."/>
+        <column name="OI_LR_UOM_NUMERATOR" type="DECIMAL" size="5"
+                description="tlgnc_order_item.lr_uom_numerator."/>
+        <column name="OI_LR_UOM_DENOMINATOR" type="DECIMAL" size="5"
+                description="tlgnc_order_item.lr_uom_denominator."/>    
+        <column name="OI_RETURN_QUANT_HANDLING_CD" type="DECIMAL" size="2"
+                description="tlgnc_order_item.return_quant_handling_cd."/>
+        <column name="OI_DELIVERED_UOM_CD" type="VARCHAR" size="3"
+                description="tlgnc_order_item.delivered_uom_cd."/>
+        <column name="OI_DELIVERED_QUANTITY" type="DECIMAL" size="12,4"
+                description="tlgnc_order_item.delivered_quantity."/>
+		
+        <column name="OI_STORAGE_LOCATION" type="VARCHAR" size="4"
+                description="a) tlgnc_mat_shippingpoint.storage_location, but if null: b) tlgnc_shippingpoint.storage_location. The Storage Location, where the material is kept at the shippingpoint. Depends on Shippingpoint and Material. Note that this field does NOT respect SAP-send logic (fallback rail_chain/send_to_sap_shippingpoint)."/>
+		<column name="OI_SHIPTO_SILO_ID" type="DECIMAL" size="12"
+                description="tlgnc_order_item.shipto_silo_id"/>
+        <column name="OI_SHIPTO_SILO_VERIF_TYPE_CD" type="DECIMAL" size="2"
+                description="tlgnc_order_item.shipto_silo_verif_type_cd"/>
+
+                
+
+		<!-- SHIPTO_SILO_ID : Content of tlgnc_shipto_silo.-->
+		<!-- SHIPTO_ID: ignore, is contained in the shipto of the order.-->
+        <column name="SILO_SILO_NAME" type="VARCHAR" size="50"
+                description="tlgnc_shipto_silo.silo_name, referenced by tlgnc_order_item.shipto_silo_id -> tlgnc_shipto_silo.shipto_silo_id."/>
+        <column name="SILO_SILO_TYPE_CD" type="DECIMAL" size="2"
+                description="tlgnc_shipto_silo.silo_type_cd, referenced by tlgnc_order_item.shipto_silo_id -> tlgnc_shipto_silo.shipto_silo_id."/>
+	<!-- do a lookup for the sap_material_no (the one from SAP)-->
+        <column name="SILO_SAP_MATERIAL_NO" type="VARCHAR" size="18"
+                description="tlgns_sap_material.sap_material_no, referenced by tlgnc_order_item.shipto_silo_id -> tlgnc_shipto_silo.sap_material_id -> tlgns_sap_material.sap_material_id"/>
+		<column name="SILO_MAX_VOLUME_TONS" type="DECIMAL" size="12,4"
+                description="tlgnc_shipto_silo.max_volume_tons, referenced by tlgnc_order_item.shipto_silo_id -> tlgnc_shipto_silo.shipto_silo_id."/>
+        <column name="SILO_MAX_VOLUME_M3" type="DECIMAL" size="12,4"
+                description="tlgnc_shipto_silo.max_volume_m3, referenced by tlgnc_order_item.shipto_silo_id -> tlgnc_shipto_silo.shipto_silo_id."/>
+        <column name="SILO_SILO_COMMENT" type="VARCHAR" size="200"
+                description="tlgnc_shipto_silo.silo_comment, referenced by tlgnc_order_item.shipto_silo_id -> tlgnc_shipto_silo.shipto_silo_id."/>
+        <column name="SILO_ACTIVE_FLAG" type="BOOLEAN"
+                description="tlgnc_shipto_silo.active_flag, referenced by tlgnc_order_item.shipto_silo_id -> tlgnc_shipto_silo.shipto_silo_id."/>
+        <column name="SILO_UNLOADING_TIME" type="DECIMAL" size="10"
+                description="tlgnc_shipto_silo.unloading_time, referenced by tlgnc_order_item.shipto_silo_id -> tlgnc_shipto_silo.shipto_silo_id."/>
+        <column name="SILO_PORTABLE_SILO_FLAG" type="BOOLEAN"
+                description="tlgnc_shipto_silo.portable_silo_flag, referenced by tlgnc_order_item.shipto_silo_id -> tlgnc_shipto_silo.shipto_silo_id."/>
+		<!-- RFIDOBJECT_ID : Content of tlgnc_rfidobject.-->
+		<column name="SILO_RFID_OBJECT_LABEL" type="VARCHAR" size="200"
+                description="tlgnc_rfidobject.object_label, referenced by tlgnc_order_item.shipto_silo_id -> tlgnc_shipto_silo.rfidobject_id -> tlgnc_rfidobject.rfidobject_id"/>
+
+		<column name="OI_ITEM_NOTE_ORDER_MGMT" type="VARCHAR" size="256"
+                description="tlgnc_order_item.item_note_order_mgmt."/>
+        <column name="OI_ITEM_NOTE_DELIVERY" type="VARCHAR" size="300"
+                description="tlgnc_order_item.item_note_delivery."/>
+        <column name="OI_ITEM_NOTE_DISPATCHING" type="VARCHAR" size="256"
+                description="tlgnc_order_item.item_note_dispatching."/>
+        <column name="OI_ITEM_NOTE_TRUCK_DRIVER" type="VARCHAR" size="256"
+                description="tlgnc_order_item.item_note_truck_driver."/>
+        <column name="OI_ITEM_NOTE_RAILWAY" type="VARCHAR" size="256"
+                description="tlgnc_order_item.item_note_railway."/>
+        <column name="OI_BIMODAL_RAIL_ORDER_ITEM_ID" type="DECIMAL" size="12"
+                description="tlgnc_order_item.bimodal_rail_order_item_id"/>
+        <column name="OI_GROSS_PRICE_MAT" type="DECIMAL" size="11,2"
+                description="tlgnc_order_item.gross_price_mat"/>
+        <column name="OI_PROD_COST_MAT" type="DECIMAL" size="11,2"
+                description="tlgnc_order_item.prod_cost_mat"/>
+        <column name="OI_HANDLING_COST_MAT" type="DECIMAL" size="11,2"
+                description="tlgnc_order_item.handling_cost_mat"/>
+        <column name="OI_IUD_COST" type="DECIMAL" size="11,2"
+                description="tlgnc_order_item.iud_cost"/>
+        <column name="OI_OUT_COST" type="DECIMAL" size="11,2"
+                description="tlgnc_order_item.out_cost"/>
+        <column name="OI_DELIVERY_DAT_EXCHANGE_RATE" type="DECIMAL" size="12,4"
+                description="tlgnc_order_item.delivery_dat_exchange_rate"/>
+
+        <!-- SAP_MATERIAL_ID and SHIPTO_SAREA_ID: Content of tlgnc_shipto_sarea_restr.-->
+        <column name="OI_RESTR_DELIVERY_TYPE_CD"  type="DECIMAL" size="2"
+                description="tlgnc_shipto_sarea_restr.delivery_type_cd, referenced by tlgnc_order.shipto_sap_bp_id -> tlgnc_shipto.shipto_id -> tlgnc_shipto_sarea.shipto_sarea_id -> tlgnc_shipto_sarea_restr and tlgnc_order_item.sap_material_id"/>
+        <column name="OI_RESTR_ORD_Q_UOM_DIFF_FLAG"  required="true" type="BOOLEAN"
+                description="true if quantity and UoM betwenn default and actual  do not fit"/>                
+        <column name="OI_RESTR_DELIV_TYPE_DIFF_FLAG"  required="true" type="BOOLEAN"
+                description="Diff between tlgnc_shipto_sarea_restr.delivery_type_cd and tlgnc_order_delivery_type_cd. tlgnc_shipto_sarea_restr.delivery_type_cd, referenced by tlgnc_order.shipto_sap_bp_id -> tlgnc_shipto.shipto_id -> tlgnc_shipto_sarea.shipto_sarea_id -> tlgnc_shipto_sarea_restr and tlgnc_order_item.sap_material_id"/>
+              
+        <column name="OI_RESTR_ORDERED_QUANTITY"  type="DECIMAL" size="12,4"
+                description="tlgnc_shipto_sarea_restr.quantity, referenced by tlgnc_order.shipto_sap_bp_id -> tlgnc_shipto.shipto_id -> tlgnc_shipto_sarea.shipto_sarea_id -> tlgnc_shipto_sarea_restr and tlgnc_order_item.sap_material_id"/>
+        <column name="OI_RESTR_ORDERED_UOM_CD"  type="VARCHAR" size="3"
+                description="tlgnc_shipto_sarea_restr.uom_cd, referenced by tlgnc_order.shipto_sap_bp_id -> tlgnc_shipto.shipto_id -> tlgnc_shipto_sarea.shipto_sarea_id -> tlgnc_shipto_sarea_restr and tlgnc_order_item.sap_material_id"/>
+	
+		<!-- ORDER_ITEM_ID : Content of vlgnc_order_item_margin.-->
+		<column name="OI_MARGIN_QUANTITY" type="DECIMAL" size="12,4"
+				description="vlgnc_order_item_margin.quantity, referenced by vlgnc_order_item_margin.order_item_id ->  tlgnc_order_item.order_item_id."/>
+        <column name="OI_MARGIN_CURRENCY_CD" type="VARCHAR" size="3"
+				description="vlgnc_order_item_margin.currency_cd, referenced by vlgnc_order_item_margin.order_item_id ->  tlgnc_order_item.order_item_id."/>
+        <column name="OI_MARGIN_DELIVERED_UOM_CD" type="VARCHAR" size="3"
+				description="vlgnc_order_item_margin.delivered_uom_cd, referenced by vlgnc_order_item_margin.order_item_id ->  tlgnc_order_item.order_item_id."/>
+        <column name="OI_MARGIN_GROSS_PRICE" type="DECIMAL" size="10,3"
+				description="vlgnc_order_item_margin.gross_price, referenced by vlgnc_order_item_margin.order_item_id ->  tlgnc_order_item.order_item_id."/>
+        <column name="OI_MARGIN_GROSS_PRICE_PT" type="DOUBLE"
+				description="vlgnc_order_item_margin.gross_price_pt, referenced by vlgnc_order_item_margin.order_item_id ->  tlgnc_order_item.order_item_id."/>
+        <column name="OI_MARGIN_DISCOUNTS" type="DECIMAL" size="17,2"
+				description="vlgnc_order_item_margin.discounts, referenced by vlgnc_order_item_margin.order_item_id ->  tlgnc_order_item.order_item_id."/>
+        <column name="OI_MARGIN_DISCOUNTS_PT" type="DOUBLE"
+				description="vlgnc_order_item_margin.discount_pt, referenced by vlgnc_order_item_margin.order_item_id ->  tlgnc_order_item.order_item_id."/>
+        <column name="OI_MARGIN_NET_PRICE" type="DECIMAL" size="17,2"
+				description="vlgnc_order_item_margin.net_price, referenced by vlgnc_order_item_margin.order_item_id ->  tlgnc_order_item.order_item_id."/>
+        <column name="OI_MARGIN_NET_PRICE_PT" type="DOUBLE"
+				description="vlgnc_order_item_margin.net_price_pt, referenced by vlgnc_order_item_margin.order_item_id ->  tlgnc_order_item.order_item_id."/>
+        <column name="OI_MARGIN_REBATES" type="DECIMAL" size="17,2"
+				description="vlgnc_order_item_margin.rebates, referenced by vlgnc_order_item_margin.order_item_id ->  tlgnc_order_item.order_item_id."/>
+        <column name="OI_MARGIN_REBATES_PT" type="DOUBLE"
+				description="vlgnc_order_item_margin.rebates_pt, referenced by vlgnc_order_item_margin.order_item_id ->  tlgnc_order_item.order_item_id."/>
+        <column name="OI_MARGIN_CASH_DISCOUNT" type="DECIMAL" size="17,2"
+				description="vlgnc_order_item_margin.cash_discount, referenced by vlgnc_order_item_margin.order_item_id ->  tlgnc_order_item.order_item_id."/>
+        <column name="OI_MARGIN_CASH_DISCOUNT_PT" type="DOUBLE"
+				description="vlgnc_order_item_margin.cash_discount_pt, referenced by vlgnc_order_item_margin.order_item_id ->  tlgnc_order_item.order_item_id."/>
+        <column name="OI_MARGIN_NET_SALES_EARNING" type="DECIMAL" size="17,2"
+				description="vlgnc_order_item_margin.net_sales_earning, referenced by vlgnc_order_item_margin.order_item_id ->  tlgnc_order_item.order_item_id."/>
+        <column name="OI_MARGIN_NET_SALES_EARNING_PT" type="DOUBLE"
+				description="vlgnc_order_item_margin.net_sales_earning_pt, referenced by vlgnc_order_item_margin.order_item_id ->  tlgnc_order_item.order_item_id."/>
+        <column name="OI_MARGIN_PROD_COST" type="DECIMAL" size="11,2"
+				description="vlgnc_order_item_margin.prod_cost, referenced by vlgnc_order_item_margin.order_item_id ->  tlgnc_order_item.order_item_id."/>
+        <column name="OI_MARGIN_PROD_COST_PT" type="DOUBLE"
+				description="vlgnc_order_item_margin.prod_cost_pt, referenced by vlgnc_order_item_margin.order_item_id ->  tlgnc_order_item.order_item_id."/>
+        <column name="OI_MARGIN_IUD_COST" type="DECIMAL" size="11,2"
+				description="vlgnc_order_item_margin.iud_cost, referenced by vlgnc_order_item_margin.order_item_id ->  tlgnc_order_item.order_item_id."/>
+        <column name="OI_MARGIN_IUD_COST_PT" type="DOUBLE"
+				description="vlgnc_order_item_margin.iud_cost_pt, referenced by vlgnc_order_item_margin.order_item_id ->  tlgnc_order_item.order_item_id."/>
+        <column name="OI_MARGIN_HANDLING_COST" type="DECIMAL" size="11,2"
+				description="vlgnc_order_item_margin.handling_cost, referenced by vlgnc_order_item_margin.order_item_id ->  tlgnc_order_item.order_item_id."/>
+        <column name="OI_MARGIN_HANDLING_COST_PT" type="DOUBLE"
+				description="vlgnc_order_item_margin.handling_cost_pt, referenced by vlgnc_order_item_margin.order_item_id ->  tlgnc_order_item.order_item_id."/>
+        <column name="OI_MARGIN_OUT_COST" type="DECIMAL" size="11,2"
+				description="vlgnc_order_item_margin.out_cost, referenced by vlgnc_order_item_margin.order_item_id ->  tlgnc_order_item.order_item_id."/>
+        <column name="OI_MARGIN_OUT_COST_PT" type="DOUBLE"
+				description="vlgnc_order_item_margin.out_cost_pt, referenced by vlgnc_order_item_margin.order_item_id ->  tlgnc_order_item.order_item_id."/>
+        <column name="OI_MARGIN_TOTAL_DIST_COST" type="DECIMAL" size="11,2"
+				description="vlgnc_order_item_margin.total_dist_cost, referenced by vlgnc_order_item_margin.order_item_id ->  tlgnc_order_item.order_item_id."/>
+        <column name="OI_MARGIN_TOTAL_DIST_COST_PT" type="DOUBLE"
+				description="vlgnc_order_item_margin.total_dist_cost_pt, referenced by vlgnc_order_item_margin.order_item_id ->  tlgnc_order_item.order_item_id."/>
+        <column name="OI_MARGIN_TOTAL_COST" type="DECIMAL" size="11,2"
+				description="vlgnc_order_item_margin.total_cost, referenced by vlgnc_order_item_margin.order_item_id ->  tlgnc_order_item.order_item_id."/>
+        <column name="OI_MARGIN_TOTAL_COST_PT" type="DOUBLE"
+				description="vlgnc_order_item_margin.total_pt, referenced by vlgnc_order_item_margin.order_item_id ->  tlgnc_order_item.order_item_id."/>
+        <column name="OI_MARGIN_CONTRIB_MARGIN" type="DECIMAL" size="17,2"
+				description="vlgnc_order_item_margin.contrib_margin, referenced by vlgnc_order_item_margin.order_item_id ->  tlgnc_order_item.order_item_id."/>
+        <column name="OI_MARGIN_CONTRIB_MARGIN_PT" type="DOUBLE"
+				description="vlgnc_order_item_margin.contrib_margin_pt, referenced by vlgnc_order_item_margin.order_item_id ->  tlgnc_order_item.order_item_id."/>
+
+        <!--  OI_MARGIN_OUT_COST: Content of Reporting tab (Order detail screen).-->
+        <column name="OI_REFUND_TRSP_CAPA_TKM" type="DECIMAL" size="12,4"
+                description="Calculation of transport capacity: tlgnc_order_item.delivered_quantity (in tons) * tlgnc_order.transport_distance_m (in km)."/>
+        <column name="OI_REFUND_NET_WEIGHT_CUR_T" type="DECIMAL" size="12,4"
+                description="Calculation: vlgnc_order_item_margin.out_cost / tlgnc_order_item.delivered_quantity."/>	
+        <column name="OI_REFUND_DISTANCE_CUR_KM" type="DECIMAL" size="12,4"
+                description="Calculation: vlgnc_order_item_margin.out_cost / tlgnc_order.transport_distance_m (in km)."/>	
+        <column name="OI_REFUND_TRSP_CAPA_CUR_TKM" type="DECIMAL" size="12,4"
+                description="Calculation of transport capacity: vlgnc_order_item_margin.out_cost / (tlgnc_order_item.delivered_quantity (in tons) * tlgnc_order.transport_distance_m (in km))."/>
+	
+	
+        <column name="OI_DELIVERED_LOAD_TRUCK_ID" type="DECIMAL" size="12"
+                description="tlgnc_order_item.delivered_load_truck_id"/>
+        <!--  DELIVERED_LOAD_TRUCK_ID: Content of tlgnc_truck.-->
+        <column name="TRUCK_NAME" type="VARCHAR" size="30"
+                description="tlgnc_truck.truck_name, referenced by tlgnc_order_item.delivered_load_truck_id -> tlgnc_truck"/>
+        <column name="TRUCK_PLATE_NO" type="VARCHAR" size="20"
+                description="tlgnc_truck.truck_plate_no, referenced by tlgnc_order_item.delivered_load_truck_id -> tlgnc_truck"/>
+        <column name="TRUCK_TRANSPORT_CAT_CD" type="DECIMAL" size="2"
+                description="tlgnc_truck.truck_transport_cat_cd, referenced by tlgnc_order_item.delivered_load_truck_id -> tlgnc_truck" />
+        <column name="TRUCK_TYPE_CD" type="DECIMAL" size="3"
+                description="tlgnc_truck.truck_type_cd, referenced by tlgnc_order_item.delivered_load_truck_id -> tlgnc_truck" />
+        <column name="TRUCK_MAX_GROSS_WEIGHT_T" type="DECIMAL" size="12,4"
+                description="tlgnc_truck.max_gross_weight_t, referenced by tlgnc_order_item.delivered_load_truck_id -> tlgnc_truck" />
+        <column name="TRUCK_TARE_WEIGHT_T" type="DECIMAL" size="12,4"
+                description="tlgnc_truck.tare_weight_t, referenced by tlgnc_order_item.delivered_load_truck_id -> tlgnc_truck" />
+        <column name="TRUCK_NR_CHAMBERS" type="DECIMAL" size="1"
+                description="tlgnc_truck.nr_chambers, referenced by tlgnc_order_item.delivered_load_truck_id -> tlgnc_truck" />
+        <column name="TRUCK_MAX_NET_W_CHAMBER1_T" type="DECIMAL" size="12,4"
+                description="tlgnc_truck.max_net_weight_chamber1_t, referenced by tlgnc_order_item.delivered_load_truck_id -> tlgnc_truck" />
+        <column name="TRUCK_MAX_NET_W_CHAMBER2_T" type="DECIMAL" size="12,4"
+                description="tlgnc_truck.max_net_weight_chamber2_t, referenced by tlgnc_order_item.delivered_load_truck_id -> tlgnc_truck" />
+        <column name="TRUCK_SAP_INTERNAL_FLAG" type="BOOLEAN"
+                description="tlgnc_truck.sap_vehicle_is_internal_flag, referenced by tlgnc_order_item.delivered_load_truck_id -> tlgnc_truck" />
+        <!-- This flag is NOT reliable, because it could have been changed on the truck. Instead, take tlgnc_order.NO_PDA_OR_RAIL_EVENTS_FLAG
+        <column name="TRUCK_PDA_AVAILABLE_FLAG" type="BOOLEAN"
+                description="tlgnc_truck.pda_available_flag, referenced by tlgnc_order_item.delivered_load_truck_id -> tlgnc_truck"/>
+        -->
+
+        <column name="Oi_DELIVERED_LOAD_TRAILER_ID" type="DECIMAL" size="12"
+                description="tlgnc_order_item.delivered_load_trailer_id"/>
+        <!--  DELIVERED_LOAD_TRAILER_ID: Content of tlgnc_trailer.-->
+        <column name="TRAILER_NAME" type="VARCHAR" size="30"
+                description="tlgnc_trailer.trailer_name, referenced by tlgnc_order_item.delivered_load_trailer_id -> tlgnc_trailer"/>
+        <column name="TRAILER_PLATE_NO" type="VARCHAR" size="20"
+                description="tlgnc_trailer.trailer_plate_no, referenced by tlgnc_order_item.delivered_load_trailer_id -> tlgnc_trailer"/>
+        <column name="TRAILER_TRSP_CAT_CD" type="DECIMAL" size="2"
+                description="tlgnc_trailer.trailer_trsp_cat_cd, referenced by tlgnc_order_item.delivered_load_trailer_id -> tlgnc_trailer" />
+        <column name="TRAILER_TYPE_CD" type="DECIMAL" size="2"
+                description="tlgnc_trailer.trailer_type_cd, referenced by tlgnc_order_item.delivered_load_trailer_id -> tlgnc_trailer"/>
+        <column name="TRAILER_MAX_GROSS_WEIGHT_T" type="DECIMAL" size="12,4"
+                description="tlgnc_trailer.max_gross_weight_t, referenced by tlgnc_order_item.delivered_load_trailer_id -> tlgnc_trailer" />
+        <column name="TRAILER_TARE_WEIGHT_T" type="DECIMAL" size="12,4"
+                description="tlgnc_trailer.tare_weight_t, referenced by tlgnc_order_item.delivered_load_trailer_id -> tlgnc_trailer"/>
+        <column name="TRAILER_NR_CHAMBERS" type="DECIMAL" size="1"
+                description="tlgnc_trailer.nr_chambers, referenced by tlgnc_order_item.delivered_load_trailer_id -> tlgnc_trailer"/>
+        <column name="TRAILER_MAX_NET_W_CHAMBER1_T" type="DECIMAL" size="12,4"
+                description="tlgnc_trailer.max_net_weight_chamber1_t, referenced by tlgnc_order_item.delivered_load_trailer_id -> tlgnc_trailer"/>
+        <column name="TRAILER_MAX_NET_W_CHAMBER2_T" type="DECIMAL" size="12,4"
+                description="tlgnc_trailer.max_net_weight_chamber2_t, referenced by tlgnc_order_item.delivered_load_trailer_id -> tlgnc_trailer"/>
+        <column name="TRAILER_SAP_INTERNAL_FLAG" type="BOOLEAN"
+                description="tlgnc_trailer.sap_vehicle_is_internal_flag, referenced by tlgnc_order_item.delivered_load_trailer_id -> tlgnc_trailer" />
+
+        <column name="OI_DELIVERED_LOAD_WAGON_ID" type="DECIMAL" size="12"
+                description="tlgnc_order.delivered_load_wagon_id"/>
+        <!--  DELIVERED_LOAD_WAGON_ID: Content of tlgnc_wagon.-->
+        <column name="WAGON_NO" type="VARCHAR" size="12"
+                description="tlgnc_wagon.wagon_no, referenced by tlgnc_order_item.delivered_load_wagon_id -> tlgnc_wagon"/>
+        <column name="WAGON_TYPE_CD" type="DECIMAL" size="2"
+                description="tlgnc_wagon.wagon_type_cd, referenced by tlgnc_order_item.delivered_load_wagon_id -> tlgnc_wagon"/>
+        <column name="WAGON_TYPE_NAME" type="VARCHAR" size="20"
+                description="tlgnr_wagon_type_bs.wagon_type_name, referenced by tlgnc_order_item.delivered_load_wagon_id -> tlgnc_wagon.wagon_type_cd -> tlgnr_wagon_type_bs"/>
+        <column name="WAGON_UIC_CLASS_CD" type="VARCHAR" size="10"
+                description="tlgnr_wagon_type_bs.wagon_uic_class_cd, referenced by tlgnc_order_item.delivered_load_wagon_id -> tlgnc_wagon.wagon_type_cd -> tlgnr_wagon_type_bs"/>
+        <column name="WAGON_AXIS_COUNT" type="DECIMAL" size="2"
+                description="tlgnr_wagon_type_bs.axis_count, referenced by tlgnc_order_item.delivered_load_wagon_id -> tlgnc_wagon.wagon_type_cd -> tlgnr_wagon_type_bs"/>
+        <column name="WAGON_TRSP_CAT_CD" type="DECIMAL" size="2"
+                description="tlgnr_wagon_type_bs.wagon_trsp_cat_cd, referenced by tlgnc_order_item.delivered_load_wagon_id -> tlgnc_wagon.wagon_type_cd -> tlgnr_wagon_type_bs"/>
+        <column name="WAGON_LIMIT_CREDIT_NOTE_T" type="DECIMAL" size="7,3"
+                description="tlgnr_wagon_type_bs.limit_credit_note_t, referenced by tlgnc_order_item.delivered_load_wagon_id -> tlgnc_wagon.wagon_type_cd -> tlgnr_wagon_type_bs"/>
+        <column name="WAGON_TARE_WEIGHT_T" type="DECIMAL" size="12,4"
+                description="tlgnc_wagon.tare_weight_t, referenced by tlgnc_order_item.delivered_load_wagon_id -> tlgnc_wagon"/>
+        <column name="WAGON_MAX_GROSS_WEIGHT_T" type="DECIMAL" size="12,4"
+                description="tlgnc_wagon.max_gross_weight_t, referenced by tlgnc_order_item.delivered_load_wagon_id -> tlgnc_wagon. If null, use tlgnr_wagon_type_bs.max_gross_wieght_t, referenced by tlgnc_order_item.delivered_load_wagon_id -> tlgnc_wagon.wagon_type_cd -> tlgnr_wagon_type_bs"/>
+        <column name="WAGON_VOLUME_M3" type="DECIMAL" size="12,4"
+                description="tlgnc_wagon.volume_m3, referenced by tlgnc_order_item.delivered_load_wagon_id -> tlgnc_wagon. If null, use tlgnr_wagon_type_bs.volume_m3, referenced by tlgnc_order_item.delivered_load_wagon_id -> tlgnc_wagon.wagon_type_cd -> tlgnr_wagon_type_bs"/>
+
+        <column name="OI_DELIVERED_LOAD_CONTAINER_ID" type="DECIMAL" size="12"
+                description="tlgnc_order_item.delivered_load_container_id"/>
+        <!--  DELIVERED_LOAD_CONTAINER_ID: Content of tlgnc_container.-->
+        <column name="CONTAINER_NO" type="VARCHAR" size="20"
+                description="tlgnc_container.container_no, referenced by tlgnc_order_item.delivered_load_container_id -> tlgnc_container"/>
+        <column name="CONTAINER_NAME" type="VARCHAR" size="30"
+                description="tlgnc_container.container_name, referenced by tlgnc_order_item.delivered_load_container_id -> tlgnc_container"/>
+        <column name="CONTAINER_TRSP_CAT_CD" type="DECIMAL" size="2"
+                description="tlgnc_container.container_trsp_cat_cd, referenced by tlgnc_order_item.delivered_load_container_id -> tlgnc_container" />
+        <column name="CONTAINER_TYPE_CD" type="DECIMAL" size="2"
+                description="tlgnc_container.container_type_cd, referenced by tlgnc_order_item.delivered_load_container_id -> tlgnc_container"/>
+        <column name="CONTAINER_TARE_WEIGHT_T" type="DECIMAL" size="12,4"
+                description="tlgnc_container.tare_weight_t, referenced by tlgnc_order_item.delivered_load_container_id -> tlgnc_container"/>
+        <column name="CONTAINER_MAX_NET_WEIGHT_T" type="DECIMAL" size="12,4"
+                description="tlgnc_container.max_net_weight_t, referenced by tlgnc_order_item.delivered_load_container_id -> tlgnc_container"/>
+        <column name="COMPOSITION_TARE_WEIGHT_T" type="DECIMAL" size="12,4"
+                description="tlgnc_truck.tare_weight_t + tlgnc_trailer.tare_weight_t + tlgnc_container.tare_weight_t + tlgnc_wagon.tare_weight_t, referenced by tlgnc_order_item.delivered_load_truck_id, delivered_trailer_id, delivered_container_id, delivered_wagon_id"/>                
+           
+        <column name="OI_CTL_CRE_UID" required="true" type="DECIMAL" size="12"
+                description="Technical field of order item (tlgnc_order_item.ctl_cre_uid). Non-enforced foreign key to the UserEntity who created the tlgnc_order_item record."/>
+        <column name="OI_CTL_CRE_UID_NAME" type="VARCHAR" size="80"
+                description="tlgnc_person.firstname + tlgnc_person.name resolved by tlgnc_order_item.ctl_cre_uid -> tlgnu_user -> tlgnc_person"/>
+        <column name="OI_CTL_CRE_TS" required="true" type="TIMESTAMP"
+                description="Technical field of order item (tlgnc_order_item.ctl_cre_ts). The time when the order item record got created."/>
+        <column name="OI_CTL_MOD_UID" required="true" type="DECIMAL" size="12"
+                description="Technical field of order item (tlgnc_order_item.ctl_mod_uid). Non-enforced foreign key to the UserEntity who last modified the record."/>
+        <column name="OI_CTL_MOD_UID_NAME" type="VARCHAR" size="80"
+                description="tlgnc_person.firstname + tlgnc_person.name resolved by tlgnc_order_item.ctl_mod_uid -> tlgnu_user -> tlgnc_person"/>
+        <column name="OI_CTL_MOD_TS" required="true" type="TIMESTAMP"
+                description="Technical field of order item. (tlgnc_order_item.ctl_mod_ts). The time when the record was last modified."/>
+
+		<!-- Used as a KPI. We don't save the dispocard(restriction) id in the item as the dispocards may change or get deleted. -->		
+		<column name="OI_DISPOCARD_AVAILABLE" type="BOOLEAN"
+                description="Indicates whether the order item was created based on a dispocard"/>
+		<column name="OI_ORDER_PLAN_ACTUAL" type="BOOLEAN"
+                description="True if both the quantity and uom in the item matches the values in the dispocard"/>
+
+        <foreign-key foreignTable="TLGNF_ORDER_FINAL" name="FK_TLGNF_ORD_ITEM_ORD_FINAL">
+            <reference local="ORDER_FINAL_ID" foreign="ORDER_FINAL_ID"/>
+        </foreign-key>
+        
+        <unique name="UQ_TLGNF_ORDER_ITEM_FINAL_OIID">
+            <unique-column name="OI_ORDER_ITEM_ID"/>
+        </unique>
+
+    </table>
+</database>

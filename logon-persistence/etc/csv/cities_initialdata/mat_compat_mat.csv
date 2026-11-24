@@ -1,0 +1,77 @@
+# $Revision$
+# $Date$
+# Status: Generated into INSERT OR UPDATE sql script by csv2sql generator. Do not change columns;;;;#Based on Produkt_Kombatibilitaetsmatrix_Bahnverlad_V1.1_KorrMAM_ER_20100302.xls
+# ignored;# ignored;#lookup in tlgnc_mat_compat!;#lookup in tlgns_sap_material;# Is used as part of identifier for update!
+# mat_compat_mat_id;#from_mat_compat_id;FROM_SAP_MATERIAL_NO;TO_SAP_MATERIAL_NO;MAT_COMPAT_MAT_COMMENT
+;;1404860;1404860;Normo 4 -> Normo 4
+;;1404860;1404839;Normo 4 -> Fluvio 4
+;;1404860;1404805;Normo 4 -> DORODUR H 50
+;;1404860;1404875;Normo 4 -> DOROPORT TB N, HRB 32.5 E
+;;1404860;1404870;Normo 4 -> Provato 3R
+;;1404860;1410928;Normo 4 -> Provato 3R -TZ1
+;;1404863;1404860;Normo 5R -> Normo 4
+;;1404863;1404863;Normo 5R -> Normo 5R
+;;1404863;1404839;Normo 5R -> Fluvio 4
+;;1404863;1404805;Normo 5R -> DORODUR H 50
+;;1404863;1404875;Normo 5R -> DOROPORT TB N, HRB 32.5 E
+;;1404863;1404893;Normo 5R -> Riteno 4N
+;;1404863;1404870;Normo 5R -> Provato 3R
+;;1404863;1410928;Normo 5R -> Provato 3R -TZ1
+;;1404839;1404839;Fluvio 4 -> Fluvio 4
+;;1404839;1404805;Fluvio 4 -> DORODUR H 50
+;;1404839;1404875;Fluvio 4 -> DOROPORT TB N, HRB 32.5 E
+;;1404839;1404870;Fluvio 4 -> Provato 3R
+;;1404841;1404863;Fortico 5R -> Normo 5R
+;;1404841;1404841;Fortico 5R -> Fortico 5R
+;;1404841;1404805;Fortico 5R -> DORODUR H 50
+;;1404841;1404875;Fortico 5R -> DOROPORT TB N, HRB 32.5 E
+;;1405002;1405002;Flextremo 3R -> Flextremo 3R
+;;1404883;1405002;Flextremo 4R -> Flextremo 3R
+;;1404883;1404883;Flextremo 4R -> Flextremo 4R
+;;1404805;1404805;DORODUR H 50 -> DORODUR H 50
+;;1404805;1404875;DORODUR H 50 -> DOROPORT TB N, HRB 32.5 E
+;;1404875;1404805;DOROPORT TB N, HRB 32.5 E -> DORODUR H 50
+;;1404875;1404875;DOROPORT TB N, HRB 32.5 E -> DOROPORT TB N, HRB 32.5 E
+;;1404893;1404839;Riteno 4N -> Fluvio 4
+;;1404893;1404805;Riteno 4N -> DORODUR H 50
+;;1404893;1404875;Riteno 4N -> DOROPORT TB N, HRB 32.5 E
+;;1404893;1404893;Riteno 4N -> Riteno 4N
+;;1404893;1406491;Riteno 4N -> Bisolvo 3R
+;;1404893;1404843;Riteno 4N -> Gottardo 310
+;;1404893;1404870;Riteno 4N -> Provato 3R
+;;1404893;1410928;Riteno 4N -> Provato 3R -TZ1
+;;1406491;1404839;Bisolvo 3R -> Fluvio 4
+;;1406491;1404805;Bisolvo 3R -> DORODUR H 50
+;;1406491;1404875;Bisolvo 3R -> DOROPORT TB N, HRB 32.5 E
+;;1406491;1404893;Bisolvo 3R -> Riteno 4N
+;;1406491;1406491;Bisolvo 3R -> Bisolvo 3R
+;;1406491;1404870;Bisolvo 3R -> Provato 3R
+;;1404843;1404875;Gottardo 310 -> DOROPORT TB N, HRB 32.5 E
+;;1404843;1406491;Gottardo 310 -> Bisolvo 3R
+;;1404843;1404843;Gottardo 310 -> Gottardo 310
+;;1404834;1404860;Eternit Zement -> Normo 4
+;;1404834;1404839;Eternit Zement -> Fluvio 4
+;;1404834;1404805;Eternit Zement -> DORODUR H 50
+;;1404834;1404875;Eternit Zement -> DOROPORT TB N, HRB 32.5 E
+;;1404834;1404893;Eternit Zement -> Riteno 4N
+;;1404834;1406491;Eternit Zement -> Bisolvo 3R
+;;1404834;1404834;Eternit Zement -> Eternit Zement
+;;1404834;1404870;Eternit Zement -> Provato 3R
+;;1404870;1404860;Provato 3R -> Normo 4
+;;1404870;1404839;Provato 3R -> Fluvio 4
+;;1404870;1404805;Provato 3R -> DORODUR H 50
+;;1404870;1404875;Provato 3R -> DOROPORT TB N, HRB 32.5 E
+;;1404870;1404893;Provato 3R -> Riteno 4N
+;;1404870;1406491;Provato 3R -> Bisolvo 3R
+;;1404870;1404843;Provato 3R -> Gottardo 310
+;;1404870;1404870;Provato 3R -> Provato 3R
+;;1404870;1410928;Provato 3R -> Provato 3R -TZ1
+;;1410928;1404860;Provato 3R -TZ1 -> Normo 4
+;;1410928;1404839;Provato 3R -TZ1 -> Fluvio 4
+;;1410928;1404805;Provato 3R -TZ1 -> DORODUR H 50
+;;1410928;1404875;Provato 3R -TZ1 -> DOROPORT TB N, HRB 32.5 E
+;;1410928;1404893;Provato 3R -TZ1 -> Riteno 4N
+;;1410928;1406491;Provato 3R -TZ1 -> Bisolvo 3R
+;;1410928;1404843;Provato 3R -TZ1 -> Gottardo 310
+;;1410928;1404870;Provato 3R -TZ1 -> Provato 3R
+;;1410928;1410928;Provato 3R -TZ1 -> Provato 3R -TZ1

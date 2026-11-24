@@ -1,0 +1,30 @@
+rem ${msg_warning_generated}
+rem prompt =========================================================================
+rem prompt === version: $gdi.version
+rem prompt === generated at: $gdi.generatedAt
+rem prompt === template: $cartridge.templatePath/$currentTemplate
+rem prompt =========================================================================
+
+-- This is the generate INITIAL list of metadata, with just DEFAULTS:
+-- - Dependent on DB domains (TLGNR handled differently than TLGNC/U/S/F, TLGNT not at all!)
+-- - Maybe following additional naming convention filters (if needed, for example _CD / _BS / _TX etc)
+--
+-- Modifications to the defaults are done not in the generator, but in explicit
+-- SQL files, see refdata/tlgnt_table_meta.sql
+
+#foreach ($curfile in $sorter.sort($allfiles))
+#set ($current = $inputmap.get($curfile))
+#foreach ($table in $current.database.tableArray)
+#set ($tableName = $table.name.stringValue)
+#set ($l = $tableName.length() - 3)
+#set ($referencedField = $tableName.substring(6, $l).concat("_CD"))
+#if ($tableName.startsWith("TLGNC") || $tableName.startsWith("TLGNU") || $tableName.startsWith("TLGNF") || $tableName.startsWith("TLGNS"))
+$st.printf("
+insert into tlgnt_table_meta (table_meta_id, table_name, insert_allowed, update_allowed, delete_allowed, referenced_field, use_dropdown, ctl_cre_uid, ctl_cre_ts, ctl_mod_uid, ctl_mod_ts, ctl_tcn) values (slgnt_table_meta.nextval, '%s', 1, 1, 1, null, 0, 1, systimestamp, 1, systimestamp, 0);", $tableName)
+#end
+#if ($tableName.startsWith("TLGNR")) 
+$st.printf("
+insert into tlgnt_table_meta (table_meta_id, table_name, insert_allowed, update_allowed, delete_allowed, referenced_field, use_dropdown, ctl_cre_uid, ctl_cre_ts, ctl_mod_uid, ctl_mod_ts, ctl_tcn) values (slgnt_table_meta.nextval, '%s', 1, 1, 1, '%s', 1, 1, systimestamp, 1, systimestamp, 0);", $tableName, $referencedField)
+#end
+#end
+#end

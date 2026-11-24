@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="VLGNU_USER_ACTIVITY_LOG" mappingType="view" skipSql="true">
+        <column name="USER_ACTIVITY_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="TIMESTAMP" required="true" type="TIMESTAMP"/>
+        <column name="EXECUTOR_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="EXECUTOR_TYPE_CD" required="true" type="DECIMAL" size="2"/>
+        <column name="EXECUTOR_HOLSPACE" type="VARCHAR" size="255"/>
+        <column name="EXECUTOR_EXTLOGIN" type="VARCHAR" size="40"/>
+        <column name="EXECUTOR_PDAUSER" type="DECIMAL" size="8"/>
+        <column name="EXECUTOR_NAME" type="VARCHAR" size="40"/>
+        <column name="EXECUTOR_FIRSTNAME" type="VARCHAR" size="40"/>
+        <column name="USER_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="USER_TYPE_CD" required="true" type="DECIMAL" size="2"/>
+        <column name="USER_HOLSPACE" type="VARCHAR" size="255"/>
+        <column name="USER_EXTLOGIN" type="VARCHAR" size="40"/>
+        <column name="USER_PDAUSER" type="DECIMAL" size="8"/>
+        <column name="USER_NAME" type="VARCHAR" size="40"/>
+        <column name="USER_FIRSTNAME" type="VARCHAR" size="40"/>
+        <column name="ACTION_CD" type="DECIMAL" size="2"/>
+        <column name="IP_ADDRESS" type="VARCHAR" size="45"/>
+        <column name="DESCRIPTION" type="VARCHAR" size="256"/>
+    </table>
+</database>

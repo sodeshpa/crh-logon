@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="VLGNC_REP_TRANSPLUS" mappingType="view" skipSql="true">
+        <column name="O_ORDER_NUMBER" type="DECIMAL" size="12"/>
+        <column name="OI_ORDER_ITEM_NO" required="true" type="DECIMAL" size="3"/>
+        <column name="O_ORDER_STATUS_CD" required="true" type="DECIMAL" size="2"/>
+        <column name="ORDER_STATUS_TXT" required="true" type="VARCHAR" size="50"/>
+        <column name="SAREA_SORG_CD" required="true" type="VARCHAR" size="4"/>
+        <column name="SAREA_DISTRIBUTION_CHANNEL" required="true" type="VARCHAR" size="2"/>
+        <column name="SAREA_DIVISION_CD" required="true" type="VARCHAR" size="2"/>
+        <column name="AG_SAP_ID" type="VARCHAR" size="10"/>
+        <column name="AG_NAME1" type="VARCHAR" size="35"/>
+        <column name="AG_STREET" type="VARCHAR" size="35"/>
+        <column name="AG_HOUSE_NUMBER" type="VARCHAR" size="10"/>
+        <column name="AG_COUNTRY" required="true" type="VARCHAR" size="3"/>
+        <column name="AG_POSTAL_CODE" required="true" type="VARCHAR" size="10"/>
+        <column name="AG_CITY" required="true" type="VARCHAR" size="35"/>
+        <column name="WE_SAP_ID" type="VARCHAR" size="10"/>
+        <column name="WE_NAME1" type="VARCHAR" size="35"/>
+        <column name="WE_STREET" type="VARCHAR" size="35"/>
+        <column name="WE_COUNTRY" required="true" type="VARCHAR" size="3"/>
+        <column name="WE_POSTAL_CODE" required="true" type="VARCHAR" size="10"/>
+        <column name="WE_CITY" required="true" type="VARCHAR" size="35"/>
+        <column name="WE_REGION" type="VARCHAR" size="3"/>
+        <column name="WE_COORD_LAT" type="DOUBLE"/>
+        <column name="WE_COORD_LON" type="DOUBLE"/>
+        <column name="O_DELIVERY_TYPE_CD" required="true" type="DECIMAL" size="2"/>
+        <column name="O_DELIVERY_TYPE_TXT" required="true" type="VARCHAR" size="40"/>
+        <column name="O_DISTRIBUTION_DEST_CD" required="true" type="VARCHAR" size="4"/>
+        <column name="O_DISTRIBUTION_DEST_TXT" type="VARCHAR" size="30"/>
+        <column name="SP_PLANT_CD" type="VARCHAR" size="4"/>
+        <column name="SP_PLANT_NAME" type="VARCHAR" size="80"/>
+        <column name="SP_SAP_SHIPPINGPOINT_NO" type="VARCHAR" size="4"/>
+        <column name="SP_SHIPPINGPOINT_NAME" type="VARCHAR" size="80"/>
+        <column name="MAT_SAP_MATERIAL_NO" type="VARCHAR" size="18"/>
+        <column name="OI_ORDERED_QUANTITY" type="DECIMAL" size="12,4"/>
+        <column name="OI_ORDERED_UOM_CD" type="VARCHAR" size="3"/>
+        <column name="OI_LOADED_QUANTITY" type="DECIMAL" size="12,4"/>
+        <column name="OI_LOADED_UOM_CD" type="VARCHAR" size="3"/>
+        <column name="OI_DELIVERED_QUANTITY" type="DECIMAL" size="12,4"/>
+        <column name="OI_DELIVERED_UOM_CD" type="VARCHAR" size="3"/>
+        <column name="O_DELIVERY_FROM_DAT" required="true" type="DATE"/>
+        <column name="O_DELIVERY_FROM_TIME" required="true" type="DATE"/>
+        <column name="O_DELIVERY_FROM_TIMEZONE" type="VARCHAR" size="32"/>
+        <column name="O_DELIVERY_TO_DAT" required="true" type="DATE"/>
+        <column name="O_DELIVERY_TO_TIME" required="true" type="DATE"/>
+        <column name="O_DELIVERY_TO_TIMEZONE" type="VARCHAR" size="32"/>
+        <column name="O_POOL_ID" type="DECIMAL" size="12"/>
+        <column name="O_POOL_NAME" type="VARCHAR" size="30"/>
+        <column name="COMM_CARRIER_V_SAP_ID" type="VARCHAR" size="10"/>
+        <column name="COMM_CARRIER_SAP_BP_ID" type="DECIMAL" size="12"/>
+        <column name="COMM_CARRIER_DISPLAY_NAME" type="VARCHAR" size="40"/>
+        <column name="EXEC_CARRIER_V_SAP_ID" type="VARCHAR" size="10"/>
+        <column name="EXEC_CARRIER_DISPLAY_NAME" type="VARCHAR" size="40"/>
+        <column name="TRUCK_SAP_CODE" type="VARCHAR" size="18"/>
+        <column name="TRUCK_PLATE_NO" type="VARCHAR" size="20"/>
+        <column name="O_CTL_CREATION_DAT" required="true" type="TIMESTAMP"/>
+        <column name="O_CTL_CREATION_TIME" required="true" type="TIMESTAMP"/>
+        <column name="O_CTL_CREATION_TIMEZONE" type="VARCHAR" size="75"/>
+        <column name="O_CTL_MODIFICATION_DAT" required="true" type="TIMESTAMP"/>
+        <column name="O_CTL_MODIFICATION_TIME" required="true" type="TIMESTAMP"/>
+        <column name="O_CTL_MODIFICATION_TIMEZONE" type="VARCHAR" size="75"/>
+        <column name="LOADING_PLANNED_DAT" type="DATE"/>
+        <column name="LOADING_PLANNED_TIME" type="DATE"/>
+        <column name="LOADING_PLANNED_TIMEZONE" type="VARCHAR" size="32"/>
+        <column name="UNLOADING_PLANNED_DAT" type="DATE"/>
+        <column name="UNLOADING_PLANNED_TIME" type="DATE"/>
+        <column name="UNLOADING_PLANNED_TIMEZONE" type="VARCHAR" size="32"/>
+        <column name="TRANSPORT_DISTANCE_KM" type="DOUBLE"/>
+        <column name="TRANSPORT_DURATION" type="DECIMAL" size="5"/>
+        <column name="PIN_CODE" type="VARCHAR" size="2"/>
+    </table>
+</database>

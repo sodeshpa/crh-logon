@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNC_WAGON_EVENT"
+           description="Contains all status update events regarding wagons received from SBB.">
+
+        <column name="WAGON_EVENT_ID" primaryKey="true" required="true" type="DECIMAL" size="12"
+                description="PK"/>
+        <column name="WAGON_EVENT_STATUS_CD" required="true" type="DECIMAL" size="2"
+                description="FK tlgnr_wagon_event_status. Indicates the processing status."/>
+        
+        <column name="INTERCHANGE_CONTROL_REFERENCE" required="true" type="VARCHAR" size="14"
+                description="Unique reference assigned by sender in order to be able to relate this row to an EDIFACT interchange. See also EDIFACT UNB 0020."/>
+        <column name="MESSAGE_REFERENCE_NO" required="true" type="VARCHAR" size="14"
+                description="Unique reference assigned by sender in order to be able to relate this row to an EDIFACT message within an interchange. See also EDIFACT UNH 0062."/>
+        
+        <column name="EVENT_TYPE" required="false" type="VARCHAR" size="1"
+        		description="Status. 1 = ohne Tk-Aufbau oder auf BLOCK ohne Zerlegeende, 2 = Tk ist aufgebaut, 3 = Abgangskontrolle erfolgt, 5 = Abgesetellt, ausgesetzt, 6 = Zollrevision, 8 = Eingangskontrolle erfolgt, 9 = RIV-Uebergabe erfolgt"/>
+        <column name="EVENT_DAT" required="false" type="DATE"
+        		description="Date/time of status change."/>
+
+        <column name="WAGON_NO" required="true" type="VARCHAR" size="14"
+                description="Wagon number."/>
+        <column name="CUR_RAILWAY_STATION" required="false" type="VARCHAR" size="8"
+                description="Train station at time of the event. Format: n2(UicBahn) + n6(Bhfnr)."/>
+                        		
+        <column name="DEP_RAILWAY_STATION" required="false" type="VARCHAR" size="8"
+                description="Train station from which the shipment is sent. Format: n2(UicBahn) + n6(Bhfnr)."/>
+        <column name="DEP_DAT" required="false" type="DATE"
+        		description="Date/time of departure."/>
+        <column name="DEST_RAILWAY_STATION" required="false" type="VARCHAR" size="8"
+                description="Train station to which the shipment is delivered. Format: n2(UicBahn) + n6(Bhfnr)."/>
+        <column name="ARR_DAT" required="false" type="DATE"
+        		description="Date/time of arrival."/>
+  		<column name="NEXT_RAILWAY_STATION" required="false" type="VARCHAR" size="8"
+          		description="Next handling train station. Format: n2(UicBahn) + n6(Bhfnr)."/>
+		
+		<foreign-key foreignTable="TLGNR_WAGON_EVENT_STATUS_BS" name="FK_TLGNC_WAG_EVT_WAG_EVT_STAT">
+           	<reference local="WAGON_EVENT_STATUS_CD" foreign="WAGON_EVENT_STATUS_CD"/>
+        </foreign-key>    
+   
+    </table>
+</database>

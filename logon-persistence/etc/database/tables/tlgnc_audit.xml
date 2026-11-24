@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNC_AUDIT" 
+    description="Table storing (database) auditing information.">
+        <column name="AUDIT_ID" primaryKey="true" required="true" type="DECIMAL" size="12" 
+        description="PK"/>
+        <column name="USER_ID" type="DECIMAL" size="12"
+        description="FK TLGNU_USER. Identifier of the user who is making the interactions on db."/>
+        <column name="CHANGE_TS" type="DATE"
+        description="Time of the interaction."/>
+        <column name="TARGET_TABLE_NAME" type="VARCHAR" size="50"
+        description="Db table name of the table which has been modified."/>
+        <column name="TARGET_ENTRY_ID" type="VARCHAR" size="40"
+        description="Db entry PK of the entry which has been modified."/>
+        <column name="AUDIT_ACTION_CD" type="DECIMAL" size="2"
+        description="FK TLGNR_AUDIT_ACTION_BS. Indicates the type of the action 0=insert 1=update 2=delete"/>
+        
+        <foreign-key foreignTable="TLGNU_USER" name="FK_TLGNC_AUDIT_USER_ID">
+            <reference local="USER_ID" foreign="USER_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_AUDIT_ACTION_BS" name="FK_TLGNC_AUDIT_ACTION_CD">
+            <reference local="AUDIT_ACTION_CD" foreign="AUDIT_ACTION_CD"/>
+        </foreign-key>
+    </table>
+</database>

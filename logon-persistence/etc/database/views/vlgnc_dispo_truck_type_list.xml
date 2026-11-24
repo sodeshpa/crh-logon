@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="VLGNC_DISPO_TRUCK_TYPE_LIST" mappingType="view" skipSql="true">
+        <column name="ORDER_TRUCK_TYPE_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="ORDER_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="EVALUATION_PRIORITY" required="true" type="DECIMAL" size="2"/>
+        <column name="TRUCK_TYPE_CD" required="true" type="DECIMAL" size="3"/>
+        <column name="LANG_CD" required="true" type="VARCHAR" size="2"/>
+        <column name="TRUCK_TYPE_NAME_TX" required="true" type="VARCHAR" size="40"/>
+    </table>
+</database>

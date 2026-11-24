@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNR_CONFIG" refData="true"
+           description="Configurable system properties and default values.">
+        <!-- Lengths of fields can be made longer whenever needed -->
+        <column name="CONFIG_CD" primaryKey="true" required="true" type="DECIMAL" size="12"
+                description="PK"/>
+        <column name="KEY" required="true" type="VARCHAR" size="100"
+                description="Identifier for a config entry, together with INSTANCE if set. When defining keys its recommended to follow a hierarchical concept such as module.area.attribute.case, as one would use in config files."/>
+        <column name="INSTANCE" type="VARCHAR" size="30"
+                description="Instance for which the value applies. Identifier in combination with KEY. If null: for alle instances/environments."/>
+        <column name="MIN_VALUE" type="DECIMAL" size="10"
+                description="If MIN_VALUE is not null: Admin application shall expect VALUE to be a number, and enforce VALUE &gt;= MIN_VALUE."/>
+        <column name="MAX_VALUE" type="DECIMAL" size="10"
+                description="If MAX_VALUE is not null: Admin application shall expect VALUE to be a number, and enforce VALUE &lt;= MAX_VALUE."/>
+        <column name="VALUE" type="VARCHAR" size="1000"
+                description="Value of the property or system default. Always as text, the application transforms it into number or date or whatever the value represents. MIN/MAX_VALUE are validated by the admin application and are not enforced by the DB."/>
+        <column name="DESCRIPTION" type="VARCHAR" size="1000"
+                description="Description of the configurable value, and explanation about the expected type in VALUE. This text can be used by an admin application as the help text/explanation for the admin user."/>
+        <!-- Should we include a NOT_MODIFIABLE field? which will never be shown in an admin UI? -->
+
+        <unique name="UQ_TLGNR_CONFIG_KEY_INSTANCE">
+            <unique-column name="KEY"/>
+            <unique-column name="INSTANCE"/>
+        </unique>
+      </table>
+</database>

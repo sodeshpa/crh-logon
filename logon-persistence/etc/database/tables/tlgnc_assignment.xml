@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNC_ASSIGNMENT"
+           description="Contains the assignment information when an order is scheduled. This applies both to real trucks and planning trucks.">
+        <column name="ASSIGNMENT_ID" primaryKey="true" required="true" type="DECIMAL" size="12"
+                description="PK"/>
+        <column name="ASSIGNMENT_NUMBER" required="true" type="DECIMAL" size="12"
+	            description="The assignment number, used for external systems (SAP Shipment Document). Generated independently of assignment_id, based on sequence SLGNC_ASSIGNMENT_NUMBER."/>
+        <column name="PLANNING_TRUCK_ID" type="DECIMAL" size="12"
+                description="FK TLGNC_TRUCK. The truck the delivery of the order is assigned to."/>                
+        <column name="TRUCK_ID" type="DECIMAL" size="12"
+                description="FK TLGNC_TRUCK. The truck the delivery of the order is assigned to."/>
+        <column name="WAGON_ID" type="DECIMAL" size="12"
+                description="FK TLGNC_WAGON. The wagon the delivery of the order is assigned to."/>
+        <column name="SIMPLE_VEHICLE_ID" type="DECIMAL" size="12"
+                description="FK TLGNC_SIMPLE_VEHICLE. The simple vehicle the delivery of the order is assigned to."/>
+        <column name="ACTIVE_FLAG" required="true" type="BOOLEAN"
+                description="0=canceled, 1=active."/>
+        <column name="ASSIGN_STATUS_CD" required="true" type="DECIMAL" size="2"
+                description="FK TLGNR_ASSIGN_STATUS_BS. Status of the assingment"/>
+        <column name="ASSIGN_TR_STATUS_CD" required="true" type="DECIMAL" size="2"
+                description="FK TLGNR_ASSIGN_TR_STATUS_BS. Transmission status of the assingment"/>
+        <column name="LOAD_ORDER_ID" type="DECIMAL" size="12"
+                description="Unique id for the weighing system. Built from separate sequence, as the assignment (load order) can be sent several times during its lifetime. NULL if the assignment is not currently known/confirmed in the external system (not transmitted or cancelled)." />
+
+        <!-- Fields added because of External orders, i.e. without a tlgnc_order, and without Crh shippingpoint, shipto, materials -->
+        <column name="MATERIAL_QUANTITY" type="DECIMAL" size="12,4"
+                description="Quantity of the ordered material, in units defined by material_uom_cd. Used only for External Orders. For assignments belonging to normal orders, ordered/delivered quantities from tlgnc_order are used instead."/>
+        <column name="MATERIAL_UOM_CD" type="VARCHAR" size="3"
+                description="FK TLGNR_UOM_BS. Unit of measure material_quantity is based on. Used only for External Orders. For assignments belonging to normal orders, ordered/delivered quantities from tlgnc_order are used instead."/>
+        <column name="MATERIAL_NAME" type="VARCHAR" size="40"
+                description="The name of the material. Used only for External Orders, which are not based on Crh products. For assignments belonging to normal orders, material information from tlgnc_order is used instead."/>
+
+        <column name="CARRIER_TRUCK_DRIVER_NOTE" type="VARCHAR" size="256"
+                description="Notes from the carrier for the driver. Text is entered during order dispatching / creation of external order. Initially copied from tlgnc_order.CARRIER_TRUCK_DRIVER_NOTE, if order exists. Copied back to tlgnc_order on delivery."/>
+        <column name="CARRIER_DISPATCHING_NOTE" type="VARCHAR" size="256"
+                description="Notes from the carrier for the dispatching (pool/carrier). Text is entered during order dispatching / creation of external order. Initially copied from tlgnc_order.CARRIER_DISPATCHING_NOTE, if order exists. Copied back to tlgnc_order on delivery."/>
+
+        <column name="ASSIGNMENT_TYPE_CD" required="true" type="DECIMAL" size="2"
+        		description="FK TLGNR_ASSIGNMENT_TYPE_BS. The type of the assignment."/>
+        <column name="ASSIGNMENT_DAT" required="true" type="DATE"
+                description="Date of the assignment in timezone of the DB (CET/CEST). h:m:s are set to 0:0:0. This information is the same as the planned date on the assignment parts, however, it is always in CET/CEST, whereas the planned dates on assignment parts are in the timezone of the user. Used in search queries"/>
+        
+        <column name="MANUALLY_SCHEDULED" required="true" type="BOOLEAN"
+                description="1=manually scheduled on a real truck, 0=every other case (scheduled by LDS/not yet scheduled/etc)."/>
+        
+        <column name="LDS_CARRIER_CRM" type="VARCHAR" size="15"
+                description="Driver to put the 15 Alphanumberic code in SCHENCK and to be printed on DN."/>
+        <column name="LDS_SEAL_NUMBERS" type="VARCHAR" size="256"
+                description="Seal Numbers added by Operating during exiting phase, for truck and train. Maximum of four seals are possible per truck."/>
+        
+        <column name="LDS_DRIVER_NAME" type="VARCHAR" size="64"
+                description="Name of the driver entered by the driver during registration."/>
+        <column name="LDS_DRIVER_CARD_NO" type="VARCHAR" size="64"
+                description="Driver Card Number entered by the driver during registration."/>
+        <column name="LDS_DRIVER_ID" type="VARCHAR" size="64"
+                description="Driver ID entered by the driver during registration."/>
+		
+		<column name="LDS_ATTORNEY_NAME" type="VARCHAR" size="64"
+                description="Name of the attorney."/>
+        <column name="LDS_ATTORNEY_START" type="DATE"
+                description="Power of attorney's first day of validity."/>
+        
+        <column name="LDS_DISPATCHER_NAME" type="VARCHAR" size="64"
+                description="Gate Operator name during exit phase - person responsible (logged in user in WebDispoManager) following the windows logon"/>
+        <column name="LDS_DISPATCHER_TEL" type="VARCHAR" size="64"
+                description="Gate Operator Phone number added by the Operator during exit phase (maintained in SCHENCK following the logged in user 'BEARBEITER')."/>
+        <column name="LDS_DISPATCHER_ID" type="VARCHAR" size="64"
+                description="Gate Operator ID added by the Operator during exit phase (maintained in SCHENCK following the logged in user 'BEARBEITER')."/>
+                
+        <column name="MIN_START" type="DATE"
+                description="Redundant information stored for query optimizing purposes. Contains the soonest assignment part's planned start or real start whichever is sooner. The start of the time range the assignment spans through. Used on scheduling to be able to determine if on a certain day the assignment has to show up or not. See also MAX_END."/>
+        <column name="MAX_END" type="DATE"
+                description="Redundant information stored for query optimizing purposes. Contains the latest assignment part's planned start or real start whichever is later. The end of the time range the assignment spans through. Used on scheduling to be able to determine if on a certain day the assignment has to show up or not. See also MIN_START."/>                                
+        
+        <foreign-key foreignTable="TLGNC_TRUCK" name="FK_TLGNC_ASSIGNMENT_TRUCK">
+            <reference local="TRUCK_ID" foreign="TRUCK_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNC_TRUCK" name="FK_TLGNC_ASSI_PLAN_TRUCK">
+            <reference local="PLANNING_TRUCK_ID" foreign="TRUCK_ID"/>
+        </foreign-key>        
+        <foreign-key foreignTable="TLGNC_WAGON" name="FK_TLGNC_ASSIGNMENT_WAGON">
+            <reference local="WAGON_ID" foreign="WAGON_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNC_SIMPLE_VEHICLE" name="FK_TLGNC_ASSIGNMENT_S_VEHICLE">
+            <reference local="SIMPLE_VEHICLE_ID" foreign="SIMPLE_VEHICLE_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_ASSIGN_STATUS_BS" name="FK_TLGNC_ASSIGNMENT_STATUS">
+            <reference local="ASSIGN_STATUS_CD" foreign="ASSIGN_STATUS_CD"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_UOM_BS" name="FK_TLGNC_ASSIGNMENT_UOM">
+            <reference local="MATERIAL_UOM_CD" foreign="UOM_CD"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_ASSIGNMENT_TYPE_BS" name="FK_TLGNC_ASSIGN_ASSIGN_TYPE">
+            <reference local="ASSIGNMENT_TYPE_CD" foreign="ASSIGNMENT_TYPE_CD"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_ASSIGN_TR_STATUS_BS" name="FK_TLGNC_ASSIGNMENT_TR_STATUS">
+            <reference local="ASSIGN_TR_STATUS_CD" foreign="ASSIGN_TR_STATUS_CD"/>
+        </foreign-key>
+        
+        <index name="I_TLGNC_ASS_PARTFLAGSTAT">
+            <index-column name="ASSIGNMENT_ID"/>
+            <index-column name="ACTIVE_FLAG"/>
+            <index-column name="ASSIGN_STATUS_CD"/>
+        </index>
+        
+    </table>
+</database>

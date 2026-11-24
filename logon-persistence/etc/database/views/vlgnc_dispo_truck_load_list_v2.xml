@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="VLGNC_DISPO_TRUCK_LOAD_LIST_V2" mappingType="view" skipSql="true">
+        <column name="LOAD_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="TRUCK_ID" type="DECIMAL" size="12"/>
+        <column name="LANG_CD" required="true" type="VARCHAR" size="2"/>
+        <column name="TARE_QUANTITY" type="DECIMAL" size="12,4"/>
+        <column name="NET_QUANTITY" type="DECIMAL" size="12,4"/>
+        <column name="NET_QUANTITY_UOM_CD" type="VARCHAR" size="3"/>
+        <column name="SAP_MATERIAL_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="PRODUCTION_PLANT_CD" required="true" type="VARCHAR" size="4"/>
+        <column name="LOADING_TS" type="DATE"/>
+        <column name="MATERIAL_DESCRIPTION" required="true" type="VARCHAR" size="40"/>
+        <column name="LOAD_TIME" type="DATE"/>
+        <column name="ASSIGNMENT_ID" type="DECIMAL" size="12"/>
+        <column name="UOM_TXT" required="true" type="VARCHAR" size="20"/>
+        <column name="UOM_DIMENSION_CD" type="VARCHAR" size="3"/>
+        <column name="NUMERATOR_FOR_CONVERSION" type="DECIMAL" size="5"/>
+        <column name="DENOMINATOR_FOR_CONVERSION" type="DECIMAL" size="5"/>
+        <column name="CTL_MOD_TS" required="true" type="TIMESTAMP" />
+    </table>
+</database>

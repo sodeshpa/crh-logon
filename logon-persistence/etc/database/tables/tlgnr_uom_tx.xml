@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNR_UOM_TX" refData="true"
+           description="Unit of Measurement, based on the base unit 1 ton / 1 piece / 1 hour specified in UOM_DIMENSION.">
+
+        <column name="UOM_CD" primaryKey="true" required="true" type="VARCHAR" size="3"
+                description="Part of PK. FK to TLGNR_UOM_BS. Code of the Reference Data."/>
+        <column name="LANG_CD" primaryKey="true" required="true" type="VARCHAR" size="2"
+                description="Part of PK. FK to TLGNR_LANG_BS."/>
+        <column name="TXT" required="true" type="VARCHAR" size="20"
+                description="Description of the UOM in the language LANG_CD."/>
+
+        <foreign-key foreignTable="TLGNR_UOM_BS" name="FK_TLGNR_UOM_TX">
+            <reference local="UOM_CD" foreign="UOM_CD"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_LANG_BS" name="FK_TLGNR_UOM_LANG">
+            <reference local="LANG_CD" foreign="LANG_CD"/>
+        </foreign-key>
+    </table>
+</database>

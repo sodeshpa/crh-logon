@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="VLGNC_DISPO_RAIL_ASS_LIST" mappingType="view" skipSql="true">
+        <column name="ASSIGNMENT_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="ASSIGNMENT_DAT" required="true" type="DATE"/>
+        <column name="ASSIGN_STATUS_CD" required="true" type="DECIMAL" size="2"/>
+        <column name="ASSIGN_TR_STATUS_CD" required="true" type="DECIMAL" size="2"/>
+        <column name="ASSIGNMENT_TYPE_CD" required="true" type="DECIMAL" size="2"/>
+        <column name="CONTAINER_ID" type="DECIMAL" size="12"/>
+        <column name="CARRIER_DISPATCHING_NOTE" type="VARCHAR" size="256"/>
+        <column name="WAGON_ID" type="DECIMAL" size="12"/>
+        <column name="SHIPPINGPOINT_ID" type="DECIMAL" size="12"/>
+        <column name="RAILWAY_STATION_ID" type="DECIMAL" size="12"/>
+    </table>
+</database>

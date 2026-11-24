@@ -1,0 +1,9 @@
+full=n
+schemas=ulgn01
+remap_schema=ulgn01:ulgnmig
+remap_tablespace=data_lgn_a:users,index_lgn_a:users
+directory=DATA_PUMP_DIR
+exclude=PACKAGE_BODY
+exclude=PACKAGE
+exclude=PROCEDURE
+exclude=GRANT

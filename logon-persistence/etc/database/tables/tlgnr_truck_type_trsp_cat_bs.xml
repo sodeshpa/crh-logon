@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNR_TRUCK_TYPE_TRSP_CAT_BS" refData="true"
+    description="Maps truck transport categories to the truck types that usually have these categories. When scheduling an order to a truck, we check if that truck's transport category fits the order material. When the order is initially created, we cannot perform that check yet, since we don't know the actual truck that will be used. To limit the selectable truck types in the order anyway, this table is used. The material selected in the order determines the required transport category, and this table will be used to see which truck types (usually) provide this category. Implemented as a reference data because of caching and because it need not be written in any business use case.">
+        <column name="TRUCK_TYPE_TRSP_CAT_CD" primaryKey="true" required="true" type="DECIMAL" size="4" description="PK. Identifies which transport categories are usually supported by a truck type."/>
+        <column name="TRUCK_TYPE_CD" required="true" type="DECIMAL" size="3" description="FK tlgnr_truck_type_bs. The truck type being mapped."/>
+        <column name="TRUCK_TRANSPORT_CAT_CD" required="true" type="DECIMAL" size="3" description="FK tlgnr_truck_transport_cat_bs. The truck transport category being mapped."/>
+        <column name="CTL_ACT_CD" required="true" type="BOOLEAN"
+                description="Active Flag. When new data is entered, only reference data with active flag are available for selection normally."/>
+
+        
+        <foreign-key foreignTable="TLGNR_TRUCK_TYPE_BS" name="FK_TLGNC_TTTC_TRUCKTYPE">
+            <reference local="TRUCK_TYPE_CD" foreign="TRUCK_TYPE_CD"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_TRUCK_TRANSPORT_CAT_BS" name="FK_TLGNC_TTTC_TRSPCAT">
+            <reference local="TRUCK_TRANSPORT_CAT_CD" foreign="TRUCK_TRANSPORT_CAT_CD"/>
+        </foreign-key>
+        
+        <unique name="UQ_TLGNR_TRUCK_TYPE_TRSP_CAT">
+            <unique-column name="TRUCK_TYPE_CD"/>
+            <unique-column name="TRUCK_TRANSPORT_CAT_CD"/>
+        </unique>
+    </table>
+</database>

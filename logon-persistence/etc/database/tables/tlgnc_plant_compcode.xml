@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNC_PLANT_COMPCODE"
+           description="A plant has to be assigned to exactly one company code. Several plants can be assigned to one company code.">
+
+		<column name="PLANT_COMPCODE_ID" primaryKey="true" required="true" type="DECIMAL" size="12"
+                description="PK"/>
+	    <column name="PLANT_CD" required="true" type="VARCHAR" size="4"
+                description="FK tlgnr_plant_bs. (Production) plant related to the Sales Areas. One Plant can be assigned to many Sales Areas."/>
+        <column name="COMPANYCODE_CD" required="true" type="VARCHAR" size="4"
+                description="FK tlgnr_companycode_bs. A company code as known in SAP (BUKRS), e.g.: FR01, BG01."/>
+
+ 		<foreign-key foreignTable="TLGNR_PLANT_BS" name="FK_TLGNC_PLANT_COMPCODE_PLANT">
+            <reference local="PLANT_CD" foreign="PLANT_CD"/>
+		</foreign-key>
+		<foreign-key foreignTable="TLGNR_COMPANYCODE_BS" name="FK_TLGNC_PLANT_COMPCODE_CMPCD">
+            <reference local="COMPANYCODE_CD" foreign="COMPANYCODE_CD"/>
+		</foreign-key>
+	
+	    <unique name="UQ_TLGNC_PLANT_COMPCODE_PLNTCD">
+            <unique-column name="PLANT_CD"/>
+        </unique>
+    </table>
+</database>

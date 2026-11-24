@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNR_BILLTO_RULETYPE_TX" refData="true"
+           description="Ruletypes for selecting the Bill-To of an order (see Haendlerrhythmus).">
+        <column name="BILLTO_RULETYPE_CD" primaryKey="true" required="true" type="DECIMAL" size="2"
+                description="Part of PK. FK to TLGNR_BILLTO_RULETYPE_BS. Code of the Reference Data."/>
+        <column name="LANG_CD" primaryKey="true" required="true" type="VARCHAR" size="2"
+                description="Part of PK. Non-enforced FK to TLGNR_LANG_BS."/>
+        <column name="TXT" required="true" type="VARCHAR" size="30"
+                description="Description of the rule-type in the language LANG_CD."/>
+        <foreign-key foreignTable="TLGNR_BILLTO_RULETYPE_BS" name="TLGNR_BILLTO_RULETYPE_TX">
+            <reference local="BILLTO_RULETYPE_CD" foreign="BILLTO_RULETYPE_CD"/>
+        </foreign-key>
+    </table>
+</database>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNR_PLANT_TRACK_TX" refData="true"
+           description="Language dependent attributes (e.g. description) of the tracks at a plant.">
+
+        <column name="PLANT_TRACK_CD" primaryKey="true" required="true" type="DECIMAL" size="4"
+                description="Part of PK. FK tlgnr_plant_track_bs. Code of the Reference Data."/>
+        <column name="LANG_CD" primaryKey="true" required="true" type="VARCHAR" size="2"
+                description="Part of PK. FK tlgnr_lang_bs. For example de, en, ..."/>
+        <column name="TXT" required="true" type="VARCHAR" size="40"
+                description="Description of the plant_track_cd in the language lang_cd."/>
+
+        <foreign-key foreignTable="TLGNR_PLANT_TRACK_BS" name="FK_TLGNR_PLANT_TRACK_TX">
+            <reference local="PLANT_TRACK_CD" foreign="PLANT_TRACK_CD"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_LANG_BS" name="FK_TLGNR_PLANT_TRACK_LANG">
+            <reference local="LANG_CD" foreign="LANG_CD"/>
+        </foreign-key>
+    </table>
+</database>

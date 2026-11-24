@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="VLGNC_SENT_CONTRACT_ITEM_QTY" mappingType="view" skipSql="true">
+        <column name="SAP_CONTRACT_ITEM_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="CONTRACT_ITEM_NO" required="true" type="DECIMAL" size="6"/>
+        <column name="AP_GROUP_LEADER_ID" type="DECIMAL" size="12"/>
+        <column name="TARGET_QUANTITY" type="DECIMAL" size="17,3"/>
+        <column name="REMAINING_QUANTITY" type="DECIMAL" size="17,4"/>
+        <column name="CONTRACT_ITEM_CRE_TS" type="TIMESTAMP"/>
+    </table>
+</database>

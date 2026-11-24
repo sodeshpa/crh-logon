@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNS_SAP_CONTRACT" description="Contains the header-level attributes and - together with tlgns_sap_contract_item etc - represents a Contract as received from SAP via the Contracts/STPO interface. The 'normal' Contracts (for outgoing deliveries, pickup) as well as the STPO (Stock Transfer Purchase Order, i.e. similar to LOGON IUD/IUP) are stored in this table. Only fields relevant for LOGON are imported into this table; additional fields can be added when required by additional functional specification.">
+        <column name="SAP_CONTRACT_ID" primaryKey="true" required="true" type="DECIMAL" size="12"
+                description="PK. Technical ID given by LOGON DB when object is created, based on a sequence."/>      
+        <column name="SAP_CONTRACT_NO" required="true" type="VARCHAR" size="10"
+                description="SAP Contract Number as received from SAP. (Origin:VBAK.VBELN / E1EDK01.belnr)"/>                      
+        <column name="SAP_CONTRACT_TYPE_CD" required="true" type="VARCHAR" size="4"
+                description="FK tlgnr_sap_contract_type_bs. Contract type as distinguished by SAP (e.g. ZCQ=Agreement with customer with fixed prices, ZCF=Agreement with customer without prices fixed, etc). Not all types in SAP lead to different behaviour in LOGON. (Origin: VBAK.auart / EKKO.bsart - /sales_document_notification/document_header_organizational_data/BSART"/>       
+        <column name="SAREA_ID" required="true" type="DECIMAL" size="12"
+                description="FK tlgnc_sarea. Sales Area of this contract. (Origin: Sales organization (VBAK.VKORG), Distribution channel (VBAK.VTWEG), Division (VBAK.SPART)  as received from SAP, mapped to LOGON sarea table.). XSD origin: E1EDK14.orgid.qualf.002, 007, 006"/>	
+        <column name="SOLDTO_SAP_BP_ID" required="true" type="DECIMAL" size="12"
+                description="FK tlgns_sap_bp. Soldto (Auftraggeber) to which this contract belongs. Characteristics of the soldto (normal, 1-time-soldto) may influence the usage of this contract."/>	 		
+ 		<column name="SHIPTO_SAP_BP_ID" required="true" type="DECIMAL" size="12"
+                description="FK tlgns_sap_bp. Shipto (Warenempfaenger) for which the contract is valid. Special cases: Generic shipto (=contract valid for all shipto's of this soldto); 1-time shipto (=location not fixed), i.e. address must be entered during order taking."/>	        
+		<column name="BILLTO_SAP_BP_ID" type="DECIMAL" size="12"
+                description="FK tlgns_sap_bp. Billto (Rechnungsempfaenger) for orders created from this contract. If set: This billto is the default billto to be used in the orders. If not set: Selectable in Ordertaking by the usual LOGON mechanisms."/>	          
+		<column name="PAYER_SAP_BP_ID" type="DECIMAL" size="12"
+                description="FK tlgns_sap_bp. Payer (Rechnungszahler) for orders created from this contract. If set: This payer is the default payer to be used in the orders. If not set: Selectable from all payers associated with this BP (tlgns_sap_bp_pf_payer)"/>	          
+		<column name="VALID_FROM_DAT" required="true" type="DATE" 
+                description="Valid-from date as received from SAP. 1.1.1970=no start date / since ever. (Origin: VBAK.GUEBG / E1EDK03.datum.iddat.019)"/>	
+        <column name="VALID_UNTIL_DAT" required="true" type="DATE" 
+                description="Valid from date as received from SAP. 31.12.9999=forever. (Origin: VBAK.GUEBG / E1EDK03.datum.iddat.020)"/>	          
+		<column name="VALID_UNTIL_IGNORE_FLAG" required="true" type="BOOLEAN" 
+                description="Flag to define if valid_until can be ignored. Flag is not changeable in LOGON, but only in SAP. (Origin: TBD. For now, always 0 in LOGON.)"/>	          
+		<column name="SAP_SHIPPING_COND_CD" type="VARCHAR" size="2"
+                description="Shipping condition, e.g.E1=Truck, S1=SBB, ... (Origin: VBAK.VSBED / E1EDK01.vsart)"/>	
+        <column name="CUST_PURCHASE_ORDER_NO" type="VARCHAR" size="35"
+                description="Contract/Purchase number as known to the customer. (Origin: VBAK.BSTNK / E1EDK02.bstzd.qualf.001)"/>	          
+		<column name="ITEM_GROUPING_TYPE" type="DECIMAL" size="2" required="true" 
+                description="Grouping type applied for the contract items during sap import, meaning a different contract_item generation method. Should not change during the lifecycle of a contract. Values: 0 (unknown) - for contracts already in the database at the time of introducing this field, and no possibility to achieve which type was applied (but known: quantity restricted or advance payment); 1 (no grouping) - no group leader for the contract items; 2 (quantity restricted) - every contract item has its own group leader, whose quantity is a limitation: it cannot be exceeded in order taking; 3 (advance payment) - 1 group leader for many payments (sap contract items), with a limitation: sum of quantities cannot be exceeded in order taking"/>
+		<column name="CURRENCY_CD" type="VARCHAR" size="5"
+                description="FK tlgnr_currency_bs. Currency of the contract; only for cash-sales orders based on this contract. (Origin: VBAK.WAERK / E1EDK01.curcy)"/>	       
+        <column name="CREDIT_CONTROL_AREA_CD" type="VARCHAR" size="4"
+                description="Credit Control Area. For future use in LOGON."/>	               
+        <column name="CREDIT_LIMIT_ACCOUNT_NO" type="VARCHAR" size="10"
+                description="Customer's account number with credit limit reference. Credit limit check must be done against this customer. For future use in LOGON."/>	
+        <column name="CUSTOMER_CREDIT_GROUP" type="VARCHAR" size="4"
+                description="Customer Credit Group. For future use in LOGON."/>	   
+        <column name="CREDIT_MANAGEMENT_GROUP" type="VARCHAR" size="3"
+                description="Credit representative group for credit management. For future use in LOGON."/>	                     
+        <column name="CREDIT_RISK_CATEGORY" type="VARCHAR" size="3"
+                description="Credit management: Risk category. For future use in LOGON."/>	      
+        <column name="CREDIT_CURRENCY_CD" type="VARCHAR" size="5"
+                description="FK tlgnr_currency_bs. Currency to use for credit checks (no functionality currently in LOGON)"/>	      
+        <column name="SALES_DISTRICT_CD" type="VARCHAR" size="6"
+                description="Sales district. Should be the same as the sales district of the soldto. Store anyway in LOGON, possibly for future use. (Origin: VBKD.BZIRK / E1EDK14.orgid.qualf.022)"/>	      	      
+        <column name="INCOTERMS_CD" type="VARCHAR" size="3" 
+                description="Incoterms of this order. It is used in the case of the Fenics weighingsystem interface, and it determines allowed delivery types for the contract per sarea."/>
+        <column name="VALIDATION_CODE" type="VARCHAR" size="4"
+                description="Sap contract validation code. No usage in LOGON, stored for future use. Value is used as an authorization code to create an order n within the weighing system application (FENICS). (Origin PINCODE)"/>	
+        <column name="VENDOR_SAP_NO" type="VARCHAR" size="10"
+                description="Vendor partner function of the contract. Simple text field: stored as received, no foreign key in Logon. (It does not need to be treated as a normal Vendor or Carrier.) Sent back to SAP in the transfer 'inbound' delivery request (and only there) the information about the vendor. No logic attached in Logon. (Origin: /document_header_partner_information/PARTNR if received with /document_header_partner_information/PARVW value 'LF'.)"/>
+        <column name="VAT_NO_MANDATORY_FLAG" type="BOOLEAN"
+                description="LOGON receives in the Contract interface a flag which indicates if it is mandatory to send the VAT Number to SAP for the one-time ship-to This flag is received in field /sales_document_notification/document_header_general_data/pricing_related_info/ZVATM. If true: VAT number is required to be specified for each order taken for that contract and ship-to."/>
+        <column name="PAYMENT_METHOD_CD" type="VARCHAR" size="4"
+                description="FK tlgnr_sap_payment_method_bs. Payment method of the contract; used in LOGON to be displayed on the Cash Sales Invoice. The SAP field is E1EDK01-ZTERM."/>
+        <column name="CONTROLLER_NO" type="VARCHAR" size="70"
+                description="Controller number; no logic in logon. Used in delivery note printing for export invoice (Serbia)"/>
+                
+        <foreign-key foreignTable="TLGNR_SAP_CONTRACT_TYPE_BS" name="FK_TLGNR_SAP_CON_TYPE">
+            <reference local="SAP_CONTRACT_TYPE_CD" foreign="SAP_CONTRACT_TYPE_CD"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNC_SAREA" name="FK_TLGNC_SAP_CON_SAREA">
+            <reference local="SAREA_ID" foreign="SAREA_ID"/>
+        </foreign-key>
+		<foreign-key foreignTable="TLGNS_SAP_BP" name="FK_TLGNC_SAP_CON_SOLDTO_SAP_BP">
+            <reference local="SOLDTO_SAP_BP_ID" foreign="SAP_BP_ID"/>
+        </foreign-key>        
+		<foreign-key foreignTable="TLGNS_SAP_BP" name="FK_TLGNC_SAP_CON_SHIPTO_SAP_BP">
+            <reference local="SHIPTO_SAP_BP_ID" foreign="SAP_BP_ID"/>
+        </foreign-key>        
+		<foreign-key foreignTable="TLGNS_SAP_BP" name="FK_TLGNC_SAP_CON_BILLTO_SAP_BP">
+            <reference local="BILLTO_SAP_BP_ID" foreign="SAP_BP_ID"/>
+        </foreign-key>        
+		<foreign-key foreignTable="TLGNS_SAP_BP" name="FK_TLGNC_SAP_CON_PAYER_SAP_BP">
+            <reference local="PAYER_SAP_BP_ID" foreign="SAP_BP_ID"/>
+        </foreign-key>        
+		<foreign-key foreignTable="TLGNR_CURRENCY_BS" name="FK_TLGNC_SAP_CON_CURRENCY">
+            <reference local="CURRENCY_CD" foreign="CURRENCY_CD"/>
+        </foreign-key>        
+		<foreign-key foreignTable="TLGNR_CURRENCY_BS" name="FK_TLGNC_SAP_CON_CREDIT_CURR">
+            <reference local="CREDIT_CURRENCY_CD" foreign="CURRENCY_CD"/>
+        </foreign-key>
+       <foreign-key foreignTable="TLGNR_SAP_PAYMENT_METHOD_BS" name="FK_TLGNC_SAP_CON_PAYMENT"> 
+        	<reference local="PAYMENT_METHOD_CD" foreign="SAP_PAYMENT_METHOD_CD"/>
+        </foreign-key>
+    </table>
+</database>

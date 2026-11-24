@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="VLGNC_CUSTORD_ITEM_SUM_QTY_EXT" mappingType="view" skipSql="true">
+        <column name="COMPOSITE_ID" type="VARCHAR" size="81"/>
+        <column name="CUSTORDER_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="CUSTORDER_NUMBER" required="true" type="DECIMAL" size="12"/>
+        <column name="BASE_UOM_CD" required="true" type="VARCHAR" size="3"/>
+        <column name="LANG_CD" type="VARCHAR" size="2"/>
+        <column name="BASE_UOM_TXT" type="VARCHAR" size="20"/>
+        <column name="SAP_MATERIAL_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="CUSTORDER_ITEM_NO" required="true" type="DECIMAL" size="3"/>        
+        <column name="MATERIAL_TXT" required="true" type="VARCHAR" size="40"/>
+        <column name="NR_OF_ORDERS" type="DOUBLE"/>
+        <column name="NR_OF_SCHEDULED_ORDERS" type="DOUBLE"/>
+        <column name="ORDERED_QUANTITY" type="DECIMAL" size="12,4"/>
+        <column name="ORDERED_UOM_CD" type="VARCHAR" size="3"/>
+        <column name="ORDERED_UOM_TXT" type="VARCHAR" size="20"/>
+        <column name="SCHEDULED_QUANTITY_IN_BASE_UOM" type="DOUBLE"/>
+        <column name="OPEN_QUANTITY_IN_BASE_UOM" type="DOUBLE"/>
+        <column name="LOADED_QUANTITY_IN_BASE_UOM" type="DOUBLE"/>
+        <column name="DELIVERED_QUANTITY_IN_BASE_UOM" type="DOUBLE"/>
+    </table>
+</database>

@@ -1,0 +1,7 @@
+#PURCHASINGORG_CD;PURCHASINGORG_NAME;CTL_ACT_CD
+#Template EBM;;
+# /share/doc/crh/logon_2_0_ebm/input/sap/LRQ001.0_Organisational_structure/EBM_template_Values_v8_20110323.pdf;;
+AD01;AD01 PurchaseOrg.;1
+AD02;AD02 PurchaseOrg.;1
+ADRF;AD Cluster PurOrg;1
+ZA01;ZA01 PurchaseOrg.;1

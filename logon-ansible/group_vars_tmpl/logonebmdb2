@@ -1,0 +1,18 @@
+# THIS FILE IS GENERATED with the init-variables.sh script
+ansible_ssh_user: ansible
+ansible_ssh_pass: Welcome1
+ansible_ssh_port: 5986
+ansible_connection: winrm
+logon_version: VERSION
+logondb_location: U:\pkg\logon\VERSION\logondb-VERSION-ix86.msi
+logon_dest: C:\temp\logon\latest\
+logon_installed: C:\temp\logon\installed\
+dbdumpversion: 2.2.8.0
+logon_db_zips: C:\TEMP\logondb\zips
+logon_db_sql: C:\TEMP\logondb\extracted
+share_pkg: U:\pkg\logon
+dumpdir: 'DMPDIRK'
+connectionurl: 'logonebmdb2-int.zh.adnovum.ch:1521/TLGNEBM1'
+dbdumpfile: 'full_dp_LOGON_2_cl1.dmp'
+packagelocation: 'C:\TEMP\logondb\extracted\2.3.7.100\sql'
+impdplogs: 'C:\TEMP\impdp.log'

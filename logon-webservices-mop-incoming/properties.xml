@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Author            : AdNovum Informatik AG
+ Version Number    : $Revision$
+ Date of last edit : $Date$
+-->
+
+<project name="properties" basedir=".">
+
+    <property name="masterbuild.dir"                location="${basedir}/.." />
+    <import file="${masterbuild.dir}/properties.xml"/>
+
+	<property name="wsdl.name"                		value="MOP_eventhandler.wsdl" />
+	
+    <property name="client.dir.name"                value="client" />
+    <property name="ddl.dir.name"                   value="ddl" />
+    <property name="ddl.file.name"                  value="sql.ddl" />
+    <property name="entities.dir.name"              value="entities" />
+    <property name="origentities.dir.name"          value="origentities" />
+    <property name="ejb.dir.name"                   value="ejb" />
+    <property name="generated.dir.name"             value="generated" />
+   	<property name="generated.dir"             		value="${build.dir}/${generated.dir.name}" />
+	<property name="generated.wsdl.dir"				value="${generated.dir}/wsdl" />
+    <property name="resources.dir.name"             value="resources" />
+    <property name="service.dir.name"               value="service" />
+    <property name="stage.dir.name"                 value="stage" />
+    <property name="war.dir.name"                   value="war" />
+    <property name="wsdl.dir.name"                  value="wsdl" />
+    <property name="xsd.dir.name"                   value="xsd" />
+    <property name="war.dir"                        value="${build.dir}/${war.dir.name}" />
+	
+	<property name="java.test.src.dir"              location="${src.dir}/test/${src.dir.name}"/>
+	   
+
+    <property name="axis2.stage.dir"                value="${build.dir}/${stage.dir.name}" />
+    <property name="wsdl.dir"                       value="${src.dir}/main/${resources.dir.name}" />
+    <property name="xsd.dir"                        value="${src.dir}/main/${resources.dir.name}/${xsd.dir.name}" />
+
+	<property name="webservices.client.jar.name"    value="logon-client.jar" />
+	<property name="webservices.client.jar.loc"     location="${lib.dir}/${webservices.client.jar.name}" />
+	<property name="webservices.package.prefix"		value="com.crh.logon.mop.webservices" />
+	<property name="mopevent.package.prefix"		value="com.crh.logon.mopevent" />
+</project>

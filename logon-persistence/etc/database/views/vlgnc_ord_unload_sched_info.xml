@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="VLGNC_ORD_UNLOAD_SCHED_INFO" mappingType="view" skipSql="true">
+        <column name="ORDER_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="DELIVERY_FROM_DAT" required="true" type="DATE"/>
+        <column name="DELIVERY_TO_DAT" required="true" type="DATE"/>
+        <column name="ORDER_NUMBER" type="DECIMAL" size="12"/>
+        <column name="ASSIGNMENT_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="ASSIGN_STATUS_CD" required="true" type="DECIMAL" size="2"/>
+        <column name="ASSIGN_TR_STATUS_CD" required="true" type="DECIMAL" size="2"/>
+        <column name="TRUCK_ID" type="DECIMAL" size="12"/>
+        <column name="LAST_KNOWN_REAL_START" type="DATE"/>
+        <column name="LAST_KNOWN_PLANNED_START" type="DATE"/>
+        <column name="PLANNED_START_LOAD" type="DATE"/>
+        <column name="TO_ASSIGN_PART_STATUS_CD" type="DECIMAL" size="2"/>
+        <column name="PLANNED_START_UNLOAD" type="DATE"/>
+        <column name="DRIVER_ID" type="DECIMAL" size="12"/>
+    </table>
+</database>

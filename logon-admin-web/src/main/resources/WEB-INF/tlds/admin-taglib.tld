@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<taglib version="2.0" xmlns="http://java.sun.com/xml/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd">
+	<tlib-version>1.0</tlib-version>
+	<jsp-version>2.0</jsp-version>
+	<short-name>crh-admin</short-name>
+	<uri>http://com.crh.logon/tags/admin-taglib.tld</uri>
+	<display-name>AdNovum Crh Admin Tags</display-name>
+	<description>Tags for admin subproject of Adnovum Crh</description>
+
+	<tag>
+		<name>disableTruckChange</name>
+		<tag-class>
+			com.crh.logon.admin.taglib.TruckAdminChangeTag
+		</tag-class>
+		<body-content>JSP</body-content>
+		<description>
+			Determines whether a certain functionality is available on the
+			given truck under certain circumstances, and given user.
+		</description>
+		<attribute>
+			<name>functionality</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				An integer that corresponds to one of the static constants
+				(named like FUNCTIONALITY_...) in TruckAdminChangeLogic
+			</description>
+		</attribute>
+		<attribute>
+			<name>formKey</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				A context key under which the TruckAdminForm can be found.
+			</description>
+		</attribute>		
+		<attribute>
+			<name>truckKey</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				A context key under which the truck can be found.
+			</description>
+		</attribute>
+	</tag>
+	<tag>
+		<name>disableSimpleVehicleChange</name>
+		<tag-class>
+			com.crh.logon.admin.taglib.SimpleVehicleAdminChangeTag
+		</tag-class>
+		<body-content>JSP</body-content>
+		<description>
+			Determines whether a certain functionality is available on the
+			given truck under certain circumstances, and given user.
+		</description>
+		<attribute>
+			<name>functionality</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				An integer that corresponds to one of the static constants
+				(named like FUNCTIONALITY_...) in SimpleVehicleAdminChangeLogic
+			</description>
+		</attribute>
+		<attribute>
+			<name>formKey</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				A context key under which the SimpleVehicleAdminForm can be found.
+			</description>
+		</attribute>		
+		<attribute>
+			<name>simpleVehicleKey</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				A context key under which the simple vehicle can be found.
+			</description>
+		</attribute>
+	</tag>
+	<tag>
+		<name>productChangeMatrixTd</name>
+		<tag-class>
+			com.crh.logon.admin.taglib.ProductChangeMatrixViewRowSpanTag
+		</tag-class>
+		<body-content>JSP</body-content>
+		<description>
+			Prints td start tag, or just adds one more to the final rowspan number in order
+			to lay out the same content for several rows. In case the sap material id is changing in the 
+			next row, the tag will end the td tag. 
+		</description>
+		<attribute>
+			<name>itemIndex</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				The item number, which is currently under processing.
+			</description>
+		</attribute>
+		<attribute>
+			<name>printTdTag</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				Defines if the tag should print the surrounding td rowspan tag. In case this value is false, it will not print the tag, only skips the content.
+			</description>
+		</attribute>
+	</tag>	
+ 		
+</taglib>

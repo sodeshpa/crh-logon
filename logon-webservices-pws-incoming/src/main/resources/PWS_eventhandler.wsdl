@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions targetNamespace="http://logon.holcim.com/2009/09/PWSEvent" xmlns:tns="http://logon.holcim.com/2009/09/PWSEvent" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:conv="http://www.openuri.org/2002/04/wsdl/conversation/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <xsd:schema elementFormDefault="qualified" targetNamespace="http://logon.holcim.com/2009/09/PWSEvent">
+      <xsd:include schemaLocation="xsd/PWSData_v0_01.xsd"/>
+    </xsd:schema>
+  </types>
+  
+  <message name="consumeRequest">
+    <part name="pwsEventRequest" element="partns:PWSEventRequest" xmlns:partns="http://logon.holcim.com/2009/09/PWSEvent"/>
+  </message>
+  <message name="consumeResponse">
+    <part name="pwsEventResponse" element="partns:PWSEventResponse" xmlns:partns="http://logon.holcim.com/2009/09/PWSEvent"/>
+  </message>
+  
+  <portType name="PWSEventPort">
+    <operation name="consume">
+      <input message="tns:consumeRequest"/>
+      <output message="tns:consumeResponse"/>
+    </operation>
+  </portType>
+  
+  <binding name="PWSEventPort" type="tns:PWSEventPort">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="consume">
+      <soap:operation soapAction="consume"/>
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+  </binding>
+  
+  <service name="PWSEventConsumer">
+    <port name="PWSEventPort" binding="tns:PWSEventPort">
+      <soap:address location="https://logon.holcim.com/logon/webservices-pws-incoming/services/PWSEventConsumer"/>
+    </port>
+  </service>
+</definitions>

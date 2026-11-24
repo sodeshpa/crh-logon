@@ -1,0 +1,1344 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="http://logon.holcim.com/LogonLDSInterface/services"
+            xmlns:tns="http://logon.holcim.com/LogonLDSInterface/services"
+            xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:losc="http://logon.holcim.com/LogonLDSInterface/common_in">
+
+    <xsd:import namespace="http://logon.holcim.com/LogonLDSInterface/common_in"
+                schemaLocation="LogonLDSInterface_common_in.xsd"/>
+
+    <xsd:element name="getLoadOrdersForVehicleRequest">
+        <xsd:complexType>
+            <xsd:complexContent>
+                <xsd:extension base="losc:request">
+                    <xsd:sequence>
+                        <xsd:element name="vehicle" type="losc:vehicleData">
+                            <xsd:annotation>
+                                <xsd:documentation>Date used to identify the vehicle.</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="tareWeight" minOccurs="0">
+                            <xsd:annotation>
+                                <xsd:documentation>Measured tare weight in the UoM tareWeightUom. Gives a hint about the
+                                    existence of a load on the truck, so that LOGON can
+                                    determine loading restrictions.</xsd:documentation>
+                            </xsd:annotation>
+                            <xsd:simpleType>
+                                <xsd:restriction base="xsd:decimal">
+                                    <xsd:totalDigits value="12"/>
+                                    <xsd:fractionDigits value="4"/>
+                                </xsd:restriction>
+                            </xsd:simpleType>
+                        </xsd:element>
+                        <xsd:element name="tareWeightUom" minOccurs="0">
+                            <xsd:annotation>
+                                <xsd:documentation>Unit of measure of tareWeight. Mandatory if tareWeight is given.</xsd:documentation>
+                            </xsd:annotation>
+                            <xsd:simpleType>
+                                <xsd:restriction base="xsd:string">
+                                    <xsd:maxLength value="3"/>
+                                </xsd:restriction>
+                            </xsd:simpleType>
+                        </xsd:element>
+                        <xsd:element name="location" type="losc:locationData"/>
+                        <xsd:element name="materialRestriction" minOccurs="0" maxOccurs="unbounded">
+                            <xsd:annotation>
+                                <xsd:documentation>List of SAP material numbers including leading zeros. Tells which materials can be loaded on the current loadingpoint. Restricts the list of possible orders in LOGON.</xsd:documentation>
+                            </xsd:annotation>
+                            <xsd:simpleType>
+                                <xsd:restriction base="xsd:string">
+                                    <xsd:maxLength value="18"/>
+                                </xsd:restriction>
+                            </xsd:simpleType>
+                        </xsd:element>
+                    </xsd:sequence>
+                </xsd:extension>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="getLoadOrdersForVehicleResponse">
+        <xsd:complexType>
+            <xsd:complexContent>
+                <xsd:extension base="losc:response">
+                    <xsd:sequence>
+                        <xsd:element name="tareCheckResult" maxOccurs="1" minOccurs="0">
+                            <xsd:annotation>
+                                <xsd:documentation>Result of the tare check based on LOGON vehicle masterdata</xsd:documentation>
+                            </xsd:annotation>
+                            <xsd:simpleType>
+                                <xsd:restriction base="xsd:boolean"/>
+                            </xsd:simpleType>
+                        </xsd:element>
+                        <xsd:element maxOccurs="unbounded" name="loadOrder" type="losc:loadOrderData"
+                                     minOccurs="0"/>
+                    </xsd:sequence>
+                </xsd:extension>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="getPickupLoadOrdersForShiptoRequest">
+        <xsd:complexType>
+            <xsd:complexContent>
+                <xsd:extension base="losc:request">
+                    <xsd:sequence>
+                        <xsd:element name="shipTo">
+                            <xsd:annotation>
+                                <xsd:documentation>The SAP Ship-To Business Partern Id. The ID used by SAP including the leading zeros.</xsd:documentation>
+                            </xsd:annotation>
+                            <xsd:simpleType>
+                                <xsd:restriction base="xsd:string">
+                                    <xsd:maxLength value="10"/>
+                                </xsd:restriction>
+                            </xsd:simpleType>
+                        </xsd:element>
+                        <xsd:element name="soldTo" minOccurs="0">
+                            <xsd:annotation>
+                                <xsd:documentation>The SAP Soldto-To Business Partern Id. The ID used by SAP including the leading zeros.</xsd:documentation>
+                            </xsd:annotation>
+                            <xsd:simpleType>
+                                <xsd:restriction base="xsd:string">
+                                    <xsd:maxLength value="10"/>
+                                </xsd:restriction>
+                            </xsd:simpleType>
+                        </xsd:element>
+                        <xsd:element name="materialRestriction" minOccurs="0" maxOccurs="unbounded">
+                            <xsd:annotation>
+                                <xsd:documentation>List of SAP material numbers including leading zeros. Tells which materials can be loaded on the current loadingpoint. Restricts the list of possible orders in LOGON.</xsd:documentation>
+                            </xsd:annotation>
+                            <xsd:simpleType>
+                                <xsd:restriction base="xsd:string">
+                                    <xsd:maxLength value="18"/>
+                                </xsd:restriction>
+                            </xsd:simpleType>
+                        </xsd:element>
+                    </xsd:sequence>
+                </xsd:extension>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="getPickupLoadOrdersForShiptoResponse">
+        <xsd:complexType>
+            <xsd:complexContent>
+                <xsd:extension base="losc:response">
+                    <xsd:sequence>
+                        <xsd:element maxOccurs="unbounded" name="loadOrder" type="losc:loadOrderData"
+                                     minOccurs="0"/>
+                    </xsd:sequence>
+                </xsd:extension>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="getMaterialsForShiptoRequest">
+        <xsd:complexType>
+            <xsd:complexContent>
+                <xsd:extension base="losc:request">
+                    <xsd:sequence>
+                        <xsd:element name="shipTo">
+                            <xsd:annotation>
+                                <xsd:documentation>The SAP Ship-To Business Partern Id. The ID used by SAP including the leading zeros.</xsd:documentation>
+                            </xsd:annotation>
+                            <xsd:simpleType>
+                                <xsd:restriction base="xsd:string">
+                                    <xsd:maxLength value="10"/>
+                                </xsd:restriction>
+                            </xsd:simpleType>
+                        </xsd:element>
+                        <xsd:element name="soldTo" minOccurs="0">
+                            <xsd:annotation>
+                                <xsd:documentation>The SAP Sold-To Business Partern Id. The ID used by SAP including the leading zeros.</xsd:documentation>
+                            </xsd:annotation>
+                            <xsd:simpleType>
+                                <xsd:restriction base="xsd:string">
+                                    <xsd:maxLength value="10"/>
+                                </xsd:restriction>
+                            </xsd:simpleType>
+                        </xsd:element>
+                        <xsd:element name="location" type="losc:locationData" minOccurs="0"/>
+                        <xsd:element name="materialRestriction" minOccurs="0" maxOccurs="unbounded">
+                            <xsd:annotation>
+                                <xsd:documentation>List of SAP material numbers including leading zeros. Tells which materials can be loaded on the current loadingpoint. Restricts the list of possible materials in LOGON.</xsd:documentation>
+                            </xsd:annotation>
+                            <xsd:simpleType>
+                                <xsd:restriction base="xsd:string">
+                                    <xsd:maxLength value="18"/>
+                                </xsd:restriction>
+                            </xsd:simpleType>
+                        </xsd:element>
+                    </xsd:sequence>
+                </xsd:extension>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="getMaterialsForShiptoResponse">
+        <xsd:complexType>
+            <xsd:complexContent>
+                <xsd:extension base="losc:response">
+                    <xsd:sequence>
+                        <xsd:element maxOccurs="unbounded" minOccurs="0" name="material"
+                                     type="losc:shiptoMaterialData"/>
+                    </xsd:sequence>
+                </xsd:extension>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="validateCustomerOrderRequest">
+        <xsd:complexType>
+            <xsd:complexContent>
+                <xsd:extension base="losc:request">
+                    <xsd:sequence>
+                        <xsd:element name="order" type="losc:orderData"/>
+                    </xsd:sequence>
+                </xsd:extension>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="validateCustomerOrderResponse">
+        <xsd:complexType>
+            <xsd:complexContent>
+                <xsd:extension base="losc:response">
+                    <xsd:sequence>
+                        <xsd:element name="order" type="losc:orderData" maxOccurs="unbounded" minOccurs="0">
+                            <xsd:annotation>
+                                <xsd:documentation>List of commercial orders that would be created. Can be used by the LDS to display it to the driver for verification.</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                    </xsd:sequence>
+                </xsd:extension>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="createCustomerOrderRequest">
+        <xsd:complexType>
+            <xsd:complexContent>
+                <xsd:extension base="losc:request">
+                    <xsd:sequence>
+                        <xsd:element name="order" type="losc:orderData"/>
+                    </xsd:sequence>
+                </xsd:extension>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="createCustomerOrderResponse">
+        <xsd:complexType>
+            <xsd:complexContent>
+                <xsd:extension base="losc:response">
+                    <xsd:sequence>
+                        <xsd:element name="customerOrderNo" minOccurs="0">
+                            <xsd:simpleType>
+                                <xsd:restriction base="xsd:string">
+                                    <xsd:maxLength value="8"/>
+                                </xsd:restriction>
+                            </xsd:simpleType>
+                        </xsd:element>
+                        <xsd:element maxOccurs="unbounded" name="loadOrderData" type="losc:reducedLoadOrderData"
+                                     minOccurs="0"/>
+                    </xsd:sequence>
+                </xsd:extension>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="createCustomerOrderBasedOnMasterDataDefaultRequest">
+        <xsd:complexType>
+            <xsd:complexContent>
+                <xsd:extension base="losc:request">
+                    <xsd:sequence>
+                        <xsd:element name="order" type="losc:orderData"/>
+                    </xsd:sequence>
+                </xsd:extension>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="createCustomerOrderBasedOnMasterDataDefaultResponse">
+        <xsd:complexType>
+            <xsd:complexContent>
+                <xsd:extension base="losc:response">
+                    <xsd:sequence>
+                        <xsd:element name="customerOrderNo" minOccurs="0">
+                            <xsd:simpleType>
+                                <xsd:restriction base="xsd:string">
+                                    <xsd:maxLength value="8"/>
+                                </xsd:restriction>
+                            </xsd:simpleType>
+                        </xsd:element>
+                        <xsd:element name="orderData" type="losc:createdOrderData" minOccurs="0" maxOccurs="unbounded" />
+                    </xsd:sequence>
+                </xsd:extension>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="closeCustomerOrderRequest">
+        <xsd:complexType>
+            <xsd:complexContent>
+                <xsd:extension base="losc:request">
+                    <xsd:sequence>
+                        <xsd:element name="customerOrderNo">
+                            <xsd:annotation>
+                                <xsd:documentation>LOGON Customer Order Number</xsd:documentation>
+                            </xsd:annotation>
+                            <xsd:simpleType>
+                                <xsd:restriction base="xsd:string">
+                                    <xsd:maxLength value="8"/>
+                                </xsd:restriction>
+                            </xsd:simpleType>
+                        </xsd:element>
+                    </xsd:sequence>
+                </xsd:extension>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="closeCustomerOrderResponse">
+        <xsd:complexType>
+            <xsd:complexContent>
+                <xsd:extension base="losc:response"/>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="updatePlanningMaterialRequest">
+        <xsd:complexType>
+            <xsd:complexContent>
+                <xsd:extension base="losc:request">
+                    <xsd:sequence>
+                        <xsd:element name="logonOrderNo">
+                            <xsd:annotation>
+                                <xsd:documentation>LOGON Single Delivery Order number</xsd:documentation>
+                            </xsd:annotation>
+                            <xsd:simpleType>
+                                <xsd:restriction base="xsd:string">
+                                    <xsd:maxLength value="12"/>
+                                </xsd:restriction>
+                            </xsd:simpleType>
+                        </xsd:element>
+                        <xsd:element name="prodPlantNo">
+                            <xsd:annotation>
+                                <xsd:documentation>SAP plant number of the plant where this material is produced</xsd:documentation>
+                            </xsd:annotation>
+                            <xsd:simpleType>
+                                <xsd:restriction base="xsd:string">
+                                    <xsd:maxLength value="4"/>
+                                </xsd:restriction>
+                            </xsd:simpleType>
+                        </xsd:element>
+                        <xsd:element name="materialNo">
+                            <xsd:annotation>
+                                <xsd:documentation>SAP material number</xsd:documentation>
+                            </xsd:annotation>
+                            <xsd:simpleType>
+                                <xsd:restriction base="xsd:string">
+                                    <xsd:maxLength value="18"/>
+                                </xsd:restriction>
+                            </xsd:simpleType>
+                        </xsd:element>
+                        <xsd:element name="contractItemNumber" minOccurs="0">
+                            <xsd:annotation>
+                                <xsd:documentation>SAP contract item number</xsd:documentation>
+                            </xsd:annotation>
+                            <xsd:simpleType>
+                                <xsd:restriction base="xsd:string">
+                                    <xsd:maxLength value="6"/>
+                                </xsd:restriction>
+                            </xsd:simpleType>
+                        </xsd:element>
+                        <xsd:element name="uom" minOccurs="0">
+                            <xsd:annotation>
+                                <xsd:documentation>Unit of measurement of the material</xsd:documentation>
+                            </xsd:annotation>
+                            <xsd:simpleType>
+                                <xsd:restriction base="xsd:string">
+                                    <xsd:maxLength value="3"/>
+                                </xsd:restriction>
+                            </xsd:simpleType>
+                        </xsd:element>
+                        <xsd:element name="qty" minOccurs="0">
+                            <xsd:annotation>
+                                <xsd:documentation>Ordered quantity of the material</xsd:documentation>
+                            </xsd:annotation>
+                            <xsd:simpleType>
+                                <xsd:restriction base="xsd:decimal">
+                                    <xsd:totalDigits value="12"/>
+                                    <xsd:fractionDigits value="4"/>
+                                </xsd:restriction>
+                            </xsd:simpleType>
+                        </xsd:element>
+                    </xsd:sequence>
+                </xsd:extension>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="updatePlanningMaterialResponse">
+        <xsd:complexType>
+            <xsd:complexContent>
+                <xsd:extension base="losc:response">
+                    <xsd:sequence>
+                        <xsd:element name="loadOrder" type="losc:loadOrderData" minOccurs="0"/>
+                    </xsd:sequence>
+                </xsd:extension>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="updateSchedulingRequest">
+        <xsd:complexType>
+            <xsd:complexContent>
+                <xsd:extension base="losc:request">
+                    <xsd:sequence>
+                        <xsd:element name="loadOrderId">
+                            <xsd:annotation>
+                                <xsd:documentation>Uniquely identifies a load order. Guarantees that the same order can be loaded more than once (i.e. in case of re-routing).</xsd:documentation>
+                            </xsd:annotation>
+                            <xsd:simpleType>
+                                <xsd:restriction base="xsd:string">
+                                    <xsd:maxLength value="25"/>
+                                </xsd:restriction>
+                            </xsd:simpleType>
+                        </xsd:element>
+                        <xsd:element name="vehicle" type="losc:vehicleData">
+                            <xsd:annotation>
+                                <xsd:documentation>Data used to identify the vehicle.</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                    </xsd:sequence>
+                </xsd:extension>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="updateSchedulingResponse">
+        <xsd:complexType>
+            <xsd:complexContent>
+                <xsd:extension base="losc:response">
+                    <xsd:sequence>
+                        <xsd:element name="loadOrder" type="losc:loadOrderData" minOccurs="0"/>
+                    </xsd:sequence>
+                </xsd:extension>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="addServiceMaterialsToOrderRequest">
+        <xsd:complexType>
+            <xsd:complexContent>
+                <xsd:extension base="losc:request">
+                    <xsd:sequence>
+                        <xsd:element name="logonOrderNo">
+                            <xsd:annotation>
+                                <xsd:documentation>LOGON Single Delivery Order number</xsd:documentation>
+                            </xsd:annotation>
+                            <xsd:simpleType>
+                                <xsd:restriction base="xsd:string">
+                                    <xsd:maxLength value="12"/>
+                                </xsd:restriction>
+                            </xsd:simpleType>
+                        </xsd:element>
+                        <xsd:element maxOccurs="unbounded" name="serviceMaterial"
+                                     type="losc:serviceMaterialData"/>
+                    </xsd:sequence>
+                </xsd:extension>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="addServiceMaterialsToOrderResponse">
+        <xsd:complexType>
+            <xsd:complexContent>
+                <xsd:extension base="losc:response">
+                    <xsd:sequence>
+                        <xsd:element name="order" type="losc:orderData" minOccurs="0"/>
+                    </xsd:sequence>
+                </xsd:extension>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="selectLoadOrderForLoadingRequest">
+        <xsd:complexType>
+            <xsd:complexContent>
+                <xsd:extension base="losc:request">
+                    <xsd:sequence>
+                        <xsd:element name="loadOrderId">
+                            <xsd:annotation>
+                                <xsd:documentation>Uniquely identifies a load order. Guarantees that the same order can be loaded more than once (i.e. in case of re-routing).</xsd:documentation>
+                            </xsd:annotation>
+                            <xsd:simpleType>
+                                <xsd:restriction base="xsd:string">
+                                    <xsd:maxLength value="25"/>
+                                </xsd:restriction>
+                            </xsd:simpleType>
+                        </xsd:element>
+                        <xsd:element maxOccurs="unbounded" minOccurs="0" name="orderValidation">
+                            <xsd:complexType>
+                                <xsd:sequence>
+                                    <xsd:element name="logonOrderNo">
+                                        <xsd:annotation>
+                                            <xsd:documentation>LOGON order number (or delivery number in CRH terminology).</xsd:documentation>
+                                        </xsd:annotation>
+                                        <xsd:simpleType>
+                                            <xsd:restriction base="xsd:string">
+                                                <xsd:maxLength value="12"/>
+                                            </xsd:restriction>
+                                        </xsd:simpleType>
+                                    </xsd:element>
+                                    <xsd:element name="orderValidationCode">
+                                        <xsd:annotation>
+                                            <xsd:documentation>LOGON Single Delivery Order validation code.</xsd:documentation>
+                                        </xsd:annotation>
+                                        <xsd:simpleType>
+                                            <xsd:restriction base="xsd:string">
+                                                <xsd:maxLength value="10"/>
+                                            </xsd:restriction>
+                                        </xsd:simpleType>
+                                    </xsd:element>
+                                </xsd:sequence>
+                            </xsd:complexType>
+                        </xsd:element>
+                        <xsd:element name="location" type="losc:locationData"/>
+                    </xsd:sequence>
+                </xsd:extension>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="selectLoadOrderForLoadingResponse">
+        <xsd:complexType>
+            <xsd:complexContent>
+                <xsd:extension base="losc:response"/>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="startLoadingRequest">
+        <xsd:complexType>
+            <xsd:complexContent>
+                <xsd:extension base="losc:request">
+                    <xsd:sequence>
+                        <xsd:element name="loadOrderItemId">
+                            <xsd:annotation>
+                                <xsd:documentation>Load order item id. Reference to the loadOrderItem.</xsd:documentation>
+                            </xsd:annotation>
+                            <xsd:simpleType>
+                                <xsd:restriction base="xsd:string">
+                                    <xsd:maxLength value="12"/>
+                                </xsd:restriction>
+                            </xsd:simpleType>
+                        </xsd:element>
+                        <xsd:element name="vehicle" type="losc:vehicleData" minOccurs="0"/>
+                        <xsd:element name="material" type="losc:loadedMaterialData" minOccurs="0"/>
+                        <xsd:element name="firstWeighing" type="losc:firstWeighingData"/>
+                        <xsd:element name="location" type="losc:locationData"/>
+                        <xsd:element name="tareDeviationDriverACK" minOccurs="0">
+                            <xsd:annotation>
+                                <xsd:documentation>Tare deviation (measured != master data) warning shown
+                                    and confirmed by driver.</xsd:documentation>
+                            </xsd:annotation>
+                            <xsd:simpleType>
+                                <xsd:restriction base="xsd:boolean"/>
+                            </xsd:simpleType>
+                        </xsd:element>
+                        <xsd:element name="tareWarnIgnore" minOccurs="0">
+                            <xsd:annotation>
+                                <xsd:documentation>With tareWarnIgnore set to "true", LOGON allows to start
+                                    loading although the tare in master data doesn't match
+                                    with the tare provided in the tareWeightKg field.</xsd:documentation>
+                            </xsd:annotation>
+                            <xsd:simpleType>
+                                <xsd:restriction base="xsd:boolean"/>
+                            </xsd:simpleType>
+                        </xsd:element>
+                        <xsd:element name="noteDelivery" minOccurs="0">
+                            <xsd:annotation>
+                                <xsd:documentation>Remark relevant for delivery note (and later invoice).</xsd:documentation>
+                            </xsd:annotation>
+                            <xsd:simpleType>
+                                <xsd:restriction base="xsd:string">
+                                    <xsd:maxLength value="256"/>
+                                </xsd:restriction>
+                            </xsd:simpleType>
+                        </xsd:element>
+                        <xsd:element name="noteLDS" minOccurs="0">
+                            <xsd:annotation>
+                                <xsd:documentation>Remark for operator of LDS and/or truck driver. To be displayed somewhere on the LDS screen.</xsd:documentation>
+                            </xsd:annotation>
+                            <xsd:simpleType>
+                                <xsd:restriction base="xsd:string">
+                                    <xsd:maxLength value="256"/>
+                                </xsd:restriction>
+                            </xsd:simpleType>
+                        </xsd:element>
+                    </xsd:sequence>
+                </xsd:extension>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="startLoadingResponse">
+        <xsd:complexType>
+            <xsd:complexContent>
+                <xsd:extension base="losc:response"/>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="endLoadingRequest">
+        <xsd:annotation>
+            <xsd:documentation>Sent only once, covering all individual loads.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexType>
+            <xsd:complexContent>
+                <xsd:extension base="losc:request">
+                    <xsd:sequence>
+                        <xsd:element name="vehicle" type="losc:vehicleData"/>
+                        <xsd:element name="driver" type="losc:driverData" minOccurs="0" />
+                        <xsd:element name="attorney" type="losc:attorneyData" minOccurs="0" />
+                        <xsd:element name="dispatcher" type="losc:dispatcherData" minOccurs="0" />
+                        <xsd:element maxOccurs="unbounded" name="endLoadingPart"
+                                     type="losc:endLoadingPartData"/>
+                        <xsd:element maxOccurs="unbounded" minOccurs="0" name="returnPallets">
+                            <xsd:complexType>
+                                <xsd:sequence>
+                                    <xsd:element name="logonOrderNo">
+                                        <xsd:annotation>
+                                            <xsd:documentation>LOGON order number (or delivery number in CRH terminology).</xsd:documentation>
+                                        </xsd:annotation>
+                                        <xsd:simpleType>
+                                            <xsd:restriction base="xsd:string">
+                                                <xsd:maxLength value="12"/>
+                                            </xsd:restriction>
+                                        </xsd:simpleType>
+                                    </xsd:element>
+                                    <xsd:element minOccurs="1" name="materialNo">
+                                        <xsd:annotation>
+                                            <xsd:documentation>SAP material number of the pallet. Pallet (material) must be present in the order this return is referring to.</xsd:documentation>
+                                        </xsd:annotation>
+                                        <xsd:simpleType>
+                                            <xsd:restriction base="xsd:string">
+                                                <xsd:maxLength value="18"/>
+                                            </xsd:restriction>
+                                        </xsd:simpleType>
+                                    </xsd:element>
+                                    <xsd:element minOccurs="1" name="quantity">
+                                        <xsd:annotation>
+                                            <xsd:documentation>Quantity of pallets returned in the unit of measure defined by 'quantityUom'.</xsd:documentation>
+                                        </xsd:annotation>
+                                        <xsd:simpleType>
+                                            <xsd:restriction base="xsd:decimal">
+                                                <xsd:totalDigits value="12"/>
+                                                <xsd:fractionDigits value="4"/>
+                                            </xsd:restriction>
+                                        </xsd:simpleType>
+                                    </xsd:element>
+                                    <xsd:element name="quantityUom">
+                                        <xsd:annotation>
+                                            <xsd:documentation>The unit of measure 'quantity' is measured in. Must be SAP base UoM, sales UoM or any UoM which is defined in alternative UoM of the material.</xsd:documentation>
+                                        </xsd:annotation>
+                                        <xsd:simpleType>
+                                            <xsd:restriction base="xsd:string">
+                                                <xsd:maxLength value="3"/>
+                                            </xsd:restriction>
+                                        </xsd:simpleType>
+                                    </xsd:element>
+                                </xsd:sequence>
+                            </xsd:complexType>
+                        </xsd:element>
+                        <xsd:element name="firstWeighing" type="losc:firstWeighingData" minOccurs="0"/>
+                        <xsd:element name="secondWeighing" type="losc:secondWeighingData" minOccurs="0"/>
+                        <xsd:element name="tareDeviationDriverACK" minOccurs="0">
+                            <xsd:annotation>
+                                <xsd:documentation>Tare deviation (measured != master data) warning shown and confirmed by driver.</xsd:documentation>
+                            </xsd:annotation>
+                            <xsd:simpleType>
+                                <xsd:restriction base="xsd:boolean"/>
+                            </xsd:simpleType>
+                        </xsd:element>
+                        <xsd:element name="maxGrossExceededDriverACK" minOccurs="0">
+                            <xsd:annotation>
+                                <xsd:documentation>The measured gross weight exceeds the maximum allowed for the vehicle. Warning shown and confirmed by driver.</xsd:documentation>
+                            </xsd:annotation>
+                            <xsd:simpleType>
+                                <xsd:restriction base="xsd:boolean"/>
+                            </xsd:simpleType>
+                        </xsd:element>
+                        <xsd:element name="ldsCustomerOrderNo" minOccurs="0">
+                            <xsd:annotation>
+                                <xsd:documentation>Customer order number / external order number.</xsd:documentation>
+                            </xsd:annotation>
+                            <xsd:simpleType>
+                                <xsd:restriction base="xsd:string">
+                                    <xsd:maxLength value="20"/>
+                                </xsd:restriction>
+                            </xsd:simpleType>
+                        </xsd:element>
+                        <xsd:element name="ldsDeliveryNoteNo" minOccurs="0">
+                            <xsd:annotation>
+                                <xsd:documentation>Delivery note number from the LDS for this order.</xsd:documentation>
+                            </xsd:annotation>
+                            <xsd:simpleType>
+                                <xsd:restriction base="xsd:string">
+                                    <xsd:maxLength value="12"/>
+                                </xsd:restriction>
+                            </xsd:simpleType>
+                        </xsd:element>
+                        <xsd:element name="ldsEnterShippingpointTime" minOccurs="0"
+                                     type="xsd:dateTime">
+                            <xsd:annotation>
+                                <xsd:documentation>The time the truck entered the shippoingpoint/plant area.
+                                    This value is considered if there are no PDAs involved.</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="ldsLeaveShippingpointTime" minOccurs="0"
+                                     type="xsd:dateTime">
+                            <xsd:annotation>
+                                <xsd:documentation>Time the truck leaves the shippoingpoint/plant area.
+                                    This value is considered if there are no PDAs involved.
+                                    In WeWaS, this corresponds to the print delivery note event
+                                    or similar event. Later that can be identified and related to
+                                    this specific truck and order.</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="deliveryNotePrintingPoint" minOccurs="0">
+                            <xsd:annotation>
+                                <xsd:documentation>Point where delivery note should be printed.
+                                    Actaully this is the loading point in LOGON. Check logic impact on Shipping Point Master Data!
+                                    (maybe just an additional loading point in LOGON).</xsd:documentation>
+                            </xsd:annotation>
+                            <xsd:simpleType>
+                                <xsd:restriction base="xsd:string">
+                                    <xsd:maxLength value="12"/>
+                                </xsd:restriction>
+                            </xsd:simpleType>
+                        </xsd:element>
+                        <xsd:element minOccurs="0" name="suppressDeliveryNotePrinting">
+                            <xsd:annotation>
+                                <xsd:documentation>Override of all other settings. No delivery note will be printed at all. Also suppresses printing of collective delivery note, but only if this is the last endLoadingRequest of that customer order (no 'memory' of this option).</xsd:documentation>
+                            </xsd:annotation>
+                            <xsd:simpleType>
+                                <xsd:restriction base="xsd:boolean"> </xsd:restriction>
+                            </xsd:simpleType>
+                        </xsd:element>
+                        <xsd:element name="noteDelivery" minOccurs="0">
+                            <xsd:annotation>
+                                <xsd:documentation>Remark relevant for delivery note (and later invoice).</xsd:documentation>
+                            </xsd:annotation>
+                            <xsd:simpleType>
+                                <xsd:restriction base="xsd:string">
+                                    <xsd:maxLength value="256"/>
+                                </xsd:restriction>
+                            </xsd:simpleType>
+                        </xsd:element>
+                        <xsd:element name="noteLDS" minOccurs="0">
+                            <xsd:annotation>
+                                <xsd:documentation>Remark for operator of LDS and/or truck driver. To be displayed somewhere on the LDS screen.</xsd:documentation>
+                            </xsd:annotation>
+                            <xsd:simpleType>
+                                <xsd:restriction base="xsd:string">
+                                    <xsd:maxLength value="256"/>
+                                </xsd:restriction>
+                            </xsd:simpleType>
+                        </xsd:element>
+                        <xsd:element name="carrierLetter" minOccurs="0">
+                            <xsd:annotation>
+                                <xsd:documentation>Driver to put the 15 Alphanumeric code in SCHENCK and to be print on DN.</xsd:documentation>
+                            </xsd:annotation>
+                            <xsd:simpleType>
+                                <xsd:restriction base="xsd:string">
+                                    <xsd:maxLength value="15"/>
+                                </xsd:restriction>
+                            </xsd:simpleType>
+                        </xsd:element>
+                        <xsd:element name="seals" minOccurs="0">
+                            <xsd:annotation>
+                                <xsd:documentation>Seal Numbers added by Operating during exiting phase. Maximum of four seals are possible per truck, regardless of whether BULK or BAG products.</xsd:documentation>
+                            </xsd:annotation>
+                            <xsd:simpleType>
+                                <xsd:restriction base="xsd:string">
+                                    <xsd:maxLength value="256"/>
+                                </xsd:restriction>
+                            </xsd:simpleType>
+                        </xsd:element>
+                    </xsd:sequence>
+                </xsd:extension>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="endLoadingResponse">
+        <xsd:complexType>
+            <xsd:complexContent>
+                <xsd:extension base="losc:response">
+                    <xsd:sequence>
+                        <xsd:element name="order" type="losc:orderData" minOccurs="0" maxOccurs="unbounded">
+                            <xsd:annotation>
+                                <xsd:documentation>The final commercial order including data received in endLoadingRequest.</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                    </xsd:sequence>
+                </xsd:extension>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="regularizationRequest">
+        <xsd:annotation>
+            <xsd:documentation>Sent only once, covering all individual loads.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexType>
+            <xsd:complexContent>
+                <xsd:extension base="losc:request">
+                    <xsd:sequence>
+                        <xsd:element name="vehicle" type="losc:vehicleData"/>
+                        <xsd:element name="driver" type="losc:driverData" minOccurs="0" />
+                        <xsd:element name="attorney" type="losc:attorneyData" minOccurs="0" />
+                        <xsd:element name="dispatcher" type="losc:dispatcherData" minOccurs="0" />
+                        <xsd:element maxOccurs="unbounded" name="endLoadingPart"
+                                     type="losc:endLoadingPartData"/>
+                        <xsd:element maxOccurs="unbounded" minOccurs="0" name="returnPallets">
+                            <xsd:complexType>
+                                <xsd:sequence>
+                                    <xsd:element name="logonOrderNo">
+                                        <xsd:annotation>
+                                            <xsd:documentation>LOGON order number (or delivery number in CRH terminology).</xsd:documentation>
+                                        </xsd:annotation>
+                                        <xsd:simpleType>
+                                            <xsd:restriction base="xsd:string">
+                                                <xsd:maxLength value="12"/>
+                                            </xsd:restriction>
+                                        </xsd:simpleType>
+                                    </xsd:element>
+                                    <xsd:element minOccurs="1" name="materialNo">
+                                        <xsd:annotation>
+                                            <xsd:documentation>SAP material number of the pallet. Pallet (material) must be present in the order this return is referring to.</xsd:documentation>
+                                        </xsd:annotation>
+                                        <xsd:simpleType>
+                                            <xsd:restriction base="xsd:string">
+                                                <xsd:maxLength value="18"/>
+                                            </xsd:restriction>
+                                        </xsd:simpleType>
+                                    </xsd:element>
+                                    <xsd:element minOccurs="1" name="quantity">
+                                        <xsd:annotation>
+                                            <xsd:documentation>Quantity of pallets returned in the unit of measure defined by 'quantityUom'.</xsd:documentation>
+                                        </xsd:annotation>
+                                        <xsd:simpleType>
+                                            <xsd:restriction base="xsd:decimal">
+                                                <xsd:totalDigits value="12"/>
+                                                <xsd:fractionDigits value="4"/>
+                                            </xsd:restriction>
+                                        </xsd:simpleType>
+                                    </xsd:element>
+                                    <xsd:element name="quantityUom">
+                                        <xsd:annotation>
+                                            <xsd:documentation>The unit of measure 'quantity' is measured in. Must be SAP base UoM, sales UoM or any UoM which is defined in alternative UoM of the material.</xsd:documentation>
+                                        </xsd:annotation>
+                                        <xsd:simpleType>
+                                            <xsd:restriction base="xsd:string">
+                                                <xsd:maxLength value="3"/>
+                                            </xsd:restriction>
+                                        </xsd:simpleType>
+                                    </xsd:element>
+                                </xsd:sequence>
+                            </xsd:complexType>
+                        </xsd:element>
+                        <xsd:element name="firstWeighing" type="losc:firstWeighingData" minOccurs="0"/>
+                        <xsd:element name="secondWeighing" type="losc:secondWeighingData" minOccurs="0"/>
+                        <xsd:element name="tareDeviationDriverACK" minOccurs="0">
+                            <xsd:annotation>
+                                <xsd:documentation>Tare deviation (measured != master data) warning shown and confirmed by driver.</xsd:documentation>
+                            </xsd:annotation>
+                            <xsd:simpleType>
+                                <xsd:restriction base="xsd:boolean"/>
+                            </xsd:simpleType>
+                        </xsd:element>
+                        <xsd:element name="maxGrossExceededDriverACK" minOccurs="0">
+                            <xsd:annotation>
+                                <xsd:documentation>The measured gross weight exceeds the maximum allowed for the vehicle. Warning shown and confirmed by driver.</xsd:documentation>
+                            </xsd:annotation>
+                            <xsd:simpleType>
+                                <xsd:restriction base="xsd:boolean"/>
+                            </xsd:simpleType>
+                        </xsd:element>
+                        <xsd:element name="ldsCustomerOrderNo" minOccurs="0">
+                            <xsd:annotation>
+                                <xsd:documentation>Customer order number / external order number.</xsd:documentation>
+                            </xsd:annotation>
+                            <xsd:simpleType>
+                                <xsd:restriction base="xsd:string">
+                                    <xsd:maxLength value="20"/>
+                                </xsd:restriction>
+                            </xsd:simpleType>
+                        </xsd:element>
+                        <xsd:element name="ldsDeliveryNoteNo" minOccurs="0">
+                            <xsd:annotation>
+                                <xsd:documentation>Delivery note number from the LDS for this order.</xsd:documentation>
+                            </xsd:annotation>
+                            <xsd:simpleType>
+                                <xsd:restriction base="xsd:string">
+                                    <xsd:maxLength value="12"/>
+                                </xsd:restriction>
+                            </xsd:simpleType>
+                        </xsd:element>
+                        <xsd:element name="ldsEnterShippingpointTime" minOccurs="0"
+                                     type="xsd:dateTime">
+                            <xsd:annotation>
+                                <xsd:documentation>The time the truck entered the shippoingpoint/plant area.
+                                    This value is considered if there are no PDAs involved.</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="ldsLeaveShippingpointTime" minOccurs="0"
+                                     type="xsd:dateTime">
+                            <xsd:annotation>
+                                <xsd:documentation>Time the truck leaves the shippoingpoint/plant area.
+                                    This value is considered if there are no PDAs involved.
+                                    In WeWaS, this corresponds to the print delivery note event
+                                    or similar event. Later that can be identified and related to
+                                    this specific truck and order.</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="deliveryNotePrintingPoint" minOccurs="0">
+                            <xsd:annotation>
+                                <xsd:documentation>Point where delivery note should be printed.
+                                    Actaully this is the loading point in LOGON. Check logic impact on Shipping Point Master Data!
+                                    (maybe just an additional loading point in LOGON).</xsd:documentation>
+                            </xsd:annotation>
+                            <xsd:simpleType>
+                                <xsd:restriction base="xsd:string">
+                                    <xsd:maxLength value="12"/>
+                                </xsd:restriction>
+                            </xsd:simpleType>
+                        </xsd:element>
+                        <xsd:element minOccurs="0" name="suppressDeliveryNotePrinting">
+                            <xsd:annotation>
+                                <xsd:documentation>Override of all other settings. No delivery note will be printed at all. Also suppresses printing of collective delivery note, but only if this is the last endLoadingRequest of that customer order (no 'memory' of this option).</xsd:documentation>
+                            </xsd:annotation>
+                            <xsd:simpleType>
+                                <xsd:restriction base="xsd:boolean"> </xsd:restriction>
+                            </xsd:simpleType>
+                        </xsd:element>
+                        <xsd:element name="noteDelivery" minOccurs="0">
+                            <xsd:annotation>
+                                <xsd:documentation>Remark relevant for delivery note (and later invoice).</xsd:documentation>
+                            </xsd:annotation>
+                            <xsd:simpleType>
+                                <xsd:restriction base="xsd:string">
+                                    <xsd:maxLength value="256"/>
+                                </xsd:restriction>
+                            </xsd:simpleType>
+                        </xsd:element>
+                        <xsd:element name="noteLDS" minOccurs="0">
+                            <xsd:annotation>
+                                <xsd:documentation>Remark for operator of LDS and/or truck driver. To be displayed somewhere on the LDS screen.</xsd:documentation>
+                            </xsd:annotation>
+                            <xsd:simpleType>
+                                <xsd:restriction base="xsd:string">
+                                    <xsd:maxLength value="256"/>
+                                </xsd:restriction>
+                            </xsd:simpleType>
+                        </xsd:element>
+                        <xsd:element name="carrierLetter" minOccurs="0">
+                            <xsd:annotation>
+                                <xsd:documentation>Driver to put the 15 Alphanumeric code in SCHENCK and to be print on DN.</xsd:documentation>
+                            </xsd:annotation>
+                            <xsd:simpleType>
+                                <xsd:restriction base="xsd:string">
+                                    <xsd:maxLength value="15"/>
+                                </xsd:restriction>
+                            </xsd:simpleType>
+                        </xsd:element>
+                        <xsd:element name="seals" minOccurs="0">
+                            <xsd:annotation>
+                                <xsd:documentation>Seal Numbers added by Operating during exiting phase. Maximum of four seals are possible per truck, regardless of whether BULK or BAG products.</xsd:documentation>
+                            </xsd:annotation>
+                            <xsd:simpleType>
+                                <xsd:restriction base="xsd:string">
+                                    <xsd:maxLength value="256"/>
+                                </xsd:restriction>
+                            </xsd:simpleType>
+                        </xsd:element>
+                    </xsd:sequence>
+                </xsd:extension>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="regularizationResponse">
+        <xsd:complexType>
+            <xsd:complexContent>
+                <xsd:extension base="losc:response">
+                    <xsd:sequence>
+                        <xsd:element name="order" type="losc:orderData" minOccurs="0" maxOccurs="unbounded">
+                            <xsd:annotation>
+                                <xsd:documentation>The final commercial order including data received in endLoadingRequest.</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                    </xsd:sequence>
+                </xsd:extension>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="setLoadOrder2LoadedRequest">
+        <xsd:annotation>
+            <xsd:documentation>Sent only once, covering all individual loads.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexType>
+            <xsd:complexContent>
+                <xsd:extension base="losc:request">
+                    <xsd:sequence>
+                        <xsd:element name="vehicle" type="losc:vehicleData"/>
+                        <xsd:element name="loadOrderId">
+                            <xsd:annotation>
+                                <xsd:documentation>Uniquely identifies a load order. Guarantees that the same order can be loaded more than once (i.e. in case of re-routing).</xsd:documentation>
+                            </xsd:annotation>
+                            <xsd:simpleType>
+                                <xsd:restriction base="xsd:string">
+                                    <xsd:maxLength value="25"/>
+                                </xsd:restriction>
+                            </xsd:simpleType>
+                        </xsd:element>
+                        <xsd:element name="firstWeighing" type="losc:firstWeighingData" minOccurs="0"/>
+                        <xsd:element name="secondWeighing" type="losc:secondWeighingData"/>
+                        <xsd:element name="tareDeviationDriverACK" minOccurs="0">
+                            <xsd:annotation>
+                                <xsd:documentation>Tare deviation (measured != master data) warning shown
+                                    and confirmed by driver.</xsd:documentation>
+                            </xsd:annotation>
+                            <xsd:simpleType>
+                                <xsd:restriction base="xsd:boolean"/>
+                            </xsd:simpleType>
+                        </xsd:element>
+                        <xsd:element name="maxGrossExceededDriverACK" minOccurs="0">
+                            <xsd:annotation>
+                                <xsd:documentation>The measured gross weight exceeds the maximum allowed for the vehicle. Warning shown and confirmed by driver.</xsd:documentation>
+                            </xsd:annotation>
+                            <xsd:simpleType>
+                                <xsd:restriction base="xsd:boolean"/>
+                            </xsd:simpleType>
+                        </xsd:element>
+                        <xsd:element name="ldsCustomerOrderNo" minOccurs="0">
+                            <xsd:annotation>
+                                <xsd:documentation>Customer order number / external order number.</xsd:documentation>
+                            </xsd:annotation>
+                            <xsd:simpleType>
+                                <xsd:restriction base="xsd:string">
+                                    <xsd:maxLength value="20"/>
+                                </xsd:restriction>
+                            </xsd:simpleType>
+                        </xsd:element>
+                        <xsd:element name="ldsDeliveryNoteNo" minOccurs="0">
+                            <xsd:annotation>
+                                <xsd:documentation>Delivery note number from the LDS for this order.</xsd:documentation>
+                            </xsd:annotation>
+                            <xsd:simpleType>
+                                <xsd:restriction base="xsd:string">
+                                    <xsd:maxLength value="12"/>
+                                </xsd:restriction>
+                            </xsd:simpleType>
+                        </xsd:element>
+                        <xsd:element name="ldsEnterShippingpointTime" minOccurs="0"
+                                     type="xsd:dateTime">
+                            <xsd:annotation>
+                                <xsd:documentation>The time the truck entered the shippoingpoint/plant area.
+                                    This value is considered if there are no PDAs involved.</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="ldsLeaveShippingpointTime" minOccurs="0"
+                                     type="xsd:dateTime">
+                            <xsd:annotation>
+                                <xsd:documentation>Time the truck leaves the shippoingpoint/plant area.
+                                    This value is considered if there are no PDAs involved.
+                                    In WeWaS, this corresponds to the print delivery note event
+                                    or similar event. Later that can be identified and related to
+                                    this specific truck and order.</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element minOccurs="0" name="suppressDeliveryNotePrinting">
+                            <xsd:annotation>
+                                <xsd:documentation>Override of all other settings. No delivery note will be printed at all. Also suppresses printing of collective delivery note, but only if this is the last endLoadingRequest of that customer order (no 'memory' of this option).</xsd:documentation>
+                            </xsd:annotation>
+                            <xsd:simpleType>
+                                <xsd:restriction base="xsd:boolean"> </xsd:restriction>
+                            </xsd:simpleType>
+                        </xsd:element>
+                        <xsd:element name="noteDelivery" minOccurs="0">
+                            <xsd:annotation>
+                                <xsd:documentation>Remark relevant for delivery note (and later invoice).</xsd:documentation>
+                            </xsd:annotation>
+                            <xsd:simpleType>
+                                <xsd:restriction base="xsd:string">
+                                    <xsd:maxLength value="256"/>
+                                </xsd:restriction>
+                            </xsd:simpleType>
+                        </xsd:element>
+                        <xsd:element name="noteLDS" minOccurs="0">
+                            <xsd:annotation>
+                                <xsd:documentation>Remark for operator of LDS and/or truck driver. To be displayed somewhere on the LDS screen.</xsd:documentation>
+                            </xsd:annotation>
+                            <xsd:simpleType>
+                                <xsd:restriction base="xsd:string">
+                                    <xsd:maxLength value="256"/>
+                                </xsd:restriction>
+                            </xsd:simpleType>
+                        </xsd:element>
+                    </xsd:sequence>
+                </xsd:extension>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="setLoadOrder2LoadedResponse">
+        <xsd:complexType>
+            <xsd:complexContent>
+                <xsd:extension base="losc:response">
+                    <xsd:sequence>
+                        <xsd:element name="order" type="losc:orderData" minOccurs="0" maxOccurs="unbounded">
+                            <xsd:annotation>
+                                <xsd:documentation>The final commercial order including data received in endLoadingRequest.</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                    </xsd:sequence>
+                </xsd:extension>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="cancelLoadingRequest">
+        <xsd:complexType>
+            <xsd:complexContent>
+                <xsd:extension base="losc:request">
+                    <xsd:sequence>
+                        <xsd:element name="loadOrderId">
+                            <xsd:annotation>
+                                <xsd:documentation>Uniquely identifies a load order. Guarantees that the same order can be loaded more than once (i.e. in case of re-routing).</xsd:documentation>
+                            </xsd:annotation>
+                            <xsd:simpleType>
+                                <xsd:restriction base="xsd:string">
+                                    <xsd:maxLength value="25"/>
+                                </xsd:restriction>
+                            </xsd:simpleType>
+                        </xsd:element>
+                    </xsd:sequence>
+                </xsd:extension>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="cancelLoadingResponse">
+        <xsd:complexType>
+            <xsd:complexContent>
+                <xsd:extension base="losc:response"/>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="createCompletedCustomerOrderRequest">
+        <xsd:complexType>
+            <xsd:complexContent>
+                <xsd:extension base="losc:request">
+                    <xsd:sequence>
+                        <xsd:element name="order" type="losc:orderData"/>
+                        <xsd:element name="vehicle" type="losc:vehicleData"/>
+                        <xsd:element maxOccurs="unbounded" name="completedLoadOrderItem"
+                                     type="losc:completedLoadOrderItemData"/>
+                    </xsd:sequence>
+                </xsd:extension>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="createCompletedCustomerOrderResponse">
+        <xsd:complexType>
+            <xsd:complexContent>
+                <xsd:extension base="losc:response"/>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="getOrdersForCarriersRequest">
+        <xsd:complexType>
+            <xsd:complexContent>
+                <xsd:extension base="losc:request">
+                    <xsd:sequence>
+                        <xsd:element name="selectedCarriers" type="losc:vendorData" maxOccurs="unbounded">
+                            <xsd:annotation>
+                                <xsd:documentation>Selected Carriers.</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="lastChangeFrom" type="xsd:dateTime">
+                            <xsd:annotation>
+                                <xsd:documentation>Filter parameter for the orders returned. Must be in the past. Only those orders will be returned, which were last changed between the lastChangeFrom and lastChangeTo parameters.</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="lastChangeTo" type="xsd:dateTime">
+                            <xsd:annotation>
+                                <xsd:documentation>Filter parameter for the orders returned. Must be in the past. Only those orders will be returned, which were last changed between the lastChangeFrom and lastChangeTo parameters.</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="page">
+                            <xsd:annotation>
+                                <xsd:documentation>The number of the requested page. Each response returns n orders (n=predefined value, maximum number of orders in a response). Specify this parameter as page=1 to get results 1-n, page 2 to get orders from n+1 until 2n etc.</xsd:documentation>
+                            </xsd:annotation>
+                            <xsd:simpleType>
+                                <xsd:restriction base="xsd:decimal">
+                                    <xsd:minInclusive value="1"/>
+                                </xsd:restriction>
+                            </xsd:simpleType>
+                        </xsd:element>
+                        <xsd:element name="encodedOrderNumbers" minOccurs="0">
+                            <xsd:annotation>
+                                <xsd:documentation>The encoded order numbers for all pages. Mandatory for not-first page requests.</xsd:documentation>
+                            </xsd:annotation>
+                            <xsd:simpleType>
+                                <xsd:restriction base="xsd:string">
+                                    <xsd:maxLength value="1000"/>
+                                </xsd:restriction>
+                            </xsd:simpleType>
+                        </xsd:element>
+                    </xsd:sequence>
+                </xsd:extension>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="getOrdersForCarriersResponse">
+        <xsd:complexType>
+            <xsd:complexContent>
+                <xsd:extension base="losc:response">
+                    <xsd:sequence>
+                        <xsd:element name="order" type="losc:orderListData" minOccurs="0" maxOccurs="unbounded"/>
+                        <xsd:element name="totalNumberOfPages" minOccurs="0">
+                            <xsd:annotation>
+                                <xsd:documentation>The total number of pages. Number of all orders/n (n=predefined value, maximum number of orders in a response). Returned only if the first page is requested.</xsd:documentation>
+                            </xsd:annotation>
+                            <xsd:simpleType>
+                                <xsd:restriction base="xsd:decimal">
+                                </xsd:restriction>
+                            </xsd:simpleType>
+                        </xsd:element>
+                        <xsd:element name="encodedOrderNumbers" minOccurs="0">
+                            <xsd:annotation>
+                                <xsd:documentation>Sent back only if the first page was requested (getOrdersForCarriersResponse.page=1). This value is expected in getOrdersForCarriersRequest.encodedOrderNumbers if not the first page is requested from Logon (getOrdersForCarriersRequest.page is other, than 1). Empty in case there are no orders matching the filter criteria.</xsd:documentation>
+                            </xsd:annotation>
+                            <xsd:simpleType>
+                                <xsd:restriction base="xsd:string">
+                                    <xsd:maxLength value="1000"/>
+                                </xsd:restriction>
+                            </xsd:simpleType>
+                        </xsd:element>
+                    </xsd:sequence>
+                </xsd:extension>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="scheduleAssignmentRequest">
+        <xsd:complexType>
+            <xsd:complexContent>
+                <xsd:extension base="losc:request">
+                    <xsd:sequence>
+                        <xsd:element name="plannedLoading" type="xsd:dateTime" minOccurs="1">
+                            <xsd:annotation>
+                                <xsd:documentation>Time when the assignment is supposed to start.</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="vehicle" type="losc:vehicleData" minOccurs="1">
+                            <xsd:annotation>
+                                <xsd:documentation>Data used to identify the vehicle. Note: When receiving the request Logon will update the commercial and executing carrier of the order with the values received in the request.</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="logonOrderNo" minOccurs="1">
+                            <xsd:annotation>
+                                <xsd:documentation>LOGON Single Delivery Order number</xsd:documentation>
+                            </xsd:annotation>
+                            <xsd:simpleType>
+                                <xsd:restriction base="xsd:string">
+                                    <xsd:maxLength value="12"/>
+                                </xsd:restriction>
+                            </xsd:simpleType>
+                        </xsd:element>
+                    </xsd:sequence>
+                </xsd:extension>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="scheduleAssignmentResponse">
+        <xsd:complexType>
+            <xsd:complexContent>
+                <xsd:extension base="losc:response"/>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="releaseAssignmentRequest">
+        <xsd:complexType>
+            <xsd:complexContent>
+                <xsd:extension base="losc:request">
+                    <xsd:sequence>
+                        <xsd:element name="logonOrderNo" minOccurs="1">
+                            <xsd:annotation>
+                                <xsd:documentation>LOGON Single Delivery Order number</xsd:documentation>
+                            </xsd:annotation>
+                            <xsd:simpleType>
+                                <xsd:restriction base="xsd:string">
+                                    <xsd:maxLength value="12"/>
+                                </xsd:restriction>
+                            </xsd:simpleType>
+                        </xsd:element>
+                    </xsd:sequence>
+                </xsd:extension>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="releaseAssignmentResponse">
+        <xsd:complexType>
+            <xsd:complexContent>
+                <xsd:extension base="losc:response"/>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="addReturnOrderRequest">
+        <xsd:complexType>
+            <xsd:complexContent>
+                <xsd:extension base="losc:request">
+                    <xsd:sequence>
+                        <xsd:element name="logonOrderNo" minOccurs="1">
+                            <xsd:annotation>
+                                <xsd:documentation>LOGON Single Delivery Order number</xsd:documentation>
+                            </xsd:annotation>
+                            <xsd:simpleType>
+                                <xsd:restriction base="xsd:string">
+                                    <xsd:maxLength value="12"/>
+                                </xsd:restriction>
+                            </xsd:simpleType>
+                        </xsd:element>
+                        <xsd:element name="orderItemReturnData" type="losc:orderItemReturnData" minOccurs="1" maxOccurs="unbounded">
+                            <xsd:annotation>
+                                <xsd:documentation>Return data for a specific material in the Logon order.</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                    </xsd:sequence>
+                </xsd:extension>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="addReturnOrderResponse">
+        <xsd:complexType>
+            <xsd:complexContent>
+                <xsd:extension base="losc:response">
+                    <xsd:sequence>
+                        <xsd:element name="order" type="losc:orderData" minOccurs="0"/>
+                    </xsd:sequence>
+                </xsd:extension>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+</xsd:schema>

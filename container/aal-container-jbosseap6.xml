@@ -1,0 +1,728 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+==========================================================================================
+Adnovum ant library - Install and control a JBoss7 JavaEE application server
+
+Targets: 
+* See 'adnant container' and 'adnant -p' for details.
+
+Properties:
+* container.conf.file: Configuration file that JBoss should take to initialize
+  itself. Default is ${jboss.src.conf.dir}/standlone-dev.xml which will
+  be copied to the ${container.run.dir}.
+* container.port.offset: Default port set starts at 15000. Port can be adjusted
+  by defining a port-offset which should be increments of 100. JBoss configuration
+  is adjusted accordingly.
+  NOTE: This proerty specifies the absolute port base and not a relative offset like
+  jboss.socket.binding.port-offset system property used by jboss.
+* container.security.enable: Harden container and setup test users.
+* nevis.security.enable: Harden container using Nevis ninja.
+
+Remarks:
+* Terminology: a JBoss instance is similar to a Glassfish domain. A JBoss domain is
+  used only for JBoss clustering. Therefore, in this file, 'domain' is replaced by
+  'instance'. 
+* Logging configuration has changed! JBoss 7+ contains the logging configuration in the
+  standalone-*.xml configuration files. log4j.xml can be enabled but logging levels and
+  categories cannot be changed during runtime anymore. Preferred way is to use the logging
+  configuration in standalone-*.xml (see https://docs.jboss.org/author/display/AS72/How+To)
+* Nevis, Ninja, https are not yet configured
+
+ Author            : AdNovum Informatik AG
+ Version Number    : $Rev$
+ Date of last edit : $LastChangedDate$ 
+==========================================================================================
+-->
+<project name="aal-container-jbosseap6">
+
+	<!-- base definitions -->
+	<dirname property="aal.basedir" file="${ant.file.aal-container-jbosseap6}" />
+	<!--import file="${aal.basedir}/aal-container-base.xml" /-->
+
+
+	<!-- ============================================================== -->
+	<!-- === container setup properties                             === -->
+	<!-- ============================================================== -->
+
+	<!-- jboss installer (compromise, wildfly8 imports us -->
+	<if><not><isset property="container.zip.file"/></not><then>
+		<fail unless="JBOSS7_ZIP">JBOSS7_ZIP is not defiend in build.properties needs. Use something like JBOSS7_ZIP=$${EXT_PROJ_DIR}/jboss/jboss-as/7.2.Final/download/jboss-eap-6.1.0.Alpha.zip</fail>
+		<property name="container.zip.file" location="${JBOSS7_ZIP}"/>
+		<!-- or wget it from http://download.jboss.org/jbosseap/6/jboss-eap-6.1.0.Alpha/jboss-eap-6.1.0.Alpha.zip -->
+	</then></if>
+		
+	<!-- jboss installation -->
+	<fail unless="CONTAINER_DIR_LOCAL">CONTAINER_DIR_LOCAL is not defined</fail>
+	<property name="container.install.dir"  location="${CONTAINER_DIR_LOCAL}/${project}" />
+	<property name="container.dir.name"     value="jboss-eap-${JBOSS_EAP_VERSION}"/>
+	<property name="container.run.dir"      location="${container.install.dir}/${container.dir.name}" />
+	<property name="container.instance"     value="standalone" />
+	<property name="container.instance.dir" location="${container.run.dir}/${container.instance}" />
+	<property name="container.module.dir"   location="${container.run.dir}/modules/system/layers/crh/" />
+	<property name="container.pid.file"     location="${container.instance.dir}/tmp/pid" />
+	<property name="jboss.dir"              location="${container.run.dir}" />
+	<property name="fq.host.name"           value="localhost" /> <!--  only overwrite in properties.xml, needs to be the same in all all libs -->
+	<property name="container.host"         value="${fq.host.name}" />
+	<property name="container.jdk.dir"      value="${container.install.dir}/jdk" />
+	<!-- derive version from jar reference -->
+	<propertyregex property="container.version" input="${container.zip.file}" regexp="/([1-9].*[0-9]).*/" select="\1" />
+
+	<!-- share log output with container -->
+	<property name="application.log.dir" 	value="${jboss.server.log.dir}" /> <!-- at buildtime into logging config -->
+	
+	<!-- configuration templates of project to customize jboss-->
+	<property name="jboss.src.conf.dir"     location="${masterbuild.dir}/etc/${container.type}" />
+	<if><available file="${jboss.src.conf.dir}/standalone-${environment}.xml" /><then>
+		<property name="container.conf.file" value="standalone-${environment}.xml" />
+	</then>
+	<elseif>
+	<available file="${jboss.src.conf.dir}/standalone-dev.xml" /><then>
+		<property name="container.conf.file" value="standalone-dev.xml" />
+	</then>
+	</elseif>
+	<else>
+		<property name="container.conf.file" value="standalone-full.xml" />
+	</else></if>
+
+	<!-- configure db.connection.url -->
+	<!-- import file="${aal.basedir}/aal-db-base.xml" /-->
+	
+	<!-- make sure, LISTEN ports are available -->
+	<macrodef name="computeNetworkPort" description="Compute a network port form a base port">
+		<attribute name="base" />
+		<attribute name="inc" />
+		<attribute name="result" />
+		<sequential>
+			<if><not><isset property="@{result}"/></not><then>
+				<math result="@{result}" operand1="@{inc}" operation="+" operand2="@{base}" datatype="int" />
+			</then></if>
+		</sequential>
+	</macrodef>
+
+	<!-- make sure, LISTEN ports are available -->
+	<macrodef name="checkNetworkPort" description="check availability of required ports">
+		<attribute name="name" default="NET" />
+		<attribute name="host" default="${container.host}" />
+		<attribute name="port" />
+		<sequential>
+			<local name=".port.ok" />
+			<waitfor maxwait="10" checkevery="1" timeoutproperty=".port.ok">
+				<socket server="@{host}" port="@{port}" />
+			</waitfor>
+			<if><isset property=".port.ok" /><then>
+				<echo>@{name}: @{host}:@{port} is available</echo>
+			</then>
+			<else>
+				<echo>@{name}: ${container.host}:@{port} is in use</echo>
+				<!-- nocheck: CheckPropertyInsideMacrodef -->
+				<property name="container.port.check.fail" value="true" />
+			</else></if>
+		</sequential>
+	</macrodef>
+
+	<!--
+	network settings  
+    jboss as 7 default port configuration section
+    <socket-binding-group name="standard-sockets" default-interface="public" port-offset="${jboss.socket.binding.port-offset:0}">
+        <socket-binding name="management-native" interface="management" port="15199"/>
+        <socket-binding name="management-http" interface="management" port="15190"/>
+        <socket-binding name="management-https" interface="management" port="15143"/>
+        <socket-binding name="ajp" port="15009"/>
+        <socket-binding name="http" port="15080"/>
+        <socket-binding name="https" port="15043"/>
+        <socket-binding name="jacorb" interface="unsecure" port="15028"/>
+        <socket-binding name="jacorb-ssl" interface="unsecure" port="15029"/>
+        <socket-binding name="messaging" port="15045"/>
+        <socket-binding name="messaging-throughput" port="15055"/>
+        <socket-binding name="remoting" port="15047"/>
+        <socket-binding name="txn-recovery-environment" port="15012"/>
+        <socket-binding name="txn-status-manager" port="15013"/>
+        <outbound-socket-binding name="mail-smtp">
+            <remote-destination host="localhost" port="25"/>
+        </outbound-socket-binding>
+    </socket-binding-group>
+    -->
+
+	<!-- 
+	jboss support binding http(s) and admin access with different security policies. 
+	As selenium testing exposes the fq.host.name we need to separate this as well.
+	Jboss/wildfly default for the interface according to standlone-dev.xml in the project is sually this:
+	    <inet-address value="${jboss.bind.address.management:127.0.0.1}"/>
+	-->
+	<property name="container.admin.host"  value="${container.host}" />
+	
+	<!-- Per default the container runs in <any-address/> mode (similar to 0.0.0.0) -->
+	<property name="container.port.offset" value="15000" />
+
+	<!-- check if another ant script already computed network ports -->
+	<if><not><isset property="container.network.port.computed"/></not><then>
+		<!-- Calculate ports according to base port 15000 + container.port.offset -->
+		<computeNetworkPort result="container.http.port"                inc="80"   base="${container.port.offset}" />
+		<computeNetworkPort result="container.https.port"               inc="43"   base="${container.port.offset}" />
+		<computeNetworkPort result="container.jms-throughput.port"      inc="55"   base="${container.port.offset}" />
+		<computeNetworkPort result="container.ejb.port"                 inc="47"   base="${container.port.offset}" />
+		<computeNetworkPort result="container.jms.port"                 inc="45"   base="${container.port.offset}" />
+		<computeNetworkPort result="container.orb-ssl.port"             inc="29"   base="${container.port.offset}" />
+		<computeNetworkPort result="container.orb.port"                 inc="28"   base="${container.port.offset}" />
+		<computeNetworkPort result="container.txn-status-manager"       inc="13"   base="${container.port.offset}" />
+		<computeNetworkPort result="container.txn-recovery-environment" inc="12"   base="${container.port.offset}" />
+		<computeNetworkPort result="container.ajp.port"                  inc="9"   base="${container.port.offset}" />
+		<!-- admin and dev ports moved to 90..99 range -->
+		<computeNetworkPort result="container.admin.native.port"        inc="99"   base="${container.port.offset}" />
+		<computeNetworkPort result="container.admin.port"               inc="98"   base="${container.port.offset}" />
+		<computeNetworkPort result="container.admin.secure.port"        inc="93"   base="${container.port.offset}" />
+		<computeNetworkPort result="container.coverage.port"            inc="91"   base="${container.port.offset}" />
+		<computeNetworkPort result="container.debug.port"               inc="90"   base="${container.port.offset}" />
+	</then></if>
+
+	<!-- JVM settings (partly taken from JBOSS_HOME/bin/standalone.conf and adjusted to development needs) -->
+	<!-- NOTE: container-start checks on the admin port so we need to make sure it's exposed -->
+	<property name="container.jvm.sys.properties"     value="-server" />
+	<property name="container.jvm.debug.options"      value="-agentlib:jdwp=transport=dt_socket,address=${container.debug.port},server=y,suspend=n" />
+	<property name="container.jvm.jboss.options"      value="-Djava.net.preferIPv4Stack=true -Djboss.modules.system.pkgs=org.jboss.byteman -Djava.awt.headless=true" />
+	<property name="container.jvm.jboss.conf.options" value="-Djboss.server.default.config=${container.conf.file}" />
+	<property name="container.jvm.jboss.port.options" value="-Djboss.socket.binding.port-offset=${container.port.offset} -Djboss.bind.address.management=${container.admin.host}" />
+	<property name="container.jvm.aal.sys.properties" value="-Denvironment=${environment}" />
+	<property name="container.jvm.options"            value="${container.jvm.sys.properties} ${container.jvm.heap.options} ${container.jvm.jboss.options} ${container.jvm.debug.options} ${container.jvm.jboss.conf.options} ${container.jvm.jboss.port.options} ${container.jvm.aal.sys.properties}" />
+
+	<!-- security settings -->
+	<property name="container.security.enabled" value="false" />
+	<property name="nevis.security.enabled"     value="false" />
+	<property name="container.admin.user"       value="admin" />
+	<property name="container.admin.pass"       value="admin4jboss!" />
+	<property name="container.controller.port"  value="${container.admin.native.port}"/>
+
+	<!-- derice the steps to skip to make it faster -->
+	<if><isfalse value="${container.security.enabled}" /><then>
+		<property name="container-hardening.skip"       value="true" />
+		<property name="container-setup-keystores.skip" value="true" />
+	</then></if>
+	<if><isfalse value="${nevis.security.enabled}" /><then>
+		<property name="container-setup-ninja.skip"     value="true" />
+	</then></if>
+
+	<!-- server already installed flag -->
+	<available file="${container.run.dir}" property=".container.run.dir.exists" />
+
+	<!-- jboss-cli log dump -->
+	<property name="container.setup.log" location="${build.dir}/container/logs/${container.type}-setup-dev.log" />
+
+	<!-- agent based coverage testing support, coverman is asserted later -->
+	<property name="container.coverage.enabled" value="${coverage.enabled}" />
+	<if><istrue value="${container.coverage.enabled}"/><then>
+		<!-- Instrumenting container classes can lead to startup failure. e.g. we had this for jBoss8:
+			 java.lang.VerifyError: Uninitialized object exists on backward branch 284 in method org.jboss -->
+		<property name="container.coverage.excludes"    value="*__EJB31_Generated__*\:*__Intf____Bean__*\:org.jboss.*" />
+		<property name="container.jvm.coverage.options" value="-javaagent:${coverman-agent.jar}=output=tcpserver,address=${container.coverage.host},port=${container.coverage.port},excludes=${container.coverage.excludes}" />
+	</then></if>
+	<property name="container.jvm.coverage.options" value="" />
+
+	<!-- ============================================================== -->
+	<!-- === jboss-cli macro support                                === -->
+	<!-- ============================================================== -->
+
+	<macrodef name="jboss-cli">
+		<attribute name="command" />
+		<attribute name="failonerror" default="true" />
+		<sequential>
+			<local name=".line" />
+			<property name=".line" value="--connect --controller=${container.admin.host}:${container.controller.port} --command='@{command}'" />
+			<echo>jboss-cli: ${container.run.dir}/bin/jboss-cli.sh ${.line}</echo>
+			<echo file="${container.setup.log}" append="true">jboss-cli.sh ${.line}${line.separator}</echo>
+			<exec executable="${container.run.dir}/bin/jboss-cli.sh" logerror="true" failonerror="@{failonerror}">
+				<arg line="${.line}" />
+				<env key="JAVA_HOME" value="${container.jdk.dir}" />
+			</exec>
+			<var name=".line" unset="true" />
+		</sequential>
+	</macrodef>
+
+
+	<!-- ============================================================== -->
+	<!-- === create user macro support                              === -->
+	<!-- ============================================================== -->
+
+	<macrodef name="jbossCreateManagementUser">
+		<attribute name="userid" />
+		<attribute name="password" />
+		<attribute name="failonerror" default="true" />
+		<sequential>
+			<local name=".line" />
+			<property name=".line" value="-s @{userid} @{password}" />
+			<echo>add-user.sh: ${container.run.dir}/bin/add-user.sh ${.line}</echo>
+			<echo file="${container.setup.log}" append="true">add-user.sh ${.line}${line.separator}</echo>
+			<exec executable="${container.run.dir}/bin/add-user.sh" failonerror="@{failonerror}">
+				<!-- <arg line=".line" /> does not work -->
+				<arg value="-s" />
+				<arg value="@{userid}" />
+				<arg value="@{password}" />
+			</exec>
+		</sequential>
+	</macrodef>
+
+	<!-- NOTE: roles cannot be defined in non-interactive mode yet -->
+	<macrodef name="jbossCreateApplicationUser">
+		<attribute name="userid" />
+		<attribute name="password" />
+		<attribute name="roles" default="" />
+		<attribute name="failonerror" default="true" />
+		<sequential>
+			<local name=".line" />			
+			<property name=".line" value="-a -s @{userid} @{password} -ro @{roles}" />
+			<echo>add-user.sh: ${container.run.dir}/bin/add-user.sh ${.line}</echo>
+			<echo file="${container.setup.log}" append="true">add-user.sh ${.line}${line.separator}</echo>
+			<exec executable="${container.run.dir}/bin/add-user.sh" failonerror="@{failonerror}">
+				<!-- <arg line=".line" /> does not work -->
+				<arg value="-a" />
+				<arg value="-s" />
+				<arg value="@{userid}" />
+				<arg value="@{password}" />
+			</exec>
+			<!-- '-ro' option does not work in ant-exec; writing them directly into the roles files -->
+			<if>
+				<not>
+					<length string="@{roles}" length="0" />
+				</not>
+				<then>
+					<echo file="${container.instance.dir}/configuration/application-roles.properties" append="true">@{userid}=@{roles}${line.separator}</echo>
+				</then>
+			</if>
+		</sequential>
+	</macrodef>
+
+
+	<!-- ============================================================== -->
+	<!-- === server install/uninstall                               === -->
+	<!-- ============================================================== -->
+
+	<target name="container-install" depends="-container-check-not-running,container-verify-preconditions,container-uninstall">
+		<traceEnter comment="container-install" />
+		<unzip src="${container.zip.file}" dest="${container.install.dir}" />
+		<antcall target="-set-permissions" inheritall="true" />
+		<traceLeave comment="container-install" />
+	</target>
+
+	<target name="container-verify-preconditions">
+		<!-- do not check for datasource stuff because datasource configuration comes with the project standalone-*.xml files -->
+		<!-- verify ports -->
+		<checkNetworkPort port="${container.admin.port}"        host="${container.admin.host}"/>
+		<checkNetworkPort port="${container.admin.secure.port}" host="${container.admin.host}" />
+		<checkNetworkPort port="${container.admin.native.port}" host="${container.admin.host}" />
+		<checkNetworkPort port="${container.debug.port}" />
+		<checkNetworkPort port="${container.coverage.port}" />
+		<checkNetworkPort port="${container.http.port}" />
+		<checkNetworkPort port="${container.https.port}" />
+		<checkNetworkPort port="${container.orb.port}" />
+		<checkNetworkPort port="${container.orb-ssl.port}" />
+		<checkNetworkPort port="${container.jms.port}" />
+		<checkNetworkPort port="${container.jms-throughput.port}" />
+		<checkNetworkPort port="${container.ejb.port}" />
+		<checkNetworkPort port="${container.txn-status-manager}" />
+		<checkNetworkPort port="${container.txn-recovery-environment}" />
+		<checkNetworkPort port="${container.ajp.port}" />
+		<fail if="container.port.check.fail">Some ports are in use, cannot setup AS
+	    HINT: Use 'netstat -nap' or 'lsof -P -i:&lt;port&gt;' to locate the LISTEN process</fail>
+		<!-- nevis check disabled - not yet configured (see aal-container-glassfish3.xml) -->
+	</target>
+
+	<target name="-set-permissions">
+		<chmod perm="+x">
+			<fileset dir="${container.run.dir}">
+				<include name="**/*.sh" />
+			</fileset>
+		</chmod>
+	</target>
+
+	<!-- Patch the containers server config with files from the project -->
+	<target name="container-patch-global-config">
+		<if>
+			<available file="${jboss.src.conf.dir}" />
+			<then>
+				<echo>Project has configuration file at ${jboss.src.conf.dir}</echo>
+				<copy todir="${jboss.dir}/standalone/configuration" encoding="${resources.encoding}" overwrite="true">
+					<fileset dir="${jboss.src.conf.dir}" />
+					<filterchain>
+						<expandproperties />
+					</filterchain>
+				</copy>
+			</then>
+		</if>
+	</target>
+
+	<target name="container-uninstall" if=".container.run.dir.exists" depends="container-stop">
+		<traceEnter comment="container-uninstall" />
+		<delete dir="${container.run.dir}" includeemptydirs="true" />
+		<traceLeave comment="container-uninstall" />
+	</target>
+
+	<!-- ============================================================== -->
+	<!-- === server instance resource setup                         === -->
+	<!-- ============================================================== -->
+
+	<target name="container-setup">
+		<traceEnter comment="container-setup" />
+		<!-- pre-condition is a stopped container -->
+		<antcall target="container-stop" />
+		<!-- instance and resource setup -->
+		<antcall target="container-setup-instance" />
+		<antcall target="container-setup-jvm" />
+		<antcall target="container-setup-datasource" />
+		<!-- security stuff -->
+		<antcall target="container-setup-users" />
+		<antcall target="container-setup-ninja" />
+		<antcall target="container-hardening" />
+		<antcall target="container-setup-keystores" />
+		<echo>Container is configured</echo>
+		<traceLeave comment="container-setup" />
+	</target>
+
+	<target name="-init-container-sharedlibs">
+		<!-- no shared libs by default, a project needs to provide this -->
+		<path id="container.sharedlibs" />
+		<!-- echo the result -->
+		<showPath refid="container.sharedlibs" input="default" type="SHLIB" />
+	</target>
+
+	<!-- create jboss modules based on sharedlibs-->
+	<target name="container-install-sharedlibs" depends="-init-container-sharedlibs" unless="${container-install-sharedlibs.skip}">
+		<local name="container.sharedlibs.jar"/>
+		<pathconvert refid="container.sharedlibs" property="container.sharedlibs.jar" />
+		<!-- create a module for each shared lib -->
+		<for list="${container.sharedlibs.jar}" param="container.sharedlib" delimiter=":">
+			<sequential>
+				<local name="container.sharedlib.jar"/>
+				<local name="container.sharedlib.name"/>
+				<propertyregex property="container.sharedlib.jar"  input="@{container.sharedlib}" regexp=".*\/([\w\.\-]+\.jar)" select="\1" /> <!-- eg. mylib.jar -->
+				<propertyregex property="container.sharedlib.name" input="@{container.sharedlib}" regexp=".*\/([\w]+)[\w\.\-]+\.jar" select="\1" /> <!-- eg. mylib -->
+
+				<!-- Install the driver -->
+				<local name="application.module.dir"/>
+				<property name="application.module.dir" location="${container.module.dir}/application/module/${container.sharedlib.name}/main" />
+				<mkdir dir="${application.module.dir}" />
+				<copy file="@{container.sharedlib}" todir="${application.module.dir}" verbose="true" flatten="true" failonerror="true" />
+
+				<!-- write module descriptor -->
+				<echo file="${application.module.dir}/module.xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;module xmlns="urn:jboss:module:1.1" name="application.module.${container.sharedlib.name}"&gt;
+  &lt;resources&gt;
+    &lt;resource-root path="${container.sharedlib.jar}"/&gt;
+  &lt;/resources&gt;
+  &lt;dependencies&gt;
+    &lt;module name="javax.api"/&gt;
+    &lt;module name="javax.transaction.api"/&gt;
+  &lt;/dependencies&gt;
+&lt;/module&gt;
+				</echo>
+				<echo>Module ${application.module.dir} created</echo> 
+			</sequential>
+		</for>
+	</target>
+
+	<!-- Not yet implemented: for additional information see RELA-1447 -->
+	<target name="container-install-ninja-sharedlibs" depends="-init-container-sharedlibs" unless="${container-install-ninja-sharedlibs.skip}">
+		<echo>Not yet implemented</echo>
+	</target>
+
+	<!-- Datasource setup is done in standalone-*.xml: keep the target for convenience -->
+	<target name="container-setup-datasource" unless="${container-setup-datasource.skip}">
+		<echo>Nothing to do: Datasource setup is done in standalone-*.xml files</echo>
+	</target>
+	<target name="container-setup-data-source" unless="${container-setup-data-source.skip}" depends="container-setup-datasource" />
+
+	<!-- JAAS setup is done in standalone-*.xml: keep the target for convenince -->
+	<target name="container-patch-jaas-config" unless="${container-setup-ninja.skip}">
+		<echo>Nothing to do: JAAS setup is done in standalone-*.xml files</echo>
+	</target>
+
+	<!-- Not yet implemented: for additional information see RELA-1447 -->
+	<target name="container-setup-ninja" unless="${container-setup-ninja.skip}">
+		<echo>Not yet implemented</echo>
+	</target>
+
+	<target name="-container-check-jdk-installed">
+		<available file="${container.jdk.dir}/bin/java" property="container.jdk.dir.exists"/>
+	</target>
+
+	<target name="container-setup-jvm" depends="-container-check-jdk-installed" unless="container.jdk.dir.exists">
+		<!-- To maintain file permissions (untar task loses the original file permissions) we have to use the os task -->
+		<mkdir dir="${container.jdk.dir}"/>
+		<echo>Extracting ${OPENJDK8_ZIP} into ${container.jdk.dir}</echo>
+		<exec executable="tar" os="Linux">
+			<arg line="-xJp -f ${OPENJDK8_ZIP} --strip-components=1 -C ${container.jdk.dir}" />
+		</exec>
+	</target>
+
+	<!-- Setups the instance, this step cannot be skipped because we always need an instance -->
+	<target name="container-setup-instance">
+		<antcall target="container-install-sharedlibs" />
+		<!-- override servers default configs with project specific one -->
+		<antcall target="container-patch-global-config" />
+		<!-- enhance domain config to use additional security -->
+		<antcall target="container-patch-jaas-config" />
+	</target>
+
+	<!--
+	Configure admin user for (web-)console access. Without explicit user the web-console is not accessible.
+	Application user should be added via project if necessary
+	-->
+	<target name="container-setup-users" unless="${container-setup-users.skip}">
+		<jbossCreateManagementUser userid="${container.admin.user}" password="${container.admin.pass}" />
+		<!-- no restart necessary -->
+		<!-- example users if the jboss user registry is used
+		<jbossCreateApplicationUser userid="moaproot"  password="m0@proot"  roles="MOAP_USER_ROLE,MOAP_ADMIN_ROLE,MOAP_ROOT_ROLE" />
+		<jbossCreateApplicationUser userid="moapadmin" password="m0@padmin" roles="MOAP_USER_ROLE,MOAP_ADMIN_ROLE" />
+		<jbossCreateApplicationUser userid="moapuser"  password="m0@puser"  roles="MOAP_USER_ROLE" />
+		-->
+	</target>
+
+	<!-- Not yet implemented: should be done with https, ninja/nevis setup -->
+	<target name="container-hardening" unless="${container-hardening.skip}">
+		<echo>Done via container profile, check standalone*.xml (managament and unsecure interfaces)</echo>
+	</target>
+
+	<!-- Not yet implemented: should be done with https, ninja/nevis setup -->
+	<target name="container-setup-keystores" unless="${container-setup-keystores.skip}">
+		<echo>Done via container profile, check standalone*.xml (ssl sections)</echo>
+	</target>
+
+
+	<!-- ============================================================== -->
+	<!-- === server control                                         === -->
+	<!-- ============================================================== -->
+
+	<target name="container-coldstart" description="# All-in-one application server installation (install, setup, start)">
+		<traceEnter comment="container-coldstart" />
+		<delete file="${container.setup.log}" />
+		<echo file="${container.setup.log}">#!/bin/sh${line.separator}${line.separator}export PATH=${glassfish.dir}/bin:$$PATH${line.separator}${line.separator}</echo>
+		<antcall target="container-stop" />
+		<antcall target="container-install" />
+		<antcall target="container-setup" />
+		<antcall target="container-start" />
+		<echo>Container is now (re-)installed.</echo>
+		<echo>NEXT: adnant app-deploy</echo>
+		<traceLeave comment="container-coldstart" />
+	</target>
+
+	<!-- Only spawning provided -->
+	<target name="container-start" depends="-container-check-running" description="# Start application server">
+		<traceEnter comment="container-start" />
+		<echo>Starting application server in background...</echo>
+		<!-- dump our env for manual startup -->
+		<mkdir dir="${container.instance.dir}/log" />
+		<echo file="${container.instance.dir}/log/env.conf">
+# dumped by aal-container-jboss7
+LAUNCH_JBOSS_IN_BACKGROUND=1
+JBOSS_PIDFILE=${container.pid.file}
+JAVA_HOME=${container.jdk.dir}
+JAVA_OPTS="${container.jvm.options} ${container.jvm.coverage.options}"
+export LAUNCH_JBOSS_IN_BACKGROUND JBOSS_PIDFILE JAVA_HOME JAVA_OPTS
+		</echo>
+		<property name="container.spawn" value="true"/> <!-- false blocks -->
+		 <!-- The zipped patched jboss might contain logs, therefore make sure to delete them. -->
+		<delete>
+			<fileset dir="${container.instance.dir}/log" includes="*"/>
+		</delete>
+		<exec executable="${container.run.dir}/bin/standalone.sh" spawn="${container.spawn}">
+			<env key="LAUNCH_JBOSS_IN_BACKGROUND" value="1" />
+			<env key="JBOSS_PIDFILE"   value="${container.pid.file}" />
+			<env key="JAVA_HOME"       value="${container.jdk.dir}" />
+			<env key="JAVA_OPTS"       value="${container.jvm.options} ${container.jvm.coverage.options}" />
+			<!-- oracle oci support -->
+			<env key="LD_LIBRARY_PATH" value="${LD_LIBRARY_PATH}" />
+			<env key="TNS_ADMIN"       value="${oracle.tnsadmin.home}" />
+		</exec>
+		<property name="container.start.wait" value="30"/>
+		<echo>Waiting ${container.start.wait} seconds for ${container.admin.host}:${container.admin.port}...</echo>
+        <local name=".container.down"/>
+		<waitfor maxwait="${container.start.wait}" maxwaitunit="second" checkevery="500" timeoutproperty=".container.down">
+			<socket server="${container.admin.host}" port="${container.admin.port}" />
+		</waitfor>
+		<antcall target="container-status" />
+		<fail if=".container.down" message="Container is not running ('${container.admin.host}:${container.admin.port}' is not reachable)"/>
+		<traceLeave comment="container-start" />
+	</target>
+
+	<target name="container-stop" description="# Stop application server">
+		<traceEnter comment="container-stop" />
+		<if>
+			<and>
+				<available file="${container.run.dir}" />
+				<socket server="${container.admin.host}" port="${container.admin.port}" />
+			</and>
+			<then>
+				<jboss-cli command="shutdown" failonerror="false" />
+				<antcall target="container-status" />
+			</then>
+		</if>
+		<traceLeave comment="container-stop" />
+	</target>
+
+	<target name="container-restart" description="# Restart application server">
+		<traceEnter comment="container-restart" />
+		<antcall target="container-stop" />
+		<antcall target="container-start" />
+		<traceLeave comment="container-restart" />
+	</target>
+
+	<!-- overwrite this one in master build.xml to get more info -->
+	<target name="-container-init-status-info">
+		<property name="application.ctxpath" value="/" />
+		<path id="log.list.path">
+			<fileset dir="${container.instance.dir}/log" includes="*.log" />
+		</path>
+		<pathconvert refid="log.list.path" property="log.list" pathsep="${line.separator}             " />
+		<path id="config.list.path">
+			<fileset dir="${container.instance.dir}">
+				<include name="configuration/${container.conf.file}" />
+				<include name="configuration/application-users.properties" />
+				<include name="configuration/application-roles.properties" />
+			</fileset>
+		</path>
+		<pathconvert refid="config.list.path" property="config.list" pathsep="${line.separator}             " />
+		<if>
+			<equals arg1="${environment}" arg2="dev" />
+			<then>
+				<property name=".debugger.service" value="${line.separator}             ${container.jvm.debug.options}" />
+			</then>
+		</if>
+		<property name=".debugger.service" value="" />
+		<pathconvert refid="application.ctxpath" property="appl.http.urls" pathsep="${line.separator}             http://${container.host}:${container.http.port}" />
+		<pathconvert refid="application.ctxpath" property="appl.https.urls" pathsep="${line.separator}             https://${container.host}:${container.https.port}" />
+		<if>
+			<istrue value="${container.security.enabled}" />
+			<then>
+				<property name="url.list" value="http://${container.admin.host}:${container.admin.port}/console/App.html (admin console) ${.debugger.service}${line.separator}
+	           https://${container.host}:${container.https.port}${appl.https.urls}" />
+			</then>
+			<else>
+				<property name="url.list" value="http://${container.admin.host}:${container.admin.port}/console/App.html (admin console) ${.debugger.service}${line.separator}
+	           http://${container.host}:${container.http.port}${appl.http.urls}" />
+			</else>
+		</if>
+		<property name="user.list" value="administator user added for admin console (${container.admin.user} / ${container.admin.pass})" />
+	</target>
+
+	<target name="container-status" description="# Status information of application server" depends="-container-init-status-info">
+		<traceEnter comment="container-status" />
+		<local name=".container.down"/>
+		<waitfor maxwait="1" maxwaitunit="second" checkevery="500" timeoutproperty=".container.down">
+			<socket server="${container.admin.host}" port="${container.admin.port}" />
+		</waitfor>
+		<if>
+			<available file="${container.pid.file}" />
+			<then>
+				<loadfile property="container.pid" srcFile="${container.pid.file}" />
+			</then>
+		</if>
+		<local name="container.status"/>
+		<condition property="container.status" value="DOWN" else="UP">
+			<isset property=".container.down" />
+		</condition>
+		<property name="container.pid" value="-" />
+		<propertyregex property="container.pid" input="${container.pid}" regexp="\s+" replace="" override="true" />
+		<echo>----------------------------------------------------------------------------------------------------------
+Status     : ${container.status}
+Component  : ${container.type}/${container.version}
+Instance   : ${container.instance}
+Process    : ${container.jdk.dir}/bin/java
+Ownership  : ${user.name}
+Process ID : ${container.pid}
+Service(s) : ${url.list}
+Security   : container=${container.security.enabled} nevis=${nevis.security.enabled}
+Environment: environment=${environment} coverage=${container.coverage.enabled}
+User(s)    : ${user.list}
+Config(s)  : ${config.list}
+Logfile(s) : ${log.list}
+----------------------------------------------------------------------------------------------------------
+        </echo>
+		<traceLeave comment="container-status" />
+	</target>
+
+	<!-- NOTE: The long timeouts here reflect serialized execution in nightlybuild -->
+	<target name="-container-check-not-running">
+		<property name="container.shutdown.wait" value="5" />
+		<echo>checking the port ${container.admin.host}:${container.admin.port} to be freed within the next ${container.shutdown.wait} seconds...</echo>
+		<waitfor maxwait="${container.shutdown.wait}" maxwaitunit="second" checkevery="500" timeoutproperty=".container.running">
+			<not><socket server="${container.admin.host}" port="${container.admin.port}" /></not>
+		</waitfor>
+		<fail if=".container.running" message="Container is running" />
+	</target>
+
+	<target name="-container-check-running">
+		<waitfor maxwait="1" maxwaitunit="second" checkevery="500" timeoutproperty=".container.not.running">
+			<socket server="${container.admin.host}" port="${container.admin.port}" />
+		</waitfor>
+		<fail unless=".container.not.running" message="Container is running already" />
+	</target>
+
+	<target name="-container-is-running">
+		<waitfor maxwait="1" maxwaitunit="second" checkevery="500" timeoutproperty=".container.not.running">
+			<socket server="${container.admin.host}" port="${container.admin.port}" />
+		</waitfor>
+		<fail if=".container.not.running" message="Container is NOT running" />
+	</target>
+	
+
+	<!-- ============================================================== -->
+	<!-- === deployment commands                                    === -->
+	<!-- === NOTE: Called by web or app sub-projects to deploy      === -->
+	<!-- ============================================================== -->
+
+	<target name="container-deploy" depends="-container-is-running">
+		<traceEnter comment="container-deploy" />
+		<fail unless="application.archive">Please specify JavaEE archive with -Dapplication.archive=.../some.war|ear</fail>
+		<fail unless="application.name">Please specify JavaEE archive with -Dapplication.name=some ...</fail>
+		<fail unless="application.package">Please specify JavaEE archive with -Dapplication.package=war|ear ...</fail>
+		<property name="application.ctx" value="/${application.name}" />
+		<echo message=" deploying: ${application.name}.${application.package}" />
+		<echo message="   archive: ${application.archive}" />
+		<echo message="   context: ${application.ctx} (war deployment only)" />
+		<echo message="logging to: ${container.instance.dir}/log/server.log" />
+		<jboss-cli command="deploy ${application.archive} --name=${application.name}.${application.package} --force" />
+		<antcall target="container-status" />
+		<traceEnter comment="container-leave" />
+	</target>
+
+	<target name="container-undeploy" depends="-container-is-running">
+		<traceEnter comment="container-undeploy" />
+		<fail unless="application.name">Please specify JavaEE archive with -Dapplication.name=some ...</fail>
+		<fail unless="application.package">Please specify JavaEE archive with -Dapplication.package=war|ear ...</fail>
+		<echo message="undeploying: ${application.archive}" />
+		<property name="failonerror" value="true" />
+		<jboss-cli command="undeploy ${application.name}.${application.package}" failonerror="${failonerror}" />
+		<traceLeave comment="container-undeploy" />
+	</target>
+
+	<target name="container-redeploy" depends="-container-is-running">
+		<traceEnter comment="container-redeploy" />
+		<property name="failonerror" value="false" />
+		<antcall target="container-undeploy" />
+		<var name="failonerror" unset="true" />
+		<antcall target="container-deploy" />
+		<traceLeave comment="container-redeploy" />
+	</target>
+
+	<target name="container-hotdeploy">
+		<echo>FIXME: Don't know yet how this works with container.type=${container.type}. Suggestions welcome => ADNDEVENV-1265</echo>
+		<echo> NOTE: For Javascript development 'browser-sync' can be used (see all-jsapp-browsersnc).</echo>
+		<fail>Aborting</fail>
+	</target>
+
+    <target name="container" description="# Get further command information of the jboss container contract">
+        <echo>
+Main commands:
+  adnant -p | grep container
+
+Setup steps:
+  container-install-sharedlibs  # Installs jdbc drivers as JBoss module (currently ojdbc6)
+  container-patch-global-config # Apply standalone configuration patches from ${jboss.src.conf.dir}
+  container-setup-users         # Setups an admin user for jboss-cli and web-console (${container.admin.user} / ${container.admin.pass})
+
+Commands called by web or application sub-projects:
+  container-deploy              # Deploy application specified with:   -Dapplication.archive=...
+  container-redeploy            # Deploy application specified with:   -Dapplication.archive=...
+  container-undeploy            # Undeploy application specified with: -Dapplication.archive=...
+</echo>
+    </target>
+
+</project>

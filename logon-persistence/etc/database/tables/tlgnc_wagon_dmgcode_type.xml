@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+     <table name="TLGNC_WAGON_DMGCODE_TYPE"
+				description="Table to store damage codes for a wagon. The damage codes are ment to be attached to the repair order, technically copied over to TLGNC_ORDER_REP_DMGCODE_TYPE when the repair order is created. The damage codes belonging to the wagon are going to be deleted when a repair order (tlgnc_order.DISTRIBUTION_DEST_CD = REP) is set to delivered.">
+    	
+        <column name="WAGON_DMGCODE_TYPE_ID" primaryKey="true" required="true" type="DECIMAL" size="12"
+                description="PK"/>    	
+        <column name="DMGCODE_TYPE_ID" required="true" type="DECIMAL" size="12" 
+        		description="The which damage code this belongs to."/>   	
+        <column name="WAGON_ID" required="true" type="DECIMAL" size="12" 
+        		description="FK to TLGNC_WAGON. The wagon to which the damage code belongs to."/>
+					
+		<column name="CTL_ACT_CD" required="true" type="BOOLEAN"
+                description="Active Flag. When new data is entered, only reference data with active flag are available for selection normally."/>
+		
+		<foreign-key foreignTable="TLGNR_DAMAGECODE_BS" name="FK_TLGNC_WAGON_DMGCODE_TYPE">
+			<reference local="DMGCODE_TYPE_ID" foreign="DAMAGECODE_CD"/>
+		</foreign-key>
+        <foreign-key foreignTable="TLGNC_WAGON" name="FK_TLGNC_WAGON_DMGCODE">
+            <reference local="WAGON_ID" foreign="WAGON_ID"/>
+        </foreign-key>
+		
+
+    </table>
+</database>

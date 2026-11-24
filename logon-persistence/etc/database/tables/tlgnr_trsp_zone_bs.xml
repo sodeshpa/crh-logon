@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNR_TRSP_ZONE_BS" refData="true"
+           description="Transport Zone as known in SAP and used by certain material conditions for bag products which are defined for a zone. The geographical definition (polygon areas) are defined in Logon and stored in tlgnc_trsp_zone_polygon/vertex.">
+
+        <column name="TRSP_ZONE_CD" primaryKey="true" required="true" type="VARCHAR" size="10"
+                description="PK. Identifier for the transport zone, e.g. CH-A00, AT-A02. The list of zone identifiers is taken from SAP. If a new one is added, it is added simultaneously in SAP and Logon, before it can be used in material price conditions or transport cost conditions."/>
+
+        <!-- The same zone is used in several countries, but this is not part of the identifier. Some country is already included in the name (CH-A00), but it's also used in Liechtenstein, with the same name.
+        <column name="COUNTRY" required="true" type="VARCHAR" size="3"
+                description="Country of the zone. The values are the same as used in SAP (CHE=Switzerland, DE=Germany, AT=Austria, LI=Liechtenstein), but have no logic in Logon. TODO: Before adding logic to this field in Logon, it must be transformed into proper reference data (see also in tlgns_sap_bp.country). Until then: only for informational purposes."/>
+        -->
+
+        <column name="CTL_ACT_CD" required="true" type="BOOLEAN"
+                description="Active Flag. When new data is entered, only reference data with active flag are available for selection normally."/>
+    </table>
+</database>

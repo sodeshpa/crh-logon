@@ -1,0 +1,778 @@
+<xsd:schema
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:eb="http://logon.holcim.com/eventbeans"
+    xmlns:ebin="http://logon.holcim.com/eventbeans/in"
+    xmlns:mop="http://logon.holcim.com/eventbeans/in/mop"
+    xmlns:jaxb="http://java.sun.com/xml/ns/jaxb"
+    jaxb:version="2.0"
+    targetNamespace="http://logon.holcim.com/eventbeans/in/mop"
+    elementFormDefault="qualified"
+    >
+  <xsd:import schemaLocation="eventbeans.xsd" namespace="http://logon.holcim.com/eventbeans"/>
+  <xsd:import schemaLocation="eventbeans-in.xsd" namespace="http://logon.holcim.com/eventbeans/in"/>
+  
+  <xsd:simpleType name="mopResponseMessageCode">
+    <xsd:annotation>
+      <xsd:appinfo>
+        <jaxb:typesafeEnumClass/>
+      </xsd:appinfo>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:integer">
+      <xsd:enumeration value="10000">
+        <xsd:annotation>
+          <xsd:appinfo>
+            <jaxb:typesafeEnumMember name="OK"/>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="10101">
+        <xsd:annotation>
+          <xsd:appinfo>
+            <jaxb:typesafeEnumMember name="TECHNICAL_ERROR"/>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="10102">
+        <xsd:annotation>
+          <xsd:appinfo>
+            <jaxb:typesafeEnumMember name="RETRY"/>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="10201">
+        <xsd:annotation>
+          <xsd:appinfo>
+            <jaxb:typesafeEnumMember name="MANDATORY_FIELD_MISSING"/>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="10202">
+        <xsd:annotation>
+          <xsd:appinfo>
+            <jaxb:typesafeEnumMember name="MANDATORY_FIELD_ERROR"/>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="10203">
+        <xsd:annotation>
+          <xsd:appinfo>
+            <jaxb:typesafeEnumMember name="FIELD_UNKNOWN"/>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="10301">
+        <xsd:annotation>
+          <xsd:appinfo>
+            <jaxb:typesafeEnumMember name="UNKNOWN_SESSION"/>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="10401">
+        <xsd:annotation>
+          <xsd:appinfo>
+            <jaxb:typesafeEnumMember name="APPLICATION_ERROR"/>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:enumeration>
+    </xsd:restriction>
+  </xsd:simpleType>
+  
+  <xsd:simpleType name="mopResponseCode">
+    <xsd:annotation>
+      <xsd:appinfo>
+        <jaxb:typesafeEnumClass/>
+      </xsd:appinfo>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:integer">
+      <xsd:enumeration value="30000">
+        <xsd:annotation>
+          <xsd:appinfo>
+            <jaxb:typesafeEnumMember name="OK"/>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="30001">
+        <xsd:annotation>
+          <xsd:appinfo>
+            <jaxb:typesafeEnumMember name="LOGIN_OK"/>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="30002">
+        <xsd:annotation>
+          <xsd:appinfo>
+            <jaxb:typesafeEnumMember name="SESSION_EXISTS"/>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="30101">
+        <xsd:annotation>
+          <xsd:appinfo>
+            <jaxb:typesafeEnumMember name="TECHNICAL_ERROR"/>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="30201">
+        <xsd:annotation>
+          <xsd:appinfo>
+            <jaxb:typesafeEnumMember name="MANDATORY_FIELD_MISSING"/>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="30202">
+        <xsd:annotation>
+          <xsd:appinfo>
+            <jaxb:typesafeEnumMember name="MANDATORY_FIELD_ERROR"/>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="30203">
+        <xsd:annotation>
+          <xsd:appinfo>
+            <jaxb:typesafeEnumMember name="FIELD_UNKNOWN"/>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="30401">
+        <xsd:annotation>
+          <xsd:appinfo>
+            <jaxb:typesafeEnumMember name="APPLICATION_ERROR"/>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="30501">
+        <xsd:annotation>
+          <xsd:appinfo>
+            <jaxb:typesafeEnumMember name="WRONG_PIN"/>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="30502">
+        <xsd:annotation>
+          <xsd:appinfo>
+            <jaxb:typesafeEnumMember name="OUTDATED_PIN"/>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="30503">
+        <xsd:annotation>
+          <xsd:appinfo>
+            <jaxb:typesafeEnumMember name="UNKNOWN_USER"/>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="30504">
+        <xsd:annotation>
+          <xsd:appinfo>
+            <jaxb:typesafeEnumMember name="UNKNOWN_TRUCK"/>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="30505">
+        <xsd:annotation>
+          <xsd:appinfo>
+            <jaxb:typesafeEnumMember name="UNKNOWN_PDA"/>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="30506">
+        <xsd:annotation>
+          <xsd:appinfo>
+            <jaxb:typesafeEnumMember name="CARRIER_MISMATCH"/>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="30507">
+        <xsd:annotation>
+          <xsd:appinfo>
+            <jaxb:typesafeEnumMember name="INVALID_CERTIFICATE"/>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="30601">
+        <xsd:annotation>
+          <xsd:appinfo>
+            <jaxb:typesafeEnumMember name="INCOMPATIBLE_TRUCK_COMPOSITION"/>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="30602">
+        <xsd:annotation>
+          <xsd:appinfo>
+            <jaxb:typesafeEnumMember name="MATERIAL_MISMATCH_WITH_CONTAINER"/>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="30603">
+        <xsd:annotation>
+          <xsd:appinfo>
+            <jaxb:typesafeEnumMember name="UNKNOWN_MATERIAL_IN_CONTAINER"/>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="30604">
+        <xsd:annotation>
+          <xsd:appinfo>
+            <jaxb:typesafeEnumMember name="INVALID_MEASUREMENT"/>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:enumeration>
+    </xsd:restriction>
+  </xsd:simpleType>
+  
+  <xsd:complexType name="mopRequest" abstract="true">
+    <xsd:complexContent>
+      <xsd:extension base="ebin:logonEventRequest">
+        <xsd:sequence>
+	  <xsd:element name="senderPdaId" type="xsd:string"/> <!-- This one is copied into the event for convenience, see also: mopRequestMessage -->
+	  <xsd:element name="sessionId" type="eb:id" minOccurs="0"/> <!-- This one is copied into the event for convenience, see also: mopRequestMessage -->
+          <xsd:element name="eventId" type="eb:id"/>
+          <xsd:element name="geoX" type="xsd:decimal"/>
+          <xsd:element name="geoY" type="xsd:decimal"/>
+          <xsd:element name="speed" type="xsd:long"/>
+          <xsd:element name="course" type="xsd:long"/>
+          <xsd:element name="geoTime" type="xsd:dateTime"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  
+  <xsd:complexType name="mopResponse">
+    <xsd:complexContent>
+      <xsd:extension base="ebin:logonEventResponse">
+        <xsd:sequence>
+          <xsd:element name="eventId" type="xsd:long"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  
+  <xsd:complexType name="mopRequestMessage">
+    <xsd:sequence>
+      <xsd:element name="senderPdaId" type="xsd:string"/>
+      <xsd:element name="sendersTime" type="xsd:dateTime"/>
+      <xsd:element name="sessionId" type="eb:id" minOccurs="0"/>
+      <xsd:element name="mopRequests" type="mop:mopRequest" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  
+  <xsd:complexType name="mopResponseMessage">
+    <xsd:sequence>
+      <xsd:element name="messageStatus" type="xsd:integer"/>
+      <xsd:element name="mopEventStatusList" type="mop:mopResponse" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  
+  <xsd:complexType name="loginRequest">
+    <xsd:complexContent>
+      <xsd:extension base="mop:mopRequest">
+        <xsd:sequence>
+          <xsd:element name="pdaUserLabel" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="pdaUserRfidIdentity" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="pin" type="xsd:string"/>
+          <xsd:element name="forceLogin" type="xsd:boolean" minOccurs="0"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>  
+  
+  <xsd:complexType name="changePinRequest">
+    <xsd:complexContent>
+      <xsd:extension base="mop:mopRequest">
+        <xsd:sequence>
+          <xsd:element name="pdaUserNo" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="oldPin" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="newPin" type="xsd:string" minOccurs="0"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  
+  <xsd:complexType name="logoutRequest">
+    <xsd:complexContent>
+      <xsd:extension base="mop:mopRequest"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  
+  <xsd:simpleType name="connectionStatus">
+    <xsd:annotation>
+      <xsd:appinfo>
+        <jaxb:typesafeEnumClass/>
+      </xsd:appinfo>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="online"/>
+      <xsd:enumeration value="interrupted"/>
+      <xsd:enumeration value="offline"/>
+    </xsd:restriction>
+  </xsd:simpleType>        
+  
+  <xsd:complexType name="pdaStatusRequest">
+    <xsd:complexContent>
+      <xsd:extension base="mop:mopRequest">
+        <xsd:sequence>
+          <xsd:element name="connectionStatus" type="mop:connectionStatus"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  
+  <xsd:complexType name="eventNotSentRequest">
+    <xsd:complexContent>
+      <xsd:extension base="mop:mopRequest">
+        <xsd:sequence>
+          <xsd:element name="failedEventId" type="eb:id"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  
+  <xsd:complexType name="switchTruckRequest">
+    <xsd:complexContent>
+      <xsd:extension base="mop:mopRequest">
+        <xsd:sequence>
+          <xsd:element name="truckLabel" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="truckRfidIdentity" type="xsd:string" minOccurs="0"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="changeTruckCompositionRequest">
+    <xsd:complexContent>
+      <xsd:extension base="mop:mopRequest">
+        <xsd:sequence>
+          <xsd:element name="truckLabel" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="truckRfidIdentity" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="trailerLabel" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="trailerRfidIdentity" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="containerLabel" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="containerRfidIdentity" type="xsd:string" minOccurs="0"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  
+  <xsd:complexType name="useTruckCompositionRequest">
+    <xsd:complexContent>
+      <xsd:extension base="mop:mopRequest">
+        <xsd:sequence>
+          <xsd:element name="truckLabel" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  
+  <xsd:complexType name="tourAckRequest">
+    <xsd:complexContent>
+      <xsd:extension base="mop:mopRequest">
+        <xsd:sequence>
+          <xsd:element name="assignmentId" type="eb:id"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  
+  <xsd:complexType name="orderStartRequest">
+    <xsd:complexContent>
+      <xsd:extension base="mop:mopRequest">
+        <xsd:sequence>
+          <xsd:element name="assignmentPartId" type="eb:id"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  
+  <xsd:complexType name="cancelTourAckRequest">
+    <xsd:complexContent>
+      <xsd:extension base="mop:mopRequest">
+        <xsd:sequence>
+          <xsd:element name="assignmentId" type="eb:id"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  
+  <xsd:complexType name="enterShippingpointRequest">
+    <xsd:complexContent>
+      <xsd:extension base="mop:mopRequest">
+        <xsd:sequence>
+          <xsd:element name="assignmentId" type="eb:id"/>
+          <xsd:element name="shippingpointId" type="eb:id" minOccurs="0"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  
+  <xsd:complexType name="leaveShippingpointRequest">
+    <xsd:complexContent>
+      <xsd:extension base="mop:mopRequest">
+        <xsd:sequence>
+          <xsd:element name="assignmentId" type="eb:id"/>
+          <xsd:element name="shippingpointId" type="eb:id" minOccurs="0"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  
+  <xsd:complexType name="loginParallelRequest">
+    <xsd:complexContent>
+      <xsd:extension base="mop:mopRequest">
+        <xsd:sequence>
+          <xsd:element name="assignmentPartId" type="eb:id"/>
+          <xsd:element name="terminalLabel" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="terminalRfidIdentity" type="xsd:string" minOccurs="0"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  
+  <xsd:complexType name="scanWagonRequest">
+    <xsd:complexContent>
+      <xsd:extension base="mop:mopRequest">
+        <xsd:sequence>
+          <xsd:element name="assignmentPartId" type="eb:id"/>
+          <xsd:element name="wagonLabel" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="wagonRfidIdentity" type="xsd:string" minOccurs="0"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  
+  <xsd:complexType name="scanContainerRequest">
+    <xsd:complexContent>
+      <xsd:extension base="mop:mopRequest">
+        <xsd:sequence>
+          <xsd:element name="assignmentPartId" type="eb:id"/>
+          <xsd:element name="containerLabel" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="containerRfidIdentity" type="xsd:string" minOccurs="0"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  
+  <xsd:complexType name="releaseContainerRequest">
+    <xsd:complexContent>
+      <xsd:extension base="mop:mopRequest">
+        <xsd:sequence>
+          <xsd:element name="assignmentPartId" type="eb:id"/>
+          <xsd:element name="containerLabel" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="containerRfidIdentity" type="xsd:string" minOccurs="0"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  
+  <xsd:complexType name="scanSiloRequest">
+    <xsd:complexContent>
+      <xsd:extension base="mop:mopRequest">
+        <xsd:sequence>
+          <xsd:element name="assignmentPartId" type="eb:id"/>
+          <xsd:element name="siloLabel" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="siloRfidIdentity" type="xsd:string" minOccurs="0"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="startLoadMopRequest">
+    <xsd:complexContent>
+      <xsd:extension base="mop:mopRequest">
+        <xsd:sequence>
+          <xsd:element name="assignmentPartId" type="eb:id" minOccurs="0"/>
+          <xsd:element name="assignmentId" type="eb:id"/>
+          <xsd:element name="loadingpointLabel" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="loadingpointRfidIdentity" type="xsd:string" minOccurs="0"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  
+  <xsd:complexType name="endLoadMopRequest">
+    <xsd:complexContent>
+      <xsd:extension base="mop:mopRequest">
+        <xsd:sequence>
+          <xsd:element name="assignmentPartId" type="eb:id" minOccurs="0"/>
+          <xsd:element name="assignmentId" type="eb:id"/>
+          <xsd:element name="netWeightKg" type="xsd:decimal"/>
+          <xsd:element name="totalWeightKg" type="xsd:decimal"/>
+          <xsd:element name="tareWeightKg" type="xsd:decimal"/>
+          <xsd:element name="loadingpointLabel" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="loadingpointRfidIdentity" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="accurateWeights" type="xsd:boolean"/>
+          <xsd:element name="loadedQuantityInPieces" type="xsd:decimal" minOccurs="0"/>          
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  
+  <xsd:complexType name="skipLdsLoadingRequest">
+    <xsd:complexContent>
+      <xsd:extension base="mop:mopRequest">
+        <xsd:sequence>
+          <xsd:element name="assignmentId" type="eb:id"/>
+          <xsd:element name="loadingpointLabel" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="loadingpointRfidIdentity" type="xsd:string" minOccurs="0"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="requestTruckLoadRequest">
+    <xsd:complexContent>
+      <xsd:extension base="mop:mopRequest">
+        <xsd:sequence>
+          <xsd:element name="assignmentPartId" type="eb:id"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="wagonEmptyRequest">
+    <xsd:complexContent>
+      <xsd:extension base="mop:mopRequest">
+        <xsd:sequence>
+          <xsd:element name="assignmentPartId" type="eb:id"/>
+          <xsd:element name="wagonLabel" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="wagonRfidIdentity" type="xsd:string" minOccurs="0"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  
+  <xsd:complexType name="enterShipToRequest">
+    <xsd:complexContent>
+      <xsd:extension base="mop:mopRequest">
+        <xsd:sequence>
+          <xsd:element name="assignmentPartId" type="eb:id"/>
+          <xsd:element name="shipToId" type="eb:id" minOccurs="0"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType> 
+  
+  <xsd:complexType name="leaveShipToRequest">
+    <xsd:complexContent>
+      <xsd:extension base="mop:mopRequest">
+        <xsd:sequence>
+          <xsd:element name="assignmentPartId" type="eb:id"/>
+          <xsd:element name="shipToId" type="eb:id" minOccurs="0"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  
+  <xsd:complexType name="startUnloadRequest">
+    <xsd:complexContent>
+      <xsd:extension base="mop:mopRequest">
+        <xsd:sequence>
+          <xsd:element name="assignmentPartId" type="eb:id"/>
+          <xsd:element name="unloadOrderItemId" type="eb:id"/>
+          <xsd:element name="shipToSiloLabel" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="shipToSiloRfidIdentity" type="xsd:string" minOccurs="0"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="endUnloadRequest">
+    <xsd:complexContent>
+      <xsd:extension base="mop:mopRequest">
+        <xsd:sequence>
+          <xsd:element name="assignmentPartId" type="eb:id"/>
+          <xsd:element name="unloadOrderItemId" type="eb:id"/>
+          <xsd:element name="shipToSiloLabel" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="shipToSiloRfidIdentity" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="remainingQuantityPresent" type="xsd:boolean"/>
+          <xsd:element name="returnedQuantity" type="xsd:decimal" minOccurs="0"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="geoPositionRequest">
+    <xsd:complexContent>
+      <xsd:extension base="mop:mopRequest">
+        <xsd:sequence>
+          <xsd:element name="assignmentPartId" type="eb:id"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  
+  <xsd:complexType name="leaveStartpointRequest">
+    <xsd:complexContent>
+      <xsd:extension base="mop:mopRequest">
+        <xsd:sequence>
+          <xsd:element name="assignmentPartId" type="eb:id"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  
+  <xsd:complexType name="enterEndpointRequest">
+    <xsd:complexContent>
+      <xsd:extension base="mop:mopRequest">
+        <xsd:sequence>
+          <xsd:element name="assignmentPartId" type="eb:id"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  
+  <xsd:complexType name="marketInfoRequest">
+    <xsd:complexContent>
+      <xsd:extension base="mop:mopRequest">
+        <xsd:sequence>
+          <xsd:element name="shipToId" type="eb:id" minOccurs="0"/> <!-- This field is deprecated (see ADN48868) -->
+          <xsd:element name="assignmentPartId" type="eb:id" minOccurs="0"/>
+          <xsd:element name="message" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  
+  <xsd:complexType name="deliveryNoteRequest">
+    <xsd:complexContent>
+      <xsd:extension base="mop:mopRequest">
+        <xsd:sequence>
+          <xsd:element name="assignmentPartId" type="eb:id"/>
+          <xsd:element name="shipToId" type="eb:id"/>
+          <xsd:element name="signatureName" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="signature" type="xsd:string" minOccurs="0"/>
+          <xsd:element name="note" type="xsd:string" minOccurs="0"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="messageAckRequest">
+    <xsd:complexContent>
+      <xsd:extension base="mop:mopRequest">
+        <xsd:sequence>
+          <xsd:element name="messageId" type="eb:id"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  
+  <xsd:complexType name="messageToLogonRequest">
+    <xsd:complexContent>
+      <xsd:extension base="mop:mopRequest">
+        <xsd:sequence>
+          <xsd:element name="message" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="waitingOnShippingpointRequest">
+    <xsd:complexContent>
+      <xsd:extension base="mop:mopRequest">
+        <xsd:sequence>
+          <xsd:element name="assignmentId" type="eb:id"/>
+          <xsd:element name="shippingpointId" type="eb:id"/>
+          <xsd:element name="reason" type="eb:id"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  
+  <xsd:complexType name="waitingOnShipToRequest">
+    <xsd:complexContent>
+      <xsd:extension base="mop:mopRequest">
+        <xsd:sequence>
+          <xsd:element name="assignmentPartId" type="eb:id"/>
+          <xsd:element name="shipToId" type="eb:id"/>
+          <xsd:element name="reason" type="eb:id"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  
+  <xsd:complexType name="errorRequest">
+    <xsd:complexContent>
+      <xsd:extension base="mop:mopRequest">
+        <xsd:sequence>
+          <xsd:element name="assignmentId" type="eb:id" minOccurs="0"/>
+          <xsd:element name="error" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  
+  <xsd:complexType name="pauseRequest">
+    <xsd:complexContent>
+      <xsd:extension base="mop:mopRequest"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  
+  <xsd:complexType name="resumeRequest">
+    <xsd:complexContent>
+      <xsd:extension base="mop:mopRequest"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  
+  <xsd:complexType name="startTrafficJamRequest">
+    <xsd:complexContent>
+      <xsd:extension base="mop:mopRequest"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  
+  <xsd:complexType name="endTrafficJamRequest">
+    <xsd:complexContent>
+      <xsd:extension base="mop:mopRequest"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  
+  <xsd:complexType name="reportPerDayRequest">
+    <xsd:complexContent>
+      <xsd:extension base="mop:mopRequest">
+        <xsd:sequence>
+          <xsd:element name="odometer" type="xsd:long"/>
+          <xsd:element name="maintenance" type="eb:id" minOccurs="0"/>
+          <xsd:element name="inspection" type="xsd:boolean"/>
+          <xsd:element name="drivingPeriod" type="xsd:long"/>
+          <xsd:element name="workingPeriod" type="xsd:long"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  
+  <xsd:complexType name="fuelRequest">
+    <xsd:complexContent>
+      <xsd:extension base="mop:mopRequest">
+        <xsd:sequence>
+          <xsd:element name="odometer" type="xsd:long"/>
+          <xsd:element name="fuelType" type="xsd:long"/>
+          <xsd:element name="quantity" type="xsd:decimal"/>
+          <xsd:element name="price" type="xsd:decimal"/>
+          <xsd:element name="currency" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  
+  <xsd:complexType name="adminRfidRequest">
+    <xsd:complexContent>
+      <xsd:extension base="mop:mopRequest">
+        <xsd:sequence>
+          <xsd:element name="objectLabel" type="xsd:string"/>
+          <xsd:element name="rfidIdentity" type="xsd:string"/>
+          <xsd:element name="rfidLabel" type="xsd:string"  minOccurs="0"/>
+          <xsd:element name="objectType" type="eb:id"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  
+  <xsd:complexType name="signatureRequest">
+    <xsd:complexContent>
+      <xsd:extension base="mop:mopRequest">
+        <xsd:sequence>
+          <xsd:element name="signature" type="xsd:base64Binary"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+</xsd:schema>

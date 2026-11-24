@@ -1,0 +1,504 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Author            : AdNovum Informatik AG
+ Version Number    : $Revision$
+ Date of last edit : $Date$
+-->
+
+<project name="project-app" default="dist" basedir=".">
+	<description>${ant.project.name} project build file</description>
+
+
+	<!-- ================================================================= -->
+	<!-- === externally defined                                        === -->
+	<!-- ================================================================= -->
+	<import file="properties.xml"/>
+	<import file="../common.xml"/>
+
+	<!-- ============================================================== -->
+	<!--  properties                                                    -->
+	<!-- ============================================================== -->
+	<property name="app.name"                   value="${ant.project.name}"/>
+	<property name="ear.name"                   value="${app.name}.ear"/>
+
+	<!-- Default conatiner host and http port -->
+	<property name="container.host"             value="localhost"/>
+	<property name="container.http.port"        value="15080"/>
+	<property name="host"                       value="${container.host}"/>
+	<property name="http.port"                  value="${container.http.port}"/>
+
+	<!-- ================================================================ -->
+	<!--  parametrize local project structure                            -->
+	<!-- ================================================================ -->
+	<property name="ear.dir"                    location="${build.dir}/apps"/>
+	<property name="ear.staging.dir"            location="${ear.dir}/logon-appEAR"/>
+	<property name="ear.etc.dir"                location="${etc.dir}/ear"/>
+
+	<!-- ================================================================ -->
+	<!--  wrappers to avoid multiple execution when called by subant      -->
+	<!-- ================================================================ -->
+	<target name="initWrapper" unless="batchCall">
+		<antcall target="init" inheritall="true"/>
+	</target>
+	<target name="buildWrapper" unless="batchCall">
+		<antcall target="build" inheritall="true"/>
+	</target>
+
+	<!-- ================================================================ -->
+	<!--  initialization, cleanup and default targets                     -->
+	<!-- ================================================================ -->
+	<target name="all" depends="ears"
+			description="build and test everything"/>
+
+	<target name="build" depends="ears"
+			description="build and test everything"/>
+
+	<target name="init" depends=""
+			description="initialization project structure and environment">
+		<tstamp/>
+
+		<echo message="--------- ${ant.project.name}-${build.version} building on ${os.name} ---------"/>
+		<echo message=" "/>
+		<echo message="building file ${ant.file} with ${ant.version}"/>
+		<echo message=""/>
+		<mkdir dir="${build.dir}"/>
+		<mkdir dir="${build.etc.dir}"/>
+		<mkdir dir="${ear.dir}"/>
+		<mkdir dir="${ear.staging.dir}"/>
+		<mkdir dir="${dist.lib.dir}"/>
+
+		<taskdef resource="net/sf/antcontrib/antcontrib.properties"/>
+		<if>
+			<equals arg1="${environment}" arg2="dev" />
+			<then>
+				<property name="build.date" value="January 1 1970"/>
+				<property name="build.stamp" value="197001010000"/>
+				<property name="build.implementation_version" value="${version}-${environment}"/>
+			</then>
+			<else>
+				<property name="build.date" value="${TODAY}"/>
+				<property name="build.stamp" value="${DSTAMP}${TSTAMP}"/>
+				<property name="build.implementation_version" value="${build.version}"/>
+			</else>
+		</if>
+	</target>
+
+	<target name="clean" depends="clean-test"
+			description="cleans all generated files and directories" >
+		<delete dir="${build.dir}"/>
+	</target>
+
+	<!-- ================================================================ -->
+	<!--  EAR targets                                                 -->
+	<!-- ================================================================ -->
+	<target name="ears" depends="init, generateEarDesc, ear"/>
+	<target name="ear" depends="earint, earext, earterminal"/>
+
+	<target name="earint" if="${build-logon-int}">
+		<!-- build int ear -->
+		<copy todir="${build.dir}/earmodules_int" verbose="true" flatten="true" includeEmptyDirs="false" failonerror="false">
+			<fileset dir="${build.dir}/stage_int/ejbs" />
+			<fileset dir="${build.dir}/stage_int/wars" />
+		</copy>
+		<copy todir="${build.dir}/earmodules_int/lib" verbose="true" flatten="true" includeEmptyDirs="false" failonerror="false">
+			<fileset dir="${build.dir}/stage_int/lib">
+				<exclude name="**/logon-business-client.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="${build.dir}/earmodules_int/lib" verbose="true" flatten="true" includeEmptyDirs="false" failonerror="false">
+			<fileset dir="${build.dir}/stage_int/lib-axis2"/>
+		</copy>
+		<ear destfile="${project-int.ear}"
+			 appxml="${generated.dir}/gdi/intear/application.xml">
+			<manifest>
+				<attribute name="Manifest-Version" value="1.0"/>
+				<attribute name="Implementation-Title" value="${project-int.ear.name}"/>
+				<attribute name="Implementation-Vendor" value="${vendor}"/>
+				<attribute name="Implementation-Version" value="${build.implementation_version}"/>
+				<attribute name="Build-Date" value="${build.date}"/>
+				<attribute name="Build-Stamp" value="${build.stamp}"/>
+				<attribute name="Build-Environment" value="Java ${java.version}, ${java.vendor}"/>
+				<attribute name="Build-System" value="${os.name} ${os.version}, ${os.arch}"/>
+			</manifest>
+			<metainf file="${generated.dir}/gdi/intear/jboss-deployment-structure.xml"/>
+			<fileset dir="${build.dir}/earmodules_int"/>
+		</ear>
+	</target>
+
+	<target name="earext" if="${build-logon-ext}">
+		<!-- build ext ear -->
+		<copy todir="${build.dir}/earmodules_ext" verbose="true" flatten="true" includeEmptyDirs="false" failonerror="false">
+			<fileset dir="${build.dir}/stage_ext/ejbs"/>
+			<fileset dir="${build.dir}/stage_ext/wars"/>
+		</copy>
+		<copy todir="${build.dir}/earmodules_ext/lib" verbose="true" flatten="true" includeEmptyDirs="false" failonerror="false">
+			<fileset dir="${build.dir}/stage_ext/lib">
+				<exclude name="**/logon-business-client.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="${build.dir}/earmodules_ext/lib" verbose="true" flatten="true" includeEmptyDirs="false" failonerror="false">
+			<fileset dir="${build.dir}/stage_ext/lib-axis2"/>
+		</copy>
+		<ear destfile="${project-ext.ear}"
+			 appxml="${generated.dir}/gdi/extear/application.xml">
+			<manifest>
+				<attribute name="Manifest-Version" value="1.0"/>
+				<attribute name="Implementation-Title" value="${project-ext.ear.name}"/>
+				<attribute name="Implementation-Vendor" value="${vendor}"/>
+				<attribute name="Implementation-Version" value="${build.implementation_version}"/>
+				<attribute name="Build-Date" value="${build.date}"/>
+				<attribute name="Build-Stamp" value="${build.stamp}"/>
+				<attribute name="Build-Environment" value="Java ${java.version}, ${java.vendor}"/>
+				<attribute name="Build-System" value="${os.name} ${os.version}, ${os.arch}"/>
+			</manifest>
+			<metainf file="${generated.dir}/gdi/extear/jboss-deployment-structure.xml"/>
+			<fileset dir="${build.dir}/earmodules_ext"/>
+		</ear>
+	</target>
+
+	<target name="earterminal" if="${build-logon-terminal}">
+		<!-- build terminal ear -->
+		<copy todir="${build.dir}/earmodules_terminal" verbose="true" flatten="true" includeEmptyDirs="false" failonerror="false">
+			<!-- <fileset dir="${build.dir}/stage_terminal/ejbs"/> --> <!-- terminal app should not contain EJBs -->
+			<fileset dir="${build.dir}/stage_terminal/wars"/>
+		</copy>
+		<copy todir="${build.dir}/earmodules_terminal/lib" verbose="true" flatten="true" includeEmptyDirs="false" failonerror="false">
+			<fileset dir="${build.dir}/stage_terminal/lib"/>
+		</copy>
+		<ear destfile="${project-terminal.ear}"
+			 appxml="${generated.dir}/gdi/terminalear/application.xml">
+			<manifest>
+				<attribute name="Manifest-Version" value="1.0"/>
+				<attribute name="Implementation-Title" value="${project-terminal.ear.name}"/>
+				<attribute name="Implementation-Vendor" value="${vendor}"/>
+				<attribute name="Implementation-Version" value="${build.implementation_version}"/>
+				<attribute name="Build-Date" value="${build.date}"/>
+				<attribute name="Build-Stamp" value="${build.stamp}"/>
+				<attribute name="Build-Environment" value="Java ${java.version}, ${java.vendor}"/>
+				<attribute name="Build-System" value="${os.name} ${os.version}, ${os.arch}"/>
+			</manifest>
+			<metainf file="${ear.etc.dir}/terminal/jboss-all.xml"/>
+			<metainf file="${generated.dir}/gdi/terminalear/jboss-deployment-structure.xml"/>
+			<fileset dir="${build.dir}/earmodules_terminal"/>
+		</ear>
+	</target>
+
+	<!-- failonerror=false: this way we can selectively not build
+		 parts of the project. -->
+	<target name="prepareIntEar" if="${build-logon-int}">
+		<copy todir="${build.dir}/stage_int/lib" verbose="true" failonerror="false">
+			<fileset dir="${subcomponent.common}/${build.dir.name}/${dist.dir.name}/dep"/>
+		</copy>
+		<copy todir="${build.dir}/stage_int/lib" verbose="true" failonerror="false">
+			<fileset dir="${subcomponent.pdf-generator}/${build.dir.name}/${dist.dir.name}/dep"/>
+		</copy>
+		<copy todir="${build.dir}/stage_int/lib" verbose="true" failonerror="false">
+			<fileset dir="${subcomponent.business}/${build.dir.name}/${dist.dir.name}/dep/lib"/>
+		</copy>
+		<copy todir="${build.dir}/stage_int/lib-axis2" verbose="true" failonerror="false">
+			<fileset dir="${subcomponent.business}/${build.dir.name}/${dist.dir.name}/dep/lib-axis2"/>
+		</copy>
+		<copy todir="${build.dir}/stage_int/ejbs" verbose="true" failonerror="false" file="${project-business.jar.loc}"/>
+		<copy todir="${build.dir}/stage_int/wars/logon/init" verbose="true" failonerror="false">
+			<fileset dir="${subcomponent.init-web}/${build.dir.name}/${dist.dir.name}/lib/int"/>
+		</copy>
+		<copy todir="${build.dir}/stage_int/lib" verbose="true" failonerror="false">
+			<fileset dir="${subcomponent.init-web}/${build.dir.name}/${dist.dir.name}/dep"/>
+		</copy>
+		<copy todir="${build.dir}/stage_int/wars/logon/admin" verbose="true" failonerror="false">
+			<fileset dir="${subcomponent.admin-web}/${build.dir.name}/${dist.dir.name}/lib/int"/>
+		</copy>
+		<copy todir="${build.dir}/stage_int/lib" verbose="true" failonerror="false">
+			<fileset dir="${subcomponent.admin-web}/${build.dir.name}/${dist.dir.name}/dep"/>
+		</copy>
+		<copy todir="${build.dir}/stage_int/wars/logon/cust" verbose="true" failonerror="false">
+			<fileset dir="${subcomponent.cust-web}/${build.dir.name}/${dist.dir.name}/lib/int"/>
+		</copy>
+		<copy todir="${build.dir}/stage_int/lib" verbose="true" failonerror="false">
+			<fileset dir="${subcomponent.cust-web}/${build.dir.name}/${dist.dir.name}/dep"/>
+		</copy>
+		<copy todir="${build.dir}/stage_int/wars/logon/order" verbose="true" failonerror="false">
+			<fileset dir="${subcomponent.order-web}/${build.dir.name}/${dist.dir.name}/lib/int"/>
+		</copy>
+		<copy todir="${build.dir}/stage_int/lib" verbose="true" failonerror="false">
+			<fileset dir="${subcomponent.order-web}/${build.dir.name}/${dist.dir.name}/dep"/>
+		</copy>
+		<copy todir="${build.dir}/stage_int/ejbs" verbose="true" failonerror="false">
+			<fileset dir="${subcomponent.webservices}/${build.dir.name}/${dist.dir.name}/lib/ejbs"/>
+		</copy>
+		<copy todir="${build.dir}/stage_int/wars/logon/webservices" verbose="true" failonerror="false">
+			<fileset dir="${subcomponent.webservices}/${build.dir.name}/${dist.dir.name}/lib/wars"/>
+		</copy>
+		<copy todir="${build.dir}/stage_int/lib" verbose="true" failonerror="false">
+			<fileset dir="${subcomponent.webservices}/${build.dir.name}/${dist.dir.name}/dep/lib"/>
+		</copy>
+		<copy todir="${build.dir}/stage_int/lib-axis2" verbose="true" failonerror="false">
+			<fileset dir="${subcomponent.webservices}/${build.dir.name}/${dist.dir.name}/dep/lib-axis2"/>
+		</copy>
+		<copy todir="${build.dir}/stage_int/wars/logon/webservices-mop-incoming" verbose="true" failonerror="false">
+			<fileset dir="${subcomponent.webservices-mop-incoming}/${build.dir.name}/${dist.dir.name}/lib/wars"/>
+		</copy>
+		<copy todir="${build.dir}/stage_int/lib" verbose="true" failonerror="false">
+			<fileset dir="${subcomponent.webservices-mop-incoming}/${build.dir.name}/${dist.dir.name}/dep/lib"/>
+		</copy>
+		<copy todir="${build.dir}/stage_int/lib-axis2" verbose="true" failonerror="false">
+			<fileset dir="${subcomponent.webservices-mop-incoming}/${build.dir.name}/${dist.dir.name}/dep/lib-axis2"/>
+		</copy>
+		<copy todir="${build.dir}/stage_int/wars/logon/webservices-pws-incoming" verbose="true" failonerror="false">
+			<fileset dir="${subcomponent.webservices-pws-incoming}/${build.dir.name}/${dist.dir.name}/lib/wars"/>
+		</copy>
+		<copy todir="${build.dir}/stage_int/lib" verbose="true" failonerror="false">
+			<fileset dir="${subcomponent.webservices-pws-incoming}/${build.dir.name}/${dist.dir.name}/dep/lib"/>
+		</copy>
+		<copy todir="${build.dir}/stage_int/lib-axis2" verbose="true" failonerror="false">
+			<fileset dir="${subcomponent.webservices-pws-incoming}/${build.dir.name}/${dist.dir.name}/dep/lib-axis2"/>
+		</copy>
+		<copy todir="${build.dir}/stage_int/wars/logon/webservices-oc-incoming" verbose="true" failonerror="false">
+			<fileset dir="${subcomponent.webservices-oc-incoming}/${build.dir.name}/${dist.dir.name}/lib/wars"/>
+		</copy>
+		<copy todir="${build.dir}/stage_int/lib" verbose="true" failonerror="false">
+			<fileset dir="${subcomponent.webservices-oc-incoming}/${build.dir.name}/${dist.dir.name}/dep/lib"/>
+		</copy>
+		<copy todir="${build.dir}/stage_int/lib-axis2" verbose="true" failonerror="false">
+			<fileset dir="${subcomponent.webservices-oc-incoming}/${build.dir.name}/${dist.dir.name}/dep/lib-axis2"/>
+		</copy>
+		<copy todir="${build.dir}/stage_int/lib" verbose="true" failonerror="false">
+			<fileset dir="${subcomponent.security}/${build.dir.name}/${dist.dir.name}/lib"/>
+		</copy>
+		<copy todir="${build.dir}/stage_int/lib" verbose="true" failonerror="false">
+			<fileset dir="${subcomponent.persistence}/${build.dir.name}/${dist.dir.name}/lib"/>
+		</copy>
+	</target>
+
+	<target name="prepareExtEar" if="${build-logon-ext}">
+		<copy todir="${build.dir}/stage_ext/lib" verbose="true" failonerror="false">
+			<fileset dir="${subcomponent.common}/${build.dir.name}/${dist.dir.name}/dep"/>
+		</copy>
+		<copy todir="${build.dir}/stage_ext/lib" verbose="true" failonerror="false">
+			<fileset dir="${subcomponent.pdf-generator}/${build.dir.name}/${dist.dir.name}/dep"/>
+		</copy>
+		<copy todir="${build.dir}/stage_ext/lib" verbose="true" failonerror="false">
+			<fileset dir="${subcomponent.business}/${build.dir.name}/${dist.dir.name}/dep/lib"/>
+		</copy>
+		<copy todir="${build.dir}/stage_ext/lib-axis2" verbose="true" failonerror="false">
+			<fileset dir="${subcomponent.business}/${build.dir.name}/${dist.dir.name}/dep/lib-axis2"/>
+		</copy>
+		<copy todir="${build.dir}/stage_ext/ejbs" verbose="true" failonerror="false" file="${project-business.jar.loc}"/>
+		<copy todir="${build.dir}/stage_ext/wars/logon/init" verbose="true" failonerror="false">
+			<fileset dir="${subcomponent.init-web}/${build.dir.name}/${dist.dir.name}/lib/ext"/>
+		</copy>
+		<copy todir="${build.dir}/stage_ext/lib" verbose="true" failonerror="false">
+			<fileset dir="${subcomponent.init-web}/${build.dir.name}/${dist.dir.name}/dep"/>
+		</copy>
+		<copy todir="${build.dir}/stage_ext/wars/logon/admin" verbose="true" failonerror="false">
+			<fileset dir="${subcomponent.admin-web}/${build.dir.name}/${dist.dir.name}/lib/ext"/>
+		</copy>
+		<copy todir="${build.dir}/stage_ext/lib" verbose="true" failonerror="false">
+			<fileset dir="${subcomponent.admin-web}/${build.dir.name}/${dist.dir.name}/dep"/>
+		</copy>
+		<copy todir="${build.dir}/stage_ext/wars/logon/cust" verbose="true" failonerror="false">
+			<fileset dir="${subcomponent.cust-web}/${build.dir.name}/${dist.dir.name}/lib/ext"/>
+		</copy>
+		<copy todir="${build.dir}/stage_ext/lib" verbose="true" failonerror="false">
+			<fileset dir="${subcomponent.cust-web}/${build.dir.name}/${dist.dir.name}/dep"/>
+		</copy>
+		<copy todir="${build.dir}/stage_ext/wars/logon/order" verbose="true" failonerror="false">
+			<fileset dir="${subcomponent.order-web}/${build.dir.name}/${dist.dir.name}/lib/ext"/>
+		</copy>
+		<copy todir="${build.dir}/stage_ext/lib" verbose="true" failonerror="false">
+			<fileset dir="${subcomponent.order-web}/${build.dir.name}/${dist.dir.name}/dep"/>
+		</copy>
+		<copy todir="${build.dir}/stage_ext/ejbs" verbose="true" failonerror="false">
+			<fileset dir="${subcomponent.webservices}/${build.dir.name}/${dist.dir.name}/lib/ejbs"/>
+		</copy>
+		<copy todir="${build.dir}/stage_ext/wars/logon/webservices" verbose="true" failonerror="false">
+			<fileset dir="${subcomponent.webservices}/${build.dir.name}/${dist.dir.name}/lib/wars"/>
+		</copy>
+		<copy todir="${build.dir}/stage_ext/lib" verbose="true" failonerror="false">
+			<fileset dir="${subcomponent.webservices}/${build.dir.name}/${dist.dir.name}/dep/lib"/>
+		</copy>
+		<copy todir="${build.dir}/stage_ext/lib-axis2" verbose="true" failonerror="false">
+			<fileset dir="${subcomponent.webservices}/${build.dir.name}/${dist.dir.name}/dep/lib-axis2"/>
+		</copy>
+		<copy todir="${build.dir}/stage_ext/wars/logon/webservices-mop-incoming" verbose="true" failonerror="false">
+			<fileset dir="${subcomponent.webservices-mop-incoming}/${build.dir.name}/${dist.dir.name}/lib/wars"/>
+		</copy>
+		<copy todir="${build.dir}/stage_ext/lib" verbose="true" failonerror="false">
+			<fileset dir="${subcomponent.webservices-mop-incoming}/${build.dir.name}/${dist.dir.name}/dep/lib"/>
+		</copy>
+		<copy todir="${build.dir}/stage_ext/lib-axis2" verbose="true" failonerror="false">
+			<fileset dir="${subcomponent.webservices-mop-incoming}/${build.dir.name}/${dist.dir.name}/dep/lib-axis2"/>
+		</copy>
+		<copy todir="${build.dir}/stage_ext/wars/logon/webservices-pws-incoming" verbose="true" failonerror="false">
+			<fileset dir="${subcomponent.webservices-pws-incoming}/${build.dir.name}/${dist.dir.name}/lib/wars"/>
+		</copy>
+		<copy todir="${build.dir}/stage_ext/lib" verbose="true" failonerror="false">
+			<fileset dir="${subcomponent.webservices-pws-incoming}/${build.dir.name}/${dist.dir.name}/dep/lib"/>
+		</copy>
+		<copy todir="${build.dir}/stage_ext/lib-axis2" verbose="true" failonerror="false">
+			<fileset dir="${subcomponent.webservices-pws-incoming}/${build.dir.name}/${dist.dir.name}/dep/lib-axis2"/>
+		</copy>
+		<copy todir="${build.dir}/stage_ext/wars/logon/webservices-oc-incoming" verbose="true" failonerror="false">
+			<fileset dir="${subcomponent.webservices-oc-incoming}/${build.dir.name}/${dist.dir.name}/lib/wars"/>
+		</copy>
+		<copy todir="${build.dir}/stage_ext/lib" verbose="true" failonerror="false">
+			<fileset dir="${subcomponent.webservices-oc-incoming}/${build.dir.name}/${dist.dir.name}/dep/lib"/>
+		</copy>
+		<copy todir="${build.dir}/stage_ext/lib-axis2" verbose="true" failonerror="false">
+			<fileset dir="${subcomponent.webservices-oc-incoming}/${build.dir.name}/${dist.dir.name}/dep/lib-axis2"/>
+		</copy>
+		<copy todir="${build.dir}/stage_ext/lib" verbose="true" failonerror="false">
+			<fileset dir="${subcomponent.security}/${build.dir.name}/${dist.dir.name}/lib"/>
+		</copy>
+		<copy todir="${build.dir}/stage_ext/lib" verbose="true" failonerror="false">
+			<fileset dir="${subcomponent.persistence}/${build.dir.name}/${dist.dir.name}/lib"/>
+		</copy>
+	</target>
+
+	<target name="prepareTerminalEar" if="${build-logon-terminal}">
+		<copy todir="${build.dir}/stage_terminal/lib" verbose="true" failonerror="false">
+			<fileset dir="${subcomponent.common}/${build.dir.name}/${dist.dir.name}/dep"/>
+		</copy>
+
+		<copy todir="${build.dir}/stage_terminal/lib" verbose="true" failonerror="false">
+			<fileset dir="${subcomponent.init-web}/${build.dir.name}/${dist.dir.name}/dep"/>
+		</copy>
+
+		<copy todir="${build.dir}/stage_terminal/lib" verbose="true" failonerror="false" file="${jbossweb.jar}"/>
+
+		<copy todir="${build.dir}/stage_terminal/wars/logon/terminal" verbose="true" failonerror="false">
+			<fileset dir="${subcomponent.terminal-web}/${build.dir.name}/${dist.dir.name}/lib/ext"/>
+		</copy>
+		<copy todir="${build.dir}/stage_terminal/lib" verbose="true" failonerror="false">
+			<fileset dir="${subcomponent.terminal-web}/${build.dir.name}/${dist.dir.name}/dep"/>
+		</copy>
+		<copy todir="${build.dir}/stage_terminal/lib" verbose="true" failonerror="false">
+			<fileset dir="${subcomponent.security}/${build.dir.name}/${dist.dir.name}/lib"/>
+		</copy>
+		<copy todir="${build.dir}/stage_terminal/lib" verbose="true" failonerror="false">
+			<fileset dir="${subcomponent.persistence}/${build.dir.name}/${dist.dir.name}/lib"/>
+		</copy>
+	</target>
+
+	<!-- ================================================================= -->
+	<!-- === generator                                                 === -->
+	<!-- ================================================================= -->
+	<target name="generateEarDesc" depends="prepareIntEar, prepareExtEar, prepareTerminalEar, generateIntDesc, generateExtDesc, generateTerminalDesc"/>
+
+	<target name="generateIntDesc" if="${build-logon-int}">
+		<gditask classpathref="gdi.classpath"
+				 cartridgePath="${etc.dir}/gdi/ear"
+				 inputPath="${build.dir}/stage_int"
+				 outputPath="${generated.dir}/gdi/intear">
+			<systemproperty name="allfiles" value="true"/>
+			<systemproperty name="pwd" value="${build.dir}/stage_int"/>
+			<systemproperty name="securitydomain" value="${login.domain.int}"/>
+			<systemproperty name="host" value="${host}"/>
+			<systemproperty name="port" value="${http.port}"/>
+			<properties>
+				<fileset file ="${etc.dir}/application.properties"/>
+			</properties>
+		</gditask>
+	</target>
+
+	<target name="generateExtDesc" if="${build-logon-ext}">
+		<gditask classpathref="gdi.classpath"
+				 cartridgePath="${etc.dir}/gdi/ear"
+				 inputPath="${build.dir}/stage_ext"
+				 outputPath="${generated.dir}/gdi/extear">
+			<systemproperty name="allfiles" value="true"/>
+			<systemproperty name="pwd" value="${build.dir}/stage_ext"/>
+			<systemproperty name="securitydomain" value="${login.domain.ext}"/>
+			<systemproperty name="host" value="${host}"/>
+			<systemproperty name="port" value="${http.port}"/>
+			<systemproperty name="gdiencoding" value="${gdi.encoding}"/>
+			<properties>
+				<fileset file ="${etc.dir}/application.properties"/>
+			</properties>
+		</gditask>
+	</target>
+
+	<target name="generateTerminalDesc" if="${build-logon-terminal}">
+		<gditask classpathref="gdi.classpath"
+				 cartridgePath="${etc.dir}/gdi/ear"
+				 inputPath="${build.dir}/stage_terminal"
+				 outputPath="${generated.dir}/gdi/terminalear">
+			<systemproperty name="allfiles" value="true"/>
+			<systemproperty name="pwd" value="${build.dir}/stage_terminal"/>
+			<systemproperty name="securitydomain" value="${login.domain.terminal}"/>
+			<systemproperty name="host" value="${host}"/>
+			<systemproperty name="port" value="${http.port}"/>
+			<systemproperty name="gdiencoding" value="${gdi.encoding}"/>
+			<properties>
+				<fileset file ="${etc.dir}/application.properties"/>
+			</properties>
+		</gditask>
+	</target>
+
+	<target name="generateEarDescTD" depends="prepareIntEar">
+		<java classname="ch.nevis.gdi.main.TemplateDesigner"
+			  fork="true" failonerror="true" newenvironment="true">
+			<jvmarg value="-Dallfiles=true"/>
+			<jvmarg value="-Dpwd=${build.dir}/stage_int"/>
+			<jvmarg value="-Dhost=${host}"/>
+			<jvmarg value="-Dport=${http.port}"/>
+			<classpath refid="gdi.classpath"/>
+			<arg line="${etc.dir}/gdi/ear ${build.dir}/stage_int ${generated.dir}/gdi/intear etc/application.properties"/>
+		</java>
+	</target>
+
+	<!-- ================================================================= -->
+	<!-- === distribution targets                                      === -->
+	<!-- ================================================================= -->
+	<target name="dist" description="build the distribution" unless="omit.subcomponent.application">
+		<antcall target="realdist" inheritall="true"/>
+	</target>
+	<target name="realdist" depends="build, realdistint, realdistext, realdistterminal"/>
+
+	<target name="realdistint" if="${build-logon-int}">
+		<symlink link="${dist.lib.dir}" resource="${project-int.ear}" failonerror="false"/>
+		<copy tofile="${dist.dir}/int_info.txt" file="${generated.dir}/gdi/intear/info.txt"/>
+	</target>
+
+	<target name="realdistext" if="${build-logon-ext}">
+		<symlink link="${dist.lib.dir}" resource="${project-ext.ear}" failonerror="false"/>
+		<copy tofile="${dist.dir}/ext_info.txt" file="${generated.dir}/gdi/extear/info.txt"/>
+	</target>
+
+	<target name="realdistterminal" if="${build-logon-terminal}">
+		<symlink link="${dist.lib.dir}" resource="${project-terminal.ear}" failonerror="false"/>
+		<copy tofile="${dist.dir}/terminal_info.txt" file="${generated.dir}/gdi/terminalear/info.txt"/>
+	</target>
+
+	<!-- NOTE: what we build here is only used for development (enables faster dev-cycles) -->
+	<target name="deploy" description="deploy this sub-project only">
+		<echo>nothing to deploy here!</echo>
+	</target>
+
+	<!-- ================================================================ -->
+	<!-- source code tracing instrumentation targets                      -->
+	<!-- ================================================================ -->
+	<target name="adntrace2-instrument">
+		<taskdef resource="adntrace2-taskdefs.xml" classpathref="adntrace2.classpath"/>
+		<adntrace2 operation="instrument"/>
+	</target>
+
+	<target name="adntrace2-refresh">
+		<taskdef resource="adntrace2-taskdefs.xml" classpathref="adntrace2.classpath"/>
+		<adntrace2 operation="refresh"/>
+	</target>
+
+	<!-- ================================================================ -->
+	<!--  generate documentation                                          -->
+	<!-- ================================================================ -->
+	<target name="docs" depends="buildWrapper"
+			description="generate all documentation">
+	</target>
+
+
+	<!-- ================================================================ -->
+	<!--  externally defined tasks/targets                                -->
+	<!-- ================================================================ -->
+	<import file="./build-test.xml"/>
+
+</project>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNS_SAP_VENDOR"
+           description="Contains SAP Vendor data (aka Forwarding Agent, in German: Lieferanten). In Logon, this is connected with Carriers. The only useful data right now is the name and Vendor No which is used later in the invoicing process.">
+
+        <column name="SAP_VENDOR_ID" primaryKey="true" required="true" type="DECIMAL" size="12"
+                description="PK. Given by the Logon system."/>
+        <column name="SAP_ID" type="VARCHAR" size="10"
+                description="The (trimmed) ID used by SAP system. Received via the SAP interface, leading zeros are trimmed. This is a kind of foreign key into SAP (vendor_general_data (E1LFA1M) / LIFNR, trimmed)."/>
+        <column name="SAP_IFC_ID" type="VARCHAR" size="10"
+                description="The ID used by SAP system, exactly as received and also used for sending to other systems, i.e. including the leading zeros. Received via the SAP interface. (vendor_general_data (E1LFA1M) / LIFNR, original)."/>
+
+        <!-- Field used in master data import -->
+        <column name="UPDATE_BLOCKED_BY_HJID" type="DECIMAL" size="19"
+        		description="Contains the hjid of the notification that blocks any further updates if this is the case or 'null' if not blocked. Non-enforced FK to ULGNSAP.VN_VENDORNOTIFICATION."/>
+        
+        <column name="ACCOUNT_GROUP" type="VARCHAR" size="4"
+                description="Account group in SAP (vendor_general_data (E1LFA1M) / KTOKK). No logic associated with it currently."/>
+        <column name="MARKED_FOR_DELETION" type="VARCHAR" size="1"
+                description="Deletion code in SAP (vendor_general_data (E1LFA1M) / NODEL). 0=active, 1=deleted. Note that Logon normally has active_flag, with inversed logic. We stick to SAP standards in the tlgns_sap_... tables."/>
+        <column name="NAME1" type="VARCHAR" size="35"
+                description="Last Name/Company Name 1 from SAP (vendor_general_data (E1LFA1M) / NAME1)"/>
+        <column name="NAME2" type="VARCHAR" size="35"
+                description="First Name/Company Name 2 from SAP (vendor_general_data (E1LFA1M) / NAME2)"/>
+        <column name="COUNTRY_CD" type="VARCHAR" size="3"
+                description="FK tlgnr_country_bs. Country from SAP (vendor_general_data (E1LFA1M) / LAND1)."/>
+        <column name="POSTAL_CODE" type="VARCHAR" size="10"
+                description="Zip Code/Postal Code from SAP (vendor_general_data (E1LFA1M) / PSTLZ)"/>
+        <column name="CITY" type="VARCHAR" size="35"
+                description="City from SAP (vendor_general_data (E1LFA1M) / ORT01)"/>
+        <column name="LOCATION_DISTRICT" type="VARCHAR" size="40"
+                description="Location/District from SAP (vendor_general_data (E1LFA1M) / ORT02). Not used currently."/>
+        <column name="REGION" type="VARCHAR" size="3"
+                description="Region (Canton in CH) from SAP (vendor_general_data (E1LFA1M) / REGIO). There is currently no logic associated with it, therefore no refdata for regions (cantons) needed."/>
+        <column name="STREET" type="VARCHAR" size="35"
+                description="Street and house number from SAP (vendor_general_data (E1LFA1M) / STRAS)"/>
+        <column name="HOUSE_NUMBER" type="VARCHAR" size="10"
+                description="From Logon 2.0 EBM house number is received in field 'vendor_general_data (E1LFA1M) / STRAS' from SAP and stored in column STREET, so this field is null. Contains house number from SAP in older records (data received before Logon 2.0 EBM)."/>
+        <column name="LANG_CD" type="VARCHAR" size="2"
+                description="FK tlgnr_lang_bs. Language from SAP (vendor_general_data (E1LFA1M) / SPRAS). 'Z1' from SAP is mapped to 'de'."/>
+        <column name="VAT_REGISTRATION_NUMBER" type="VARCHAR" size="20"
+                description="VAT registration number from SAP (vendor_general_data (E1LFA1M) / STCEG)"/>
+        
+        <column name="VN_IS_COMM_CARRIER" required="true" type="BOOLEAN"
+                description="Technical flag for easier filtering; is set if this VN has a PF to itself with function=SP (forwarding agent)"/>
+        
+        <column name="VN_IS_EXEC_CARRIER" required="true" type="BOOLEAN"
+                description="Technical flag for easier filtering; is set if this VN has a PF to itself with function=ZC (subcontractor)"/>
+
+        <column name="VN_IS_INTERNAL" required="true" type="BOOLEAN"
+                description="Technical flag which is a requirement from CHE for reporting reasons; is set if this VN has account group ZGRP"/>
+                
+        <column name="TAX_NUMBER3" type="VARCHAR" size="18"
+        		description="Tax Code Number 3. Vendor 'IA Number' Usage: If present, will be printed on the delivery note. No other usage in LOGON."/>
+        		
+        <column name="PHONE_NUMBER" type="VARCHAR" size="16"
+        		description="Phone number. Usage: if present, will be printed on the delivery note. No other usage in LOGON."/>
+
+        <foreign-key foreignTable="TLGNR_LANG_BS" name="FK_TLGNS_SAP_VENDOR_LANG">
+            <reference local="LANG_CD" foreign="LANG_CD"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_SAP_COUNTRY_BS" name="FK_TLGNS_SAP_VENDOR_COUNTRY">
+            <reference local="COUNTRY_CD" foreign="SAP_COUNTRY_CD"/>
+        </foreign-key>
+        
+        <index name="I_TLGNS_SAP_VEND_MARKDELCOMMC">
+          <index-column name="MARKED_FOR_DELETION"/>
+          <index-column name="VN_IS_COMM_CARRIER"/>
+        </index>
+    </table>
+</database>

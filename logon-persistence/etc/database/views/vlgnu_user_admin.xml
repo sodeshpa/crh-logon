@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="VLGNU_USER_ADMIN" mappingType="view" skipSql="true">
+        <column name="USER_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="SAP_BP_ID" type="DECIMAL" size="12"/>
+        <column name="CUSTOMER" type="VARCHAR" size="35"/>
+        <column name="SAP_VENDOR_ID" type="DECIMAL" size="12"/>
+        <column name="CARRIER" type="VARCHAR" size="40"/>
+        <column name="PERSON_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="FIRSTNAME" type="VARCHAR" size="40"/>
+        <column name="NAME" type="VARCHAR" size="40"/>
+        <column name="COMPOSITE_NAME" type="VARCHAR" size="120"/>
+        <column name="LDAP_HOLSPACE" type="VARCHAR" size="255"/>
+        <column name="EXT_LOGIN" type="VARCHAR" size="40"/>
+        <column name="PDA_USER_NO" type="DECIMAL" size="8"/>
+        <column name="ACTIVE_FLAG" required="true" type="BOOLEAN"/>
+        <column name="ROLE_NAMES" type="VARCHAR" size="4000"/>
+    </table>
+</database>

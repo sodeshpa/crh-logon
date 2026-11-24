@@ -1,0 +1,4 @@
+#Pos;PDA_DEVICE_NO;LAST_USER_ID (ignored);sap_vendor_id;active_flag
+# The real AdNovum Test/Dev devices are contained in etc/sql/testdata/minimal_setup.sql (reason: all attributes, comments in the DB);
+# hard-coded ID for chrome tests:
+2;umg_android_MOP_GERARD;;;1

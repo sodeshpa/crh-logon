@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+	<table name="TLGNR_PACKAGE_TYPE_TX" refData="true"
+		   description="Language dependent attributes for Package Types.">
+
+		<column name="PACKAGE_TYPE_CD" primaryKey="true" required="true" type="DECIMAL" size="2"
+				description="Part of PK. FK to TLGNR_PACKAGE_TYPE_BS. Code of the Reference Data."/>
+		<column name="LANG_CD" primaryKey="true" required="true" type="VARCHAR" size="2"
+				description="Part of PK. FK to TLGNR_LANG_BS."/>
+		<column name="TXT" required="true" type="VARCHAR" size="20"
+				 description="Description of the Package Type in the language LANG_CD."/>
+
+        <foreign-key foreignTable="TLGNR_PACKAGE_TYPE_BS" name="FK_TLGNR_PACKAGE_TYPE_TX">
+            <reference local="PACKAGE_TYPE_CD" foreign="PACKAGE_TYPE_CD"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_LANG_BS" name="FK_TLGNR_PACKAGE_TYPE_LANG">
+            <reference local="LANG_CD" foreign="LANG_CD"/>
+        </foreign-key>
+    </table>
+</database>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="VLGNC_SHIPTO_SAREA_DETAIL" mappingType="view" skipSql="true">
+        <column name="COMPOSITE_ID" type="VARCHAR" size="43"/>
+        <column name="SHIPTO_SAREA_RESTR_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="SHIPTO_SAREA_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="SAP_MATERIAL_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="ENABLED_FLAG" required="true" type="BOOLEAN"/>
+        <column name="SHIPTO_SILO_ID" type="DECIMAL" size="12"/>
+        <column name="QUANTITY" type="DECIMAL" size="12,4"/>
+        <column name="DELIVERY_TYPE_CD" type="DECIMAL" size="2"/>
+        <column name="POOL_ID" type="DECIMAL" size="12"/>
+        <column name="AUTO_POOL_ASSIGNMENT_FLAG" required="true" type="BOOLEAN"/>
+        <column name="COMM_CARRIER_ID" type="DECIMAL" size="12"/>
+        <column name="AUTO_CARRIER_ASSIGNMENT_FLAG" required="true" type="BOOLEAN"/>
+        <column name="BILLTO_SAP_BP_ID" type="DECIMAL" size="12"/>
+        <column name="PAYER_SAP_BP_ID" type="DECIMAL" size="12"/>
+        <column name="BILLTO_RULETYPE_CD" type="DECIMAL" size="2"/>
+        <column name="FREE_DELIVERY_FLAG" required="true" type="BOOLEAN"/>
+        <column name="RELEASE_SAP_FLAG" required="true" type="BOOLEAN"/>
+        <column name="NOTE_ORDER_MGMT" type="VARCHAR" size="200"/>
+        <column name="NOTE_DELIVERY" type="VARCHAR" size="300"/>
+        <column name="NOTE_DISPATCHING" type="VARCHAR" size="200"/>
+        <column name="NOTE_TRUCK_DRIVER" type="VARCHAR" size="200"/>
+        <column name="NOTE_RAILWAY_DISP" type="VARCHAR" size="200"/>
+        <column name="SHIPPINGPOINT_ID" type="DECIMAL" size="12"/>
+        <column name="LOADINGPOINT_ID" type="DECIMAL" size="12"/>
+        <column name="PRODUCTION_PLANT_CD" type="VARCHAR" size="4"/>
+        <column name="UOM_CD" type="VARCHAR" size="3"/>
+        <column name="AVAILABLE_IN_CUST_WEB_FLAG" required="true" type="BOOLEAN"/>
+        <column name="AVAILABLE_IN_PICKUP_APP_FLAG" required="true" type="BOOLEAN"/>
+        <column name="SAP_MATERIAL_NO" type="VARCHAR" size="18"/>
+        <column name="MATERIAL_PACKAGE_CD" type="VARCHAR" size="4"/>
+        <column name="TXT" type="VARCHAR" size="40"/>
+        <column name="LANG_CD" type="VARCHAR" size="2"/>
+        <column name="MATERIAL_PACKAGE_TXT" type="VARCHAR" size="20"/>
+        <column name="LOGON_PACKAGE_TYPE_CD" type="DECIMAL" size="2"/>
+    </table>
+</database>

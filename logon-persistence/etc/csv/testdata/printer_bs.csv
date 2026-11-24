@@ -1,0 +1,12 @@
+#Testdata to be used only within AdNovum (Dev), manually written.
+#
+#structure must be identical to etc/csv/refdata/printer_bs.csv, which contains the REAL data for Crh.
+#
+#printer_cd;#Werk/Terminal;Ladestrasse;Name;IP-Adresse;Drucker Modell (Marke/Typ);Add. Comment;ctl_act_cd;Telnet Status (TCP);IPP Testpage
+#ignored;#ignore / part of comment;#part of comment only! Lookup -> add to LP load;# read as printer_name;#read as printer_uri: ipp://<ip>/ipp;# read as printer_type;# read as part of printer_comment;# active = 1;;
+#
+1;Budapest;4th floor;tarhonya;192.168.94.132;;Test Printer AdNovum;1
+2;Budapest;Ex-2nd floor;hungaroring;192.168.94.20;;Test Printer AdNovum;1
+3;Zürich;RL Korridor;betzholz;192.168.13.6;;Test Printer AdNovum;1
+4;Zürich;LU06 Vivarium;qmscolor;192.168.13.3;;Test Printer AdNovum;1
+5;Zürich;WH04;monaco;192.168.13.17;;Test Printer AdNovum;1

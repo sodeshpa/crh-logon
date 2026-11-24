@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNR_SAP_ACCOUNT_GROUP_BS" refData="true"
+           description="Account groups as distinguished by SAP. This table encodes special properties of certain account groups as flags, e.g. whether BPs in an account group will be marked as drivers or whether the sold-to partner function will be invented in LOGON for an SAP ship-to in an account group.">
+
+        <column name="SAP_ACCOUNT_GROUP_CD" primaryKey="true" required="true" type="VARCHAR" size="4"
+                description="PK. Account group as defined by SAP."/>
+        <column name="DESCRIPTION" required="true" type="VARCHAR" size="40"
+                description="Short description of the account group in English."/>
+        <column name="BP_IS_DRIVER" required="true" type="BOOLEAN"
+                description="BPs in this account group will be set as drivers."/>
+        <column name="TREAT_AS_ONETIME_FLAG" required="true" type="BOOLEAN"
+                description="BPs in this account group will have the TREAT_AS_ONETIME_FLAG set to 1."/>
+        <column name="INVENT_SOLDTO_FOR_SHIPTO" required="true" type="BOOLEAN"
+                description="For ship-tos in this account group, the sold-to partner function will be invented in LOGON. In that case, the sold-to must not be sent to SAP in the outgoing interfaces. Also, order taking with this BP as sold-to must only be allowed for STPO and SA contracts."/>
+        <column name="INVENT_BILLTO_FOR_SHIPTO" required="true" type="BOOLEAN"
+                description="For ship-tos in this account group, the bill-to partner function will be invented in LOGON. In that case, the bill-to must not be sent to SAP in the outgoing interfaces. Also, order taking with this BP as bill-to must only be allowed for STPO and SA contracts."/>
+        <column name="INVENT_PAYER_FOR_SHIPTO" required="true" type="BOOLEAN"
+                description="For ship-tos in this account group, the payer partner function will be invented in LGOON. In that case, the payer must not be sent in the outgoing interfaces. Also, order taking with this BP as payer must only be allowed for STPO and SA contracts."/>
+        <column name="CTL_ACT_CD" required="true" type="BOOLEAN"
+                description="Active Flag. When new data is entered, only reference data with active flag are available for selection normally."/>
+    </table>
+</database>

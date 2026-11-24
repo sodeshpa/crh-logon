@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNR_DELIV_NOTE_PRINT_TYPE_TX" refData="true"
+           description="Language dependent attributes for Delivery Note Printing Type.">
+
+        <column name="DELIV_NOTE_PRINT_TYPE_CD" primaryKey="true" required="true" type="DECIMAL" size="2"
+                description="Part of PK. FK tlgnr_deliv_note_print_type_bs. Code of the Reference Data."/>
+        <column name="LANG_CD" primaryKey="true" required="true" type="VARCHAR" size="2"
+                description="Part of PK. FK tlgnr_lang_bs."/>
+        <column name="TXT" required="true" type="VARCHAR" size="20"
+                description="Description of the Delivery Note Printing Type in the language lang_cd."/>
+
+        <foreign-key foreignTable="TLGNR_DELIV_NOTE_PRINT_TYPE_BS" name="FK_TLGNR_DELIV_NOTE_PRTYPE_TX">
+            <reference local="DELIV_NOTE_PRINT_TYPE_CD" foreign="DELIV_NOTE_PRINT_TYPE_CD"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_LANG_BS" name="FK_TLGNR_DELIV_NOTE_PRTYPE_LNG">
+            <reference local="LANG_CD" foreign="LANG_CD"/>
+        </foreign-key>
+    </table>
+</database>

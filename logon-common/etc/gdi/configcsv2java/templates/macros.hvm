@@ -1,0 +1,26 @@
+#macro (get $index)
+#set ($v = $row.get($index).trim())
+#set ($q = $systemproperties.get("csv_quote_character"))
+#if ($v.startsWith($q))
+$v.replace($q, "")#{else}$v#end#end
+##
+#macro (val2java $in)
+#if ($type == "String")
+#if ($in == "null")$in#{else}
+"$in"#end
+#else
+$in#end
+#end
+#macro (defineAll)
+#set ($key = "#get(0)")
+#set ($type = "#get(1)")
+#set ($min = "#get(2)")
+#set ($max = "#get(3)")
+#set ($sensitive = "#get(5)")
+#set ($val = "#get(6)")
+#set ($val = "#val2java($val)")
+#set ($val = $val.replace('\', '\\'))
+#set ($description = "#get(7)")
+#set ($description = "$description")
+#set ($field = $st.handleUnderscores($st.extractJavaIdentifier($key)))
+#end

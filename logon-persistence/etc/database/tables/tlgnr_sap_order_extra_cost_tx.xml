@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNR_SAP_ORDER_EXTRA_COST_TX" refData="true"
+           description="Language dependent attributes of the Order SAP extra costs.">
+
+        <column name="SAP_ORDER_EXTRA_COST_CD" primaryKey="true" required="true" type="VARCHAR" size="20"
+                description="Part of PK. FK tlgnr_order_extra_cost_type_bs. Code of the Reference Data."/>
+        <column name="LANG_CD" primaryKey="true" required="true" type="VARCHAR" size="2"
+                description="Part of PK. FK tlgnr_lang_bs. For example de, en, ..."/>
+        <column name="TXT" required="true" type="VARCHAR" size="40"
+                description="Description of the extra cost in the language lang_cd."/>
+
+        <foreign-key foreignTable="TLGNR_SAP_ORDER_EXTRA_COST_BS" name="FK_SAP_ORDER_EXTRA_COST_BS">
+            <reference local="SAP_ORDER_EXTRA_COST_CD" foreign="SAP_ORDER_EXTRA_COST_CD"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_LANG_BS" name="FK_TLGNR_ORDER_ECOST_TYPE_LANG">
+            <reference local="LANG_CD" foreign="LANG_CD"/>
+        </foreign-key>
+    </table>
+</database>

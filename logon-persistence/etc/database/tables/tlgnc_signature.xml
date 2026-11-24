@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNC_SIGNATURE"
+           description="Stores images of the signatures. Personal signatures of users (tlgnu_user.signature_id) as well as signatures of customers (when signing the delivery on the PDA) are stored in here. Is modelled as a separate table (not tlgnc_image) because signature images are inserted/updated via the normal application, not just the administrator.">
+
+        <column name="SIGNATURE_ID" primaryKey="true" required="true" type="DECIMAL" size="12"
+                description="PK"/>
+        <column name="DATA" type="BLOB"
+                description="The binary data of the signature image."/>
+        <column name="DATA_MIME_TYPE_CD" required="true" type="DECIMAL" size="12"
+                description="FK tlgnr_mime_type_bs. The MIME type of the image, 1=image/gif, 2=image/jpeg, ..."/>
+        <!-- No metadata for signature should be stored here, but instead on the object referring to tlgnc_signature:
+             - Order: Time when signature was given, maybe person (if known)
+             - User:  Time, until when a signature is valid, if it can be used on Delivery Note PDF, etc.)
+        -->
+
+        <!-- REMOVED! Reason: A user owns ONE signature. When it's changed, the original signature can be replaced.
+             When a delivery is signed by the customer, the person is not necessarily known to us!
+             We may only get this scribble, and no person info.
+        <column name="PERSON_ID" required="true" type="DECIMAL" size="12"
+                description="FK tlgnc_person. The person represented by this signature."/>
+        -->
+        <foreign-key foreignTable="TLGNR_MIME_TYPE_BS" name="FK_TLGNC_SIGNATURE_DATA_MIME">
+            <reference local="DATA_MIME_TYPE_CD" foreign="MIME_TYPE_CD"/>
+        </foreign-key>
+        <!-- REMOVED!
+        <foreign-key foreignTable="TLGNC_PERSON" name="FK_TLGNC_SIGNATURE_PERSON">
+            <reference local="PERSON_ID" foreign="PERSON_ID"/>
+        </foreign-key>
+        -->
+    </table>
+</database>

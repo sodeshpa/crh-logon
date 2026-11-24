@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="VLGNS_SAP_MAT_SAREA_CONTRACT" mappingType="view" skipSql="true">
+        <column name="COMPOSITE_ID" type="VARCHAR" size="120"/>
+        <column name="SHIPTO_SAP_BP_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="SOLDTO_SAP_BP_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="SAP_CONTRACT_NO" required="true" type="VARCHAR" size="10"/>
+        <column name="SAP_CONTRACT_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="CONTRACT_HIERARCHY_LEVEL" required="true" type="BOOLEAN"/>
+        <column name="IS_AP_GROUP_LEADER" required="true" type="BOOLEAN"/>
+        <column name="AP_GROUP_LEADER_ID" type="DECIMAL" size="12"/>
+        <column name="ITEM_GROUPING_TYPE" type="DECIMAL" size="2"/>
+        <column name="SAP_CONTRACT_ITEM_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="VALID_FROM_DAT" required="true" type="DATE"/>
+        <column name="CONTRACT_SAP_MATERIAL_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="IS_GENERIC_FLAG" required="true" type="BOOLEAN"/>
+        <column name="MATERIAL_GROUP_4" type="VARCHAR" size="3"/>
+        <column name="SAP_MATERIAL_NO" required="true" type="VARCHAR" size="18"/>
+        <column name="SAP_MATERIAL_ID" type="DECIMAL" size="12"/>
+        <column name="LOGON_PACKAGE_TYPE_CD" type="DECIMAL" size="2"/>
+    </table>
+</database>

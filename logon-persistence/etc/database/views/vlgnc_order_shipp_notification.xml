@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="vlgnc_order_shipp_notification" mappingType="view" skipSql="true">
+		
+        <column name="ORDER_ID" type="DECIMAL" size="12"/>
+        
+        <column name="DELIVERY_TYPE_CD" type="DECIMAL" size="2"/>
+        <column name="DISTRIBUTION_DEST_CD" type="VARCHAR" size="4"/>
+        <column name="ORDER_STATUS_CD" type="DECIMAL" size="2"/>
+        <column name="PLANNED_START" type="DATE"/>
+        <column name="TRANSMIT_TO_CARRIER_FLAG" type="BOOLEAN"
+                description="0=false, 1=true. If true, orders assigned to this carrier will be transmitted to the carrier. Currently, this is only for transmitting to SBB (Swiss rail company), in the future this might be to other systems as well."/>
+        <column name="PREV_LATE_DELIVERY" type="DECIMAL" size="4" description="We use this calculated field to help prevent late delivery notification"/>
+        
+    </table>
+</database>

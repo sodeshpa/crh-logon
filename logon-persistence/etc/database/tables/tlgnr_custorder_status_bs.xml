@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNR_CUSTORDER_STATUS_BS" refData="true"
+           description="The status of a customer order represents its current position in the customer order workflow. FIXME (romek Jul 12, 2011): To be updated with more detailed description.">
+
+        <column name="CUSTORDER_STATUS_CD" primaryKey="true" required="true" type="DECIMAL" size="2"
+                description="PK. 1=new, 2=open, 3=finished. Although the states look fully sorted now, they should be treated as non-sortable, in case new states will be added at a later point in development. Comparisons with &lt; and &gt; are forbidden!"/>
+        <column name="SORTING_NO" required="true" type="DECIMAL" size="3"
+                description="This is to DISPLAY all status codes in a 'natural' way to the user. It is forbidden to attach any process logic to this field! Currently custorder_status_cd is in natural order (the codes are arranged in ascending order), however new codes must be added to the end (in order not to break too much code/DB-Views), and therefore an explicit sorting_no is introduced."/>
+        <column name="CTL_ACT_CD" required="true" type="BOOLEAN"
+                description="Active Flag. When new data is entered, only reference data with active flag are available for selection normally."/>
+    </table>
+</database>

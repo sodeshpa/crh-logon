@@ -1,0 +1,121 @@
+# 20.10.2012, C0_initial_data_plant_compcode_sarea_template_20121018_EGH_Final_mod_uma.xslx;;;;;;;;
+# Due to Cluster0/Cluster1: the ctl_act_cd flag is never updated to 0, only -> 1. This way, C0+C1 can be loaded, resulting in BOTH being active!;;;;;;;;
+# Update is skipped if ctl_act_cd. Reason: Probably better maintained data exist in other cluster input file;;;;;;;;
+# 05.12.2012, file updated by FBI
+#SORG_CD;#COMPANYCODE_CD;#SORG_NAME;#LOGO_IMAGE_NAME;#ADDRESS_STREET;#ADDRESS_COUNTRYCITY;#SKIP_SEND_DISTANCE_SAP_SD;#SALESDOC_RETURN_AUART;#CTL_ACT_CD
+AT50;AT50;Crh(Vorarlberg);pdf_crh_logo;Brunnenfeldstrasse 89;A - 5700 Bludenz;0;ZRET;1
+BE10;BE01;Ciments Belgique;pdf_crh_logo;Rue des Fabriques 2;7034 Obourg (Mons);1;ZCOR;1
+BE12;BE06;Geocycle Belgique;pdf_crh_logo;Rue de Courrière, 49;7181 Seneffe;1;ZCOR;1
+BE20;BE12;GeoMinerals;pdf_crh_logo;Avenue Reine Astrid, 92;1310 La Hulpe;1;ZCOR;1
+BE30;BE01;Granulats Belgique;pdf_crh_logo;Carrière du Milieu;7530 Gaurain-Ramecroix;0;ZCOR;1
+BE34;BE10;Leffe;pdf_crh_logo;Route de Spontin;5500 Leffe;0;ZCOR;1
+BE40;BE01;Bétons Belgique;pdf_crh_logo;Avenue Jean Monet;1400 Nivelles;0;ZCOR;1
+BE90;BE01;Geocycle Obourg;pdf_crh_logo;Rue des Fabriques 2;7034 Obourg;0;ZCOR;1
+BE91;BE02;HBB Services;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZCOR;1
+BE92;BE12;GeoMinerals Services;pdf_crh_logo;Avenue Reine Astrid, 92;1310 La Hulpe;0;ZCOR;1
+BE93;BE06;Geocycle Services;pdf_crh_logo;Rue de Courrière, 49;7181 Seneffe;0;ZCOR;1
+BE94;BE01;Belgique Services;pdf_crh_logo;Rue des Fabriques, 2;7034 Obourg;0;ZCOR;1
+BE97;BE08;HENS Services;pdf_crh_logo;Avenue Louise, 489;1050 Brussels;0;ZCOR;1
+BE98;BE10;Leffe Services;pdf_crh_logo;Route de Spontin;5500 Leffe;0;ZCOR;1
+BE99;BE11;Calcaire RG Services;pdf_crh_logo;Avenue Jean Monnet;1400 Nivelles;0;ZCOR;1
+CH01;CH01;Crh (Schweiz);pdf_crh_logo;Hagenholzstrasse 83;CH - 8050 Zürich;0;ZRET;0
+CH10;CH02;Crh Kies und Beto;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+CH11;CH05;Crh BF + P;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+CH12;CH04;Bétondrance Martigny;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+CH13;CH10;Praz;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+CH14;CH09;Aargau Nord;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+CH15;CH81;KUTAG;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+CH16;CH03;Crh (Cham);pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+CH89;CH01;AFR Crh (Schweiz);pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+CH90;CH01;BAWT;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+CH92;CH01;Crh (Schweiz) Div;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+DE01;DE01;Crh (Deutschland);pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+DE03;DE03;HBZ;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+DE04;DE04;UTB;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+DE06;DE06;Prüfstelle Leer;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+DE07;DE07;Kieswerk Borsberg;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+DE09;DE09;Kieswerk Zeithain;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+DE14;DE14;Schulenburg;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+DE15;DE01;Crh (Deutschland);pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+DE50;DE50;Hüttensand Salzgitte;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+DE52;DE52;Vetra;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+DE53;DE52;Vetra (NL);pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+DE63;DE63;FBÜ KG;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+DE65;DE65;HTB KG;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+DE67;DE67;KWL KG;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+DE70;DE70;Crh (Süd-DE);pdf_crh_logo;Dormettinger Strasse 23;D - 72359 Dotternhausen;0;ZRET;0
+DE71;DE70;SBM Crh (Süd-DE);pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+DE75;DE72;Karlsruhe Süd;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+DE76;DE73;Trockensandwerk;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+DE79;DE70;AFR Crh (Süd-DE);pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+DE80;DE80;Region Weil-Lörrach;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+DE81;DE80;Region Offenburg;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+DE82;DE80;Region Stuttgart;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+DE83;DE80;Karlsruhe Nord;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+DE88;DE71;Rohst.gew. Hohenten.;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+FR10;FR01;Crh (France);pdf_crh_logo;49 avenue Georges Pompidou;92593 Levallois-Perret Cedex;1;ZRET;1
+FR11;FR07;VDN;pdf_crh_logo;Quai Freycinet, 10 ;59140 DUNKERQUE;1;ZRET;1
+FR30;FR17;HG Distribution;pdf_crh_logo;49 avenue Georges Pompidou;92593 Levallois-Perret Cedex;0;ZRET;1
+FR31;FR12;SOCALCOR;pdf_crh_logo;Route de Savigny;21380 Marsannay le Bois;0;ZRET;1
+FR32;FR11;CBS;pdf_crh_logo;9 rue Paul LANGEVIN;21300 Chenove;0;ZRET;1
+FR33;FR03;HG NORD France;pdf_crh_logo;75, Avenue du Peuple Belge;75000 LILLE;0;ZRET;1
+FR34;FR03;HG EST;pdf_crh_logo;1 Rue de la Sablière;68420 Herrlisheim;0;ZRET;1
+FR35;FR03;HG CENTRE;pdf_crh_logo;VALPARC - ZAC de Valentin;25047 Besancon Cedex;0;ZRET;1
+FR36;FR03;GRANULATS SPECIAUX;pdf_crh_logo;VALPARC - ZAC de Valentin;25047 Besancon Cedex;0;ZRET;1
+FR37;FR13;GDFC;pdf_crh_logo;rue Paul Langevin, 9;21300 CHENOVE;0;ZRET;1
+FR38;FR14;SOCOVAL;pdf_crh_logo;Route de Savigny-le-sec;21380 Marsannay-le-Boix;0;ZRET;1
+FR40;FR23;EST GRANULATS;pdf_crh_logo;12 b, rue des Herons;67960 ENTZHEIM;0;ZRET;1
+FR43;FR25;Gravières la Hardt;pdf_crh_logo;Route Nationale;68510 SIERENTZ;0;ZRET;1
+FR50;FR02;Crh B. (CE);pdf_crh_logo;Valparc-Espace Valentin;25047 BESANCON;0;ZRET;1
+FR51;FR02;Crh B. (IDF);pdf_crh_logo;75, Avenue du peuple Belge;59048 Lille cedex;0;ZRET;1
+FR52;FR02;Crh B. (NORD);pdf_crh_logo;147, rue Cardinet - Cours Sernam;75017 PARIS;0;ZRET;1
+FR54;FR02;Crh B. (Est);pdf_crh_logo;Route de Goxwiller;67210 NIDERNAI;0;ZRET;1
+FR55;FR09;Béton Castel;pdf_crh_logo;11 Rue Simon de Laplace;57078 Metz;0;ZRET;1
+FR56;FR10;Béton Rapid;pdf_crh_logo;Quai de la Révolution;94140 ALFORTVILLE;0;ZRET;1
+FR57;FR02;Crh B. (Picardie);pdf_crh_logo;Z.I. du Sauvoy - 8, rue Montboulon;77165 SAINT SOUPPLETS;0;ZRET;1
+FR58;FR20;Dijon Béton;pdf_crh_logo;Route de Gray;21850 SAINT APOLLINAIRE;0;ZRET;1
+FR70;FR01;France Services;pdf_crh_logo;192 avenue Charles de Gaulle;92200 Neuilly;0;ZRET;1
+FR71;FR01;Geocycle France;pdf_crh_logo;Avenue Charles de Gaulle, 192;92200 Neuilly-sur-Seine;0;ZRET;1
+FR72;FR02;HBF Services;pdf_crh_logo;missing address_street;59000 Lille;0;ZRET;1
+FR73;FR03;HGF Services;pdf_crh_logo;75, Avenue du Peuple Belge;59000 LILLE;0;ZRET;1
+FR74;FR05;Crh Info Services;pdf_crh_logo;75 Avenue du peuple Belg;59044 LILLE CEDEX;0;ZRET;1
+FR75;FR06;Dunk Ajouts Services;pdf_crh_logo;BP 167;59792 Grande Synthe Cedex;0;ZRET;1
+FR76;FR07;VDN Services;pdf_crh_logo;Quai Freycinet 10 - Route du Môle 4, Por;59140 DUNKERQUE;0;ZRET;1
+FR77;FR09;Béton Caste Services;pdf_crh_logo;missing address_street;57000 Metz;0;ZRET;1
+FR78;FR10;Béton Rapid Services;pdf_crh_logo;missing address_street;57000  Metz;0;ZRET;1
+FR79;FR11;CBS Services;pdf_crh_logo;7 bis Rue Gay Lussac;21300 Chenove;0;ZRET;1
+FR80;FR12;Socalcor Services;pdf_crh_logo;Route de Savigny;21380 Marsannay le Bois;0;ZRET;1
+FR81;FR13;GDFC Services;pdf_crh_logo;75, Avenue du Peuple Belge;59000 LILLE;0;ZRET;1
+FR82;FR14;Socoval Services;pdf_crh_logo;Route de Savigny;21380 Marsannay le Bois;0;ZRET;1
+FR84;FR17;HGD Services;pdf_crh_logo;"Immeuble les Diamants"" - Bâtiment B - R""";93692 Pantin;0;ZRET;1
+FR85;FR18;Rochelle Services;pdf_crh_logo;Avenue Charles de Gaulle, 192;92200 Neuilly;0;ZRET;1
+FR87;FR20;Dijon Béton Services;pdf_crh_logo;Route de Gray;21850 SAINT APOLLINAIRE;0;ZRET;1
+FR88;FR21;Ternuary Services;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;1
+FR89;FR23;EstGranulat Services;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;1
+FR91;FR25;Grav. Hardt Services;pdf_crh_logo;Route Nationale;68510 SIERENTZ;0;ZRET;1
+FR92;FR28;Atlant NGC Services;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;1
+FR93;FR29;Euro Stock Services;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;1
+FR94;FR30;EDCM Services;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;1
+FR95;FR31;MPA Services;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;1
+IT01;IT01;Crh Italia;Italy_Export_Invoice_Logo_Big;Corso Magenta, 56;Sede legale: 20123 Milano;0;ZRET;0
+IT02;IT01;AFR Crh Italia;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+IT03;IT03;Eurofuels;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+IT05;IT05;Micron Mineral;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+IT10;IT10;Rolcim;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+IT30;IT30;Crh Aggregati&RMX;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+IT39;IT39;F.lli Manara;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+IT40;IT30;Crh Agg & Calcest;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+IT49;IT49;Crh Group Italia;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+IT91;IT91;Fusine Energie;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+IT92;IT92;Fonte Curella;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+IT97;IT97;Shipping Advisor&Ser;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+LU50;LU01;HB Luxembourg;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;1
+LU70;LU01;Luxembourg Services;pdf_crh_logo;Rue de Louvigny, 21;1946 Luxembourg;0;ZRET;1
+NL40;NL02;Crh BetonMortel;pdf_crh_logo;De Hoorn 350;2400 AEALPHEN A/D RIJN;0;ZRET;1
+NL41;NL02;Crh BCH B.V.;pdf_crh_logo;Postbus 426;2400 AKAlphen aan den Rijn;0;ZRET;1
+NL90;NL01;Nederland Services;pdf_crh_logo;IJsseldijkard, 351;2922 BK Krimpen a/d IJssel;0;ZRET;1
+NL91;NL02;Crh BM Services;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;1
+NL92;NL03;Participati Services;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;1
+BE80;BE06;GeoMinerals;pdf_crh_logo;missing address_street;missing address_countrycity;1;ZCOR;0
+CH95;CH01;BAWT;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0
+FR39;FR03;HG Trading;pdf_crh_logo;missing address_street;missing address_countrycity;0;ZRET;0

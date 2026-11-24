@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNC_EXT_SITE"
+           description="External sites/locations (loading/unloading-points), as used in the Use Case '3rd party orders', aka 'External orders'. An external site is a geographical location with name, address, coordinates etc which is used as either the starting or the end-point of an external order. These external sites are maintained by the carriers directly. When creating an external order, the user can select the site from a list, one for the loading-, and one for the unloading-point. The typical useage of those sites is 'copy' (not 'reference'): The respective values are copied in the fields of assignment/assignement_part, and can be modified further.">
+
+        <column name="EXT_SITE_ID" primaryKey="true" required="true" type="DECIMAL" size="12"
+                description="PK"/>
+        <column name="CARRIER_ID" required="true" type="DECIMAL" size="12"
+                description="FK tlgnc_carrier. The vendor/carrier which created/maintains this external site."/>
+                <!-- possible extension: allow null, for "use by all carriers. But, leads to additional authorization issues. Rather do not implement this, not required. -->
+        <column name="ACTIVE_FLAG" required="true" type="BOOLEAN"
+                description="0=inactive/deleted, 1=active. Inactive sites are not shown in the selection drop downs in the application, but are still visible in the administration pages."/>
+
+        <!-- Free Text info about the "Site", which can be FROM (=loading) or TO (=unloading) depending on its usage (assignment_part_type) -->
+        <column name="SITE_NAME" required="true" type="VARCHAR" size="80"
+                description="Name of the equivalent to a Shippingpoint or Shipto when used in external orders. The object it describes depends on its usage in external orders/assignments, see assignment_part_type_cd. (Name Verladestelle, Name Empfaenger, ...)"/>
+        <column name="SITE_LOAD_UNLOAD" type="VARCHAR" size="80"
+                description="Name of the equivalent to a Loadingpoint or Silo when used in external orders. The object it describes depends on its usage in external orders/assignments, see assignment_part_type_cd. (Ladestelle/-strasse, Entladestelle/Silo, ...)"/>
+        <column name="SITE_CONTACT_PERSON_TXT" type="VARCHAR" size="40"
+                description="Contact person and contact information for the position. Value is free text."/>
+        <column name="SITE_STREET_HOUSE_NO" type="VARCHAR" size="45"
+                description="Addressinformation for the site: Street and Housenumber"/>
+        <column name="SITE_COUNTRY" type="VARCHAR" size="3"
+                description="Addressinformation for the site: Country"/>
+        <column name="SITE_POSTAL_CODE" type="VARCHAR" size="10"
+                description="Addressinformation for the site: Postal Code"/>
+        <column name="SITE_CITY" type="VARCHAR" size="35"
+                description="Addressinformation for the site: City"/>
+
+        <!-- Logistical/Operational info about the site -->
+        <column name="COORD_LAT" required="true" type="DOUBLE"
+                description="Latitude coordinates of this site."/>
+        <column name="COORD_LON" required="true" type="DOUBLE"
+                description="Longitute coordinates of this site."/>
+        <column name="GEOFENCE_RADIUS_M" required="true" type="DECIMAL" size="10"
+                description="The geofence radius of this site in meters. The initial value is taken from tlgnr_config, app.default.shippingpoint_shipto.GeofenceRadius_m and then set explicitly in every site. No automatic update when default changes."/>
+        <column name="LOAD_UNLOAD_TIME_MIN" required="true" type="DECIMAL" size="10"
+                description="The estimated time (duration in minutes) needed for loading or unloading a truck. Value is used for the calculation of the times when dispositioning the trucks, see tlgnc_assignment and tlgnc_assignment_part.loading/unloading time. Initial value from app.default.shipto.UnloadingTime_min. No automatic update when default changes."/>
+        <column name="CARRIER_TRUCK_DRIVER_NOTE" type="VARCHAR" size="256"
+                description="Notes from the Carrier for the Driver. Text is copied over into the NOTE_TRUCK_DRIVER field of the ext order and can be modified there."/>
+
+        <foreign-key foreignTable="TLGNC_CARRIER" name="FK_TLGNC_EXT_SITE_CARRIER">
+            <reference local="CARRIER_ID" foreign="CARRIER_ID"/>
+        </foreign-key>
+
+        <unique name="UQ_TLGNC_EXT_SITE_CARR_NAME_LP">
+            <unique-column name="CARRIER_ID"/>
+            <unique-column name="SITE_NAME"/>
+            <unique-column name="SITE_LOAD_UNLOAD"/>
+        </unique>
+    </table>
+</database>

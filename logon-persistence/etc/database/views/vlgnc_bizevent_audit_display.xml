@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="VLGNC_BIZEVENT_AUDIT_DISPLAY" mappingType="view" skipSql="true">
+        <column name="COMPOSITE_ID" type="VARCHAR" size="43"/>
+        <column name="BIZEVENT_AUDIT_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="OLD_VALUE_STR" type="VARCHAR" size="200"/>
+        <column name="NEW_VALUE_STR" type="VARCHAR" size="200"/>
+        <column name="OLD_VALUE_ID" type="DECIMAL" size="12"/>
+        <column name="NEW_VALUE_ID" type="DECIMAL" size="12"/>
+        <column name="OLD_VALUE_DAT" type="DATE"/>
+        <column name="NEW_VALUE_DAT" type="DATE"/>
+        <column name="AUDIT_BIZEVENT_CONFIG_CD" type="DECIMAL" size="12"/>
+        <column name="BIZEVENT_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="LANG_CD" required="true" type="VARCHAR" size="2"/>
+        <column name="INITIATOR" type="VARCHAR" size="81"/>
+        <column name="TXT" required="true" type="VARCHAR" size="100"/>
+        <column name="EVENT_TIME" required="true" type="TIMESTAMP"/>
+    </table>
+</database>

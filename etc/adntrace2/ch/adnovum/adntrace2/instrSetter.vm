@@ -1,0 +1,10 @@
+// [[
+#if($parameterName)
+if (${logVarName}.isDebugEnabled()) {
+	${logVarName}.debug("${methodName}(): '" + ${parameterName} + "'");
+}
+#else
+${logVarName}.debug("${methodName}()");
+#end
+// ]]
+#withnoindent(${methodBody})

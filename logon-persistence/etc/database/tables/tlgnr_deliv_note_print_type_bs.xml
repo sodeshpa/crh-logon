@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNR_DELIV_NOTE_PRINT_TYPE_BS" refData="true"
+           description="Systems which can be used to print delivery note PDFs: LOGON, Parallel, SAP/others. Referenced by the loadingpoint.">
+
+        <column name="DELIV_NOTE_PRINT_TYPE_CD" primaryKey="true" required="true" type="DECIMAL" size="2"
+                description="PK. 1=LOGON, 2=Weighing System, 3=SAP/other."/>
+        <column name="CTL_ACT_CD" required="true" type="BOOLEAN"
+                description="Active Flag. When new data is entered, only reference data with active flag are available for selection normally."/>
+    </table>
+</database>

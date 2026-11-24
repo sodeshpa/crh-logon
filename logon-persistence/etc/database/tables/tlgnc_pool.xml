@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNC_POOL"
+           description="Carriers (=Transporteure) are grouped into regional units, so-called Pools. A pool can only consist of Truck OR Rail carriers, characterized by sap_trsp_mode_cd. A carrier itself does not have such an attribute, the membership in such a pool is sufficient for Logon to accept a carrier as a rail or a truck carrier. The pools 'Rail Standard Gauge' and 'Rail Narrow Gauge' are actually rather artificial; there are very few SAP vendors which are SBB or RhB (but unfortunately they cannot be recognized by looking at tlgns_sap_vendor).">
+
+        <column name="POOL_ID" primaryKey="true" required="true" type="DECIMAL" size="12"
+                description="PK"/>
+        <column name="SAP_TRSP_MODE_CD" required="true" type="VARCHAR" size="2"
+                description="Transportation mode as distinguished by SAP: 10=Truck, 50=Train, (00=Pickup/Selbstabholer, but irrelevant here). When creating an order the possible pools directly depend on this field, it must be equal to the sap_trsp_mode_cd of the chosen delivery type (tlgnr_delivery_type_bs). I.e. 'Rail direct' and 'Bimodal Rail-Part' require the use of a rail pool."/>
+        <column name="CTL_ACT_CD" required="true" type="BOOLEAN"
+                description="Active Flag. When new data is entered, only reference data with active flag are available for selection normally."/>
+
+        <foreign-key foreignTable="TLGNR_SAP_TRSP_MODE_BS" name="FK_TLGNC_POOL_SAP_TRSP_MODE_BS">
+            <reference local="SAP_TRSP_MODE_CD" foreign="SAP_TRSP_MODE_CD"/>
+        </foreign-key>
+    </table>
+</database>

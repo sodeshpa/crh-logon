@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+	<!-- Billto rule type:
+			0 - month
+			1 - day of week
+			2 - day of month -->
+    <table name="TLGNR_BILLTO_RULETYPE_BS" refData="true"
+           description="Ruletypes for selecting the Bill-To of an order (see Haendlerrhythmus).">
+        <column name="BILLTO_RULETYPE_CD" primaryKey="true" required="true" type="DECIMAL" size="2"
+                description="PK. 0=month (Jan, Feb, Mar, ...), 1=day of week (Mon, Tue, Wed, ...), 2=day of month (1, 2, 3, ...)"/>
+        <column name="CTL_ACT_CD" required="true" type="BOOLEAN"
+                description="Active Flag. When new data is entered, only reference data with active flag are available for selection normally."/>
+    </table>
+</database>

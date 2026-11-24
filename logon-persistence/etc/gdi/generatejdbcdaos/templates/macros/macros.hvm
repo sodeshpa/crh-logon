@@ -1,0 +1,22 @@
+##
+##
+##
+#macro (toJava $name)$st.handleUnderscores($name.toLowerCase())#end
+##
+##
+##
+#macro (toJavaType $column)
+#set ($type = "undef")
+#set ($columnType = $column.type)
+## for ddl-utils generated types, put the size portion into the type as TYPE(<x,y>)
+#if (!$columnType.contains("(") && $column.setSize)
+#set ($size = $column.size.stringValue)
+#set ($columnType = "$columnType($size)")
+#end
+#set ($columnType = $columnType.replaceAll('\(\d*,\d*\)', "(*,*)"))
+#set ($columnType = $columnType.replaceAll('\(\d*\)', "(*)"))
+#set ($type = $properties.get("$columnType"))
+$type#end
+##
+##
+##

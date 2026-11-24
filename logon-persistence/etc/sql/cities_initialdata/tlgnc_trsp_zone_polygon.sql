@@ -1,0 +1,15 @@
+-- $Revision$
+-- $Date$
+--
+-- Values based on LOGON-6104
+prompt '--------- cl1_initialdata/tlgnc_trsp_zone_polygon.sql ----------'
+
+prompt INSERTING into tlgnc_trsp_zone_polygon
+Insert into TLGNC_TRSP_ZONE_POLYGON (TRSP_ZONE_POLYGON_ID,TRSP_ZONE_CD,COLOR_RGB,Z_INDEX,CTL_CRE_UID,CTL_CRE_TS,CTL_MOD_UID,CTL_MOD_TS) values (1000, 'FR00000','FF00FF',0,1,systimestamp,1,systimestamp);
+Insert into TLGNC_TRSP_ZONE_POLYGON (TRSP_ZONE_POLYGON_ID,TRSP_ZONE_CD,COLOR_RGB,Z_INDEX,CTL_CRE_UID,CTL_CRE_TS,CTL_MOD_UID,CTL_MOD_TS) values (1001, 'RS-A01','800080',1,1,systimestamp,1,systimestamp);
+Insert into TLGNC_TRSP_ZONE_POLYGON (TRSP_ZONE_POLYGON_ID,TRSP_ZONE_CD,COLOR_RGB,Z_INDEX,CTL_CRE_UID,CTL_CRE_TS,CTL_MOD_UID,CTL_MOD_TS) values (1020, 'SK-A01','0000FF',2,1,systimestamp,1,systimestamp);
+Insert into TLGNC_TRSP_ZONE_POLYGON (TRSP_ZONE_POLYGON_ID,TRSP_ZONE_CD,COLOR_RGB,Z_INDEX,CTL_CRE_UID,CTL_CRE_TS,CTL_MOD_UID,CTL_MOD_TS) values (1022, 'PL-A01','FFFF00',3,1,systimestamp,1,systimestamp);
+Insert into TLGNC_TRSP_ZONE_POLYGON (TRSP_ZONE_POLYGON_ID,TRSP_ZONE_CD,COLOR_RGB,Z_INDEX,CTL_CRE_UID,CTL_CRE_TS,CTL_MOD_UID,CTL_MOD_TS) values (1024, 'HU-A01','99CC00',4,1,systimestamp,1,systimestamp);
+Insert into TLGNC_TRSP_ZONE_POLYGON (TRSP_ZONE_POLYGON_ID,TRSP_ZONE_CD,COLOR_RGB,Z_INDEX,CTL_CRE_UID,CTL_CRE_TS,CTL_MOD_UID,CTL_MOD_TS) values (1040, 'AT-A01','FF6600',5,1,systimestamp,1,systimestamp);
+
+commit;

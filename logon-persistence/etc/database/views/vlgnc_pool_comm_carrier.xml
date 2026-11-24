@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="VLGNC_POOL_COMM_CARRIER" mappingType="view" skipSql="true">
+        <column name="POOL_CARRIER_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="CARRIER_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="POOL_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="SAP_TRSP_MODE_CD" required="true" type="VARCHAR" size="2"/>
+        <column name="DISPLAY_NAME" required="true" type="VARCHAR" size="40"/>
+        <column name="CARRIER_REQUIRES_PLANNING_FLAG" required="true" type="BOOLEAN"/>
+    </table>
+</database>

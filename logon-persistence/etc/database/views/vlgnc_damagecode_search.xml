@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="VLGNC_DAMAGECODE_SEARCH" mappingType="view" skipSql="true">
+        <column name="DAMAGECODE_TXT" required="true" type="VARCHAR" size="20"/>
+        <column name="TXT" required="true" type="VARCHAR" size="300"/>
+        <column name="DAMAGECODE_CD" required="true" type="DECIMAL" size="12"/>
+        <column name="LANG_CD" required="true" type="VARCHAR" size="2"/>
+    </table>
+</database>

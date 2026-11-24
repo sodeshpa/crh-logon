@@ -1,0 +1,1374 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="LogisticsReporting_Out"
+	targetNamespace="urn:ea.holcim.net.QM:LogisticsReporting" xmlns:rfc="urn:sap-com:document:sap:rfc:functions"
+	xmlns:p1="urn:ea.holcim.net.QM:LogisticsReporting" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy"
+	xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+	<wsdl:documentation />
+	<wsp:UsingPolicy wsdl:required="true" />
+	<wsp:Policy wsu:Id="OP_LogisticsReporting_Out" />
+	<wsdl:types>
+		<xsd:schema targetNamespace="urn:sap-com:document:sap:rfc:functions"
+			xmlns="urn:sap-com:document:sap:rfc:functions" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+			<xsd:element name="_-BI0_-QI6AIS_LOGON_INTER__1_RFC.Response">
+				<xsd:complexType>
+					<xsd:all>
+						<xsd:element name="DATA" minOccurs="0">
+							<xsd:complexType>
+								<xsd:sequence>
+									<xsd:element name="item" type="ZOXDB10140"
+										minOccurs="0" maxOccurs="unbounded" />
+								</xsd:sequence>
+							</xsd:complexType>
+						</xsd:element>
+					</xsd:all>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="_-BI0_-QI6AIS_LOGON_INTER__1_RFC.Exception">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="Name">
+							<xsd:simpleType>
+								<xsd:restriction base="xsd:string">
+									<xsd:enumeration value="INTERNAL_ERROR" />
+								</xsd:restriction>
+							</xsd:simpleType>
+						</xsd:element>
+						<xsd:element name="Text" type="xsd:string" minOccurs="0" />
+						<xsd:element name="Message" minOccurs="0">
+							<xsd:complexType>
+								<xsd:sequence>
+									<xsd:element name="ID">
+										<xsd:simpleType>
+											<xsd:restriction base="xsd:string">
+												<xsd:maxLength value="20" />
+											</xsd:restriction>
+										</xsd:simpleType>
+									</xsd:element>
+									<xsd:element name="Number">
+										<xsd:simpleType>
+											<xsd:restriction base="xsd:string">
+												<xsd:pattern value="d+" />
+												<xsd:maxLength value="3" />
+											</xsd:restriction>
+										</xsd:simpleType>
+									</xsd:element>
+								</xsd:sequence>
+							</xsd:complexType>
+						</xsd:element>
+						<xsd:element name="Attributes" minOccurs="0">
+							<xsd:complexType>
+								<xsd:sequence>
+									<xsd:element name="V1" minOccurs="0">
+										<xsd:simpleType>
+											<xsd:restriction base="xsd:string">
+												<xsd:maxLength value="50" />
+											</xsd:restriction>
+										</xsd:simpleType>
+									</xsd:element>
+									<xsd:element name="V2" minOccurs="0">
+										<xsd:simpleType>
+											<xsd:restriction base="xsd:string">
+												<xsd:maxLength value="50" />
+											</xsd:restriction>
+										</xsd:simpleType>
+									</xsd:element>
+									<xsd:element name="V3" minOccurs="0">
+										<xsd:simpleType>
+											<xsd:restriction base="xsd:string">
+												<xsd:maxLength value="50" />
+											</xsd:restriction>
+										</xsd:simpleType>
+									</xsd:element>
+									<xsd:element name="V4" minOccurs="0">
+										<xsd:simpleType>
+											<xsd:restriction base="xsd:string">
+												<xsd:maxLength value="50" />
+											</xsd:restriction>
+										</xsd:simpleType>
+									</xsd:element>
+								</xsd:sequence>
+							</xsd:complexType>
+						</xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:complexType name="ZOXDB10140">
+				<xsd:sequence>
+					<xsd:element name="_-BIC_-C_LDOC_1" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Logon Order Number</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="12" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="_-BIC_-C_LDOC_2" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>LIFEX Number</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="20" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="_-BIC_-C_LFLAG_7" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>On Time Delivery Indicator</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="2" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="_-BIC_-K_LDUR_1" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Customer delivery time window
+							</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="17" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="_-BIC_-DT_LG_1" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Delivery from dat/time</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="33" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="_-BIC_-DT_LG_2" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Delivery to dat/time</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="33" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="_-BIC_-C_LORT_2" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Order creation type ID</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="2" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="_-BIC_-K_LDIST_1" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Distance LOGON</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="17" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="_-BIC_-K_LDUR_2" type="xsd:integer"
+						minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Driving time</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="_-BIC_-K_LCYTM_1" type="xsd:integer"
+						minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Cycle time at shippingpoint
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="_-BIC_-DT_LG_3" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>TS_Enter shippingpoint</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="33" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="_-BIC_-DT_LG_6" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>TS_Leave shippingpoint</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="33" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="_-BIC_-K_LDUR_4" type="xsd:integer"
+						minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Loading time</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="_-BIC_-DT_LG_4" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>TS_Start load</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="33" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="_-BIC_-DT_LG_5" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>TS_End load</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="33" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="_-BIC_-DT_LG_7" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>TS_Transmission to railway company
+							</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="33" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="_-BIC_-K_LDUR_3" type="xsd:integer"
+						minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Cycle time at shipto</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="_-BIC_-DT_LG_8" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>TS_Enter shipto</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="33" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="_-BIC_-DT_LG_11" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>TS_Leave shipto</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="33" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="_-BIC_-K_LDUR_5" type="xsd:integer"
+						minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Unloading time</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="_-BIC_-DT_LG_9" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>TS_Start unload</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="33" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="_-BIC_-DT_LG_10" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>TS_End unload</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="33" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="_-BIC_-C_LFLAG_1" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Deviation in delivery type indicator
+							</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="2" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="_-BIC_-C_LTYP_3" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Delivery type ID</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="2" />
+								<xsd:pattern value="\d+" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="_-BIC_-C_LFLAG_5" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Short-term order indicator</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="1" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="_-BIC_-C_LFLAG_9" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>PDA indicator</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="1" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="_-BIC_-C_LTYP_2" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Shippingpoint type ID</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="2" />
+								<xsd:pattern value="\d+" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="_-BIC_-C_LSHI_1" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Shippingpoint railway station country code
+							</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="2" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="_-BIC_-C_LSHI_2" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Shippingpoint railway station number
+							</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="6" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="_-BIC_-C_LSHI_3" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Shippingpoint railway station name
+							</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="50" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="_-BIC_-K_LSPCO_1" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Shippingpoint coordinates LAT
+							</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="16" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="_-BIC_-K_LSPCO_2" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Shippingpoint coordinates LON
+							</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="16" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="_-BIC_-C_LTYP_1" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Shipto type ID</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="2" />
+								<xsd:pattern value="\d+" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="_-BIC_-K_LSHCO_1" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Shipto coordinates LAT</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="16" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="_-BIC_-K_LSHCO_2" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Shipto coordinates LON</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="16" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="_-BIC_-C_LWAIT_1" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Waiting time reason at shipto
+							</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="40" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="_-BIC_-C_LPOOL_1" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Pool ID</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="20" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="_-BIC_-C_LDRV_1" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Truck driver ID</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="20" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="_-BIC_-C_LDRV_2" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Truck driver name</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="60" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="_-BIC_-C_LTYP_4" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Wagon type ID</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="5" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="_-BIC_-C_LCRE_1" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Delivery created by</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="60" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="_-BIC_-C_LCRE_2" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Delivery created on</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="18" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="_-BIC_-C_LDUM_1" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>DUMMY1</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="50" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="_-BIC_-C_LDUM_2" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>DUMMY2</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="50" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="_-BIC_-K_LDUM_1" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>DUMMY4</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="16" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="_-BIC_-K_LDUM_2" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>DUMMY5</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="16" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="_-BIC_-C_LDUM_4" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>DUMMY7</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="33" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="_-BIC_-C_LDUM_5" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>DUMMY8</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="33" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="_-BIC_-C_LITM_1" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>LOGON Orderitem number</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="3" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="_-BIC_-C_LFLAG_2" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Maintained dispocard indicator
+							</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="1" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="_-BIC_-C_LFLAG_4" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Silo verification type ID</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="2" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="_-BIC_-C_LFLAG_3" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Deviation in ordered qty indicator
+							</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="2" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="_-BIC_-C_LFLA_10" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Loading with LDS indicator</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="1" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="_-BIC_-C_LLPT_1" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Loadingpoint ID</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="20" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="_-BIC_-C_LLPT_2" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Loadingpoint name</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="50" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="_-BIC_-C_LCON_1" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Container number</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="20" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="_-BIC_-C_LPLT_1" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Production plant ID</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="4" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="_-BIC_-C_LDUM_3" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>DUMMY3</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="50" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="_-BIC_-K_LDUM_3" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>DUMMY6</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="16" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="_-BIC_-C_LDUM_6" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>DUMMY9</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="33" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+		</xsd:schema>
+		<xsd:schema targetNamespace="urn:ea.holcim.net.QM:LogisticsReporting"
+			xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="urn:ea.holcim.net.QM:LogisticsReporting">
+			<xsd:element name="MT_LogisticsReporting_Out" type="DT_LogisticsReporting_out" />
+			<xsd:complexType name="Logistics_Header_Information">
+				<xsd:annotation>
+					<xsd:appinfo source="http://sap.com/xi/VersionID">917c944e642b11e4a1be000000583f37
+					</xsd:appinfo>
+				</xsd:annotation>
+				<xsd:sequence>
+					<xsd:element name="LDOC_1" type="xsd:integer"
+						minOccurs="0">
+						<xsd:annotation>
+							<xsd:appinfo source="http://sap.com/xi/TextID">987de05c215d11e48a7b7c7a913e036d
+							</xsd:appinfo>
+							<xsd:documentation>LOGON Order Number</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="LDOC_2" minOccurs="0">
+						<xsd:annotation>
+							<xsd:appinfo source="http://sap.com/xi/TextID">987de05d215d11e487247c7a913e036d
+							</xsd:appinfo>
+							<xsd:documentation>LIFEX Number</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="20" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="LFLAG_7" type="xsd:integer"
+						minOccurs="0">
+						<xsd:annotation>
+							<xsd:appinfo source="http://sap.com/xi/TextID">987de05e215d11e49c397c7a913e036d
+							</xsd:appinfo>
+							<xsd:documentation>On time delivery indicator</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="LDUR_1" type="xsd:integer"
+						minOccurs="0">
+						<xsd:annotation>
+							<xsd:appinfo source="http://sap.com/xi/TextID">987de05f215d11e4cea07c7a913e036d
+							</xsd:appinfo>
+							<xsd:documentation>Customer delivery time window
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="LG_1" type="xsd:dateTime" minOccurs="0">
+						<xsd:annotation>
+							<xsd:appinfo source="http://sap.com/xi/TextID">987de060215d11e4bf167c7a913e036d
+							</xsd:appinfo>
+							<xsd:documentation>Delivery from dat/time</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="LG_2" type="xsd:dateTime" minOccurs="0">
+						<xsd:annotation>
+							<xsd:appinfo source="http://sap.com/xi/TextID">987de061215d11e4b1177c7a913e036d
+							</xsd:appinfo>
+							<xsd:documentation>Delivery to dat/time</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="LORT_2" type="xsd:integer"
+						minOccurs="0">
+						<xsd:annotation>
+							<xsd:appinfo source="http://sap.com/xi/TextID">987de062215d11e4c9b87c7a913e036d
+							</xsd:appinfo>
+							<xsd:documentation>Order creation type ID</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="LDIST_1" type="xsd:float" minOccurs="0">
+						<xsd:annotation>
+							<xsd:appinfo source="http://sap.com/xi/TextID">987de063215d11e4ad7b7c7a913e036d
+							</xsd:appinfo>
+							<xsd:documentation>Distance LOGON</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="LDUR_2" type="xsd:integer"
+						minOccurs="0">
+						<xsd:annotation>
+							<xsd:appinfo source="http://sap.com/xi/TextID">987de064215d11e4abcd7c7a913e036d
+							</xsd:appinfo>
+							<xsd:documentation>Driving time</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="LCYTM_1" type="xsd:integer"
+						minOccurs="0">
+						<xsd:annotation>
+							<xsd:appinfo source="http://sap.com/xi/TextID">987e067c215d11e4b4967c7a913e036d
+							</xsd:appinfo>
+							<xsd:documentation>Cycle time at shippingpoint
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="LG_3" type="xsd:dateTime" minOccurs="0">
+						<xsd:annotation>
+							<xsd:appinfo source="http://sap.com/xi/TextID">987e067d215d11e4b36f7c7a913e036d
+							</xsd:appinfo>
+							<xsd:documentation>TS_Enter shippingpoint</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="LG_6" type="xsd:dateTime" minOccurs="0">
+						<xsd:annotation>
+							<xsd:appinfo source="http://sap.com/xi/TextID">987e067e215d11e4b09d7c7a913e036d
+							</xsd:appinfo>
+							<xsd:documentation>TS_Leave shippingpoint</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="LDUR_4" type="xsd:integer"
+						minOccurs="0">
+						<xsd:annotation>
+							<xsd:appinfo source="http://sap.com/xi/TextID">987e067f215d11e493227c7a913e036d
+							</xsd:appinfo>
+							<xsd:documentation>Loading time</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="LG_4" type="xsd:dateTime" minOccurs="0">
+						<xsd:annotation>
+							<xsd:appinfo source="http://sap.com/xi/TextID">987e0680215d11e48e197c7a913e036d
+							</xsd:appinfo>
+							<xsd:documentation>TS_Start load</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="LG_5" type="xsd:dateTime" minOccurs="0">
+						<xsd:annotation>
+							<xsd:appinfo source="http://sap.com/xi/TextID">987e0681215d11e4ac0c7c7a913e036d
+							</xsd:appinfo>
+							<xsd:documentation>TS_End load</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="LG_7" type="xsd:dateTime" minOccurs="0">
+						<xsd:annotation>
+							<xsd:appinfo source="http://sap.com/xi/TextID">987e0682215d11e498da7c7a913e036d
+							</xsd:appinfo>
+							<xsd:documentation>TS_Transmission to railway company
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="LDUR_3" type="xsd:integer"
+						minOccurs="0">
+						<xsd:annotation>
+							<xsd:appinfo source="http://sap.com/xi/TextID">987e0683215d11e4aa637c7a913e036d
+							</xsd:appinfo>
+							<xsd:documentation>Cycle time at shipto</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="LG_8" type="xsd:dateTime" minOccurs="0">
+						<xsd:annotation>
+							<xsd:appinfo source="http://sap.com/xi/TextID">987e0684215d11e4be807c7a913e036d
+							</xsd:appinfo>
+							<xsd:documentation>TS_Enter shipto</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="LG_11" type="xsd:dateTime"
+						minOccurs="0">
+						<xsd:annotation>
+							<xsd:appinfo source="http://sap.com/xi/TextID">987e0685215d11e480487c7a913e036d
+							</xsd:appinfo>
+							<xsd:documentation>TS_Leave shipto</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="LDUR_5" type="xsd:integer"
+						minOccurs="0">
+						<xsd:annotation>
+							<xsd:appinfo source="http://sap.com/xi/TextID">987e0686215d11e4c0397c7a913e036d
+							</xsd:appinfo>
+							<xsd:documentation>Unloading time</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="LG_9" type="xsd:dateTime" minOccurs="0">
+						<xsd:annotation>
+							<xsd:appinfo source="http://sap.com/xi/TextID">987e0687215d11e4c4a97c7a913e036d
+							</xsd:appinfo>
+							<xsd:documentation>TS_Start unload</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="LG_10" type="xsd:dateTime"
+						minOccurs="0">
+						<xsd:annotation>
+							<xsd:appinfo source="http://sap.com/xi/TextID">987e0688215d11e4c6237c7a913e036d
+							</xsd:appinfo>
+							<xsd:documentation>TS_End unload</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="LFLAG_1" type="xsd:integer"
+						minOccurs="0">
+						<xsd:annotation>
+							<xsd:appinfo source="http://sap.com/xi/TextID">987e0689215d11e49d0e7c7a913e036d
+							</xsd:appinfo>
+							<xsd:documentation>Deviation in delivery type indicator
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="LTYP_3" type="xsd:integer"
+						minOccurs="0">
+						<xsd:annotation>
+							<xsd:appinfo source="http://sap.com/xi/TextID">987e068a215d11e4929d7c7a913e036d
+							</xsd:appinfo>
+							<xsd:documentation>Delivery type ID</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="LFLAG_5" type="xsd:integer"
+						minOccurs="0">
+						<xsd:annotation>
+							<xsd:appinfo source="http://sap.com/xi/TextID">987e068b215d11e49abe7c7a913e036d
+							</xsd:appinfo>
+							<xsd:documentation>Short-term order indicator</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="LFLAG_9" type="xsd:integer"
+						minOccurs="0">
+						<xsd:annotation>
+							<xsd:appinfo source="http://sap.com/xi/TextID">987e068c215d11e4ba8e7c7a913e036d
+							</xsd:appinfo>
+							<xsd:documentation>PDA indicator</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="LTYP_2" type="xsd:integer"
+						minOccurs="0">
+						<xsd:annotation>
+							<xsd:appinfo source="http://sap.com/xi/TextID">987e068d215d11e4af627c7a913e036d
+							</xsd:appinfo>
+							<xsd:documentation>Shippingpoint type ID</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="LSHI_1" type="xsd:integer"
+						minOccurs="0">
+						<xsd:annotation>
+							<xsd:appinfo source="http://sap.com/xi/TextID">987e068e215d11e489f87c7a913e036d
+							</xsd:appinfo>
+							<xsd:documentation>Shippingpoint railway station country code
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="LSHI_2" type="xsd:integer"
+						minOccurs="0">
+						<xsd:annotation>
+							<xsd:appinfo source="http://sap.com/xi/TextID">987e068f215d11e49b0d7c7a913e036d
+							</xsd:appinfo>
+							<xsd:documentation>Shippingpoint railway station number
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="LSHI_3" minOccurs="0">
+						<xsd:annotation>
+							<xsd:appinfo source="http://sap.com/xi/TextID">987e0690215d11e4cddf7c7a913e036d
+							</xsd:appinfo>
+							<xsd:documentation>Shippingpoint railway station name
+							</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="60" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="LSPCO_1" minOccurs="0">
+						<xsd:annotation>
+							<xsd:appinfo source="http://sap.com/xi/TextID">987e0691215d11e4c6e97c7a913e036d
+							</xsd:appinfo>
+							<xsd:documentation>Shippingpoint coordinates LAT
+							</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="16" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="LSPCO_2" minOccurs="0">
+						<xsd:annotation>
+							<xsd:appinfo source="http://sap.com/xi/TextID">987e3070215d11e4b3de7c7a913e036d
+							</xsd:appinfo>
+							<xsd:documentation>Shippingpoint coordinates LON
+							</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="16" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="LTYP_1" type="xsd:integer"
+						minOccurs="0">
+						<xsd:annotation>
+							<xsd:appinfo source="http://sap.com/xi/TextID">987e3071215d11e4b9787c7a913e036d
+							</xsd:appinfo>
+							<xsd:documentation>Shipto type ID</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="LSHCO_1" minOccurs="0">
+						<xsd:annotation>
+							<xsd:appinfo source="http://sap.com/xi/TextID">987e3072215d11e49a437c7a913e036d
+							</xsd:appinfo>
+							<xsd:documentation>Shipto coordinates LAT</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="16" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="LSHCO_2" minOccurs="0">
+						<xsd:annotation>
+							<xsd:appinfo source="http://sap.com/xi/TextID">987e3073215d11e4b2e77c7a913e036d
+							</xsd:appinfo>
+							<xsd:documentation>Shipto coordinates LON</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="16" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="LWAIT_1" minOccurs="0">
+						<xsd:annotation>
+							<xsd:appinfo source="http://sap.com/xi/TextID">987e3074215d11e4b1ec7c7a913e036d
+							</xsd:appinfo>
+							<xsd:documentation>Waiting time reason at shipto
+							</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="60" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="LPOOL_1" minOccurs="0">
+						<xsd:annotation>
+							<xsd:appinfo source="http://sap.com/xi/TextID">987e3075215d11e498e97c7a913e036d
+							</xsd:appinfo>
+							<xsd:documentation>Pool ID</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="20" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="LDRV_1" minOccurs="0">
+						<xsd:annotation>
+							<xsd:appinfo source="http://sap.com/xi/TextID">987e3076215d11e4ab7f7c7a913e036d
+							</xsd:appinfo>
+							<xsd:documentation>Truck driver ID</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="20" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="LDRV_2" minOccurs="0">
+						<xsd:annotation>
+							<xsd:appinfo source="http://sap.com/xi/TextID">987e3077215d11e49eb17c7a913e036d
+							</xsd:appinfo>
+							<xsd:documentation>Truck driver name</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="60" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="LTYP_4" minOccurs="0">
+						<xsd:annotation>
+							<xsd:appinfo source="http://sap.com/xi/TextID">987e3078215d11e4cfdf7c7a913e036d
+							</xsd:appinfo>
+							<xsd:documentation>Wagon type ID</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="5" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="LCRE_1" minOccurs="0">
+						<xsd:annotation>
+							<xsd:appinfo source="http://sap.com/xi/TextID">987e3079215d11e4cf9d7c7a913e036d
+							</xsd:appinfo>
+							<xsd:documentation>Delivery created by</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="60" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="LCRE_2" type="xsd:dateTime"
+						minOccurs="0">
+						<xsd:annotation>
+							<xsd:appinfo source="http://sap.com/xi/TextID">987e307a215d11e4b28f7c7a913e036d
+							</xsd:appinfo>
+							<xsd:documentation>Delivery created on</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="LDUM_1" minOccurs="0">
+						<xsd:annotation>
+							<xsd:appinfo source="http://sap.com/xi/TextID">987e307b215d11e486257c7a913e036d
+							</xsd:appinfo>
+							<xsd:documentation>DUMMY1String</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="60" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="LDUM_2" minOccurs="0">
+						<xsd:annotation>
+							<xsd:appinfo source="http://sap.com/xi/TextID">987e307c215d11e48a1a7c7a913e036d
+							</xsd:appinfo>
+							<xsd:documentation>DUMMY2 String</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="60" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="LDUM_4" type="xsd:integer"
+						minOccurs="0">
+						<xsd:annotation>
+							<xsd:appinfo source="http://sap.com/xi/TextID">987e307d215d11e4c4bf7c7a913e036d
+							</xsd:appinfo>
+							<xsd:documentation>DUMMY4 Integer</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="LDUM_5" type="xsd:float" minOccurs="0">
+						<xsd:annotation>
+							<xsd:appinfo source="http://sap.com/xi/TextID">987e307e215d11e4a95a7c7a913e036d
+							</xsd:appinfo>
+							<xsd:documentation>DUMMY5 Float</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="LDUM_7" type="xsd:dateTime"
+						minOccurs="0">
+						<xsd:annotation>
+							<xsd:appinfo source="http://sap.com/xi/TextID">987e307f215d11e4b1827c7a913e036d
+							</xsd:appinfo>
+							<xsd:documentation>DUMMY7 Date</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="LDUM_8" type="xsd:dateTime"
+						minOccurs="0">
+						<xsd:annotation>
+							<xsd:appinfo source="http://sap.com/xi/TextID">987e3080215d11e4a07e7c7a913e036d
+							</xsd:appinfo>
+							<xsd:documentation>DUMMY8 Date</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="Item" type="Logistics_Item_Information"
+						maxOccurs="unbounded">
+						<xsd:annotation>
+							<xsd:appinfo source="http://sap.com/xi/TextID">8408b9764ed211e4a96e7c7a913e036d
+							</xsd:appinfo>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="DT_LogisticsReporting_out">
+				<xsd:annotation>
+					<xsd:appinfo source="http://sap.com/xi/VersionID">983539e24ed211e4ce61000000583f38
+					</xsd:appinfo>
+				</xsd:annotation>
+				<xsd:sequence>
+					<xsd:element name="DATASOURCE" type="xsd:string">
+						<xsd:annotation>
+							<xsd:appinfo source="http://sap.com/xi/TextID">53a865f5216311e480b17c7a913e036d
+							</xsd:appinfo>
+							<xsd:documentation>DATASOURCE</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="DATA" type="Logistics_Data">
+						<xsd:annotation>
+							<xsd:appinfo source="http://sap.com/xi/TextID">53a865f6216311e49cd97c7a913e036d
+							</xsd:appinfo>
+							<xsd:documentation>DATA</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="Logistics_Data">
+				<xsd:annotation>
+					<xsd:appinfo source="http://sap.com/xi/VersionID">8803d43b4ed211e4c847000000583f38
+					</xsd:appinfo>
+				</xsd:annotation>
+				<xsd:sequence>
+					<xsd:element name="Header" type="Logistics_Header_Information">
+						<xsd:annotation>
+							<xsd:appinfo source="http://sap.com/xi/TextID">4ccc2682216311e4987c7c7a913e036d
+							</xsd:appinfo>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="Logistics_Item_Information">
+				<xsd:annotation>
+					<xsd:appinfo source="http://sap.com/xi/VersionID">a568a866659511e4823f000000583f38
+					</xsd:appinfo>
+				</xsd:annotation>
+				<xsd:sequence>
+					<xsd:element name="LITM_1" type="xsd:integer"
+						minOccurs="0">
+						<xsd:annotation>
+							<xsd:appinfo source="http://sap.com/xi/TextID">77c6edf6214811e4ae3d7c7a913e036d
+							</xsd:appinfo>
+							<xsd:documentation>LOGON Orderitem number</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="LFLAG_2" type="xsd:integer"
+						minOccurs="0">
+						<xsd:annotation>
+							<xsd:appinfo source="http://sap.com/xi/TextID">77c71477214811e4aed97c7a913e036d
+							</xsd:appinfo>
+							<xsd:documentation>Maintained dispocard indicator
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="LFLAG_3" type="xsd:integer"
+						minOccurs="0">
+						<xsd:annotation>
+							<xsd:appinfo source="http://sap.com/xi/TextID">77c71478214811e4b2827c7a913e036d
+							</xsd:appinfo>
+							<xsd:documentation>Deviation in ordered qty indicator
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="LFLAG_4" type="xsd:integer"
+						minOccurs="0">
+						<xsd:annotation>
+							<xsd:appinfo source="http://sap.com/xi/TextID">77c71479214811e4958b7c7a913e036d
+							</xsd:appinfo>
+							<xsd:documentation>Silo verification type ID</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="LFLA_10" type="xsd:integer"
+						minOccurs="0">
+						<xsd:annotation>
+							<xsd:appinfo source="http://sap.com/xi/TextID">77c7147a214811e4940d7c7a913e036d
+							</xsd:appinfo>
+							<xsd:documentation>Loading with LDS indicator</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="LLPT_1" minOccurs="0">
+						<xsd:annotation>
+							<xsd:appinfo source="http://sap.com/xi/TextID">77c7147b214811e4a7dc7c7a913e036d
+							</xsd:appinfo>
+							<xsd:documentation>Loadingpoint ID</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="20" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="LLPT_2" minOccurs="0">
+						<xsd:annotation>
+							<xsd:appinfo source="http://sap.com/xi/TextID">77c7147c214811e498e07c7a913e036d
+							</xsd:appinfo>
+							<xsd:documentation>Loadingpoint name</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="60" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="LPLT_1" minOccurs="0">
+						<xsd:annotation>
+							<xsd:appinfo source="http://sap.com/xi/TextID">77c7147d214811e48d9c7c7a913e036d
+							</xsd:appinfo>
+							<xsd:documentation>Production plant ID</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="4" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="LCON_1" minOccurs="0">
+						<xsd:annotation>
+							<xsd:appinfo source="http://sap.com/xi/TextID">77c7147e214811e484db7c7a913e036d
+							</xsd:appinfo>
+							<xsd:documentation>Container number</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="40" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="DUMMY3" minOccurs="0">
+						<xsd:annotation>
+							<xsd:appinfo source="http://sap.com/xi/TextID">77c7147f214811e4ac0d7c7a913e036d
+							</xsd:appinfo>
+							<xsd:documentation>Dummy String</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="60" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="DUMMY6" type="xsd:integer"
+						minOccurs="0">
+						<xsd:annotation>
+							<xsd:appinfo source="http://sap.com/xi/TextID">77c71480214811e4a2fa7c7a913e036d
+							</xsd:appinfo>
+							<xsd:documentation>Dummy Number</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="DUMMY9" type="xsd:dateTime"
+						minOccurs="0">
+						<xsd:annotation>
+							<xsd:appinfo source="http://sap.com/xi/TextID">1dfc6181215811e4a0677c7a913e036d
+							</xsd:appinfo>
+							<xsd:documentation>Dummy Date</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+		</xsd:schema>
+	</wsdl:types>
+	<wsdl:message name="MT_LogisticsReporting_Out">
+		<wsdl:documentation />
+		<wsdl:part name="MT_LogisticsReporting_Out" element="p1:MT_LogisticsReporting_Out" />
+	</wsdl:message>
+	<wsdl:message name="rfc._-BI0_-QI6AIS_LOGON_INTER__1_RFC.Response">
+		<wsdl:documentation />
+		<wsdl:part name="_-BI0_-QI6AIS_LOGON_INTER__1_RFC.Response"
+			element="rfc:_-BI0_-QI6AIS_LOGON_INTER__1_RFC.Response" />
+	</wsdl:message>
+	<wsdl:message name="rfc._-BI0_-QI6AIS_LOGON_INTER__1_RFC.Exception">
+		<wsdl:documentation />
+		<wsdl:part name="_-BI0_-QI6AIS_LOGON_INTER__1_RFC.Exception"
+			element="rfc:_-BI0_-QI6AIS_LOGON_INTER__1_RFC.Exception" />
+	</wsdl:message>
+	<wsdl:portType name="LogisticsReporting_Out">
+		<wsdl:documentation />
+		<wsdl:operation name="LogisticsReporting_Out">
+			<wsdl:documentation />
+			<wsp:Policy>
+				<wsp:PolicyReference URI="#OP_LogisticsReporting_Out" />
+			</wsp:Policy>
+			<wsdl:input message="p1:MT_LogisticsReporting_Out" />
+			<wsdl:output message="p1:rfc._-BI0_-QI6AIS_LOGON_INTER__1_RFC.Response" />
+			<wsdl:fault name="rfc._-BI0_-QI6AIS_LOGON_INTER__1_RFC.Exception"
+				message="p1:rfc._-BI0_-QI6AIS_LOGON_INTER__1_RFC.Exception" />
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="LogisticsReporting_OutBinding" type="p1:LogisticsReporting_Out">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+		<wsdl:operation name="LogisticsReporting_Out">
+			<soap:operation soapAction="http://sap.com/xi/WebService/soap1.1"
+				xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+			<wsdl:input>
+				<soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+			</wsdl:output>
+			<wsdl:fault name="rfc._-BI0_-QI6AIS_LOGON_INTER__1_RFC.Exception">
+				<soap:fault use="literal"
+					name="rfc._-BI0_-QI6AIS_LOGON_INTER__1_RFC.Exception" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+			</wsdl:fault>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="DX1_Java_Instance_LogisticsReporting_Out">
+		<wsdl:port name="HTTP_Port" binding="p1:LogisticsReporting_OutBinding">
+			<soap:address
+				location="http://hold104.ea.holcim.net:50000/XISOAPAdapter/MessageServlet?senderParty=&amp;senderService=DX1_Java_Instance&amp;receiverParty=&amp;receiverService=&amp;interface=LogisticsReporting_Out&amp;interfaceNamespace=urn%3Aea.holcim.net.QM%3ALogisticsReporting"
+				xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+		</wsdl:port>
+		<wsdl:port name="HTTPS_Port" binding="p1:LogisticsReporting_OutBinding">
+			<soap:address
+				location="https://hold104.ea.holcim.net:50001/XISOAPAdapter/MessageServlet?senderParty=&amp;senderService=DX1_Java_Instance&amp;receiverParty=&amp;receiverService=&amp;interface=LogisticsReporting_Out&amp;interfaceNamespace=urn%3Aea.holcim.net.QM%3ALogisticsReporting"
+				xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

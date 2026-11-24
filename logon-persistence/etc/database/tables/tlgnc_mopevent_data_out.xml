@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNC_MOPEVENT_DATA_OUT" description="Contains the specific datas of a Message sent form Logon to MOP.">
+        <column name="MOPEVENT_DATA_OUT_ID" primaryKey="true" required="true" type="DECIMAL" size="12"
+                description="PK"/>
+        <column name="MOPEVENT_HEADER_OUT_ID" required="true" type="DECIMAL" size="12"
+                description="FK of mopevent_header_out table"/>
+        <column name="NAME" required="true" type="VARCHAR" size="30"
+                description="Name of a specific event data. e.g. for event login: PIN, UserId, ... "/>
+        <column name="VALUE" type="VARCHAR" size="250"
+                description="Value of the specific event data."/>
+                       
+        <foreign-key foreignTable="TLGNC_MOPEVENT_HEADER_OUT" name="FK_TLGNC_MOPEVENTHEADER_OUT_ID">
+            <reference local="MOPEVENT_HEADER_OUT_ID" foreign="MOPEVENT_HEADER_OUT_ID"/>
+        </foreign-key>
+                
+    </table>
+</database>

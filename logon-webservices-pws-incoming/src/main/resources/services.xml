@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- wsdl2java generates this file per-service, this file contains the combined result for all services -->
+<serviceGroup>
+    <service name="PWSEventConsumer">
+        <messageReceivers>
+            <messageReceiver mep="http://www.w3.org/ns/wsdl/in-out" class="com.crh.logon.pws.webservices.PWSEventConsumerMessageReceiverInOut"/>
+        </messageReceivers>
+        <parameter name="ServiceClass">com.crh.logon.pws.webservices.PWSEventConsumer</parameter>
+        <parameter name="useOriginalwsdl">true</parameter>
+        <parameter name="modifyUserWSDLPortAddress">true</parameter>
+        <operation name="consume" mep="http://www.w3.org/ns/wsdl/in-out" namespace="http://logon.intranet-che/logon">
+            <actionMapping>\"\"</actionMapping>
+            <outputActionMapping>http://logon.intranet-che/logon/PWSEventPort/consumeResponse</outputActionMapping>
+        </operation>
+    </service>
+
+    <service name="LogonLDSInterface">
+        <messageReceivers>
+            <messageReceiver mep="http://www.w3.org/ns/wsdl/in-out" class="com.crh.logon.logon_lds_interface.webservices.LogonLDSInterfaceMessageReceiverInOut"/>
+        </messageReceivers>
+        <parameter name="ServiceClass">com.crh.logon.logon_lds_interface.webservices.LogonLDSInterfaceConsumer</parameter>
+        <parameter name="useOriginalwsdl">true</parameter>
+        <parameter name="modifyUserWSDLPortAddress">true</parameter>
+        <operation name="cancelLoading" mep="http://www.w3.org/ns/wsdl/in-out" namespace="http://logon.crh.com/LogonLDSInterface/services">
+            <actionMapping>cancelLoading</actionMapping>
+            <outputActionMapping>http://logon.crh.com/LogonLDSInterface/services/LogonLDSInterfacePort/cancelLoadingResponse</outputActionMapping>
+        </operation>
+        <operation name="createCustomerOrder" mep="http://www.w3.org/ns/wsdl/in-out" namespace="http://logon.crh.com/LogonLDSInterface/services">
+            <actionMapping>createCustomerOrder</actionMapping>
+            <outputActionMapping>http://logon.crh.com/LogonLDSInterface/services/LogonLDSInterfacePort/createCustomerOrderResponse</outputActionMapping>
+        </operation>
+        <operation name="createCustomerOrderBasedOnMasterDataDefault" mep="http://www.w3.org/ns/wsdl/in-out" namespace="http://logon.crh.com/LogonLDSInterface/services">
+            <actionMapping>createCustomerOrderBasedOnMasterDataDefault</actionMapping>
+            <outputActionMapping>http://logon.crh.com/LogonLDSInterface/services/LogonLDSInterfacePort/createCustomerOrderBasedOnMasterDataDefaultResponse</outputActionMapping>
+        </operation>
+        <operation name="endLoading" mep="http://www.w3.org/ns/wsdl/in-out" namespace="http://logon.crh.com/LogonLDSInterface/services">
+            <actionMapping>endLoading</actionMapping>
+            <outputActionMapping>http://logon.crh.com/LogonLDSInterface/services/LogonLDSInterfacePort/endLoadingResponse</outputActionMapping>
+        </operation>
+        <operation name="regularization" mep="http://www.w3.org/ns/wsdl/in-out" namespace="http://logon.crh.com/LogonLDSInterface/services">
+            <actionMapping>regularization</actionMapping>
+            <outputActionMapping>http://logon.crh.com/LogonLDSInterface/services/LogonLDSInterfacePort/regularizationResponse</outputActionMapping>
+        </operation>
+        <operation name="addServiceMaterialsToOrder" mep="http://www.w3.org/ns/wsdl/in-out" namespace="http://logon.crh.com/LogonLDSInterface/services">
+            <actionMapping>addServiceMaterialsToOrder</actionMapping>
+            <outputActionMapping>http://logon.crh.com/LogonLDSInterface/services/LogonLDSInterfacePort/addServiceMaterialsToOrderResponse</outputActionMapping>
+        </operation>
+        <operation name="getLoadOrdersForVehicle" mep="http://www.w3.org/ns/wsdl/in-out" namespace="http://logon.crh.com/LogonLDSInterface/services">
+            <actionMapping>getLoadOrdersForVehicle</actionMapping>
+            <outputActionMapping>http://logon.crh.com/LogonLDSInterface/services/LogonLDSInterfacePort/getLoadOrdersForVehicleResponse</outputActionMapping>
+        </operation>
+        <operation name="updateScheduling" mep="http://www.w3.org/ns/wsdl/in-out" namespace="http://logon.crh.com/LogonLDSInterface/services">
+            <actionMapping>updateScheduling</actionMapping>
+            <outputActionMapping>http://logon.crh.com/LogonLDSInterface/services/LogonLDSInterfacePort/updateSchedulingResponse</outputActionMapping>
+        </operation>
+        <operation name="getMaterialsForShipto" mep="http://www.w3.org/ns/wsdl/in-out" namespace="http://logon.crh.com/LogonLDSInterface/services">
+            <actionMapping>getMaterialsForShipto</actionMapping>
+            <outputActionMapping>http://logon.crh.com/LogonLDSInterface/services/LogonLDSInterfacePort/getMaterialsForShiptoResponse</outputActionMapping>
+        </operation>
+        <operation name="updatePlanningMaterial" mep="http://www.w3.org/ns/wsdl/in-out" namespace="http://logon.crh.com/LogonLDSInterface/services">
+            <actionMapping>updatePlanningMaterial</actionMapping>
+            <outputActionMapping>http://logon.crh.com/LogonLDSInterface/services/LogonLDSInterfacePort/updatePlanningMaterialResponse</outputActionMapping>
+        </operation>
+        <operation name="closeCustomerOrder" mep="http://www.w3.org/ns/wsdl/in-out" namespace="http://logon.crh.com/LogonLDSInterface/services">
+            <actionMapping>closeCustomerOrder</actionMapping>
+            <outputActionMapping>http://logon.crh.com/LogonLDSInterface/services/LogonLDSInterfacePort/closeCustomerOrderResponse</outputActionMapping>
+        </operation>
+        <operation name="getPickupLoadOrdersForShipto" mep="http://www.w3.org/ns/wsdl/in-out" namespace="http://logon.crh.com/LogonLDSInterface/services">
+            <actionMapping>getPickupLoadOrdersForShipto</actionMapping>
+            <outputActionMapping>http://logon.crh.com/LogonLDSInterface/services/LogonLDSInterfacePort/getPickupLoadOrdersForShiptoResponse</outputActionMapping>
+        </operation>
+        <operation name="startLoading" mep="http://www.w3.org/ns/wsdl/in-out" namespace="http://logon.crh.com/LogonLDSInterface/services">
+            <actionMapping>startLoading</actionMapping>
+            <outputActionMapping>http://logon.crh.com/LogonLDSInterface/services/LogonLDSInterfacePort/startLoadingResponse</outputActionMapping>
+        </operation>
+        <operation name="validateCustomerOrder" mep="http://www.w3.org/ns/wsdl/in-out" namespace="http://logon.crh.com/LogonLDSInterface/services">
+            <actionMapping>validateCustomerOrder</actionMapping>
+            <outputActionMapping>http://logon.crh.com/LogonLDSInterface/services/LogonLDSInterfacePort/validateCustomerOrderResponse</outputActionMapping>
+        </operation>
+        <operation name="createCompletedCustomerOrder" mep="http://www.w3.org/ns/wsdl/in-out" namespace="http://logon.crh.com/LogonLDSInterface/services">
+            <actionMapping>createCompletedCustomerOrder</actionMapping>
+            <outputActionMapping>http://logon.crh.com/LogonLDSInterface/services/LogonLDSInterfacePort/createCompletedCustomerOrderResponse</outputActionMapping>
+        </operation>
+        <operation name="selectLoadOrderForLoading" mep="http://www.w3.org/ns/wsdl/in-out" namespace="http://logon.crh.com/LogonLDSInterface/services">
+            <actionMapping>selectLoadOrderForLoading</actionMapping>
+            <outputActionMapping>http://logon.crh.com/LogonLDSInterface/services/LogonLDSInterfacePort/selectLoadOrderForLoadingResponse</outputActionMapping>
+        </operation>
+        <operation name="addReturnOrder" mep="http://www.w3.org/ns/wsdl/in-out" namespace="http://logon.crh.com/LogonLDSInterface/services">
+            <actionMapping>addReturnOrder</actionMapping>
+            <outputActionMapping>http://logon.crh.com/LogonLDSInterface/services/LogonLDSInterfacePort/addReturnOrderResponse</outputActionMapping>
+        </operation>
+    </service>
+
+</serviceGroup>

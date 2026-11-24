@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNC_EXT_ORDER"
+           description="External orders, since LOGON 1.4. An external order (also known as 'third party order') is an order which can be created, dispatched and delivered in LOGON, but is not dependent on SAP data (BP, Material, Conditions). An external order has only very minimal 'commercial' information, stored in this table, which logically replaces tlgnc_order/order_item. The materials and locations have only template-character, selectable from tlgnc_ext_material and tlgnc_ext_site. Then, the logistical aspects of the order is contained in tlgnc_assignment/assignment_part just as for normal orders. Note that the material and site can be overridden in assignement/assignment_part as free text (identical behaviour for 'external orders' as known in LOGON until 1.3, without an explicit tlgnc_ext_order table).">
+
+        <column name="EXT_ORDER_ID" primaryKey="true" required="true" type="DECIMAL" size="12"
+                description="PK"/>
+        <column name="EXT_ORDER_NUMBER" required="true" type="DECIMAL" size="12"
+                description="The order number, used for external systems. Generated independently of EXT_ORDER_ID, based on sequence SLGNC_EXT_ORDER_NUMBER."/>
+        <column name="ORDER_STATUS_CD" required="true" type="DECIMAL" size="2"
+                description="FK tlgnr_order_status_bs. Status of the order. 1=new, ..., 6=dispatched, ..., 15=delivered. Comparisons with &lt; and &gt; are forbidden to find out where an order is in the workflow!"/>
+                
+        <column name="DELIVERY_FROM_DAT" required="true" type="DATE"
+                description="Defines the beginning (date and time) of the time frame when the delivery has to happen."/>
+        <column name="DELIVERY_TO_DAT" required="true" type="DATE"
+                description="Defines the end (date and time) of the time frame when the delivery has to happen."/>
+
+        <column name="POOL_ID" type="DECIMAL" required="true" size="12" 
+                description="FK tlgnc_pool. Pool to which an order was assigned for delivery. For truck orders, pools have a geographic meaning."/>
+        <column name="CARRIER_ID" type="DECIMAL" required="true" size="12"
+                description="FK tlgnc_carrier. Carrier (=Transporteur, Lieferant, Spediteur) who handles the delivery."/>
+
+        <column name="LOADING_EXT_SITE_ID" type="DECIMAL" required="true" size="12"
+                description="FK tlgnc_ext_site. The loading site where the order can be loaded/has been loaded = the starting point of the order."/>
+        <column name="UNLOADING_EXT_SITE_ID" type="DECIMAL" required="true" size="12"
+                description="FK tlgnc_ext_Site. The unloading site where the order can be unloaded/has been unloaded = the end point of the order."/>
+
+        <column name="EXT_MATERIAL_ID" type="DECIMAL" required="true" size="12"
+                description="FK tlgnc_ext_material. The related material."/>
+
+        <!-- Quantities and Units -->
+        <column name="ORDERED_UOM_CD" required="true" type="VARCHAR" size="3"
+                description="FK tlgnr_uom_bs. Unit of measure on which the ORDERED_QUANTITY is based when ORDERING the order. Includes 'non-convertible' UOM, e.g. '1 railcar' (without any weight specification!)."/>
+        <column name="ORDERED_QUANTITY" required="true" type="DECIMAL" size="12,4"
+                description="Ordered quantity of the material, in units defined by ORDER_UOM_CD. Typically a whole number."/>
+        <column name="LOADED_AND_DELIVERED_UOM_CD" type="VARCHAR" size="3"
+                description="FK tlgnr_uom_bs. Unit of measure on which LOADED_QUANTITY and DELIVERED_QUANTITY is based."/>
+        <column name="LOADED_QUANTITY" type="DECIMAL" size="12,4"
+                description="Loaded quantity of the material in units defined by LOADED_AND_DELIVERED_UOM_CD. Value is set when order is set to 'loaded'. External orders do not have an SAP Material, there is no load at all for external orders, the loaded quantity is stored on the external order itself."/>
+        <column name="DELIVERED_QUANTITY" type="DECIMAL" size="12,4"
+                description="Delivered quantity of the material in units defined by LOADED_AND_DELIVERED_UOM_CD"/>
+                
+        <!-- Distance and duration -->
+        <column name="TRANSPORT_DURATION_MIN" type="DECIMAL" size="5"
+                description="Planned transport duration from shipping point to ship-to in minutes. There is no correction factor."/>
+        <column name="TRANSPORT_DISTANCE_M" type="DECIMAL" size="10"
+                description="Transport distance from shipping point to ship-to in m."/>
+                
+        <column name="NOTE_TRUCK_DRIVER" type="VARCHAR" size="256"
+                description="Notes for the Driver. The note gets its initial text from the ext site CARRIER_TRUCK_DRIVER_NOTE, but can be modified for the order."/>
+                
+        <column name="DELIVERED_TRUCK_ID" type="DECIMAL" size="12"
+				description="FK tlgnc_truck. The truck that was used to deliver the order. This reference is set when the order status changes to 15=delivered. This is necessary because this information can be changed soon afterwards by truck composition changes."/>
+		
+		<!-- Comment by the customer when receiving the delivery -->
+		<column name="CUST_DELIVERY_NOTE_COMMENT" type="VARCHAR" size="600"
+                description="Value is set by 'Delivery note' request to the value of the 'note' attribute. Supposed to contain the external delivery note's number. Field is a searchable field on External order search screen, and is visible on external order details popup."/>
+				
+        <!-- When adding new references and FK, please put them in the same order as they are as attributes! -->
+        <foreign-key foreignTable="TLGNR_ORDER_STATUS_BS" name="FK_TLGNC_EXT_ORDER_ORDER_STAT">
+            <reference local="ORDER_STATUS_CD" foreign="ORDER_STATUS_CD"/>
+        </foreign-key>
+        
+        <foreign-key foreignTable="TLGNC_POOL" name="FK_TLGNC_EXT_ORDER_POOL">
+            <reference local="POOL_ID" foreign="POOL_ID"/>
+        </foreign-key>
+        
+        <foreign-key foreignTable="TLGNC_CARRIER" name="FK_TLGNC_EXT_ORDER_CARRIER">
+            <reference local="CARRIER_ID" foreign="CARRIER_ID"/>
+        </foreign-key>
+        
+        <foreign-key foreignTable="TLGNC_EXT_SITE" name="FK_TLGNC_EXT_ORDER_LOAD_SITE">
+            <reference local="LOADING_EXT_SITE_ID" foreign="EXT_SITE_ID"/>
+        </foreign-key>
+        
+        <foreign-key foreignTable="TLGNC_EXT_SITE" name="FK_TLGNC_EXT_ORDER_UNLOAD_SITE">
+            <reference local="UNLOADING_EXT_SITE_ID" foreign="EXT_SITE_ID"/>
+        </foreign-key>
+        
+        <foreign-key foreignTable="TLGNC_EXT_MATERIAL" name="FK_TLGNC_EXT_ORDER_MATERIAL">
+            <reference local="EXT_MATERIAL_ID" foreign="EXT_MATERIAL_ID"/>
+        </foreign-key>
+        
+        <foreign-key foreignTable="TLGNR_UOM_BS" name="FK_TLGNC_EXT_ORDER_UOM_ORD">
+            <reference local="ORDERED_UOM_CD" foreign="UOM_CD"/>
+        </foreign-key>
+        
+        <foreign-key foreignTable="TLGNR_UOM_BS" name="FK_TLGNC_EXT_ORDER_UOM_LD_DL">
+            <reference local="LOADED_AND_DELIVERED_UOM_CD" foreign="UOM_CD"/>
+        </foreign-key>
+        
+        <foreign-key foreignTable="TLGNC_TRUCK" name="FK_TLGNC_EXT_ORDER_TRUCK">
+			<reference local="DELIVERED_TRUCK_ID" foreign="TRUCK_ID"/>
+		</foreign-key>
+        
+    </table>
+</database>

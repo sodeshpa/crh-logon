@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="VLGNS_SAP_SOLD_PAY_SAREA_SRCH" mappingType="view" skipSql="true">
+        <column name="COMPOSITE_ID" type="VARCHAR" size="51"/>
+        <column name="PAYER_NAME" type="VARCHAR" size="35"/>
+        <column name="PAYER_NR" type="VARCHAR" size="10"/>
+        <column name="PAYER_SAP_BP_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="PAYER_POSTAL_CODE" required="true" type="VARCHAR" size="10"/>
+        <column name="PAYER_CITY" required="true" type="VARCHAR" size="35"/>
+        <column name="PAYER_MARKED_FOR_DELETION" type="VARCHAR" size="1"/>
+        <column name="SOLDTO_MARKED_FOR_DELETION" type="VARCHAR" size="1"/>
+        <column name="SOLDTO_NAME" type="VARCHAR" size="35"/>
+        <column name="SOLDTO_NR" type="VARCHAR" size="10"/>
+        <column name="SOLDTO_SAP_BP_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="SAREA_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="SORG_CD" required="true" type="VARCHAR" size="4"/>
+    </table>
+</database>

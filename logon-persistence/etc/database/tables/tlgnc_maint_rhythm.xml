@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNC_MAINT_RHYTHM"
+           description="Describes the repetition of the wagon maintenance types on a 12-year long scale. Each maintenance type (maint_type_cd) can be defined for each MAINT_RHYTHM_TYPE_CD (manual / 12-4-4 / 12-6 rhythm) once.">
+
+        <column name="MAINT_RHYTHM_ID" primaryKey="true" required="true" type="DECIMAL" size="12"
+                description="PK"/>
+
+        <column name="MAINT_RHYTHM_TYPE_CD" type="DECIMAL" size="2" required="true" 
+                description="FK tlgnr_maint_rhythm_type_bs. 0=manual, 1=(12-4-4 Rhythmus), 2=(12-6 Rhythmus)."/>
+        <column name="MAINT_TYPE_CD" required="true" type="VARCHAR" size="6"
+                description="FK tlgnr_maint_type_bs. The maintenance type. Forms the business identifier together with MAINT_RHYTHM_TYPE_CD: unique constraint (MAINT_RHYTHM_TYPE_CD, MAINT_TYPE_CD)."/>
+
+        <column name="ACTIVATION_PERIOD_D" type="DECIMAL" size="3" required="true"
+                description="Number of days before event becomes active: If (last + interval_years - activation_period_d) is less than sysdate, the event counts as a candidate to be triggered. null=not planned (repair)"/>
+
+        <column name="YEAR_1_FLAG" type="BOOLEAN" required="true"
+                description="Set to 1=true, if the specific maintenance type of this specific variante should be repeated in the 1st year."/>
+        <column name="YEAR_2_FLAG" type="BOOLEAN" required="true"
+                description="Set to 1=true, if the specific maintenance type of this specific variante should be repeated in the 2nd year."/>
+        <column name="YEAR_3_FLAG" type="BOOLEAN" required="true"
+                description="Set to 1=true, if the specific maintenance type of this specific variante should be repeated in the 3rd year."/>
+        <column name="YEAR_4_FLAG" type="BOOLEAN" required="true"
+                description="Set to 1=true, if the specific maintenance type of this specific variante should be repeated in this year."/>
+        <column name="YEAR_5_FLAG" type="BOOLEAN" required="true"
+                description="Set to 1=true, if the specific maintenance type of this specific variante should be repeated in this year."/>
+        <column name="YEAR_6_FLAG" type="BOOLEAN" required="true"
+                description="Set to 1=true, if the specific maintenance type of this specific variante should be repeated in this year."/>
+        <column name="YEAR_7_FLAG" type="BOOLEAN" required="true"
+                description="Set to 1=true, if the specific maintenance type of this specific variante should be repeated in this year."/>
+        <column name="YEAR_8_FLAG" type="BOOLEAN" required="true"
+                description="Set to 1=true, if the specific maintenance type of this specific variante should be repeated in this year."/>
+        <column name="YEAR_9_FLAG" type="BOOLEAN" required="true"
+                description="Set to 1=true, if the specific maintenance type of this specific variante should be repeated in this year."/>
+        <column name="YEAR_10_FLAG" type="BOOLEAN" required="true"
+                description="Set to 1=true, if the specific maintenance type of this specific variante should be repeated in this year."/>
+        <column name="YEAR_11_FLAG" type="BOOLEAN" required="true"
+                description="Set to 1=true, if the specific maintenance type of this specific variante should be repeated in this year."/>
+        <column name="YEAR_12_FLAG" type="BOOLEAN" required="true"
+                description="Set to 1=true, if the specific maintenance type of this specific variante should be repeated in this year."/>
+
+        <foreign-key foreignTable="TLGNR_MAINT_RHYTHM_TYPE_BS" name="FK_TLGNR_MAINT_R_RHYTHM_TYPE">
+            <reference local="MAINT_RHYTHM_TYPE_CD" foreign="MAINT_RHYTHM_TYPE_CD"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_MAINT_TYPE_BS" name="FK_TLGNR_MAINT_R_MAINT_TYPE">
+            <reference local="MAINT_TYPE_CD" foreign="MAINT_TYPE_CD"/>
+        </foreign-key>
+        
+        <unique name="UQ_TLGNC_MAINT_RHYTH_M_TYPE_CD">
+            <unique-column name="MAINT_RHYTHM_TYPE_CD"/>
+            <unique-column name="MAINT_TYPE_CD"/>
+        </unique>
+
+    </table>
+</database>

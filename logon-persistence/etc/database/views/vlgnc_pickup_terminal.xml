@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="VLGNC_PICKUP_TERMINAL" mappingType="view" skipSql="true">
+        <column name="COMPOSITE_ID" type="VARCHAR" size="81"/>
+        <column name="ORDER_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="CUSTORDER_ID" type="DECIMAL" size="12"/>
+        <column name="ORDER_ITEM_NO" required="true" type="DECIMAL" size="3"/>
+        <column name="ORDER_ITEM_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="SHIPTO_SAP_BP_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="SOLDTO_SAP_BP_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="SAREA_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="SAP_MATERIAL_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="CURRENCY_CD" required="true" type="VARCHAR" size="3"/>
+        <column name="RATE" type="DECIMAL" size="10,3"/>
+        <column name="ORDER_NUMBER" type="DECIMAL" size="12"/>
+        <column name="ORDER_STATUS_CD" required="true" type="DECIMAL" size="2"/>
+        <column name="ORDERED_UOM_CD" type="VARCHAR" size="3"/>
+        <column name="ORDERED_QUANTITY" type="DECIMAL" size="12,4"/>
+        <column name="DELIVERY_FROM_DAT" required="true" type="DATE"/>
+        <column name="DELIVERY_TO_DAT" required="true" type="DATE"/>
+        <column name="DELIVERY_TYPE_CD" required="true" type="DECIMAL" size="2"/>
+        <column name="SHIPPINGPOINT_ID" type="DECIMAL" size="12"/>
+        <column name="LOADINGPOINT_ID" type="DECIMAL" size="12"/>
+        <column name="PRODUCTION_PLANT_CD" type="VARCHAR" size="4"/>
+        <column name="ACTUAL_DELIVERY_DAT" type="DATE"/>
+        <column name="BILLTO_SAP_BP_ID" type="DECIMAL" size="12"/>
+        <column name="LANG_CD" type="VARCHAR" size="2"/>
+        <column name="BP_NAME" type="VARCHAR" size="35"/>
+        <column name="SOLDTO_BP_NAME" type="VARCHAR" size="35"/>
+        <column name="SHIPTO_BP_NAME" type="VARCHAR" size="35"/>
+        <column name="ORDER_UNIT_TXT" type="VARCHAR" size="20"/>
+        <column name="ORDER_UOM_DIMENSION_CD" type="VARCHAR" size="3"/>
+        <column name="ORDER_UOM_DIMENSION_TXT" type="VARCHAR" size="20"/>
+        <column name="MATERIAL_NO" type="VARCHAR" size="18"/>
+        <column name="MATERIAL_PACKAGE_CD" type="VARCHAR" size="4"/>
+        <column name="MATERIAL_TXT" type="VARCHAR" size="40"/>
+        <column name="STATUS_TXT" type="VARCHAR" size="50"/>
+        <column name="ORDER_VALIDATION_CODE" type="VARCHAR" size="2"/>
+        <column name="ORDERED_MEASURE" type="DOUBLE"/>
+    </table>
+</database>

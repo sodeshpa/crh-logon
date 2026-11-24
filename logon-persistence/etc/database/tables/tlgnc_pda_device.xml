@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNC_PDA_DEVICE"
+           description="PDA devices known to LOGON">
+
+        <column name="PDA_DEVICE_ID" primaryKey="true" required="true" type="DECIMAL" size="12"
+                description="PK." />
+        <column name="PDA_DEVICE_NO" required="true" type="VARCHAR" size="50"
+                description="Globally unique identifier of the mobile device (e.g. 12 digit alphanumeric identification number in case of PDAs, etc.)." />
+        <column name="ACTIVE_FLAG" required="true" type="BOOLEAN"
+                description="0=inactive/deleted, 1=active."/>
+
+        <!-- Organizational / Assignment / Owner -->
+        <column name="LAST_USER_ID" type="DECIMAL" size="12"
+                description="FK tlgnc_user_id. The last user who logged in with this PDA device. This is just for informational purposes, but useful to contact the current 'owner' of a device. (Info is redundant to tlgnc_pdf_session, sorted by date per pda device)." />
+        <column name="CARRIER_ID" type="DECIMAL" size="12"
+                description="The carrier that this pda device is assigned to." />
+
+        <!-- Just information, no logic by Logon -->
+        <column name="TYPE_DESCRIPTION" type="VARCHAR" size="30"
+                description="Type of the PDA. Just text, not used by LOGON." />
+        <column name="INVENTORY_NUMBER" type="VARCHAR" size="30"
+                description="Inventory number (text). Not used by Logon, cannot be used to search for, no unique constraint etc." />
+        <column name="SIMCARD_CD" type="DECIMAL" size="12"
+                description="FK tlgnr_simcard_bs. SIM-Card/Phone number of the SIM used in this PDA device. The SIM card-phone number programming itself is done by the partner and not meant to be changed by a user or administrator. The SIM-card and phone number info is not used by Logon, it's just for informational purposes (at least for now)." />
+        <column name="LAST_REGISTRATION_DATE" type="DATE"
+                description="Date when the device was 'registered' (whatever this means for Crh). Not used by Logon, treated as a date without any meaning." />
+        <column name="SOFTWARE_VERSION" type="VARCHAR" size="30"
+                description="Software version installed on this PDA. Not used by Logon, treated as text without a meaning." />
+        <column name="PDA_DEVICE_COMMENT" type="VARCHAR" size="200"
+                description="Any comment about the PDA device which does not fit into the other free text fields."/>
+
+        <foreign-key foreignTable="TLGNU_USER" name="FK_TLGNC_PDA_DEVICE_USER">
+            <reference local="LAST_USER_ID" foreign="USER_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNC_CARRIER" name="FK_TLGNC_PDA_DEVICE_CARRIER">
+            <reference local="CARRIER_ID" foreign="CARRIER_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_SIMCARD_BS" name="FK_TLGNC_PDA_DEVICE_SIMCARD">
+            <reference local="SIMCARD_CD" foreign="SIMCARD_CD"/>
+        </foreign-key>
+
+        <unique name="UQ_TLGNC_PDA_DEVICE_DEVICE_NO">
+            <unique-column name="PDA_DEVICE_NO"/>
+        </unique>
+    </table>
+</database>

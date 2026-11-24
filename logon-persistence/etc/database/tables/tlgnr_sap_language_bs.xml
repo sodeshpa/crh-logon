@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNR_SAP_LANGUAGE_BS" refData="true"
+           description="All languages as known in SAP, as used in fields SPRAS_ISO in various tables. Columns in LOGON DB which represent the original values from SAP must reference to this table, whereas all fields which contain language information about the languages truly supported by the LOGON application (translations of text labels, masterdata, output documents…) refer to tlgnr_lang_bs/tx.">
+
+        <column name="SAP_LANGUAGE_CD" primaryKey="true" required="true" type="VARCHAR" size="2"
+                description="PK. Possible keys are defined by SAP, appearance in various SPRAS_ISO fields."/>
+        <column name="MAP_TO_APPLICATION_LANG_CD" required="true" type="VARCHAR" size="2"
+                description="FK tlgnr_lang_bs. Default/fallback of this SAP language into one of LOGON’s application languages."/>
+		<column name="CTL_ACT_CD" required="true" type="BOOLEAN"
+                description="Active Flag. When new data is entered, only reference data with active flag are available for selection normally."/>
+                
+        <foreign-key foreignTable="TLGNR_LANG_BS" name="FK_TLGNR_SAP_LANGUAGE_LANG_BS">
+            <reference local="MAP_TO_APPLICATION_LANG_CD" foreign="LANG_CD"/>
+        </foreign-key>
+
+    </table>
+</database>

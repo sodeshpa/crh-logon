@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions name="ECMService"
+		targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+		xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy"
+		xmlns:wsa10="http://www.w3.org/2005/08/addressing"
+		xmlns:tns="http://tempuri.org/"
+		xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract"
+		xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/"
+		xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex"
+		xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy"
+		xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+		xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata"
+		xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing"
+		xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl"
+		xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/"
+		xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"	
+		xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<wsdl:types>
+		<xsd:schema targetNamespace="http://archiveorder.to.logon.holcim.com/imports">
+			<xsd:import schemaLocation="xsd/ArchiveOrder_main.xsd"
+				namespace="http://tempuri.org/" />
+			<xsd:import schemaLocation="xsd/ArchiveOrder_complex_types.xsd"
+				namespace="http://schemas.datacontract.org/2004/07/Ixtent.ContentServer.Crh.ECMInterface.DataAccess" />
+			<xsd:import schemaLocation="xsd/ArchiveOrder_base_types.xsd"
+				namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+		</xsd:schema>
+	</wsdl:types>
+	<wsdl:message name="IECMService_VerifyLoginCredentials_InputMessage">
+		<wsdl:part name="parameters" element="tns:VerifyLoginCredentials" />
+	</wsdl:message>
+	<wsdl:message name="IECMService_VerifyLoginCredentials_OutputMessage">
+		<wsdl:part name="parameters" element="tns:VerifyLoginCredentialsResponse" />
+	</wsdl:message>
+	<wsdl:message name="IECMService_VerifyLoginCredentials_FaultDetailFault_FaultMessage">
+		<wsdl:part xmlns:q1="http://schemas.datacontract.org/2004/07/Ixtent.ContentServer.Crh.ECMInterface.DataAccess" name="detail" element="q1:FaultDetail" />
+	</wsdl:message>
+	<wsdl:message name="IECMService_ArchiveOrderData_InputMessage">
+		<wsdl:part name="parameters" element="tns:ArchiveOrderData" />
+	</wsdl:message>
+	<wsdl:message name="IECMService_ArchiveOrderData_OutputMessage">
+		<wsdl:part name="parameters" element="tns:ArchiveOrderDataResponse" />
+	</wsdl:message>
+	<wsdl:message name="IECMService_ArchiveOrderData_FaultDetailFault_FaultMessage">
+		<wsdl:part xmlns:q2="http://schemas.datacontract.org/2004/07/Ixtent.ContentServer.Crh.ECMInterface.DataAccess" name="detail" element="q2:FaultDetail" />
+	</wsdl:message>
+	<wsdl:portType name="IECMService">
+		<wsdl:operation name="VerifyLoginCredentials">
+			<wsdl:input wsaw:Action="http://tempuri.org/IECMService/VerifyLoginCredentials"
+				message="tns:IECMService_VerifyLoginCredentials_InputMessage" />
+			<wsdl:output wsaw:Action="http://tempuri.org/IECMService/VerifyLoginCredentialsResponse"
+				message="tns:IECMService_VerifyLoginCredentials_OutputMessage" />
+			<wsdl:fault wsaw:Action="http://tempuri.org/IECMService/VerifyLoginCredentialsFaultDetailFault"
+				name="FaultDetailFault" message="tns:IECMService_VerifyLoginCredentials_FaultDetailFault_FaultMessage" />
+		</wsdl:operation>
+		<wsdl:operation name="ArchiveOrderData">
+			<wsdl:input wsaw:Action="http://tempuri.org/IECMService/ArchiveOrderData"
+				message="tns:IECMService_ArchiveOrderData_InputMessage" />
+			<wsdl:output wsaw:Action="http://tempuri.org/IECMService/ArchiveOrderDataResponse"
+				message="tns:IECMService_ArchiveOrderData_OutputMessage" />
+			<wsdl:fault wsaw:Action="http://tempuri.org/IECMService/ArchiveOrderDataFaultDetailFault"
+				name="FaultDetailFault" message="tns:IECMService_ArchiveOrderData_FaultDetailFault_FaultMessage" />
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="BasicHttpBinding_IECMService" type="tns:IECMService">
+		<soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="VerifyLoginCredentials">
+			<soap:operation soapAction="http://tempuri.org/IECMService/VerifyLoginCredentials"
+				style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="FaultDetailFault">
+				<soap:fault use="literal" name="FaultDetailFault" namespace="" />
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="ArchiveOrderData">
+			<soap:operation soapAction="http://tempuri.org/IECMService/ArchiveOrderData"
+				style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="FaultDetailFault">
+				<soap:fault use="literal" name="FaultDetailFault" namespace="" />
+			</wsdl:fault>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="ECMService">
+		<wsdl:port name="BasicHttpBinding_IECMService" binding="tns:BasicHttpBinding_IECMService">
+			<soap:address location="http://ipejbcs2010/ECMInterface/ECMService.svc" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

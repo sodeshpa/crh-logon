@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="http://logon.holcim.com/2009/09/MOPEvent/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://logon.holcim.com/2009/09/MOPEvent/">
+  <xsd:element name="MOPMessage">
+  <xsd:complexType>
+    <xsd:sequence>
+      <xsd:element type="xsd:string" name="senderPDAID" minOccurs="1" nillable="true" maxOccurs="1"/>
+      <xsd:element type="xsd:dateTime" name="sendersTime" minOccurs="1" nillable="false" maxOccurs="1"/>
+      <xsd:element type="xsd:string" name="sessionID" minOccurs="1" nillable="true" maxOccurs="1"/>
+	  <xsd:element name="MOPEvent" maxOccurs="unbounded" minOccurs="1">
+      <xsd:complexType>
+        <xsd:sequence>
+	      <xsd:element type="xsd:integer" name="eventID" minOccurs="1" nillable="false" maxOccurs="1"/>
+	      <xsd:element type="xsd:dateTime" name="eventTime" minOccurs="1" nillable="false" maxOccurs="1"/>
+	      <xsd:element type="xsd:string" name="eventName" minOccurs="1" nillable="false" maxOccurs="1"/>
+	      <xsd:element type="xsd:decimal" name="geoX" minOccurs="1" maxOccurs="1"/>
+	      <xsd:element type="xsd:decimal" name="geoY" minOccurs="1" maxOccurs="1"/>
+	      <xsd:element type="xsd:integer" name="speed" minOccurs="1" nillable="true" maxOccurs="1"/>
+	      <xsd:element type="xsd:integer" name="course" minOccurs="1" nillable="true" maxOccurs="1"/>
+	      <xsd:element type="xsd:dateTime" name="geoTime" minOccurs="1" nillable="false" maxOccurs="1"/>
+	      <xsd:element name="MOPData" minOccurs="0">
+	        <xsd:complexType>
+	          <xsd:sequence>
+	            <xsd:element name="Field" minOccurs="0" maxOccurs="unbounded">
+	              <xsd:complexType>
+	                <xsd:sequence>
+	                  <xsd:element type="xsd:string" name="name" minOccurs="1" maxOccurs="1"/>
+	                  <xsd:element type="xsd:string" name="value" minOccurs="1" nillable="true" maxOccurs="1"/>
+	                </xsd:sequence>
+	              </xsd:complexType>
+	            </xsd:element>
+	          </xsd:sequence>
+	        </xsd:complexType>
+	      </xsd:element>
+	    </xsd:sequence>
+  	  </xsd:complexType>
+  	  </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="MOPMessageStatus">
+  <xsd:complexType>
+	<xsd:sequence>
+	  <xsd:element type="xsd:integer" name="messageStatus" />
+	  <xsd:element name="MOPEventStatus" maxOccurs="unbounded" minOccurs="1">
+	  <xsd:complexType>
+	    <xsd:sequence>
+	      <xsd:element type="xsd:integer" name="eventID" minOccurs="1" nillable="false" maxOccurs="1"/>
+	      <xsd:element type="xsd:integer" name="code"/>
+	      <xsd:element type="xsd:string" name="contextValue"/>
+	      <xsd:element type="xsd:string" name="txt"/>
+	    </xsd:sequence>
+	  </xsd:complexType>
+	  </xsd:element>
+	</xsd:sequence>
+  </xsd:complexType>
+  </xsd:element>
+</xsd:schema>

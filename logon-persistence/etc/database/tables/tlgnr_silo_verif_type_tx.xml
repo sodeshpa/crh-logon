@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+	<table name="TLGNR_SILO_VERIF_TYPE_TX" refData="true"
+			description="Silo verification type. E.g. how the ship to silo was verified before unload: RFID scan, RFID label, no verification.">
+		<column name="SILO_VERIF_TYPE_CD" primaryKey="true" required="true" type="DECIMAL" size="2"
+				description="Part of PK. FK tlgnr_silo_verif_type_bs."/>
+		<column name="LANG_CD" primaryKey="true" required="true" type="VARCHAR" size="2"
+				description="Part of PK. FK tlgnr_lang_bs. For example de, en, ..."/>
+		<column name="TXT" required="true" type="VARCHAR" size="20"
+				description="Silo verification type description."/>
+
+		<foreign-key foreignTable="TLGNR_SILO_VERIF_TYPE_BS" name="FK_TLGNR_SILO_VERIF_TYPE_TX">
+			<reference local="SILO_VERIF_TYPE_CD" foreign="SILO_VERIF_TYPE_CD"/>
+		</foreign-key>
+		<foreign-key foreignTable="TLGNR_LANG_BS" name="FK_TLGNR_SILO_VERIF_TYPE_LANG">
+			<reference local="LANG_CD" foreign="LANG_CD"/>
+		</foreign-key>
+	</table>
+</database>

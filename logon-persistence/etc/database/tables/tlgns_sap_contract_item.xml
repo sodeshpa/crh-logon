@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNS_SAP_CONTRACT_ITEM" description="Contains the item-level attributes of a Contract as received from SAP via the Contracts/STPO interface. Only fields relevant for LOGON are imported into this table; additional fields can be added when required by additional functional specification.">
+        
+        <column name="SAP_CONTRACT_ITEM_ID" primaryKey="true" required="true" type="DECIMAL" size="12"
+                description="PK. Technical ID given by LOGON DB when object is created, based on a sequence."/>             
+        <column name="SAP_CONTRACT_ID" required="true" type="DECIMAL" size="12"
+                description="FK tlgns_sap_contract. The contract (Logon identifier!) to which this items belongs."/>                             
+        <column name="CONTRACT_ITEM_NO" required="true" type="DECIMAL" size="6"
+                description="Contract item number in SAP. (Origin: VBAP.POSNR / E1EDP01.posex). Special values: -2: planning landfill, -3: planning aggregate."/>
+        <column name="SAP_MATERIAL_ID" required="true" type="DECIMAL" size="12"
+                description="FK tlgns_sap_material. The material of this contract item. (Origin: VBAP.MATNR / E1EDP19.IDTNR.qualf.002, mapped via tlgns_sap_material.sap_material_no)"/>
+		<column name="PRODUCTION_PLANT_CD" type="VARCHAR" size="4"
+                description="FK tlgnr_plant_bs. FK tlgnr_plant_bs. Not used. Prroduction plant is now a material property. (Origin before 2.0.0.9: VBAP.CHARG / ZE1DP19.IDTNR.qualf.010, Batch number!) The usage had been removed on behalf of LRQ 011.1."/>                                            
+		<column name="SUPPLY_PLANT_CD" type="VARCHAR" size="4"
+                description="FK tlgnr_plant_bs. Supply plant to be used for orders based on this contract. If not set: Supply plant to be set in LOGON, in Dispokarte/Order Taking. Note that a LOGON order has the supply plant at order level (not item!), i.e. all items of the order will have the same supply plant (set from the first selected contract item which restricts it). (Origin: VBAP.WERKS / E1EDP01.werks)"/>              
+		<column name="MATERIAL_GROUP_1" type="VARCHAR" size="3"
+                description="Type of Bag. LOGON usage for now: Just store. (Origin: VBAP.MVGR1 / E1EDP35.cusadd.qualz.017)"/>                 
+		<column name="MATERIAL_GROUP_2" type="VARCHAR" size="3"
+                description="Packaging Type (1=Bulk, 2=Bag. But for AFR apparently also PAL=Pallets, BBG=Big Bags, DRM=Drums, …). LOGON usage for now: Just store. LOGON will use the packagin type from the material itself, not from the one contained in contract item! (Origin: VBAP.MVGR2 / E1EDP35.cusadd.qualz.018)"/>                     
+		<column name="MATERIAL_GROUP_3" type="VARCHAR" size="3"
+                description="Grouping (RMX, CEM or AGG). LOGON usage for now: Just store. (Origin: VBAP.MVGR3 / E1EDP35.cusadd.qualz.019)"/>                     
+		<column name="MATERIAL_GROUP_4" type="VARCHAR" size="3"
+                description="AFR Type of Product (EW=End-of-waste, BP=By-product, …). LOGON usage for now: Just store. (Origin: VBAP.MVGR4 / E1EDP35.cusadd.qualz.020)"/>              
+		<column name="MATERIAL_GROUP_5" type="VARCHAR" size="3"
+                description="Type of Bag. LOGON usage for now: Just store. (Origin: VBAP.MVGR5 / E1EDP35.cusadd.qualz.021)"/>              
+		<column name="ITEM_CATEGORY" type="VARCHAR" size="4"
+                description="Item Category. LOGON usage for now: Just store (Origin: VBAP.PSTYV)"/>               
+        <column name="TARGET_QUANTITY" type="DECIMAL" size="17,3"
+                description="Target quantity expressed in sales units (target_quantity_uom_cd). (Origin: VBAP.ZMENG / ZE1EDP.ZPTENTR). For an Advance Payment contract, this value is a cumulative sum over all of its members which is updated in the sapimport_sdn_pkg script."/>
+        <column name="TARGET_QUANTITY_UOM_CD" type="VARCHAR" size="3"
+                description="FK tlgnr_uom_bs. Unit of measure in which target_quantity is expressed. Mandatory, if target_quantity is set. (Origin: VBAP.MEINS / ZE1EDP1.ZBMEINS)"/>                                  
+        <column name="NET_VALUE" type="DECIMAL" size="15,2"
+                description="Item Net Value of the item target quantity expressed in currency of the contract (tlgns_sap_contract.currency_cd). (Origin: VBAP.NETWR / E1EDP01.NETWR)"/>       
+        <column name="VAT_PERCENTAGE" type="DECIMAL" size="12,4"
+       			description="Vat of the contract item in percentage. Example (Switzerland 8.0% Vat): ZPVAT = “8.0”"/>
+        <column name="MARKED_FOR_DELETION" type="VARCHAR" size="1"
+       			description="Deletion code in SAP (Sales Document Notification -> Document Item General Data field ABGRU (for contract) and field ZLOEKZ (for STPO)). 1=deleted, else active. Note that Logon normally has active_flag, with inversed logic. We stick to SAP standards in the tlgns_sap_... tables."/>
+        <column name="TRANSPORT_COST_INCLUDED_FLAG" type="BOOLEAN" required="true"
+                description="Defines whether or not the transport costs are already included in the net value of the item."/>
+        <column name="IS_AP_GROUP_LEADER" type="BOOLEAN" required="true"
+                description="Defines whether this contract item represents an Advance Payment Group Leader - a virtual contract item from which other contract items are associated to for easier lookup and group associations"/>
+		<column name="AP_GROUP_LEADER_ID" type="DECIMAL" size="12"
+                description="FK tlgns_sap_contract_item: For a Group Leader (IS_AP_GROUP_LEADER = TRUE) this value is NULL, for non-group-leaders is references the SAP_CONTRACT_ITEM_ID of the item representing the AP Group Leader."/>
+        <column name="TOTAL_SENT_QUANTITY" type="DECIMAL" size="17,3"
+                description="Total quantity sent to SAP expressed in sales units (target_quantity_uom_cd). This value is only updated once an order has been marked as FINISHED. For an Advance Payment group leader, this represents the entire quantity over all of its members. TARGET_QUANTITY - TOTAL_SENT_QUANTITY will always give the amount of quantity still open or remaining."/>
+		<column name="ADVANCE_INVOICE_NO" type="VARCHAR" size="60"
+				description="Advance Invoice Number received from the weighing system. Used in the delivery note printing for export invoice (Serbia)."/>
+		<column name="PARENT_OFFER_NO" type="VARCHAR" size="70"
+                description="Parent offer number. LOGON will retrieve this value in field TDLINE in the segment for TDID" />
+                
+		<foreign-key foreignTable="TLGNS_SAP_CONTRACT" name="FK_TLGNS_SAP_CON_ITEM_SAP_CON">
+            <reference local="SAP_CONTRACT_ID" foreign="SAP_CONTRACT_ID"/>
+        </foreign-key>         
+		<foreign-key foreignTable="TLGNS_SAP_MATERIAL" name="FK_TLGNS_SAP_CON_SAP_MAT">
+            <reference local="SAP_MATERIAL_ID" foreign="SAP_MATERIAL_ID"/>
+        </foreign-key>           
+		<foreign-key foreignTable="TLGNR_PLANT_BS" name="FK_TLGNS_SAP_CON_ITEM_PROD_P">
+            <reference local="PRODUCTION_PLANT_CD" foreign="PLANT_CD"/>
+        </foreign-key>           
+		<foreign-key foreignTable="TLGNR_PLANT_BS" name="FK_TLGNS_SAP_CON_ITEM_SUPPLY_P">
+            <reference local="SUPPLY_PLANT_CD" foreign="PLANT_CD"/>
+        </foreign-key>     
+        <foreign-key foreignTable="TLGNR_UOM_BS" name="FK_TLGNS_SAP_CON_ITEM_UOM_CD">
+            <reference local="TARGET_QUANTITY_UOM_CD" foreign="UOM_CD"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNS_SAP_CONTRACT_ITEM" name="FK_TLGNS_AP_GROUP_LEADER">
+            <reference local="AP_GROUP_LEADER_ID" foreign="SAP_CONTRACT_ITEM_ID"/>
+        </foreign-key>
+    </table>
+</database>

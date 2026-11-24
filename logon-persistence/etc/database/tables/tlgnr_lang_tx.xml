@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNR_LANG_TX" refData="true"
+           description="Languages. Keys should be according to ISO-639-1, 2-letter standard codes de, fr, it, en etc.">
+        <column name="LANG_CD" primaryKey="true" required="true" type="VARCHAR" size="2"
+                description="Part of PK. FK tlgnr_lang_bs. Code of the language"/>
+        <column name="LANG1_CD" primaryKey="true" required="true" type="VARCHAR" size="2"
+                description="Part of PK. FK tlgnr_lang_bs. Code of the language in which TXT describes LANG_CD."/>
+        <column name="TXT" required="true" type="VARCHAR" size="20"
+                description="Translation of the language LANG_CD in the language LANG1_CD. de in en is German, de in de is Deutsch."/>
+  </table>
+</database>

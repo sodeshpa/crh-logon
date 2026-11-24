@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application xmlns="http://java.sun.com/xml/ns/javaee" 
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+             xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+             http://java.sun.com/xml/ns/javaee/application_6.xsd"
+             version="6">
+  <description>$properties.description</description>
+#set ($pwd = "${systemproperties.pwd}")
+#if (!$pwd.endsWith("_terminal"))
+  <application-name>$properties.displayname</application-name>
+#end
+  <initialize-in-order>true</initialize-in-order>
+
+#set ($javasList = [])
+#set ($ejbsList = [])
+#set ($warsList = [])
+#foreach ($current in $allfiles)
+#set ($cat = $current.parentFile.name)
+#if ($cat == "ejbs")
+#set ($dummy = $ejbsList.add("$current.name"))
+#elseif ($cat == "javas")
+#set ($dummy = $javasList.add("$current.name"))
+#elseif ($current.name.endsWith(".war"))
+#set ($path = $st.up($current.toString()))
+#set ($path = $path.replace("${systemproperties.pwd}/wars/", ""))
+#set ($pelems = $st.toList($path.split("/")))
+#set ($contextroot = "")
+#foreach ($pelem in $pelems)
+#set ($contextroot = $contextroot + $st.rnl($pelems, $velocityCount, $pelem))
+#if ($velocityCount + 1 < $pelems.size())
+#set ($contextroot = $contextroot + "/")
+#end
+#end
+#set ($cat = "undef")
+#set ($cat = $current.parentFile.parentFile.name)
+#set ($dummy = $warsList.add("$current.name,$contextroot"))
+#end
+#end
+#foreach ($cur in $javasList)
+  <module>
+    <java>$cur</java>
+  </module>
+#end
+#foreach ($cur in $sorter.sort($ejbsList))
+  <module>
+    <ejb>$cur</ejb>
+  </module>
+#end
+#foreach ($cur in $sorter.sort($warsList))
+#set ($tl = $st.toList($cur.split(",")))
+  <module>
+   <web>
+     <web-uri>$tl.get(0)</web-uri>
+     <context-root>$tl.get(1)</context-root>
+   </web>
+  </module>
+#end
+</application>

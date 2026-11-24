@@ -1,0 +1,655 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<taglib version="2.0" xmlns="http://java.sun.com/xml/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd">
+	<tlib-version>1.0</tlib-version>
+	<jsp-version>2.0</jsp-version>
+	<short-name>crh-common</short-name>
+	<uri>http://com.crh.logon/tags/common-taglib.tld</uri>
+	<display-name>AdNovum Crh Common Tags</display-name>
+	<description>Tags for Adnovum Crh</description>
+
+	<tag>
+		<name>authorize</name>
+		<tag-class>
+			com.crh.logon.taglib.AuthorizationTag
+		</tag-class>
+		<body-content>JSP</body-content>
+		<description>
+            print out the body tag only if the current user has access to that function.
+		</description>
+		<attribute>
+			<name>function</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+                This must be the function id that is implemented here.
+			</description>
+		</attribute>
+		<attribute>
+			<name>function2</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+                This must be the function id that is implemented here.
+			</description>
+		</attribute>
+		<attribute>
+			<name>function3</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+                This must be the function id that is implemented here.
+			</description>
+		</attribute>
+		<attribute>
+			<name>function4</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+                This must be the function id that is implemented here.
+			</description>
+		</attribute>
+		<attribute>
+			<name>function5</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+                This must be the function id that is implemented here.
+			</description>
+		</attribute>
+		<attribute>
+			<name>function6</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+                This must be the function id that is implemented here.
+			</description>
+		</attribute>
+		<attribute>
+			<name>function7</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+                This must be the function id that is implemented here.
+			</description>
+		</attribute>
+		<attribute>
+			<name>function8</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+                This must be the function id that is implemented here.
+			</description>
+		</attribute>
+		<attribute>
+			<name>function9</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+                This must be the function id that is implemented here.
+			</description>
+		</attribute>
+		<attribute>
+			<name>function10</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+                This must be the function id that is implemented here.
+			</description>
+		</attribute>		
+		<attribute>
+			<name>function11</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+                This must be the function id that is implemented here.
+			</description>
+		</attribute>		
+		<attribute>
+			<name>function12</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+                This must be the function id that is implemented here.
+			</description>
+		</attribute>		
+		<attribute>
+			<name>function13</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+                This must be the function id that is implemented here.
+			</description>
+		</attribute>		
+		<attribute>
+			<name>function14</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+                This must be the function id that is implemented here.
+			</description>
+		</attribute>		
+		<attribute>
+			<name>function15</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+                This must be the function id that is implemented here.
+			</description>
+		</attribute>		
+		<attribute>
+			<name>function16</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+                This must be the function id that is implemented here.
+			</description>
+		</attribute>		
+		<attribute>
+			<name>function17</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+                This must be the function id that is implemented here.
+			</description>
+		</attribute>		
+		<attribute>
+			<name>function18</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+                This must be the function id that is implemented here.
+			</description>
+		</attribute>		
+		<attribute>
+			<name>function19</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+                This must be the function id that is implemented here.
+			</description>
+		</attribute>		
+		<attribute>
+			<name>function20</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+                This must be the function id that is implemented here.
+			</description>
+		</attribute>		
+		<attribute>
+			<name>function21</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+                This must be the function id that is implemented here.
+			</description>
+		</attribute>		
+		<attribute>
+			<name>function22</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+                This must be the function id that is implemented here.
+			</description>
+		</attribute>		
+		<attribute>
+			<name>function23</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+                This must be the function id that is implemented here.
+			</description>
+		</attribute>		
+		<attribute>
+			<name>function24</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+                This must be the function id that is implemented here.
+			</description>
+		</attribute>		
+		<attribute>
+			<name>function25</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+                This must be the function id that is implemented here.
+			</description>
+		</attribute>		
+		<attribute>
+			<name>function26</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+                This must be the function id that is implemented here.
+			</description>
+		</attribute>		
+		<attribute>
+			<name>function27</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+                This must be the function id that is implemented here.
+			</description>
+		</attribute>		
+		<attribute>
+			<name>function28</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+                This must be the function id that is implemented here.
+			</description>
+		</attribute>		
+		<attribute>
+			<name>function29</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+                This must be the function id that is implemented here.
+			</description>
+		</attribute>		
+		<attribute>
+			<name>function30</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+                This must be the function id that is implemented here.
+			</description>
+		</attribute>
+		<attribute>
+			<name>function31</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+                This must be the function id that is implemented here.
+			</description>
+		</attribute>
+		<attribute>
+			<name>function32</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+                This must be the function id that is implemented here.
+			</description>
+		</attribute>
+		<attribute>
+			<name>function33</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+                This must be the function id that is implemented here.
+			</description>
+		</attribute>
+		<attribute>
+			<name>function34</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+                This must be the function id that is implemented here.
+			</description>
+		</attribute>	
+		<attribute>
+			<name>function35</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+                This must be the function id that is implemented here.
+			</description>
+		</attribute>		
+	</tag>
+	
+	<tag>
+		<name>authorizedUrl</name>
+		<tag-class>
+			com.crh.logon.taglib.AuthorizedUrlTag
+		</tag-class>
+		<body-content>JSP</body-content>
+		<description>
+			Only valid WITHIN an AuthorizationTag. Returns the url of the functionality, which is first authorized
+			for the user. Has a role if the url has to be set according to the first accessible functionality.
+			naturally not required within the authorization tag, but can be used to get the first valid, available url.
+		</description>
+	</tag>
+	
+	<tag>
+		<name>defaultFallback</name>
+		<tag-class>
+			com.crh.logon.taglib.fallbacklogic.DefaultFallBackLogicTag
+		</tag-class>
+		<body-content>JSP</body-content>
+		<description>
+			Example: Unloading time of silos: if it is not set, and a shipto is defined for that, in db null must be used, but on the ui, the default value
+			has to be shown disabled (value: the shipto's default, or if it is not available the logon default). The tag renders the input field
+			and a checkbox 'from logon default'. The checkbox drives the input field's value in a meaning if it is checked it will be updated according to
+			the default value and be disabled.
+			Generally:
+			This tag determines the object's default value according to the fallback logic. If one places a defaultFallBackInputField
+			between the tag's delimiters it will lay out an input field rendered according to the fallback logic (in case it was retrieved by
+			a fallback logic it will be disabled, and shown the value disabled, in case it has own value it will be editable and contains its
+			normal value. The DefaultFallbackChexkbox will update the inputfield's value according to the fallback default value. (Let it enabled
+			if the value comes from the object itself, disable it, if the object does not have such a value, and it has to use some level fallback
+			default.
+			 
+		</description>
+		<attribute>
+			<name>objectName</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				Name of the pageContext object, which is in fact taken as a base of determining the own/fallback values. If not used, specify at least propertyValue
+				which is usually the form's field.
+			</description>
+		</attribute>
+		<attribute>
+			<name>objectName2</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				Name of the pageContext2 object, which is in fact taken as a base of determining the own/fallback values. If not used, specify at least propertyValue
+				which is usually the form's field.
+			</description>
+		</attribute>
+		<attribute>
+			<name>propertyName</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				See constants of the tag class. The tag can be used to lay out these default values.
+			</description>
+		</attribute>
+		<attribute>
+			<name>propertyCheckboxName</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				Name of the checkbox, the checkbox will be rendered with this name. Id will correspond with the name.
+			</description>
+		</attribute>
+		<attribute>
+			<name>propertyInputFieldName</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				Name of the inputField, which will be used as the source of setting the object's property value. (For example in case of loadingpoint
+				the name of the String field, which will be mapped to the loading point's loading time.
+			</description>
+		</attribute>
+		<attribute>
+			<name>propertyValue</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				In case the value is not really stored in the object, but on a form element, one can pass the value
+				here as if it would be set to the object. In case it is a bad value, the fallback will not happen, the value will be layed out.
+			</description>
+		</attribute>
+		<attribute>
+			<name>readOnly</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				In case this is set, and true, the inputfield's value, and the checkbox's value will only be shown as text and not editable field.
+			</description>
+		</attribute>				
+	</tag>
+
+	<tag>
+		<name>defaultFallbackInputField</name>
+		<tag-class>
+			com.crh.logon.taglib.fallbacklogic.DefaultFallBackLogicInputFieldTag
+		</tag-class>
+		<body-content>JSP</body-content>
+		<description>
+			Renders an input field with the name given in defaultFallback tag, which must surround the two 
+			elements: the checkbox and the input field. (defaultFallbackInputField, defaultFallbackCheckbox)
+		</description>
+		<attribute>
+			<name>style</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				Style, will be rendered as style attribute of the input field.
+			</description>
+		</attribute>
+		<attribute>
+			<name>maxLength</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				Maxlength, will be rendered as maxlenght attribute of the checkbox.
+			</description>
+		</attribute>
+		<attribute>
+			<name>styleClass</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				Class, will be rendered as class attribute of the input field.
+			</description>
+		</attribute>	
+	</tag>
+
+	<tag>
+		<name>defaultFallbackCheckbox</name>
+		<tag-class>
+			com.crh.logon.taglib.fallbacklogic.DefaultFallBackLogicCheckboxTag
+		</tag-class>
+		<body-content>JSP</body-content>
+		<description>
+			Renders a checkbox with the name given in defaultFallback tag, which must surround the two 
+			elements: the checkbox and the input field. (defaultFallbackInputField, defaultFallbackCheckbox)		
+			Use only if there is an input field. See description of defaultFallback,defaultFallbackInputField Tags.
+		</description>
+		<attribute>
+			<name>style</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				Style, will be rendered as style attribute of the checkbox.
+			</description>
+		</attribute>
+		<attribute>
+			<name>styleClass</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				Class, will be rendered as class attribute of the checkbox.
+			</description>
+
+		</attribute>
+	</tag>
+	
+	<tag>
+		<name>url</name>
+		<tag-class>com.crh.logon.taglib.URLTag</tag-class>
+		<body-content>JSP</body-content>
+		<description>
+			Adds a version label to a URL.
+		</description>
+		<attribute>
+	        <name>var</name>
+	        <required>false</required>
+	        <rtexprvalue>false</rtexprvalue>
+	    </attribute>
+	    <attribute>
+	        <name>scope</name>
+	        <required>false</required>
+	        <rtexprvalue>false</rtexprvalue>
+	    </attribute>
+	    <attribute>
+	        <name>value</name>
+	        <required>true</required>
+	        <rtexprvalue>true</rtexprvalue>
+	    </attribute>
+	    <attribute>
+	        <name>context</name>
+	        <required>false</required>
+	        <rtexprvalue>false</rtexprvalue>
+	    </attribute>
+	    <attribute>
+	        <name>type</name>
+	        <required>false</required>
+	        <rtexprvalue>false</rtexprvalue>
+	    </attribute>
+	</tag>
+	
+	<tag>
+		<name>wagonNumberFormat</name>
+		<tag-class>com.crh.logon.taglib.WagonNumberFormatTag</tag-class>
+		<body-content>JSP</body-content>
+		<description>
+			Prints out the input string, or the input wagonentity's number in the standard way.
+		</description>
+		<attribute>
+	        <name>wagonNumber</name>
+	        <required>false</required>
+	        <rtexprvalue>true</rtexprvalue>
+	         <type>java.lang.String</type>
+	    </attribute>
+	    <attribute>
+	        <name>wagon</name>
+	        <required>false</required>
+	        <rtexprvalue>true</rtexprvalue>
+			<type>com.crh.logon.persistence.entities.common.WagonEntity</type>
+	    </attribute>
+	</tag>
+	<tag>
+		<name>orderRowspan</name>
+		<tag-class>
+			com.crh.logon.taglib.OrderRowSpan
+		</tag-class>
+		<body-content>JSP</body-content>
+		<description>
+			Skips the body in case the id of the current item corresponds with the previous item.
+			Otherwise prints out a td tag with the rowspan corresponding with the number of rows which had the same order id.
+		</description>
+		<attribute>
+			<name>pageContextOrderList</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.util.List</type>
+			<description>
+				The name of the list containing OrderCreateEntities.
+			</description>
+		</attribute>						
+		<attribute>
+			<name>pageContextOrderCreateEntityName</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				The name of the current OrderCreateEntity.
+			</description>
+		</attribute>
+		<attribute>
+			<name>pageContextIndexName</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				The name of the index.
+			</description>
+		</attribute>		
+		<attribute>
+			<name>printInTd</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				Write in this parameter if you want something to be printed in the td tag itself (such as style, id or whatever).
+			</description>
+		</attribute>
+		<attribute>
+			<name>printTdTag</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				By default it is true, and it will print the surrounding td tag. If you just want to skip the content of the tag
+				in case it corresponds, set false, and no td tag will be printed.
+			</description>
+		</attribute>		
+	</tag>
+	<tag>
+		<name>dtOrderWrapperRowspan</name>
+		<tag-class>
+			com.crh.logon.taglib.DateTimeAwareOrderRowSpan
+		</tag-class>
+		<body-content>JSP</body-content>
+		<description>
+			Skips the body in case the id of the current item corresponds with the previous item.
+			Otherwise prints out a td tag with the rowspan corresponding with the number of rows which had the same order id.
+		</description>
+		<attribute>
+			<name>pageContextOrderList</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.util.List</type>
+			<description>
+				The name of the list containing OrderCreateEntities.
+			</description>
+		</attribute>
+		<attribute>
+			<name>pageContextOrderCreateEntityName</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				The name of the current OrderCreateEntity.
+			</description>
+		</attribute>
+		<attribute>
+			<name>pageContextIndexName</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				The name of the index.
+			</description>
+		</attribute>
+		<attribute>
+			<name>printInTd</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				Write in this parameter if you want something to be printed in the td tag itself (such as style, id or whatever).
+			</description>
+		</attribute>
+		<attribute>
+			<name>printTdTag</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				By default it is true, and it will print the surrounding td tag. If you just want to skip the content of the tag
+				in case it corresponds, set false, and no td tag will be printed.
+			</description>
+		</attribute>
+	</tag>
+		<tag>
+		<name>evaluateIfDisabled</name>
+		<tag-class>com.crh.logon.taglib.OrderDetailButtonLogicTag</tag-class>
+		<body-content>JSP</body-content>
+		<description>
+			Evaluates the tag's body in case the buttonFunc operation is not allowed for the user/order. See the Tag class what buttonFunc are involved.
+		</description>
+		<attribute>
+	        <name>buttonFunc</name>
+	        <required>true</required>
+	        <rtexprvalue>true</rtexprvalue>
+	    </attribute>
+		<attribute>
+	        <name>orderObjName</name>
+	        <required>false</required>
+	        <rtexprvalue>true</rtexprvalue>	        
+	    </attribute>	    	    	    
+	</tag>	
+  <tag>
+    <name>formatDateWithUserTimezone</name>
+    <tag-class>com.crh.logon.taglib.FormatDateWithUserTimezoneTag</tag-class>
+    <body-content>JSP</body-content>
+    <description>
+      Format date AsDayMonthYearHourMinute with the timezone of user
+    </description>
+    <attribute>
+          <name>date</name>
+          <required>true</required>
+          <rtexprvalue>true</rtexprvalue>
+          <type>java.util.Date</type>
+      </attribute>
+  </tag>
+</taglib>

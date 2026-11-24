@@ -1,0 +1,22 @@
+#macro (get $index)
+#set ($v = $row.get($index).trim())
+#set ($q = $systemproperties.get("csv_quote_character"))
+#if ($v.startsWith($q))
+$v.replace($q, "")#{else}$v#end#end
+##
+#macro (defineAll)
+#set ($no = "#get(0)")
+#set ($column = "#get(1)")
+#set ($field = "#get(2)")
+#set ($type = "#get(3)")
+#set ($length = "#get(4)")
+#set ($jtype = $type)
+#if ($jtype == "Time")
+#set ($jtype = "Date")
+#end
+#if ($type == "BigDecimal")
+#set ($params = $st.tokenizeToArray($length, ","))
+#set ($precision = $params.get(0))
+#set ($scale = $params.get(1))
+#end
+#end

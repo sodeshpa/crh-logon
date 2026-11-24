@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Author            : AdNovum Informatik AG
+ Version Number    : $Revision$
+ Date of last edit : $Date$
+-->
+
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 1.1//EN"
+       "http://struts.apache.org/dtds/tiles-config_1_1.dtd">
+
+<!-- Definitions for Tiles documentation   -->
+
+<tiles-definitions>
+
+	<!-- =======================================================  -->
+	<!-- Master definitions                                       -->
+	<!-- =======================================================  -->
+
+	<!-- Main layout used as a root for other page definitions.   -->
+
+	<definition name="common" path="/WEB-INF/jsp/MainLayout.jsp">
+		<put name="jslib" value="JsLibTile.jsp"/>
+		<put name="extra_header" value="EmptyExtraHeader.jsp"/>
+		<put name="header" value="HeaderTile.jsp"/>
+		<put name="navigation" value="NavigationTile.jsp"/>
+	  	<put name="errors" value="ErrorsTile.jsp"/>
+	  	<put name="footer" value="FooterTile.jsp"/>
+	</definition>
+	
+	<definition name="static_common" path="/WEB-INF/jsp/StaticMainLayout.jsp">
+		<put name="jslib" value="JsLibTile.jsp"/>
+		<put name="extra_header" value="EmptyExtraHeader.jsp"/>
+		<put name="header" value="HeaderTile.jsp"/>
+		<put name="navigation" value="NavigationTile.jsp"/>
+	  	<put name="errors" value="ErrorsTile.jsp"/>
+	  	<put name="footer" value="FooterTile.jsp"/>
+	</definition>
+
+	<definition name="part" path="/WEB-INF/jsp/PartLayout.jsp">
+		<put name="errors" value="ErrorsTile.jsp"/>
+	</definition>
+	
+	<definition name="part_popup" path="/WEB-INF/jsp/PopupPartLayout.jsp">
+	  	<put name="errors" value="ErrorsTile.jsp"/>
+	</definition>
+	
+	<definition name="FatalError.def" extends="common">
+		<put name="body" value="FatalErrorTile.jsp"/>
+	</definition>
+	
+	<definition name="FatalErrorPopup.def" extends="part_popup">
+		<put name="body" value="FatalErrorPopupTile.jsp"/>
+	</definition>
+	
+	<!-- =======================================================  -->
+	<!-- Page definitions - login/logout                          -->
+	<!-- =======================================================  -->
+
+	<definition name="Logout.def" path="/WEB-INF/jsp/LogoutTile.jsp"/>	
+
+	<definition name="CustEntryTile.def" extends="common">
+		<put name="body" value="/WEB-INF/jsp/ApplicationEntry.jsp"/>
+	</definition>
+
+	<definition name="Help.def" extends="part_popup">
+		<put name="body" value="HelpTile.jsp"/>
+	</definition>
+	
+	<!-- =======================================================  -->
+	<!-- Function definitions                                 -->
+	<!-- =======================================================  -->
+
+	<!-- CC Bestellung -->
+	<definition name="WebBestellungTile.def" extends="common">
+		<put name="body" value="webbestellung/WebBestellungTile.jsp"/>
+	</definition>
+
+	<definition name="WebBestellungShipToTile.def" extends="common">
+		<put name="body" value="webbestellung/WebBestellungShipToTile.jsp"/>
+	</definition>
+	
+	<definition name="WebBestellungNewOrdersTile.def" extends="part">
+		<put name="body" value="webbestellung/NewWebOrders.jsp"/>
+	</definition>
+	
+	<definition name="CallbackTile.def" extends="part">
+		<put name="body" value="webbestellung/WebBestellungCallbackTile.jsp"/>
+	</definition>
+	
+	<definition name="WebBestellungOngoingOrdersTile.def" extends="part">
+		<put name="body" value="webbestellung/OngoingWebOrders.jsp"/>
+	</definition>
+	
+	<definition name="WebBestellungCompletedOrdersTile.def" extends="part">
+		<put name="body" value="webbestellung/CompletedWebOrdersTile.jsp"/>
+	</definition>
+	
+	<definition name="PasswordChangeTile.def" extends="static_common">
+		<put name="body" value="passwordchange/PasswordChangeTile.jsp"/>
+		<put name="navigation" value="EmptyExtraHeader.jsp"/>
+	</definition>
+
+	<definition name="WebBestellungAdjustDeliveriesTile.def" extends="part_popup">
+		<put name="body" value="webbestellung/WebBestellungAdjustDeliveries.jsp"/>
+	</definition>
+	
+</tiles-definitions>

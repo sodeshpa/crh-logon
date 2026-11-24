@@ -1,0 +1,22 @@
+#macro( withindent $lines )
+#set ($firstLine = true)
+#foreach( $line in $lines )
+#if ($firstLine)
+#set ($firstLine = false)
+$line
+#else
+	$line
+#end
+#end
+#end
+#macro( withnoindent $lines )
+#set ($firstLine = true)
+#foreach( $line in $lines )
+#if ($firstLine)
+#set ($firstLine = false)
+$line
+#else
+$line
+#end
+#end
+#end

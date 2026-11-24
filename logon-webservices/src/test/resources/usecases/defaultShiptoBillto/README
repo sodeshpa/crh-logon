@@ -1,0 +1,18 @@
+This test case contains
+
+- Three business partners:
+  - A sold-to, which is also bill-to and payer
+  - A bill-to
+  - A payer
+
+- A contract where
+  - The sold-to above is the sold-to and the payer
+  - The bill-to above is the bill-to
+  - The ship-to above is the ship-to
+
+In order to test LOGON-6692, the dispocard for the sold-to/ship-to above must
+not exist, such that it is created when the its accessed for the first time
+after these requests have been sent and imported.
+
+=> Only the contract header bill-to must initially be marked as possible bill-
+to for the sales area.

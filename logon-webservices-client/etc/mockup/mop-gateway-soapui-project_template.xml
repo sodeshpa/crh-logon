@@ -1,0 +1,375 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project name="mop-gateway" resourceRoot="" soapui-version="2.5.1" xmlns:con="http://eviware.com/soapui/config"><con:settings><con:setting id="ProjectSettings@projectRoot">>@project.basedir@/build/test/etc</con:setting></con:settings><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="LOGONEventPort" type="wsdl" bindingName="{http://tempuri.org/}LOGONEventPort" soapVersion="1_1" anonymous="optional" definition="file:@project.basedir@/etc/wsdl/LOGON_eventhandler.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="file:@project.basedir@/etc/wsdl/LOGON_eventhandler.wsdl"><con:part><con:url>file:@project.basedir@/etc/wsdl/xsd/LOGONData_v1_1_0_base_types.xsd</con:url><con:content><![CDATA[<xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://schemas.microsoft.com/2003/10/Serialization/">
+  <xs:element name="anyType" nillable="true" type="xs:anyType"/>
+  <xs:element name="anyURI" nillable="true" type="xs:anyURI"/>
+  <xs:element name="base64Binary" nillable="true" type="xs:base64Binary"/>
+  <xs:element name="boolean" nillable="true" type="xs:boolean"/>
+  <xs:element name="byte" nillable="true" type="xs:byte"/>
+  <xs:element name="dateTime" nillable="true" type="xs:dateTime"/>
+  <xs:element name="decimal" nillable="true" type="xs:decimal"/>
+  <xs:element name="double" nillable="true" type="xs:double"/>
+  <xs:element name="float" nillable="true" type="xs:float"/>
+  <xs:element name="int" nillable="true" type="xs:int"/>
+  <xs:element name="long" nillable="true" type="xs:long"/>
+  <xs:element name="QName" nillable="true" type="xs:QName"/>
+  <xs:element name="short" nillable="true" type="xs:short"/>
+  <xs:element name="string" nillable="true" type="xs:string"/>
+  <xs:element name="unsignedByte" nillable="true" type="xs:unsignedByte"/>
+  <xs:element name="unsignedInt" nillable="true" type="xs:unsignedInt"/>
+  <xs:element name="unsignedLong" nillable="true" type="xs:unsignedLong"/>
+  <xs:element name="unsignedShort" nillable="true" type="xs:unsignedShort"/>
+  <xs:element name="char" nillable="true" type="tns:char"/>
+  <xs:simpleType name="char">
+    <xs:restriction base="xs:int"/>
+  </xs:simpleType>
+  <xs:element name="duration" nillable="true" type="tns:duration"/>
+  <xs:simpleType name="duration">
+    <xs:restriction base="xs:duration">
+      <xs:pattern value="\-?P(\d*D)?(T(\d*H)?(\d*M)?(\d*(\.\d*)?S)?)?"/>
+      <xs:minInclusive value="-P10675199DT2H48M5.4775808S"/>
+      <xs:maxInclusive value="P10675199DT2H48M5.4775807S"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="guid" nillable="true" type="tns:guid"/>
+  <xs:simpleType name="guid">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[\da-fA-F]{8}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{12}"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:attribute name="FactoryType" type="xs:QName"/>
+  <xs:attribute name="Id" type="xs:ID"/>
+  <xs:attribute name="Ref" type="xs:IDREF"/>
+</xs:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>file:@project.basedir@/etc/wsdl/xsd/LOGONData_v1_1_0_complex_types.xsd</con:url><con:content><![CDATA[<xs:schema elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/ComSvr" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://schemas.datacontract.org/2004/07/ComSvr">
+  <xs:complexType name="LOGONEvent">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="LOGONData" nillable="true" type="tns:LOGONEvent.LOGONData"/>
+      <xs:element minOccurs="0" name="eventType" nillable="true" type="xs:string"/>
+      <xs:element minOccurs="0" name="sendersTime" nillable="true" type="xs:string"/>
+      <xs:element minOccurs="0" name="sessionID" nillable="true" type="xs:string"/>
+      <xs:element minOccurs="0" name="targetPDAID" nillable="true" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="LOGONEvent" nillable="true" type="tns:LOGONEvent"/>
+  <xs:complexType name="LOGONEvent.LOGONData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Field" nillable="true" type="tns:ArrayOfLOGONEvent.LOGONDataField"/>
+      <xs:element minOccurs="0" name="loadingpoint" nillable="true" type="tns:ArrayOfloadingpointType"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="LOGONEvent.LOGONData" nillable="true" type="tns:LOGONEvent.LOGONData"/>
+  <xs:complexType name="ArrayOfLOGONEvent.LOGONDataField">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="LOGONEvent.LOGONDataField" nillable="true" type="tns:LOGONEvent.LOGONDataField"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfLOGONEvent.LOGONDataField" nillable="true" type="tns:ArrayOfLOGONEvent.LOGONDataField"/>
+  <xs:complexType name="LOGONEvent.LOGONDataField">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="name" nillable="true" type="xs:string"/>
+      <xs:element minOccurs="0" name="value" nillable="true" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="LOGONEvent.LOGONDataField" nillable="true" type="tns:LOGONEvent.LOGONDataField"/>
+  <xs:complexType name="ArrayOfloadingpointType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="loadingpointType" nillable="true" type="tns:loadingpointType"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfloadingpointType" nillable="true" type="tns:ArrayOfloadingpointType"/>
+  <xs:complexType name="loadingpointType">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="loadingpointID" nillable="true" type="xs:string"/>
+      <xs:element minOccurs="0" name="loadingpointName" nillable="true" type="xs:string"/>
+      <xs:element minOccurs="0" name="rfidTag" nillable="true" type="tns:ArrayOfrfid"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="loadingpointType" nillable="true" type="tns:loadingpointType"/>
+  <xs:complexType name="ArrayOfrfid">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="rfid" nillable="true" type="tns:rfid"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfrfid" nillable="true" type="tns:ArrayOfrfid"/>
+  <xs:complexType name="rfid">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="rfidIdentity" nillable="true" type="xs:string"/>
+      <xs:element minOccurs="0" name="rfidLabel" nillable="true" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="rfid" nillable="true" type="tns:rfid"/>
+  <xs:complexType name="LOGONEventStatus">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="code" nillable="true" type="xs:string"/>
+      <xs:element minOccurs="0" name="contextValue" nillable="true" type="xs:string"/>
+      <xs:element minOccurs="0" name="txt" nillable="true" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="LOGONEventStatus" nillable="true" type="tns:LOGONEventStatus"/>
+</xs:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>file:@project.basedir@/etc/wsdl/LOGON_eventhandler1.wsdl</con:url><con:content><![CDATA[<wsdl:definitions targetNamespace="http://logon.crh.net/logonevent" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:tns="http://logon.crh.net/logonevent" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://logon.crh.net/logonevent/Imports">
+      <xsd:import schemaLocation="xsd/LOGONData_v1_1_0_main.xsd" namespace="http://logon.crh.net/logonevent"/>
+      <xsd:import schemaLocation="xsd/LOGONData_v1_1_0_base_types.xsd" namespace="http://schemas.microsoft.com/2003/10/Serialization/"/>
+      <xsd:import schemaLocation="xsd/LOGONData_v1_1_0_complex_types.xsd" namespace="http://schemas.datacontract.org/2004/07/ComSvr"/>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="LOGONEventPort_consume_InputMessage">
+    <wsdl:part name="parameters" element="tns:consume"/>
+  </wsdl:message>
+  <wsdl:message name="LOGONEventPort_consume_OutputMessage">
+    <wsdl:part name="parameters" element="tns:consumeResponse"/>
+  </wsdl:message>
+  <wsdl:portType name="LOGONEventPort">
+    <wsdl:operation name="consume">
+      <wsdl:input wsaw:Action="http://logon.crh.net/logonevent/LOGONEventPort/consume" message="tns:LOGONEventPort_consume_InputMessage"/>
+      <wsdl:output wsaw:Action="http://logon.crh.net/logonevent/LOGONEventPort/consumeResponse" message="tns:LOGONEventPort_consume_OutputMessage"/>
+    </wsdl:operation>
+  </wsdl:portType>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part><con:part><con:url>file:@project.basedir@/etc/wsdl/xsd/LOGONData_v1_1_0_main.xsd</con:url><con:content><![CDATA[<xs:schema elementFormDefault="qualified" targetNamespace="http://logon.crh.net/logonevent" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://logon.crh.net/logonevent">
+  <xs:import schemaLocation="LOGONData_v1_1_0_complex_types.xsd" namespace="http://schemas.datacontract.org/2004/07/ComSvr"/>
+  <xs:element name="consume">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="LOGONEvent" nillable="true" type="q1:LOGONEvent" xmlns:q1="http://schemas.datacontract.org/2004/07/ComSvr"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="consumeResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="consumeResult" nillable="true" type="q2:LOGONMessageStatus" xmlns:q2="http://schemas.datacontract.org/2004/07/ComSvr"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>file:@project.basedir@/etc/wsdl/LOGON_eventhandler.wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="LOGONEventPort" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:tns="http://tempuri.org/" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:i0="http://logon.crh.net/logonevent" xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex">
+  <wsdl:import namespace="http://logon.crh.net/logonevent" location="LOGON_eventhandler1.wsdl"/>
+  <wsdl:types/>
+  <wsdl:binding name="LOGONEventPort" type="i0:LOGONEventPort">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="consume">
+      <soap:operation soapAction="http://logon.crh.net/logonevent/LOGONEventPort/consume" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="LOGONEventPort">
+    <wsdl:port name="LOGONEventPort" binding="tns:LOGONEventPort">
+      <soap:address location="http://212.101.25.144:54340/LOGONEventServer"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://212.101.25.144:54340/LOGONEventServer</con:endpoint><con:endpoint>http://127.0.0.1:@mockup.pda.host.port@@mockup.pda.host.context@</con:endpoint></con:endpoints><con:operation isOneWay="false" action="http://logon.crh.net/logonevent/LOGONEventPort/consume" name="consume" bindingOperationName="consume" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="test"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://127.0.0.1:@mockup.pda.host.port@@mockup.pda.host.context@</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:log="http://logon.crh.net/logonevent" xmlns:com="http://schemas.datacontract.org/2004/07/ComSvr">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <log:consume>
+         <!--Optional:-->
+         <log:LOGONEvent>
+            <!--Optional:-->
+            <com:LOGONData>
+               <!--Optional:-->
+               <com:Field>
+                  <!--Zero or more repetitions:-->
+                  <com:LOGONEvent.LOGONDataField>
+                     <!--Optional:-->
+                     <com:name>?</com:name>
+                     <!--Optional:-->
+                     <com:value>?</com:value>
+                  </com:LOGONEvent.LOGONDataField>
+               </com:Field>
+               <!--Optional:-->
+               <com:loadingpoint>
+                  <!--Zero or more repetitions:-->
+                  <com:loadingpointType>
+                     <!--Optional:-->
+                     <com:loadingpointID>?</com:loadingpointID>
+                     <!--Optional:-->
+                     <com:loadingpointName>?</com:loadingpointName>
+                     <!--Optional:-->
+                     <com:rfidTag>
+                        <!--Zero or more repetitions:-->
+                        <com:rfid>
+                           <!--Optional:-->
+                           <com:rfidIdentity>?</com:rfidIdentity>
+                           <!--Optional:-->
+                           <com:rfidLabel>?</com:rfidLabel>
+                        </com:rfid>
+                     </com:rfidTag>
+                  </com:loadingpointType>
+               </com:loadingpoint>
+            </com:LOGONData>
+            <!--Optional:-->
+            <com:eventType>test</com:eventType>
+            <!--Optional:-->
+            <com:sendersTime>?</com:sendersTime>
+            <!--Optional:-->
+            <com:sessionID>?</com:sessionID>
+            <!--Optional:-->
+            <com:targetPDAID>?</com:targetPDAID>
+         </log:LOGONEvent>
+      </log:consume>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://tempuri.org/LOGONEventPort/consumeRequest"/></con:call><con:call name="readyForOperation"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://127.0.0.1:@mockup.pda.host.port@@mockup.pda.host.context@</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:log="http://logon.crh.net/logonevent" xmlns:com="http://schemas.datacontract.org/2004/07/ComSvr">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <log:consume>
+         <!--Optional:-->
+         <log:LOGONEvent>
+            <!--Optional:-->
+            <com:LOGONData>
+               <!--Optional:-->
+               <com:Field>
+                  <!--Zero or more repetitions:-->
+                  <com:LOGONEvent.LOGONDataField>
+                     <!--Optional:-->
+                     <com:name>?</com:name>
+                     <!--Optional:-->
+                     <com:value>?</com:value>
+                  </com:LOGONEvent.LOGONDataField>
+               </com:Field>
+               <!--Optional:-->
+               <com:loadingpoint>
+                  <!--Zero or more repetitions:-->
+                  <com:loadingpointType>
+                     <!--Optional:-->
+                     <com:loadingpointID>?</com:loadingpointID>
+                     <!--Optional:-->
+                     <com:loadingpointName>?</com:loadingpointName>
+                     <!--Optional:-->
+                     <com:rfidTag>
+                        <!--Zero or more repetitions:-->
+                        <com:rfid>
+                           <!--Optional:-->
+                           <com:rfidIdentity>?</com:rfidIdentity>
+                           <!--Optional:-->
+                           <com:rfidLabel>?</com:rfidLabel>
+                        </com:rfid>
+                     </com:rfidTag>
+                  </com:loadingpointType>
+               </com:loadingpoint>
+            </com:LOGONData>
+            <!--Optional:-->
+            <com:eventType>readyForOperation</com:eventType>
+            <!--Optional:-->
+            <com:sendersTime>?</com:sendersTime>
+            <!--Optional:-->
+            <com:sessionID>?</com:sessionID>
+            <!--Optional:-->
+            <com:targetPDAID>?</com:targetPDAID>
+         </log:LOGONEvent>
+      </log:consume>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://tempuri.org/LOGONEventPort/consumeRequest"/></con:call><con:call name="setup"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://127.0.0.1:@mockup.pda.host.port@@mockup.pda.host.context@</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:log="http://logon.crh.net/logonevent" xmlns:com="http://schemas.datacontract.org/2004/07/ComSvr">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <log:consume>
+         <!--Optional:-->
+         <log:LOGONEvent>
+            <!--Optional:-->
+            <com:LOGONData>
+               <!--Optional:-->
+               <com:Field>
+                  <!--Zero or more repetitions:-->
+                  <com:LOGONEvent.LOGONDataField>
+                     <!--Optional:-->
+                     <com:name>?</com:name>
+                     <!--Optional:-->
+                     <com:value>?</com:value>
+                  </com:LOGONEvent.LOGONDataField>
+               </com:Field>
+               <!--Optional:-->
+               <com:loadingpoint>
+                  <!--Zero or more repetitions:-->
+                  <com:loadingpointType>
+                     <!--Optional:-->
+                     <com:loadingpointID>?</com:loadingpointID>
+                     <!--Optional:-->
+                     <com:loadingpointName>?</com:loadingpointName>
+                     <!--Optional:-->
+                     <com:rfidTag>
+                        <!--Zero or more repetitions:-->
+                        <com:rfid>
+                           <!--Optional:-->
+                           <com:rfidIdentity>?</com:rfidIdentity>
+                           <!--Optional:-->
+                           <com:rfidLabel>?</com:rfidLabel>
+                        </com:rfid>
+                     </com:rfidTag>
+                  </com:loadingpointType>
+               </com:loadingpoint>
+            </com:LOGONData>
+            <!--Optional:-->
+            <com:eventType>setup</com:eventType>
+            <!--Optional:-->
+            <com:sendersTime>?</com:sendersTime>
+            <!--Optional:-->
+            <com:sessionID>?</com:sessionID>
+            <!--Optional:-->
+            <com:targetPDAID>?</com:targetPDAID>
+         </log:LOGONEvent>
+      </log:consume>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://tempuri.org/LOGONEventPort/consumeRequest"/></con:call></con:operation></con:interface><con:mockService port="@mockup.pda.host.port@" path="@mockup.pda.host.context@" name="LOGONEventPort MockService"><con:settings/><con:mockOperation name="consume" interface="LOGONEventPort" operation="consume"><con:settings/><con:dispatchPath>def groovyUtils = new com.eviware.soapui.support.GroovyUtils(context)
+def holder = groovyUtils.getXmlHolder(mockRequest.requestContent)
+def eventType = holder.getNodeValue("//*:eventType")
+log.info(eventType + " request received")
+switch (eventType){
+	case "test":
+		return "success.Ok" // Response Name
+		break
+	case "setup":
+		return "success.Ok" // Response Name
+		break
+	case "readyForOperation":
+		return "success.Ok" // Response Name
+		break
+	default:
+		return "error.TechnicalError" // Response Name
+}</con:dispatchPath><con:dispatchStyle>SCRIPT</con:dispatchStyle><con:defaultResponse>success.Ok</con:defaultResponse><con:response name="success.Ok" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:log="http://logon.crh.net/logonevent" xmlns:com="http://schemas.datacontract.org/2004/07/ComSvr">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <log:consumeResponse>
+         <log:consumeResult>
+            <com:messageStatus>20000</com:messageStatus>
+			<com:logonEventStatusList>
+            	<com:eventID>0</com:eventID>
+            	<com:code>20000</com:code>
+            	<com:contextValue></com:contextValue>
+            	<com:txt>OK</com:txt>
+           	</com:logonEventStatusList>
+         </log:consumeResult>
+      </log:consumeResponse>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://tempuri.org/LOGONEventPort/consumeResponse"/></con:response><con:response name="error.TechnicalError" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:log="http://logon.crh.net/logonevent" xmlns:com="http://schemas.datacontract.org/2004/07/ComSvr">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <log:consumeResponse>
+         <log:consumeResult>
+            <com:messageStatus>20101</com:messageStatus>
+			<com:logonEventStatusList>
+				<com:eventID>0</com:eventID>
+	            <com:code>20101</com:code>
+    	        <com:contextValue></com:contextValue>
+        	    <com:txt>Technical Error</com:txt>
+        	</com:logonEventStatusList>
+         </log:consumeResult>
+      </log:consumeResponse>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://tempuri.org/LOGONEventPort/consumeResponse"/></con:response><con:response name="error.Retry" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:log="http://logon.crh.net/logonevent" xmlns:com="http://schemas.datacontract.org/2004/07/ComSvr">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <log:consumeResponse>
+         <log:consumeResult>
+            <com:messageStatus>20102</com:messageStatus>
+			<com:logonEventStatusList>
+				<com:eventID>0</com:eventID>
+	            <com:code>20102</com:code>
+	            <com:contextValue></com:contextValue>
+	            <com:txt>Retry</com:txt>
+            </com:logonEventStatusList>
+         </log:consumeResult>
+      </log:consumeResponse>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://tempuri.org/LOGONEventPort/consumeResponse"/></con:response><con:dispatchConfig/></con:mockOperation><con:properties/></con:mockService><con:properties/><con:wssContainer/></con:soapui-project>

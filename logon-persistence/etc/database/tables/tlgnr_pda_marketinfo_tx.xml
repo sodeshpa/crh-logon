@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNR_PDA_MARKETINFO_TX" refData="true"
+               description="Language depending attributes for PDA market info messages.">
+        <column name="PDA_MARKETINFO_CD" primaryKey="true" required="true" type="DECIMAL" size="2"
+                description="Part of PK. FK tlgnr_PDA_MARKETINFO_bs. Code of the Reference Data."/>
+        <column name="LANG_CD" primaryKey="true" required="true" type="VARCHAR" size="2"
+                description="Part of PK. FK tlgnr_lang_bs. For example de, en, ..."/>
+        <column name="TXT" required="true" type="VARCHAR" size="60"
+                description="Description of the PDA market info message in the language LANG_CD."/>
+
+        <foreign-key foreignTable="TLGNR_PDA_MARKETINFO_BS" name="FK_TLGNR_MARKETINFO_TX">
+            <reference local="PDA_MARKETINFO_CD" foreign="PDA_MARKETINFO_CD"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_LANG_BS" name="FK_TLGNR_PDA_MARKETINFO_LANG">
+            <reference local="LANG_CD" foreign="LANG_CD"/>
+        </foreign-key>
+    </table>
+</database>

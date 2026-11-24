@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNC_CUSTORDER_ITEM"
+           description="Items of a customer order (tlgnc_custorder). An item consists of a certain material (type bulk, bag, special, ...), and has a quantity and unit of measure. A typical bulk order has exactly 1 item, special orders like 'Silostellung' have 2 items, bag orders can have several items.">
+
+        <!-- Item Identifiers -->
+        <column name="CUSTORDER_ITEM_ID" primaryKey="true" required="true" type="DECIMAL" size="12"
+                description="PK"/>
+        <column name="CUSTORDER_ID" required="true" type="DECIMAL" size="12"
+                description="FK tlgnc_custorder. The Customer Order to which the Customer Order Item belongs."/>
+        <column name="CUSTORDER_ITEM_NO" required="true" type="DECIMAL" size="3"
+                description="The customer order item number, human readable: Start with 10, and use increments of 10: 10, 20, 30, ... Together with tlgnc_custorder.custorder_number this identifies a certain order item, for customers. At the moment it's only allowed to have 1 customer order item per customer order."/>
+        <column name="LDS_CUSTORDER_ITEM_NO" type="VARCHAR" size="3"
+                description="The customer order item number defined by the LDS and received in the createCustomerOrderRequest. No logic, not sent to SAP."/>
+        <column name="SAP_CONTRACT_ITEM_ID" type="DECIMAL" size="12"
+                description="FK tlgns_sap_contract_item_id. Reference to the contract-item on which this order-item is based. If set, must be an item which belongs to the same contract as set in tlgnc_order.sap_contract_id! However, services and possibly other special materials can be contained in an order even when not contained in a contract. For these items: Field is null."/>
+
+        <!-- Material specific -->
+        <column name="SAP_MATERIAL_ID" required="true" type="DECIMAL" size="12"
+                description="FK tlgns_sap_material. The related material. All relevant attributes of SAP_MAT_COND are contained within this order item (frozen at order creation time)."/>
+		<column name="MIX_DESIGN_ID" type="DECIMAL" size="12"
+                description="FK to tlgnc_fireq_material_mixdesign. Mix design id of this restriction. Mix design can only be specified for aggregate material + production plant combination. Mix design business term: Recipe/Formula of the material composition of the aggregates material."/>
+        <column name="PRODUCTION_PLANT_CD" required="true" type="VARCHAR" size="4"
+                description="Production Plant which produced the product of the order item. When the shipping point of the order belongs to just a supply plant (not a production plant) the value will be different from that plant_cd."/>
+        <column name="CURRENCY_CD" required="true" type="VARCHAR" size="3"
+                description="FK tlgnr_currency_cd. Currency code, copied from the material condition tlgns_sap_mat_cond.currency_cd. That currency defines the currency of the custorder_item, and is also the currency in which all other cost/price attributes on this item are expressed. If individual cost elements are defined in a different curreny, tlgnc_currency_exch_rate must be used to convert into the currency of the customer order item."/>
+        <column name="RATE" type="DECIMAL" size="10,3"
+                description="Price of the material, simply copied from the material condition. This is the 'catalog' price, i.e. without rebates, discounts, taxes etc. The value that is finally used in the commercial tab of order details is gross_price_mat: rate * delivered quantity. (Not 100% clear: What is the base? Base UOM of the material? Sales UOM? tlgns_sap_mat_cond.uom_cd would be defined, but is not used/checked for display/calculation. However, ALL materials in the DB (Nov 2009) have a BASE_UOM 'TO' anyway, it's not an issues currently.)"/>
+
+        <!-- Quantities and Units -->
+        <column name="ORDERED_UOM_CD" type="VARCHAR" size="3"
+                description="FK tlgnr_uom_bs. Unit of measure on which the ORDERED_QUANTITY is based when ORDERING the order. Includes 'non-convertible' UOM, e.g. '1 railcar' (without any weight specification!)."/>
+        <column name="ORDERED_QUANTITY" type="DECIMAL" size="12,4"
+                description="Ordered quantity of the material, in units defined by ORDER_UOM_CD. Typically a whole number."/>
+		
+		<column name="PER_SDORDER_QUANTITY" type="DECIMAL" size="12,4"
+                description="Determines the planned quantity per Single Delivery Order later on. Value is taken from an enabled vehicle type with highest priority. If no priority is given, take the max net weight/volume of the available truck types."/>
+        <column name="PER_SDORDER_UOM_CD" type="VARCHAR" size="3"
+                description="FK tlgnr_uom_bs. Unit of measure of per_sdorder_quantity."/>
+		
+		<column name="EXACT_CUSTORDER_QTY_FLAG" required="true" type="BOOLEAN"
+                description="It has an effect on the creation of related single delivery orders. If true then last single delivery will be dynamically adjusted to reach total customer order item quantity exactly. If false then when the last Single Delivery Order is delivered the Customer Order is completed (as in LOGON 2.0)."/>
+		<column name="EXACT_SDORDER_QTY_FLAG" required="true" type="BOOLEAN"
+                description="It has an effect on single delivery quantities and is used together with the value of per_sdorder_quantity field."/>
+
+        <!-- "Versandstelle" and Destination -->
+        <!-- - loadingpoint_id may be undefined. If defined, must related to shippingpoint_id
+             - Workshop 13.5.2009: Decided that LOAD_SHIPPINGPOINT_ID is NOT needed, always order.shippingpoint_id .
+               This is true for buld (1 item), silostellung (1 silo, 1 bulk) and bag (n bag), all items must have the same shippingpoint. -->
+        <column name="LOADINGPOINT_ID" type="DECIMAL" size="12"
+                description="FK tlgnc_loadingpoint. The planned loadingpoint where the order item can be loaded. Loadingpoint may be set in addition to the shippingpoint. If defined, must relate to the shippingpoint. The actual loadingpoint is stored in tlgnc_load."/>
+        <!-- cosmin 26.03.2010: this column is not needed anymore -> Ticket 51921
+        <column name="STORAGE_LOCATION" type="VARCHAR" size="4"
+                description="The Storage Location, where the material is kept at the shippingpoint. Depends on Shippingpoint and Material; value is taken from tlgnc_mat_shippingpoint.storage_location (or tlgnc_shippingpoint.storage_location as the default if not found/set)."/>--><!-- Confirmed 10.6.2009 CDU: not mandatory, especially for plants which are "not inventory managed" and thus do not have a "Warenausgang" an empty field is correct, also when sending to SAP. -->
+        <column name="SHIPTO_SILO_ID" type="DECIMAL" size="12"
+                description="FK tlgnr_shipto_silo. The silo to deliver to."/>
+
+		<!-- Used as a KPI. We don't save the dispocard(restriction) id in the item as the dispocards may change or get deleted. -->		
+		<column name="DISPOCARD_AVAILABLE" type="BOOLEAN"
+                description="Indicates whether the order item was created based on a dispocard"/>
+		<column name="ORDER_PLAN_ACTUAL" type="BOOLEAN"
+                description="True if both the quantity and uom in the item matches the values in the dispocard"/>
+		
+
+        <!-- When adding new references and FK, please put them in the same order as they are as attributes! -->
+        <foreign-key foreignTable="TLGNC_CUSTORDER" name="FK_TLGNC_CUSTORDER_ITEM_ORD">
+            <reference local="CUSTORDER_ID" foreign="CUSTORDER_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNS_SAP_CONTRACT_ITEM" name="FK_TLGNC_CUSTORDITEM_SAP_CONTR">
+            <reference local="SAP_CONTRACT_ITEM_ID" foreign="SAP_CONTRACT_ITEM_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNS_SAP_MATERIAL" name="FK_TLGNC_CUSTORDER_ITEM_MAT">
+            <reference local="SAP_MATERIAL_ID" foreign="SAP_MATERIAL_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNC_FIREQ_MATERIAL_MIXDESIGN" name="FK_TLGNC_CUSTORDITEM_MIXDESIGN">
+            <reference local="MIX_DESIGN_ID" foreign="MIX_DESIGN_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_PLANT_BS" name="FK_TLGNC_CUSTORDER_ITEM_PLANT">
+            <reference local="PRODUCTION_PLANT_CD" foreign="PLANT_CD"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_CURRENCY_BS" name="FK_TLGNC_CUSTORDER_ITEM_CURR">
+            <reference local="CURRENCY_CD" foreign="CURRENCY_CD"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_UOM_BS" name="FK_TLGNC_CUSTORDER_ITEM_UOMORD">
+            <reference local="ORDERED_UOM_CD" foreign="UOM_CD"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_UOM_BS" name="FK_TLGNC_CUSTORDITEM_PERSDOUOM">
+            <reference local="PER_SDORDER_UOM_CD" foreign="UOM_CD"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNC_LOADINGPOINT" name="FK_TLGNC_CUSTORDER_ITEM_LOADPT">
+            <reference local="LOADINGPOINT_ID" foreign="LOADINGPOINT_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNC_SHIPTO_SILO" name="FK_TLGNC_CUSTORDER_ITEM_SILO">
+            <reference local="SHIPTO_SILO_ID" foreign="SHIPTO_SILO_ID"/>
+        </foreign-key>
+
+    </table>
+</database>

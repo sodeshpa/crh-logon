@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="VLGNS_UTIL_SAPMATDESC_MISSING" mappingType="view" skipSql="true">
+        <column name="SAP_MATERIAL_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="SAP_MATERIAL_NO" required="true" type="VARCHAR" size="18"/>
+        <column name="NUM_LANG_IN_SAP_MATERIAL_DESC" type="DECIMAL" size="10"/>
+        <column name="MATERIAL_GROUP_DESC" type="VARCHAR" size="20"/>
+        <column name="PRODUCT_HIERARCHY_DESC" type="VARCHAR" size="40"/>
+        <column name="INDUSTRY_STANDARD_DESC" type="VARCHAR" size="18"/>
+        <column name="MATERIAL_PACKAGE_CD" required="true" type="VARCHAR" size="4"/>
+    </table>
+</database>

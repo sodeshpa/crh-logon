@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="VLGNC_DISPO_ORDER_LIST" mappingType="view" skipSql="true">
+        <column name="COMPOSITE_ID" type="VARCHAR" size="81"/>
+        <column name="ORDER_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="CUSTORDER_ID" type="DECIMAL" size="12"/>
+        <column name="ORDER_NUMBER" type="DECIMAL" size="12"/>
+        <column name="ORDER_NUMBER_IN_STR" type="VARCHAR" size="12"/>
+        <column name="DELIVERY_FROM_DAT" required="true" type="DATE"/>
+        <column name="DELIVERY_TO_DAT" required="true" type="DATE"/>
+        <column name="EXEC_CARRIER_ID" type="DECIMAL" size="12"/>
+        <column name="COMM_CARRIER_ID" type="DECIMAL" size="12"/>
+        <column name="COMM_CARRIER_NAME" type="VARCHAR" size="40"/>
+        <column name="EXEC_CARRIER_NAME" type="VARCHAR" size="40"/>
+        <column name="COMM_SAP_VENDOR_ID" type="DECIMAL" size="12"/>
+        <column name="EXEC_SAP_VENDOR_ID" type="DECIMAL" size="12"/>
+        <column name="CARRIER_REQUIRES_PLANNING_FLAG" type="BOOLEAN"/>
+        <column name="POOL_ID" type="DECIMAL" size="12"/>
+        <column name="ORDER_STATUS_CD" required="true" type="DECIMAL" size="2"/>
+        <column name="TRANSPORT_DURATION_MIN" type="DECIMAL" size="5"/>
+        <column name="SHIPPINGPOINT_ID" type="DECIMAL" size="12"/>
+        <column name="NOTE_DISPATCHING" type="VARCHAR" size="256"/>
+        <column name="NOTE_TRUCK_DRIVER" type="VARCHAR" size="256"/>
+        <column name="CARRIER_TRUCK_DRIVER_NOTE" type="VARCHAR" size="256"/>
+        <column name="NOTE_DELIVERY" type="VARCHAR" size="300"/>
+        <column name="NOTE_RAILWAY_DISP" type="VARCHAR" size="256"/>
+        <column name="CARRIER_DECLINE_NOTE" type="VARCHAR" size="200"/>
+        <column name="CUST_WEBORDER_NOTE" type="VARCHAR" size="1000"/>
+        <column name="CARRIER_DELIVERY_NOTE" type="VARCHAR" size="600"/>
+        <column name="TRANSPORT_DISTANCE_M" type="DECIMAL" size="10"/>
+        <column name="DELIVERY_TYPE_CD" required="true" type="DECIMAL" size="2"/>
+        <column name="SHIPTO_SAP_BP_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="ON_HOLD_ORDER_AND_LOCKED_FLAG" required="true" type="BOOLEAN"/>
+        <column name="LNF_COORD_LAT" type="DOUBLE"/>
+        <column name="LNF_COORD_LON" type="DOUBLE"/>
+        <column name="LNF_SITE_NAME" type="VARCHAR" size="80"/>
+        <column name="LNF_SITE_STREET_HOUSE_NO" type="VARCHAR" size="45"/>
+        <column name="LNF_SITE_COUNTRY" type="VARCHAR" size="3"/>
+        <column name="LNF_SITE_POSTAL_CODE" type="VARCHAR" size="10"/>
+        <column name="LNF_SITE_CITY" type="VARCHAR" size="35"/>
+        <column name="PLANNED_UNLOADING_TIME_MIN" required="true" type="DECIMAL" size="10"/>
+        <column name="SHIPPINGPOINT_NAME" type="VARCHAR" size="80"/>
+        <column name="PLANT_CD" required="true" type="VARCHAR" size="4"/>
+        <column name="SHIPTO_SAP_ID" type="VARCHAR" size="10"/>
+        <column name="SHIPTO_NAME" type="VARCHAR" size="35"/>
+        <column name="SHIPTO_NAME2" type="VARCHAR" size="35"/>
+        <column name="SHIPTO_CITY" required="true" type="VARCHAR" size="35"/>
+        <column name="SOLDTO_SAP_ID" type="VARCHAR" size="10"/>
+        <column name="SOLDTO_NAME" type="VARCHAR" size="35"/>
+        <column name="SOLDTO_NAME2" type="VARCHAR" size="35"/>
+        <column name="SHIPTO_COORDLAT" type="DOUBLE"/>
+        <column name="SHIPTO_COORDLON" type="DOUBLE"/>
+        <column name="LANG_CD" type="VARCHAR" size="2"/>
+        <column name="STATUS_TXT" type="VARCHAR" size="50"/>
+        <column name="POOL_NAME" type="VARCHAR" size="30"/>
+        <column name="ARR_RAILWAY_STATION_ID" type="DECIMAL" size="12"/>
+        <column name="DEP_RAILWAY_STATION_ID" type="DECIMAL" size="12"/>
+        <column name="ARR_SWITCHING_TIME_MIN" type="DECIMAL" size="4"/>
+        <column name="DEP_SWITCHING_TIME_MIN" type="DECIMAL" size="4"/>
+        <column name="ARR_OFFSET_DAYS" type="DECIMAL" size="2"/>
+        <column name="ARR_RAILWAY_STATION_NO" type="VARCHAR" size="6"/>
+        <column name="ARR_RAILWAY_STATION_NAME" type="VARCHAR" size="50"/>
+        <column name="SORT_FROM_DAT" type="TIMESTAMP"/>
+        <column name="SORT_TO_DAT" type="TIMESTAMP"/>
+        <column name="BAG_STOCK_COORD_LON" type="DOUBLE"/>
+        <column name="BAG_STOCK_COORD_LAT" type="DOUBLE"/>
+    </table>
+</database>

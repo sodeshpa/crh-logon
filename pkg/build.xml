@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- $Id$ -->
+
+<project name="releng" basedir="./" default="all">
+    <!-- all packages to be built in one batch -->
+    <path id="subcomponents.path">
+            <pathelement location="logonjboss"/>
+            <pathelement location="logonapps"/>
+            <pathelement location="logondb"/>
+    </path>
+
+    <target name="all" description="Builds all packages (for the current plattform only)" >
+        <echo>Building _all_ packages...</echo>
+        <antcall target="do-all">
+            <param name="target" value="all"/>
+        </antcall>
+    </target>
+
+    <target name="clean-dist" description="Cleans distribution area of _all_ packages" >
+      <antcall target="do-all">
+          <param name="target" value="clean"/>
+      </antcall>
+      <!-- get rid of remporary dist areas in _any_ case (no parallel package build on different hosts with this !!! -->
+      <exec executable="chmod" failonerror="false" error="/dev/null"><arg line="-R u+w ./*/dist"/></exec>
+      <exec executable="rm"    failonerror="false" error="/dev/null"><arg line="-rf    ./*/dist"/></exec>
+    </target>
+
+    <target name="do-all" depends="">
+        <subant target="${target}"  verbose="true" buildpathref="subcomponents.path">
+            <property name="batchCall" value="true"/>
+         </subant>
+    </target>
+
+    <target name="clean" depends="">
+        <subant target="clean"  verbose="true" buildpathref="subcomponents.path">
+            <property name="batchCall" value="true"/>
+        </subant>
+    </target>
+
+	<!-- package repo specific contract -->
+	<target name="repo-deploy" description="Builds all packages for the current plattform to PKG_DEST repository" >
+        <antcall target="do-all">
+          <param name="target" value="pkg-deploy"/>
+        </antcall>
+	</target>
+
+</project>

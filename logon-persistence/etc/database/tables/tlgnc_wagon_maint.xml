@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNC_WAGON_MAINT"
+           description="Contains information about maintenance of wagons.">
+
+        <column name="WAGON_MAINT_ID" primaryKey="true" required="true" type="DECIMAL" size="12"
+                description="PK"/>
+        <column name="WAGON_ID" type="DECIMAL" size="12" required="true" 
+                description="FK tlgnc_wagon"/>
+
+        <column name="MAINT_TYPE_CD" required="true" type="VARCHAR" size="6"
+                description="FK tlgnr_maint_type_bs. The maintenance type."/>
+        <column name="LAST_DAT" type="DATE" 
+                description="Date of the last maintenance (null means not known)."/>        
+		<column name="NEXT_DAT" type="DATE"
+                description="Date of the next maintenance (null means nothing scheduled)."/>
+		
+		<column name="SHIPTO_SAP_BP_ID" type="DECIMAL" size="12"
+                description="FK tlgns_sap_bp. Sap_bp of a repair plant type shipto. "/>
+		
+		<column name="ACTIVE_FLAG" required="true" type="BOOLEAN"
+                description="no logic at the moment, kept for future purposes"/>
+
+		
+        <foreign-key foreignTable="TLGNR_MAINT_TYPE_BS" name="FK_TLGNC_WAGON_MAINT_TYPE">
+            <reference local="MAINT_TYPE_CD" foreign="MAINT_TYPE_CD"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNC_WAGON" name="FK_TLGNC_WAGON_MAINT_WAGON">
+            <reference local="WAGON_ID" foreign="WAGON_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNS_SAP_BP" name="FK_TLGNC_WAGON_SAP_BP">
+            <reference local="SHIPTO_SAP_BP_ID" foreign="SAP_BP_ID"/>
+        </foreign-key>
+              
+        <unique name="UQ_WAGON_MAINT_TYPE">
+            <unique-column name="WAGON_ID"/>
+            <unique-column name="MAINT_TYPE_CD"/>
+        </unique>
+
+    </table>
+</database>

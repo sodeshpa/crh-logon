@@ -1,0 +1,428 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions
+    targetNamespace="http://logon.holcim.com/LogonLDSInterface/services"
+    xmlns:tns="http://logon.holcim.com/LogonLDSInterface/services"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+    xmlns="http://schemas.xmlsoap.org/wsdl/">
+
+    <types>
+        <xsd:schema elementFormDefault="qualified" targetNamespace="http://logon.holcim.com/LogonLDSInterface/services">
+            <xsd:include schemaLocation="xsd/LogonLDSInterface_services.xsd"/>
+        </xsd:schema>
+    </types>
+
+    <message name="getLoadOrdersForVehicleRequest">
+        <part name="getLoadOrdersForVehicleRequest" element="tns:getLoadOrdersForVehicleRequest"/>
+    </message>
+    <message name="getLoadOrdersForVehicleResponse">
+        <part name="getLoadOrdersForVehicleResponse" element="tns:getLoadOrdersForVehicleResponse"/>
+    </message>
+    <message name="getPickupLoadOrdersForShiptoRequest">
+        <part name="getPickupLoadOrdersForShiptoRequest" element="tns:getPickupLoadOrdersForShiptoRequest"/>
+    </message>
+    <message name="getPickupLoadOrdersForShiptoResponse">
+        <part name="getPickupLoadOrdersForShiptoResponse" element="tns:getPickupLoadOrdersForShiptoResponse"/>
+    </message>
+    <message name="getMaterialsForShiptoRequest">
+        <part name="getMaterialsForShiptoRequest" element="tns:getMaterialsForShiptoRequest"/>
+    </message>
+    <message name="getMaterialsForShiptoResponse">
+        <part name="getMaterialsForShiptoResponse" element="tns:getMaterialsForShiptoResponse"/>
+    </message>
+    <message name="validateCustomerOrderRequest">
+        <part name="validateCustomerOrderRequest" element="tns:validateCustomerOrderRequest"/>
+    </message>
+    <message name="validateCustomerOrderResponse">
+        <part name="validateCustomerOrderResponse" element="tns:validateCustomerOrderResponse"/>
+    </message>
+    <message name="createCustomerOrderRequest">
+        <part name="createCustomerOrderRequest" element="tns:createCustomerOrderRequest"/>
+    </message>
+    <message name="createCustomerOrderResponse">
+        <part name="createCustomerOrderResponse" element="tns:createCustomerOrderResponse"/>
+    </message>
+    <message name="createCustomerOrderBasedOnMasterDataDefaultRequest">
+        <part name="createCustomerOrderBasedOnMasterDataDefaultRequest" element="tns:createCustomerOrderBasedOnMasterDataDefaultRequest"/>
+    </message>
+    <message name="createCustomerOrderBasedOnMasterDataDefaultResponse">
+        <part name="createCustomerOrderBasedOnMasterDataDefaultResponse" element="tns:createCustomerOrderBasedOnMasterDataDefaultResponse"/>
+    </message>
+    <message name="closeCustomerOrderRequest">
+        <part name="closeCustomerOrderRequest" element="tns:closeCustomerOrderRequest"/>
+    </message>
+    <message name="closeCustomerOrderResponse">
+        <part name="closeCustomerOrderResponse" element="tns:closeCustomerOrderResponse"/>
+    </message>
+    <message name="updatePlanningMaterialRequest">
+        <part name="updatePlanningMaterialRequest" element="tns:updatePlanningMaterialRequest"/>
+    </message>
+    <message name="updatePlanningMaterialResponse">
+        <part name="updatePlanningMaterialResponse" element="tns:updatePlanningMaterialResponse"/>
+    </message>
+    <message name="updateSchedulingRequest">
+        <part name="updateSchedulingRequest" element="tns:updateSchedulingRequest"/>
+    </message>
+    <message name="updateSchedulingResponse">
+        <part name="updateSchedulingResponse" element="tns:updateSchedulingResponse"/>
+    </message>
+    <message name="addServiceMaterialsToOrderRequest">
+        <part name="addServiceMaterialsToOrderRequest" element="tns:addServiceMaterialsToOrderRequest"/>
+    </message>
+    <message name="addServiceMaterialsToOrderResponse">
+        <part name="addServiceMaterialsToOrderResponse" element="tns:addServiceMaterialsToOrderResponse"/>
+    </message>
+    <message name="selectLoadOrderForLoadingRequest">
+        <part name="selectLoadOrderForLoadingRequest" element="tns:selectLoadOrderForLoadingRequest"/>
+    </message>
+    <message name="selectLoadOrderForLoadingResponse">
+        <part name="selectLoadOrderForLoadingResponse" element="tns:selectLoadOrderForLoadingResponse"/>
+    </message>
+    <message name="startLoadingRequest">
+        <part name="startLoadingRequest" element="tns:startLoadingRequest"/>
+    </message>
+    <message name="startLoadingResponse">
+        <part name="startLoadingResponse" element="tns:startLoadingResponse"/>
+    </message>
+    <message name="endLoadingRequest">
+        <part name="endLoadingRequest" element="tns:endLoadingRequest"/>
+    </message>
+    <message name="endLoadingResponse">
+        <part name="endLoadingResponse" element="tns:endLoadingResponse"/>
+    </message>
+    <message name="regularizationRequest">
+        <part name="regularizationRequest" element="tns:regularizationRequest"/>
+    </message>
+    <message name="regularizationResponse">
+        <part name="regularizationResponse" element="tns:regularizationResponse"/>
+    </message>
+    <message name="setLoadOrder2LoadedRequest">
+        <part name="setLoadOrder2LoadedRequest" element="tns:setLoadOrder2LoadedRequest"/>
+    </message>
+    <message name="setLoadOrder2LoadedResponse">
+        <part name="setLoadOrder2LoadedResponse" element="tns:setLoadOrder2LoadedResponse"/>
+    </message>
+    <message name="cancelLoadingRequest">
+        <part name="cancelLoadingRequest" element="tns:cancelLoadingRequest"/>
+    </message>
+    <message name="cancelLoadingResponse">
+        <part name="cancelLoadingResponse" element="tns:cancelLoadingResponse"/>
+    </message>
+    <message name="createCompletedCustomerOrderRequest">
+        <part name="createCompletedCustomerOrderRequest" element="tns:createCompletedCustomerOrderRequest"/>
+    </message>
+    <message name="createCompletedCustomerOrderResponse">
+        <part name="createCompletedCustomerOrderResponse" element="tns:createCompletedCustomerOrderResponse"/>
+    </message>
+    <message name="getOrdersForCarriersRequest">
+        <part name="getOrdersForCarriersRequest" element="tns:getOrdersForCarriersRequest"/>
+    </message>
+    <message name="getOrdersForCarriersResponse">
+        <part name="getOrdersForCarriersResponse" element="tns:getOrdersForCarriersResponse"/>
+    </message>  
+    <message name="scheduleAssignmentRequest">
+        <part name="scheduleAssignmentRequest" element="tns:scheduleAssignmentRequest"/>
+    </message>
+    <message name="scheduleAssignmentResponse">
+        <part name="scheduleAssignmentResponse" element="tns:scheduleAssignmentResponse"/>
+    </message>    
+    <message name="releaseAssignmentRequest">
+        <part name="releaseAssignmentRequest" element="tns:releaseAssignmentRequest"/>
+    </message>
+    <message name="releaseAssignmentResponse">
+        <part name="releaseAssignmentResponse" element="tns:releaseAssignmentResponse"/>
+    </message>
+    <message name="addReturnOrderRequest">
+        <part name="addReturnOrderRequest" element="tns:addReturnOrderRequest"/>
+    </message>
+    <message name="addReturnOrderResponse">
+        <part name="addReturnOrderResponse" element="tns:addReturnOrderResponse"/>
+    </message>
+
+    <portType name="LogonLDSInterfacePort">
+        <operation name="getLoadOrdersForVehicle">
+            <input message="tns:getLoadOrdersForVehicleRequest"/>
+            <output message="tns:getLoadOrdersForVehicleResponse"/>
+        </operation>
+        <operation name="getPickupLoadOrdersForShipto">
+            <input message="tns:getPickupLoadOrdersForShiptoRequest"/>
+            <output message="tns:getPickupLoadOrdersForShiptoResponse"/>
+        </operation>
+        <operation name="getMaterialsForShipto">
+            <input message="tns:getMaterialsForShiptoRequest"/>
+            <output message="tns:getMaterialsForShiptoResponse"/>
+        </operation>
+        <operation name="validateCustomerOrder">
+            <input message="tns:validateCustomerOrderRequest"/>
+            <output message="tns:validateCustomerOrderResponse"/>
+        </operation>
+        <operation name="createCustomerOrder">
+            <input message="tns:createCustomerOrderRequest"/>
+            <output message="tns:createCustomerOrderResponse"/>
+        </operation>
+        <operation name="createCustomerOrderBasedOnMasterDataDefault">
+            <input message="tns:createCustomerOrderBasedOnMasterDataDefaultRequest"/>
+            <output message="tns:createCustomerOrderBasedOnMasterDataDefaultResponse"/>
+        </operation>
+        <operation name="closeCustomerOrder">
+            <input message="tns:closeCustomerOrderRequest"/>
+            <output message="tns:closeCustomerOrderResponse"/>
+        </operation>
+        <operation name="updatePlanningMaterial">
+            <input message="tns:updatePlanningMaterialRequest"/>
+            <output message="tns:updatePlanningMaterialResponse"/>
+        </operation>
+        <operation name="updateScheduling">
+            <input message="tns:updateSchedulingRequest"/>
+            <output message="tns:updateSchedulingResponse"/>
+        </operation>
+        <operation name="addServiceMaterialsToOrder">
+            <input message="tns:addServiceMaterialsToOrderRequest"/>
+            <output message="tns:addServiceMaterialsToOrderResponse"/>
+        </operation>
+        <operation name="selectLoadOrderForLoading">
+            <input message="tns:selectLoadOrderForLoadingRequest"/>
+            <output message="tns:selectLoadOrderForLoadingResponse"/>
+        </operation>
+        <operation name="startLoading">
+            <input message="tns:startLoadingRequest"/>
+            <output message="tns:startLoadingResponse"/>
+        </operation>
+        <operation name="endLoading">
+            <input message="tns:endLoadingRequest"/>
+            <output message="tns:endLoadingResponse"/>
+        </operation>
+        <operation name="regularization">
+            <input message="tns:regularizationRequest"/>
+            <output message="tns:regularizationResponse"/>
+        </operation>
+        <operation name="setLoadOrder2Loaded">
+            <input message="tns:setLoadOrder2LoadedRequest"/>
+            <output message="tns:setLoadOrder2LoadedResponse"/>
+        </operation>
+        <operation name="cancelLoading">
+            <input message="tns:cancelLoadingRequest"/>
+            <output message="tns:cancelLoadingResponse"/>
+        </operation>
+        <operation name="createCompletedCustomerOrder">
+            <input message="tns:createCompletedCustomerOrderRequest"/>
+            <output message="tns:createCompletedCustomerOrderResponse"/>
+        </operation>
+        <operation name="getOrdersForCarriers">
+            <input message="tns:getOrdersForCarriersRequest"/>
+            <output message="tns:getOrdersForCarriersResponse"/>
+        </operation>
+        <operation name="scheduleAssignment">
+            <input message="tns:scheduleAssignmentRequest"/>
+            <output message="tns:scheduleAssignmentResponse"/>
+        </operation> 
+        <operation name="releaseAssignment">
+            <input message="tns:releaseAssignmentRequest"/>
+            <output message="tns:releaseAssignmentResponse"/>
+        </operation>
+        <operation name="addReturnOrder">
+            <input message="tns:addReturnOrderRequest"/>
+            <output message="tns:addReturnOrderResponse"/>
+        </operation>
+    </portType>
+
+    <binding name="LDSToLogonPort" type="tns:LogonLDSInterfacePort">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="getLoadOrdersForVehicle">
+            <soap:operation soapAction="getLoadOrdersForVehicle"/>
+            <input>
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+        </operation>
+        <operation name="getPickupLoadOrdersForShipto">
+            <soap:operation soapAction="getPickupLoadOrdersForShipto"/>
+            <input>
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+        </operation>
+        <operation name="getMaterialsForShipto">
+            <soap:operation soapAction="getMaterialsForShipto"/>
+            <input>
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+        </operation>
+        <operation name="validateCustomerOrder">
+            <soap:operation soapAction="validateCustomerOrder"/>
+            <input>
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+        </operation>
+        <operation name="createCustomerOrder">
+            <soap:operation soapAction="createCustomerOrder"/>
+            <input>
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+        </operation>
+        <operation name="createCustomerOrderBasedOnMasterDataDefault">
+            <soap:operation soapAction="createCustomerOrderBasedOnMasterDataDefault"/>
+            <input>
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+        </operation>
+        <operation name="closeCustomerOrder">
+            <soap:operation soapAction="closeCustomerOrder"/>
+            <input>
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+        </operation>
+        <operation name="updatePlanningMaterial">
+            <soap:operation soapAction="updatePlanningMaterial"/>
+            <input>
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+        </operation>
+        <operation name="updateScheduling">
+            <soap:operation soapAction="updateScheduling"/>
+            <input>
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+        </operation>
+        <operation name="addServiceMaterialsToOrder">
+            <soap:operation soapAction="addServiceMaterialsToOrder"/>
+            <input>
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+        </operation>
+        <operation name="selectLoadOrderForLoading">
+            <soap:operation soapAction="selectLoadOrderForLoading"/>
+            <input>
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+        </operation>
+        <operation name="startLoading">
+            <soap:operation soapAction="startLoading"/>
+            <input>
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+        </operation>
+        <operation name="endLoading">
+            <soap:operation soapAction="endLoading"/>
+            <input>
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+        </operation>
+        <operation name="regularization">
+            <soap:operation soapAction="regularization"/>
+            <input>
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+        </operation>
+        <operation name="setLoadOrder2Loaded">
+            <soap:operation soapAction="setLoadOrder2Loaded"/>
+            <input>
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+        </operation>
+        <operation name="cancelLoading">
+            <soap:operation soapAction="cancelLoading"/>
+            <input>
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+        </operation>
+        <operation name="createCompletedCustomerOrder">
+            <soap:operation soapAction="createCompletedCustomerOrder"/>
+            <input>
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+        </operation>
+        <operation name="getOrdersForCarriers">
+            <soap:operation soapAction="getOrdersForCarriers"/>
+            <input>
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+        </operation> 
+        <operation name="scheduleAssignment">
+            <soap:operation soapAction="scheduleAssignment"/>
+            <input>
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+        </operation>      
+        <operation name="releaseAssignment">
+            <soap:operation soapAction="releaseAssignment"/>
+            <input>
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+        </operation>
+        <operation name="addReturnOrder">
+            <soap:operation soapAction="addReturnOrder"/>
+            <input>
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+        </operation>
+    </binding>
+
+    <service name="LogonLDSInterface">
+        <port name="LDStoLogonPort" binding="tns:LDSToLogonPort">
+            <soap:address location="https://logon.holcim.com/logon/webservices-pws-incoming/services/LogonLDSInterface"/>
+        </port>
+    </service>
+
+</definitions>

@@ -1,0 +1,2 @@
+-- Statement moved into minimal_setup, because it depends on the 'initial shippingpoint'.
+-- TODO: Add real data from Crh, for real shippingpoints, but then move to "initialdata"

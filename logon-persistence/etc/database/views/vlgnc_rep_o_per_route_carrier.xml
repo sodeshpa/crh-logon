@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="VLGNC_REP_O_PER_ROUTE_CARRIER" mappingType="view" skipSql="true">
+        <column name="O_SOLDTO_SAP_BP_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="AG_SAP_ID" type="VARCHAR" size="10"/>
+        <column name="AG_NAME1" type="VARCHAR" size="35"/>
+        <column name="O_SHIPTO_SAP_BP_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="WE_SAP_ID" type="VARCHAR" size="10"/>
+        <column name="WE_NAME1" type="VARCHAR" size="35"/>
+        <column name="WE_POSTAL_CODE" type="VARCHAR" size="10"/>
+        <column name="WE_CITY" type="VARCHAR" size="35"/>
+        <column name="COMM_CARRIER_SAP_VENDOR_ID" type="DECIMAL" size="12"/>
+        <column name="COMM_CARRIER_V_SAP_ID" type="VARCHAR" size="10"/>
+        <column name="COMM_CARRIER_DISPLAY_NAME" type="VARCHAR" size="40"/>
+        <column name="O_SHIPPINGPOINT_ID" type="DECIMAL" size="12"/>
+        <column name="SP_SAP_SHIPPINGPOINT_NO" type="VARCHAR" size="4"/>
+        <column name="SP_SHIPPINGPOINT_NAME" type="VARCHAR" size="80"/>
+        <column name="BIZ_LOADING_TIME_MIN" type="DECIMAL" size="12"/>
+        <column name="BIZ_CYCLE_TIME_AT_SP_MIN" type="DECIMAL" size="12"/>
+        <column name="BIZ_CALC_NET_DRIVING_TIME_MIN" type="DECIMAL" size="12"/>
+        <column name="BIZ_ACTUAL_DISTANCE_M" type="DECIMAL" size="10"/>
+        <column name="BIZ_UNLOADING_MIN" type="DECIMAL" size="12"/>
+        <column name="BIZ_CYCLE_TIME_AT_SHIPTO_MIN" type="DECIMAL" size="12"/>
+        <column name="REPORT_FINISHED_COMM_FLAG" required="true" type="BOOLEAN"/>
+        <column name="OI_DELIVERED_QUANTITY" type="DECIMAL" size="12,4"/>
+        <column name="OI_DELIVERED_UOM_CD" type="VARCHAR" size="3"/>
+        <column name="OI_MARGIN_CURRENCY_CD" type="VARCHAR" size="3"/>
+        <column name="OI_REFUND_TRSP_CAPA_TKM" type="DECIMAL" size="12,4"/>
+        <column name="OI_REFUND_NET_WEIGHT_CUR_T" type="DECIMAL" size="12,4"/>
+        <column name="OI_REFUND_DISTANCE_CUR_KM" type="DECIMAL" size="12,4"/>
+        <column name="OI_REFUND_TRSP_CAPA_CUR_TKM" type="DECIMAL" size="12,4"/>
+        <column name="DISTRIBUTION_DEST_CD" required="true" type="VARCHAR" size="4"/>
+        <column name="DELIVERY_FROM_DAT" required="true" type="DATE"/>
+        <column name="DELIVERY_TO_DAT" required="true" type="DATE"/>
+        <column name="DELIVERY_ACTUAL_DAT" type="DATE"/>
+        <column name="MATERIAL_PACKAGE_CD" required="true" type="VARCHAR" size="4"/>
+        <column name="LANG_CD" required="true" type="VARCHAR" size="2"/>
+    	<column name="EXEC_CARRIER_V_SAP_ID" required="true" type="VARCHAR" size="10"/>
+    	<column name="EXEC_CARRIER_DISPLAY_NAME" required="true" type="VARCHAR" size="40"/>
+    </table>
+</database>

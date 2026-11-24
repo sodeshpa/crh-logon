@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNR_SIMCARD_BS" refData="true"
+           description="Reference data table for the SIM-Card / Phone-Number mapping. This list is currently not used by the application for logical, but only for informational purposes. They are referenced by tlgnc_pda_device, where they are only used to keep an inventory of all devices and their SIM-cards.">
+
+        <column name="SIMCARD_CD" primaryKey="true" required="true" type="DECIMAL" size="12"
+                description="PK. Technical key by Logon."/>
+
+        <!-- The length of the provider/simcard number is based on the data we got, and checked with http://en.wikipedia.org/wiki/Sim_card -->
+        <column name="ISSUER_NUMBER" required="true" type="VARCHAR" size="7"
+                description="Issuer Identification number of this SIM-card, e.g. 894920 for Vodafone Germany."/>
+        <column name="SIMCARD_NUMBER" required="true" type="VARCHAR" size="14"
+                description="Identity number of the SIM-card, e.g. 92508563133002, unique together with the issuer_number. This is the individual account identification number according to http://en.wikipedia.org/wiki/Sim_card, the last digit of it is a parity check digit."/>
+
+        <!-- The length of the phonenumber is 30 everywhere in Logon, because of possible grouping. Extend if needed -->
+        <column name="PHONE_NUMBER" required="true" type="VARCHAR" size="30"
+                description="Phone number represented by this SIM-card, unique. Always written including country code, and only space is allowed for grouping. Example: +41 44 123456. The numbers currently in the system are registered in Germany, e.g. +49 1629295613"/>
+
+        <column name="SIMCARD_COMMENT" type="VARCHAR" size="200"
+                description="Any comment about the SIM-card/phone number. Use for comments about losses, blocking of Sim cards, conversation notes with the provider, etc. However, it's recommended to put comments rather on tlgnc_pda_device if possible."/>
+
+        <column name="CTL_ACT_CD" required="true" type="BOOLEAN"
+                description="Active Flag. When new data is entered, only reference data with active flag are available for selection normally."/>
+
+        <unique name="UQ_TLGNR_SIMCARD_SIMCARD_NO">
+            <unique-column name="ISSUER_NUMBER"/>
+            <unique-column name="SIMCARD_NUMBER"/>
+        </unique>
+        <unique name="UQ_TLGNR_SIMCARD_PHONE_NO">
+            <unique-column name="PHONE_NUMBER"/>
+        </unique>
+
+      </table>
+</database>

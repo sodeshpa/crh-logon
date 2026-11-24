@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNS_MATPKG_MAP_COND"
+           description="Configuration Table for Mapping Material Packaging Types (conditions).">
+
+        <column name="MATPKG_MAP_COND_ID" primaryKey="true" required="true" type="DECIMAL" size="12"
+                description="PK"/>
+        <column name="MATPKG_MAP_RULE_ID" required="true" type="DECIMAL" size="12"
+                description="FK tlgnr_sap_material_mpk_map_rule. The rule which this condition belongs."/>
+        
+        <column name="FIELD_NAME" required="true" type="VARCHAR" size="12"
+                description="The field that this condition refers to."/>
+        
+        <column name="FIELD_VALUE" required="true" type="VARCHAR" size="50"
+                description="The constant value, which the condition tests for."/>   
+        
+        <foreign-key foreignTable="TLGNS_MATPKG_MAP_RULE" name="FK_TLGNS_MATPKG_MAP_COND">
+            <reference local="MATPKG_MAP_RULE_ID" foreign="MATPKG_MAP_RULE_ID"/>
+        </foreign-key>
+    </table>
+</database>

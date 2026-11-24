@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<taglib version="2.0" xmlns="http://java.sun.com/xml/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd">
+	<tlib-version>1.0</tlib-version>
+	<jsp-version>2.0</jsp-version>
+	<short-name>crh-terminal</short-name>
+	<uri>http://com.crh.logon/tags/terminal-taglib.tld</uri>
+	<display-name>AdNovum Crh Order Tags</display-name>
+	<description>Tags for order subproject of Adnovum Crh</description>
+	<tag>
+		<name>terminalRowspan</name>
+		<tag-class>
+			com.crh.logon.terminal.taglib.pickup.PickupOrderRowSpan
+		</tag-class>
+		<body-content>JSP</body-content>
+		<description>
+			Skips the body in case the id of the current item corresponds with the previous item. 
+			Otherwise prints out a td tag with the rowspan corresponding with the number of rows which had the same order id.
+		</description>
+		<attribute>
+			<name>printTdTag</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				Defines if the tag should print the surrounding td rowspan tag. In case this value is false, it will not print the tag, only skips the content if the id is corresponding
+				and prints the body if the id is differing.
+			</description>
+		</attribute>
+		<attribute>
+			<name>printInTd</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				Prints in the td tag.
+			</description>
+		</attribute>
+	</tag>
+	<tag>
+		<name>bagterminalRowspan</name>
+		<tag-class>
+			com.crh.logon.terminal.taglib.bagterminal.BagTerminalOrderRowSpan
+		</tag-class>
+		<body-content>JSP</body-content>
+		<description>
+			Prints out the number of terminal screen entries, which have equal attribute named in attribute field. Needed in order
+			to merge rows for identical entries. 
+		</description>
+		<attribute>
+			<name>printTdTag</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				Defines if the tag should print the surrounding td rowspan tag. In case this value is false, it will not print the tag, only skips the content.
+			</description>
+		</attribute>
+		<attribute>
+			<name>printInTd</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				Prints in the td tag.
+			</description>
+		</attribute>
+	</tag>	
+		<tag>
+		<name>uomName</name>
+		<tag-class>
+			com.crh.logon.terminal.taglib.pickup.PickupOrderUomNameTag
+		</tag-class>
+		<body-content>JSP</body-content>
+		<description>
+			Prints out the name of the actual uom on pickup order tile. In case it is not available retrieves from the db and stores in the global map for names stored in the pickupform.
+		</description>
+		<attribute>
+			<name>uomCd</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				The uom Cd the name of which is going to be printed.
+			</description>
+		</attribute>
+	</tag>	
+</taglib>

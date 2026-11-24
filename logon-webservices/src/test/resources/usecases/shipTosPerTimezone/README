@@ -1,0 +1,18 @@
+deletedBillto.zip contains an almost standalone set of testdata. All it needs
+is the standard AdNovum test materials.
+
+There is a sold-to, ship-to and bill-to as well as a contract. Once imported,
+you can locate them with 'Deleted Billto' (ship-to search).
+
+In the original state of the test requests, both the sold-to and the bill-to
+are valid bill-to's for the sold-to/ship-to pair. Verify that.
+
+Then, in a second step, locate the line in soldto.request which is currently
+commented out (<MSGFN>003</MSGFN>). Replace the 005 in the line below (which
+is not commented out) by 003. That means that you are deleting the bill-to
+partner function of the sold-to to itself. Thus, the sold-to cannot be his own
+bill-to anymore.
+
+After sending the data again (and without saving the dispocard after that),
+verify that the sold-to is not available as bill-to in any of order taking,
+dispocard or order details.

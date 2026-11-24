@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNR_UOM_DIMENSION_BS" refData="true"
+           description="Unit of Measurement Dimension. Entries in this table must NOT be convertible into each other. Weight (Tons) cannot be expressed in Time (hour) or Pieces. Convertible Unit of measures must be added to TLGNR_UOM, not TLGNR_UOM_DIMENSION. Entries with Nominator=1 and Denominator=1 in tlgnr_uom are added to tlgnr_uom_dimension (unless they are simple aliases of another UOM, see TO=TNE).">
+
+        <column name="UOM_DIMENSION_CD" primaryKey="true" required="true" type="VARCHAR" size="3"
+                description="PK. Code of the Reference Data. Is identical to the codes used in TLGNR_UOM and SAP."/>
+        <column name="CTL_ACT_CD" required="true" type="BOOLEAN"
+                description="Active Flag. When new data is entered, only reference data with active flag are available for selection normally."/>
+
+    </table>
+</database>

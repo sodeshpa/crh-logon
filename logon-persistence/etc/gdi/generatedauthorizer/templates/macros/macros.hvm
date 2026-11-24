@@ -1,0 +1,138 @@
+##
+##
+##
+#macro (toJava $name)$st.handleUnderscores($name.toLowerCase())#end
+##
+##
+##
+#macro (generatesequencename $tableName $columnName)
+#set ($sequenceName = "undef")
+#set ($colName = "")
+#if ($tableName.startsWith("TLGN"))
+#set ($tabType = "undef")
+#set ($firstUnderscorePos = $tableName.indexOf("_"))
+#if ($firstUnderscorePos > 0)
+#set ($tabType = $tableName.substring(0, $firstUnderscorePos))
+#set ($firstUnderscorePos = $firstUnderscorePos + 1)
+#set ($tabName = $tableName.substring($firstUnderscorePos))
+#set ($tabType = $tabType.replaceAll("TLGN", "SLGN"))
+#if ($tabName.length() > 23)
+#set ($tabName = $tabName.replaceAll("_", ""))
+#end
+#end
+#set ($sequenceName = "${tabType}_")
+#else
+#set ($tabName = $tableName)
+#set ($sequenceName = "SQ_")
+#end
+#if ($columnName != "undef")
+#if ($tabName.length() > 11)
+#set ($tabName = $tabName.substring(0, 11))
+#end
+#set ($colName = $columnName.replaceAll("_", ""))
+#if ($colName.length() > 11)
+#set ($colName = $colName.substring(0, 11))
+#end
+#end
+#set ($sequenceName = "${sequenceName}${tabName}${colName}")
+$sequenceName#end
+##
+##
+##
+#macro (toJavaType $column)
+#set ($type = "undef")
+#set ($columnType = $column.type)
+## for ddl-utils generated types, put the size portion into the type as TYPE(<x,y>)
+#if (!$columnType.contains("(") && $column.setSize)
+#set ($size = $column.size.stringValue)
+#set ($columnType = "$columnType($size)")
+#end
+#set ($columnType = $columnType.replaceAll('\(\d*,\d*\)', "(*,*)"))
+#set ($columnType = $columnType.replaceAll('\(\d*\)', "(*)"))
+#set ($type = $properties.get("$columnType"))
+$type#end
+##
+##
+##
+#macro (toOracleType $column)
+#set ($type = ${column.type})
+#if ($type == "BOOLEAN") 
+#set ($type = "NUMBER(1)")
+#elseif ($type == "DECIMAL")
+#set ($type = "NUMBER")
+#set ($type = "${type}($column.size.stringValue)")
+#elseif ($type == "DOUBLE")
+#set ($type = "NUMBER")
+#elseif ($type == "VARCHAR") 
+#set ($type = "VARCHAR2")
+#set ($type = "${type}($column.size.stringValue)")
+#elseif ($column.setSize) 
+#set ($type = "${type}($column.size.stringValue)")
+#end
+$type#end
+##
+##
+##
+#macro (declare $column $selectFetchModeRelations)
+#if ($column.type == "TIMESTAMP")
+    @Temporal(TemporalType.TIMESTAMP)
+#elseif ($column.type == "DATE")
+    @Temporal(TemporalType.TIMESTAMP)
+#elseif ($column.type == "BLOB")
+    @Lob
+#end
+#set ($type = "undef")
+#set ($javaName = "undef")
+## determine fk references
+#foreach ($curFk in $generatefor.foreignKeyArray)
+#foreach ($curRef in $curFk.referenceArray)
+#if ($column.name.stringValue == $curRef.local.stringValue)
+## note... we don't yet handle combined fks!
+    @ManyToOne(fetch=FetchType.EAGER)
+#foreach ($curFetchRel in $selectFetchModeRelations)
+#if ($curFetchRel == "ALL" || $curFetchRel == $column.name.stringValue.toUpperCase())
+   	@Fetch(FetchMode.SELECT)
+#end
+#end
+#set ($type = "#table2classname($curFk.foreignTable.stringValue.toUpperCase())")
+#set ($refList = [])
+#foreach ($table in $current.database.tableArray)
+#if ($table.name.stringValue == $curFk.foreignTable.stringValue)
+#foreach ($curCol in $table.columnArray)
+#if ($curCol.primaryKey == true)
+#set ($dummy = $refList.add($curCol))
+#end
+#end
+#end
+#end
+#if ($refList.size() > 1)
+    @JoinColumns(value = {
+#foreach ($curRef in $refList)
+            @JoinColumn(referencedColumnName="$curRef.name.stringValue")$st.rnl($refList, $velocityCount, ",")
+#end
+        }
+    )
+#else
+    @JoinColumn(name = "$curRef.local.stringValue")
+#end
+#set ($javaName = $st.lc($st.handleUnderscores($curRef.local.stringValue.replace("_ID", "").replace("_CD", "").toLowerCase())))
+#set ($dummy = $fktypes.add($type))
+#set ($dummy = $fknames.add($javaName))
+#set ($dummy = $handeled.add("#toJava($column.name.stringValue().toLowerCase())"))
+#end
+#end
+#end
+#if ($type == "undef")
+#set ($type = "#toJavaType($column)")
+    @Column(name = "$column.name.stringValue")
+#set ($javaName = "#toJava($column.name.stringValue().toLowerCase())")
+#end
+#if ($javaName.equals("ctlTcn"))
+    @Version
+#end
+    private $type $javaName;
+
+#end
+##
+##
+##

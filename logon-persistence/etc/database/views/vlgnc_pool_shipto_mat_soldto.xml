@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="VLGNC_POOL_SHIPTO_MAT_SOLDTO" mappingType="view" skipSql="true">
+        <column name="SHIPTO_SAREA_RESTR_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="SHIPTO_NAME" type="VARCHAR" size="35"/>
+        <column name="SHIPTO_NR" type="VARCHAR" size="10"/>
+        <column name="POOL_ID" type="DECIMAL" size="12"/>
+        <column name="POOL_NAME" type="VARCHAR" size="30"/>
+        <column name="MATERIAL_NR" type="VARCHAR" size="18"/>
+        <column name="BASE_UOM_CD" type="VARCHAR" size="3"/>
+        <column name="MATERIAL_DESCRIPTION" type="VARCHAR" size="40"/>
+        <column name="MATERIAL_DESC_LANG_CD" type="VARCHAR" size="2"/>
+        <column name="SOLDTO_NAME" type="VARCHAR" size="35"/>
+        <column name="SOLDTO_ID" type="DECIMAL" size="12"/>
+        <column name="PLANT_NAME" type="VARCHAR" size="80"/>
+        <column name="AUTO_CARRIER_ASSIGNMENT_FLAG" required="true" type="BOOLEAN"/>
+        <column name="COMM_CARRIER_ID" type="DECIMAL" size="12"/>
+        <column name="COMM_CARRIER_NAME" type="VARCHAR" size="40"/>
+    </table>
+</database>

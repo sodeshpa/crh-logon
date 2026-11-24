@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+	<table name="TLGNC_SHIPTO_SAREA_REST_MAINT"
+		description="Description: Stores couples of sap contract items: 
+				    LRQ 220.8 The master data shipto defaults of the MATCH_SAP_CONTRACT_ITEM_ID had been copied for 
+				    SAP_CONTRACT_ITEM_ID by the automatic initialization of shipto sales area defaults scheduled job at the PROCESSING_TS.
+				    The key data of the contracts is identical. Populated only in SAP import.">
+
+		<column name="SHIPTO_SAREA_REST_MAINT_ID" primaryKey="true"
+			required="true" type="DECIMAL" size="12" description="PK" />
+
+		<column name="SAP_CONTRACT_ITEM_ID" required="true" type="DECIMAL"
+			size="12"
+			description="FK, unique TLGNS_SAP_CONTRACT_ITEM. 
+        	Contract item id of the contract item, for which all the shipto sales area defaults of MATCH_SAP_CONTRACT_ITEM_ID had been copied
+        	during the automatic maintenance of shipto sales area default scheduled job." />
+
+		<column name="MATCH_SAP_CONTRACT_ITEM_ID" required="true" type="DECIMAL"
+			size="12"
+			description="FK, unique, FK TLGNS_SAP_CONTRACT_ITEM. Contract item id of the contract item, all the shipto sales area defaults of which were copied
+						and assigned to SAP_CONTRACT_ITEM_ID during the automatic initialization of shipto sales area default scheduled job." />
+
+		<column name="PROCESSING_TS" type="TIMESTAMP"
+			description="Empty whenever the SAP_CONTRACT_ITEM_ID is not yet processed by the automatic maintenance of shipto sales area defaults scheduled job.
+			Contains the value of processing when the SAP_CONTRACT_ITEM_ID had been processed by the automatic initialization of shipto sales area defaults job." />
+
+
+		<foreign-key foreignTable="TLGNS_SAP_CONTRACT_ITEM" name="FK_SAP_CONTRACT_ITEM_ID">
+			<reference local="SAP_CONTRACT_ITEM_ID" foreign="SAP_CONTRACT_ITEM_ID" />
+		</foreign-key>
+		<foreign-key foreignTable="TLGNS_SAP_CONTRACT_ITEM" name="FK_MATCH_SAP_CONTRACT_ITEM_ID">
+			<reference local="MATCH_SAP_CONTRACT_ITEM_ID" foreign="SAP_CONTRACT_ITEM_ID" />
+		</foreign-key>
+	    
+	    <unique name="UQ_MATCH_SAP_CONTRACT_ITEM_ID">
+			<unique-column name="SAP_CONTRACT_ITEM_ID"/>
+			<unique-column name="MATCH_SAP_CONTRACT_ITEM_ID"/>
+	    </unique>
+	</table>
+</database>

@@ -1,0 +1,3 @@
+
+this GDi template automates the augmentation of the WSDLs from ebm.
+ - soapFault message for error handling

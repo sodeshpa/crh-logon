@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<log:PDAAnmeldung xmlns:log="http://194.11.246.115/LogonToPISrv">
+	<log:verladeauftrag_id>1</log:verladeauftrag_id>
+	<!--Optional:-->
+	<log:verladestrasse_id>1</log:verladestrasse_id>
+</log:PDAAnmeldung>

@@ -1,0 +1,1023 @@
+div.zeitplanouter{
+	position: relative;
+}
+
+div.auftragOuter{
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+	background-color: transparent;
+	position: absolute;
+	border: none;
+	height:20px;
+	z-index:10;
+	cursor: pointer;
+}
+
+div.orderOuter, div.orderOuterSelected{
+	background-color: transparent;
+	position: absolute;
+	height:20px;
+	z-index:10;
+}
+
+div.orderOuterSelected{
+	border: dashed 1px red;
+}
+
+div.orderOuter{
+	border: dashed 1px black;
+}
+
+
+div.auftragInnerSollIst, table.dispotable td div.auftragInnerSollIst{
+	position: absolute;
+	max-width:100%;
+	height:10px;
+	background: transparent;
+	overflow: hidden;
+	border:none;
+	text-align:left;
+	color: #ffffff;
+	font-size: 10px;
+}
+
+table.dispotable td div.auftragCaption{
+	font-size: 10px;
+}
+
+div.schedulingInfo, div.schedulingInfoErr, div.schedulingInfoOk{
+	border:1px solid #000000;
+	background:#ffffff;
+	color:#000000;
+	width:50px;
+	height:16px;
+	left:6px;
+	top:0px;
+	position:relative;
+	overflow: hidden;
+	z-index:12;
+}
+
+div.schedulingInfoErr{
+	background:#EEAAAA;
+}
+
+div.schedulingInfoOk{
+	background:#66BB66;
+	color:#ffffff;
+}
+div.auftragCaption{
+	position: absolute;
+	left:5px;
+	top:1px;
+	color: #ffffff;
+	font-size: 10px;
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+
+table.dispotable td div.orderCaption{
+	font-size: 10px;
+	border: none;
+}
+
+div.orderInner div.orderCaption{
+	position: absolute;
+	border: none;
+	left:5px;
+	top:3px;
+	color: #ffffff;
+	font-size: 10px;
+	white-space: nowrap;
+	z-index:15;
+}
+
+div.orderInner div.maxTimeUntilLoading, div.orderInner div.maxTimeUntilLoadingWarn{
+	float: right; 
+	position: relative; 
+	padding-right: 10px;
+	border: none;
+	z-index:15;
+	font-size: 10px;
+	white-space: nowrap;
+	top:3px;
+}
+
+div.orderInner div.maxTimeUntilLoadingWarn{
+	color: #ff0000;
+}
+
+div.orderInner div.maxTimeUntilLoading{
+	color: #ffffff;
+}
+
+div.auftragSpan{
+/*	background: #FFEEAA; */
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+	height: 39px;
+	position: absolute;
+	top:-2px;
+	border: 3px #FFEEAA dashed;
+/*	opacity:0.2; */
+/*	filter:alpha(opacity=20); */
+}
+
+div.custorderSpan{
+/*	background: #FFEEAA; */
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+	position: absolute;
+	top:-1px;
+	border: 3px #FFEEAA dashed;
+/*	opacity:0.2; */
+/*	filter:alpha(opacity=20); */
+}
+
+div.custorderSpanChild{
+	background: #FFEEAA;
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+	opacity:0.2;
+	width:100%;
+	filter:alpha(opacity=20);
+}
+
+div.auftragSpanSelected{
+	border: 3px #FFBB44 dashed;
+	z-index: 1;
+}
+
+div.auftragSpanSelected{
+	border: 3px #FFBB44 dashed;
+	z-index: 1;
+}
+
+div.auftragInner div.auftragDeliveryTimeSoll, div.auftragInner div.pingAuftragDeliveryTimeSoll, div.auftragInnerSelected div.auftragDeliveryTimeSoll{
+	height: 17px;
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+	position: absolute;
+	top:-4px;
+	width:4px;
+}
+div.auftragInner div.auftragDeliveryTimeIst, div.auftragInner div.pingAuftragDeliveryTimeIst, div.auftragInner div.auftragDeliveryTimeIst, div.auftragInnerSelected div.auftragDeliveryTimeIst{
+	height: 18px;
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+	position: absolute;
+	top:12px;
+	width:4px;
+}
+div.auftragInner div.auftragDeliveryTimeSollIstConnect, div.auftragInner div.pingAuftragDeliveryTimeSollIstConnect, div.auftragInnerSelected div.auftragDeliveryTimeSollIstConnect{
+	position: absolute;
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+	top:12px;
+	height:4px;
+	font-size: 0px;
+	overflow: visible;
+}
+div.auftragInner div.auftragDeliveryTimeSoll, div.auftragInner div.auftragDeliveryTimeIst, div.auftragInner div.auftragDeliveryTimeSollIstConnect{
+	background: #0000cc;
+	border:1px solid black;
+	z-index:20;
+
+}
+div.auftragInner div.pingauftragDeliveryTimeSoll, div.auftragInner div.pingauftragDeliveryTimeIst, div.auftragInner div.pingauftragDeliveryTimeSollIstConnect{
+	background: #CDCDCD;
+	border:1px solid black;
+	z-index:20;
+}
+
+div.auftragInnerSelected div.auftragDeliveryTimeSoll, div.auftragInnerSelected div.auftragDeliveryTimeIst, div.auftragInnerSelected div.auftragDeliveryTimeSollIstConnect{
+	background: red;
+	border:1px solid black;
+	z-index:30;
+}
+
+div.auftragInner, div.auftragInnerSelected{
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+	background: transparent;
+	border:none;
+	height:28px;
+	position: absolute;
+	top:-4px;
+}
+
+/* FIXME (andras Jul 24, 2012): remove this with old scheduling screen, the new does not need it. */
+div.auftragBorder{
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+	background: #BBB;
+	filter:alpha(opacity=50);
+	opacity:0.5;
+	border:1px solid #000;
+	height:30px;
+	position: absolute;
+	top:-5px;
+}
+
+div.auftragInner div.hDragHandle, div.auftragInner div.dispoBarOverlay, div.auftragInnerSelected div.hDragHandle, div.auftragInnerSelected div.dispoBarOverlay {
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+	background: white;
+	border:none;
+	height:100%;
+	width:30px;
+	top:0px;
+	position: absolute;
+	z-index:2;
+	filter:alpha(opacity=0);
+	opacity:0.0
+}
+
+img.auftragError{
+	position:absolute;
+	left:-20px;
+	top:6px;
+	visibility: hidden;
+	cursor: pointer;
+}
+
+img.orderError{
+	position:absolute;
+	left:-20px;
+	top:2px;
+	visibility: hidden;
+}
+
+img.orderIcon {
+	position: absolute;
+    top: 2px;
+}
+
+div.movelr div.hDragHandle{
+	cursor: e-resize;
+}
+
+div.auftragSollIst, div.auftragSollIstPing{
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+	position:relative;
+	width: 100%;
+	height: 14px
+}
+
+div.orderInner{
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+	position:relative;
+	width: 100%;
+	height: 20px;
+	cursor: pointer;
+	overflow: hidden;
+}
+
+
+
+div.camion{
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+	background-color: transparent;
+	border: none;
+	left:-1px;
+	margin-left:0px;
+	margin-right:0px;
+	margin-top:1px;
+	margin-bottom:1px;
+	position:absolute;
+	height:37px;
+	padding:0px;
+}
+
+.selected div.ddselect{
+	visibility: visible;
+	border: 1px dashed red;
+}
+
+.ddhover div.ddselect{
+	visibility: visible;
+	border: 1px solid blue;
+}
+
+div.ddselect{
+	position: absolute;
+	width: 100%;
+	height:100%;
+	visibility: hidden;
+}
+
+div.orderrow{
+	background-color: transparent;
+	border: none;
+	margin:1px;
+	position:absolute;
+	height:22px;
+	padding:1px;
+}
+
+table.zeitplan td{
+	border:1px solid #999999;
+}
+
+table.zeitplan tr{
+	height:40px;
+}
+
+table.dispotable td div.auftragSollIst div, table.dispotable td div.auftragSollIstPing div{
+	font-size:8px;
+}
+
+div.auftragSollIst div, div.auftragSollIstPing div{
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+	height:14px;
+	font-size:8px;
+	float:left;
+	border:1px solid #000000;
+}
+
+div.orderInner div{
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+	height:20px;
+	float:left;
+	border:1px solid #000000;
+}
+
+div.auftragSollIst div.balkenPart, div.auftragSollIstPing div.balkenPart{
+	border:none;
+}
+
+div.auftragSollIstPing div.loadEr
+,div.auftragSollIstPing div.unloadEr
+,div.auftragSollIstPing div.toEr
+,div.auftragSollIstPing div.loadPl
+,div.auftragSollIstPing div.toPl
+,div.auftragSollIstPing div.unloadPl
+,div.auftragSollIstPing div.fromPl
+,div.auftragSollIstPing div.prePl
+,div.auftragSollIstPing div.loadTr
+,div.auftragSollIstPing div.toTr
+,div.auftragSollIstPing div.unloadTr
+,div.auftragSollIstPing div.fromTr
+,div.auftragSollIstPing div.preTr
+,div.auftragSollIstPing div.loadCf
+,div.auftragSollIstPing div.toCf
+,div.auftragSollIstPing div.unloadCf
+,div.auftragSollIstPing div.fromCf
+,div.auftragSollIstPing div.preCf
+,div.auftragSollIstPing div.loadLo
+,div.auftragSollIstPing div.toLo
+,div.auftragSollIstPing div.unloadLo
+,div.auftragSollIstPing div.fromLo
+,div.auftragSollIstPing div.preLo
+,div.auftragSollIstPing div.loadExtLocked
+,div.auftragSollIstPing div.toExtLocked
+,div.auftragSollIstPing div.unloadExtLocked
+,div.auftragSollIstPing div.fromExtLocked
+,div.auftragSollIstPing div.preExtLocked
+,div.auftragSollIstPing div.loadOnHold
+,div.auftragSollIstPing div.toOnHold
+,div.auftragSollIstPing div.unloadOnHold
+,div.auftragSollIstPing div.fromOnHold
+,div.auftragSollIstPing div.preOnHold
+,div.auftragSollIstPing div.loadPrescheduled
+,div.auftragSollIstPing div.toPrescheduled
+,div.auftragSollIstPing div.unloadPrescheduled
+,div.auftragSollIstPing div.fromPrescheduled
+,div.auftragSollIstPing div.prePrescheduled{
+	background: #CDCDCD;
+}
+
+table.dispotable{
+	border-collapse: collapse;
+	position: relative;
+	table-layout:fixed;
+}
+
+table.dispotable th{
+	background-color: #BBBBBB;
+	text-align: center;
+	color: #000000;
+	border:1px solid #999999;
+	white-space: nowrap;
+	font-size: 12px;
+}
+
+table.dispotable tr{
+	height:40px;
+	max-height:40px;
+}
+
+table.dispotable tr.custOrder, table.dispotable tr.custOrderHead {
+	height:20px;
+	max-height:20px;
+}
+
+table.dispotable tr.custOrderHeadGrey td, table.dispotable tr.pingCustOrderHeadGrey td,
+table.dispotable tr.custOrderHeadGrey td div, table.dispotable tr.pingCustOrderHeadGrey td div{
+	 background:#AAAAAA;
+ color:#ffffff;
+}
+	
+table.dispotable tr.custOrderHeadBlue td, table.dispotable tr.pingCustOrderHeadBlue td,
+table.dispotable tr.custOrderHeadBlue td div, table.dispotable tr.pingCustOrderHeadBlue td div{
+ background:#6699FF;
+ color:#ffffff;
+}
+
+table.dispotable th.truckStatus, 
+table.dispotable td.truckStatus, 
+table.dispotable tr.custOrderHeadGrey td.truckStatus, 
+table.dispotable tr.custOrderHeadBlue td.truckStatus {
+	max-width:65px;
+	width:65px;
+/* 	background:#6699FF; */
+/* 	color:#FFFFFF; */
+	border-right:2px double;
+	border-left:2px double;
+}
+
+table.dispotable tr.custOrderHead,
+table.dispotable tr.custOrderHeadGrey,
+table.dispotable tr.custOrderHeadBlue{
+	-moz-box-sizing:border-box;	
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+	border: none;
+}
+
+table.dispotable tr.pingCustOrderHead,
+table.dispotable tr.pingCustOrderHeadGrey,
+table.dispotable tr.pingCustOrderHeadBlue{
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+	border: 2px dashed red;
+	height: 20px;	
+}
+
+table.dispotable tr.custOrderHead div,
+table.dispotable tr.pingCustOrderHead div {
+ background:#dddddd;
+}
+
+
+table.dispotable tr.order{
+	height:38px;
+	cursor: pointer;
+}
+
+table.dispotable tr.railorder{
+	height:40px;
+	cursor: pointer;
+}
+
+
+div.dispotablehead{
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;	
+	overflow:hidden;
+	border:none;
+	margin: 0px;
+	padding: 0px;
+	height:41px;
+	position:absolute;
+}
+
+div.dispotablehead div.hhour{
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+	border-left:none;
+	border-top:none;
+	border-bottom:none;
+	border-right:1px solid #999999;
+	margin: 0px;
+	padding: 0px;
+	position:absolute;
+	top:0px;
+	height:100%;
+}
+
+
+table.dispotable th, table.dispotable td{
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+	text-align: center;
+	font-size: 12px;
+	border:1px solid #999999;
+	color: #000000;
+	white-space: nowrap;
+	overflow:hidden;
+}
+
+table.dispotable th{
+	background-color: #BBBBBB;
+}
+
+table.dispotable tr.custOrder th{
+	background-color: #888888;
+	color: #ffffff;
+}
+
+table.dispotable td{
+	background-color: #DDDDDD;
+}
+
+table.dispotable td div{
+	font-size: 12px;
+}
+
+
+table.dispotable td.hour{
+	text-align: left;
+	vertical-align: top; 
+}
+
+table.dispotable tr.arriving td, .colorarriving{
+	background-color: #EEEEEE;
+}
+
+table.dispotable tr.arrived td, .colorarrived{
+	background-color: #FFFFFF;
+}
+
+table.dispotable tr.loaded td, .colorloaded{
+	background-color: #C2DBF3;
+}
+
+table.dispotable tr.transmitted td, .colortransmitted{
+	background-color: #9797F0;
+}
+
+table.dispotable tr.lowprio td{
+	background-color: #FFB5B5;
+}
+
+table.dispotable tr.normalprio td{
+	background-color: #FFFFC9;
+}
+
+table.dispotable tr.maxprio td{
+	background-color: #DEFFDE;
+}
+
+table.dispotable tr.disabled td{
+	background-color: #CCCCCC;
+}
+
+div.truckUnavail{
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+	background: #CCCCCC;
+	height: 39px;
+	position: absolute;
+	top:-1px;
+	padding: 4px;
+	color: #666666;
+}
+
+div.driverBreak{
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+	background: #FFAAAA;
+	height: 39px;	
+	position: absolute;
+	top:-1px;
+	padding: 4px;
+	color: #666666;
+	cursor: pointer;
+	z-index: 5;
+	border: 1px solid #ff7777;
+}
+
+div.mopBreak{
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+	background: #FF5555;
+	height: 39px;
+	position: absolute;
+	top:-1px;
+	padding: 4px;
+	color: #666666;
+	z-index:6;
+	border: 1px solid #ff0000;
+}
+
+div.trafficJam{
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+	background: #AA7755;
+	height: 39px;
+	position: absolute;
+	top:-1px;
+	padding: 4px;
+	z-index:7;
+	border: 1px solid #AA4400;
+}
+
+div.driverBreakHandle{
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;	
+	background: transparent;
+	height: 39px;
+	position: absolute;
+	top:-1px;
+	z-index: 10;
+	cursor: pointer;
+}
+
+
+.vertical{
+/* 	writing-mode: tb-rl; */
+	filter: flipv fliph;
+	font-size: 12px;
+}
+
+.orderremarklabelbig {
+	width: 172px;
+	display: inline-block;
+}
+
+.orderremarklabelmedium {
+	width: 97px;
+	display: inline-block;
+}
+
+.orderremarklabel {
+	width: 77px;
+}
+
+.ordernumberlabel {
+	width: 70px;
+	display: inline-block;
+}
+
+.orderremarklabel, .orderremarklabelmedium, .orderremarklabelbig {
+	display: inline-block;
+	text-align: left;
+}
+
+.etranfielderror {
+	background-color: #FF0000;
+}
+
+.etransavebutton {
+	width: 20px;
+	height: 12px;
+	display: inline-block;
+}
+
+.etranfield {
+	padding-left: 2px;
+}
+
+.etranfield input {
+	width:75px;
+	height:18px;
+}
+
+div.dispocontainer{
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+	height: 300px;
+	overflow-y:hidden;
+	overflow-x:auto;
+	background-color: transparent;
+	border:none;
+	position:relative;
+	width:100%;
+	max-width:100%;
+}
+
+div.selectionBorder{
+	position: absolute;
+	height: 100%;
+	border: red dashed 2px;
+	top:-1px;
+}
+
+div.currTimeContainer{
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+	background-color: transparent;
+	border: none;
+	margin:1px;
+	position:absolute;
+	height:37px;
+	padding:1px;
+	top:0px;
+	z-index: 12;
+}
+
+div.currTimeIndicator{
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+	background-color: red;
+	border: none;
+	position:absolute;
+	width:3px;
+	top:28px;
+	z-index: 12;
+}
+
+.dispoqtip .x-tip-tl, .dispoqtip .x-tip-tr, .dispoqtip .x-tip-tc, .dispoqtip .x-tip-ml, .dispoqtip .x-tip-mr, .dispoqtip .x-tip-mc, .dispoqtip .x-tip-bl, .dispoqtip .x-tip-br, .dispoqtip .x-tip-bc{
+	background: transparent;
+	border: none;
+} 
+
+.dispoqtip .x-tip-body div, .dispoqtip .x-tip-body td{
+	font-size: 11px;
+	vertical-align: top;
+	color: #444;
+}
+
+.dispoqtip .x-tip-body{
+	font-weight: bold;
+}
+
+.dispoerrorqtip .x-tip-bwrap{
+	background: #FFCCCC;
+	border: 1px solid #FF8888;
+}
+
+.dispowarningqtip .x-tip-bwrap{
+	background: #FFFFCC;
+	border: 1px solid #FFFF88;
+}
+
+.dispoinfoqtip  .x-tip-bwrap{
+	background: #CCCCFF;
+	border: 1px solid #8888FF;
+}
+
+.disponotestable {
+	table-layout: fixed;
+}
+
+.disponotestable div.pretext, .messagebox pre, .disponotestable pre {
+	white-space:pre-wrap; /* FF3 */
+	word-wrap:break-word; /* IE */
+}
+
+.trackinput .x-form-field-wrap .x-form-text {
+	height:18px;
+}
+
+.trackinput .x-form-field-wrap .x-form-trigger{
+	height:17px;
+}
+
+.etranoutboundsign {
+	background-image:url(../images/outbound-grey.png);
+	background-repeat:no-repeat;
+	background-position: left;
+}
+
+.etranreturnsign {
+	background-image:url(../images/return-grey.png);
+	background-repeat:no-repeat;
+	background-position: left;
+}
+
+.oksign {
+	background-image:url(../images/active.png);
+	background-repeat:no-repeat;
+	background-position: center;
+	cursor: pointer;
+}
+
+.noksign {
+	background-image:url(../images/exclamation.gif);
+	background-repeat:no-repeat;
+	background-position: center;
+}
+
+.oksigninactive {
+	background-image:url(../images/inactive.png);
+	background-repeat:no-repeat;
+	background-position: center;
+	cursor: pointer;
+}
+
+/* FIXME (andras Jul 24, 2012): check if nedded */
+table.auftragInner{
+	position: absolute;
+	max-width:100%;
+}
+
+/* FIXME (andras Jul 24, 2012): check if nedded */
+table.auftragInner tr{
+	height:10px;
+	background: transparent;
+}
+
+/* FIXME (andras Jul 24, 2012): check if nedded */
+table.auftragInner td{
+	background: transparent;
+	overflow: hidden;
+	border:none;
+	height:10px;
+	text-align:left;
+	color: #ffffff;
+	font-size: 10px;
+}
+
+/* FIXME (andras Jul 24, 2012): check if nedded */
+table.dispotable tr.disabled td table.auftragInner tr td{
+	background: transparent;
+}
+
+table.materialTable {
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+	table-layout:fixed;
+	border-collapse:collapse; /* This is needed for IE to display the bottom border of the th elements. */
+}
+
+table.materialTable th {
+	border-bottom: 1px solid #000000;
+}
+
+table.materialTable td, table.materialTable th {
+	width:120px;
+	max-width:120px;
+	overflow:hidden;
+	padding: 2px;
+	text-align:center;
+	white-space: nowrap;
+	table-layout:fixed;	
+}
+
+table.materialTable .firstColumn {
+	border-right: 1px solid #000000;
+	width: 120px;
+	max-width: 120px;
+}
+
+table.materialTable tr {
+	height:18px;
+}
+
+.plantCodeLeft {
+	float: left;
+}
+
+.plantCodeRight {
+	float: right;
+	margin-right: 4px;
+}
+
+.plantCode.clear {
+	clear: both;
+}
+
+.popupcontent.label {
+	font-weight: bold;
+}
+
+.popupcontent div {
+	font-weight: normal;
+}
+
+div.shippingpointDiv div {
+    height: 18px;
+}
+
+div.orderNrDiv div {
+	height: 18px;
+}
+
+div.commCarrDiv div {
+	height: 18px;
+}
+
+/* Simple Vehicle Scheduling */
+
+.simpledispocontainer {
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+    border: medium none;
+    height: 300px;
+    max-width: 100%;
+    overflow: auto;
+    width: 100%;
+}
+
+table.simpledispotable {
+	width: 100%;
+	table-layout: auto;
+}
+
+table.simpledispotable th {
+	height: 30px; 
+	padding: 2px 5px;
+}
+
+table.simpledispotable .assigned_order {
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+    background-color: #FDFDFD;
+    border: 1px solid gray;
+    float: left;
+    margin-bottom: 3px;
+    margin-left: 3px;
+    margin-top: 3px;
+    overflow: hidden;
+    padding: 2px 5px;
+    width: 100px;
+    height: 45px;
+    position: relative;
+}
+
+table.simpledispotable .assigned_order.released {
+	background-color: #C3D6A0;
+    color: white;
+}
+
+table.simpledispotable .assigned_order.loaded {
+	background-color: #EDB3A6;
+    color: white;
+}
+
+table.simpledispotable .assigned_order.shipping {
+ 	background-color: #6699FF;
+ 	color: white;
+}
+
+table.simpledispotable .assigned_order.delivered {
+	background-color: #999999;
+    color: white;
+}
+
+table.simpledispotable .clearfix {
+	clear: both;
+}
+
+table.simpledispotable .truckprio_dropdown {
+	font-size: 9px;
+    width: 40px;
+}
+
+table.simpledispotable .ordernumber {
+	color: #666;
+}
+
+table.simpledispotable .unloadlink {
+	bottom: 2px;
+    position: absolute;
+    right: 2px;
+}
+
+.loadingpoint_dropdown {
+	font-size: 11px;
+}
+
+input.loadedqty,input.deliveredqty {
+	font-size: 11px;
+}
+
+.preLoadInput {
+	font-size: 12px;
+}
+
+div.auftragInnerSollIst, div.orderCaption {
+	font-weight: bold;
+}
+
+.prodPlantSelect {
+	width: 150px;
+}

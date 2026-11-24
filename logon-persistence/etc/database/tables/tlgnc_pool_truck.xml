@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNC_POOL_TRUCK"
+           description="The Trucks which operate for orders assigned to a certain Pool. Pool:Truck is M:N.">
+
+        <column name="POOL_TRUCK_ID" primaryKey="true" required="true" type="DECIMAL" size="12"
+                description="PK"/>
+        <column name="POOL_ID" required="true" type="DECIMAL" size="12"
+                description="FK tlgnc_pool. The Pool to which a Truck is assigned."/>
+        <column name="TRUCK_ID" required="true" type="DECIMAL" size="12"
+                description="FK tlgnc_truck. The Truck."/>
+
+        <foreign-key foreignTable="TLGNC_POOL" name="FK_TLGNC_POOL_TRUCK_POOL">
+            <reference local="POOL_ID" foreign="POOL_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNC_TRUCK" name="FK_TLGNC_POOL_TRUCK_TRUCK">
+            <reference local="TRUCK_ID" foreign="TRUCK_ID"/>
+        </foreign-key>
+
+        <unique name="UQ_TLGNC_POOL_TRUCK">
+            <unique-column name="POOL_ID"/>
+            <unique-column name="TRUCK_ID"/>
+        </unique>
+    </table>
+</database>

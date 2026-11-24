@@ -1,0 +1,386 @@
+<definitions name="Sirocco20" targetNamespace="http://i3g.com/Sirocco20"
+	xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/"
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/"
+	xmlns:t="http://i3g.com/Sirocco20" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:xsd1="http://i3g.com/.xsd1">
+	<types>
+		<xs:schema elementFormDefault="qualified" targetNamespace="http://i3g.com/Sirocco20">			<!-- START getMOs -->
+			<xs:element name="getMOS">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="1" minOccurs="1" name="principal"
+							type="xs:string" />
+						<xs:element maxOccurs="1" minOccurs="1" name="credential"
+							type="xs:string" />
+						<xs:element maxOccurs="1" minOccurs="1" name="max"
+							type="xs:int" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:complexType name="MO">
+				<xs:sequence>
+					<xs:element name="GUID" type="xs:string" />
+					<xs:element name="serviceNumber" type="xs:string" />
+					<xs:element name="mobile" type="xs:string" />
+					<xs:element name="message" type="xs:string" />
+				</xs:sequence>
+				<xs:attribute name="op" type="xs:string" />
+				<xs:attribute name="timestamp" type="xs:dateTime" />
+			</xs:complexType>
+			<xs:complexType name="ArrayOfMO">
+				<xs:sequence>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="item"
+						nillable="true" type="t:MO" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="getMOSResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="1" minOccurs="0" name="getMOSReturn"
+							type="t:ArrayOfMO" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>			<!-- END getMOS -->			<!-- START submitMTText -->
+			<xs:element name="submitMTText">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="1" minOccurs="1" name="principal"
+							type="xs:string" />
+						<xs:element maxOccurs="1" minOccurs="1" name="credential"
+							type="xs:string" />
+						<xs:element maxOccurs="1" minOccurs="1" name="items"
+							type="t:ArrayOfMTTextRequest" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:complexType name="MTTextRequest">
+				<xs:sequence>
+					<xs:element name="serviceNumber" type="xs:string" />
+					<xs:element name="mobile" type="xs:string" />
+					<xs:element name="message" type="xs:string" />
+					<xs:element maxOccurs="1" minOccurs="0" name="mds"
+						type="t:ArrayOfMetadata" />
+				</xs:sequence>
+				<xs:attribute name="rate" type="xs:string" />
+				<xs:attribute name="appId" type="xs:string" />
+				<xs:attribute name="correlationId" type="xs:string" />
+				<xs:attribute name="op" type="xs:string" />
+				<xs:attribute name="lockRequest" type="xs:string" />
+				<xs:attribute name="deferred" type="xs:string" />
+				<xs:attribute name="priority" type="xs:int" />
+				<xs:attribute name="ttl" type="xs:string" />
+			</xs:complexType>
+			<xs:complexType name="ArrayOfMTTextRequest">
+				<xs:sequence>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="item"
+						nillable="true" type="t:MTTextRequest" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="ArrayOfMetadata">
+				<xs:sequence>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="md"
+						nillable="true" type="t:MDRequest" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="MDRequest">
+				<xs:attribute name="key" type="xs:string" />
+				<xs:attribute name="value" type="xs:string" />
+			</xs:complexType>
+			<xs:complexType name="MTTextResponse">
+				<xs:attribute name="GUID" type="xs:string" />
+				<xs:attribute name="appId" type="xs:string" />
+				<xs:attribute name="error" type="xs:boolean" />
+				<xs:attribute name="errorMessage" type="xs:string" />
+			</xs:complexType>
+			<xs:complexType name="ArrayOfMTTextResponse">
+				<xs:sequence>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="item"
+						nillable="true" type="t:MTTextResponse" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="submitMTTextResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="1" minOccurs="0"
+							name="submitMTTextReturn" type="t:ArrayOfMTTextResponse" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>			<!-- END submitMTText -->			<!-- START submitMTBinary -->
+			<xs:element name="submitMTBinary">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="1" minOccurs="1" name="principal"
+							type="xs:string" />
+						<xs:element maxOccurs="1" minOccurs="1" name="credential"
+							type="xs:string" />
+						<xs:element maxOccurs="1" minOccurs="1" name="items"
+							type="t:ArrayOfMTBinaryRequest" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:complexType name="MTBinaryRequest">
+				<xs:sequence>
+					<xs:element name="serviceNumber" type="xs:string" />
+					<xs:element name="mobile" type="xs:string" />
+					<xs:element name="content" type="xs:string" />
+					<xs:element name="UDH" type="xs:string" />
+					<xs:element maxOccurs="1" minOccurs="1" name="mds"
+						type="t:ArrayOfMetadata" />
+				</xs:sequence>
+				<xs:attribute name="rate" type="xs:string" />
+				<xs:attribute name="appId" type="xs:string" />
+				<xs:attribute name="correlationId" type="xs:string" />
+				<xs:attribute name="op" type="xs:string" />
+				<xs:attribute name="lockRequest" type="xs:string" />
+				<xs:attribute name="deferred" type="xs:string" />
+				<xs:attribute name="priority" type="xs:int" />
+				<xs:attribute name="ttl" type="xs:string" />
+			</xs:complexType>
+			<xs:complexType name="ArrayOfMTBinaryRequest">
+				<xs:sequence>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="item"
+						nillable="true" type="t:MTBinaryRequest" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="MTBinaryResponse">
+				<xs:attribute name="GUID" type="xs:string" />
+				<xs:attribute name="appId" type="xs:string" />
+				<xs:attribute name="error" type="xs:boolean" />
+				<xs:attribute name="errorMessage" type="xs:string" />
+			</xs:complexType>
+			<xs:complexType name="ArrayOfMTBinaryResponse">
+				<xs:sequence>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="item"
+						nillable="true" type="t:MTBinaryResponse" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="submitMTBinaryResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="1" minOccurs="0"
+							name="submitMTBinaryReturn" type="t:ArrayOfMTBinaryResponse" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>			<!-- END submitMTBinary -->			<!-- START submitMTWapPush -->
+			<xs:element name="submitMTWapPush">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="1" minOccurs="1" name="principal"
+							type="xs:string" />
+						<xs:element maxOccurs="1" minOccurs="1" name="credential"
+							type="xs:string" />
+						<xs:element maxOccurs="1" minOccurs="1" name="items"
+							type="t:ArrayOfMTWapPushRequest" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:complexType name="MTWapPushRequest">
+				<xs:sequence>
+					<xs:element name="serviceNumber" type="xs:string" />
+					<xs:element name="mobile" type="xs:string" />
+					<xs:element name="URL" type="xs:string" />
+					<xs:element name="iText" type="xs:string" />
+					<xs:element maxOccurs="1" minOccurs="1" name="mds"
+						type="t:ArrayOfMetadata" />
+				</xs:sequence>
+				<xs:attribute name="rate" type="xs:string" />
+				<xs:attribute name="appId" type="xs:string" />
+				<xs:attribute name="correlationId" type="xs:string" />
+				<xs:attribute name="op" type="xs:string" />
+				<xs:attribute name="lockRequest" type="xs:string" />
+				<xs:attribute name="deferred" type="xs:string" />
+				<xs:attribute name="priority" type="xs:int" />
+				<xs:attribute name="ttl" type="xs:string" />
+				<xs:attribute name="sendAsMMS" type="xs:boolean" />
+			</xs:complexType>
+			<xs:complexType name="ArrayOfMTWapPushRequest">
+				<xs:sequence>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="item"
+						nillable="true" type="t:MTWapPushRequest" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="MTWapPushResponse">
+				<xs:attribute name="GUID" type="xs:string" />
+				<xs:attribute name="appId" type="xs:string" />
+				<xs:attribute name="error" type="xs:boolean" />
+				<xs:attribute name="errorMessage" type="xs:string" />
+			</xs:complexType>
+			<xs:complexType name="ArrayOfMTWapPushResponse">
+				<xs:sequence>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="item"
+						nillable="true" type="t:MTWapPushResponse" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="submitMTWapPushResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="1" minOccurs="0"
+							name="submitMTWapPushReturn" type="t:ArrayOfMTWapPushResponse" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>			<!-- END submitMTWapPush -->			<!-- START queryMTStatus -->
+			<xs:element name="queryMTStatus">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="1" minOccurs="1" name="principal"
+							type="xs:string" />
+						<xs:element maxOccurs="1" minOccurs="1" name="credential"
+							type="xs:string" />
+						<xs:element maxOccurs="1" minOccurs="1" name="items"
+							type="t:ArrayOfMTGUIDRequest" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:complexType name="MTGUIDRequest">
+				<xs:attribute name="GUID" type="xs:string" />
+			</xs:complexType>
+			<xs:complexType name="ArrayOfMTGUIDRequest">
+				<xs:sequence>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="item"
+						nillable="true" type="t:MTGUIDRequest" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="MTGUIDStatusResponse">
+				<xs:attribute name="status" type="xs:int" />
+				<xs:attribute name="timestamp" type="xs:dateTime" />
+			</xs:complexType>
+			<xs:complexType name="ArrayOfMTGUIDStatusResponse">
+				<xs:sequence>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="item"
+						nillable="true" type="t:MTGUIDStatusResponse" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="MTGUIDResponse">
+				<xs:sequence>
+					<xs:element maxOccurs="1" minOccurs="0" name="item"
+						nillable="true" type="t:ArrayOfMTGUIDStatusResponse" />
+				</xs:sequence>
+				<xs:attribute name="GUID" type="xs:string" />
+				<xs:attribute name="globalState" type="xs:int" />
+				<xs:attribute name="error" type="xs:boolean" />
+				<xs:attribute name="errorMessage" type="xs:string" />
+			</xs:complexType>
+			<xs:complexType name="ArrayOfMTGUIDResponse">
+				<xs:sequence>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="item"
+						nillable="true" type="t:MTGUIDResponse" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="queryMTStatusResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="1" minOccurs="0"
+							name="queryMTStatusReturn" type="t:ArrayOfMTGUIDResponse" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>			<!-- END queryMTStatus -->
+		</xs:schema>
+	</types>
+	<message name="getMOSSoapOut">
+		<part element="t:getMOSResponse" name="getMOSResponse" />
+	</message>
+	<message name="getMOSSoapIn">
+		<part element="t:getMOS" name="parameters" />
+	</message>
+	<message name="submitMTTextSoapOut">
+		<part element="t:submitMTTextResponse" name="submitMTTextResponse" />
+	</message>
+	<message name="submitMTTextSoapIn">
+		<part element="t:submitMTText" name="parameters" />
+	</message>
+	<message name="submitMTBinarySoapOut">
+		<part element="t:submitMTBinaryResponse" name="submitMTBinaryResponse" />
+	</message>
+	<message name="submitMTBinarySoapIn">
+		<part element="t:submitMTBinary" name="parameters" />
+	</message>
+	<message name="submitMTWapPushSoapOut">
+		<part element="t:submitMTWapPushResponse" name="submitMTWapPushResponse" />
+	</message>
+	<message name="submitMTWapPushSoapIn">
+		<part element="t:submitMTWapPush" name="parameters" />
+	</message>
+	<message name="queryMTStatusSoapOut">
+		<part element="t:queryMTStatusResponse" name="queryMTStatusResponse" />
+	</message>
+	<message name="queryMTStatusSoapIn">
+		<part element="t:queryMTStatus" name="parameters" />
+	</message>
+	<portType name="Sirocco20Operations">
+		<operation name="getMOS">
+			<input message="t:getMOSSoapIn" />
+			<output message="t:getMOSSoapOut" />
+		</operation>
+		<operation name="submitMTText">
+			<input message="t:submitMTTextSoapIn" />
+			<output message="t:submitMTTextSoapOut" />
+		</operation>
+		<operation name="submitMTBinary">
+			<input message="t:submitMTBinarySoapIn" />
+			<output message="t:submitMTBinarySoapOut" />
+		</operation>
+		<operation name="submitMTWapPush">
+			<input message="t:submitMTWapPushSoapIn" />
+			<output message="t:submitMTWapPushSoapOut" />
+		</operation>
+		<operation name="queryMTStatus">
+			<input message="t:queryMTStatusSoapIn" />
+			<output message="t:queryMTStatusSoapOut" />
+		</operation>
+	</portType>
+	<binding name="Sirocco20SOAP" type="t:Sirocco20Operations">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<operation name="getMOS">
+			<soap:operation soapAction="http://i3g.com/Sirocco20/getMOS" />
+			<input>
+				<soap:body use="literal" />
+			</input>
+			<output>
+				<soap:body use="literal" />
+			</output>
+		</operation>
+		<operation name="submitMTText">
+			<soap:operation soapAction="http://i3g.com/Sirocco20/submitMTText" />
+			<input>
+				<soap:body use="literal" />
+			</input>
+			<output>
+				<soap:body use="literal" />
+			</output>
+		</operation>
+		<operation name="submitMTBinary">
+			<soap:operation soapAction="http://i3g.com/Sirocco20/submitMTBinary" />
+			<input>
+				<soap:body use="literal" />
+			</input>
+			<output>
+				<soap:body use="literal" />
+			</output>
+		</operation>
+		<operation name="submitMTWapPush">
+			<soap:operation soapAction="http://i3g.com/Sirocco20/submitMTWapPush" />
+			<input>
+				<soap:body use="literal" />
+			</input>
+			<output>
+				<soap:body use="literal" />
+			</output>
+		</operation>
+		<operation name="queryMTStatus">
+			<soap:operation soapAction="http://i3g.com/Sirocco20/queryMTStatus" />
+			<input>
+				<soap:body use="literal" />
+			</input>
+			<output>
+				<soap:body use="literal" />
+			</output>
+		</operation>
+	</binding>
+	<service name="Sirocco20">
+		<port binding="t:Sirocco20SOAP" name="Sirocco20">
+			<soap:address
+				location="http://siroccotest.interactive3g.com:9091/SiroccoGateway/services/Sirocco20" />
+		</port>
+	</service>
+</definitions>

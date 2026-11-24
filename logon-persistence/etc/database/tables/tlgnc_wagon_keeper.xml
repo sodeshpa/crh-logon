@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNC_WAGON_KEEPER"
+           description="Wagon keepers are the owners of wagons.">
+    <!-- Technical -->
+        <column name="WAGON_KEEPER_ID" primaryKey="true" required="true" type="DECIMAL" size="12"
+                description="PK"/>
+        <column name="WAGON_KEEPER_NAME" required="true" type="VARCHAR" size="40"
+                description="The Name of the owner of the wagon."/>
+        <column name="EMAIL_ADDRESSES" type="VARCHAR" size="200"
+                description="E-mail addresses (separated by comma). Used in case of maintenaince repair order."/>
+        <column name="MAINTENANCE_EMAIL_FLAG" required="true" type="BOOLEAN"
+                description="Flag to control if an e-mail should be sent cc in case of a maintenance repair order to addresses in field MAINTENANCE_EMAIL_ADDRESSES."/>
+        <column name="DESPATCH_CHARGE_PAYER" required="false" type="VARCHAR" size="10"
+                description="Transmitted to SBB, no logic in Logon."/>
+        <column name="ACTIVE_FLAG" required="true" type="BOOLEAN"
+                description="0=inactive/deleted, 1=active."/>
+			
+    </table>
+</database>

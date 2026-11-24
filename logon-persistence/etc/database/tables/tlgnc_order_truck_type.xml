@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNC_ORDER_TRUCK_TYPE"
+           description="Priorities with which certain Truck types should be preferred or forbidden for a certain shipto. A shipto may have a restriction against big trucks (because the access road has a small weight limit, or because there is not enough space to turn with a trailer), or the customer or carrier has an explicit preference for certain types (if available/possible), maybe because it causes less costs. Not explicitely listed truck types are always possible, but with least priority (e.g. 100). The priorities may be tuned by the order management together with the dispatcher in order to best fulfill the customer's wishes on truck types over all customers/orders. In contrast to the wagon_type priorities, these priorities mainly have an informational purpose for the truck disposition, which is performed manually by the dispatcher.">
+
+        <column name="ORDER_TRUCK_TYPE_ID" primaryKey="true" required="true" type="DECIMAL" size="12"
+                description="PK"/>
+        <column name="ORDER_ID" required="true" type="DECIMAL" size="12"
+                description="FK to tlgnc_order. The order to which the truck type restriction belongs to."/>
+        <column name="TRUCK_TYPE_CD" required="true" type="DECIMAL" size="3"
+                description="FK tlgnr_truck_type_cd. Type of the truck: 2-axle, 3-axle, 4-axle, 5-axle or semi-trailer truck (Sattelschlepper)."/>
+        <column name="EVALUATION_PRIORITY" required="true" type="DECIMAL" size="2"
+                description="Priority hints to evaluate possible truck types for this order. 0: Forbidden. 1 has priority over 2, which has priority over 3 etc. 0=Forbidden is strict, but the other values are only priority-hints. If they can be respected or not depends on the scheduler and availability of trucks and knowledge about other orders which should also be ideally dispatched. Truck types which do not have an explicit entry in this table should be treated as forbidden for the order (if there is at least one entry for the order) No entry in this table however means that the order has no truck type restriction at all, and all truck types of truck_type_is_xy=1 is possible"/>
+
+        <foreign-key foreignTable="TLGNC_ORDER" name="FK_TLGNC_ORDER_TRUCK_TYPE_ORD">
+            <reference local="ORDER_ID" foreign="ORDER_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_TRUCK_TYPE_BS" name="FK_TLGNC_ORDER_TRUCK_TYPE_TYP">
+            <reference local="TRUCK_TYPE_CD" foreign="TRUCK_TYPE_CD"/>
+        </foreign-key>
+
+        <unique name="UQ_TLGNC_ORDER_TRUCK_TYPE">
+            <unique-column name="ORDER_ID"/>
+            <unique-column name="TRUCK_TYPE_CD"/>
+        </unique>
+        
+        <!-- LOGON-6982, LOGON-7017  -->
+        <index name="I_ORDER_TRUCK_TYPE_ORDER_ID">
+            <index-column name="ORDER_ID"/>
+        </index>
+         <index name="I_ORD_TRUCK_TYPE_TRUCK_TYPE_CD">
+            <index-column name="TRUCK_TYPE_CD"/>
+        </index>
+      </table>
+</database>

@@ -1,0 +1,7 @@
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+  <table name="TLGNR_OUTPUTDOC_TYPE_BS" refData="true" description="Describes the different types of output documents">
+    <column name="OUTPUTDOC_TYPE_CD" primaryKey="true" required="true" type="DECIMAL" size="12" description="PK: 1000: Delivery Note, 1001: Export Invoice, 1002: Cash Sales, 1003: Collective Delivery Note, -1: Unidentified output document type"/>
+    <column name="TYPENAME" required="true" type="VARCHAR" size="40" description="Name of the Output document type."/>
+  </table>
+</database>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="VLGNC_SHIPP_BIMODAL_ROAD_RAIL" mappingType="view" skipSql="true">
+        <column name="ORDER_ITEM_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="BIMODAL_RAIL_ITEM_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="ORDER_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="BIMODAL_RAIL_ORDER_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="BIMODAL_RAIL_ORDER_STATUS_CD" required="true" type="DECIMAL" size="2"/>
+        <column name="WAGON_ID" type="DECIMAL" size="12"/>
+        <column name="ACTUAL_DELIVERY_DAT" type="DATE"/>
+        <column name="WAGON_NO" required="true" type="VARCHAR" size="12"/>
+        <column name="WAGON_LOAD_NET_QUANTITY" type="DECIMAL" size="12,4"/>
+        <column name="WAGON_LOAD_UOM_CD" type="VARCHAR" size="3"/>
+        <column name="ALREADY_LOADED_QUANTITY" type="DOUBLE"/>
+    </table>
+</database>

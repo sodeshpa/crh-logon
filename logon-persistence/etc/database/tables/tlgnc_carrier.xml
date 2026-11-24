@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNC_CARRIER"
+           description="Extends tlgns_sap_vendor by the LOGON specific attributes. Entries in this table are created automatically by the SAP-importer for any vendors which have a partner-function 'commercial carrier' or 'executing carrier'. For other vendor types (e.g. supplier) we do not create an entry in tlgnc_carrier.">
+        <column name="CARRIER_ID" primaryKey="true" required="true" type="DECIMAL" size="12"
+                description="PK. A carrier extends an tlgns_sap_vendor which is of type 'carrier'. The criteria for the automatic creation is: partner-function 'commercial' or 'executing' carrier exists for the SAP Vendor."/>
+        <column name="DISPLAY_NAME" required="true" type="VARCHAR" size="40"
+                description="Name to be used in the user interface of LOGON. Value is initially set to tlgns_sap_vendor.name1. For output documents (Delivery Note PDF) use always the name/address etc from tlgns_sap_vendor."/>
+        <column name="ACTIVE_FLAG" required="true" type="BOOLEAN"
+                description="0=inactive/deleted, 1=active."/>
+        <column name="SAP_VENDOR_ID" required="true" type="DECIMAL" size="12"
+                description="FK TLGNS_SAP_VENDOR. The vendor which is extended by this record to a LOGON carrier. The entry in tlgnc_carrier is created by the SAP import, together with tlgns_sap_vendor) if it is indeed a carrier, and also the re-activation is performed by it. 1 : 0/1 dependency is enforced by a unique constraint."/>
+        <column name="BAG_STOCK_SHIPPINGPOINT_ID" type="DECIMAL" size="12"
+                description="FK TLGNC_SHIPPINGPOINT. Default (carrier stock) shippingpoint used by this carrier. If set, this value is used at the time of scheduling (creation of the assignment) as shippingpoint of the assignment-part 'loading' in case the order is a bag order"/>
+        <column name="TRANSMIT_TO_CARRIER_FLAG" required="true" type="BOOLEAN"
+                description="0=false, 1=true. If true, orders assigned to this carrier will be transmitted to the carrier. Currently, this is only for transmitting to SBB (Swiss rail company), in the future this might be to other systems as well."/>         
+        <column name="FREIGHT_REVENUE_CURRENCY_CD" type="VARCHAR" size="3"
+                description="FK TLGNR_CURRENCY_BS. Currency in which the freight revenue is stored and displayed."/> 
+        <column name="CARRIER_REQUIRES_PLANNING_FLAG" required="true" type="BOOLEAN"
+                description="0 = do not require planning (prescheduling), 1 = require planning (prescheduling). Flag to control if the planning process is required or not. Typical use case for this: FBNL."/>
+
+        <foreign-key foreignTable="TLGNS_SAP_VENDOR" name="FK_TLGNC_CARRIER_SAP_VENDOR_ID">
+            <reference local="SAP_VENDOR_ID" foreign="SAP_VENDOR_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_CURRENCY_BS" name="FK_TLGNC_CARRIER_CURR">
+            <reference local="FREIGHT_REVENUE_CURRENCY_CD" foreign="CURRENCY_CD"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNC_SHIPPINGPOINT" name="FK_TLGNC_CARRIER_SHIPPINGPOINT">
+            <reference local="BAG_STOCK_SHIPPINGPOINT_ID" foreign="SHIPPINGPOINT_ID"/>
+        </foreign-key>
+
+        <unique name="UQ_TLGNC_CARRIER_SAP_VENDOR_ID">
+            <unique-column name="SAP_VENDOR_ID"/>
+        </unique>
+        <index name="I_TLGNC_CARRIER_SAP_V_ID_ACT">
+          <index-column name="SAP_VENDOR_ID"/>
+          <index-column name="ACTIVE_FLAG"/>
+        </index>
+    </table>
+</database>

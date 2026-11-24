@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="VLGNC_CREDIT_NOTE_PROPOSALS" mappingType="view" skipSql="true">
+        <column name="ORDER_ITEM_ID" type="DECIMAL" size="12"/>
+        <column name="ORDER_ITEM_NO" type="DECIMAL" size="3"/>
+        <column name="ORDER_ID" type="DECIMAL" size="12"/>
+        <column name="ORDER_NUMBER" type="DECIMAL" size="12"/>
+        <column name="PLANT_NAME" type="VARCHAR" size="80"/>
+        <column name="SOLDTO_NAME" type="VARCHAR" size="35"/>
+        <column name="SHIPTO_NAME" type="VARCHAR" size="35"/>
+        <column name="BILLTO_NAME" type="VARCHAR" size="35"/>
+        <column name="SAP_MATERIAL_NO" type="VARCHAR" size="18"/>
+        <column name="MATERIAL_TXT" type="VARCHAR" size="40"/>
+        <column name="LANG_CD" type="VARCHAR" size="2"/>
+        <column name="DELIVERED_UOM_CD" type="VARCHAR" size="3"/>
+        <column name="DELIVERED_UOM_TXT" type="VARCHAR" size="20"/>
+        <column name="DELIVERED_QUANTITY" type="DECIMAL" size="12,4"/>
+        <column name="RETURNED_UOM_CD" type="VARCHAR" size="3"/>
+        <column name="RETURNED_UOM_TXT" type="VARCHAR" size="20"/>
+        <column name="RETURNED_QUANTITY" type="DECIMAL" size="12,4"/>
+        <column name="RETURN_QUANT_HANDLING_CD" type="DECIMAL" size="2"/>
+    	<column name="COMPANYCODE_CD" type="VARCHAR" size="4"/>
+    </table>
+</database>

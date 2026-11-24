@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="VLGNU_UTIL_LAST_LOGIN" mappingType="view" skipSql="true">
+        <column name="USER_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="LAST_LOGIN" type="TIMESTAMP"/>
+        <column name="LDAP_HOLSPACE" type="VARCHAR" size="255"/>
+        <column name="EXT_LOGIN" type="VARCHAR" size="40"/>
+        <column name="PDA_USER_NO" type="DECIMAL" size="8"/>
+    </table>
+</database>

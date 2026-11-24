@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <!-- Session state of PDA sessions:
+            1 - initializing : While the initial handshake with MOP/the PDA is going on. Messages are not yet sent to such a session.
+            2 - ready        : Login and setup successfully completed. Further messages can be sent to such a session in a normal way.
+            3 - terminated   : Was either terminated by the session reaper (timeout) or logged out by the user.
+            4 - error        : Session is in a special error state, some additional things needed (exact steps to be defined...)
+    -->
+    <table name="TLGNR_PDA_SESSION_STATUS_BS" refData="true"
+           description="Status of a PDA session. During the login/setup phase it is on 'initializing' (not yet ready to receive events), normally goes into 'ready', and finishes as 'terminated' by a timeout or logout by the user. Special error state(s) can be defined in addition (TODO: Add if needed based on experiences in real life).">
+
+        <column name="PDA_SESSION_STATUS_CD" primaryKey="true" required="true" type="DECIMAL" size="2"
+                description="PK. 1=initializing (PDA not yet ready to receive messages from Logon), 2=ready, 3=terminated, 4=error"/>
+        <column name="CTL_ACT_CD" required="true" type="BOOLEAN"
+                description="Active Flag. When new data is entered, only reference data with active flag are available for selection normally."/>
+    </table>
+</database>

@@ -1,0 +1,866 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project name="mop-incoming" resourceRoot="" soapui-version="3.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.actions.iface.tools.soapui.TestRunnerAction@values-local"><![CDATA[<xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  <con:entry key="TestSuite" value="MOPEventPort TestSuite"/>
+  <con:entry key="Domain" value=""/>
+  <con:entry key="Password" value=""/>
+  <con:entry key="Coverage Report" value="false"/>
+  <con:entry key="Export JUnit Results" value="false"/>
+  <con:entry key="Open Report" value="false"/>
+  <con:entry key="TestRunner Path" value=""/>
+  <con:entry key="Tool Args" value=""/>
+  <con:entry key="Export All" value="false"/>
+  <con:entry key="TestCase" value="startLoad"/>
+  <con:entry key="Print Report" value="false"/>
+  <con:entry key="Host:Port" value=""/>
+  <con:entry key="Username" value=""/>
+  <con:entry key="WSS Password Type" value=""/>
+  <con:entry key="Root Folder" value=""/>
+  <con:entry key="Endpoint" value=""/>
+  <con:entry key="Enable UI" value="false"/>
+  <con:entry key="Save Project" value="false"/>
+  <con:entry key="Add Settings" value="false"/>
+</xml-fragment>]]></con:setting></con:settings><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="MOPEventPort" type="wsdl" bindingName="{http://logon.crh.net/mopevent}MOPEventPort" soapVersion="1_1" anonymous="optional" definition="file:/home/dom/projects/logon/logon-webservices-mop-incoming/src/main/resources/logon_MOP_eventhandler.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings><con:setting id="CreateWsdlDocumentationAction@report-directory">/var/tmp</con:setting></con:settings><con:definitionCache type="TEXT" rootPart="file:/home/mcico/projects/logon/logon-webservices-mop-incoming/src/main/resources/logon_MOP_eventhandler.wsdl"><con:part><con:url>file:/home/mcico/projects/logon/logon-webservices-mop-incoming/src/main/resources/logon_MOP_eventhandler.wsdl</con:url><con:content><![CDATA[<definitions targetNamespace="http://logon.crh.net/mopevent" xmlns:tns="http://logon.crh.net/mopevent" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:conv="http://www.openuri.org/2002/04/wsdl/conversation/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <xsd:schema elementFormDefault="qualified" targetNamespace="http://logon.crh.net/v20090319/mopevent">
+      <xsd:include schemaLocation="xsd/MOPData_v0_93.xsd"/>
+    </xsd:schema>
+  </types>
+  <message name="consume_message">
+    <part name="mopEvent" element="partns:MOPEvent" xmlns:partns="http://logon.crh.net/v20090319/mopevent"/>
+  </message>
+  <message name="consume_status">
+    <part name="status" element="partns:MOPEventStatus" xmlns:partns="http://logon.crh.net/v20090319/mopevent"/>
+  </message>
+  <portType name="MOPEventPort">
+    <operation name="consume">
+      <input message="tns:consume_message"/>
+      <output message="tns:consume_status"/>
+    </operation>
+  </portType>
+  <binding name="MOPEventPort" type="tns:MOPEventPort">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="consume">
+      <soap:operation soapAction="consume"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+  </binding>
+  <service name="MOPEventConsumer">
+    <port name="MOPEventPort" binding="tns:MOPEventPort">
+      <soap:address location="localhost:15080"/>
+    </port>
+  </service>
+</definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part><con:part><con:url>file:/home/mcico/projects/logon/logon-webservices-mop-incoming/src/main/resources/xsd/MOPData_v0_93.xsd</con:url><con:content><![CDATA[<xsd:schema targetNamespace="http://logon.crh.net/v20090319/mopevent" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://logon.crh.net/v20090319/mopevent">
+  <xsd:element name="MOPEvent">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element type="xsd:string" name="senderPDAID" minOccurs="1" nillable="true" maxOccurs="1"/>
+        <xsd:element type="xsd:string" name="sendersTime" minOccurs="1" nillable="false" maxOccurs="1"/>
+        <xsd:element type="xsd:string" name="eventType" minOccurs="1" nillable="false" maxOccurs="1"/>
+        <xsd:element type="xsd:string" name="sessionID" minOccurs="1" nillable="true" maxOccurs="1"/>
+        <xsd:element type="xsd:decimal" name="geoX" minOccurs="1" maxOccurs="1"/>
+        <xsd:element type="xsd:decimal" name="geoY" minOccurs="1" maxOccurs="1"/>
+        <xsd:element type="xsd:integer" name="speed" minOccurs="1" nillable="true" maxOccurs="1"/>
+        <xsd:element type="xsd:integer" name="course" minOccurs="1" nillable="true" maxOccurs="1"/>
+        <xsd:element type="xsd:string" name="geoTime" minOccurs="1" nillable="false" maxOccurs="1"/>
+        <xsd:element name="MOPData">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="Field" minOccurs="0" maxOccurs="unbounded">
+                <xsd:complexType>
+                  <xsd:sequence>
+                    <xsd:element type="xsd:string" name="name" minOccurs="1" nillable="true" maxOccurs="1"/>
+                    <xsd:element type="xsd:string" name="value" minOccurs="1" nillable="true" maxOccurs="1"/>
+                  </xsd:sequence>
+                </xsd:complexType>
+              </xsd:element>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="MOPEventStatus">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="code" type="xsd:string"/>
+        <xsd:element name="contextValue" type="xsd:string"/>
+        <xsd:element name="txt" type="xsd:string"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  </xsd:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>https://logon.crh.net/mopevent</con:endpoint><con:endpoint>http://localhost:8092/mockLOGONEventPort</con:endpoint><con:endpoint>http://localhost:15080/logon/webservices-mop-incoming/services/MOPEventConsumer</con:endpoint><con:endpoint>http://che-sig-s026.ea.crh.net:8080/logon/webservices-mop-incoming/services/MOPEventConsumer</con:endpoint><con:endpoint>http://pegasus-app.cust.adnovum.ch:8080/logon/webservices-mop-incoming/services/MOPEventConsumer</con:endpoint></con:endpoints><con:operation isOneWay="false" action="consume" name="consume" bindingOperationName="consume" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="login"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:15080/logon/webservices-mop-incoming/services/MOPEventConsumer</con:endpoint><con:request><![CDATA[<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
+  <s:Body xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <MOPEvent xmlns="http://logon.crh.net/v20090319/mopevent">
+      <senderPDAID xmlns="">4321X123001</senderPDAID>
+      <sendersTime xmlns="">2009-04-09 04:56:15</sendersTime>
+      <eventType xmlns="">login</eventType>
+      <sessionID xmlns=""/>
+      <geoX xmlns="">9.1</geoX>
+      <geoY xmlns="">48.3</geoY>
+      <speed xmlns="">36</speed>
+      <course xmlns="">15</course>
+      <geoTime xmlns="">2009-04-09 04:56:15</geoTime>
+      <MOPData xmlns="">
+        <Field>
+          <name>pdaUserLabel</name>
+          <value>120256</value>
+        </Field>
+        <Field>
+          <name>pdaUserRFIDIdentity</name>
+          <value/>
+        </Field>
+        <Field>
+          <name>PIN</name>
+          <value>1234</value>
+        </Field>
+      </MOPData>
+    </MOPEvent>
+  </s:Body>
+</s:Envelope> ]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://logon.crh.net/mopevent/MOPEventPort/consumeRequest"/></con:call><con:call name="logout"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:15080/logon/webservices-mop-incoming/services/MOPEventConsumer</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:mop="http://logon.crh.net/v20090319/mopevent">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <mop:MOPEvent>
+	<senderPDAID>123456789abc</senderPDAID>
+        <sendersTime>2009-10-05 09:21:27</sendersTime>
+        <eventType>Logout</eventType>
+        <sessionID>16546543</sessionID>
+        <geoX>0.11111</geoX>
+        <geoY>4.163546</geoY>
+        <speed>46</speed>
+        <course>45</course>
+        <geoTime>2009-03-06 09:21:27</geoTime>
+        <MOPData>
+            <Field>
+                <name>pdaUserNo</name>
+                <value></value>
+            </Field>
+         </MOPData>
+      </mop:MOPEvent>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://logon.crh.net/mopevent/MOPEventPort/consumeRequest"/></con:call><con:call name="startLoad"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:15080/logon/webservices-mop-incoming/services/MOPEventConsumer</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:mop="http://logon.crh.net/v20090319/mopevent">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <mop:MOPEvent>
+	<senderPDAID>123456789abc</senderPDAID>
+        <sendersTime>2009-10-05 09:21:27</sendersTime>
+        <eventType>startLoad</eventType>
+        <sessionID>16546543</sessionID>
+        <geoX>0.11111</geoX>
+        <geoY>4.163546</geoY>
+        <speed>46</speed>
+        <course>45</course>
+        <geoTime>2009-03-06 09:21:27</geoTime>
+        <MOPData>
+            <Field>
+                <name>logonOrderID</name>
+                <value>123456</value>
+            </Field>
+            <Field>
+                <name>verladeauftragID</name>
+                <value>1234</value>
+            </Field>
+            <Field>
+                <name>verladestrasseID</name>
+                <value></value>
+            </Field>
+            <Field>
+                <name>verladeStrasseName</name>
+                <value></value>
+            </Field>
+            <Field>
+                <name>startTime</name>
+                <value>2009-10-05 09:21:27</value>
+            </Field>
+            <Field>
+                <name>material</name>
+                <value></value>
+            </Field>
+            <Field>
+                <name>silo-nr</name>
+                <value>1</value>
+            </Field>
+            <Field>
+                <name>silo-name</name>
+                <value>1</value>
+            </Field>
+            <Field>
+                <name>customer</name>
+                <value>1</value>
+            </Field>
+            <Field>
+                <name>ship-to</name>
+                <value>1</value>
+            </Field>
+            <Field>
+                <name>truck</name>
+                <value></value>
+            </Field>
+         </MOPData>
+      </mop:MOPEvent>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://logon.crh.net/mopevent/MOPEventPort/consumeRequest"/></con:call><con:call name="endLoad"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:15080/logon/webservices-mop-incoming/services/MOPEventConsumer</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:mop="http://logon.crh.net/v20090319/mopevent">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <mop:MOPEvent>
+	<senderPDAID>123456789abc</senderPDAID>
+        <sendersTime>2009-10-05 09:21:27</sendersTime>
+        <eventType>endLoad</eventType>
+        <sessionID>16546543</sessionID>
+        <geoX>0.11111</geoX>
+        <geoY>4.163546</geoY>
+        <speed>46</speed>
+        <course>45</course>
+        <geoTime>2009-03-06 09:21:27</geoTime>
+        <MOPData>
+            <Field>
+                <name>logonOrderID</name>
+                <value>123456</value>
+            </Field>
+            <Field>
+                <name>verladeauftragID</name>
+                <value>1234</value>
+            </Field>
+            <Field>
+                <name>verladestrasseID</name>
+                <value></value>
+            </Field>
+            <Field>
+                <name>verladeStrasseName</name>
+                <value></value>
+            </Field>
+            <Field>
+                <name>endTime</name>
+                <value></value>
+            </Field>
+            <Field>
+                <name>material</name>
+                <value></value>
+            </Field>
+            <Field>
+                <name>customer</name>
+                <value></value>
+            </Field>
+            <Field>
+                <name>silo-nr</name>
+                <value></value>
+            </Field>
+            <Field>
+                <name>silo-name</name>
+                <value></value>
+            </Field>
+            <Field>
+                <name>probe-nr</name>
+                <value></value>
+            </Field>
+            <Field>
+                <name>ship-to</name>
+                <value></value>
+            </Field>
+            <Field>
+                <name>truck</name>
+                <value></value>
+            </Field>
+            <Field>
+                <name>net-weight</name>
+                <value></value>
+            </Field>
+            <Field>
+                <name>total-weight</name>
+                <value>23</value>
+            </Field>
+            <Field>
+                <name>tara-weight</name>
+                <value>12</value>
+            </Field>
+            <Field>
+                <name>taraquit</name>
+                <value></value>
+            </Field>
+         </MOPData>
+      </mop:MOPEvent>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://logon.crh.net/mopevent/MOPEventPort/consumeRequest"/></con:call><con:call name="adminRFID"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:15080/logon/webservices-mop-incoming/services/MOPEventConsumer</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:mop="http://logon.crh.net/v20090319/mopevent">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <mop:MOPEvent>
+	<senderPDAID>123456789abc</senderPDAID>
+        <sendersTime>2009-10-05 09:21:27</sendersTime>
+        <eventType>adminRFID</eventType>
+        <sessionID>16546543</sessionID>
+        <geoX>0.11111</geoX>
+        <geoY>4.163546</geoY>
+        <speed>46</speed>
+        <course>45</course>
+        <geoTime>2009-03-06 09:21:27</geoTime>
+        <MOPData>
+            <Field>
+                <name>objectLabel</name>
+                <value>123456</value>
+            </Field>
+            <Field>
+                <name>rfidIdentity</name>
+                <value>1234</value>
+            </Field>
+            <Field>
+                <name>rfidLabel</name>
+                <value>sdf</value>
+            </Field>
+            <Field>
+                <name>objectType</name>
+                <value>asdf</value>
+            </Field>
+         </MOPData>
+      </mop:MOPEvent>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://logon.crh.net/mopevent/MOPEventPort/consumeRequest"/></con:call><con:call name="switchTruck"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:15080/logon/webservices-mop-incoming/services/MOPEventConsumer</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:mop="http://logon.crh.net/v20090319/mopevent">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <mop:MOPEvent>
+	<senderPDAID>123456789abc</senderPDAID>
+        <sendersTime>2009-10-05 09:21:27</sendersTime>
+        <eventType>switchTruck</eventType>
+        <sessionID>16546543</sessionID>
+        <geoX>0.11111</geoX>
+        <geoY>4.163546</geoY>
+        <speed>46</speed>
+        <course>45</course>
+        <geoTime>2009-03-06 09:21:27</geoTime>
+        <MOPData>
+            <Field>
+                <name>truckLabel</name>
+                <value>123456</value>
+            </Field>
+            <Field>
+                <name>truckRFIDIdentity</name>
+                <value>1234</value>
+            </Field>
+          </MOPData>
+      </mop:MOPEvent>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://logon.crh.net/mopevent/MOPEventPort/consumeRequest"/></con:call><con:call name="changeTruckComposition"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:15080/logon/webservices-mop-incoming/services/MOPEventConsumer</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:mop="http://logon.crh.net/v20090319/mopevent">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <mop:MOPEvent>
+	<senderPDAID>123456789abc</senderPDAID>
+        <sendersTime>2009-10-05 09:21:27</sendersTime>
+        <eventType>changeTruckComposition</eventType>
+        <sessionID>16546543</sessionID>
+        <geoX>0.11111</geoX>
+        <geoY>4.163546</geoY>
+        <speed>46</speed>
+        <course>45</course>
+        <geoTime>2009-03-06 09:21:27</geoTime>
+        <MOPData>
+            <Field>
+                <name>truckLabel</name>
+                <value>123456</value>
+            </Field>
+            <Field>
+                <name>truckRFIDIdentity</name>
+                <value>1234</value>
+            </Field>
+            <Field>
+                <name>trailerLabel</name>
+                <value>1234</value>
+            </Field>
+            <Field>
+                <name>trailerRFIDIdentity</name>
+                <value>1234</value>
+            </Field>
+            <Field>
+                <name>containerLabel</name>
+                <value>1234</value>
+            </Field>
+            <Field>
+                <name>containerRFIDIdentity</name>
+                <value>1234</value>
+            </Field>
+          </MOPData>
+      </mop:MOPEvent>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://logon.crh.net/mopevent/MOPEventPort/consumeRequest"/></con:call><con:call name="geoPosition"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:15080/logon/webservices-mop-incoming/services/MOPEventConsumer</con:endpoint><con:request><![CDATA[<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
+  <s:Body xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <MOPEvent xmlns="http://logon.crh.net/v20090319/mopevent">
+      <senderPDAID xmlns="">4321X123001</senderPDAID>
+      <sendersTime xmlns="">2009-04-09 04:56:15</sendersTime>
+      <eventType xmlns="">geoPosition</eventType>
+      <sessionID xmlns=""/>
+      <geoX xmlns="">9.1</geoX>
+      <geoY xmlns="">48.3</geoY>
+      <speed xmlns="">36</speed>
+      <course xmlns="">15</course>
+      <geoTime xmlns="">2009-04-09 04:56:15</geoTime>
+      <MOPData xmlns="">
+      </MOPData>
+    </MOPEvent>
+  </s:Body>
+</s:Envelope> ]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://logon.crh.net/mopevent/MOPEventPort/consumeRequest"/></con:call></con:operation></con:interface><con:testSuite name="MOPEventPort TestSuite"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="login" searchProperties="true" id="9f71b75f-e588-4f6e-af53-b8ff0d948a44"><con:settings/><con:testStep type="properties" name="Properties"><con:settings/><con:config xsi:type="con:PropertiesStep" saveFirst="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:properties><con:property><con:name>pdaUserLabel</con:name><con:value>120256</con:value></con:property><con:property><con:name>pdaUserRFIDIdentity</con:name><con:value/></con:property><con:property><con:name>PIN</con:name><con:value>1234</con:value></con:property></con:properties></con:config></con:testStep><con:testStep type="request" name="login label"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>MOPEventPort</con:interface><con:operation>consume</con:operation><con:request name="login label" outgoingWss="" incomingWss="" wssPasswordType=""><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:15080/logon/webservices-mop-incoming/services/MOPEventConsumer</con:endpoint><con:request><![CDATA[<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
+  <s:Body xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <MOPMessage xmlns="http://logon.crh.net/v20090319/mopevent">
+      <senderPDAID xmlns="">4321X123001</senderPDAID>
+      <sendersTime xmlns="">2009-04-09T04:56:15</sendersTime>
+      <sessionID xmlns=""/>
+      <MOPEvent xmlns="">
+	      <eventID xmlns="">112</eventID>
+	      <eventTime xmlns="">2009-04-09T04:56:15</eventTime>
+	      <eventName xmlns="">login</eventName>
+	      <geoX xmlns="">9.1</geoX>
+	      <geoY xmlns="">48.3</geoY>
+	      <speed xmlns="">36</speed>
+	      <course xmlns="">15</course>
+	      <geoTime xmlns="">2009-04-09T04:56:15</geoTime>
+	      <MOPData xmlns="">
+        	    <Field>
+                	<name>pdaUserLabel</name>
+	                <value>1002</value>
+        	    </Field>
+	            <Field>
+        	        <name>pdaUserRFIDIdentity</name>
+                	<value></value>
+	            </Field>
+        	    <Field>
+                	<name>PIN</name>
+	                <value>1234</value>
+        	    </Field>
+	      </MOPData>
+      </MOPEvent>
+    </MOPMessage>
+  </s:Body>
+</s:Envelope> ]]></con:request><con:assertion type="SOAP Response"/><con:assertion type="GroovyScriptAssertion"><con:configuration><scriptText>def groovyUtils = new com.eviware.soapui.support.GroovyUtils( context )
+def holder = groovyUtils.getXmlHolder( messageExchange.responseContent )
+
+assert holder["//ns1:MOPMessageStatus/MOPEventStatus/code"] == "10001"
+assert holder["//ns1:MOPMessageStatus/MOPEventStatus/contextValue"] =~ /^[0-9]+$/
+
+
+
+
+</scriptText></con:configuration></con:assertion><con:credentials><con:username/></con:credentials><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://logon.crh.net/mopevent/MOPEventPort/consumeRequest"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="startLoad" searchProperties="true" id="539513ba-53ca-4717-ad8c-bf5032b79b66"><con:settings/><con:testStep type="request" name="consume - startLoad"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>MOPEventPort</con:interface><con:operation>consume</con:operation><con:request name="consume - startLoad" outgoingWss="" incomingWss="" wssPasswordType=""><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:15080/logon/webservices-mop-incoming/services/MOPEventConsumer</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:mop="http://logon.crh.net/v20090319/mopevent">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <mop:MOPEvent>
+	<senderPDAID>123456789abc</senderPDAID>
+        <sendersTime>2009-10-05 09:21:27</sendersTime>
+        <eventType>startLoad</eventType>
+        <sessionID>16546543</sessionID>
+        <geoX>0.11111</geoX>
+        <geoY>4.163546</geoY>
+        <speed>46</speed>
+        <course>45</course>
+        <geoTime>2009-03-06 09:21:27</geoTime>
+        <MOPData>
+            <Field>
+                <name>logonOrderID</name>
+                <value>123456</value>
+            </Field>
+            <Field>
+                <name>verladeauftragID</name>
+                <value>1234</value>
+            </Field>
+            <Field>
+                <name>verladestrasseID</name>
+                <value></value>
+            </Field>
+            <Field>
+                <name>verladeStrasseName</name>
+                <value></value>
+            </Field>
+            <Field>
+                <name>startTime</name>
+                <value></value>
+            </Field>
+            <Field>
+                <name>material</name>
+                <value></value>
+            </Field>
+            <Field>
+                <name>silo-nr</name>
+                <value></value>
+            </Field>
+            <Field>
+                <name>silo-name</name>
+                <value></value>
+            </Field>
+            <Field>
+                <name>customer</name>
+                <value></value>
+            </Field>
+            <Field>
+                <name>ship-to</name>
+                <value></value>
+            </Field>
+            <Field>
+                <name>truck</name>
+                <value></value>
+            </Field>
+         </MOPData>
+      </mop:MOPEvent>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response"/><con:assertion type="XPath Match"><con:configuration><path>declare namespace soapenv='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns1='http://logon.crh.net/v20090319/mopevent';
+//soapenv:Envelope/soapenv:Body/ns1:MOPEventStatus/txt/text()</path><content>Mandatory Field Error:</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://logon.crh.net/mopevent/MOPEventPort/consumeRequest"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="endLoad" searchProperties="true" id="245a54de-1321-43a8-a55b-b49305c1c8a3"><con:settings/><con:testStep type="request" name="consume - endLoad"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>MOPEventPort</con:interface><con:operation>consume</con:operation><con:request name="consume - endLoad" outgoingWss="" incomingWss="" wssPasswordType=""><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:15080/logon/webservices-mop-incoming/services/MOPEventConsumer</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:mop="http://logon.crh.net/v20090319/mopevent">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <mop:MOPEvent>
+	<senderPDAID>123456789abc</senderPDAID>
+        <sendersTime>2009-10-05 09:21:27</sendersTime>
+        <eventType>endLoad</eventType>
+        <sessionID>16546543</sessionID>
+        <geoX>0.11111</geoX>
+        <geoY>4.163546</geoY>
+        <speed>46</speed>
+        <course>45</course>
+        <geoTime>2009-03-06 09:21:27</geoTime>
+        <MOPData>
+            <Field>
+                <name>logonOrderID</name>
+                <value>123456</value>
+            </Field>
+            <Field>
+                <name>verladeauftragID</name>
+                <value>1234</value>
+            </Field>
+            <Field>
+                <name>verladestrasseID</name>
+                <value></value>
+            </Field>
+            <Field>
+                <name>verladeStrasseName</name>
+                <value></value>
+            </Field>
+            <Field>
+                <name>endTime</name>
+                <value></value>
+            </Field>
+            <Field>
+                <name>material</name>
+                <value></value>
+            </Field>
+            <Field>
+                <name>customer</name>
+                <value></value>
+            </Field>
+            <Field>
+                <name>silo-nr</name>
+                <value></value>
+            </Field>
+            <Field>
+                <name>silo-name</name>
+                <value></value>
+            </Field>
+            <Field>
+                <name>probe-nr</name>
+                <value></value>
+            </Field>
+            <Field>
+                <name>ship-to</name>
+                <value></value>
+            </Field>
+            <Field>
+                <name>truck</name>
+                <value></value>
+            </Field>
+            <Field>
+                <name>net-weight</name>
+                <value></value>
+            </Field>
+            <Field>
+                <name>total-weight</name>
+                <value>20</value>
+            </Field>
+            <Field>
+                <name>tara-weight</name>
+                <value>12</value>
+            </Field>
+            <Field>
+                <name>taraquit</name>
+                <value></value>
+            </Field>
+         </MOPData>
+      </mop:MOPEvent>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response"/><con:assertion type="GroovyScriptAssertion"><con:configuration><scriptText>def groovyUtils = new com.eviware.soapui.support.GroovyUtils( context )
+def holder = groovyUtils.getXmlHolder( messageExchange.responseContent )
+
+assert holder["//ns1:MOPEventStatus/code"] == "10000"</scriptText></con:configuration></con:assertion><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://logon.crh.net/mopevent/MOPEventPort/consumeRequest"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="logout" searchProperties="true" id="e003e692-1c31-49ee-91eb-9598a6cd56dc"><con:settings/><con:testStep type="request" name="consume - logout"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>MOPEventPort</con:interface><con:operation>consume</con:operation><con:request name="consume - logout" outgoingWss="" incomingWss="" wssPasswordType=""><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:15080/logon/webservices-mop-incoming/services/MOPEventConsumer</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:mop="http://logon.crh.net/v20090319/mopevent">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <mop:MOPEvent>
+	<senderPDAID>123456789abc</senderPDAID>
+        <sendersTime>2009-10-05 09:21:27</sendersTime>
+        <eventType>Logout</eventType>
+        <sessionID>16546543</sessionID>
+        <geoX>0.11111</geoX>
+        <geoY>4.163546</geoY>
+        <speed>46</speed>
+        <course>45</course>
+        <geoTime>2009-03-06 09:21:27</geoTime>
+        <MOPData>
+            <Field>
+                <name>pdaUserNo</name>
+                <value>123</value>
+            </Field>
+         </MOPData>
+      </mop:MOPEvent>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response"/><con:assertion type="GroovyScriptAssertion"><con:configuration><scriptText>def groovyUtils = new com.eviware.soapui.support.GroovyUtils( context )
+def holder = groovyUtils.getXmlHolder( messageExchange.responseContent )
+
+assert holder["//ns1:MOPEventStatus/code"] == "10000"</scriptText></con:configuration></con:assertion><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://logon.crh.net/mopevent/MOPEventPort/consumeRequest"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="adminRFID" searchProperties="true" id="2dd25db2-b120-4076-befd-d18491e7b147"><con:settings/><con:testStep type="request" name="login"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>MOPEventPort</con:interface><con:operation>consume</con:operation><con:request name="login"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:15080/logon/webservices-mop-incoming/services/MOPEventConsumer</con:endpoint><con:request><![CDATA[<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
+  <s:Body xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <MOPEvent xmlns="http://logon.crh.net/v20090319/mopevent">
+      <senderPDAID xmlns="">4321X123001</senderPDAID>
+      <sendersTime xmlns="">2009-04-09 04:56:15</sendersTime>
+      <eventType xmlns="">login</eventType>
+      <sessionID xmlns=""/>
+      <geoX xmlns="">9.1</geoX>
+      <geoY xmlns="">48.3</geoY>
+      <speed xmlns="">36</speed>
+      <course xmlns="">15</course>
+      <geoTime xmlns="">2009-04-09 04:56:15</geoTime>
+      <MOPData xmlns="">
+        <Field>
+          <name>pdaUserLabel</name>
+          <value>120256</value>
+        </Field>
+        <Field>
+          <name>pdaUserRFIDIdentity</name>
+          <value/>
+        </Field>
+        <Field>
+          <name>PIN</name>
+          <value>1234</value>
+        </Field>
+      </MOPData>
+    </MOPEvent>
+  </s:Body>
+</s:Envelope> ]]></con:request><con:assertion type="SOAP Response"/><con:wsaConfig mustUnderstand="NONE" version="200508"/></con:request></con:config></con:testStep><con:testStep type="transfer" name="Property Transfer"><con:settings/><con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" useXQuery="false" entitize="false" transferChildNodes="false"><con:name>sessionID</con:name><con:sourceType>Response</con:sourceType><con:sourceStep>login</con:sourceStep><con:sourcePath>//*:MOPEventStatus/contextValue</con:sourcePath><con:targetType>Request</con:targetType><con:targetStep>adminRFID</con:targetStep><con:targetPath>//sessionID</con:targetPath></con:transfers></con:config></con:testStep><con:testStep type="request" name="adminRFID"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>MOPEventPort</con:interface><con:operation>consume</con:operation><con:request name="adminRFID"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:15080/logon/webservices-mop-incoming/services/MOPEventConsumer</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:mop="http://logon.crh.net/v20090319/mopevent">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <mop:MOPEvent>
+	<senderPDAID>123456789abc</senderPDAID>
+        <sendersTime>2009-10-05 09:21:27</sendersTime>
+        <eventType>adminRFID</eventType>
+        <sessionID>1021</sessionID>
+        <geoX>0.11111</geoX>
+        <geoY>4.163546</geoY>
+        <speed>46</speed>
+        <course>45</course>
+        <geoTime>2009-03-06 09:21:27</geoTime>
+        <MOPData>
+            <Field>
+                <name>objectLabel</name>
+                <value>123456</value>
+            </Field>
+            <Field>
+                <name>rfidIdentity</name>
+                <value>1234</value>
+            </Field>
+            <Field>
+                <name>rfidLabel</name>
+                <value>sdf</value>
+            </Field>
+            <Field>
+                <name>ObjectType</name>
+                <value>asdf</value>
+            </Field>
+         </MOPData>
+      </mop:MOPEvent>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response"/><con:assertion type="GroovyScriptAssertion"><con:configuration><scriptText>def groovyUtils = new com.eviware.soapui.support.GroovyUtils( context )
+def holder = groovyUtils.getXmlHolder( messageExchange.responseContent )
+
+assert holder["//ns1:MOPEventStatus/code"] != "10301"</scriptText></con:configuration></con:assertion><con:wsaConfig mustUnderstand="NONE" version="200508"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="switchTruck" searchProperties="true"><con:settings/><con:testStep type="request" name="login"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>MOPEventPort</con:interface><con:operation>consume</con:operation><con:request name="login"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:15080/logon/webservices-mop-incoming/services/MOPEventConsumer</con:endpoint><con:request><![CDATA[<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
+  <s:Body xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <MOPEvent xmlns="http://logon.crh.net/v20090319/mopevent">
+      <senderPDAID xmlns="">4321X123001</senderPDAID>
+      <sendersTime xmlns="">2009-04-09 04:56:15</sendersTime>
+      <eventType xmlns="">login</eventType>
+      <sessionID xmlns=""/>
+      <geoX xmlns="">9.1</geoX>
+      <geoY xmlns="">48.3</geoY>
+      <speed xmlns="">36</speed>
+      <course xmlns="">15</course>
+      <geoTime xmlns="">2009-04-09 04:56:15</geoTime>
+      <MOPData xmlns="">
+        <Field>
+          <name>pdaUserLabel</name>
+          <value>ADNR13</value>
+        </Field>
+        <Field>
+          <name>pdaUserRFIDIdentity</name>
+          <value/>
+        </Field>
+        <Field>
+          <name>PIN</name>
+          <value>1234</value>
+        </Field>
+      </MOPData>
+    </MOPEvent>
+  </s:Body>
+</s:Envelope> ]]></con:request><con:assertion type="SOAP Response"/><con:wsaConfig mustUnderstand="NONE" version="200508"/></con:request></con:config></con:testStep><con:testStep type="transfer" name="Property Transfer"><con:settings/><con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" useXQuery="false" entitize="false" transferChildNodes="false"><con:name>sessionID</con:name><con:sourceType>Response</con:sourceType><con:sourceStep>login</con:sourceStep><con:sourcePath>//*:MOPEventStatus/contextValue</con:sourcePath><con:targetType>Request</con:targetType><con:targetStep>adminRFID</con:targetStep><con:targetPath>//sessionID</con:targetPath></con:transfers></con:config></con:testStep><con:testStep type="request" name="switchTruck"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>MOPEventPort</con:interface><con:operation>consume</con:operation><con:request name="switchTruck"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>https://logon.crh.net/mopevent</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:mop="http://logon.crh.net/v20090319/mopevent">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <mop:MOPEvent>
+	<senderPDAID>123456789abc</senderPDAID>
+        <sendersTime>2009-10-05 09:21:27</sendersTime>
+        <eventType>switchTruck</eventType>
+        <sessionID>1047</sessionID>
+        <geoX>0.11111</geoX>
+        <geoY>4.163546</geoY>
+        <speed>46</speed>
+        <course>45</course>
+        <geoTime>2009-03-06 09:21:27</geoTime>
+        <MOPData>
+            <Field>
+                <name>truckLabel</name>
+                <value>TRUCK01</value>
+            </Field>
+            <Field>
+                <name>truckRFIDIdentity</name>
+                <value></value>
+            </Field>
+          </MOPData>
+      </mop:MOPEvent>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response"/><con:wsaConfig mustUnderstand="NONE" version="200508"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="changeTruckComposition" searchProperties="true"><con:settings/><con:testStep type="request" name="login"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>MOPEventPort</con:interface><con:operation>consume</con:operation><con:request name="login"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:15080/logon/webservices-mop-incoming/services/MOPEventConsumer</con:endpoint><con:request><![CDATA[<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
+  <s:Body xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <MOPEvent xmlns="http://logon.crh.net/v20090319/mopevent">
+      <senderPDAID xmlns="">4321X123001</senderPDAID>
+      <sendersTime xmlns="">2009-04-09 04:56:15</sendersTime>
+      <eventType xmlns="">login</eventType>
+      <sessionID xmlns=""/>
+      <geoX xmlns="">9.1</geoX>
+      <geoY xmlns="">48.3</geoY>
+      <speed xmlns="">36</speed>
+      <course xmlns="">15</course>
+      <geoTime xmlns="">2009-04-09 04:56:15</geoTime>
+      <MOPData xmlns="">
+        <Field>
+          <name>pdaUserLabel</name>
+          <value>ADNR13</value>
+        </Field>
+        <Field>
+          <name>pdaUserRFIDIdentity</name>
+          <value/>
+        </Field>
+        <Field>
+          <name>PIN</name>
+          <value>1234</value>
+        </Field>
+      </MOPData>
+    </MOPEvent>
+  </s:Body>
+</s:Envelope> ]]></con:request><con:assertion type="SOAP Response"/><con:wsaConfig mustUnderstand="NONE" version="200508"/></con:request></con:config></con:testStep><con:testStep type="transfer" name="Property Transfer"><con:settings/><con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" useXQuery="false" entitize="false" transferChildNodes="false"><con:name>sessionID</con:name><con:sourceType>Response</con:sourceType><con:sourceStep>login</con:sourceStep><con:sourcePath>//*:MOPEventStatus/contextValue</con:sourcePath><con:targetType>Request</con:targetType><con:targetStep>adminRFID</con:targetStep><con:targetPath>//sessionID</con:targetPath></con:transfers></con:config></con:testStep><con:testStep type="request" name="changeTruckCompostion"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>MOPEventPort</con:interface><con:operation>consume</con:operation><con:request name="changeTruckCompostion"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:15080/logon/webservices-mop-incoming/services/MOPEventConsumer</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:mop="http://logon.crh.net/v20090319/mopevent">
+  <soapenv:Header/>
+  <soapenv:Body>
+     <MOPMessage xmlns="http://logon.crh.net/v20090319/mopevent">
+        <senderPDAID xmlns="">ADN01000238</senderPDAID>
+        <sendersTime xmlns="">2009-09-04T10:15:53</sendersTime>
+        <sessionID xmlns="">1895</sessionID>
+        <MOPEvent xmlns="">
+           <eventID>123</eventID>
+           <eventTime>2009-09-04T10:15:53</eventTime>
+           <eventName>changeTruckComposition</eventName>
+           <geoX>8.529017</geoX>
+           <geoY>47.387571</geoY>
+           <speed>50</speed>
+           <course>0</course>
+           <geoTime>2009-09-04T10:15:53</geoTime>
+           <MOPData>
+              <Field>
+                 <name>truckLabel</name>
+                 <value>TG163316</value>
+              </Field>
+              <Field>
+                 <name>truckRFIDIdentity</name>
+                 <value/>
+              </Field>
+              <Field>
+                 <name>trailerLabel</name>
+                 <value/>
+              </Field>
+              <Field>
+                 <name>trailerRFIDIdentity</name>
+                 <value/>
+              </Field>
+              <Field>
+                 <name>containerLabel</name>
+                 <value/>
+              </Field>
+              <Field>
+                 <name>containerRFIDIdentity</name>
+                 <value/>
+              </Field>
+           </MOPData>
+        </MOPEvent>
+     </MOPMessage>
+  </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response"/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="transfer" name="Property Transfer 1"><con:settings/><con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" useXQuery="false" entitize="false" transferChildNodes="false"><con:name>sessionID</con:name><con:sourceType>Response</con:sourceType><con:sourceStep>login</con:sourceStep><con:sourcePath>//*:MOPEventStatus/contextValue</con:sourcePath><con:targetType>Request</con:targetType><con:targetStep>adminRFID</con:targetStep><con:targetPath>//sessionID</con:targetPath></con:transfers></con:config></con:testStep><con:testStep type="request" name="useTruckComposition"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>MOPEventPort</con:interface><con:operation>consume</con:operation><con:request name="useTruckComposition"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:15080/logon/webservices-mop-incoming/services/MOPEventConsumer</con:endpoint><con:request><![CDATA[<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
+ <s:Body xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <MOPMessage xmlns="http://logon.crh.net/v20090319/mopevent">
+      <senderPDAID xmlns="">4321X123001</senderPDAID>
+      <sendersTime xmlns="">2009-04-09T04:56:15</sendersTime>
+      <sessionID xmlns="">2027</sessionID>
+      <MOPEvent xmlns="">
+	      <eventID xmlns="">112</eventID>
+	      <eventTime xmlns="">2009-04-09T04:56:15</eventTime>
+	      <eventName xmlns="">useTruckComposition</eventName>
+	      <geoX xmlns="">9.1</geoX>
+	      <geoY xmlns="">48.3</geoY>
+	      <speed xmlns="">36</speed>
+	      <course xmlns="">15</course>
+	      <geoTime xmlns="">2009-04-09T04:56:15</geoTime>
+	      <MOPData xmlns="">
+        	    <Field>
+                	<name>truckLabel</name>
+	                <value></value>
+        	    </Field>
+	      </MOPData>
+      </MOPEvent>
+    </MOPMessage>
+ </s:Body>
+</s:Envelope>]]></con:request><con:assertion type="SOAP Response"/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:properties/></con:testSuite><con:testSuite name="MOPEventPort Scenario"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="login scenario" searchProperties="true" id="ffdd3b3d-d86c-49f6-9076-76e465e4fde3"><con:settings/><con:testStep type="request" name="consume - login"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>MOPEventPort</con:interface><con:operation>consume</con:operation><con:request name="consume - login" outgoingWss="" incomingWss="" wssPasswordType=""><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:15080/logon/webservices-mop-incoming/services/MOPEventConsumer</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:mop="http://logon.crh.net/v20090319/mopevent">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <mop:MOPEvent>
+	<senderPDAID>123456789abc</senderPDAID>
+        <sendersTime>2009-10-05 09:21:27</sendersTime>
+        <eventType>login</eventType>
+        <sessionID>123456</sessionID>
+        <geoX>0.11111</geoX>
+        <geoY>4.163546</geoY>
+        <speed>46</speed>
+        <course>45</course>
+        <geoTime>2009-03-06 09:21:27</geoTime>
+        <MOPData>
+            <Field>
+                <name>pdaUserLabel</name>
+                <value>123456</value>
+            </Field>
+            <Field>
+                <name>pdaUserRFIDIdentity</name>
+                <value></value>
+            </Field>
+            <Field>
+                <name>PIN</name>
+                <value>1234</value>
+            </Field>
+         </MOPData>
+      </mop:MOPEvent>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response"/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://logon.crh.net/mopevent/MOPEventPort/consumeRequest"/></con:request></con:config></con:testStep><con:testStep type="mockresponse" name="waitingForSetup" disabled="true"><con:settings/><con:config xsi:type="con:MockResponseStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>MOPEventPort</con:interface><con:operation>consume</con:operation><con:path>/</con:path><con:port>8092</con:port><con:response><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:mop="http://logon.crh.net/v20090319/mopevent">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <mop:MOPEventStatus>
+         <code>?</code>
+         <contextValue>?</contextValue>
+         <txt>?</txt>
+      </mop:MOPEventStatus>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508"/></con:response></con:config></con:testStep><con:properties/></con:testCase><con:properties/></con:testSuite><con:properties/><con:wssContainer/></con:soapui-project>

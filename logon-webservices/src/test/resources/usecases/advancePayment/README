@@ -1,0 +1,14 @@
+- Advance Payment - LOGON-6624
+
+- ShipTo SAP_BP_ID: 3600000021
+- SoldTo SAP_BP_ID: 3600000020
+
+- Contract 1: ADN64001
+
+3 contract items containing materials 'ADN Fluvio 4', 'ADN Fortico 5', and 'ADN Optimo 4 Bag'. 
+
+
+- Contract 2: ADNADV I
+
+3 contract items containing 'ADN Agg Bulk 1' materials. The difference with this contract request is that the contract items are sent out-of-order with respect to their position no (i.e. POSEX 10 is not the first in the list). Each contract item also has an Advance Payment invoice number set.
+

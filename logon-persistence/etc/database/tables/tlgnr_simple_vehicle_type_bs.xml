@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNR_SIMPLE_VEHICLE_TYPE_BS" refData="true"
+           description="Types of simple vehicle (ship, block train, ...). The type of a vehicle characterizes its features as far as relevant to Logon.">
+
+        <column name="SIMPLE_VEHICLE_TYPE_CD" primaryKey="true" required="true" type="DECIMAL" size="2"
+                description="PK. Code of the Reference Data. "/>
+        <column name="CTL_ACT_CD" required="true" type="BOOLEAN"
+                description="Active Flag. When new data is entered, only reference data with active flag are available for selection normally."/>
+		
+		<column name="volume_m3" type="DECIMAL" size="12,4" 
+				description="Loading capacity of the vehicle in cubic meters. Used for calculation (order entry, exact customer order) if the order is not yet scheduled on a real vehicle and the base unit of the material is in cubic meters."/>
+		<column name="planning_net_weight_t" type="DECIMAL" size="12,4" required="true"
+				description=" Planned/estimated max net weight in tons of the simple vehicle type: used in order entry to initialize the quantity per delivery field and for Uom 'Truck' nominator/denominator determination once the order gets persisted."/>
+    </table>
+</database>

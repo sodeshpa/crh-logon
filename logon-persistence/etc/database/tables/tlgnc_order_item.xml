@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNC_ORDER_ITEM"
+           description="Items of an order (tlgnc_order). An item consists of a certain material (type bulk, bag, special, ...), and has a quantity and unit of measure. A typical bulk order has exactly 1 material item and zero or more service items, a bag order can have multiple material items. IMPORTANT: Sort by ORDER_ITEM_NO before extracting the FIRST order item.">
+
+        <!-- Item Identifiers -->
+        <column name="ORDER_ITEM_ID" primaryKey="true" required="true" type="DECIMAL" size="12"
+                description="PK"/>
+        <column name="ORDER_ID" required="true" type="DECIMAL" size="12"
+                description="FK tlgnc_order. The Order to which the Order Item belongs. Never use this to identify the FIRST order item."/>
+        <column name="ORDER_ITEM_NO" required="true" type="DECIMAL" size="3"
+                description="The order item number, human readable: Start with 10, and use increments of 10: 10, 20, 30, ... Together with tlgnc_order.order_number this identifies a certain order item, for customers and external systems like SAP. Even more importantly, the lowest ORDER_ITEM_NO defines the FIRST order item, not the order given by the DB nor the ORDER_ID."/>
+        <column name="LOAD_ID" type="DECIMAL" size="12"
+                description="FK tlgnc_load. The load for this order_item. order items from different orders can share the same load record, when transported on the same truck and having the same material. For bag and bulk order items, for services no load is created and used."/>
+        <column name="SAP_CONTRACT_ITEM_ID" type="DECIMAL" size="12"
+                description="FK tlgns_sap_contract_item_id. Reference to the contract-item on which this order-item is based. If set, must be an item which belongs to the same contract as set in tlgnc_order.sap_contract_id! However, services and possibly other special materials can be contained in an order even when not contained in a contract. For these items: Field is null."/>
+		<column name="MIX_DESIGN_ID" type="DECIMAL" size="12"
+                description="FK to tlgnc_fireq_material_mixdesign. Mix design id of this restriction. Mix design can only be specified for aggregate material + production plant combination. Mix design business term: Recipe/Formula of the material composition of the aggregates material."/>
+        
+		
+        <!-- Material specific -->
+        <column name="SAP_MATERIAL_ID" required="true" type="DECIMAL" size="12"
+                description="FK tlgns_sap_material. The related material. All relevant attributes of SAP_MAT_COND are contained within this order item (frozen at order creation time)."/>
+        <column name="PRODUCTION_PLANT_CD" required="true" type="VARCHAR" size="4"
+                description="Production Plant which produced the product of the order item. When the shipping point of the order belongs to just a supply plant (not a production plant) the value will be different from that plant_cd."/>
+        <column name="CURRENCY_CD" required="true" type="VARCHAR" size="3"
+                description="FK tlgnr_currency_cd. Currency code, copied from the material condition tlgns_sap_mat_cond.currency_cd. That currency defines the currency of the order_item, and is also the currency in which all other cost/price attributes on this item are expressed. If individual cost elements are defined in a different curreny, tlgnc_currency_exch_rate must be used to convert into the currency of the order item."/>
+        <column name="RATE" type="DECIMAL" size="10,3"
+                description="Price of the material, simply copied from the material condition. This is the 'catalog' price, i.e. without rebates, discounts, taxes etc. The value that is finally used in the commercial tab of order details is gross_price_mat: rate * delivered quantity. (Not 100% clear: What is the base? Base UOM of the material? Sales UOM? tlgns_sap_mat_cond.uom_cd would be defined, but is not used/checked for display/calculation. However, ALL materials in the DB (Nov 2009) have a BASE_UOM 'TO' anyway, it's not an issues currently.)"/>
+
+        <!-- Quantities and Units -->
+        <column name="ORDERED_UOM_CD" type="VARCHAR" size="3"
+                description="FK tlgnr_uom_bs. Unit of measure on which the ORDERED_QUANTITY is based when ORDERING the order. Includes 'non-convertible' UOM, e.g. '1 railcar' (without any weight specification!)."/>
+        <column name="ORDERED_QUANTITY" type="DECIMAL" size="12,4"
+                description="Ordered quantity of the material, in units defined by ORDER_UOM_CD. Typically a whole number."/>
+        <column name="ORDERED_UOM_NUMERATOR" type="DECIMAL" size="5"
+                description="The conversion multiplier in respect to the base unit of the material (SAP_MATERIAL_ID -> tlgns_sap_material.base_uom_cd). Updated at the moment of the assignment creation (snapshot to avoid further lookups in related tables later)."/>
+        <column name="ORDERED_UOM_DENOMINATOR" type="DECIMAL" size="5"
+                description="The conversion denominator of ORDERED_UOM_CD to the base unit of the material (SAP_MATERIAL_ID -> tlgns_sap_material.base_uom_cd). Updated at the moment of the assignment creation (snapshot to avoid further lookups in related tables later)."/>
+
+        <column name="LOADED_UOM_CD" type="VARCHAR" size="3"
+                description="FK tlgnr_uom_bs. Unit of measure on which LOADED_QUANTITY is based. This is typically identical to returned_uom_cd. Bulk: typically tons. Bag: typically pallets."/>
+        <column name="LOADED_QUANTITY" type="DECIMAL" size="12,4"
+                description="Loaded quantity of the material in units defined by LOADED_UOM_CD. Value is set when order is set to 'loaded'. Bulk: copy measured values from tlgnc_load. Bag: Directly counting pallets, and entering on the item; the tlgnc_load.net_quantity is the sum of all order items referring to that load."/><!-- Changed on 19.11.2009: Until then, only set after order has been delivered. While not yet delivered. null! -->
+
+        <column name="RETURNED_UOM_CD" type="VARCHAR" size="3"
+                description="FK tlgnr_uom_bs. Unit of measure on which RETURNED_QUANTITY is based. This is typically identical to loaded_uom_cd."/>
+        <column name="RETURNED_QUANTITY" type="DECIMAL" size="12,4"
+                description="Delivered quantity of the material in units defined by RETURNED_UOM_CD. Null: not yet known, or none. This value is the starting point for the credit note process, and is a) set when the railcar (more seldom: truck) returns non-empty and is either explicitely weighed or if the tara-weight for the next loading is bigger than a threshold value b) manually in order details, if a credit note should be created."/>
+		
+		<column name="LR_UOM_NUMERATOR" type="DECIMAL" size="5"
+                description="The conversion multiplier of LOADED_ and RETURNED_UOM_CD (typically identical) to the base unit of the material (SAP_MATERIAL_ID -> tlgns_sap_material.base_uom_cd). Updated at the moment when loading finished (snapshot to avoid further lookups in related tables later)."/>
+        <column name="LR_UOM_DENOMINATOR" type="DECIMAL" size="5"
+                description="The conversion denominator of LOADED_ and RETURNED_UOM_CD (typically identical) to the base unit of the material (SAP_MATERIAL_ID -> tlgns_sap_material.base_uom_cd). Updated at the moment when loading finished (snapshot to avoid further lookups in related tables later)."/>
+		
+		<column name="RETURN_ORDER_REASON_CD" type="VARCHAR" size="3"
+                description="FK tlgnr_return_order_reason_bs. The return order reason, filled when there is return order."/>
+		<column name="RETURN_QUANT_HANDLING_CD" type="DECIMAL" size="2"
+                description="FK tlgnr_return_quant_handling_bs. A returned quantity should be 'credited' to the customer. The invariant is: Loaded - Returned = Delivered.Case Return: before sending to SAP (null); Case credit note: return quantity &gt; threshold (or manually entered) and hidden from customer (web order detail)(3); Credit note accepted (4); Credit note refused treat identical to 'no adjustment needed' (0)"/>
+
+        <column name="DELIVERED_UOM_CD" type="VARCHAR" size="3"
+                description="FK tlgnr_uom_bs. Unit of measure on which DELIVERED_QUANTITY is based when the order was delivered, this must be identical to tlgns_sap_material.BASE_UOM, which is typically tons (19.11.2009: Not a single material in SAP which has base_uom!=TO). Silo/Services: Would be something like Pieces/Hours."/>
+        <column name="DELIVERED_QUANTITY" type="DECIMAL" size="12,4"
+                description="Delivered quantity of the material in units defined by DELIVERY_UOM_CD, typically a measured value with a precision of 10kg (delivered_uom_cd in tons). The delivered quantity can be adjusted/corrected until the order is sent to SAP (see sent_salesdoc_to_sap_ts), after that a credit note must be created (see return_quant_handling_cd / tlgnc_credit_note) to adjust delivered_quantity. The original value is then overridden in the order_item, but the original value is still visible in  tlgns_sap_netprice_order_item.netprice_quantity, the net price information sent by SAP for this order item."/>
+       
+        <column name="RETURN_MATERIAL_USAGE_CD" type="DECIMAL" size="2"
+                description="FK tlgnr_return_material_usage_bs. Used at order return handeling. Define the returned material is used for: 0 -> Use for refilling the vehicle; 1 -> Storage Location: Mixed Qualities; 2 -> Rubish"/>
+        <column name="RETURN_PLANT_CD" type="VARCHAR" size="4"
+                description="FK tlgnr_plant_bs. Used at order return handeling. Define the plant where the i.e. truck returned."/>
+        <column name="RETURN_SHIPPINGPOINT_ID" type="DECIMAL" size="12"
+                description="FK tlgnc_shippingpoint.Used at order return handeling. Define the shippingpoint where the i.e. truck returned."/>
+
+        <!-- "Versandstelle" and Destination -->
+        <!-- - loadingpoint_id may be undefined. If defined, must related to shippingpoint_id
+             - Workshop 13.5.2009: Decided that LOAD_SHIPPINGPOINT_ID is NOT needed, always order.shippingpoint_id .
+               This is true for buld (1 item), silostellung (1 silo, 1 bulk) and bag (n bag), all items must have the same shippingpoint. -->
+        <column name="LOADINGPOINT_ID" type="DECIMAL" size="12"
+                description="FK tlgnc_loadingpoint. The planned loadingpoint where the order item can be loaded. Loadingpoint may be set in addition to the shippingpoint. If defined, must relate to the shippingpoint. The actual loadingpoint is stored in tlgnc_load."/>
+        <!-- cosmin 26.03.2010: this column is not needed anymore -> Ticket 51921
+        <column name="STORAGE_LOCATION" type="VARCHAR" size="4"
+                description="The Storage Location, where the material is kept at the shippingpoint. Depends on Shippingpoint and Material; value is taken from tlgnc_mat_shippingpoint.storage_location (or tlgnc_shippingpoint.storage_location as the default if not found/set)."/>--><!-- Confirmed 10.6.2009 CDU: not mandatory, especially for plants which are "not inventory managed" and thus do not have a "Warenausgang" an empty field is correct, also when sending to SAP. -->
+        <column name="SHIPTO_SILO_ID" type="DECIMAL" size="12"
+                description="FK tlgnr_shipto_silo. The silo to deliver to."/>
+        <column name="SHIPTO_SILO_VERIF_TYPE_CD" type="DECIMAL" size="2"
+                description="FK tlgnr_silo_verif_type. The ship to silo verification type at unloading."/>
+
+        <!-- Not necessary - a customer can currently NOT order several products in 1 weborder, therefore there is never an item comment by the customer
+        <column name="ITEM_NOTE_CUST_WEBORDER" type="VARCHAR" size="256"
+                description="Notes from the customer for the order item/product. Value is entered by the customer when creating an order in the web-order interface, and cannot be modified by the Call Center Agent. If the note is relevant for other involved persons (Dispatching, Pool), the relevant bits should be copied into the respective note fields by the agent."/>
+        -->
+        <column name="BIMODAL_RAIL_ORDER_ITEM_ID" type="DECIMAL" size="12"
+                description="FK tlgnc_order_item. Required for bimodal truck orders. Links the bimodal truck order item to an item of a bimodal rail order. The bimodal rail order contains the wagon and time information at the shippingpoint."/>
+
+        <!-- === Cost, Margin calculation === -->
+        <!-- Cost elements which are also relevant, but not stored in this section/table:
+             * currency_cd (order_item)
+               See "Material specific" attributes. The currency in tlgns_sap_mat_cond for the material defines the currency for all cost elements on this item!
+             * rate (order_item):
+               See "Material specific" attributes. Not involved in the cost/margin calculation, just for display when creating the order
+             * However, the rate is used in Order Detail Commercial Tab as well (just display). Gross Price = Rate * Q
+             * net_sales (tlgns_sap_netprice_order_item)
+               Net sales Price, value is stored in tlgns_sap_netprice_order_item
+               Comes from SAP after order was completed, and tax/rebates/discounts can be calculated (in SAP)
+             Complete overview, see https://aww.adnovum.ch/twiki/bin/view/CrhPegasus/ContributionMarginCalculation
+
+             The margin is not stored because it can easily be calculated as
+             contribution margin = NETPRICE_NET_VALUE - PROD_COST_MAT - HANDLING_COST_MAT - IUD_COST - OUT_COST
+
+             DESIGN NOTE:
+             "multiplied by delivered_quantity": Is this always true, also when return_quantity/credit note is involved? => Yes!
+             Explanation:
+             - See RETURN_QUANT_HANDLING_CD and how the invariant "loaded - returned = delivered"
+               is temporarily violated (when Credit Note is needed, but not yet approved).
+             - The effect of this is: The cost are always expressed related to the quantity
+               as known in SAP:
+               - initial delivered_quantity (Q1) can be modified (by adjusting loaded/returned) as long as not yet sent to SAP
+               - once sent, the delivered_quantity is kept, and not modified until the CN (with Q2) is actually sent to SAP.
+               - The final delivered Quantity is Q1-Q2 = Q3
+             - Net prices:
+               - The Q1 is still visible in tlgns_sap_netprice_order_item for the original item!
+               - The Q2 will be be received as well in tlgns_sap_netprice_order_item.
+               - The Q3 is now in order_item.delivered_quantity and is:
+                 sum(tlngs_sap_netprice_order_item.net_price) of the entries related to this item
+        -->
+        <column name="GROSS_PRICE_MAT" type="DECIMAL" size="11,2"
+                description="Gross price of the material (total, i.e. multiplied by delivered_quantity). Value is taken from order_item.rate (which comes from tlgns_sap_mat_cond.rate) and multiplied by Q. No currency conversion is needed; as the material condition defines the order_item.currency_cd."/>
+        <column name="PROD_COST_MAT" type="DECIMAL" size="11,2"
+                description="Production cost of material (total, i.e. multiplied by delivered_quantity). Value is taken from tlgnc_mat_plant (current/future value checked based on order.actual_delivery_dat), multiplied by Q, and converted into the order item's currency if currencies differ."/>
+        <column name="HANDLING_COST_MAT" type="DECIMAL" size="11,2"
+                description="Handling cost of material (total, i.e. multiplied by delivered_quantity) and added over all involved plants: Handling costs are caused at each plant which is involved, if production plant &lt;&gt; supply plant TWO handling costs are calculated, and added into this value. Value is taken from a) tlgnc_mat_shippingpoint (if defined per material) or b) tlgnc_shippingpoint otherwise. Current/future value is checked based on order.actual_delivery_dat, multiplied by Q, and converted into the order item's currency if currencies differ. The delivered_uom_cd and the uom_cd in tlgnc_mat_shippingpoint/tlgnc_shippingpoint must be identical (no conversion performed)!"/>
+        <column name="IUD_COST" type="DECIMAL" size="11,2"
+                description="Interunit-distribution costs (total, i.e. multiplied by delivered_quantity). If production plant = supply plant, this value is 0. Otherwise, two cases to be distinguished: A) Order is dependent on another order (bimodal): value to be taken from the (rail) order's 'cost of distribution' per ton, i.e. vlgnc_order_item_margin.total_dist_cost_pt. B) otherwise: value is taken from tlgnc_iud_cost (current/future value checked based on order.actual_delivery_dat). The value is then multiplied by Q, and converted into the order item's currency if currencies differ. The delivered_uom_cd and the uom_cd in tlgnc_iud_cost must be identical (no conversion performed)!"/>
+        <column name="OUT_COST" type="DECIMAL" size="11,2"
+                description="Outbound distribution costs (total, i.e. multiplied by delivered_quantity). Value is taken from tlgns_sap_transport_cond for EACH applicable tlgnr_cond_logon_type_cd for this order, respecting tlgnr_cond_sap_type_bs.evaluation_priority, and summed up. Valid_from/valid_to is checked based on order.actual_delivery_dat. Multiplied by Q, and converted into order item's currency if currencies differ. The delivered_uom_cd and the uom_cd in tlgns_sap_transport_cond must be identical (no conversion performed)!"/>
+        <column name="DELIVERY_DAT_EXCHANGE_RATE" type="DECIMAL" size="12,4"
+                description="Exchange rate of they system's base currency (i.e. EUR for the current release) towards order_item.currency_cd. This rate is stored redundantly on each order item because fast and reproduceable reports/calculation over long time periods and many orders are possible this way: No complicated lookups in tlgnc_currency_exch_rate based on order date are needed. Lookup in tlgnc_currency_exch_rate is only necessary when re-calculating an order; that's also when delivery_dat_exchange_rate gets updated. If rates in tlgnc_currency_exch_rate are modified for the past, existing orders are not (and should not) be affected."/>
+
+
+		<column name="DELIVERED_LOAD_TRUCK_ID" type="DECIMAL" size="12"
+				description="FK tlgnc_truck. The truck that was used to deliver the order. This reference is set when the order status changes to 15=delivered. This is necessary because this information can be changed soon afterwards by truck composition changes."/>   
+        <column name="DELIVERED_LOAD_TRAILER_ID" type="DECIMAL" size="12"
+				description="FK tlgnc_trailer. The trailer that was used to deliver the order. This reference is set when the order status changes to 15=delivered. This is necessary because this information can be changed soon afterwards by truck composition changes."/>
+		<column name="DELIVERED_LOAD_CONTAINER_ID" type="DECIMAL" size="12"
+				description="FK tlgnc_container. The container that was used to deliver the order. This reference is set when the order status changes to 15=delivered. This is necessary because this information can be changed soon afterwards by truck/wagon composition changes."/>
+		<column name="DELIVERED_LOAD_WAGON_ID" type="DECIMAL" size="12"
+				description="FK tlgnc_wagon. The wagon that was used to deliver the order. This reference is set when the order status changes to 15=delivered. This is necessary because this information can be changed soon afterwards by container-wagon composition changes."/>
+		
+		<column name="PLANNED_LOADING_TIME_MIN" required="true" type="DECIMAL" size="10"
+                description="Calculated value stored when the order is created. For each order item, lookup takes place according to the fallback mechanism."/>
+                
+        <!-- Cash sales related fields -->
+        <column name="NET_VALUE" type="DECIMAL" size="15,2"
+				description="Net value of the order item in Target Quantity and in UoM of the Target Quantity expressed in currency of the contract (tlgns_sap_contract.currency_cd). Stored from tlgns_sap_contarct_item.NET_VALUE at the time of order creation if the contract type is a cash sales contract. Usage: Cash Sales Delivery Note and sending to SAP"/>   
+        <column name="VAT_PERCENTAGE" type="DECIMAL" size="12,4"
+                description="Item vat percentage. Stored from tlgns_sap_contarct_item.VAT_PERCENTAGE at the time of order creation if the contract type is a cash sales contract. Usage: Cash Sales Delivery Note and sending to SAP"/>
+        <column name="TARGET_QUANTITY" type="DECIMAL" size="12,4"
+                description="Target Quantity in the unit of measure Target_Quantity_UoM. Stored from tlgns_sap_contarct_item.TARGET_QUANTITY at the time of order creation if the contract type is a cash sales contract. Usage: Cash Sales Delivery Note and sending to SAP"/>
+        <column name="TARGET_QUANTITY_UOM_CD" type="VARCHAR" size="3"
+                description="FK tlgnr_uom_bs. Target Quantity Unit of Measure. Can be one of the alternative unit of measures. Stored from tlgns_sap_contarct_item.TARGET_QUANTITY_UOM_CD at the time of order creation if the contract type is a cash sales contract. Usage: Cash Sales Delivery Note and sending to SAP"/>
+		<column name="TARGET_UOM_NUMERATOR" type="DECIMAL" size="5"
+                description="The conversion multiplier of TARGET_QUANTITY_UOM to the base unit of the material (SAP_MATERIAL_ID -> tlgns_sap_material.base_uom_cd). Added at the time of order creation."/>
+        <column name="TARGET_UOM_DENOMINATOR" type="DECIMAL" size="5"
+                description="The conversion denominator of TARGET_QUANTITY_UOM to the base unit of the material (SAP_MATERIAL_ID -> tlgns_sap_material.base_uom_cd). Added at the time of order creation."/>
+	
+		<column name="SENT_ORDER_ITEM_NO" type="DECIMAL" size="3"
+                description="The order item number as being seto to SAP in the outgoing interfaces. Set when successfully sent to SAP (salesdoc, transferdoc) and used when sending the salesdoc/transferdoc for the credit note process. In case of Advanced Payments (LRQ 303.0) the value of this column can be different than the ORDER_ITEM_NO. If the order item is split up into many order items, this column remains null. Values are in that special case stored in tlgnc_order_item_contract_item."/>
+
+		<!-- Used as a KPI. We don't save the dispocard(restriction) id in the item as the dispocards may change or get deleted. -->		
+		<column name="DISPOCARD_AVAILABLE" type="BOOLEAN"
+                description="Indicates whether the order item was created based on a dispocard"/>
+		<column name="ORDER_PLAN_ACTUAL" type="BOOLEAN"
+                description="True if both the quantity and uom in the item matches the values in the dispocard"/>
+		
+		
+        <!-- When adding new references and FK, please put them in the same order as they are as attributes! -->
+        <foreign-key foreignTable="TLGNC_ORDER" name="FK_TLGNC_ORDER_ITEM_ORD">
+            <reference local="ORDER_ID" foreign="ORDER_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNC_LOAD" name="FK_TLGNC_ORDER_ITEM_LOAD">
+            <reference local="LOAD_ID" foreign="LOAD_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNS_SAP_CONTRACT_ITEM" name="FK_TLGNC_ORDER_ITEM_SAP_CONTR">
+            <reference local="SAP_CONTRACT_ITEM_ID" foreign="SAP_CONTRACT_ITEM_ID"/>
+        </foreign-key>
+        
+        <foreign-key foreignTable="TLGNC_FIREQ_MATERIAL_MIXDESIGN" name="FK_TLGNC_ORDITEM_MIXDESIGN">
+            <reference local="MIX_DESIGN_ID" foreign="MIX_DESIGN_ID"/>
+        </foreign-key>
+        
+        <foreign-key foreignTable="TLGNS_SAP_MATERIAL" name="FK_TLGNC_ORDER_ITEM_MAT">
+            <reference local="SAP_MATERIAL_ID" foreign="SAP_MATERIAL_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_PLANT_BS" name="FK_TLGNC_ORDER_ITEM_PLANT">
+            <reference local="PRODUCTION_PLANT_CD" foreign="PLANT_CD"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_CURRENCY_BS" name="FK_TLGNC_ORDER_ITEM_CURR">
+            <reference local="CURRENCY_CD" foreign="CURRENCY_CD"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_UOM_BS" name="FK_TLGNC_ORDER_ITEM_UOM_ORD">
+            <reference local="ORDERED_UOM_CD" foreign="UOM_CD"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_UOM_BS" name="FK_TLGNC_ORDER_ITEM_UOM_LOA">
+            <reference local="LOADED_UOM_CD" foreign="UOM_CD"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_UOM_BS" name="FK_TLGNC_ORDER_ITEM_UOM_RET">
+            <reference local="RETURNED_UOM_CD" foreign="UOM_CD"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_RETURN_QUANT_HANDLING_BS" name="FK_TLGNC_ORDER_ITEM_RET_HAND">
+            <reference local="RETURN_QUANT_HANDLING_CD" foreign="RETURN_QUANT_HANDLING_CD"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_UOM_BS" name="FK_TLGNC_ORDER_ITEM_UOM_DEL">
+            <reference local="DELIVERED_UOM_CD" foreign="UOM_CD"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNC_LOADINGPOINT" name="FK_TLGNC_ORDER_ITEM_LOADPOINT">
+            <reference local="LOADINGPOINT_ID" foreign="LOADINGPOINT_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNC_SHIPTO_SILO" name="FK_TLGNC_ORDER_ITEM_SILO">
+            <reference local="SHIPTO_SILO_ID" foreign="SHIPTO_SILO_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_SILO_VERIF_TYPE_BS" name="FK_TLGNC_ORDER_ITEM_SILO_VERIF">
+            <reference local="SHIPTO_SILO_VERIF_TYPE_CD" foreign="SILO_VERIF_TYPE_CD"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNC_ORDER_ITEM" name="FK_TLGNC_ORD_IT_BIM_ORD_IT">
+            <reference local="BIMODAL_RAIL_ORDER_ITEM_ID" foreign="ORDER_ITEM_ID"/>
+		</foreign-key>
+		<foreign-key foreignTable="TLGNC_TRUCK" name="FK_TLGNC_ORDER_ITEM_TRUCK">
+			<reference local="DELIVERED_LOAD_TRUCK_ID" foreign="TRUCK_ID"/>
+		</foreign-key>
+        <foreign-key foreignTable="TLGNC_TRAILER" name="FK_TLGNC_ORDER_ITEM_TRAILER">
+			<reference local="DELIVERED_LOAD_TRAILER_ID" foreign="TRAILER_ID"/>
+		</foreign-key>
+		<foreign-key foreignTable="TLGNC_CONTAINER" name="FK_TLGNC_ORDER_ITEM_CONTAINER">
+			<reference local="DELIVERED_LOAD_CONTAINER_ID" foreign="CONTAINER_ID"/>
+       </foreign-key>
+       <foreign-key foreignTable="TLGNC_WAGON" name="FK_TLGNC_ORDER_ITEM_WAGON">
+			<reference local="DELIVERED_LOAD_WAGON_ID" foreign="WAGON_ID"/>
+	   </foreign-key>
+	   <foreign-key foreignTable="TLGNR_RETURN_ORDER_REASON_BS" name="FK_TLGNC_ORDER_ITEM_RET_REASON">
+            <reference local="RETURN_ORDER_REASON_CD" foreign="RETURN_ORDER_REASON_CD"/>
+       </foreign-key>
+       <foreign-key foreignTable="TLGNR_UOM_BS" name="FK_TLGNC_ORDER_ITEM_UOM_QT">
+			<reference local="TARGET_QUANTITY_UOM_CD" foreign="UOM_CD"/>
+	   </foreign-key>
+       <foreign-key foreignTable="TLGNR_RETURN_MATERIAL_USAGE_BS" name="FK_TLGNC_ORDER_ITEM_MAT_USAGE">
+			<reference local="RETURN_MATERIAL_USAGE_CD" foreign="RETURN_MATERIAL_USAGE_CD"/>
+	   </foreign-key>
+       <foreign-key foreignTable="TLGNR_PLANT_BS" name="FK_TLGNC_ORDER_ITEM_PLANT_CD">
+			<reference local="RETURN_PLANT_CD" foreign="PLANT_CD"/>
+	   </foreign-key>
+       <foreign-key foreignTable="TLGNC_SHIPPINGPOINT" name="FK_TLGNC_ORDER_ITEM_SP_ID">
+			<reference local="RETURN_SHIPPINGPOINT_ID" foreign="SHIPPINGPOINT_ID"/>
+	   </foreign-key>
+
+    </table>
+</database>

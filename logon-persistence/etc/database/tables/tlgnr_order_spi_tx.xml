@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNR_ORDER_SPI_TX" refData="true"
+           description="Language dependent attributes for Special Process Indicator records.">
+
+        <column name="ORDER_SPI_CD" primaryKey="true" required="true" type="VARCHAR" size="4"
+                description="Part of PK. FK tlgnr_order_psi_bs. Code of the Reference Data."/>
+        <column name="LANG_CD" primaryKey="true" required="true" type="VARCHAR" size="2"
+                description="Part of PK. FK tlgnr_lang_bs."/>
+        <column name="TXT" required="true" type="VARCHAR" size="50"
+                description="Description of the Special Process Indicator  in the language lang_cd."/>
+
+        <foreign-key foreignTable="TLGNR_ORDER_SPI_BS" name="FK_TLGNR_ORDER_SPI_TX">
+            <reference local="ORDER_SPI_CD" foreign="ORDER_SPI_CD"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_LANG_BS" name="FK_TLGNR_ORDER_SPI_LANG">
+            <reference local="LANG_CD" foreign="LANG_CD"/>
+        </foreign-key>
+    </table>
+</database>

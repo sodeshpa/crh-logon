@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNC_SHIPTO_SAREA_RESTR"
+           description="Represents the product restrictions for a given Shipto and Sales Area. It contains the main data of the Dispokarte. Restrictions are depending a lot on the SAP pricing conditions (material and transport cond.)">
+
+        <column name="SHIPTO_SAREA_RESTR_ID" primaryKey="true" required="true" type="DECIMAL" size="12"
+                description="PK"/>
+        <column name="SHIPTO_SAREA_ID" required="true" type="DECIMAL" size="12"
+                description="FK tlgnc_shipto_sarea. The related Shipto/Sales Area tuple."/>
+        <column name="ENABLED_FLAG" required="true" type="BOOLEAN"
+                description="Whether the restriction is enabled (=checkbox set in the user interface)"/>
+		<column name="AVAILABLE_IN_CUST_WEB_FLAG" required="true" type="BOOLEAN"                
+                description="1=material restriction allowed/visible in customer web application for order creation by a web-customer. 0=not visible in customer web application. By setting these flags right it can be distinguished between dispocard defaults relevant for customer / only for call center."/>                
+		<column name="AVAILABLE_IN_PICKUP_APP_FLAG"  required="true"  type="BOOLEAN"              
+                description="1=material restriction allowed/visible in pickup/terminal application for order creation by a pickup-customer. 0=not visible in pickup/terminal application. By setting these flags right it can be distinguished between dispocard defaults relevant for pickup / only for call center."/>
+
+        <!-- Material and shipto specific -->
+        <column name="SAP_MATERIAL_ID" required="true" type="DECIMAL" size="12"
+                description="FK tlgns_sap_material. The related material. Until Logon 2.0 ne record with material 'null' was allowed, this is the * restriction. DB field was therefore nullable, but from Logon 2.0 it is not nullable."/>
+		<column name="MIX_DESIGN_ID" type="DECIMAL" size="12"
+                description="FK to tlgnc_fireq_material_mixdesign. Mix design id of this restriction. Mix design can only be specified for aggregate material + production plant combination. Mix design business term: Recipe/Formula of the material composition of the aggregates material."/>
+        <column name="PRODUCTION_PLANT_CD" type="VARCHAR" size="4"
+                description="FK tlgnr_plant_cd. The production plant where the material is produced."/>
+        <column name="SHIPTO_SILO_ID" type="DECIMAL" size="12"
+                description="FK tlgnc_shipto_silo. The related silo. If set (default silo for this material) the material should match shipto_silo.sap_material_id, but this could change over time, when materials in silos change!"/>
+
+        <!-- "Versandstelle": -->
+        <!-- loadingpoint_id may be undefined. If defined, must related to shippingpoint_id  -->
+        <column name="SHIPPINGPOINT_ID" type="DECIMAL" size="12"
+                description="FK tlgnc_shippingpoint. The default shippingpoint when creating a new order."/>
+        <column name="LOADINGPOINT_ID" type="DECIMAL" size="12"
+                description="FK tlgnc_loadingpoint. The default loadingpoint when creating a new order."/>
+
+        <column name="QUANTITY" type="DECIMAL" size="12,4"
+                description="The default quantity of UOM_CD when an order is created based on this restriction. If the UOM has CREATE_MULTI_ORDER_FLAG=1 several orders will be created if &gt;1"/>
+        <column name="UOM_CD" type="VARCHAR" size="3"
+                description="FK tlgnr_uom_bs. The unit of measurement. This is the default for ordered_uom_cd when taking an order based on this restriction."/>
+
+		<column name="PER_SDORDER_QUANTITY" type="DECIMAL" size="12,4"
+                description="Default value for tlgnc_custorder_item.per_sdorder_quantity, which determines the planned quantity per Single Delivery Order later on. Value is taken from an enabled vehicle type with highest priority. If no priority is given, take the max net weight/volume of the available truck types."/>
+        <column name="PER_SDORDER_UOM_CD" type="VARCHAR" size="3"
+                description="FK tlgnr_uom_bs. Default value for tlgnc_custorder_item.per_sdorder_uom_cd, which is the relates unit of measure of per_sdorder_quantity."/>
+
+		<column name="EXACT_CUSTORDER_QTY_FLAG" required="true" type="BOOLEAN"
+                description="Default value for tlgnc_custorder_item.exact_custorder_quantity_flag, which will have an effect on the creation of related single delivery orders. If true then last single delivery will be dynamically adjusted to reach total customer order item quantity exactly. If false then when the last Single Delivery Order is delivered the Customer Order is completed (as in LOGON 2.0)."/>
+		<column name="EXACT_SDORDER_QTY_FLAG" required="true" type="BOOLEAN"
+                description="Default value for tlgnc_custorder_item.exact_sdorder_quantity_flag, which has an effect on single delivery quantities and is used together with the value of per_sdorder_quantity field."/>
+        <column name="ON_HOLD_ORDER_AND_LOCKED_FLAG" required="true" type="BOOLEAN"
+                description="1=true, if order is a so-called on-hold order and currently 'locked' (German: 'Abrufauftrag'), 0=normal order, or an on-hold order which was unlocked. When set for Truck orders: can be processed until status '6=Dispatched'. When set for Rail orders: can not be transmitted to rail company (but loading/dispatching possible). After those states/actions, the flag is readonly and can not be set again. If true order can be deleted even in status dispatched."/>                                
+
+       <column name="OPEN_CUSTORDER_FLAG" required="true" type="BOOLEAN"
+                description="Default value for tlgnc_custorder.open_custorder_flag. If this flag is set then a Single Delivery Order will be created in the first step but when that order is loaded (end loading event) a new Single Delivery Order will be created, schedule and released (if the 'Autom. Release' is checked). This process will be repeated until the Customer Order is manually closed (in order details pop-up or via weighing system interface)."/>
+
+        <column name="DELIVERY_FREQ_EVERY_TIME" type="DOUBLE"
+                description="Default value for tlgnc_custorder.delivery_freq_every_time. If specified the customer order is supposed to be sliced into sequential Single Delivery Orders with the time difference defined here."/>
+        <column name="DELIVERY_FREQ_EVERY_TIME_UOM" type="VARCHAR" size="3"
+                description="Default value for tlgnc_custorder.delivery_freq_every_time_uom.Unit of measure of DELIVERY_FQ_EVERY_TIME_UNIT. HRE = hour, MIN = minute, other units are not supported at the moment."/>
+        <column name="DELIVERY_FREQ_QTYPERHRE" type="DECIMAL" size="12,4"
+                description="Default value for tlgnc_custorder.delivery_freq_qtyperhre. If specified the customer order is supposed to be sliced into Single Delivery Orders so that the specified amount of material is delivered per hour. Also known as performance order."/>
+        <column name="DELIVERY_FREQ_QTYPERHRE_UOM_CD" type="VARCHAR" size="3"
+                description="FK tlgnr_uom_bs. Default value for tlgnc_custorder.delivery_freq_qtyperhre_uom. Unit of measure of DELIVERY_FREQ_QTYPERHRE."/>
+        
+		<column name="DELIVERY_TIME_TOLERANCE" type="DOUBLE"
+                description="Default value for tlgnc_custorder.delivery_time_tolerance. Defines the delivery time window around the planned delivery time of the Single Delivery Order."/>
+		<column name="DELIVERY_TIME_TOLERANCE_UOM" type="VARCHAR" size="3"
+                description="Default value for tlgnc_custorder.delivery_time_tolerance_uom. Unit of measure of DELIVERY_TIME_TOLERANCE. HRE = hour, MIN = minute, other units are not supported at the moment."/>
+        
+        <column name="DELIVERY_TYPE_CD" type="DECIMAL" size="2"
+                description="FK tlgnr_delivery_type_bs. Delivery type (Lieferart), e.g LKW direkt, Bahn direkt, Bahn-LKW. This is the default for tlgnc_order.delivery_type_cd when taking an order based on this restriction."/>
+
+        <!-- Pool -->
+        <column name="POOL_ID" type="DECIMAL" size="12"
+                description="FK tlgnc_pool. The default pool when creating a new order."/>
+        <column name="AUTO_POOL_ASSIGNMENT_FLAG" required="true" type="BOOLEAN"
+                description="If set, a new order is automatically assigned to the pool defined by pool_id."/>
+        <column name="AUTO_RELEASE_FLAG" required="true" type="BOOLEAN"
+                description="If set, a new order is automatically assigned to the planning truck of the defined commercial carrier, or the first planning truck of the generic carrier and thus it's immediately transmitted to LDS."/>                
+
+        <!-- Commercial Carrier -->
+        <column name="COMM_CARRIER_ID" type="DECIMAL" size="12"
+                description="FK tlgnc_carrier. The default commercial carrier when creating a new order. For rail orders also the default executing carrier."/>
+        <column name="AUTO_CARRIER_ASSIGNMENT_FLAG" required="true" type="BOOLEAN"
+                description="If set, a new order is automatically assigned to the carrier defined by comm_carrier_id."/>
+        <!-- Executing Carrier -->
+        <column name="EXEC_CARRIER_ID" type="DECIMAL" size="12"
+                description="FK tlgnc_carrier. The default executing carrier when creating a new order."/>
+
+        <!-- Billto -->
+        <column name="BILLTO_SAP_BP_ID" type="DECIMAL" size="12"
+                description="FK tlgns_sap_bp. The default fix billto (Rechnungsempfaenger, Haendler), always wins against the billto rules (see billto_rule_type_cd). If null, free_delivery_flag=0 and billto_ruletype_cd is null: no default billto is set."/>
+		<column name="PAYER_SAP_BP_ID" type="DECIMAL" size="12"
+				description="FK tlgns_sap_bp. The default fix payer (Rechnungszahler). Can be set independently to billto_sap_bp_id and free_delivery_flag. If null: No default payer is set."/>
+        <column name="BILLTO_RULETYPE_CD" type="DECIMAL" size="2"
+                description="FK tlgnr_billto_ruletype_cd. If set, a so called billto-rhythm is active (instead of a single default billto). See tlgnc_shipto_sarea_restr_btrul, where the actual rules are stored."/>
+        <column name="FREE_DELIVERY_FLAG" required="true" type="BOOLEAN"
+                description="Controls whether free of charge is the DEFAULT for orders based on this shipto/restriction. Flag can only be set if tlgnc_shipto_sarea.free_delivery_flag = 1."/>
+
+        <!-- SAP -->
+        <column name="RELEASE_SAP_FLAG" required="true" type="BOOLEAN"
+                description="If 0: an order containing this product will get tlgnc_order.release_sap_flag=0 as DEFAULT and therefore not be sent to SAP immediately when completed. Flag can only be set if tlgnc_shipto_sarea.release_sap_optional_flag = 1."/>
+        <column name="SAP_SUPPRESS_MIN_CHARGE_FLAG" required="true" type="BOOLEAN"
+                description="Default value for tlgnc_custorder.sap_suppress_min_charge_flag. In SAP the customer has to pay a special charge/penalty if he orders a quantity below a defined quantity. Goal is to reduce deliveries which do not utilize the truck fully. Example: if a customer would order only 5 tons then he has to pay transport costs as if the truck had delivered 20 tons plus 5 tons material costs plus penality. All those cost calculations are done in SAP. LOGON has only the possiblity to provide a flag as indication that NO penality has to be invoiced by SAP."/>
+
+		<!-- Notes -->
+        <column name="NOTE_ORDER_MGMT" type="VARCHAR" size="200"
+                description="Notes of the order management about the product. Will become value of tlgnc_order_item.item_note_order_mgmt, not modifiable there by a Call Center Agent."/>
+		<!-- Field size is 300 becasue we misuse this field for special customs information from Loruns to CH (Ticket ADN49541). -->
+        <column name="NOTE_DELIVERY" type="VARCHAR" size="300"
+                description="Additional text for the delivery note about the product. Will become initial value of tlgnc_order_item.item_note_delivery."/>
+        <column name="NOTE_DISPATCHING" type="VARCHAR" size="200"
+                description="Notes for the Pool/Carrier about the product. Will become initial value of tlgnc_order_item.item_note_dispatching."/>
+        <column name="NOTE_TRUCK_DRIVER" type="VARCHAR" size="200"
+                description="Notes for the Driver about the product. Will become initial value of tlgnc_order_item.item_note_truck_driver."/>
+        <column name="NOTE_RAILWAY_DISP" type="VARCHAR" size="200"
+                description="Notes for the Railway disposition about the product. Will become initial value of tlgnc_order_item.item_note_railway."/>
+
+		<column name="PACKAGE_TYPE_CD" type="DECIMAL" size="2"
+                description="FK tlgnr_package_type_bs. Package type: Bulk or Bag."/>
+
+        <column name="SAP_CONTRACT_ITEM_ID" type="DECIMAL" size="12"
+                description="FK tlgns_sap_contract_item_id. Reference to the contract-item on which this restriction is based.Multiple restrictions can belong to the same contract item (see generic materials). However, services and possibly other special materials can be contained in an order even when not contained in a contract. For these items: Field is null. The contract is supposed to count as a base when creating restrictions, but the restriction setting can be changed later on. Even if field is set, the usage of this restriction is NOT limited to that contrac, but for all identical materials even from other contracts as long as the order taking validation rules."/>
+
+        <column name="SPI_CD" type="VARCHAR" size="4"
+                description="The keycd of the special processing indicator reference record."/>
+
+
+        <foreign-key foreignTable="TLGNC_SHIPTO_SAREA" name="FK_TLGNC_SHPTSAREST_VKO">
+            <reference local="SHIPTO_SAREA_ID" foreign="SHIPTO_SAREA_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNS_SAP_MATERIAL" name="FK_TLGNC_SHPTSAREST_MAT">
+            <reference local="SAP_MATERIAL_ID" foreign="SAP_MATERIAL_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNC_FIREQ_MATERIAL_MIXDESIGN" name="FK_TLGNC_SHPTSAREST_MIXDESIGN">
+            <reference local="MIX_DESIGN_ID" foreign="MIX_DESIGN_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNC_SHIPTO_SILO" name="FK_TLGNC_SHPTSAREST_SILO">
+            <reference local="SHIPTO_SILO_ID" foreign="SHIPTO_SILO_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNC_SHIPPINGPOINT" name="FK_TLGNC_SHPTSAREST_SHP">
+            <reference local="SHIPPINGPOINT_ID" foreign="SHIPPINGPOINT_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNC_LOADINGPOINT" name="FK_TLGNC_SHPTSAREST_LDP">
+            <reference local="LOADINGPOINT_ID" foreign="LOADINGPOINT_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_PLANT_BS" name="FK_TLGNC_SHPTSAREST_PLNT">
+            <reference local="PRODUCTION_PLANT_CD" foreign="PLANT_CD"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_UOM_BS" name="FK_TLGNC_SHPTSAREST_UOM">
+            <reference local="UOM_CD" foreign="UOM_CD"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_UOM_BS" name="FK_TLGNC_SHPTSAREST_PERSDO_UOM">
+            <reference local="PER_SDORDER_UOM_CD" foreign="UOM_CD"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_UOM_BS" name="FK_TLGNC_SHPTSAREST_DEL_FQ_UOM">
+            <reference local="DELIVERY_FREQ_QTYPERHRE_UOM_CD" foreign="UOM_CD"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_DELIVERY_TYPE_BS" name="FK_TLGNC_SHPTSAREST_DELTYP">
+            <reference local="DELIVERY_TYPE_CD" foreign="DELIVERY_TYPE_CD"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNC_POOL" name="FK_TLGNC_SHPTSAREST_POOL">
+            <reference local="POOL_ID" foreign="POOL_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNC_CARRIER" name="FK_TLGNC_SHPTSAREST_COMM_CARR">
+            <reference local="COMM_CARRIER_ID" foreign="CARRIER_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNS_SAP_BP" name="FK_TLGNC_SHPTSAREST_BILL">
+            <reference local="BILLTO_SAP_BP_ID" foreign="SAP_BP_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNS_SAP_BP" name="FK_TLGNC_SHPTSAREST_PAY">
+            <reference local="PAYER_SAP_BP_ID" foreign="SAP_BP_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_BILLTO_RULETYPE_BS" name="FK_TLGNC_SHPTSAREST_BTRULE">
+            <reference local="BILLTO_RULETYPE_CD" foreign="BILLTO_RULETYPE_CD"/>
+        </foreign-key>
+		<foreign-key foreignTable="TLGNR_PACKAGE_TYPE_BS" name="FK_TLGNC_SHPTSAREST_PKGTYP">
+            <reference local="PACKAGE_TYPE_CD" foreign="PACKAGE_TYPE_CD"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNS_SAP_CONTRACT_ITEM" name="FK_SHPTSAREST_SAP_CONTR_ITEM">
+            <reference local="SAP_CONTRACT_ITEM_ID" foreign="SAP_CONTRACT_ITEM_ID"/>
+        </foreign-key>       
+     </table>
+</database>

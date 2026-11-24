@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Author            : AdNovum Informatik AG
+ Version Number    : $Revision$
+ Date of last edit : $Date$
+-->
+
+<project name="logon" default="dist" basedir=".">
+	<description>${ant.project.name} project build file</description>
+
+	<!-- ================================================================= -->
+	<!-- === externally defined                                        === -->
+	<!-- ================================================================= -->
+	<import file="properties.xml" />
+	<import file="../common.xml" />
+
+	<!-- ================================================================ -->
+	<!--  define target specific classpaths (build, runtime, test)        -->
+	<!-- ================================================================ -->
+	<path id="compile.classpath">
+		<pathelement location="${project-common.jar.loc}" />
+		<pathelement location="${commons-lang.jar}" />
+		<pathelement location="${jcan-log.jar}" />
+		<pathelement location="${log4j.jar}" />
+		<pathelement location="${jcan-commons.jar}" />
+		<pathelement location="${jcan-optrace.jar}" />
+		<pathelement location="${soapui.jar}" />
+		<pathelement location="etc/cfg" />
+		<fileset dir="${SOAPUI_5_HOME}/lib">
+			<include name="**/*.jar" />
+		</fileset>
+	</path>
+
+	<!-- ================================================================ -->
+	<!--  initialization, cleanup and default targets                     -->
+	<!-- ================================================================ -->
+	<target name="all" depends="dist" description="build and test everything" />
+
+	<target name="toolbox-checkUptodate">
+		<uptodate property="toolbox-isUptodate" targetfile=".classpath">
+			<srcfiles refid="toolbox-sourcefiles" />
+		</uptodate>
+	</target>
+
+	<target name="toolbox"
+	        depends="toolbox-checkUptodate"
+	        unless="toolbox-isUptodate">
+		<taskdef resource="adnant-taskdefs.xml" />
+		<!-- See documentation in adnant project's README -->
+		<updatedotclasspath>
+			<!-- See documentation of 'updatedotclasspath' in adnant project's README -->
+			<con path="org.eclipse.jdt.launching.JRE_CONTAINER" />
+			<output path=".bin" />
+			<src path="/logon-common" />
+			<src path="${java.src.dir.name}" />
+			<lib path="${adntrace2-templates.jar}"
+			     sourcepath="${masterbuild.dir}/etc/adntrace2" />
+		</updatedotclasspath>
+	</target>
+
+	<target name="init"
+	        depends="toolbox"
+	        description="initialization project structure and environment">
+		<tstamp />
+		<echo message="--------- ${ant.project.name}-${build.version} building on ${os.name} ---------" />
+		<echo message="" />
+		<echo message="building file ${ant.file} with ${ant.version}" />
+		<echo message="" />
+		<mkdir dir="${build.dir}" />
+		<mkdir dir="${classes.dir}" />
+		<mkdir dir="${lib.dir}" />
+		<mkdir dir="${test.build.dir}" />
+		<mkdir dir="${test.log.dir}" />
+		<mkdir dir="${test.lib.dir}" />
+	</target>
+
+	<target name="clean"
+	        description="cleans all generated files and directories">
+		<delete dir="${build.dir}" />
+	</target>
+
+	<!-- ================================================================ -->
+	<!--  compile targets                                                 -->
+	<!-- ================================================================ -->
+	<target name="build" depends="compile" description="build target" />
+
+	<target name="compile" depends="compile-src, init-test, prepare" />
+
+	<target name="compile-src" depends="init">
+		<echo message="${java.src.dir}" />
+		<javac source="${compile.source}"
+		       target="${compile.target}"
+		       destdir="${classes.dir}"
+		       debug="${compile.debug}"
+		       optimize="${compile.optimize}"
+		       deprecation="${compile.deprecation}"
+		       encoding="${compile.encoding}"
+		       includeantruntime="no">
+			<src path="${java.src.dir}" />
+			<include name="**/*.java" />
+			<bootclasspath refid="compile.bootclasspath" />
+			<classpath refid="compile.classpath" />
+		</javac>
+	</target>
+
+	<target name="prepare"
+	        description="copies the wsdls to build/wsdl to be used by soapui">
+		<copy todir="${build.dir}/wsdl">
+			<fileset dir="${subcomponent.webservices-client}/etc/wsdl">
+				<include name="**/*.wsdl" />
+				<include name="**/*.xsd" />
+			</fileset>
+		</copy>
+		<copy todir="${build.dir}/wsdl">
+			<fileset dir="${subcomponent.webservices}/etc/wsdl">
+				<include name="**/*.wsdl" />
+				<include name="**/*.xsd" />
+			</fileset>
+		</copy>
+		<copy todir="${build.dir}/wsdl">
+			<fileset dir="${subcomponent.webservices-mop-incoming}/src/main/resources">
+				<include name="**/*.wsdl" />
+				<include name="**/*.xsd" />
+			</fileset>
+		</copy>
+
+		<copy todir="${build.dir}/wsdl">
+			<fileset dir="${subcomponent.webservices-pws-incoming}/src/main/resources">
+				<include name="**/*.wsdl" />
+				<include name="**/*.xsd" />
+			</fileset>
+		</copy>
+
+	</target>
+
+	<target name="patch" description="patch the soapui before check-in!">
+		<echo>Replace expression ${basedir} with .</echo>
+		<replaceregexp encoding="utf-8" flags="g">
+			<regexp pattern="${basedir}" />
+			<substitution expression="." />
+			<fileset dir="etc/soapui">
+				<include name="**/*.xml" />
+			</fileset>
+		</replaceregexp>
+		<replaceregexp encoding="utf-8" flags="g">
+			<regexp pattern=">(\./){2,}" />
+			<substitution expression=">./" />
+			<fileset dir="etc/soapui">
+				<include name="**/*.xml" />
+			</fileset>
+		</replaceregexp>
+	</target>
+
+	<target name="dist" description="build the distribution">
+		<antcall target="realdist" inheritall="true" />
+		<antcall target="dev_dist" inheritall="true" />
+	</target>
+
+	<target name="realdist" depends="build">
+		<!-- do the soapui test client dist... -->
+		<!-- TODO boon 20101105: I don't see this testclient being used anywhere, so why wait for these files to be copied? Cleanup this stuff properly at some point -->
+		<!--
+		<copy todir="${dist.dir}/testclient-soapui/soapui">
+			<fileset dir="${SOAPUI_5_HOME}">
+				<exclude name="Tutorials/**"/>
+				<exclude name="licenses/**"/>
+				<exclude name="xulrunner-linux/**"/>
+				<exclude name="wsi-test-tools/**"/>
+			</fileset>
+		</copy>
+		<copy todir="${dist.dir}/testclient-soapui/etc/soapui" file="etc/soapui/testdata.properties" />
+		<copy todir="${dist.dir}/testclient-soapui" file="etc/testclient/run-soapui.sh"/>
+		<copy todir="${dist.dir}/testclient-soapui" file="etc/testclient/run-soapui.bat"/>
+		<copy todir="${dist.dir}/testclient-soapui" file="etc/testclient/testclient.properties"/>
+		<copy todir="${dist.dir}/testclient-soapui" file="etc/soapui/cs-outgoing/project.xml" />
+		<replaceregexp byline="true" encoding="utf-8" flags="g">
+			<regexp pattern="(etc/soapui/testdata.properties)" />
+			<substitution expression="./testdata.properties"/>
+			<fileset file="${dist.dir}/testclient-soapui/project.xml" />
+		</replaceregexp>
+		-->
+		<copy todir="${dist.dir}/apache-ftpserver" overwrite="true">
+			<fileset dir="etc/apache-ftpserver"/>
+		</copy>
+		<replaceregexp byline="true" encoding="utf-8" flags="g">
+			<regexp pattern="(./apache-ftpserver)" />
+			<substitution expression="${dist.dir}/apache-ftpserver"/>
+			<fileset dir="${dist.dir}/apache-ftpserver/conf">
+				<include name="users.properties" />
+				<include name="log4j.properties" />
+			</fileset>
+		</replaceregexp>
+	</target>
+
+	<target name="dev_dist" depends="build">
+		<copy todir="${dist.dir}/etc/soapui" file="etc/soapui/soapui.properties" />
+		<echo message="${mockup.email.enabled}" />
+		<antcall target="mockup_email_enabled" inheritall="true" />
+		<antcall target="mockup_email_recipient" inheritall="true" />
+		<antcall target="mockup_email_smtp_host" inheritall="true" />
+	</target>
+	
+	<target name="mockup_email_enabled" if="mockup.email.enabled">
+		<echo message="${mockup.email.enabled}" />
+		<replaceregexp byline="true" encoding="utf-8" flags="g">
+			<regexp pattern="mockup\.email\.enabled=.*" />
+			<substitution expression="mockup.email.enabled=${mockup.email.enabled}"/>
+			<fileset file="${dist.dir}/etc/soapui/soapui.properties" />
+		</replaceregexp>
+	</target>
+	
+	<target name="mockup_email_recipient" if="mockup.email.recipient">
+		<echo message="${mockup.email.recipient}" />
+		<replaceregexp byline="true" encoding="utf-8" flags="g">
+			<regexp pattern="mockup\.email\.recipient=.*" />
+			<substitution expression="mockup.email.recipient=${mockup.email.recipient}"/>
+			<fileset file="${dist.dir}/etc/soapui/soapui.properties" />
+		</replaceregexp>
+	</target>
+	
+	<target name="mockup_email_smtp_host" if="mockup.email.smtp.host">
+		<echo message="${mockup.email.smtp.host}" />
+		<replaceregexp byline="true" encoding="utf-8" flags="g">
+			<regexp pattern="mockup\.email\.smtp\.host=.*" />
+			<substitution expression="mockup.email.smtp.host=${mockup.email.smtp.host}"/>
+			<fileset file="${dist.dir}/etc/soapui/soapui.properties" />
+		</replaceregexp>
+	</target>
+	
+	<!-- NOTE: what we build here is only used for development (enables faster dev-cycles) -->
+	<target name="deploy" depends="dist" description="deploy this sub-project only">
+		<echo>nothing to deploy here!</echo>
+	</target>
+
+	<!-- ================================================================ -->
+	<!-- source code tracing instrumentation targets                      -->
+	<!-- ================================================================ -->
+	<target name="adntrace2-instrument">
+		<taskdef resource="adntrace2-taskdefs.xml"
+		         classpathref="adntrace2.classpath" />
+		<adntrace2 operation="instrument" />
+	</target>
+
+	<target name="adntrace2-refresh">
+		<taskdef resource="adntrace2-taskdefs.xml"
+		         classpathref="adntrace2.classpath" />
+		<adntrace2 operation="refresh" />
+	</target>
+
+
+	<!-- ================================================================ -->
+	<!--  externally defined tasks/targets                                -->
+	<!-- ================================================================ -->
+	<import file="./build-test.xml" />
+</project>

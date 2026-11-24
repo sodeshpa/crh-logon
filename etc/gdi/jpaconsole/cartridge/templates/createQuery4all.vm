@@ -1,0 +1,13 @@
+$currentTemplate
+$gdi.generatedAt
+-------------------------
+#set ($query = "
+
+select x from SapBpEntity x 
+")
+
+query: $query
+
+#set ($em = $jpa.em("logon-test"))
+#set ($data = $em.createQuery($query).resultList)
+$jpa.printTable($data)

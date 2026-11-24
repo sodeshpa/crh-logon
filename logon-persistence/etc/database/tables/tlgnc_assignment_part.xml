@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNC_ASSIGNMENT_PART"
+           description="An assignment consists of several parts to be executed in a defined order. Examples of parts of such a sequence: loading, driving-to, unloading, ... The end (point and date/time) of a part is defined by the start point and date/time of the next part in the sequence.">
+
+        <column name="ASSIGNMENT_PART_ID" primaryKey="true" required="true" type="DECIMAL" size="12"
+                description="PK"/>
+        <column name="ASSIGNMENT_ID" required="true" type="DECIMAL" size="12"
+                description="FK TLGNC_ASSIGNMENT. The assignment this part belongs to."/>
+        <column name="ASSIGNMENT_PART_SEQ_NO" required="true" type="DECIMAL" size="12"
+                description="The parts of an assignment are arranged in a sequence, defined by these numbers."/>
+        <column name="ASSIGNMENT_PART_TYPE_CD" required="true" type="DECIMAL" size="2"
+                description="FK TLGNR_ASSIGNMENT_PART_TYPE_BS. The type (some kind of action) of this part: 0=pre-loading, 1=loading, 2=driving-to, ... An artificial type 5=finished is introduced for technical reasons in each assignment. Note that the execution order is defined by ASSIGNMENT_PART_SEQ_NO, not by this type!"/>
+        <column name="ORDER_ID" type="DECIMAL" size="12"
+                description="FK TLGNC_ORDER. The order which is unloaded. Only set for assignment_parts of type unloading. It it not possible to set this reference also for type 'loading' because several order_items with the same material are collected into one load (relevant for case bag at the moment)."/>
+        <column name="EXT_ORDER_ID" type="DECIMAL" size="12"
+                description="FK TLGNC_EXT_ORDER. The external order which is unloaded."/>
+        <column name="LOAD_ID" type="DECIMAL" size="12"
+                description="FK TLGNC_LOAD. The load which is loaded. Only set for assignment_parts of type loading, null for all other types of assignment_part. For service items no loading part is created."/>
+
+        <column name="ASSIGN_PART_STATUS_CD" required="true" type="DECIMAL" size="2"
+                description="FK TLGNR_ASSIGN_PART_STATUS_BS. The status of this assignment part: 0=new, 2=confirmed by driver. These are the only possible statuses."/>
+        <column name="PRE_PLANNED_START" type="DATE"
+                description="Date and time when this part should start its execution. Set by the crh scheduler when scheduling the orders."/>
+        <column name="PLANNED_START" type="DATE"
+                description="Date and time when this part should start its execution. Set by the scheduler when scheduling orders."/>
+        <column name="REAL_START" type="DATE"
+                description="Date and time when this part actually started. The start date/time of a part is the end date/time of the previous part in the sequence."/>
+        <column name="COORD_LAT" type="DOUBLE"
+                description="Latitude coordinates of the start of this part (=end of previous part). Start must be defined by either coordinates, shippingpoint or shipto. If shipto is 'location not fixed (one-time shipto)', both shipto+coord(+site) fields are set!"/>
+        <column name="COORD_LON" type="DOUBLE"
+                description="Longitute coordinates of the start of this part (=end of previous part). Start must be defined by either coordinates, shippingpoint or shipto. If shipto is 'location not fixed (one-time shipto)', both shipto+coord(+site) fields are set!"/>
+        <column name="SHIPPINGPOINT_ID" type="DECIMAL" size="12"
+                description="FK TLGNC_SHIPPINGPOINT. Shipping point of the start of this part (=end of previous part). Start must be defined by either coordinates, shippingpoint or shipto."/>
+        <column name="SHIPTO_ID" type="DECIMAL" size="12"
+                description="FK TLGNC_SHIPTO. Shipto of the start of this part (=end of previous part). Start must be defined by either coordinates, shippingpoint or shipto. If shipto is 'location not fixed (one-time shipto)', both shipto+coord(+site) fields are set!"/>
+
+        <!-- Free Text info about the "Site", which can be from/to depending on the assignment_part type -->
+        <column name="SITE_NAME" type="VARCHAR" size="80"
+                description="Name of the equivalent to a Shippingpoint or Shipto, mainly for external orders. The object it describes depends on assignment_part_type_cd. (Name Verladestelle, Name Empfaenger, ...)"/>
+        <column name="SITE_LOAD_UNLOAD" type="VARCHAR" size="80"
+                description="Name of the equivalent to a Loadingpoint or Silo, mainly for external orders. The object it describes depends on assignment_part_type_cd. (Ladestelle/-strasse, Entladestelle/Silo, ...)"/>
+        <column name="SITE_CONTACT_PERSON_TXT" type="VARCHAR" size="40"
+                description="Contact person and contact information for the position. Value is free text. The contact person for assignment_part of type 'unloading' is initially set to the value of tlgnc_order.contact_person_txt"/>
+        <column name="SITE_STREET_HOUSE_NO" type="VARCHAR" size="45"
+                description="Address information for the site: Street and Housenumber"/>
+        <column name="SITE_COUNTRY" type="VARCHAR" size="3"
+                description="Address information for the site: Country"/>
+        <column name="SITE_POSTAL_CODE" type="VARCHAR" size="10"
+                description="Address information for the site: Postal Code"/>
+        <column name="SITE_CITY" type="VARCHAR" size="35"
+                description="Address information for the site: City"/>
+
+        <column name="HOMEBASE_FLAG" required="true" type="BOOLEAN"
+                description="0=truck not at homebase, 1=truck at homebase. Relevant only for Trucks. For Wagons: There is no concept of 'homebase' similar to trucks, but rather a 'return location' (which is handled differently). Trailers do not have a homebase, and containers are not moveable on their own (only in combination with a truck/wagon) and therefore do not generate independent bizevents on their own."/>
+
+        <!-- TODO ADN51442 uma->cosmin: This flag should be required="true" => update mapping file + patch(!!) to set it as false -->
+        <column name="LNF_SHIPTO_FLAG" type="BOOLEAN"
+                description="1=site/coord fields are defining the location for the shipto_id, which is a 'location not fixed' type. Such an assignment part has site/coord fields set AND shipto_id. 0=normal assignment part, only 1 out of coord/shippingpoint/shipto must be set and is respected."/>
+                
+        <column name="TRANSPORT_DISTANCE_M" type="DECIMAL" size="10"
+                description="Transport distance from shipping point to ship-to in m. For truck orders, Google Maps is used. For rail orders distance information comes from tlgnc_rail_distance. In the case of carrier stock, when in reality the order is not loaded at the shippingpoint stored on order, but from the carrier stock shippingpoint (stored on the assignment), this field is overwritten with the real distance between the carrier stock shippingpoint and the final delivery place (fix shipto place, or in case of LNF shipto, LNF coordinates). Used for logistics aspects."/>                
+
+        <foreign-key foreignTable="TLGNC_ASSIGNMENT" name="FK_TLGNC_ASSIGN_PART_ASSIGN">
+            <reference local="ASSIGNMENT_ID" foreign="ASSIGNMENT_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNC_SHIPPINGPOINT" name="FK_TLGNC_ASSIGN_PART_SHIPPT">
+            <reference local="SHIPPINGPOINT_ID" foreign="SHIPPINGPOINT_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNC_SHIPTO" name="FK_TLGNC_ASSIGN_PART_SHIPTO">
+            <reference local="SHIPTO_ID" foreign="SHIPTO_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_ASSIGNMENT_PART_TYPE_BS" name="FK_TLGNC_ASSIGN_PART_TYPE">
+            <reference local="ASSIGNMENT_PART_TYPE_CD" foreign="ASSIGNMENT_PART_TYPE_CD"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_ASSIGN_PART_STATUS_BS" name="FK_TLGNC_ASSIGN_PART_STATUS">
+            <reference local="ASSIGN_PART_STATUS_CD" foreign="ASSIGN_PART_STATUS_CD"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNC_ORDER" name="FK_TLGNC_ASSIGN_PART_ORDER">
+            <reference local="ORDER_ID" foreign="ORDER_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNC_EXT_ORDER" name="FK_TLGNC_ASSIGN_PART_EXT_ORDER">
+            <reference local="EXT_ORDER_ID" foreign="EXT_ORDER_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNC_LOAD" name="FK_TLGNC_ASSIGN_PART_LOAD">
+            <reference local="LOAD_ID" foreign="LOAD_ID"/>
+        </foreign-key>
+
+        <unique name="UQ_TLGNC_ASSIGNMENT_PART_SEQ">
+            <unique-column name="ASSIGNMENT_ID"/>
+            <unique-column name="ASSIGNMENT_PART_SEQ_NO"/>
+        </unique>
+        
+        <unique name="UQ_TLGNC_ASSIGNMENT_PART_LOAD">
+            <unique-column name="LOAD_ID"/>
+        </unique>
+        
+        <unique name="UQ_TLGNC_ASSIGNMENT_PART_ORDER">
+            <unique-column name="ORDER_ID"/>
+        </unique>
+        
+        <index name="I_ASSIGN_PART_PLANNED_START">
+			<index-column name="PLANNED_START"/>
+		</index>
+    </table>
+</database>

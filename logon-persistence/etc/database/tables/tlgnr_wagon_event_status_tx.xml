@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNR_WAGON_EVENT_STATUS_TX" refData="true"
+           description="Language dependent attributes for wagon event status types.">
+
+        <column name="WAGON_EVENT_STATUS_CD" primaryKey="true" required="true" type="DECIMAL" size="2"
+                description="Part of PK. FK tlgnr_wagon_type_bs. Code of the Reference Data."/>
+        <column name="LANG_CD" primaryKey="true" required="true" type="VARCHAR" size="2"
+                description="Part of PK. FK tlgnr_lang_bs. For example de, en, ..."/>
+        <column name="TXT" required="true" type="VARCHAR" size="50"
+                description="Description of the wagon event status in the language LANG_CD."/>
+
+        <foreign-key foreignTable="TLGNR_WAGON_EVENT_STATUS_BS" name="FK_TLGNR_WAG_EVT_STAT_TX">
+            <reference local="WAGON_EVENT_STATUS_CD" foreign="WAGON_EVENT_STATUS_CD"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_LANG_BS" name="FK_TLGNR_WAG_EVT_STAT_LANG">
+            <reference local="LANG_CD" foreign="LANG_CD"/>
+        </foreign-key>
+    </table>
+</database>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNR_SHIPPPOINT_TYPE_TX" refData="true"
+           description="Reference data table for the types of Shipping Points, e.g. Road, Rail, Container Terminal.">
+
+        <column name="SHIPPPOINT_TYPE_CD" primaryKey="true" required="true" type="DECIMAL" size="2"
+                description="Part of PK. FK tlgnr_shipto_type_bs."/>
+        <column name="LANG_CD" primaryKey="true" required="true" type="VARCHAR" size="2"
+                description="Part of PK. FK tlgnr_lang_bs. For example de, en, ..."/>
+        <column name="TXT" required="true" type="VARCHAR" size="40"
+                description="Description of the status in the language LANG_CD."/>
+
+        <foreign-key foreignTable="TLGNR_SHIPPPOINT_TYPE_BS" name="FK_TLGNR_SHIPPPOINT_TYPE_TX">
+            <reference local="SHIPPPOINT_TYPE_CD" foreign="SHIPPPOINT_TYPE_CD"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_LANG_BS" name="FK_TLGNR_SHIPPOINT_TYPE_LANG">
+            <reference local="LANG_CD" foreign="LANG_CD"/>
+        </foreign-key>
+    </table>
+</database>

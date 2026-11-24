@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNR_DISTRIBUTION_DEST_BS" refData="true"
+           description="Distribution Destination characterizes the involved organisations and direction of an order: OUT/Outbound are orders which leave Crh (Crh to Customer), IUD/Interunit-Distribution are within Crh to distribute materials, IUP/Interunit-Production are within Crh and production relevant, INB/Inbound are orders from a supplier to Crh. The return types (xxxR) distribution destintions are needed for rail orders (return of the empty wagon), and a special type for repair orders (REP) exists as well.">
+
+        <column name="DISTRIBUTION_DEST_CD" primaryKey="true" required="true" type="VARCHAR" size="4"
+                description="PK. Code of the Reference Data, such as OUT, IUD, IUP, INB, REP, OUTR, IUDR, INBR."/>
+        <column name="SELECTABLE_FOR_SHIPTO_FLAG" required="true" type="BOOLEAN"
+                description="Defines if the code can be selected in dispocard for the field tlgnc_shipto_sarea.distribution_dest_cd. (Reason: with LOGON EBM/2.0, this value is no longer received from SAP, but is manually maintained in LOGON directly). 1=selectable, 0=not selectable."/>
+        <!-- Flag SELECTABLE_FOR_SHIPTO_FLAG it needed because ctl_act_cd would be a misuse.
+             The others ARE also useable still, even in the UI: See create special order for waggons! There, even OUTR etc selectable => new flag! -->
+        <column name="CTL_ACT_CD" required="true" type="BOOLEAN"
+                description="Active Flag. When new data is entered, only reference data with active flag are available for selection normally."/>
+    </table>
+</database>

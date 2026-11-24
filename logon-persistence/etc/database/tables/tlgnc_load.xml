@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNC_LOAD"
+           description="Data about an individual load on a vehicle (truck, trailer, wagon) or container. A load can be created independent of an order or assignment, and the load is not automatically deleted when cancelling an assigment or order: somebody has to decide what to do with the load, i.e. the material which physically exists on that vehicle/container. Either unload the unit, or assign it to another order/assignment where the material can be used. A load is very closely related to the weighing system, it stores also all kind of weighing-data (besides the pure tare/net amount) in case the weighing system can provide them. For bag and bulk materials, for services no load is created.">
+
+        <column name="LOAD_ID" primaryKey="true" required="true" type="DECIMAL" size="12"
+                description="PK"/>
+        <column name="LOAD_NUMBER" required="true" type="DECIMAL" size="12"
+                description="Column used for sending unique identification number of load to external systems"/>
+        <column name="LOADED_FROM_LOAD_ID" type="DECIMAL" size="12"
+                description="FK tlgnc_load. References the load record from which this load is to be substracted. Set whenever the load comes from a source which is represented as a load record in logon, e.g. bimodal orders. Null if load was loaded from a normal shipping point."/>
+
+        <column name="SAP_MATERIAL_ID" required="true" type="DECIMAL" size="12"
+                description="FK tlgns_sap_material. Material which is loaded."/>
+        <column name="PRODUCTION_PLANT_CD" required="true" type="VARCHAR" size="4"
+                description="FK tlgnr_plant_bs. Plant which produced the material for this load."/>
+
+        <column name="TARE_WEIGHT_T" type="DECIMAL" size="12,4"
+                description="Weight of the empty truck+trailer+container or wagon + container(s) for this load in tons. Application enforces when this value is mandatory depending on status of the loading/material packaging type. Previously called TARE_QUANTITY, but now putting stress on the fact that it is a weight and it is always stored in tons."/>
+        <column name="GROSS_WEIGHT_T" type="DECIMAL" size="12,4"
+                description="Gross weight of the loaded truck+trailer+container or wagon + container(s) in tons. Application enforces when this value is mandatory depending on status of the loading/material packaging type."/>
+        <column name="NET_QUANTITY" type="DECIMAL" size="12,4"
+                description="Application enforces when this value is mandatory depending on status of the loading/material packaging type. tare + net = gross does only apply if the net is convertible into tons. A proper solution would also comprise the explicit field GROSS_WEIGHT_T, which would allow to reliably display the gross weight in all situations (cubic metres not convertible into tons, for instance)."/>
+        <column name="NET_QUANTITY_UOM_CD" type="VARCHAR" size="3"
+                description="FK tlgnr_uom_bs. Unit of measure for net_quantity."/>
+        <column name="ACCURATE_QUANTITIES_FLAG" type="BOOLEAN" required="true"
+                description="Set to 1=true, if the numbers in tare_quantity/net_quantity are the result of an exact measure: weighed or counted quantities. When unloading from a wagon into a truck (bimodal, 'Freiverlad'), the resulting load of the truck is typically not exact (unless there is a weighing system that can be used there). If a truck unloads not exactly, all trucks of that wagon must go to the same shipto."/>        
+        <column name="LOAD_ORDER_ID" type="DECIMAL" size="12"
+                description="Unique id for parallel rail. Built from separate sequence, as the load can be sent several times during its lifetime. NULL if the load is not currently known/confirmed in the external system (not transmitted or cancelled). This field was named PARALLEL_VERLADEAUFTRAG_ID before." />
+        <column name="LOAD_ORDER_ITEM_ID" type="DECIMAL" size="12"
+                description="Unique id for the weighing system. Built from separate sequence, as the load can be sent several times during its lifetime. NULL if the load is not currently known/confirmed in the external system (not transmitted or cancelled). This field has been introduced with the generic LDS interface." />
+        <column name="ACTUAL_CHROMAT_REDUCTION_MONTH" type="DECIMAL" size="2"
+                description="Actual value for the 'chromat reduction in months' at the time the material is loaded, typically received from parallel. Value must only be set if really KNOWN at type of loading, otherwise leave value as null. TODO 20090929, for later release: Additional rules will be needed what value should be printed on the delivery note, or what should be done if value contradicts tlgnc_mat_plant.chromat_reduction_months and/or tlgns_sap_bp_sarea.chromat_reduction_months."/><!-- see ADN46080 -->
+        <column name="LOADINGPOINT_ID" type="DECIMAL" size="12"
+                description="FK tlgnc_loadingpoint. The actual loadingpoint where the load was loaded."/>
+
+        <column name="TRUCK_ID" type="DECIMAL" size="12"
+                description="FK tlgnc_truck. Truck on which the load is loaded. At least one of truck, trailer, container, simple vehicle or wagon needs to be set. Several IDs can be set according to the current composition of the vehicle(s)/container."/>
+        <column name="TRAILER_ID" type="DECIMAL" size="12"
+                description="FK tlgnc_trailer. Trailer on which the load is loaded. At least one of truck, trailer, container, simple vehicle or wagon needs to be set. Several IDs can be set according to the current composition of the vehicle(s)/container."/>
+        <column name="CONTAINER_ID" type="DECIMAL" size="12"
+                description="FK tlgnc_container. Container on which the load is loaded. At least one of truck, trailer, container, simple vehicle or wagon needs to be set. Several IDs can be set according to the current composition of the vehicle(s)/container."/>
+        <column name="WAGON_ID"  type="DECIMAL" size="12"
+                description="FK tlgnc_wagon. Wagon on which the load is loaded. At least one of truck, trailer, container, simple vehicle or wagon needs to be set. Several IDs can be set according to the current composition of the vehicle(s)/container."/>
+        <column name="SIMPLE_VEHICLE_ID" type="DECIMAL" size="12"
+                description="FK tlgnc_simple_vehicle. Simple vehicle on which the load is loaded. At least one of truck, trailer, container, simple vehicle or wagon needs to be set. Several IDs can be set according to the current composition of the vehicle(s)/container."/>
+
+		<column name="CHAMBER_NUMBER" type="DECIMAL" size="1"
+				description="number of the chamber on the load's containing entity (truck, trailer, container, wagon)."/> 
+<!--
+        <column name="END_LOADING_TS" type="DATE"
+                description="Date and Time when END loading occurred."/>
+
+        uma 20100817: Discussed with cosmin. The current meaning of "loading_ts" is really START of loading.
+                      The current code detects "is loading" as follow: (loading_ts != null  &&  net_quantity is null)
+
+        If start/end of the actual loading should be supported, it would be good to:
+        - rename LOADING_TS => START_LOADING_TS
+        - add new field END_LOADING_TS
+        - event handlers for startLoad: sets the (renamed) field start_loading_ts
+        - event handler for endLoad: sets the new field end_loading_ts, AND, if start_loading_ts is emtpy (missing startLoad event): set that to same ts
+        - terminal screen: if just tare is set: set the start_loading_ts, if net quantity is set: set the end_loading_ts.
+        - change the logic to detect "is currently loading" to: (start_loading_ts != null  &&  end_loading_ts is null).
+        It is however questionable, if this change is really helpful. In any case, assignment parts would not be handled differently.
+        Don't implement for now.
+-->
+        <column name="LOADING_TS" type="DATE"
+                description="Date and Time when START loading occurred."/>
+        <column name="UNLOADING_TS" type="DATE"
+                description="Date and time when unloading occurred. Setting the timestamps means that the load's container is empty -> ready to return and be loaded again. "/>
+
+		<column name="WS_TARE_QUIT_WARN_FLAG" type="BOOLEAN" required="true"
+                description="Set to 1=true, Set if the truck driver has received a tare warning, accepted it and started loading anyway. A tare warning occurs if the delta between measured tare weight and tare weight from master data is over  a certain limit.. Currently only stored in Logon, no logic attached to it."/>
+		<column name="WS_SILO_NO" type="VARCHAR" size="20"
+				description="Silo number from where load was loaded, as received from weighing system. No logic in Logon, only for information."/>
+		<column name="WS_SILO_NAME" type="VARCHAR" size="50"
+				description="Silo name from where load was loaded, as received from weighing system. No logic in Logon, only for information."/>
+		<column name="WS_SAMPLE_NO" type="VARCHAR" size="20"
+				description="Sample number (in case a sample was taken for quality assurance), as received from weighing system. No logic in Logon, only for information."/>
+		<column name="WS_DELIVERY_NOTE_NO" type="VARCHAR" size="12"
+				description="Filled with the LDS delivery note number when deallocating a loaded non-tour order from a truck or when pre-loading a rail order as a means to propagate it to the new order (re-routing)."/>
+		<column name="WS_ORDER_TEMPLATE_NO" type="VARCHAR" size="12"
+				description="Order number given by the weighing system. (Currently sent by WeWaS in endLoad)"/>
+		<column name="WS_EICHBELEG1" type="VARCHAR" size="40"
+				description="Calibration record number of first weighing, comma separated. (Currently sent by WeWaS/Parallel in endLoad)"/>
+		<column name="WS_EICHBELEG1_TIME" type="DATE"
+				description="Date/time of first weighing. (Currently sent by WeWaS/Parallel in endLoad)"/>
+		<column name="WS_EICHBELEG1_BALANCE" type="VARCHAR" size="40"
+				description="ID of the balance, comma separated. (Currently sent by Parallel in endLoad)"/>
+		<column name="WS_EICHBELEG2" type="VARCHAR" size="40"
+				description="Calibration record number of second weighing, comma separated. (Currently sent by WeWaS/Parallel in endLoad)"/>
+		<column name="WS_EICHBELEG2_TIME" type="DATE"
+				description="Date/time of second weighing. (Currently sent by WeWaS/Parallel in endLoad)"/>
+		<column name="WS_EICHBELEG2_BALANCE" type="VARCHAR" size="40"
+				description="ID of the balance, comma separated. (Currently sent by Parallel in endLoad)"/>
+		<column name="WS_CUSTOMER_ORDER_NO" type="VARCHAR" size="20"
+				description="Customer/external order number. (Currently sent by WeWaS in endLoad)"/>
+		<column name="WS_ENTER_SHIPPINGPOINT_TIME" type="DATE"
+				description="Date/time truck entered the shippingpoint as reported by the weighing system. (Currently sent by WeWaS in endLoad)"/>
+		<column name="WS_LEAVE_SHIPPINGPOINT_TIME" type="DATE"
+				description="Date/time truck left the shippingpoint as reported by the weighing system. (Currently sent by WeWaS in endLoad)"/>		
+        <column name="WS_START_LOADINGPOINT_ID" type="DECIMAL" size="12"
+                description="FK tlgnc_loadingpoint. Loadingpoint information received as part of the START-load. This loadingpoint info has no logic in Logon, it is only used to document the loading/weighing process, e.g. for the delivery note. This loadingpoint info should correspond to the balance used for 'Eichbeleg 1'. In the future, a weighing system could send a corrected/confirmed START-loadingpoint as part of the END Load as well, together with the Eichbeleg data. (Both Parallel and WeWaS do currently not support this though)."/>
+        <column name="WS_END_LOADINGPOINT_ID" type="DECIMAL" size="12"
+                description="FK tlgnc_loadingpoint. Loadingpoint information received as part of the END-load. This loadingpoint info has no logic in Logon, it is only used to document the loading/weighing process, e.g. for the delivery note. This loadingpoint info should correspond to the balance used for 'Eichbeleg 2', and is always the LP received as part of the endLoad. This value will be identical to order_item.loadingpoint_id but can be set independent of an order (e.g., set also in preloading). Start- and End Loadingpoint may differ, e.g. when loading was interrupted because of an empty silo etc."/>
+        <column name="WS_ORIGINAL_TARE_MEASURE_T" type="DECIMAL" size="12,4"
+                description="Original number received from the weighing system as tare measure (first weighing/before loading). This value is kept for legal purposes and may be used in delivery notes. It is forbidden to change this value by any other means in the application! A value received from e.g. PDA must NOT be stored here, only when received from a weighing system directly."/>
+        <column name="WS_ORIGINAL_GROSS_MEASURE_T" type="DECIMAL" size="12,4"
+                description="Original number received from the weighing system as gross measure (last weighing/after loading). This value is kept for legal purposes and may be used in delivery notes. It is forbidden to change this value by any other means in the application! A value received from e.g. PDA must NOT be stored here, only when received from a weighing system directly."/>
+		<column name="WS_TRUCK_PLATE_NO" type="VARCHAR" size="20"
+                description="Truck plate number as sent by the weighing system. Only set if the truck is artificial / not known in Logon (for example EXW case Fenics)."/>
+		<column name="WS_TRAILER_PLATE_NO" type="VARCHAR" size="20"
+                description="Trailer plate number as sent by the weighing system. Only set if the truck is artificial / not known in Logon (for example EXW case Fenics)."/>
+		<column name="WS_CARRIER" type="VARCHAR" size="35"
+                description="Carrier as sent by the weighing system. Only set if the truck is artificial / not known in Logon (for example EXW case Fenics)."/>
+        
+        <column name="MIX_DESIGN_ID" type="DECIMAL" size="12"
+                description="FK to tlgnc_fireq_material_mixdesign. Mix design id of this restriction. Mix design can only be specified for aggregate material + production plant combination. Mix design business term: Recipe/Formula of the material composition of the aggregates material."/>
+
+		<column name="LDS_OFFLINE_MODE" type="BOOLEAN" required="true"
+				description="Indicates if load should have been loaded by the LDS, but it was loaded by the PDA instead and the load requires regularization."/>
+
+
+		<foreign-key foreignTable="TLGNC_LOAD" name="FK_TLGNC_LOAD_LOADED_FROM">
+            <reference local="LOADED_FROM_LOAD_ID" foreign="LOAD_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNS_SAP_MATERIAL" name="FK_TLGNC_LOAD_MATERIAL">
+            <reference local="SAP_MATERIAL_ID" foreign="SAP_MATERIAL_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_PLANT_BS" name="FK_TLGNC_LOAD_PROD_PLANT">
+            <reference local="PRODUCTION_PLANT_CD" foreign="PLANT_CD"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_UOM_BS" name="FK_TLGNC_LOAD_UOM">
+            <reference local="NET_QUANTITY_UOM_CD" foreign="UOM_CD"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNC_LOADINGPOINT" name="FK_TLGNC_LOAD_LOADINGPOINT">
+            <reference local="LOADINGPOINT_ID" foreign="LOADINGPOINT_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNC_TRUCK" name="FK_TLGNC_LOAD_TRUCK">
+            <reference local="TRUCK_ID" foreign="TRUCK_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNC_TRAILER" name="FK_TLGNC_LOAD_TRAILER">
+            <reference local="TRAILER_ID" foreign="TRAILER_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNC_CONTAINER" name="FK_TLGNC_LOAD_CONTAINER">
+            <reference local="CONTAINER_ID" foreign="CONTAINER_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNC_WAGON" name="FK_TLGNC_LOAD_WAGON">
+            <reference local="WAGON_ID" foreign="WAGON_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNC_SIMPLE_VEHICLE" name="FK_TLGNC_LOAD_SIMPLE_VEHICLE">
+            <reference local="SIMPLE_VEHICLE_ID" foreign="SIMPLE_VEHICLE_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNC_LOADINGPOINT" name="FK_TLGNC_LOAD_LP_START">
+            <reference local="WS_START_LOADINGPOINT_ID" foreign="LOADINGPOINT_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNC_LOADINGPOINT" name="FK_TLGNC_LOAD_LP_END">
+            <reference local="WS_END_LOADINGPOINT_ID" foreign="LOADINGPOINT_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNC_FIREQ_MATERIAL_MIXDESIGN" name="FK_TLGNC_LOAD_MIXDESIGN">
+            <reference local="MIX_DESIGN_ID" foreign="MIX_DESIGN_ID"/>
+        </foreign-key>
+
+        <unique name="UQ_TLGNC_ASS_LOAD_ORDER_ID">
+            <unique-column name="LOAD_ORDER_ID"/>
+        </unique>
+
+        <!-- Composite index due to optimization described in ticket 66211.
+
+             It would be possible to extend the generated index on truck_id, but due to name
+             mangling issues (generated name is currently I_LOAD_5) this seems too risky.
+             Rather introduce an additional one, although it's a bit redundant.
+        -->
+        <index name="I_LOAD_TRUCK_UNLOADING_TS">
+            <index-column name="TRUCK_ID"/>
+            <index-column name="UNLOADING_TS"/>
+        </index>
+
+    </table>
+</database>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="VLGNC_SHIPTO_SOLDTO_LNF_DATA" mappingType="view" skipSql="true">
+        <column name="ORDER_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="ACTUAL_DELIVERY_DAT" type="DATE"/>
+        <column name="SHIPTO_SAP_BP_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="SOLDTO_SAP_BP_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="LNF_COORD_LAT" type="DOUBLE"/>
+        <column name="LNF_COORD_LON" type="DOUBLE"/>
+        <column name="LNF_SITE_NAME" type="VARCHAR" size="80"/>
+        <column name="LNF_SITE_STREET_HOUSE_NO" type="VARCHAR" size="45"/>
+        <column name="LNF_SITE_COUNTRY" type="VARCHAR" size="3"/>
+        <column name="LNF_SITE_POSTAL_CODE" type="VARCHAR" size="10"/>
+        <column name="LNF_SITE_CITY" type="VARCHAR" size="35"/>
+    </table>
+</database>

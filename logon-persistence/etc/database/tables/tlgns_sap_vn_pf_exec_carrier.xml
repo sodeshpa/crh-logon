@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNS_SAP_VN_PF_EXEC_CARRIER"
+		description="The executing carrier partner functions of a given VN-PORG to another VN-PORG. The 'Purchasing Organisation' information is highly redundant, and must be identical in a) owner b) executing carrier c) this table.">
+
+        <!-- This table stores one direction of the commercial <-> executing carrier relationship.
+             In LOGON, lookup must always be done both in this table and in TLGNS_SAP_VN_PF_COMM_CARRIER.
+         -->
+
+        <!-- PK -->
+        <column name="SAP_VENDOR_PORG_ID" primaryKey="true" required="true" type="DECIMAL" size="12"
+                description="Part of PK, FK tlgns_sap_vendor_porg. The owning VN+purchasing organisation of the partner function (SAP: defined by E1LFA1M_LIFNR from the VN general data which ownes the partner function)."/>
+        <column name="EXEC_SAP_VENDOR_PORG_ID" primaryKey="true" required="true" type="DECIMAL" size="12"
+                description="Part of PK, FK tlgns_sap_vendor_porg. The referred subcontractor, including its Purchasing Organisation Data. (SAP: defined by E1WYT3M_LIFN2)"/>
+        <column name="PURCHASINGORG_CD" primaryKey="true" required="true" type="VARCHAR" size="4"
+                description="Part of PK, FK tlgnr_purchasingorg_bs. The Purchasing Organisation for which this partner function is defined."/>
+        <!-- Attributes - currently none, just the relation -->
+
+        <foreign-key foreignTable="TLGNS_SAP_VENDOR_PORG" name="FK_TLGNS_SAP_VNPFEXECCAR_VN">
+            <reference local="SAP_VENDOR_PORG_ID" foreign="SAP_VENDOR_PORG_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNS_SAP_VENDOR_PORG" name="FK_TLGNS_SAP_VNPFEXECCAR_ZC">
+            <reference local="EXEC_SAP_VENDOR_PORG_ID" foreign="SAP_VENDOR_PORG_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_PURCHASINGORG_BS" name="FK_TLGNS_SAP_VNPFEXECCAR_PORG">
+            <reference local="PURCHASINGORG_CD" foreign="PURCHASINGORG_CD"/>
+        </foreign-key>
+
+        <!-- Not necessary, as the PK is on all three columns and guarantees uniqueness.
+        <unique name="UQ_TLGNS_SAP_VN_PF_EXEC_CARRIER">
+            <unique-column name="SAP_VENDOR_PORG_ID"/>
+            <unique-column name="EXEC_SAP_VENDOR_PORG_ID"/>
+            <unique-column name="PURCHASINGORG_CD"/>
+        </unique>
+        -->
+    </table>
+</database>

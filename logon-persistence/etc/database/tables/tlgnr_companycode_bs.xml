@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNR_COMPANYCODE_BS" refData="true"
+           description="Represents a Company Code from SAP. In SAP, called BUKRS">
+
+        <column name="COMPANYCODE_CD" primaryKey="true" required="true" type="VARCHAR" size="4"
+                description="A company code as known in SAP (BUKRS), e.g.: FR01, BG01"/>
+
+        <column name="COMPANYCODE_NAME" required="true" type="VARCHAR" size="30"
+                description="Full name of the company which may be displayed in the application. Normally, only the code (companycode_cd) is used and displayed however."/>
+                
+		<column name="REGION_CD" type="VARCHAR" size="3"
+				description="Country code of the comapde code of the orders' sales area. This field is only used " />
+				
+        <!-- Technical Attributes -->
+        <column name="CTL_ACT_CD" required="true" type="BOOLEAN"
+                description="Active Flag. When new data is entered, only reference data with active flag are available for selection normally."/>
+                
+		<foreign-key foreignTable="TLGNR_REGION_BS" name="FK_TLGNR_COMCODE_BS_COUNTRY">
+	      <reference local="REGION_CD" foreign="REGION_CD"/>
+	    </foreign-key>
+	    
+      </table>
+</database>

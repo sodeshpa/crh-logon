@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNR_PRINTER_BS" refData="true"
+           description="Reference data table for the Printers within Crh. A printer has a (human readable) name, and an URI (address) on which it can be contacted from the Logon application server. If different types of printers (different abilities, protocols, levels) need to be distinguished, add to this table as well. Currently printers are configured per loadingpoint (to define where delivery notes are printed, if needed), but may be needed for other kind of documents at other places as well in future releases.">
+
+        <column name="PRINTER_CD" primaryKey="true" required="true" type="DECIMAL" size="4"
+                description="PK."/>
+
+        <column name="PRINTER_NAME" required="true" type="VARCHAR" size="20"
+                description="Human readable name (identifier) of the printer, e.g. 'HOLSIP01-S1', 'CHE-MUN-P002'."/>
+        <!-- How to extend in the future: add for example a region code, which can be used to filter geographically etc, and include this in UQ constraint together with PRINTER_NAME -->
+        <column name="PRINTER_URI" required="true" type="VARCHAR" size="100"
+                description="The full address/URI of the printer, e.g. 'ipp://192.168.94.132/ipp'."/>
+        <!-- If different protocols have different requirements, just add additional columns -->
+        <column name="PRINTER_TYPE" type="VARCHAR" size="200"
+                description="Free text brand/type description of the printer. Not used technically, just additional information for a user/administrator."/>
+        <column name="PRINTER_COMMENT" type="VARCHAR" size="200"
+                description="Description/Comment about the printer, such as where it's geographically located, paper type, etc. Not used technically, just additional information for a user/administrator."/>
+
+        <column name="CTL_ACT_CD" required="true" type="BOOLEAN"
+                description="Active Flag. When new data is entered, only reference data with active flag are available for selection normally."/>
+
+        <unique name="UQ_TLGNR_PRINTER_NAME">
+            <unique-column name="PRINTER_NAME"/>
+        </unique>
+
+      </table>
+</database>

@@ -1,0 +1,28 @@
+
+<!--     <filter-mapping> -->
+<!--         <filter-name>SessionIdFilter</filter-name> -->
+<!--         <url-pattern>/Login.jsp</url-pattern> -->
+<!--         <dispatcher>REQUEST</dispatcher>  -->
+<!--         <dispatcher>FORWARD</dispatcher> -->
+<!--     </filter-mapping> -->
+    
+<!--     <filter-mapping> -->
+<!--         <filter-name>SessionIdFilter</filter-name> -->
+<!--         <url-pattern>*.do</url-pattern> -->
+<!--     </filter-mapping> -->
+
+    <filter-mapping>
+        <filter-name>OpTraceFilter</filter-name>
+        <url-pattern>/versionCheck</url-pattern>
+    </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>UserFilter</filter-name>
+        <url-pattern>/versionCheck</url-pattern>
+    </filter-mapping>
+    
+    <!-- RequestEncodingFilter -->
+	<filter-mapping>
+	    <filter-name>RequestEncodingFilter</filter-name>
+	    <url-pattern>*.do</url-pattern>
+	</filter-mapping>

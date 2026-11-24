@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<persistence
+    xmlns="http://java.sun.com/xml/ns/persistence"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd"
+    version="1.0">
+
+    <!-- this unit is for tests and the jpa-console -->
+    <persistence-unit name="logon-test" transaction-type="RESOURCE_LOCAL">
+        <jar-file>${project-persistence.jar.loc}</jar-file>
+        <properties>
+            <property name="hibernate.show_sql" value="true" />
+            <property name="hibernate.format_sql" value="true" />
+            <property name="hibernate.connection.driver_class" value="oracle.jdbc.driver.OracleDriver" />
+            <property name="hibernate.connection.url" value="${db.connection.url}" />
+            <property name="hibernate.connection.username" value="${db.connection.schema_owner}" />
+            <property name="hibernate.connection.password" value="${db.connection.schema_owner_pwd}" />
+            <property name="hibernate.dialect" value="org.hibernate.dialect.Oracle10gDialect" />
+        </properties>
+    </persistence-unit>
+    <persistence-unit name="logon-saptest" transaction-type="RESOURCE_LOCAL">
+        <jar-file>logon-webservices/entities.jar</jar-file>
+        <properties>
+            <property name="hibernate.show_sql" value="true" />
+            <property name="hibernate.format_sql" value="true" />
+            <property name="hibernate.connection.driver_class" value="oracle.jdbc.driver.OracleDriver" />
+            <property name="hibernate.connection.url" value="${db.connection.url}" />
+            <property name="hibernate.connection.username" value="${sapdb.connection.username}" />
+            <property name="hibernate.connection.password" value="${sapdb.connection.password}" />
+            <property name="hibernate.dialect" value="org.hibernate.dialect.Oracle10gDialect" />
+        </properties>
+    </persistence-unit>
+</persistence>

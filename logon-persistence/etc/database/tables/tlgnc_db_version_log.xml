@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNC_DB_VERSION_LOG"
+           description="Log table to track initial installation and subsequent patch installations.">
+
+        <column name="DB_VERSION_LOG_ID" primaryKey="true" required="true" type="DECIMAL" size="12"
+                description="PK. Unique ID of the log entry."/>
+        <column name="VERSION" required="true" type="VARCHAR" size="16"
+                description="Version number of the LOGON release"/>
+        <column name="INSTALL_START_TS" required="true" type="TIMESTAMP"
+                description="Start timestamp of the installation or patch"/>
+        <column name="INSTALL_END_TS" required="false" type="TIMESTAMP"
+                description="End timestamp of the installation or patch"/>
+        <column name="INSTALL_TYPE" required="true" type="VARCHAR" size="16"
+                description="'initial' for installation from scratch (should appear only once), or 'patch'"/>
+        <column name="CLIENT_IP" required="false" type="VARCHAR" size="45"
+                description="Client IP that runs the (patch) script"/>
+        <column name="USER_NAME" required="false" type="VARCHAR" size="32"
+                description="User name running the (patch) script"/>
+
+    </table>
+</database>

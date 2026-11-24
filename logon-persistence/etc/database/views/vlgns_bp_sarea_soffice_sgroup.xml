@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="VLGNS_BP_SAREA_SOFFICE_SGROUP" mappingType="view" skipSql="true">
+        <column name="SAP_BP_SAREA_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="SAP_BP_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="SAREA_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="SOFFICE_CD" type="VARCHAR" size="4"/>
+        <column name="SOFFICE_NAME" type="VARCHAR" size="30"/>
+        <column name="SGROUP_CD" type="VARCHAR" size="4"/>
+        <column name="SGROUP_NAME" type="VARCHAR" size="30"/>
+    </table>
+</database>

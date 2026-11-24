@@ -1,0 +1,13 @@
+Purpose:
+
+generates the property service interface and spring config out of a java POJO.
+You need to annotate the tags like this:
+
+Example:
+
+	/**
+	 * @adnbus.property propertyName = "application.buildVersion"
+	 * @adnlog.notrace
+	 */
+
+Note: You must annotate the setters!

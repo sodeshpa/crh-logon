@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNU_FUNC"
+           description="Application function. A function is the smalles authorization element. Usually it is good practice to define one function per application-screen. If a screen contains elements with special authorization requirements, add more function codes.">
+
+        <column name="FUNC_ID" primaryKey="true" required="true" type="DECIMAL" size="12"
+                description="PK. The values are grouped to make it easier to introduce additional functions later if needed, without the need to reorganize existing functions. This ID is reflected as a constant in the code and must not be changed without changing the code."/>
+        <column name="FUNC_NAME" required="true" type="VARCHAR" size="40"
+                description="Short but meaningful name of the function. The constant in the code is called similar to this name."/>
+        <column name="FUNC_DESCR" required="true" type="VARCHAR" size="255"
+                description="Description of the Role."/>
+
+    </table>
+</database>

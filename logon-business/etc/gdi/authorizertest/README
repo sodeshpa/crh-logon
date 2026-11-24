@@ -1,0 +1,2 @@
+generates code accessing all tables in order to test the GeneratedAuthorizer.
+this generates an EJB which will use our DAO layer.

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+	<table name="TLGNC_CONTAINER_HISTORY"
+		description="History of a container. Whenever a container's location on a vehicle is changed, an entry is written into this table.">
+		<column name="CONTAINER_HISTORY_ID" primaryKey="true" required="true" type="DECIMAL" size="12"
+				description="PK"/>
+		<column name="CONTAINER_ID" required="true" type="DECIMAL" size="12"
+				description="FK tlgnc_container. The Container."/>
+		<column name="TRUCK_ID" required="false" type="DECIMAL" size="12"
+				description="FK tlgnc_truck. The Truck."/>
+		<column name="TRAILER_ID" required="false" type="DECIMAL" size="12"
+				description="FK tlgnc_trailer. The Trailer."/>
+		<column name="WAGON_ID" required="false" type="DECIMAL" size="12"
+				description="FK tlgnc_wagon. The Wagon."/>
+
+<!-- uma 31.3.2010: From today's perspective, this field is missing, because different to truck_trailer_history.
+	 But wait for CR if necessary.
+	 Probably the application uses ctl_cre_ts currently? Would be slightly wrong, but nobody would notice the difference.
+		<column name="EVENT_TS" required="true" type="DATE"
+                description="Date and Time when the container was assigned to the truck/trailer/wagon. If received from PDA, equal to bizevent.event_ts, if done in application: ctl_cre_ts = event_ts."/>
+-->
+
+		<foreign-key foreignTable="TLGNC_CONTAINER" name="FK_TLGNC_CON_H_CONT">
+			<reference local="CONTAINER_ID" foreign="CONTAINER_ID"/>
+		</foreign-key>
+		<foreign-key foreignTable="TLGNC_TRUCK" name="FK_TLGNC_CON_H_TRUCK">
+			<reference local="TRUCK_ID" foreign="TRUCK_ID"/>
+		</foreign-key>
+		<foreign-key foreignTable="TLGNC_TRAILER" name="FK_TLGNC_CON_H_TRAILER">
+			<reference local="TRAILER_ID" foreign="TRAILER_ID"/>
+		</foreign-key>
+		<foreign-key foreignTable="TLGNC_WAGON" name="FK_TLGNC_CON_H_WAGON">
+			<reference local="WAGON_ID" foreign="WAGON_ID"/>
+		</foreign-key>
+	</table>
+</database>

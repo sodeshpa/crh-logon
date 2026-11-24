@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="VLGNC_DRIVER_WITHOUT_SESSION" mappingType="view" skipSql="true">
+        <column name="DRIVER_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="CURRENT_TRUCK_ID" type="DECIMAL" size="12"/>
+        <column name="NAME" type="VARCHAR" size="82"/>
+        <column name="SAP_VENDOR_ID" type="DECIMAL" size="12"/>
+        <column name="CARRIER_ID" required="true" type="DECIMAL" size="12"/>
+    </table>
+</database>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="VLGNC_BIZEVENT_MAP" mappingType="view" skipSql="true">
+        <column name="BIZEVENT_ID" type="DECIMAL" size="12"/>
+        <column name="BIZEVENT_TYPE_CD" type="DECIMAL" size="3"/>
+        <column name="LANG_CD" type="VARCHAR" size="2"/>
+        <column name="BIZEVENT_TYPE_TXT" type="VARCHAR" size="50"/>
+        <column name="DESCRIPTION" type="VARCHAR" size="200"/>
+        <column name="TRUCK_ID" type="DECIMAL" size="12"/>
+        <column name="TRUCK_NAME" type="VARCHAR" size="30"/>
+        <column name="TRUCK_PLATE_NO" type="VARCHAR" size="20"/>
+        <column name="TRUCK_TYPE_TXT" type="VARCHAR" size="40"/>
+        <column name="DRIVER_NAME" type="VARCHAR" size="81"/>
+        <column name="TRAILER_ID" type="DECIMAL" size="12"/>
+        <column name="TRAILER_NAME" type="VARCHAR" size="30"/>
+        <column name="TRAILER_PLATE_NO" type="VARCHAR" size="20"/>
+        <column name="CONTAINER_ID" type="DECIMAL" size="12"/>
+        <column name="CONTAINER_NO" type="VARCHAR" size="16"/>
+        <column name="CONTAINER_NAME" type="VARCHAR" size="30"/>
+        <column name="WAGON_ID" type="DECIMAL" size="12"/>
+        <column name="WAGON_NO" type="VARCHAR" size="12"/>
+        <column name="ORDER_ID" type="DECIMAL" size="12"/>
+        <column name="ASSIGNMENT_ID" type="DECIMAL" size="12"/>
+        <column name="COORD_LAT" type="DOUBLE"/>
+        <column name="COORD_LON" type="DOUBLE"/>
+        <column name="SHIPTO_COORD_LAT" type="DOUBLE"/>
+        <column name="SHIPTO_COORD_LON" type="DOUBLE"/>
+        <column name="DELIVERY_TO_DAT" type="DATE"/>
+        <column name="EVENT_TS" type="TIMESTAMP"/>
+        <column name="BIZEVENT_CRE_TS" type="TIMESTAMP"/>
+    </table>
+</database>

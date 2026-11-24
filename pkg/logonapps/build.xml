@@ -1,0 +1,31 @@
+<project name="logonapps" basedir="./" default="pkg-deploy">
+	<property name="masterbuild.dir" location="${basedir}/../.." />
+
+	<import file="${masterbuild.dir}/properties.xml" />
+	<import file="../../common.xml" />
+	<property name="build.dir" location="build" />
+
+	<target name="all" depends="create-archive" />
+
+	<target name="create-archive">
+		<zip destfile="${build.dir}/logonapps-${version}.zip">
+			<zipfileset dir="../../build/dist/lib/" prefix="logonapps-${version}">
+				<include name="logon-ext.ear" />
+				<include name="logon-int.ear" />
+				<include name="logon-terminal.ear" />
+			</zipfileset>
+		</zip>
+	</target>
+
+	<target name="pkg-deploy">
+		<copy file="${build.dir}/logonapps-${version}.zip" todir="${pkg.dest.dir}" />
+		<property name="repoPath" value="com.crh.logon.app/logon-app/${version}/logon-app-${version}.zip" />
+		<binrepo-publish sourceFile="${build.dir}/logonapps-${version}.zip" targetPath="${repoPath}" />
+		<binrepo-deliver artifactPath="${repoPath}" />
+	</target>
+
+	<target name="clean">
+		<delete dir="${build.dir}" />
+	</target>
+
+</project>

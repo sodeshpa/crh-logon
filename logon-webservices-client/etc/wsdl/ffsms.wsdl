@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://www.officemaster.de/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://www.officemaster.de/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Webservice to provide sms functionality by using messaging server</wsdl:documentation>
+  <wsdl:types />
+  <wsdl:message name="ErrorTextSoapIn" />
+  <wsdl:message name="ErrorTextSoapOut">
+    <wsdl:part name="ErrorTextResult" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="HelloWorldSoapIn" />
+  <wsdl:message name="HelloWorldSoapOut">
+    <wsdl:part name="HelloWorldResult" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="SendSmsSoapIn">
+    <wsdl:part name="argsNumber" type="s:string" />
+    <wsdl:part name="argsText" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="SendSmsSoapOut">
+    <wsdl:part name="SendSmsResult" type="s:boolean" />
+    <wsdl:part name="argsJobId" type="s:string" />
+  </wsdl:message>
+  <wsdl:portType name="FSmsSoap">
+    <wsdl:operation name="ErrorText">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns ErrorText</wsdl:documentation>
+      <wsdl:input message="tns:ErrorTextSoapIn" />
+      <wsdl:output message="tns:ErrorTextSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="HelloWorld">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Just returns "Hello World" to show it works</wsdl:documentation>
+      <wsdl:input message="tns:HelloWorldSoapIn" />
+      <wsdl:output message="tns:HelloWorldSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SendSms">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send sms by giving number and text</wsdl:documentation>
+      <wsdl:input message="tns:SendSmsSoapIn" />
+      <wsdl:output message="tns:SendSmsSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="FSmsSoap" type="tns:FSmsSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="rpc" />
+    <wsdl:operation name="ErrorText">
+      <soap:operation soapAction="http://www.officemaster.de/ErrorText" style="rpc" />
+      <wsdl:input>
+        <soap:body use="literal" namespace="http://www.officemaster.de/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" namespace="http://www.officemaster.de/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="HelloWorld">
+      <soap:operation soapAction="http://www.officemaster.de/HelloWorld" style="rpc" />
+      <wsdl:input>
+        <soap:body use="literal" namespace="http://www.officemaster.de/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" namespace="http://www.officemaster.de/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendSms">
+      <soap:operation soapAction="http://www.officemaster.de/SendSms" style="rpc" />
+      <wsdl:input>
+        <soap:body use="literal" namespace="http://www.officemaster.de/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" namespace="http://www.officemaster.de/" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="FSmsSoap12" type="tns:FSmsSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" style="rpc" />
+    <wsdl:operation name="ErrorText">
+      <soap12:operation soapAction="http://www.officemaster.de/ErrorText" style="rpc" />
+      <wsdl:input>
+        <soap12:body use="literal" namespace="http://www.officemaster.de/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" namespace="http://www.officemaster.de/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="HelloWorld">
+      <soap12:operation soapAction="http://www.officemaster.de/HelloWorld" style="rpc" />
+      <wsdl:input>
+        <soap12:body use="literal" namespace="http://www.officemaster.de/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" namespace="http://www.officemaster.de/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendSms">
+      <soap12:operation soapAction="http://www.officemaster.de/SendSms" style="rpc" />
+      <wsdl:input>
+        <soap12:body use="literal" namespace="http://www.officemaster.de/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" namespace="http://www.officemaster.de/" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="FSms">
+    <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Webservice to provide sms functionality by using messaging server</wsdl:documentation>
+    <wsdl:port name="FSmsSoap" binding="tns:FSmsSoap">
+      <soap:address location="http://localhost/ofmawsvc3/ffsms.asmx" />
+    </wsdl:port>
+    <wsdl:port name="FSmsSoap12" binding="tns:FSmsSoap12">
+      <soap12:address location="http://localhost/ofmawsvc3/ffsms.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

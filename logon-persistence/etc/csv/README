@@ -1,0 +1,14 @@
+All reference data is stored in encoding
+
+ISO-8859-1 / LATIN1
+
+--> make sure new files are also saved in that format.
+
+E.g. if we receive data from Crh, and that is in UTF-8 format, you must convert to ISO-8859-1 first:
+
+iconv -f UTF-8 -t ISO-8859-1 new_file_from_crh.csv > converted_file_for_repository.csv
+
+In case files come with BOM (leading Ã¯Â in non-UTF8 editors), cut it awa:
+tail --bytes=+4 UTF8WithBom.txt > UTF8WithoutBom.txt
+
+--- EOF ---

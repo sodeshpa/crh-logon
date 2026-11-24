@@ -1,0 +1,4 @@
+    <servlet-mapping>
+        <servlet-name>LogonVersionServlet</servlet-name>
+        <url-pattern>/versionCheck</url-pattern>
+    </servlet-mapping>

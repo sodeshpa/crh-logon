@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNR_SAP_VEHICLE_TYPE_BS" refData="true"
+           description="Vehicle type data, table of SAP to LOGON vehicle type mappings. Is updated manually with tablebrowser if SAP type codes change.">
+
+        <column name="SAP_VEHICLE_TYPE_CD" primaryKey="true" required="true" type="VARCHAR" size="30"
+                description="PK. SAP Vehicle type."/>
+        <column name="LOGON_VEHICLE_TYPE_CD" required="true" type="DECIMAL" size="2"
+                description="FK tlgnr_logon_vehicle_type_bs. Logon vehicle type (truck, trailer, ...)."/>
+		
+		<column name="TRUCK_TRANSPORT_CAT_CD" type="DECIMAL" size="2"
+                description="FK tlgnr_truck_transport_cat_bs. E.g. Silo, Container, Auflieger. Logic: Silo -> Bulk transport, trailer and container need to be null. Container -> Container transport, trailer needs to be null, container needs to be set. Trailer: Trailer needs to be set, container is null, TRUCK_TYPE_CD needs to be semi-trailer."/>
+        <column name="TRUCK_TRANSPORT_CAT_CD_M_FLAG" required="true" type="BOOLEAN"
+                description="Truck transport category mandatory flag: Can the transport category be changed manually in LOGON truck master data or has it to be the same one as received from the interface. 1 -> The truck transport category can be changed manually. 0 -> The truck transport category is set by SAP and cannot be changed in LOGON."/>
+        <column name="TRUCK_TYPE_CD" type="DECIMAL" size="3"
+                description="FK tlgnc_truck_type_bs. Type of the truck: 2-axle ... 5-axle truck or semi-trailer truck."/>
+		<column name="TRUCK_TYPE_CD_M_FLAG" required="true" type="BOOLEAN"
+                description="Truck type code mandatory flag: Can the trucktype be changed manually in LOGON truck master data or has it to be the same one as received from the interface. 1 -> The truck type can be changed manually. 0 -> The truck type is set by SAP and cannot be changed in LOGON."/>
+                
+        <column name="TRAILER_TRSP_CAT_CD" type="DECIMAL" size="2"
+                description="FK tlgnr_trailer_trsp_cat_bs. E.g. Silo, Container. Logic: Silo -> TRAILER_TYPE_CD needs to be liegend, mehrkammersilo or kippbar. Container -> TRAILER_TYPE_CD needs to be container."/>
+        <column name="TRAILER_TRSP_CAT_CD_M_FLAG" required="true" type="BOOLEAN"
+                description="Trailer transport category mandatory flag: Can the transport category be changed manually in LOGON trailer master data or has it to be the same one as received from the interface. 1 -> The trailer transport category can be changed manually. 0 -> The trailer transport category is set by SAP and cannot be changed in LOGON."/>
+        <column name="TRAILER_TYPE_CD" type="DECIMAL" size="2"
+                description="FK tlgnr_trailer_type_bs. E.g. Horizontal (Liegend), Multi chamber Silo, Tiltable (Kippbar), Container.."/>
+        <column name="TRAILER_TYPE_CD_M_FLAG" required="true" type="BOOLEAN"
+                description="Trailer Type Code Mandatory Flag: Can the trailer type be changed manually in LOGON trailer master data or has it to be the same one as received from the interface. 1 -> The trailer type can be changed manually. 0 -> The trailer type is set by SAP and cannot be changed in LOGON."/>
+                
+        <column name="CTL_ACT_CD" required="true" type="BOOLEAN"
+                description="Active Flag. When new data is entered, only reference data with active flag are available for selection normally."/>
+                
+        <foreign-key foreignTable="TLGNR_LOGON_VEHICLE_TYPE_BS" name="FK_TLGNR_SAP_VEHICLE_TYPE_TYPE">
+            <reference local="LOGON_VEHICLE_TYPE_CD" foreign="LOGON_VEHICLE_TYPE_CD"/>
+        </foreign-key>
+        
+        <foreign-key foreignTable="TLGNR_TRUCK_TRANSPORT_CAT_BS" name="FK_TLGNR_SAP_VEH_TYP_TRU_TRCAT">
+            <reference local="TRUCK_TRANSPORT_CAT_CD" foreign="TRUCK_TRANSPORT_CAT_CD"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_TRUCK_TYPE_BS" name="FK_TLGNR_SAP_VEH_TYP_TRU_TYP">
+            <reference local="TRUCK_TYPE_CD" foreign="TRUCK_TYPE_CD"/>
+        </foreign-key>
+        
+        <foreign-key foreignTable="TLGNR_TRAILER_TRSP_CAT_BS" name="FK_TLGNR_SAP_VEH_TYP_TRA_TRCAT">
+            <reference local="TRAILER_TRSP_CAT_CD" foreign="TRAILER_TRSP_CAT_CD"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_TRAILER_TYPE_BS" name="FK_TLGNR_SAP_VEH_TYP_TRA_TYP">
+            <reference local="TRAILER_TYPE_CD" foreign="TRAILER_TYPE_CD"/>
+        </foreign-key>
+        
+    </table>
+</database>

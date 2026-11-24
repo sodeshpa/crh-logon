@@ -1,0 +1,25 @@
+#Field No;Column Name;Field Name;Type;Length
+01;VER_NO;version;String;10
+02;TRANS_CDE;transactionNumber;String;30
+03;CLIENT_CDE;clientCode;String;40
+04;PFROM_NO;packageNumberFrom;String;25
+05;PTO_NO;packageNumberTo;String;25
+06;PREF_NO;referenceParentPackage;String;25
+07;PTYPE_CDE;packageTypeCode;String;10
+08;PQTY;number;Integer;
+09;NETTO_WGT;totalNetWeight;BigDecimal;13,3
+10;NETTO_WGTUNIT;totalNetWeightUnit;String;5
+11;GROSS_WGT;totalGrossWeight;BigDecimal;13,3
+12;GROSS_WGTUNIT;totalGrossWeightUnit;String;5
+13;LENGTH;length;BigDecimal;13,3
+14;WIDTH;width;BigDecimal;13,3
+15;HEIGHT;height;BigDecimal;13,3
+16;DIM_UNIT;length_unit;String;5
+17;PACK_MRK;package_marks;String;30
+18;TRACK_CDE;delivery_number;String;10
+19;REF_NO;referenceNumberOfForwarderForPackage;String;50
+20;COST_CENTER;costCentre;String;20
+21;ADD_FLD1;additionalField1;String;30
+22;ADD_FLD2;additionalField2;String;30
+23;ADD_FLD3;additionalField3;String;30
+24;ADD_TEXT;additionalText;String;30000

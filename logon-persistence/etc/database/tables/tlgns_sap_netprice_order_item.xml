@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNS_SAP_NETPRICE_ORDER_ITEM"
+           description="Contains the net price information about an order/order_item as calculated by SAP for a Logon order. The net price includes rebates, cash discounts and tex information. This information is relevant to calculate the correct contribution margin in Logon, because the price in material price conditions (see tlgns_sap_mat_cond) contains only the base price. In the case of a Credit Note, there will be TWO netprice entries for the original order_item: one for the original delivered quantity, one for the returned quantity. The final amount/quantity/discount/tax is simply the sum over all netprice records referring to an order item.">
+
+        <column name="SAP_NETPRICE_ORDER_ITEM" primaryKey="true" required="true" type="DECIMAL" size="12"
+                description="PK. Given by the Logon system."/>
+
+        <column name="SAP_IFC_LOGON_ORDER_NUMBER" required="true" type="VARCHAR" size="35"
+                description="The Logon order number exactly as received from SAP in VBKD_BSTKD, i.e. including any leading zeros."/>
+        <column name="SAP_IFC_SAP_SALES_ORDER_NUMBER" required="true" type="VARCHAR" size="10"
+                description="The SAP sales order number exactly as received from SAP in VBAP_VBELN, i.e. including any leading zeros."/>
+        <column name="SAP_IFC_ORDER_ITEM_NUMBER" required="true" type="VARCHAR" size="6"
+                description="The Order Item Number exactly as received from SAP in VBAP_POSNR, i.e. including any leading zeros."/>
+
+        <column name="ORDER_ITEM_ID" type="DECIMAL" size="12"
+                description="FK tlgnc_order_item. The values in sap_ifc_logon_order_number and sap_ifc_order_item_number are trimmed (leading zeros ignored) and used as lookup. (A) Normal item: tlgnc_order.order_number and tlgnc_order_item.order_item_number. (B) Credit Note: tlgnc_credit_note.order_number and tlgnc_order_item.order_item_number. If found, the reference to the order_item is stored, i.e. there can be TWO entries referring to one Logon order item. NULL: error in the lookup, to be corrected manually. Record is not be used for anything in Logon while it's NULL."/>
+
+        <!-- The following fields are prefixed with NETPRICE_ because they can
+             easier be joined with order_item, without any needs to rename in a view -->
+        <column name="NETPRICE_QUANTITY" required="true" type="DECIMAL" size="18,3"
+                description="Quantity of the material in units defined by NETPRICE_UOM_CD, amount received from SAP in VBAP_KWMENG, signum from  VBAP_NETWR. SAP always sends a POSITIVE quantity, for both credit notes and normal items. For consistency (SUM over all amounts in tlgns_sap_netprice_order_item corresponds to order_item.delivered_quantity), Logon sets this quantity to negative for credit notes, i.e. the signum is taken from VBAP_NETWR during import."/>
+        <column name="NETPRICE_UOM_CD" required="true" type="VARCHAR" size="3"
+                description="FK tlgnr_uom_bs. Unit of measure on which NETPRICE_QUANTITY is based, as received from SAP in VBAP_VRKME."/>
+        <column name="NETPRICE_NET_VALUE" type="DECIMAL" size="17,2"
+                description="Net value as received from SAP in VBAP_NETWR. Value is positive (customer pays this = income for Crh) for normal order items, negative for credit notes."/>
+        <column name="NETPRICE_REBATE_TOTAL" type="DECIMAL" size="17,2"
+                description="Rebate total as received from SAP in VBAP_ZZKZWIL. Value is negative (Crh pays this to customer) for normal order items, positive for credit notes."/>
+        <column name="NETPRICE_TAX" type="DECIMAL" size="17,2"
+                description="Tax as received from SAP in VBAP_MWSBP. Value is positive (customer has to pay the taxes to Crh as well = income for Crh) for normal order items, negative for credit notes."/>
+        <column name="NETPRICE_CASH_DISCOUNT" type="DECIMAL" size="17,2"
+                description="Cash discount as received from SAP in VBAP_ZZKZWIE. Value is negative (Crh pays this to the customer) for normal order items, positive for credit notes."/>
+        <column name="NETPRICE_CURRENCY_CD" required="true" type="VARCHAR" size="5"
+                description="FK tlgnr_currency_cd. Currency code, as received from SAP in VBAP_WAERK."/>
+
+        <foreign-key foreignTable="TLGNC_ORDER_ITEM" name="FK_TLGNS_SAP_NETPRICE_ORD_ITEM">
+            <reference local="ORDER_ITEM_ID" foreign="ORDER_ITEM_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_UOM_BS" name="FK_TLGNS_SAP_NETPRICE_UOM">
+            <reference local="NETPRICE_UOM_CD" foreign="UOM_CD"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_CURRENCY_BS" name="FK_TLGNS_SAP_NETPRICE_CURR">
+            <reference local="NETPRICE_CURRENCY_CD" foreign="CURRENCY_CD"/>
+        </foreign-key>
+    </table>
+</database>

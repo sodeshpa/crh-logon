@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="VLGNC_DISPO_MAX_WAGON_POS" mappingType="view" skipSql="true">
+        <column name="WAGON_NO" required="true" type="VARCHAR" size="12"/>
+        <column name="CURRENT_PLANT_TRACK_CD" type="DECIMAL" size="4"/>
+        <column name="CURRENT_TRACK_POSITION_NO" type="DECIMAL" size="2"/>
+        <column name="MAX_TRACK_POSITION_NO" type="DECIMAL" size="12"/>
+    </table>
+</database>

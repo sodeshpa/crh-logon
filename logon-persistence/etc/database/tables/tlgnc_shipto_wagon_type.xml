@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNC_SHIPTO_WAGON_TYPE"
+           description="These priorities and the open rail orders are the key inputs for the rail-disposition algorithm: Priorities with which certain wagon types should be preferred or forbidden for a certain shipto. A shipto may have a restriction against certain wagons. Examples: for bimodal rail, wagons with 54t are preferred as they can be unloaded with two trucks (2x27tons), or the customer or carrier does not like certain types because they are difficult to unload. Not explicitely listed wagon types are always forbidden (this is a difference to shipto_truck_type!). The priorities may be tuned by the order management together with the dispatcher in order to achieve better dispatching results over all shiptos and orders.">
+
+        <column name="SHIPTO_WAGON_TYPE_ID" primaryKey="true" required="true" type="DECIMAL" size="12"
+                description="PK"/>
+        <column name="SHIPTO_ID" required="true" type="DECIMAL" size="12"
+                description="FK tlgnc_shipto. Shipto for which this truck-type restriction is applicable."/>
+        <column name="WAGON_TYPE_CD" required="true" type="DECIMAL" size="2"
+                description="FK tlgnr_wagon_type_cd. Type of the wagon: CM_Uacs (54t), Pn_Uacs (54t), Fr_Uacs (60t), RhB_Uce (15t), ..."/>
+        <column name="EVALUATION_PRIORITY" required="true" type="DECIMAL" size="2"
+                description="Priority hints to evaluate possible wagon types for this shipto. 1 has priority over 2, which has priority over 3 etc. Wagon types which do not have an explicit entry in this table are not possible. If wagon priorities can be respected or not depends on the availability/sequence of wagons, the open orders and the heuristics in the rail-disposition algorithm. This prioritization is more important for wagons (i.e. rail disposition) than for trucks, see also tlgnc_shipto_truck."/>
+
+        <foreign-key foreignTable="TLGNC_SHIPTO" name="FK_TLGNC_SHIPTO_WAGON_TYPE_STO">
+            <reference local="SHIPTO_ID" foreign="SHIPTO_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_WAGON_TYPE_BS" name="FK_TLGNC_SHIPTO_WAGON_TYPE_TYP">
+            <reference local="WAGON_TYPE_CD" foreign="WAGON_TYPE_CD"/>
+        </foreign-key>
+
+        <!-- Per Shipto the same truck type must only appear once.
+             However, several truck types may have the same priority, this simply means:
+             Something else (e.g. real life, nearest truck/wagon decides what will be chosen. -->
+        <unique name="UQ_TLGNC_SHIPTO_WAGON_TYPE">
+            <unique-column name="SHIPTO_ID"/>
+            <unique-column name="WAGON_TYPE_CD"/>
+        </unique>
+      </table>
+</database>

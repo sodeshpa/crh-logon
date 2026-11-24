@@ -1,0 +1,14 @@
+<global-exceptions>
+    <exception
+      key="errors"
+      type="java.lang.Exception"
+      handler="com.crh.logon.web.handlers.GeneralExceptionHandler"/>
+    <exception
+      key="errors"
+      type="java.lang.RuntimeException"
+      handler="com.crh.logon.web.handlers.GeneralExceptionHandler"/>
+    <exception
+      key="errors"
+      type="org.springframework.dao.DataAccessException"
+      handler="com.crh.logon.web.handlers.DataAccessExceptionHandler"/>
+</global-exceptions>

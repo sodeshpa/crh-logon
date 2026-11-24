@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNC_ARCHIVING_LOG" description="Logtable used by the order archiving implementation.">
+        <column name="ARCHIVING_LOG_ID" primaryKey="true" required="true" type="DECIMAL" size="12"
+                description="PK. Unique ID of the log entry."/>
+	<column name="ARCHIVING_LOG_EVENT_CD" required="true" type="DECIMAL" size="12"
+                description="FK tlgnr_archiving_log_event_bs. The event of the logged entry"/>
+        <column name="ORDER_ID" type="DECIMAL" size="12"
+                description="Related order id"/>
+        <column name="DELETED_ENTRY_ID" type="DECIMAL" size="12"
+                description="Optional field, it contains the deleted entry id. The entry type must be decided by the eventtype"/>
+        <column name="LOG_TEXT" required="true" type="VARCHAR" size="4000"
+                description="Any text describing the logged event."/>
+
+        <foreign-key foreignTable="TLGNR_ARCHIVING_LOG_EVENT_BS" name="FK_TLGNC_ARCHIVING_LOG_EVENT">
+            <reference local="ARCHIVING_LOG_EVENT_CD" foreign="ARCHIVING_LOG_EVENT_CD"/>
+        </foreign-key>        
+
+        <index name="I_TLGNC_ARCHIVI_LOG_CTL_CRE_TS">
+          <index-column name="CTL_CRE_TS"/>
+        </index>
+
+    </table>
+</database>

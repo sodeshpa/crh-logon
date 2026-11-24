@@ -1,0 +1,101 @@
+.smallpad {
+	padding: 2px;
+}
+
+.cmid {
+	vertical-align: middle;
+}
+
+.dynlabel {
+	color: #666666; 	
+}
+
+.listclass {
+	overflow: hidden;
+}
+
+.comments {
+	height: 42px;
+}
+
+.marginbottom {
+	margin-bottom: 2px;
+}
+
+.hiddenDiv {
+	display: none; 
+	visibility: hidden	
+}
+
+.smallfont {
+	font-size: 10px;
+}
+
+.itemCommentLabel {
+	font-size: 11px;
+	font-weight: bold;
+	color: #777777;
+	margin-left: 3px; 	
+}
+
+.itemHeaderCell {
+	color: #FFFFFF;
+	font-weight: bold;
+	padding: 1px 3px 1px 3px;
+}
+
+#searchTable {
+	margin: 0px; 
+	border-collapse: collapse;	
+}
+
+#searchTable td.border {
+	background-color: #F9F9F9; 
+	padding: 2px 0 0 10px;	
+}
+
+#callCenterHeading {
+	width: 100%;
+}
+
+#callCenterHeading td {
+	padding: 0px;	
+}
+
+#callCenterHeading input {
+	width: 60px;
+}
+
+/* Under development
+.orderItemTableCol_1 {
+	width: 150px;
+}
+.orderItemTableCol_2 {
+	width: 96px;
+}
+.orderItemTableCol_3 {
+	width: 107px;
+}
+.orderItemTableCol_4 {
+	width: 200px;
+}
+.orderItemTableCol_5 {
+	width: 200px;
+}
+.orderItemTableCol_6 {
+	width: 155px;
+}
+.orderItemTableCol_7 {
+	width: 150px;
+}
+.orderItemTableCol_8 {
+	width: 105px;
+}
+.orderItemTableCol_7_8_colspan {
+	width: 255px;
+}
+.orderItemTableCol_7_8 {
+	width: 263px;
+}
+*/
+

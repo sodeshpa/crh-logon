@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNT_COLUMN_META"
+           description="Meta data about columns, controls how the Generic Table Browser allows access to manipulate data in the LOGON data-base. For columns not listed in this table, they are fully editable (only restricted by tlgnt_table_meta), and conventions apply e.t. to mime_type.">
+
+        <column name="COLUMN_META_ID" primaryKey="true" required="true" type="DECIMAL" size="12"
+                description="PK"/>
+        <column name="TABLE_META_ID" required="true" type="DECIMAL" size="12"
+                description="FK tlgnt_table_meta. The table meta data which is further described on column level. "/>
+        <column name="COLUMN_NAME" required="true" type="VARCHAR" size="30"
+                description="The name of the column in table table_name which is further described."/>
+        <column name="UPDATE_ALLOWED" required="true" type="BOOLEAN"
+                description="0=updating this column in table table_name via table browser is forbidden. Default is: allowed (also when entry is missing in this table) as long as tlgnt_table_meta.update_allowed is set."/>
+
+        <column name="MIME_TYPE" type="VARCHAR" size="200"
+                description="Logon convention: blob field named 'myblob' should have another column called 'myblob_mime_type_cd' which contains the mime-type information. Alternatively, this metadata attribute 'mime_type' can be set for such a column not following the convention. This is useful for tables where only one type is stored and the application is hardcoded for that: myblob_mime_type_cd is not needed in this case."/>
+
+        <foreign-key foreignTable="TLGNT_TABLE_META" name="FK_TLGNT_COLUMN_META_TABLE">
+            <reference local="TABLE_META_ID" foreign="TABLE_META_ID"/>
+        </foreign-key>
+
+        <unique name="UQ_TLGNT_COLUMN_META_COLUMN">
+            <unique-column name="TABLE_META_ID"/>
+            <unique-column name="COLUMN_NAME"/>
+        </unique>
+    </table>
+</database>

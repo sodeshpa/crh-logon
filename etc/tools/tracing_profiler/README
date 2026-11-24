@@ -1,0 +1,38 @@
+### Script to trace/time methods using jcan log tracing
+# Syntax:
+#    tracing_profiles.pl [-l<n>] [-m <method>]  < input.log
+#
+# Where input.log is a log file with enabled tracing (set priority to TRACE in
+# log4j config). E.g.:
+#   <category name="com.crh.logon.business.services.impl"><priority value="INFO"/></category>
+#
+# Options:
+#    -l<n>         Specify depth
+#    -m <method>   Specify name of method where to start tracing.
+#
+# Examples below:
+
+# Top level: don't indicate method name
+$ tracing_profiler.pl -l1 < log_qtime_tracing_initDeliverySettingShiptoMap.txt
+24903ms /    1 calls: DeliverySettingServiceBean.DeliverySettingShiptoMap
+23292ms /   16 calls: DeliverySettingServiceBean.initDeliverySettingSalesAreaMap
+ 1445ms /    1 calls: DeliverySettingServiceBean.initGlobalTransportBackgroundData
+   72ms /    1 calls: DeliverySettingServiceBean.loadWagonTypeWrappers
+   61ms /    1 calls: DeliverySettingServiceBean.loadTruckTypeWrappers
+    1ms /    1 calls: DeliverySettingServiceBean.loadShipTypeWrappers
+    1ms /    1 calls: DeliverySettingServiceBean.loadBlockTrainTypeWrappers
+
+# Investigate specific method: use -m option
+$ tracing_profiler.pl -l1 -m initDeliverySettingSalesAreaMap < log_qtime_tracing_initDeliverySettingShiptoMap.txt
+1558ms /    1 calls: DeliverySettingServiceBean.initDeliverySettingSalesAreaMap
+ 504ms /    1 calls: DeliverySettingServiceBean.initFinancialBackgroundData
+ 437ms /    1 calls: DeliverySettingServiceBean.initMaterialAvailabilityBackgroundData
+ 351ms /    1 calls: DeliverySettingServiceBean.initMaterialSelectionForShipto
+ 261ms /    1 calls: DeliverySettingServiceBean.initDeliverySettingProductLists
+
+$ tracing_profiler.pl -l1 -m initFinancialBackgroundData < log_qtime_tracing_initDeliverySettingShiptoMap.txt
+504ms /    1 calls: DeliverySettingServiceBean.initFinancialBackgroundData
+119ms /    1 calls: DeliverySettingServiceBean.loadPayers
+112ms /    2 calls: DeliverySettingServiceBean.fetchSapBpSareasForSapBp
+ 86ms /    1 calls: DeliverySettingServiceBean.fetchSapSoldBillSareas
+ 32ms /    1 calls: DeliverySettingServiceBean.fetchSapBpCompCodes

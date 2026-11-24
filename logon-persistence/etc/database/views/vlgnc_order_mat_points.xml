@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="VLGNC_ORDER_MAT_POINTS" mappingType="view" skipSql="true">
+        <column name="COMPOSITE_ID" type="VARCHAR" size="122"/>
+        <column name="SAP_MATERIAL_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="PLANT_CD" required="true" type="VARCHAR" size="4"/>
+        <column name="PLANT_NAME" required="true" type="VARCHAR" size="80"/>
+        <column name="SHIPPINGPOINT_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="SHIPPINGPOINT_NAME" type="VARCHAR" size="80"/>
+        <column name="SHIPPPOINT_TYPE_CD" required="true" type="DECIMAL" size="2"/>
+        <column name="RAILWAY_STATION_ID" type="DECIMAL" size="12" />
+        <column name="COORD_LAT" type="DOUBLE"/>
+        <column name="COORD_LON" type="DOUBLE"/>
+        <column name="LOADINGPOINT_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="LOADINGPOINT_NAME" required="true" type="VARCHAR" size="50"/>
+        <column name="PACKAGE_TYPE_CD" required="true" type="DECIMAL" size="2"/>
+    </table>
+</database>

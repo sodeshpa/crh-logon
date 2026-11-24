@@ -1,0 +1,113 @@
+Load test setup
+---------------
+
+1. Grinder
+The assumption is that the you execute the start scripts in the logon-test-load directory. The scripts are not yet CWD aware.
+
+1.1 Running grinder
+- start the grinder console
+  bin/start_grinder_console.sh
+- start a grinder agent (on the same machine)
+  bin/start_agent.sh
+
+  Now you are able to run the configured grinder script (grinder.properties:grinder.script). Through the console you see what happens.
+  The agent creates the following two directories as output:
+  <agent starting directory>/log                     --> contains the out and data files of grinder
+  <agent starting directory>/<agent name>-file-store --> the staging directory of the agent
+
+1.2 Record a test
+- start the tcpproxy
+  * bin/start_proxy.sh -console -http > <script name>
+  This will open the TCPProxy console, with which you can add comments between the recorded requests.
+  Change the browser proxy configuration to use the TCPProxy from grinder (Checkout FoxyProxy for simpler proxy handling)
+  Make sure to delete browser cache and logins (FF shortcut, ctrl-shift-delete)
+  
+- post modification
+  A) To import the global urls used for testing add the following line as import to the recorded script:
+    * from scripts.base_config import url0
+    --> This will set the configured url0 value in the base_config
+    * remove the line with url0 value
+  B) To give each script a unique range of test numbers edit the resulting scripts and replace
+    * from net.grinder.script import Test
+    with
+    from net.grinder.script import Test as StandardTest
+    def Test(number, description):
+       # Adjust the 10000 to the appropriate offest
+       return StandardTest(number+ 10000, description)
+    
+- SSL recording does not work for the https://logonebm2-int.zh.adnovum.ch because there is a problem with the ca.
+  For recording the proxy opens two SSL connections [browser -- proxy -- logon] for both connections the proxy
+  uses its own certificates, which is a problem for the ebm2 environment.
+  
+  
+Directory Structure
+-------------------
+The whole test-load directory is used to send to the grinder agent, so that everything is available.
+|-- bin          --> grinder scripts (windows, linux)
+|-- etc          --> grinder configuration
+`-- scripts      --> basic scripts
+    `-- usecases --> recorded usecases
+    
+How to run tests on logonebm2
+-----------------------------
+* make sure you have a /tmp/logon directory (for moving over the dist-load.zip file)
+* login into the windows machine with rdesktop:
+  rdesktop -g 1400x1050 -r disk:mcico=/tmp/logon logonebm2-int.zh.adnovum.ch -u Administrator -p <standard root pw>
+  - the -r option maps your local /tmp/ on the logonebm2-int.zh.adnovum.ch, to copy over the load-test.zip
+* create the dist-load zip file:
+  adnant clean dist (execute in subfolder 'logon-test-load')
+  cp build/dist/test-load.zip /tmp/logon
+* extract the test-load.zip on the Desktop
+* open a command prompt and cd into the extracted test-load zip file
+* start the grinder console
+  bin\start_console.cmd
+* start the grinder agent (open another command prompt)
+  bin\start_agent.cmd
+* modify the etc/grinder.properties script to make sure the right script is executed
+* redistribute the files to the agents (Skript -> "Send changes" button (most right one))
+* modify scripts to use the right login, change the following values to the right user:
+  - j_username
+  - j_password
+  
+OpTrace Analysis
+----------------
+Use the jcan-optrace scripts on the application log file
+jcan-optrace/etc/tools *
+
+loadchart:
+~/projects/jcan-optrace/dist/tools/loadchart.pl --name loadchart --period 30 server.*
+bin size 30 min.
+
+profile:
+~/projects/jcan-optrace/dist/tools/profile.pl -threshold 100000 server.log > profile.html
+only show requests longer than 1000 ms
+
+peperino:
+~/projects/jcan-optrace/dist/tools/paperino.pl -name paperino server.log
+
+GroundReport Analysis
+---------------------
+- Install jython
+- Install groundreport
+- Setup a postgressql database (see the groundreport readme)
+- configure ground report (see the readme)
+- import the data by using the  ./databaseInterface.bash script
+  * make sure you have configured the right data files (etc/data.properties)
+  * select option 4 to upload a file
+- check the loadrun information (remember the run version if there are more than one)
+- generate the report
+  * change the etc/groundReport.properties to use the right run
+  * run the ./generateReport.bash script
+- Find the freshly generated reports in the output directory
+
+GrinderAnalyzer
+--------------
+- Install jython
+- Install GrinderAnalyzer
+- jython ./analyzer.py <path to the grinder data file> <path to the grinder out file>
+- find the reports in the grinderReports directory
+
+FAQ
+---
+1. What is the __init__.py script for?
+   It defines a python module so that the import is possible in sub directories

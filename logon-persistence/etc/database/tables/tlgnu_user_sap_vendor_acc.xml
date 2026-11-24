@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNU_USER_SAP_VENDOR_ACC"
+           description="Access Control/Data restriction table. Defines the Vendors (tlgns_sap_vendor) a user has access to. For users of type 'vendor' (tlgnu_user.user_type_cd=2) at least 1 entry in this table (identical to tlgnu_user.sap_vendor_id) is required for security reasons.">
+
+        <column name="USER_SAP_VENDOR_ACC_ID" primaryKey="true" required="true" type="DECIMAL" size="12"
+                description="PK"/>
+        <column name="USER_ID" required="true" type="DECIMAL" size="12"
+                description="FK tlgnu_user. The Logon user."/>
+        <column name="SAP_VENDOR_ID" required="true" type="DECIMAL" size="12"
+                description="FK to tlgns_sap_vendor The vendor for which access is granted."/>
+
+        <foreign-key foreignTable="TLGNS_SAP_VENDOR" name="FK_TLGNU_USER_SAP_V_ACC_VEND">
+            <reference local="SAP_VENDOR_ID" foreign="SAP_VENDOR_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNU_USER" name="FK_TLGNU_USER_SAP_V_ACC_USER">
+            <reference local="USER_ID" foreign="USER_ID"/>
+        </foreign-key>
+        <unique name="UQ_TLGNU_USER_SAP_VENDOR_ACC">
+            <unique-column name="USER_ID"/>
+            <unique-column name="SAP_VENDOR_ID"/>
+        </unique>
+    </table>
+</database>

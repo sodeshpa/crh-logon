@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNR_CURRENCY_TX" refData="true"
+           description="Currencies. List of currencies which can be handled by Logon, and is a sub-set of the currencies known in SAP.">
+        <column name="CURRENCY_CD" primaryKey="true" required="true" type="VARCHAR" size="5"
+                description="Part of PK. FK tlgnr_currency_bs. For example CHF, EUR, ..."/>
+        <column name="LANG_CD" primaryKey="true" required="true" type="VARCHAR" size="2"
+                description="Part of PK. FK tlgnr_lang_bs. For example de, en, ..."/>
+        <column name="TXT" required="true" type="VARCHAR" size="30"
+                description="Name of the currency CURRENCY_CD in the language LANG_CD"/>
+
+        <foreign-key foreignTable="TLGNR_CURRENCY_BS" name="FK_TLGNR_CURRENCY_TX">
+            <reference local="CURRENCY_CD" foreign="CURRENCY_CD"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_LANG_BS" name="FK_TLGNR_CURRENCY_LANG">
+            <reference local="LANG_CD" foreign="LANG_CD"/>
+        </foreign-key>
+    </table>
+</database>

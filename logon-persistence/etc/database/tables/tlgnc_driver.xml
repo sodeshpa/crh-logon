@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNC_DRIVER" description="The driver of a truck. Is always a user of logon.">
+        <column name="DRIVER_ID" primaryKey="true" required="true" type="DECIMAL" size="12"
+                description="PK" />
+        <column name="USER_ID" required="true" type="DECIMAL" size="12"
+                description="FK tlgnu_user_id, unique. A driver in logon must be a user of logon as well."/>
+        <column name="CURRENT_TRUCK_ID" type="DECIMAL" size="12"
+                description="Which truck the driver is currently assigned to. This does not say anything whether the driver is right now driving it. Field is updated as part of the Login PDA process (accept current truck), but not reset when logging out. This relation is 0/1 : 0/1, a truck can have at most 1 current driver."/>
+        <column name="CERTIFIED_FROM_DAT" type="DATE"
+                description="Date since when the driver is certified to drive for Crh. Just for informational purposes for Logon, no logic."/>
+        <column name="CERTIFIED_TO_DAT" type="DATE"
+                description="Date until when the driver is certified to drive for Crh. Just for informational purposes for Logon, no logic."/>
+        <column name="ACTIVE_FLAG" required="true" type="BOOLEAN"
+                description="0=inactive/deleted, 1=active."/>
+
+        <column name="DRIVER_COMMENT" type="VARCHAR" size="200"
+                description="Comment about the driver. TODO: purpose not fully clear. ABOUT the driver (by an admin), or FROM the driver? Probably about the driver, and should therefore not be visible to the driver itself? -> Maybe CR for Logon 2.0, more data authorization in user admin?"/>
+        <!-- PHOTO_IMAGE_ID, SIGNATURE_IMAGE_ID: Moved to tlgnu_user, can be set for any Logon user -->
+
+        <foreign-key foreignTable="TLGNC_TRUCK" name="FK_TLGNC_DRIVER_TRUCK">
+            <reference local="CURRENT_TRUCK_ID" foreign="TRUCK_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNU_USER" name="FK_TLGNU_DRIVER_USER">
+            <reference local="USER_ID" foreign="USER_ID"/>
+        </foreign-key>
+        <!-- Can be enforced, because the application assumes that a truck has 1 driver at most. Login PDA resets any other driver when receiving driver-truck info -->
+        <unique name="UQ_TLGNC_TRUCK_CURRENT_TRUCK">
+            <unique-column name="CURRENT_TRUCK_ID"/>
+        </unique>
+        <!-- Can be enforced, because there is no need to have 1:n because of active/inactive drivers for the same user. Just reactivate the old driver entry in this case. -->
+        <unique name="UQ_TLGNC_TRUCK_USER">
+            <unique-column name="USER_ID"/>
+        </unique>
+    </table>
+</database>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="VGDIA_TEST_TYPES" mappingType="view" skipSql="true">
+        <column name="TEST_TYPES_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="NUMBER_12_0_LONG_NOT_NULL" required="true" type="DECIMAL" size="12"/>
+        <column name="NUMBER_12_0_LONG_NULLABLE" type="DECIMAL" size="12"/>
+        <column name="NUMBER_8_0_INT_NOT_NULL" required="true" type="DECIMAL" size="8"/>
+        <column name="NUMBER_8_0_INT_NULLABLE" type="DECIMAL" size="8"/>
+        <column name="NUMBER_4_0_INTEGER_NOT_NULL" required="true" type="DECIMAL" size="4"/>
+        <column name="NUMBER_4_0_INTEGER_NULLABLE" type="DECIMAL" size="4"/>
+        <column name="VARCHAR2_35_STRING_NOT_NULL" required="true" type="VARCHAR" size="35"/>
+        <column name="VARCHAR2_35_STRING_NULLABLE" type="VARCHAR" size="35"/>
+        <column name="DATE_JAVA_UTIL_DATE_NOT_NULL" required="true" type="DATE"/>
+        <column name="DATE_JAVA_UTIL_DATE_NULLABLE" type="DATE"/>
+        <column name="TSTMP_JAVA_SQL_TSTAMP_NOT_NULL" required="true" type="TIMESTAMP"/>
+        <column name="TSTMP_JAVA_SQL_TSTAMP_NULLABLE" required="true" type="TIMESTAMP"/>
+        <column name="NUMBER_8_3_BIGDECIMAL_NOT_NULL" required="true" type="DECIMAL" size="8,3"/>
+        <column name="NUMBER_8_3_BIGDECIMAL_NULLABLE" type="DECIMAL" size="8,3"/>
+        <column name="NUMBER_6_2_CURRENCY_NOT_NULL" required="true" type="DECIMAL" size="6,2"/>
+        <column name="NUMBER_6_2_CURRENCY_NULLABLE" type="DECIMAL" size="6,2"/>
+        <column name="NUMBER_DOUBLE_NOT_NULL" required="true" type="DOUBLE"/>
+        <column name="NUMBER_DOUBLE_NULLABLE" type="DOUBLE"/>
+        <column name="CTL_CRE_UID" required="true" type="DECIMAL" size="12"/>
+        <column name="CTL_CRE_TS" required="true" type="TIMESTAMP"/>
+        <column name="CTL_MOD_UID" required="true" type="DECIMAL" size="12"/>
+        <column name="CTL_MOD_TS" required="true" type="TIMESTAMP"/>
+        <column name="CTL_TCN" required="true" type="DECIMAL" size="12"/>
+    </table>
+</database>

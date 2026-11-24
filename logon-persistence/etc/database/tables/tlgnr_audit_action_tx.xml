@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNR_AUDIT_ACTION_TX" refData="true"
+           description="List of auditing actions.">
+        <column name="AUDIT_ACTION_CD" primaryKey="true" required="true" type="DECIMAL" size="2" 
+                description="Part of PK. FK tlgnr_audit_action_bs. For example 0, 1, ..."/>
+        <column name="LANG_CD" primaryKey="true" required="true" type="VARCHAR" size="2"
+                description="Part of PK. FK tlgnr_lang_bs. For example de, en, ..."/>
+        <column name="TXT" required="true" type="VARCHAR" size="40"
+                description="Name of the audit action AUDIT_ACTION_CD in the language LANG_CD"/>
+
+        <foreign-key foreignTable="TLGNR_AUDIT_ACTION_BS" name="FK_TLGNR_AUDIT_ACTION_TX">
+            <reference local="AUDIT_ACTION_CD" foreign="AUDIT_ACTION_CD"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_LANG_BS" name="FK_TLGNR_AUDIT_ACTION_LANG">
+            <reference local="LANG_CD" foreign="LANG_CD"/>
+        </foreign-key>
+    </table>
+</database>

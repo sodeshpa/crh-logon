@@ -1,0 +1,26 @@
+generates entities and ddl scripts from from ddlutils' torque xml
+
+Relationships:
+
+      - in order to generate entities as such, we need additional information
+      - this information is stored in the logon-persistence/etc/mappings.properties
+      - this file contains properties for relationships like this:
+
+             FROMentityname+TOentityname=relationshiptype | properties...
+
+        OneToMany:
+        ----------
+        example:
+         ShiptoEntity+ShiptoSiloEntity=OneToMany | orderby=shiptoSiloId | field=silos
+        this will generate:
+          - a field 'silos' which will be a list of type ShiptoSiloEntity
+        NOTES:
+              - property 'field' is optional. if ommited, the generator will choose the
+                fieldname
+              - property 'orderby' is optional. if ommited, the generator will not generate
+                an @OrderBy annotation
+
+        ManyToMany:
+        -----------
+        example
+         ShiptoEntity+HaendlerEntity=ManyToMany | jointable=SHIPTO_HAENDLER | joinColumns=SHIPTO_ID | inverseJoinColumns=HAENDLER_ID | orderby=id

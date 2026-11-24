@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNR_AUDIT_BIZEVENT_CONFIG_BS" refData="true"
+           description="Changes in table_name.column_name are supposed to be recorded in tlgnc_bizevent_table with an 'Edited' bizevent. Table is used as a base for generating the audit code. Used together with views VLGNC_?_AUDIT_DATA in custom_views_audit.sql.">
+
+        <column name="AUDIT_BIZEVENT_CONFIG_CD" primaryKey="true" required="true" type="DECIMAL" size="12"
+                description="PK. Id of the reference data."/>
+        <column name="CTL_ACT_CD" required="true" type="BOOLEAN"
+                description="Active Flag. When new data is entered, only reference data with active flag are available for selection normally."/>                     
+
+        
+    </table>
+</database>

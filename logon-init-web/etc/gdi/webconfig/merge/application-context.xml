@@ -1,0 +1,9 @@
+<beans>
+    <!-- properties from build environment are stored here -->
+    <import resource="classpath:/spring_configurationContext.xml"/>
+    <import resource="classpath:/spring_propertyContext.xml"/>
+
+    <bean id="ServiceLocator" class="com.crh.logon.business.services.utils.ServiceLocator">
+        <constructor-arg ref="com.crh.logon.utils.LogonProperties"/>
+    </bean>
+</beans>

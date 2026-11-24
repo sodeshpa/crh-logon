@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2015 sp2 (x64) (http://www.altova.com) by ﻿Adnovum (AdNovum Informatik AG) -->
+<xsd:schema xmlns:ocns="http://logon.crh.com/LogonOCInterface/common_in" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://logon.crh.com/LogonOCInterface/common_in">
+    <xsd:complexType name="header">
+        <xsd:sequence>
+            <xsd:element name="clientType" type="xsd:string" minOccurs="1" >
+                <xsd:annotation>
+                    <xsd:documentation>Technical field to indicate the logical sender of the message. LOGON, CP (Customer Portal) for example.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="senderInfo" type="xsd:string" minOccurs="1" >
+                <xsd:annotation>
+                    <xsd:documentation>Technical identifier of the system sending the message. For example "LOGON-LAN-FBNL".</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="sendersTime" type="xsd:dateTime" minOccurs="1" >
+                <xsd:annotation>
+                    <xsd:documentation>Date/time the message was sent.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="language" type="xsd:string" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation>Language of the error messages. Reserved for future development,
+                        currently language dependent error messages are not supported, returned messages are
+                        english.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="ocRequestId" minOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>LDS Identification of the request. This id is solely used to be sent back in the response in order to easier link the request message to the response messages. This id is not stored in LOGON nor has it any functionality in LOGON.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="64"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="request" abstract="true">
+        <xsd:sequence>
+            <xsd:element name="header" type="ocns:header"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="response" abstract="true">
+        <xsd:sequence>
+            <xsd:element name="header" type="ocns:header"/>
+            <xsd:element name="code" type="xsd:string">
+                <xsd:annotation>
+                    <xsd:documentation>Error code</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="txt" type="xsd:string" minOccurs="0" >
+                <xsd:annotation>
+                    <xsd:documentation>Error description</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="businessPartnerContactData">
+        <xsd:annotation>
+            <xsd:documentation>Business partner data used only if the partner is a one-time partner.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="name1" minOccurs="0" >
+                <xsd:annotation>
+                    <xsd:documentation>Last name / company name if the partner is a one-time partner.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="35"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="name2" minOccurs="0" >
+                <xsd:annotation>
+                    <xsd:documentation>First name / company name 2 if the partner is a one-time partner</xsd:documentation>
+                </xsd:annotation>
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="35"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="street" minOccurs="0" >
+                <xsd:annotation>
+                    <xsd:documentation>Street and house number if the partner is a one-time partner</xsd:documentation>
+                </xsd:annotation>
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="35"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="zipCode" minOccurs="0" >
+                <xsd:annotation>
+                    <xsd:documentation>Zip code / postal code if the partner is a one-time partner</xsd:documentation>
+                </xsd:annotation>
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="10"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="city" minOccurs="0" >
+                <xsd:annotation>
+                    <xsd:documentation>City  if the partner is a one-time partner.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="35"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="country" minOccurs="0" >
+                <xsd:annotation>
+                    <xsd:documentation>Country code  if the partner is a one-time partner.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="3"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="phoneNumber" minOccurs="0" >
+                <xsd:annotation>
+                    <xsd:documentation>Phone number. From TLGNS_SAP_BP.PHONE_NUMBER. Mandatory on ITA delivery note.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="16"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="vatRegistrationNumber" minOccurs="0" >
+                <xsd:annotation>
+                    <xsd:documentation>VAT registration number. From TLGNS_SAP_BP.VAT_REGISTRATION_NUMBER. Mandatory on ITA delivery note.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="20"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="vendorData">
+        <xsd:annotation>
+            <xsd:documentation>Detailed vendor data (id, address) used in the response messages.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="sapVendorId" minOccurs="1" >
+                <xsd:annotation>
+                    <xsd:documentation>SAP vendor id.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="10"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="name1" minOccurs="0" >
+                <xsd:annotation>
+                    <xsd:documentation>Last name / company name 1 from SAP.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="35"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="name2" minOccurs="0" >
+                <xsd:annotation>
+                    <xsd:documentation>First name / company name 2 from SAP.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="35"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="street" minOccurs="0" >
+                <xsd:annotation>
+                    <xsd:documentation>Street and house number from SAP.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="35"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="zipCode" minOccurs="0" >
+                <xsd:annotation>
+                    <xsd:documentation>Zip code / postal code from SAP.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="10"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="city" minOccurs="0" >
+                <xsd:annotation>
+                    <xsd:documentation>City from SAP.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="35"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="country" minOccurs="0" >
+                <xsd:annotation>
+                    <xsd:documentation>Country code from SAP.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="3"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="phoneNumber" minOccurs="0" >
+                <xsd:annotation>
+                    <xsd:documentation>Phone number. From TLGNS_SAP_VENDOR.PHONE_NUMBER. Mandatory on ITA delivery note.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="16"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="taxNumber" minOccurs="0" >
+                <xsd:annotation>
+                    <xsd:documentation>TAX number. From TLGNS_SAP_VENDOR.TAX_NUMBER3. Mandatory on ITA delivery note.</xsd:documentation>
+                </xsd:annotation>
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="18"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+</xsd:schema>

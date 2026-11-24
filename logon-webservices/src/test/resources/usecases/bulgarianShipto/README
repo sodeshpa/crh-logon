@@ -1,0 +1,14 @@
+- Cryllic characters as part of SAP BP call - LOGON-7405
+
+- ShipTo SAP_BP_ID: 3600000091
+- SoldTo SAP_BP_ID: 3600000090
+
+The Ship-To and Sold-To NAME1, ORT01, and STRAS elements contain Cyrillic characters.
+
+- Contract 1: ADN64090
+
+Advance Payment (ZADV) contract containing material 'ADN Fluvio 4'
+
+- Contract 2: ADN64091
+
+Cash Sales (ZCEX) contract containing material 'ADN Bulk M3 Test'

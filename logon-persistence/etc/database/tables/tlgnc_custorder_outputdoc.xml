@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNC_CUSTORDER_OUTPUTDOC"
+           description="Output Documents (Collective delivery Notes for now, only) belonging to a customer order. The newest version of a type is the 'current' version, older versions are kept to track important changes. E.g. the document was originally printed and signed by the customer must be kept. Technical limitation: Only Postscript can be sent to a printer, but it's currently not possible to generate PS out of PDF, therefore both types are always generated together, based on the same input data.">
+
+        <column name="CUSTORDER_OUTPUTDOC_ID" primaryKey="true" required="true" type="DECIMAL" size="12"
+                description="PK"/>
+        <column name="CUSTORDER_ID" type="DECIMAL" size="12"
+                description="FK tlgnc_custorder. The Customer order to which the Output Document belongs."/>
+        <column name="PDF_OUTPUTDOC_ID" type="DECIMAL" size="12"
+                description="FK tlgnc_outputdoc. The generated output document of this order in PDF format. The PDF is generated in the language of the Ship-to."/>
+        <column name="PS_OUTPUTDOC_ID" type="DECIMAL" size="12"
+                description="FK tlgnc_outputdoc. The generated output document of this order in PS format. For technical reasons, the PS is generated at the same time as the PDF, and can not be generated only when needed (before sending to printer). If this becomes possible, attribute could be removed, and the printing function modified to generate PS from the PDF on the fly."/>
+
+        <column name="GENERATED_IN_CUSTORD_STAT_CD" required="true" type="DECIMAL" size="2"
+                description="FK tlgnr_custorder_status_bs. Status of the customer order at the time the output document was generated. Used only for informational purposes, to show more meaningful information in the UI instead of only date/time. Several versions of the delivery note to the same order in the same status can exist!"/>
+
+        <!-- When adding new references and FK, please put them in the same order as they are as attributes! -->
+        <foreign-key foreignTable="TLGNC_CUSTORDER" name="FK_TLGNC_CUSTORDER_ODOC_ORD">
+            <reference local="CUSTORDER_ID" foreign="CUSTORDER_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNC_OUTPUTDOC" name="FK_TLGNC_CUSTORDER_ODOC_PDF">
+            <reference local="PDF_OUTPUTDOC_ID" foreign="OUTPUTDOC_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNC_OUTPUTDOC" name="FK_TLGNC_CUSTORDER_ODOC_PS">
+            <reference local="PS_OUTPUTDOC_ID" foreign="OUTPUTDOC_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_CUSTORDER_STATUS_BS" name="FK_TLGNC_CUSTORDER_STAT">
+            <reference local="GENERATED_IN_CUSTORD_STAT_CD" foreign="CUSTORDER_STATUS_CD"/>
+        </foreign-key>
+
+    </table>
+</database>

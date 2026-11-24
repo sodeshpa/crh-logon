@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<off:SendFaxText xmlns:off="http://www.officemaster.de/">
+	<argsNumber>+36 1 487 50 00</argsNumber>
+	<argsText>Greetings from AdNovum!</argsText>
+</off:SendFaxText>

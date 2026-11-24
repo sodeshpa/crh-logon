@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNR_TIMEZONE_BS" refData="true"
+           description="A TimeZone entity which is composed of an Olsen TZ Id and an associated country">
+
+        <column name="TIMEZONE_CD" primaryKey="true" required="true" type="VARCHAR" size="32"
+                description="PK. A valid id given from the list https://en.wikipedia.org/wiki/List_of_tz_database_time_zones. For example, Europe/Paris or Europe/Moscow would be a valid id."/>
+        <column name="SAP_COUNTRY_CD" primaryKey="false" required="true" type="VARCHAR" size="3"
+                description="FK TLGNR_SAP_COUNTRY_BS"/>
+        <column name="CTL_ACT_CD" required="true" type="BOOLEAN"
+                description="Active Flag. When new data is entered, only reference data with active flag are available for selection normally."/>
+
+        <foreign-key foreignTable="TLGNR_SAP_COUNTRY_BS" name="FK_TLGNR_TIMEZONE_COUNTRY">
+            <reference local="SAP_COUNTRY_CD" foreign="SAP_COUNTRY_CD"/>
+        </foreign-key>
+
+    </table>
+</database>
+

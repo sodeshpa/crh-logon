@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNR_TEXT_TX" refData="true"
+           description="Texts which are meant to be configurable by the administrator, for example for PDF documents. Changes of the TXT for a given TEXT_CD are possible independent of releases.">
+        <column name="TEXT_CD" primaryKey="true" required="true" type="VARCHAR" size="45"
+                description="Part of PK. FK to TLGNR_TEXT_BS. Code of the Reference Data."/>
+        <column name="LANG_CD" primaryKey="true" required="true" type="VARCHAR" size="2"
+                description="Part of PK. Non-enforced FK to TLGNR_LANG_BS."/>
+        <column name="TXT" required="true" type="VARCHAR" size="1000"
+                description="Text resource in the language LANG_CD. tlgnr_text_bs.placeholder_count defines the number of placeholders of type {x} which must be present in the text."/><!-- No encoding/decoding performed. if a use-case suggests to put HTML into the DB, fine with us. But don't expect to use the SAME key also for PDF. Another key needed in this case-->
+        <foreign-key foreignTable="TLGNR_TEXT_BS" name="FK_TLGNR_TEXT_TX">
+            <reference local="TEXT_CD" foreign="TEXT_CD"/>
+        </foreign-key>
+    </table>
+</database>

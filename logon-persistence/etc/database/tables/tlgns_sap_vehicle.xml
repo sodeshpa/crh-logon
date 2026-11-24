@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNS_SAP_VEHICLE"
+           description="Vehicle data, received from SAP in Vehicle Notification Interface.">
+
+        <column name="SAP_VEHICLE_ID" primaryKey="true" required="true" type="DECIMAL" size="12"
+                description="PK. Technical key, given by Logon."/>
+        <column name="SAP_VEHICLE_NO" type="VARCHAR" size="18"
+                description="Equipment Number/identifier, leading zeros are trimmed. SAP: vehicle_master_data / EQUNR (trimmed)."/>
+        <column name="SAP_VEHICLE_IFC_NO" type="VARCHAR" size="18"
+                description="Equipment Number/identifier, exactly as received and also used for sending to other systems, i.e. including the leading zeros. SAP: vehicle_master_data / EQUNR (original)."/>
+        <column name="SAP_VEHICLE_ACTIVE_FLAG" type="BOOLEAN" required="true"
+                description="0 = Deleted, 1 = Active. SAP: /vehicle_master_Data/STTXT"/> 
+        <column name="SAP_VEHICLE_NAME" type="VARCHAR" size="18"
+                description="Identification number for fleet object. SAP: vehicle_master_data / FLEET_NUM"/> 
+		<column name="SAP_VENDOR_ID" type="DECIMAL" size="12"
+                 description="FK tlgns_sap_vendor. Carrier who owns the vehicle. Subcontracting Carrier. SAP: if vehicle_master_adata/vehicle_partner_functions/PARVW==ZC Then vehicle_master_adata/vehicle_partner_functions/I_PARNR ELSE else fail to import. Vehicle has to be linked to a subcontractor."/> 
+		<column name="SAP_VEHICLE_PLATE_NO" type="VARCHAR" size="15"
+                description="License Plate Number. SAP: vehicle_master_data/LICENSE_NUM."/>
+		<column name="SAP_VEHICLE_TYPE_CD" required="true" type="VARCHAR" size="30"
+                description="FK tlgnr_sap_vehicle_type. SAP: /vehicle_master_Data/vehicle_classification/ATWRT for repetition of vehicle_classification where CLASS == VEHICLE_TYPE."/>
+        <column name="SAP_VEHICLE_AXIS_COUNT" type="VARCHAR" size="2"
+                description="Number of axles. SAP: /vehicle_master_data/NUM_AXLE."/>
+        <column name="SAP_VEHICLE_MAX_GROSS_WEIGHT_T" type="DECIMAL" size="12,4"
+                description="Max allowed gross weight of the vehicle in unit of measure tons. SAP: /vehicle/_master_data/GROSS_WGT."/>
+		<column name="SAP_VEHCILE_TARE_WEIGHT_T" type="DECIMAL" size="12,4"
+                description="Tare weight. SAP: /vehicle_master_data/BRGEW."/> 
+		<column name="SAP_VEHICLE_VOLUME_M3" type="DECIMAL" size="12,4"
+                description="Load volume. SAP: /vehicle_master_data/LOAD_VOL."/>
+
+        <column name="SAP_VEHICLE_TRAILER_EQP_NO" type="VARCHAR" size="18"
+                description="FK tlgns_sap_vehicle. SAP Equipment number of attached trailer. SAP: /vehicle_master_data/vehicle_trailer/EQNACH."/>  
+        <column name="SAP_VEHICLE_TRUCK_EQP_NO" type="VARCHAR" size="18"
+                description="FK tlgns_sap_vehicle. SAP Equipment number of the truck the trailer is attached to. SAP: /vehicle_master_data/vehicle_trailer/EQVON."/>  
+        
+        <column name="SAP_VEHICLE_CHAR_CD" type="DECIMAL" size="2" required="true"
+                description="FK to tlgnr_sap_vehicle_characteristic_bs."/> 
+        <column name="SAP_VEHICLE_IS_INTERNAL_FLAG" type="BOOLEAN"
+                description="Internal means owned by Crh company, only relevant for costs calculation in SAP ‘V’ (internal) is stored as 1 Else its stored as 0 SAP: /vehicle_master_data/EQTYP"/>
+        <column name="COMPANYCODE_CD" type="VARCHAR" size="4"
+                description="FK to tlgnr_companycode_bs. Company code the vehicle belongs to. MUST be set if SAP_VEHICLE_IS_INTERNAL_FLAG is set."/>
+        <column name="SAP_VEHICLE_IS_PROCESSED_FLAG" type="BOOLEAN" required="true"
+                description="Postprocessing flag. True when the row has already been postprocessed by the vehicle notification postprocessing service."/>
+        <column name="SAP_VEHICLE_IS_IMPORTED_FLAG" type="BOOLEAN" required="true"
+                description="Postprocessing flag. True when The row has already been imported succesfully."/>
+
+
+        <foreign-key foreignTable="TLGNS_SAP_VENDOR" name="FK_TLGNS_SAP_VEHICLE_VENDOR">
+            <reference local="SAP_VENDOR_ID" foreign="SAP_VENDOR_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_SAP_VEHICLE_TYPE_BS" name="FK_TLGNS_SAP_VEHICLE_TYPE">
+            <reference local="SAP_VEHICLE_TYPE_CD" foreign="SAP_VEHICLE_TYPE_CD"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_SAP_VEHICLE_CHAR_BS" name="FK_SAP_VEHICLE_CHARACTERISTIC">
+            <reference local="SAP_VEHICLE_CHAR_CD" foreign="SAP_VEHICLE_CHAR_CD"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_COMPANYCODE_BS" name="FK_SAP_VEHICLE_COMPANYCODE_BS">
+            <reference local="COMPANYCODE_CD" foreign="COMPANYCODE_CD"/>
+        </foreign-key>
+    </table>
+</database>

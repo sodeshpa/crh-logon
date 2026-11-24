@@ -1,0 +1,4 @@
+-- File was originally created directly based on XSD description of import-webservice.
+-- However the results were not deterministic, and minor changes occured with each generate.
+-- Therefore schema had to be frozen.
+

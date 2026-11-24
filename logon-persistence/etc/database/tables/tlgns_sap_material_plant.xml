@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNS_SAP_MATERIAL_PLANT"
+           description="Plant specific material data as received from SAP by the material interface. SAP material valuation area is also stored in this table because it is identified by the same key: plant.">
+
+        <column name="SAP_MATERIAL_PLANT_ID" primaryKey="true" required="true" type="DECIMAL" size="12"
+                description="PK"/>
+        <column name="SAP_MATERIAL_ID" required="true" type="DECIMAL" size="12"
+                description="FK tlgns_sap_material. The referenced material."/>
+        <column name="PLANT_CD" required="true" type="VARCHAR" size="4"
+                description="FK tlgnr_plant_cd. The (supply) plants where this material is available OR produced. Both SAP and Logon do not know about the plant where it IS really produced. SAP: material_plant_data (MARC) / WERKS"/>
+        <column name="NHM_CODE" type="VARCHAR" size="22"
+                description="The NHM Code which is used when sending material information back to the SAP for rail orders (NHM = Nomenclature Harmonisee Marchandises - Harmonisiertes Gueterverzeichnis). SAP: material_plant_data (MARC) / STAWN"/>
+        <column name="MARKED_FOR_DELETION" required="true" type="VARCHAR" size="1"
+                description="Deletion code in SAP. SAP: material_plant_data (MARC) / LVORM. 0=active, 1=deleted. Note that Logon normally has active_flag, with inversed logic. We stick to SAP standards in the tlgns_sap_... tables."/>
+
+        <!-- These VAL_... attributes come from SAP Valuation area. None of them must be required="true", because the record may be created by SAP Plant data first, where those values are not known -->
+        <column name="VAL_PRICE_CONTROL_INDICATOR" type="VARCHAR" size="1"
+                description="V=Moving Average Price, S=Standard Price. SAP: material_valuation (MBEW) / VPRSV. Logon currently does only store this value, no logic."/>
+        <column name="VAL_STANDARD_PRICE" type="DECIMAL" size="11,2"
+                description="Standard Price. SAP: material_valuation (MBEW) / STPRS. Logon currently does only store this value, no logic."/>
+        <column name="VAL_MOVING_AVG_PRICE" type="DECIMAL" size="11,2"
+                description="Moving Average Price. SAP: material_valuation (MBEW) / VERPR. Logon currently does only store this value, no logic."/>
+<!-- Decision by Crh, 4.3.2009: As effort to include in interface is estimated 6 days (Maria Dolores) information will NOT be sent.
+     Also: "Currency will have to be handled in LOGON".
+     AdNovum Design Principle for SAP Interface:
+     All data in tlgns_sap_... tables is inserted and updated only by SAP import, no mixed 'ownership'.
+     Therefore, remove this column! If Crh wants the currency per material and valuation area (plant),
+     it must be in another table, similar to tlgnc_shipto vs tlgns_sap_shipto etc.
+        <column name="VAL_CURRENCY" type="VARCHAR" size="5"
+                description="Currency as received from SAP (T001-WAERS)."/>
+     10.6.2009: See ticket 40782 and table tlgnc_mat_plant for the solution!
+     
+     Question 20090728/uma: What should we do with those prices?? The are not mentioned in https://aww.adnovum.ch/twiki/bin/view/CrhPegasus/ContributionMarginCalculation
+     
+     uma: Answer came from Christoph some time later (by phone I think): They are currently not used.
+     All price info Logon needs comes from the 5th SAP interface, tlgns_sap_net_price_order_item.
+     These prices here would have been needed if Logon should have done those calculations,
+     but because of the tricky tax/discount/rebates handling, no longer needed. Maybe in
+     the future, in a later release. => Proper implementation of the handling would be
+     subject to a Change Request.
+-->
+        <column name="VAL_FUTURE_PRICE" type="DECIMAL" size="11,2"
+                description="Future Price. SAP: material_valuation (MBEW) / ZKPRS. Logon currently does only store this value, no logic. Its not yet specified, WHICH price (standard or moving average) is stored in this future price, or if another column should be added."/>
+        <column name="VAL_FUTURE_VALID_FROM_DAT" type="DATE"
+                description="Validity start date of VAL_FUTURE_PRICE. SAP: material_valuation (MBEW) / ZKDAT. Current prices are valid until valid_to - 1 day. Logon currently does only store this value, no logic."/>
+
+        <foreign-key foreignTable="TLGNS_SAP_MATERIAL" name="FK_TLGNS_SAP_MAT_PLANT_MAT">
+            <reference local="SAP_MATERIAL_ID" foreign="SAP_MATERIAL_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_PLANT_BS" name="FK_TLGNS_SAP_MAT_PLANT_PLANT">
+            <reference local="PLANT_CD" foreign="PLANT_CD"/>
+        </foreign-key>
+
+        <unique name="UQ_TLGNS_SAP_MAT_VKO_PLNT_PLNT">
+            <unique-column name="SAP_MATERIAL_ID"/>
+            <unique-column name="PLANT_CD"/>
+        </unique>	
+    </table>
+</database>

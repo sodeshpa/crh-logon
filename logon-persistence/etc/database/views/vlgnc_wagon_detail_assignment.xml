@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="VLGNC_WAGON_DETAIL_ASSIGNMENT" mappingType="view" skipSql="true">
+        <column name="COMPOSITE_ID" type="VARCHAR" size="84"/>
+        <column name="LOAD_ID" type="DECIMAL" size="12"/>
+        <column name="WAGON_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="ASSIGNMENT_ID" type="DECIMAL" size="12"/>
+        <column name="LOAD_ASSIGNMENT_PART_ID" type="DECIMAL" size="12"/>
+        <column name="SHIPPINGPOINT_ID" type="DECIMAL" size="12"/>
+        <column name="DRIVETO_ASSIGNMENT_PART_ID" type="DECIMAL" size="12"/>
+        <column name="DRIVETO_PLANNED_START" type="DATE"/>
+        <column name="DRIVETO_REAL_START" type="DATE"/>
+        <column name="UNLOAD_ASSIGNMENT_PART_ID" type="DECIMAL" size="12"/>
+        <column name="UNLOAD_PLANNED_START" type="DATE"/>
+        <column name="UNLOAD_REAL_START" type="DATE"/>
+        <column name="ORDER_ID" type="DECIMAL" size="12"/>
+        <column name="SHIPTO_ID" type="DECIMAL" size="12"/>
+        <column name="CTL_MOD_TS" type="TIMESTAMP"/>
+        <column name="ORDER_NUMBER" type="DECIMAL" size="12"/>
+        <column name="ORDER_STATUS_CD" type="DECIMAL" size="2"/>
+        <column name="DISTRIBUTION_DEST_CD" type="VARCHAR" size="4"/>
+        <column name="RAIL_HOLD_BACK_RE_ORDER_FLAG" type="BOOLEAN"/>
+        <column name="DELIVERY_TYPE_CD" type="DECIMAL" size="2"/>
+        <column name="STATUS_TXT" type="VARCHAR" size="50"/>
+        <column name="LANG_CD" type="VARCHAR" size="2"/>
+    </table>
+</database>

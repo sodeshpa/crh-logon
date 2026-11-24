@@ -1,0 +1,16 @@
+$currentTemplate
+$gdi.generatedAt
+-------------------------
+
+#set ($query = "
+
+SELECT * 
+FROM TLGNU_USER
+
+")
+native sql: $query
+
+##
+#set ($em = $jpa.em("logon-test"))
+#set ($data = $em.createNativeQuery($query).resultList)
+$jpa.printTable($data)

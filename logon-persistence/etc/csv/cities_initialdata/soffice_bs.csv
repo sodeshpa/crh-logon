@@ -1,0 +1,386 @@
+# $Revision$;;
+# $Date$;;
+# Provided by Crh on 04.12.2012;;
+# This is CLUSTER 1. Data of Cluster 0 and Cluster 1 is identical in both clusters, currently even in their active flag (ctl_act_cd);;
+# 05.12.2012, file updated by FBI;;
+# File updated by FBI on 09/04/2013 with Cluster 2 data.;;
+#SOFFICE_CD;#SOFFICE_NAME;#CTL_ACT_CD
+8011;Proyectos;0
+8012;Solid Fuels;1
+8013;Americas;1
+8014;EuroMed;1
+8031;Region 1;1
+8032;Region 2;1
+8033;Region 3;1
+8034;Analytics;1
+8041;ME+ AFRICA;1
+8099;Extrabusiness;1
+A001;Cement;1
+A002;ecorec Österreich;1
+A010;Extrabusiness;1
+B101;DCC Belgique;1
+B102;DCC Nederland;1
+B103;Georoc Benelux;1
+B104;Grand Export Benelux;1
+B201;GeoMinerals;1
+B301;Granulats Belgique;1
+B302;Stonebreaker;1
+B401;RMX BELGIUM WEST;1
+B402;RMX BELGIUM NORTH;1
+B403;RMX BELGIUM SOUTH;1
+B800;GeoMinerals;1
+B900;Geocycle Belgique;1
+B999;Agence Prestation BE;1
+C001;VA/S-Ostschweiz;1
+C002;N-Ostschweiz;1
+C003;Zürich;1
+C004;Nordwestschweiz;1
+C005;GE/VD;1
+C006;VS/VD-O/FR/NE/JU;1
+C007;Sopraceneri;1
+C008;Sottoceneri;1
+C009;Cust. Solut. Center;1
+C010;Exporte;1
+C011;Zentralschweiz;1
+C050;Crh (Schweiz) AG;1
+C051;Verschiedene DL Schw;1
+C052;Basaltstein;0
+CY01;BEM Sales Office;1
+D001;Cement NG;1
+D002;AGG NI;1
+D003;AGG SH;1
+D004;AGG SN;1
+D005;RMX HH;1
+D006;RMX MV;1
+D007;RMX NI;1
+D008;RMX NI LER;1
+D009;RMX NW;1
+D010;RMX SH;1
+D011;Geocycle - AF;1
+D012;Geocycle - AR;1
+D013;Geocycle - Handel;1
+D014;TRD CEM;1
+D015;MIC - Slag;1
+D016;AGG SH AG;1
+D017;Betontechnik Soltau;1
+D018;Betontechnik Höver;1
+D020;Yeoman;1
+D021;Cement West;1
+D022;AGG West;1
+D023;AGG South-West;1
+D024;MIC - Slag West;1
+D550;Verkauf Zement;1
+D551;Region Weil/Lörrach;1
+D552;Region Offenburg;1
+D553;Region Stuttgart;1
+D554;Region Karlsruhe;1
+D555;Trockensandwerk;1
+D559;AFR Süddeutschland;1
+D560;SBM Süd-DE;1
+D570;Verschiedene DL Süd-;1
+DG11;Geocycle - AF;1
+DG12;Geocycle - AR;1
+DG13;Geocycle - Handel;1
+EA00;C.C. Almeria;1
+EA01;C.C. Granada;1
+EA02;C.C. Jaen-Cordoba;1
+EA03;C.C. Jerez;1
+EA04;C.C.Malaga/C Gibralt;1
+EA05;C.C. Sevilla-Huelva;1
+EA06;C.C. Levante;1
+EA07;C.C. Cartagena;1
+EA08;C.C. Galicia;1
+EA09;C.C. Exportacion;1
+EA10;C.C. Centro;1
+EA11;C.C. Cenic-Clink NAC;1
+EA12;C.C. Caliza Export.;1
+EA13;C.C. Yeso Export.;1
+EA14;D.A. Centro;1
+EA15;D.A. Cadiz;1
+EA16;D.A. Malaga;1
+EA17;D.A. Almeria;1
+EA18;D.A. Granada;1
+EA19;D.A. Alicante;1
+EA20;D.A. Murcia;1
+EA21;D.A. Jaen;1
+EA22;D.A. Galicia;1
+EA23;D.A. Fortuna;1
+EA24;D.A. Madrid Centro;1
+EA25;Migueletes;1
+EA26;D.A. Madrid Este;1
+EA27;D.A. Madrid Norte;1
+EA28;D.A. Castellon;1
+EA29;D.H. Centro;1
+EA30;D.H. Madrid Noroeste;1
+EA31;D.H. Cádiz;1
+EA32;D.H. Campo Gibraltar;1
+EA33;D.H. Sevilla;1
+EA34;D.H. Huelva;1
+EA35;D.H. Almeria;1
+EA36;D.H. Granada;1
+EA37;D.H. Malaga;1
+EA38;D.H. Jaen;1
+EA39;D.H. Valencia;1
+EA40;D.H. Oliva;1
+EA41;D.H. Alicante Sur;1
+EA42;D.H. Murcia Norte;1
+EA43;D.H. Lorca;1
+EA44;D.H. Galicia;1
+EA45;D.H. Alicante Norte;1
+EA46;D.H. Marbella;1
+EA47;D.H. Bahia Cadiz Est;1
+EA48;D.H. Murcia;1
+EA49;D.H Madrid Noreste;1
+EA50;D.H Madrid Suroeste;1
+EA51;D.H. Albacete;1
+EA52;D.H. Alicante;1
+EA53;D.H. Cataluña;1
+EA54;D.H. Tarragona;1
+EA55;D.H. Valladolid;1
+EA56;D.M. Sevilla;1
+EA57;D.M. Monda;1
+EA58;D.M. Valencia;1
+EA59;D.M. Alicante;1
+EA60;D.M. Madrid;1
+EA61;Log. Centro-Galicia;1
+EA62;Log. And. Occidental;1
+EA63;Log. And. Oriental;1
+EA64;Log. And. Occidental;1
+EA65;Log. Levante;1
+EA69;Geocycle Corporativo;1
+EA72;Crh Jerez;1
+EA74;Crh Carboneras;1
+EA79;Geocycle Norte;1
+EA81;Geocycle Cataluña;1
+EA82;Geocycle Centro;1
+EA83;Geocycle HCG;1
+EA85;Geocycle Sur;1
+EA86;Geocycle Levante;1
+EA89;Geocycle Otros Envío;1
+EA90;Aridos HAT&CIA-Ctro.;1
+EA91;D.A. Export. Aridos;1
+EA92;D.M. Export. Mortero;1
+EA93;D.A. Grav. El Puente;1
+F110;Direction Commercial;1
+F111;DV NO;1
+F112;DV Est;1
+F113;GEOROC;1
+F114;DV Atlantique;1
+F121;VDN DVE;1
+F122;VDN DVNO;1
+F300;HG Distribution;1
+F314;Socoval Côte d`Or;1
+F323;secteur EST GRAN. HR;1
+F324;secteur EST GRAN. BR;1
+F327;secteur GR. LA HARDT;1
+F331;secteur COTE D'OR SO;1
+F334;secteur JURA CBS;1
+F338;secteur HGN F NORD;1
+F339;secteur HGN F SUD;1
+F341;secteur HAUT RHIN;1
+F342;secteur BAS RHIN;1
+F343;secteur MOSELLE;1
+F344;secteur COTE D'OR;1
+F345;HGN AUBE VAL DE LOIR;1
+F346;secteur JURA;1
+F347;GRANULATS SPECIAUX;1
+F348;secteur FRANCHE COMT;1
+F349;HG Trading;1
+F405;Béton Castel;1
+F410;Béton Rapid;1
+F411;S. Ouest. Rennes;1
+F412;S.Ouest. Vannes Lori;1
+F413;S.Ouest.Angers;1
+F414;S. MOBILE;1
+F415;Obsolète;1
+F416;S.HBIDFN Paris;1
+F417;S.HBIDFN Normandie;1
+F418;S.HBIDFN MOBILE IDFN;1
+F419;S.OUEST MOBILE OUEST;1
+F420;S. HBFN Littoral;1
+F421;S. HBFN Lille;1
+F422;S. HBFN Artois;1
+F423;S. HBFN Hainaut;1
+F424;S.HBFN MOBILE NORD;1
+F425;S.HBFCE Rhone Alpes;1
+F430;S.HBFE Bas-Rhin Sud;1
+F431;S.HBFE Bas-Rhin Nord;1
+F432;S.HBFE Vosges Nord;1
+F434;S.HBFE Vosges;1
+F435;S.HBFE Nancy;1
+F436;S.HBFE Metz;1
+F437;S.HBFE Lorraine Nord;1
+F438;S.HBFE Ardennes;1
+F439;S.HBFE Marne;1
+F440;S.HBFE Mulhouse;1
+F441;S.HBFE Colmar;1
+F442;S.HBFE MOBILE EST;1
+F443;S.HBFP Oise;1
+F444;S.HBFP Nord est;1
+F445;S. HBFE 3 Frontières;1
+F446;S.HBFP Val de Somme;1
+F447;S.HBFCE Grd Besançon;1
+F448;S.HBFCE F.C.Nord;1
+F449;S.HBFCE Aube;1
+F450;DB Centre;1
+F451;DB Est;1
+F452;DB Sud;1
+F453;DB Nord;0
+F454;S.HBFCE F.C.Sud;1
+F455;S.HBCE Marne;1
+F456;S.HBCE Ardennes;1
+F457;S.HBF MOBILE C-E;1
+F996;Geocycle France Nord;1
+F998;Geocycle France Est;1
+F999;Agence Prestation FR;1
+G001;СЕВЕРОЗАПАДЕН;1
+G002;СЕВЕРОИЗТОЧЕН;1
+G003;СОФИЯ;1
+G004;ЮГОЗАПАДЕН;1
+G005;ЮГОИЗТОЧЕН;1
+G006;КАРИЕРИ СОФИЯ;1
+G007;КАРИЕРИ ПЛОВДИВ;1
+G008;ПЛОВДИВ ГРАД;1
+G009;ПЛОВДИВ РЕГИОН;1
+G010;ИЗНОС;1
+G011;ИЗНОС БЕТОН;1
+G012;ЕКОРЕК БЪЛГАРИЯ ЕООД;1
+G013;ГУМИРЕК ЕАД;1
+G014;Холсим (България) АД;1
+G015;ЕНКОН;1
+H001;Miskolc-Hejocsaba;1
+H002;Lábatlan;1
+H003;Crh White;1
+H011;ecorec Hungária Kft.;1
+H018;Services Sales Offic;1
+H022;Corporate;1
+H023;Corporate;1
+H100;Extrabusiness;1
+H101;Transformers;1
+H102;Transactional;1
+H103;Construction;1
+H104;Services;1
+I001;Area 1 Est;1
+I002;Area 2 Ovest;1
+I003;Area 3 Triveneto;1
+I004;Area4 Toscana Emilia;1
+I005;Imprese-Grandi lavor;1
+I006;Direzione Cemento;1
+I011;Varie;1
+I012;Ufficio Sea Beton;1
+I013;Ufficio BG BS;1
+I014;Ufficio AL;1
+I015;Ufficio VA CO;1
+I016;Ufficio MI;1
+I018;Direzione Agg Rmx;1
+I019;Ufficio AFR;1
+I020;Fusine Energia;1
+I023;Ufficio Biomass Ener;1
+INV;Invalid/Missing in SAP;0
+J101;CRH CEM;1
+J111;AFR geogycle;1
+J199;Extra-Business;1
+K001;Cement;1
+K002;Biely cement;1
+K003;RMX;1
+K004;AGG;1
+K005;ecorec west;1
+K006;ecorec east;1
+K007;AFR Rohoznik;1
+K008;AFR Turna;1
+K009;Emering Europe;1
+K010;Extrabusiness;1
+L001;LEB sales Office;1
+L002;LEB Services Office;1
+L401;HB Luxembourg;1
+L999;Agence Prestation LU;1
+M001;Négoce;1
+M002;Industrie de Béton;1
+M003;Route et infrastruct;1
+M004;Bâtiment génie civil;1
+M005;Ecoval Maroc S.A;1
+M006;Agence Orientale;1
+M007;Agence duCentre Nord;1
+M008;Agence du Centre;1
+N405;RMX Nederland;1
+N455;Concrete Production;1
+N999;Agence Prestation NL;1
+O001;Abidjan;1
+O002;Bouaké;1
+O003;Gagnoa;1
+O004;Bondoukou;1
+O005;Korhogo;1
+O006;Daloa & San Pédro;1
+O007;Export;1
+P001;Cement;1
+P010;Extrabusiness;1
+Q001;Doha;1
+R100;Cement;1
+R110;Technical Center;1
+R120;Sp. Bind. (RB);1
+R200;Export;1
+R300;AGG Quarries;1
+R310;AGG Pits;1
+R330;AGG ESTAGRE;1
+R340;AGG AGROCOMP;1
+R400;RMX ROC;1
+R410;RMX BUC;1
+R990;Extrabusiness;1
+R996;HOL AFR CP;1
+R997;HOL AFR AE;0
+R998;ECO AFR CP;1
+R999;ECO AFR AE;0
+S001;BEOGRAD;1
+S002;NOVI SAD;1
+S003;KRAGUJEVAC;1
+S004;NIŠ;1
+S005;ZAJEČAR;1
+S006;UŽICE;1
+S007;KOSOVO;1
+S008;EXPORT;1
+S009;BUKOVAC;1
+S010;SOMBOR;1
+S011;KIKINDA;1
+S012;VRBAS;1
+S013;NOVI BECEJ;1
+S014;Extrabusiness;1
+S015;ecorec d.o.o.;1
+S016;Crh AFR;1
+U001;Central  Bulk;1
+U002;Volga  Bulk;1
+U003;Central  Bag;1
+U004;Volga  Bag;1
+U005;Kazakhstan;1
+U010;Other Sales;1
+U020;White cement;1
+U022;AFR;1
+U030;Oil-well cement;1
+W101;Osijek CEM;1
+W102;Rijeka CEM;1
+W103;Split CEM;1
+W104;Zadar CEM;1
+W105;Zagreb CEM;1
+W106;Italy CEM;1
+W107;Slovenia CEM;1
+W108;BIH CEM;1
+W109;Export Services CEM;1
+W110;Austria CEM;1
+W111;ecorec d.o.o.;1
+W112;Crh ( Hrvatska );1
+W113;Varaždin AFR;1
+W114;Rijeka AFR;1
+W115;Export AFR;1
+W116;Montenegro CEM;1
+W301;Osijek AGG;1
+W302;Rijeka AGG;1
+W303;Split AGG;1
+W304;Zadar AGG;1
+W305;Zagreb AGG;1
+W306;Italy AGG;1
+W307;Slovenia AGG;1
+W308;BIH AGG;1
+W309;Export Services AGG;1
+W401;Zagreb RMX;1
+W402;Istra RMX;1
+W403;Slovenia RMX;1
+W501;TransPlus;1

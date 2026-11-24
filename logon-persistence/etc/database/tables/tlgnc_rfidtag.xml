@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNC_RFIDTAG"
+           description="The actual RFID tag/sticker which is placed on an RFID-taggable physical object.">
+        <column name="RFIDTAG_ID" primaryKey="true" required="true" type="DECIMAL" size="12"
+                description="PK"/>
+        <column name="RFIDOBJECT_ID" type="DECIMAL" size="12"
+                description="The physical object which is identified by this RFID. The same RFID-object may be identified by several tags. If null: tag is not assigned to an object."/>
+        <column name="NAME" type="VARCHAR" size="10"
+                description="The human readable (short) name, which is for example written on the tag."/><!-- maxlength is a guess, but seems to be OK -->
+        <column name="RFID_IDENTITY" type="VARCHAR" size="16"
+                description="The actual RFID, i.e. the technical relevant (unique) code sent out by the tag, e.g. E00401003162A00C."/>
+
+        <column name="ACTIVE_FLAG" required="true" type="BOOLEAN"
+                description="0=inactive/deleted, 1=active."/>
+
+        <foreign-key foreignTable="TLGNC_RFIDOBJECT" name="FK_TLGNC_RFIDTAG_RFIDOBJECT_ID">
+            <reference local="RFIDOBJECT_ID" foreign="RFIDOBJECT_ID"/>
+        </foreign-key>
+
+        <unique name="UQ_TLGNC_RFIDTAG_RFID_IDENTITY">
+            <unique-column name="RFID_IDENTITY"/>
+        </unique>
+    </table>
+</database>

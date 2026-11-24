@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="VLGNC_SAP_MAT_MIXDESIGN" mappingType="view" skipSql="true">
+        <column name="SAP_MATERIAL_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="MIX_DESIGN_CD" required="true" type="VARCHAR" size="18"/>
+        <column name="AGG_RMX_CODE" required="true" type="VARCHAR" size="23"/>
+    </table>
+</database>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="http://logon.crh.net/v20090319/mopevent" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://logon.crh.net/v20090319/mopevent">
+  <xsd:element name="LogonMOPEvent">
+  <xsd:complexType>
+    <xsd:sequence>
+      <xsd:element type="xsd:string" name="senderPDAID" minOccurs="1" nillable="true" maxOccurs="1"/>
+      <xsd:element type="xsd:string" name="sendersTime" minOccurs="1" nillable="false" maxOccurs="1"/>
+      <xsd:element type="xsd:string" name="eventType" minOccurs="1" nillable="false" maxOccurs="1"/>
+      <xsd:element type="xsd:string" name="sessionID" minOccurs="1" nillable="true" maxOccurs="1"/>
+      <xsd:element type="xsd:decimal" name="geoX" minOccurs="1" maxOccurs="1"/>
+      <xsd:element type="xsd:decimal" name="geoY" minOccurs="1" maxOccurs="1"/>
+      <xsd:element type="xsd:integer" name="speed" minOccurs="1" nillable="true" maxOccurs="1"/>
+      <xsd:element type="xsd:integer" name="course" minOccurs="1" nillable="true" maxOccurs="1"/>
+      <xsd:element type="xsd:string" name="geoTime" minOccurs="1" nillable="false" maxOccurs="1"/>
+      <xsd:element name="MOPData">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="Field" minOccurs="0" maxOccurs="unbounded">
+              <xsd:complexType>
+                <xsd:sequence>
+                  <xsd:element type="xsd:string" name="name" minOccurs="1" nillable="true" maxOccurs="1"/>
+                  <xsd:element type="xsd:string" name="value" minOccurs="1" nillable="true" maxOccurs="1"/>
+                </xsd:sequence>
+              </xsd:complexType>
+            </xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="LogonMOPEventStatus">
+  <xsd:complexType>
+    <xsd:sequence>
+      <xsd:element name="code" type="xsd:string"/>
+      <xsd:element name="contextValue" type="xsd:string"/>
+      <xsd:element name="txt" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  </xsd:element>
+</xsd:schema>

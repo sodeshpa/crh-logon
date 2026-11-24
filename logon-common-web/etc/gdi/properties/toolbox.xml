@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<toolbox>
+  <data type="string">
+     <key>msg_warning_generated</key>
+     <!-- NOTE: this vaule's content doesn't refer to this file. it is fore use inside templates -->
+     <value>!!! WARNING: THIS FILE IS GENERATED - DO NOT EDIT !!!</value>
+  </data>
+
+  <tool>
+     <key>sorter</key>
+     <class>org.apache.velocity.tools.generic.SortTool</class>
+  </tool>
+
+  <tool>
+     <key>st</key>
+     <class>ch.nevis.gdi.tools.StringTool</class>
+  </tool>
+</toolbox>

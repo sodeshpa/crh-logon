@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNR_SAP_CONTRACT_TYPE_BS" refData="true"
+           description="Contract types as distinguished by SAP (e.g. ZCQ=Agreement with customer with fixed prices, ZCF=Agreement with customer without prices fixed, etc). Not all types in SAP lead to different behaviour in LOGON, but all types must be known to LOGON in this table so that different behaviour can be added when needed. Relevant for LOGON: UB and LU count as 'transfer'(STPO), the rest are sales contracts.">
+
+        <column name="SAP_CONTRACT_TYPE_CD" primaryKey="true" required="true" type="VARCHAR" size="4"
+                description="PK. Code of the Reference Data as known in SAP. E.g. ZCQ=Agreement with customer with fixed prices, ZCF=Agreement with customer without prices fixed, etc. UB/LU: Treated as STPO by import code, rest treated as sales contracts, see CONTRACT_TYPE_IS_STPO_FLAG."/>
+        <column name="CONTRACT_TYPE_IS_STPO_FLAG" required="true" type="BOOLEAN"
+                description="Contract type is a Stock Transfer Purchase Order (STPO). Value 0 for Contract, 1 for STPO. Based on this information, it is decided if a delivery document (SalesDoc) in the case of a Contract or a Transfer delivery document is sent to SAP."/>
+        <column name="CONTRACT_HIERARCHY_LEVEL" required="true" type="DECIMAL" size="1"
+                description="Contract hierarchy level. Depending on this value and the settings on the sales area it is determined if a contract is valid for order taking. Possible values: 1 = Specific contracts, 2 = Frame Contract, 3 = One Time Customer Contracts. Any other value then those above will be interpreted as Level 3 contracts."/>                    
+        <column name="AUTO_PAYER_DETERM_FLAG" required="true" type="BOOLEAN"
+                description="If sales area and contract AUTO_PAYER_DETERM_FLAG are set to true: Restrict to empty payer at LOGON order creation. Payer determination will be performed on SAP side. (LOGON-6762)."/>
+        <column name="CONTRACT_TYPE_IS_AP_FLAG" required="true" type="BOOLEAN"
+                description="Contract type is an Advanced Payment contract. Based on this information LOGON decides for which contract types the Advanced Paymen functionality is enabled. Please note that this flag and CONTRACT_TYPE_IS_STPO_FLAG are mutually exclusive."/>
+        <column name="CTL_ACT_CD" required="true" type="BOOLEAN"
+                description="Active Flag. When new data is entered, only reference data with active flag are available for selection normally."/>
+    </table>
+</database>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNR_COND_LOGON_TYPE_BS" refData="true"
+           description="Condition types coming from SAP, as distinguished by Logon as different types. All Pricing condition type/tables from SAP (tlgnr_cond_sap_type_bs/tx, e.g. 'ZTE3/A526') are mapped into a condition type as distinguished by Logon (e.g. 'TRv'). MP are the Material Price type, and those conditions are stored in tlgns_sap_mat_cond. TRv, TRf and TC are Transport Condition types and those conditions are stored in tlgns_sap_transport_cond.">
+
+        <column name="COND_LOGON_TYPE_CD" primaryKey="true" required="true" type="VARCHAR" size="3"
+                description="PK. 'MP' for Material Price Conditions, 'TC', 'TRv' and 'TRf' for Transport Costs, Transport Rate variable, Transport Rate fixed. The Condition's Logon Type controls if a condition which is imported from SAP will be stored in tlgns_sap_mat_cond or tlgns_sap_transport_cond."/>
+
+        <column name="CTL_ACT_CD" required="true" type="BOOLEAN"
+                description="Active Flag. When new data is entered, only reference data with active flag are available for selection normally."/>
+    </table>
+</database>

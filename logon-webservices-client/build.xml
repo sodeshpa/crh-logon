@@ -1,0 +1,364 @@
+<!--
+ Author            : AdNovum Informatik AG
+ Version Number    : $Revision$
+ Date of last edit : $Date$
+-->
+
+<project name="logon" default="dist" basedir=".">
+    <description>${ant.project.name} project build file</description>
+
+    <!-- ================================================================= -->
+    <!-- === externally defined                                        === -->
+    <!-- ================================================================= -->
+    <import file="properties.xml"/>
+    <import file="../common.xml"/>
+    <import file="macros.xml"/>
+
+    <!-- ================================================================ -->
+    <!--  define target specific classpaths (build, runtime, test)        -->
+    <!-- ================================================================ -->
+	<path id="axis2.classpath">
+		<fileset dir="${AXIS2_HOME}/lib">
+			<include name="*.jar"/>
+	    </fileset>
+	</path>
+
+	<path id="compile.classpath">
+        <pathelement location="${project-common.jar.loc}"/>
+    	<pathelement location="${commons-lang.jar}" />
+        <pathelement location="${jcan-log.jar}" />
+        <pathelement location="${log4j.jar}" />
+        <pathelement location="${jcan-optrace.jar}" />
+		<path refid="axis2.classpath" />
+    </path>
+
+    <path id="axis2.generated.classpath">
+        <dirset dir="${build.dir.name}/generated/axis2/">
+	        <include name="**/src"/>
+		</dirset>
+    </path>
+
+    <!-- ================================================================ -->
+    <!--  initialization, cleanup and default targets                     -->
+    <!-- ================================================================ -->
+    <target name="all" depends="dist"
+            description="build and test everything"/>
+
+    <target name="toolbox-checkUptodate">
+        <uptodate property="toolbox-isUptodate" targetfile=".classpath">
+            <srcfiles refid="toolbox-sourcefiles"/>
+        </uptodate>
+    </target>
+
+    <target name="toolbox" depends="toolbox-checkUptodate" unless="toolbox-isUptodate">
+        <taskdef resource="adnant-taskdefs.xml"/> <!-- See documentation in adnant project's README -->
+
+        <updatedotclasspath>
+            <!-- See documentation of 'updatedotclasspath' in adnant project's README -->
+            <con path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+            <output path=".bin"/>
+            <src path="/logon-common"/>
+            <src path="${java.src.dir.name}"/>
+            <src path="${java.test.src.dir.name}/testclient"/>
+            <src path="${java.test.src.dir.name}/integration"/>
+            <src path="${build.dir.name}/eventbeans"/>
+            <src path="${build.dir.name}/generated/axis2/orderdocument-ebm-delivery/src"/>
+            <src path="${build.dir.name}/generated/axis2/ordergoodsmovement-ebm-delivery/src"/>
+            <src path="${build.dir.name}/generated/axis2/shipmentdocument-ebm-delivery/src"/>
+            <src path="${build.dir.name}/generated/axis2/transferdocument-ebm-delivery/src"/>
+            <src path="${build.dir.name}/generated/axis2/pricesimulation-ebm-delivery/src"/>
+            <src path="${build.dir.name}/generated/axis2/sap-bw/src"/>
+            <src path="${build.dir.name}/generated/axis2/ffax/src"/>
+            <src path="${build.dir.name}/generated/axis2/fsms/src"/>
+            <src path="${build.dir.name}/generated/axis2/sirocco20/src"/>
+            <src path="${build.dir.name}/generated/axis2/mop/src"/>
+            <src path="${build.dir.name}/generated/axis2/lds/src"/>
+            <src path="${build.dir.name}/generated/axis2/ecmservice/src"/>
+            <src path="${build.dir.name}/generated/gdi/clientenhancer/src"/>
+            <lib path="${adntrace2-templates.jar}" sourcepath="${masterbuild.dir}/etc/adntrace2"/>
+        </updatedotclasspath>
+    </target>
+
+    <target name="init" depends="toolbox"
+            description="initialization project structure and environment">
+        <tstamp/>
+        <echo message="--------- ${ant.project.name}-${build.version} building on ${os.name} ---------"/>
+        <echo message=""/>
+        <echo message="building file ${ant.file} with ${ant.version}"/>
+        <echo message=""/>
+        <mkdir dir="${build.dir}"/>
+        <mkdir dir="${classes.dir}"/>
+        <mkdir dir="${lib.dir}"/>
+        <mkdir dir="${test.build.dir}"/>
+        <mkdir dir="${test.log.dir}"/>
+        <mkdir dir="${test.lib.dir}"/>
+    </target>
+
+    <target name="clean" description="cleans all generated files and directories" >
+        <delete dir="${build.dir}"/>
+    </target>
+
+    <!-- ================================================================ -->
+    <!--  compile targets                                                 -->
+    <!-- ================================================================ -->
+    <target name="build" depends="jars, jar-testclient" description="build target" />
+
+	<target name="compile"
+            depends="generate-all-clients,
+                     generateClientenhancer">
+        <copy todir="${build.dir}/eventbeans">
+            <fileset dir="${subcomponent.common}/${build.dir.name}/${dist.dir.name}/src/webservices-client"/>
+        </copy>
+    	<javac
+    		source="${compile.source}"
+    		target="${compile.target}"
+    		destdir="${classes.dir}"
+    		debug="${compile.debug}"
+    		optimize="${compile.optimize}"
+    		deprecation="off"
+    		encoding="${compile.encoding}"
+    		includeantruntime="no">
+	    	<src path="${java.src.dir.name}" />
+	    	<src refid="axis2.generated.classpath" />
+	    	<src path="${generated.dir}/gdi/clientenhancer/src" />
+            <src path="${build.dir}/eventbeans"/>
+	    	<bootclasspath refid="compile.bootclasspath"/>
+	    	<classpath refid="compile.classpath"/>
+    	</javac>
+    </target>
+
+
+    <!-- ================================================================ -->
+    <!--  java archives (JARs)                                            -->
+    <!-- ================================================================ -->
+	<target name="jars" depends="compile">
+		<pathconvert property="manifest.classpath" pathsep=" ">
+			<path refid="axis2.runtime.classpath"/>
+			<mapper>
+				<chainedmapper>
+					<flattenmapper/>
+					<globmapper from="*.jar" to="../lib-axis2/*.jar"/>
+				</chainedmapper>
+			</mapper>
+		</pathconvert>
+
+    	<jar destfile="${webservices-client.jar.loc}">
+    		<manifest>
+				<attribute name="Class-Path" value="${manifest.classpath}"/>
+			</manifest>
+    		<fileset dir="${classes.dir}"/>
+    	</jar>
+    </target>
+
+    <!-- ================================================================= -->
+    <!-- === generator                                                 === -->
+    <!-- ================================================================= -->
+
+<!-- *please* don't remove this line!
+sh /share/java/jpository/apache/axis2/1.4.1/bin/wsdl2java.sh -uri Z_PI_TRUCK_DELIVERY_PUT_Sync_MI.wsdl -sd -ssi -l java -d adb -o result
+-->
+
+    <target name="generateCleanedWsdlTD">
+        <java classname="ch.nevis.gdi.main.TemplateDesigner"
+            fork="true" failonerror="true" newenvironment="true">
+            <classpath refid="gdi.classpath"/>
+           <arg line="${etc.dir}/gdi/cleanwsdl ${wsdl.dir}/ebm ${generated.dir}/gdi/td/cleanwsdl"/>
+        	<sysproperty key="dontparse" value="true" />
+           <sysproperty key="allfiles" value="true" />
+        </java>
+    </target>
+
+    <target name="generateCleanedWsdl">
+    	<gditask classpathref="gdi.classpath"
+	         cartridgePath="${etc.dir}/gdi/cleanwsdl"
+	         outputPath="${generated.dir}/gdi/cleanwsdl">
+    		<input>
+				<fileset dir="${wsdl.dir}">
+					<include name="DX1*.wsdl"/>
+				</fileset>
+		    </input>
+		    <systemproperty name="dontparse" value="true"/>
+           	<systemproperty name="allfiles" value="true"/>
+			<systemproperty name="gdiencoding" value="${gdi.encoding}"/>
+	    </gditask>
+    </target>
+
+	<target name="generate-all-clients" depends="init,generateCleanedWsdl">
+		<antcall target="generate-client">
+			<param name="file" 			value="${generated.dir}/gdi/cleanwsdl/DX1_Java_Instance_DeliveryDocument_Out.wsdl"/>
+			<param name="outputdir" 	value="orderdocument-ebm-delivery"/>
+			<param name="plusargs" 		value="-sd -ssi -l java -d adb -or"/>
+		</antcall>
+		<antcall target="generate-client">
+			<param name="file" 			value="${generated.dir}/gdi/cleanwsdl/DX1_Java_Instance_LogisticsReporting_Out.wsdl"/>
+			<param name="outputdir" 	value="sap-bw"/>
+			<param name="plusargs" 		value="-sd -ssi -l java -d adb -or -Eosv"/>
+		</antcall>
+		<antcall target="generate-client">
+			<param name="file" 			value="${generated.dir}/gdi/cleanwsdl/DX1_Java_Instance_ShipmentDocument_Out.wsdl"/>
+			<param name="outputdir" 	value="shipmentdocument-ebm-delivery"/>
+			<param name="plusargs" 		value="-sd -ssi -l java -d adb -or -Eosv"/>
+		</antcall>
+		<antcall target="generate-client">
+			<param name="file" 			value="${generated.dir}/gdi/cleanwsdl/DX1_Java_Instance_GoodsMovements_Out.wsdl"/>
+			<param name="outputdir" 	value="ordergoodsmovement-ebm-delivery"/>
+			<param name="plusargs" 		value="-sd -ssi -l java -d adb -or -Eosv"/>
+		</antcall>
+		<antcall target="generate-client">
+			<param name="file" 			value="${generated.dir}/gdi/cleanwsdl/DX1_Java_Instance_TransferDeliveryDocument_Out.wsdl"/>
+			<param name="outputdir" 	value="transferdocument-ebm-delivery"/>
+			<param name="plusargs" 		value="-sd -ssi -l java -d adb -or -Eosv"/>
+		</antcall>
+		<antcall target="generate-client">
+			<param name="file" 			value="${generated.dir}/gdi/cleanwsdl/DX1_Java_Instance_PriceSimulation_Out.wsdl"/>
+			<param name="outputdir" 	value="pricesimulation-ebm-delivery"/>
+			<param name="plusargs" 		value="-sd -ssi -l java -d adb -or -Eosv"/>
+		</antcall>
+		<antcall target="generate-client">
+			<param name="file"			value="${wsdl.dir}/ArchiveOrder.wsdl"/>
+			<param name="outputdir"		value="ecmservice"/>
+			<param name="plusargs" 		value="-ss -ns2p http://tempuri.org/=com.crh.logon.to.ecmservice,http://schemas.microsoft.com/2003/10/Serialization/=com.crh.logon.to.ecmservice.imports.com.microsoft.schemas._2003._10.serialization -g"/>
+		</antcall>
+		<antcall target="generate-client">
+			<param name="file" 			value="${wsdl.dir}/ffax.wsdl"/>
+			<param name="outputdir" 	value="ffax"/>
+			<param name="plusargs" 		value="-s -pn FFaxSoap -ns2p http://www.officemaster.de/=com.crh.logon.to.ffax -l java -d adb -or"/>
+		</antcall>
+		<antcall target="generate-client">
+			<param name="file" 			value="${wsdl.dir}/ffsms.wsdl"/>
+			<param name="outputdir" 	value="fsms"/>
+			<param name="plusargs" 		value="-s -pn FSmsSoap -ns2p http://www.officemaster.de/=com.crh.logon.to.fsms -l java -d adb -or"/>
+		</antcall>
+		<antcall target="generate-client">
+			<param name="file" 			value="${wsdl.dir}/sirocco20.wsdl"/>
+			<param name="outputdir" 	value="sirocco20"/>
+			<param name="plusargs" 		value="-s -pn Sirocco20 -ns2p http://i3g.com/Sirocco20=com.crh.logon.to.sirocco20 -l java -d adb -or"/>
+		</antcall>
+		<antcall target="generate-client">
+			<param name="file" 			value="${wsdl.dir}/LOGONMessageServer.wsdl"/>
+			<param name="outputdir" 	value="mop"/>
+			<param name="plusargs" 		value="-ss -ns2p http://tempuri.org/=com.crh.logon.to.mop -g"/>
+		</antcall>
+		<antcall target="generate-client">
+			<param name="file"			value="${wsdl.dir}/LogonLDSInterface_notifications.wsdl"/>
+			<param name="outputdir"		value="lds"/>
+			<param name="plusargs"		value="-sd -ssi -l java -d adb -p com.crh.logon.to.lds"/>
+		</antcall>
+	</target>
+
+    <target name="generateClientenhancer">
+    	<gditask classpathref="gdi.classpath"
+	         cartridgePath="${etc.dir}/gdi/clientenhancer"
+	         outputPath="${generated.dir}/gdi/clientenhancer">
+    		<input>
+				<fileset dir="${generated.dir}/axis2"/>
+		    </input>
+			<systemproperty name="gdiencoding" value="${gdi.encoding}"/>
+	    </gditask>
+    </target>
+
+    <target name="generateClientenhancerTD">
+        <java classname="ch.nevis.gdi.main.TemplateDesigner"
+            fork="true" failonerror="true" newenvironment="true">
+            <classpath refid="gdi.classpath"/>
+            <arg line="${etc.dir}/gdi/clientenhancer ${generated.dir}/axis2 ${generated.dir}/gdi/td/clientenhancer"/>
+        </java>
+    </target>
+
+    <!-- ================================================================= -->
+    <!-- === distribution targets                                      === -->
+    <!-- ================================================================= -->
+    <target name="dist" description="build the distribution" unless="omit.subcomponent.webservices-client">
+        <antcall target="realdist" inheritall="true"/>
+    </target>
+    <target name="realdist" depends="build">
+        <copy todir="${dist.lib.dir}" file="${webservices-client.jar.loc}" verbose="true" />
+		<copy todir="${dist.dep.dir}/lib" file="${commons-lang.jar}"/>
+		<copy todir="${dist.dep.dir}/lib" file="${jcan-log.jar}"/>
+		<copy todir="${dist.dep.dir}/lib" file="${jcan-optrace.jar}"/>
+		<copy todir="${dist.dep.dir}/lib-axis2">
+			<path refid="axis2.runtime.classpath"/>
+		</copy>
+		<!-- do the test client dist... -->
+		<copy todir="${dist.dir}/testclient/lib" file="${testclient.jar}" />
+		<copy todir="${dist.dir}/testclient/lib" file="${webservices-client.jar.loc}" />
+		<copy todir="${dist.dir}/testclient/lib" file="${project-common.jar.loc}" />
+		<copy todir="${dist.dir}/testclient/lib" file="${commons-lang.jar}" />
+		<copy todir="${dist.dir}/testclient/lib" file="${jcan-log.jar}" />
+		<copy todir="${dist.dir}/testclient/lib" file="${log4j.jar}" />
+		<copy todir="${dist.dir}/testclient/lib" file="${jcan-optrace.jar}" />
+		<copy todir="${dist.dir}/testclient/lib">
+			<path refid="axis2.classpath"/>
+		</copy>
+		<copy todir="${dist.dir}/testclient/etc" file="etc/cfg/log4j.properties" />
+		<replaceregexp byline="true" encoding="utf-8" flags="g">
+        	<regexp pattern="(log4j.appender.FILE.File=)([^\s]*)" />
+        	<substitution expression="\1TestClient.log" />
+			<fileset file="${dist.dir}/testclient/etc/log4j.properties" />
+		</replaceregexp>
+		<replaceregexp byline="true" encoding="utf-8" flags="g">
+        	<regexp pattern="(log4j.logger.org.apache.axis2.description.AxisService=)([^\s]*)" />
+        	<substitution expression="\1INFO" />
+			<fileset file="${dist.dir}/testclient/etc/log4j.properties" />
+		</replaceregexp>
+		<replaceregexp byline="true" encoding="utf-8" flags="g">
+        	<regexp pattern="(log4j.logger.org.apache.axis2.description.WSDL11ToAxisServiceBuilder=)([^\s]*)" />
+        	<substitution expression="\1INFO" />
+			<fileset file="${dist.dir}/testclient/etc/log4j.properties" />
+		</replaceregexp>
+		<replaceregexp byline="true" encoding="utf-8" flags="g">
+        	<regexp pattern="(log4j.logger.com.crh.logon=)([^\s]*)" />
+        	<substitution expression="\1INFO" />
+			<fileset file="${dist.dir}/testclient/etc/log4j.properties" />
+		</replaceregexp>
+		<copy todir="${dist.dir}/testclient/etc" file="etc/testclient/TestClient.properties" />
+		<replaceregexp byline="true" encoding="utf-8" flags="g">
+        	<regexp pattern="(LogonToPI.url.base=)([^\s]*)" />
+        	<substitution expression="\1${mockup.parallel.host.url}"/>
+			<fileset file="${dist.dir}/testclient/etc/TestClient.properties" />
+		</replaceregexp>
+		<replaceregexp byline="true" encoding="utf-8" flags="g">
+        	<regexp pattern="(LogonToFSms.url.base=)([^\s]*)" />
+        	<substitution expression="\1${mockup.fsms.host.url}"/>
+			<fileset file="${dist.dir}/testclient/etc/TestClient.properties" />
+		</replaceregexp>
+		<replaceregexp byline="true" encoding="utf-8" flags="g">
+        	<regexp pattern="(LogonToFFax.url.base=)([^\s]*)" />
+        	<substitution expression="\1${mockup.ffax.host.url}"/>
+			<fileset file="${dist.dir}/testclient/etc/TestClient.properties" />
+		</replaceregexp>
+		<replace file="${dist.dir}/testclient/etc/TestClient.properties" token="src/test/resources" value="testdata" />
+		<copy todir="${dist.dir}/testclient/testdata">
+            <fileset dir="src/test/resources">
+    			<include name="**/*.xml" />
+    			<include name="**/*.pdf" />
+            </fileset>
+		</copy>
+		<copy todir="${dist.dir}/testclient" file="etc/testclient/run.sh" />
+		<copy todir="${dist.dir}/testclient" file="etc/testclient/run.bat" />
+    </target>
+
+    <!-- NOTE: what we build here is only used for development (enables faster dev-cycles) -->
+    <target name="deploy" depends="dist" description="deploy this sub-project only">
+        <echo>nothing to deploy here!</echo>
+    </target>
+
+	<!-- ================================================================ -->
+    <!-- source code tracing instrumentation targets                      -->
+    <!-- ================================================================ -->
+    <target name="adntrace2-instrument">
+        <taskdef resource="adntrace2-taskdefs.xml" classpathref="adntrace2.classpath"/>
+        <adntrace2 operation="instrument"/>
+    </target>
+
+    <target name="adntrace2-refresh">
+        <taskdef resource="adntrace2-taskdefs.xml" classpathref="adntrace2.classpath"/>
+        <adntrace2 operation="refresh"/>
+    </target>
+
+
+    <!-- ================================================================ -->
+    <!--  externally defined tasks/targets                                -->
+    <!-- ================================================================ -->
+    <import file="./build-test.xml"/>
+</project>

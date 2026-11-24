@@ -1,0 +1,25 @@
+<ns2:consume xmlns:ns2="http://logon.intranet-che/logon">
+		<senderPDAID>http://HOLSIZJ2/LogonToPISrv/LogonToPI.asmx</senderPDAID>
+	    <sendersTime>2009-10-05 09:21:27</sendersTime>
+	    <eventType>login</eventType>
+	    <sessionID>16546543</sessionID>
+	    <geoX>0.11111</geoX>
+	    <geoY>4.163546</geoY>
+	    <speed>46</speed>
+	    <course>45</course>
+	    <geoTime>2009-03-06 09:21:27</geoTime>
+		<MOPData>
+			<Field>
+				<name>pdaUserLabel</name>
+				<value>Steve Jobs</value>
+			</Field>
+			<Field>
+				<name>pdaUserRFIDIdentity</name>
+				<value>Huhuhu</value>
+			</Field>
+			<Field>
+				<name>PIN</name>
+				<value>12345</value>
+			</Field>
+		</MOPData>
+</ns2:consume>

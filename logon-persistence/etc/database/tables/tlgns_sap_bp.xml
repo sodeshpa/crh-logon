@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNS_SAP_BP" description="Contains SAP Business Partners. Can either be a soldto (customer), billto, shipto or a combination of billto and shipto. The table contains attributes which are only set for Shipto, but as SAP does not distinguish this, Logon also keeps all in one table. Additional Logon-only attributes are contained in extension tables, see tlgnc_shipto. In special cases Logon writes data into the tlgns_sap_... tables as well, e.g. for 'dummy customers', when the BP are not or not yet contained in SAP.">
+        <column name="SAP_BP_ID" primaryKey="true" required="true" type="DECIMAL" size="12"
+                description="PK. Given by the Logon system."/>
+        <column name="SAP_ID" type="VARCHAR" size="10"
+                description="The (trimmed) ID used by SAP system. Received via the SAP interface, leading zeros are trimmed. This is a kind of foreign key into SAP (KNA1_KUNNR, trimmed)."/>
+        <column name="SAP_IFC_ID" type="VARCHAR" size="10"
+                description="The ID used by SAP system, exactly as received and also used for sending to other systems, i.e. including the leading zeros. Received via the SAP interface. (LIFNR, original)."/>
+        
+        <!-- Field used in master data import -->
+        <column name="UPDATE_BLOCKED_BY_HJID" type="DECIMAL" size="19"
+        		description="Contains the hjid of the notification that blocks any further updates if this is the case or 'null' if not blocked. Non-enforced FK to ULGNSAP.BPN_BUSINESSPARTNERNOTIFICAT_0."/>
+
+        <column name="MARKED_FOR_DELETION" type="VARCHAR" size="1"
+                description="Deletion code in SAP (KNA1_LOEVM). 0=active, 1=deleted. Note that Logon normally has active_flag, with inversed logic. We stick to SAP standards in the tlgns_sap_... tables."/>
+        <column name="NAME1" type="VARCHAR" size="35"
+                description="Last Name/Company Name 1 from SAP (KNA_NAME1)"/>
+        <column name="NAME2" type="VARCHAR" size="35"
+                description="First Name/Company Name 2 from SAP (KNA_NAME2)"/>
+        <column name="CONTACT_NAME" type="VARCHAR" size="71"
+                description="Goods recipient master_customer_master_contact_person's NAMEV + ' ' + NAME1 from SAP"/>
+        <column name="CONTACT_PHONE" type="VARCHAR" size="16"
+                description="Goods recipient master_customer_master_contact_person's TELF1 from SAP"/>
+        <column name="COUNTRY_CD" required="true" type="VARCHAR" size="3"
+                description="FK tlgnr_sap_country_bs. Country from SAP (KNA1_COUNTRY)."/>
+        <column name="POSTAL_CODE" required="true" type="VARCHAR" size="10"
+                description="Zip Code/Postal Code from SAP (KNA1_PSTLZ)"/>
+        <column name="CITY" required="true" type="VARCHAR" size="35"
+                description="City from SAP (KNA1_ORT01)"/>
+        <column name="REGION" type="VARCHAR" size="3"
+                description="Region (Canton in CH) from SAP (KNA1_REGION)"/>
+        <column name="STREET" type="VARCHAR" size="35"
+                description="Street from SAP (KNA1_STRAS)"/>
+        <column name="HOUSE_NUMBER" type="VARCHAR" size="10"
+                description="House number from SAP (ADRC-HOUSE_NUM1)"/>
+        <column name="LANG_CD" required="true" type="VARCHAR" size="2"
+                description="FK tlgnr_lang_bs. Language from SAP (KNA1_SPRAS_ISO). 'Z1' from SAP is mapped to 'de'."/>
+        <column name="SAP_LANGUAGE_CD" type="VARCHAR" size="2"
+                description="FK tlgnr_sap_language_bs. Language from SAP (KNA1_SPRAS_ISO). This value will be used to define the initial value for lang_cd. Also used when identifying TLGNS_SAP_MAT_PLANT_NORM entries for Logo printing during delivery note generation."/>
+        <column name="CUSTOMER_CLASSIFICATION" type="VARCHAR" size="2"
+                description="Customer Classification from SAP (KNA1-KUKLA)"/>
+        <column name="ACCOUNT_GROUP_CD" required="true" type="VARCHAR" size="4"
+                description="FK tlgnr_sap_account_group_bs. Account group from SAP (KNA1-KTOKD)"/>
+
+		<column name="RAILWAY_STATION_ID" type="DECIMAL" size="12"
+                description="FK tlgnc_railway_station. The (optional) railway station of the shipto. Most shiptos do not have a railway station. Value is mapped by a lookup with values LAND_SBBT and KNA1_BAHNS from SAP in TLGNC_RAILWAY_STATION, UIC_COUNTRY_CD and RAILWAY_STATION_NO."/>	
+        <column name="BP_IS_SHIPTO" required="true" type="BOOLEAN"
+                description="Technical flag for easier filtering; is set if this BP has a Partner Function to itself with Function=Ship-to (WE)."/>
+        <column name="BP_IS_SOLDTO" required="true" type="BOOLEAN"
+                description="Technical flag for easier filtering; is set if this BP has a Partner Function to itself with Function=Sold-to (AG)."/>
+        <column name="BP_IS_BILLTO" required="true" type="BOOLEAN"
+                description="Technical flag for easier filtering; is set if this BP has a Partner Function to itself with Function=Bill-To (RE)."/>
+        <column name="BP_IS_PAYER" required="true" type="BOOLEAN"
+                description="Technical flag for easier filtering; is set if this BP has a Partner Function to itself with Function=Payer."/>
+		<column name="BP_IS_DRIVER" required="true" type="BOOLEAN"
+                description="Technical flag. Set in SAP import to true in case the BP is received with 'Z015' in field master_customer_basic_data / KTOKD."/>
+		
+		<column name="CENTRAL_POSTING_BLOCK" required="true" type="BOOLEAN" 
+                description="Indicates whether the customer is blocked for FI postings in all company codes. Posting (FInance), is a standard accounting function to create business transactions in the general ledger. Logon will block all contracts related to the company codes of the BP.(SAP: master_customer_basic_data.SPERR, mapped)"/>
+        <column name="CENTRAL_DELIVERY_BLOCK" required="true" type="BOOLEAN" 
+                description="Indicates whether the customer is blocked for deliveries creation in all sales areas. Logon will block all contracts related to the sales areas of the BP.(SAP: master_customer_basic_data.LIFSD, mapped)"/>
+        <column name="CENTRAL_ORDER_BLOCK" required="true" type="BOOLEAN" 
+                description="Indicates whether the customer is blocked for deliveries creation in all sales areas. Logon will block all contracts related to the sales areas of the BP. (SAP: master_customer_basic_data.AUFSD, mapped)"/>
+        
+        <column name="TREAT_AS_ONETIME_FLAG" required="true" type="BOOLEAN" 
+                description="Technical flag. Set in SAP import to true in case the BP is received with 'Z011' (one time customer) or 'Z004' (one time shipto) in field master_customer_basic_data / KTOKD."/>
+        <column name="CHROMAT_REDUCTION_MONTHS" type="DECIMAL" size="2,0"
+                description="Chromat reduction in months as received by SAP sales area information master_customer_basic_data / KATR1. Certain countries (e.g. NGE) do not maintain this field. Logon sets -1 if nothing received from SAP (null for other BP types ok). Business Background: cement leads to allergic reactions for certain persons, which can be prevented by adding some reduction material into the cement. This number influences what materials can be delivered to a customer, or how a material has to be mixed with reduction material ('Zudosierung' when loading) so that the material is non-allergic for so many months. Typical value is 2 months, which is also how bulk materials of Crh are normally produced (6 for bag packaged products)."/>
+                
+        <column name="PHONE_NUMBER" type="VARCHAR" size="16"
+        		description="Phone number. Usage: if present, will be printed on the delivery note. No other usage in LOGON. SAP Origin: E1KNA1M-TELF1"/>
+       	<column name="VAT_REGISTRATION_NUMBER" type="VARCHAR" size="20"
+        		description="Vat registration number. Usage: if present, will be printed on the delivery note. No other usage in LOGON. SAP Origin: E1KNA1M-STCEG"/>
+
+        <!-- LOGON-6681 -->
+        <column name="TIMEZONE_CD" required="false" type="VARCHAR" size="32"
+                description="Timezone assigned to this business partner entity"/>
+		
+        <column name="TAX_NUMBER_1" type="VARCHAR" size="16"
+        		description="Tax Code Number 1. Usage: If present, will be printed in the business partner listing on the cash sales invoice. No other usage in LOGON. The SAP field is KNA1-STCD1. The Idoc field is E1KNA1M-STCD1"/>
+
+        <column name="CEM_VALID_UNTIL_DAT" type="DATE"
+                description="Max date until all the contracts are valid within the CEM. The field is initialized by the SAP contract import once the first contract for the ship-to business partner arrives. Maintained only for business partner appearing in contracts as a ship-to"/>
+        <column name="AGG_VALID_UNTIL_DAT" type="DATE"
+                description="Max date until all the contracts are valid within the AGG. The field is initialized by the SAP contract import once the first contract for the ship-to business partner arrives. Maintained only for business partner appearing in contracts as a ship-to"/>
+
+        <foreign-key foreignTable="TLGNR_LANG_BS" name="FK_TLGNS_SAP_BP_LANG">
+            <reference local="LANG_CD" foreign="LANG_CD"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_SAP_LANGUAGE_BS" name="FK_TLGNS_SAP_BP_SAP_LANG">
+            <reference local="SAP_LANGUAGE_CD" foreign="SAP_LANGUAGE_CD"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_SAP_COUNTRY_BS" name="FK_TLGNS_SAP_BP_COUNTRY">
+            <reference local="COUNTRY_CD" foreign="SAP_COUNTRY_CD"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_SAP_ACCOUNT_GROUP_BS" name="FK_TLGNS_SAP_BP_ACCOUNT_GROUP">
+            <reference local="ACCOUNT_GROUP_CD" foreign="SAP_ACCOUNT_GROUP_CD"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNC_RAILWAY_STATION" name="FK_TLGNS_SAP_BP_RAILWAY_STAT">
+            <reference local="RAILWAY_STATION_ID" foreign="RAILWAY_STATION_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_TIMEZONE_BS" name="FK_TLGNS_SAP_BP_TZ">
+            <reference local="TIMEZONE_CD" foreign="TIMEZONE_CD"/>
+        </foreign-key>
+  
+        <!-- LOGON-6262 -->
+        <index name="I_TLGNS_SAP_BP_SAP_ID">
+          <index-column name="SAP_ID"/>
+        </index>
+        
+        <index name="I_SAP_BP_SAPBPID_PAYER_MFORDEL">
+            <index-column name="SAP_BP_ID"/>
+            <index-column name="BP_IS_PAYER"/>
+            <index-column name="MARKED_FOR_DELETION"/>
+        </index>
+    </table>
+</database>

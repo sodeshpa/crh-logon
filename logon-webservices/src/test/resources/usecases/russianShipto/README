@@ -1,0 +1,9 @@
+- LOGON-7435 - Russian Ship-To/Sold-To with language set to RU and address containing Cyrillic characters
+
+- ShipTo SAP_BP_ID: 3600000101
+- SoldTo SAP_BP_ID: 3600000100
+
+- Contract 1: ADN64100
+
+1 contract item containing material 'ADN Fluvio 4'. 
+

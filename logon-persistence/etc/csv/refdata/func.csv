@@ -1,0 +1,201 @@
+# $Revision$
+# $Date$
+#funcId;funcName;funcDescr
+1000;Order;Order
+1001;Pool Assignment;Pool Assignment
+2000;Web Order;Web Order
+2001;Web Order View Deleted Orders;Web Order View Deleted Orders
+3000;Dispatching R;Dispatching: read access
+3001;Dispatching W;Dispatching: write access
+3002;Dispatching Pool W;Dispatching: write access for pool management
+3003;Dispatching Int Ord W;Edit assigments for internal orders
+3004;Dispatching Create Ext Ord;Dispatching: Dispatching create external order
+4000;Shipping R;Shipping: read access
+4001;Shipping W;Shipping: write access
+5100;Rail Dispatching R;Rail Dispatch: read access
+5101;Rail Dispatching W;Rail Dispatch: write access
+5102;Rail Dispatching SW;Rail Dispatch: special write access
+5210;Railcars R;Railcars: read access (except Freimelden)
+5211;Railcars Freimelden;Railcars Freimelden
+5212;Railcars W;Railcars: write access
+5220;Railcars Return R;Railcars Return: read access
+5221;Railcars Return W;Railcars Return: write access
+5231;Railcars View 1;Railcars View 1
+5232;Railcars View 2;Railcars View 2
+5233;Railcars View 3;Railcars View 3
+5300;Train Stations R;Train Stations: read access
+5301;Train Stations W;Train Stations: write access
+5400;Block trains R;Block trains: read access
+5401;Block trains W;Block trains: write access
+5500;Rail Maintenance;Rail Maintenance
+5600;BW Instandhaltung;Rail Wagon Maintenance
+6100;Order List;Order List
+6101;Order List For Pool;Order List status Transmitted to pool
+6102;Order List Auftragsannahme;Order List status before transmitting to pool
+6103;External Order List;External Order List
+6220;Order View 2;Order View 2
+6230;Order View 3 Monitoring;Order View 3 Tab Monitoring
+6231;Order View 3 Monitoring For Pool;Order View 3 Tab Monitoring status Transmitted to Pool
+6232;Order View 3 Monitoring Auftragsannahme;Order View 3 Tab Monitoring status before transmitting to pool
+6233;Order View 4;Order View 4 (Truck planning)
+7100;Live Map;Live Map
+7200;Reporting Map;Reporting Map
+7310;Report Order List;Report Order List
+7320;Report Order Data Per Customer;Order Data Per Customer
+7330;Report Order Data Per Carrier;Order Data Per Carrier
+7340;Report SAP BW Export;SAP BW Export
+7350;Report Order Data Per Route Carrier;Order Data Per Route Carrier
+7360;Report Order Data Per Route;Order Data Per Route
+7370;Report Order Data Per Pool;Order Data Per Pool
+7380;Report Order Data Per SP Matpkg;Order Data Per SP Matpkg
+7390;Report Order Data Per Plant Mat;Order Data Per Plant Mat
+7400;Report Definition;Report Definition
+7410;Report Trans Per Plant Dt;Transportation per plant and delivery type
+7420;Report Trans Per Plant;Transportation per plant
+7430;Report Sales Per Cust Mat;Sales per customer and material
+7440;Report Sales Per Cust;Sales per customer
+7450;Report Sales Per Mat;Sales per material
+7460;Report Order List Cust;Order list customer
+7470;Report Order List Carrier;Order list carrier
+7480;Report Order List Crh;Order list crh
+7490;Report Order List Comm;Order list commercial
+7500;Report Order WinSped;Order WinSped
+7510;Report Load Shipping Stats;Load Shipping Stats
+7520;Report Freight Carrier Revenue PDF;Report Freight Carrier Revenue (PDF)
+7530;Report Staging Area Errors;Report Staging Area Errors
+7540;Report Goods Movements;Report Goods Movements
+7550;Report External Orders;Report External Orders
+7560;Report TransPlus;Report TransPlus
+7570;iTrack Reporting;iTrack Reporting
+7571;iTrack Reporting Service Level Report;iTrack Reporting Service Level Report
+7572;iTrack Reporting Distance Report;iTrack Reporting Distance Report
+7573;iTrack Reporting Toll Fee Report;iTrack Reporting Toll Fee Report
+7574;iTrack Availability;iTrack Availability
+8100;Master Data Shipto Card R;Master Data: Shipto Card: read access
+8101;Master Data Shipto Card W;Master Data: Shipto Card: write access
+8200;Master Data Carrier Assignmt Shipto/Prod;Master Data: Carrier assignment to Shipto and Products
+8310;Master Data RFID Maintenance;Master Data: RFID Maintenance
+8420;Master Data Global Zonemap Bag;Master Data: Global Zonemap Bag
+8440;Master Data Global Shippingpoint;Master Data: Global Shippingpoint (including Loadingpoint)
+8441;Master Data Global Shippingpoint Create;Master Data: Global Shippingpoint Create
+8450;Master Data Global Material;Master Data: Global Material (only enhancements, chromat.)
+8470;Master Data Global Product Change Matrix;Master Data: Product Change Matrix View
+8480;Master Data Global Sales Area;Master Data: Global Edit Sales Areas
+8510;Master Data Road Pool;Master Data: Road Pool
+8530;Master Data Road Truck;Master Data: Road Truck (except for truck creation)
+8531;Master Data Road Truck Update;Master Data: Road Truck Update
+8532;Master Data Road Planning Truck Create;Master Data: Road Planning Truck Creation
+8533;Master Data Road Generic Truck Create;Master Data: Road Generic Truck Creation
+8540;Master Data Road Trailer;Master Data: Road Trailer (except for trailer creation)
+8541;Master Data Road Trailer Update;Master Data: Road Trailer Update
+8542;Master Data Road Planning Trailer Create;Master Data: Road Planning Trailer Creation
+8543;Master Data Road Generic Trailer Create;Master Data: Road Generic Trailer Creation
+8550;Master Data Road Container;Master Data: Road Container (except for container creation)
+8551;Master Data Road Container Create;Master Data: Road Container Creation
+8555;Master Data Road Simple Vehicle;Master Data: Simple Vehicle (except for simple vehicle creation)
+8556;Master Data Road Simple Vehicle Create;Master Data: Simple Vehicle Creation
+8560;Master Data Road Truck Route R;Master Data: Road Truck Route: read access
+8561;Master Data Road Truck Route W;Master Data: Road Truck Route: write access
+8570;Master Data Road Silo;Master Data: Road Silo (except for silo creation)
+8571;Master Data Road Silo Create;Master Data: Road Silo Creation
+8580;Master Data Road Ext Mat R;Master Data: Road External Material: read access
+8581;Master Data Road Ext Mat W;Master Data: Road External Material: write access
+8585;Master Data Road Ext Site R;Master Data: Road External Site: read access
+8586;Master Data Road Ext Site W;Master Data: Road External Site: write access
+8610;Master Data Rail Cars;Master Data: Rail Cars, including upload
+8640;Master Data Rail Timetable;Master Data: Rail Timetable, including upload
+8641;Master Data Rail Timetable Distance;Master Data: Rail Timetable, including upload and Rail Distance
+8700;Master Data Dispocard update view;Master Data: Dispocard update view
+8701;Master Data Dispocard update export;Master Data: Dispocard update view
+8800;Master Data Carrier view;Master Data: Carrier view
+9110;User Admin LOGON;User admin LOGON (intern)
+9120;User Admin LOGON extern;User admin LOGON (extern)
+9130;User Admin PDA;User Admin PDA
+9141;User Admin Grant roleset 1 Special;User Admin: Right to grant role-set 1 special roles (i.e. strong roles such as LOGON Admin/Lite, User Admin)
+9142;User Admin Grant roleset 2 Normal;User Admin: Right to grant role-set 2 normal roles (i.e. standard business roles)
+9143;User Admin Grant non default roles;User Admin: Right to grant roles besides the default ones
+9150;Create User Type Crh;Access to create user with type Crh;
+9151;Create User Type Customer;Access to create user with type Customer;
+9152;Create User Type Vendor;Access to create user with type Vendor;
+9153;Create User Type Driver;Access to create user with type Driver;
+9154;Create User Type Admin;Access to create user with type Admin;
+9200;Table Browser;Table Browser
+11000;Order Detail R;Order Detail (Main): read access
+11001;Order Detail W;Order Detail (Main): write access (except for delivery date/time)
+11002;Order Detail Delivery Date/Time;Order Detail (Main): write access for delivery date/time)
+11003;Order Detail Overrule Lead Time Check;Order Detail: Overrule Lead Time Check
+11110;Order Detail Material R;Order Detail Material: read access
+11111;Order Detail Material W;Order Detail Material: write access (except for 6 special functions)
+11112;Order Detail Material Quantity/UoM;Order Detail Material: change order quantity and UoM
+11113;Order Detail Material Billto Party;Order Detail Material: change billto party
+11114;Order Detail Material Payer Party;Order Detail Material: change payer party
+11115;Order Detail Material Customs Serial No;Order Detail Material: change customs serial number
+11116;Order Detail Material Forwarding Agent;Order Detail Material: change forwarding agent
+11117;Order Detail Material Delivery Note;Order Detail Material: change comment add/on delivery note
+11118;Order Detail Update BP Special;Order Detail Material: change soldto, shipto and billto party after status dispatched (will result in frozen table change too)
+11119;Order Detail Delete special;Order Detail Material: delete the order in status: dispatched (only pickup), finished, delivered
+11120;Order Correction: Weights and Quantities;Order Correction: Weights and Quantities
+11121;Order Detail Material Unapp Return Q;Order Detail Material: View unapproved return quantity.
+11122;Order Adjustment Weights;Order Adjustment Weights
+11123;Credit Note Create;Credit Note Create
+11124;Order Detail Material Onetimesoldto Addr;Order Detail Material: change one-time soldto address
+11125;Order Detail Material LDS orderNo;Order Detail Material: Edit LDS Delivery note number.
+11200;Order Detail Map;Order Detail Map
+11300;Order Detail Report R;Order Detail Report: read access
+11301;Order Detail Report W;Order Detail Report: write access (exept for 6 special functions)
+11302;Order Detail Report Service Level Flag;Order Detail Report: change service level flag
+11303;Order Detail Report Rating Commnt Crh;Order Detail Report: change rating comment crh
+11304;Order Detail Report Rating Commnt Carr;Order Detail Report: change rating comment carrier
+11305;Order Detail Report Comment Dispatching;Order Detail Report: change comment dispatching (rail/road)
+11306;Order Detail Report Comment Driver;Order Detail Report: change comment truck driver
+11307;Order Detail Report Comment Shipping;Order Detail Report: change comment shipping (rail/road)
+11400;Order Detail Order Management;Order Detail Order Management
+11401;Order Detail Order Mng Min Qty Flag;Order Detail Order Management: Min QTY charge flag
+11402;Order Detail Order Mng NoPdaOrRailEvent;Order Detail Order Management: No Pda Or Rail Event Flag
+11500;Order Detail Commercial;Order Detail Commercial
+11600;Order Detail Order Log;Order Detail Order Log
+11700;Order Detail Truck Log;Order Detail Truck Log
+11800;Order Detail Repair Maint Full Access;Order Detail Repair Maintenance Full Access: Access restricted fields like the whole email part, and flag fields
+11900;Order Detail SPI;Order Detail (Main): change and store the special processing indicator
+11950;Order Detail S/Ec mod Before SAP;Order Detail Services/Extra costs tab: Set service materials, waiting time and extra costs before order status finished.
+11951;Order Detail S/Ec mod After SAP;Order Detail Services/Extra costs tab: Set service materials, waiting time and extra costs after order status finished.
+12000;Railcar Detail Base R;Railcar Detail Base: read access
+12001;Railcar Detail Base W;Railcar Detail Base: write access
+12010;Railcar Detail Order R;Railcar Detail Order: read access
+12011;Railcar Detail Order W;Railcar Detail Order: write access
+12100;Train Station Detail Base R;Train Station Detail Base: read access
+12101;Train Station Detail Base W;Train Station Detail Base: write access
+12110;Train Station Detail Order R;Train Station Detail Order: read access
+12111;Train Station Detail Order W;Train Station Detail Order: write access
+12200;External Orders (Shipping);External orders (Spediteur)
+13010;F01 Unlock Parallel Term;F01 Unlock Parallel Terminal
+13020;F02 Close Order;F02 Close order. E.g. railcar availability message
+13030;F03 Ordermaster;F03 Ordermaster (Order can always be changed)
+14010;PDA P01 Bulk/Bag Handling;PDA P01 Bulk/Bag Handling
+14020;PDA P02 Terminal/Forklift;PDA P02 Terminal/Forklift
+14030;PDA P03 RFID-Admin;PDA P03 RFID-Admin
+14040;PDA P04 PDA-Admin;PDA P04 PDA-Admin
+15010;Test PDA;Manual Test PDA
+15020;Test Webservice;Manual Test Webservice
+15030;Test VersionCheck;Test Version Check
+15040;Test CronJobs;Test Cron Jobs
+15050;Test Fax/Sms;Manual Test Fax/Sms
+16000;Pickup Order Terminal R;Pickup order screen: View pickup orders
+16001;Pickup Order Terminal Delivery Note;Pickup order screen: Generate delivery note
+16002;Pickup Order Terminal Create New Order;Pickup order screen: Create new pickup order
+16003;Pickup Order Terminal W;Pickup order screen: Edit pickup order
+17000;Bag Order Terminal R;Bag order terminal screen: view orders
+17001;Bag Order Terminal Change Truck;Bag order terminal screen: change truck
+17002;Bag Order Terminal Delivery Note;Bag order terminal screen: Generate delivery note
+18000;Wagon Special Order Create/Edit;Wagon Special Order: create/edit access
+19000;Rail car optimization;Rail car optimization mainly an overview of wagons
+20000;Bimodal Monitoring;Bimodal Railcar monitoring
+21000;Simple Vehicle Dispatching R;Simple Vehicle Dispatching: read access
+21001;Simple Vehicle Dispatching W;Simple Vehicle Dispatching: write acces
+22000;Container Monitoring;Container monitoring
+23000;Order Delivered Send To SAP;Order Detail: Delivered order send to sap to set status Finished
+24000;Order Detail On-Hold Functionality;Order Detail: On-Hold funcionality write access
+25000;Demand Planning;Access to the demand planning tab.
+25001;Demand Planning Report Expected Demand;Access to the Report expected demand tab
+25002;Demand Planning Report Plan vs. Real;Access to the Report Planned Demand vs. Realized Orders tab
+25010;Demand planning admin rights;Placing demand plans for next week without any limitation. Users not having this right must obey the sales area rules for placing demand plans. See also tlgnc_sarea.demand_plan_latest_until_h.

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="VLGNC_CARRIER_VENDOR" mappingType="view" skipSql="true">
+        <column name="DISPLAY_NAME" required="true" type="VARCHAR" size="40"/>
+        <column name="CARRIER_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="SAP_VENDOR_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="SAP_ID" type="VARCHAR" size="10"/>
+        <column name="MARKED_FOR_DELETION" type="VARCHAR" size="1"/>
+        <column name="NAME1" type="VARCHAR" size="35"/>
+        <column name="NAME2" type="VARCHAR" size="35"/>
+        <column name="LANG_CD" type="VARCHAR" size="2"/>
+    </table>
+</database>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNC_FREIGHT_COST" 
+           description="Freight cost lookup table. Used by the freight cost calculation algorithm.">
+
+        <!-- Technical PK -->
+        <column name="FREIGHT_COST_ID" primaryKey="true" required="true" type="DECIMAL" size="12"
+                description="PK. This is a Logon-internal, technical identifier."/>
+
+        <!-- Lookup -->
+        <column name="MATERIAL_PACKAGE_CD" required="true" type="VARCHAR" size="4"
+                description="FK tlgnr_material_package_bs. Material package type. SAP: material_general_Data (MARA) / MAGRV, Material group: Packaging Materials. Remark: Altough the package type does allow the storage of Pallet, Silo and Service types. They are not used in the freight cost calculation. Only package types that are convertible to tons are used."/>
+        <column name="SAREA_ID" required="true" type="DECIMAL" size="12"
+                description="FK tlgnc_sarea. The Sales Area, which consists of Sales Organistaion + Distribution Channel + Division"/>
+        <column name="SHIPPINGPOINT_ID" type="DECIMAL" size="12"
+                description="FK tlgnc_shippingpoint. Shippingpoint. NULL means that the rate calculation can be applied for all shippingpoints. Remark: in case of ambiguity the Shipping point has higher priority than the country."/>
+        <column name="COUNTRY_CD" type="VARCHAR" size="3"
+                description="FK tlgnr_sap_country_bs. Country code, NULL means that the rate calculation can be applied for all countries. Remark: in case of ambiguity the Shipping point has higher priority than the country."/>
+        <column name="CURRENCY_CD" required="true" type="VARCHAR" size="5"
+                description="FK tlgnr_currency_bs. Currency of the freight rate."/>
+        <column name="DISTANCE_KM" required="true" type="DECIMAL" size="12"
+                description="Distance expressed in km"/>
+
+        <!-- Rate -->
+        <column name="RATE" required="true" type="DECIMAL" size="7,4"
+                description="Rate expressed in curency per Km per Ton"/>
+
+        <foreign-key foreignTable="TLGNR_MATERIAL_PACKAGE_BS" name="FK_TLGNC_FREIGHT_COST_MAT_PKG">
+            <reference local="MATERIAL_PACKAGE_CD" foreign="MATERIAL_PACKAGE_CD"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNC_SAREA" name="FK_TLGNC_FREIGHT_COST_SAREA">
+            <reference local="SAREA_ID" foreign="SAREA_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNC_SHIPPINGPOINT" name="FK_TLGNC_FREIGHT_COST_SHIPOINT">
+            <reference local="SHIPPINGPOINT_ID" foreign="SHIPPINGPOINT_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_SAP_COUNTRY_BS" name="FK_TLGNC_FREIGHT_COST_COUNTRY">
+            <reference local="COUNTRY_CD" foreign="SAP_COUNTRY_CD"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_CURRENCY_BS" name="FK_TLGNC_FREIGHT_COST_CURRENCY">
+            <reference local="CURRENCY_CD" foreign="CURRENCY_CD"/>
+        </foreign-key>
+        
+        <unique name="UQ_TLGNC_FREIGHT_COST_MAT_SARE">
+            <unique-column name="MATERIAL_PACKAGE_CD"/>
+            <unique-column name="SAREA_ID"/>
+            <unique-column name="SHIPPINGPOINT_ID"/>
+            <unique-column name="COUNTRY_CD"/>
+            <unique-column name="DISTANCE_KM"/>
+        </unique>
+        
+      </table>
+</database>

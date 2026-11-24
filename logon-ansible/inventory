@@ -1,0 +1,18 @@
+[logonebm1]
+logonebm1-int ansible_ssh_host=logonebm1-int.zh.adnovum.ch
+
+[logonebm2]
+logonebm2-int ansible_ssh_host=logonebm2-int.zh.adnovum.ch
+
+[logonebmdb2]
+logonebmdb2-int ansible_ssh_host=logonebmdb2-int.zh.adnovum.ch
+
+[logonebm3]
+logonebm3-int ansible_ssh_host=logonebm3-int.zh.adnovum.ch
+
+[logonebm4]
+logonebm4-int ansible_ssh_host=logonebm4-int.zh.adnovum.ch
+
+[logonebmdb3]
+logonebmdb3-int ansible_ssh_host=logonebmdb3-int.zh.adnovum.ch
+

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNU_USER_ACTIVITY" description="Table storing user activity related auditing informaiton like successful/failed login/logout attempts, password changed events (tlgnr_user_activity_action_bs contains the full list of available events however not all event type is logged at the moment (LOGON EBM 2.1 Block 3, 24.05.2012)).">
+        <column name="USER_ACTIVITY_ID" primaryKey="true" required="true" type="DECIMAL" size="12" 
+            description="PK"/>
+        <column name="USER_ID" required="true" type="DECIMAL" size="12"
+            description="FK tlgnu_user. The user whom the user activity belongs to."/>
+        <column name="USER_ACTIVITY_ACTION_CD" type="DECIMAL" size="2"
+            description="FK tlgnr_user_activity_action_bs. Indicates the type of the user activity."/>     
+        <column name="IP_ADDRESS" type="VARCHAR" size="45"
+            description="The IP address of the activity originator. The format could be IPv4 (e.g. 123.123.123.123), IPv6 (e.g. ABCD:ABCD:ABCD:ABCD:ABCD:ABCD:ABCD:ABCD) and IPv4-mapped IPv6 (e.g. ABCD:ABCD:ABCD:ABCD:ABCD:ABCD:123.123.123.123)"/>
+        <column name="DESCRIPTION" type="VARCHAR" size="256"
+            description="Optional textual description of the user activity (e.g. reason for deactivation of user account)"/>
+        
+        <foreign-key foreignTable="TLGNU_USER" name="FK_TLGNU_USER_ACTIVITY_USER">
+            <reference local="USER_ID" foreign="USER_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_USER_ACTIVITY_ACTION_BS" name="FK_TLGNU_USER_ACTV_ACTN_CD">
+            <reference local="USER_ACTIVITY_ACTION_CD" foreign="USER_ACTIVITY_ACTION_CD"/>
+        </foreign-key>
+    </table>
+</database>

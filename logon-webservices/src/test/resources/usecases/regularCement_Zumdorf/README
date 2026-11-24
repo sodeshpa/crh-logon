@@ -1,0 +1,59 @@
+Regular/Default cement usecase
+-------------------------------------------------------------------------------
+
+!!IMPORTANT!!
+-------------
+In order to not corrupt the existing data in the database, the requests are not
+yet tested against LOGON import. They were just validated against the schema.
+  
+
+based on old CHE data.
+
+Overview BP:
+------------
+ADN72824, HG COMMERCIALE Luzern
+	AD02-10-10: PF Billto to itself
+	AD02-10-11: PF Billto to itself
+	AD02-20-10: PF Billto to itself
+
+ADN1208869, ADN Betonwerk Zumdorf
+	AD02-10-10: PF Shipto to itself
+	Railwaystation 'F: Altdorf'	
+	Contract: 1208869-01 (old pk -401)
+	          1208869-02 (old pk -402), Rail
+	          1208869-03 (old pl -403), Contract containing generic materials
+	          1208869-11 (old pk -2702), Cubic meters loading related testdata
+	          1208869-12 (old pK -444), Pickup (EXW)
+
+ADN73031, ADN Kies und Beton Regli AG
+	AD02-10-10: PF Soldto, Billto, Payer to itself
+	            PF Billto ADN72824
+	            PF Shipto ADN1208869
+
+Notes about the conversion from sql to test requests:
+* General
+  * I did not invent values for unused elements, i.e. only entered values for 
+    elements that are needed/imported by LOGON. Future changes in the implementation
+    may need to enrich existing data.      
+
+* ADN73031. ADN Kies und Beton Regli AG (old pk -31447)
+  * SAP_ID was set to ADN73031 and SAP_IFC_ID was set to ADM0073031 which would 
+    not occur if the BP would have been received by SAP, as the id is the leading 
+    zeroes trimmed sap_ifc_id. New value of SAP_IFC_ID = "ADN73031" 
+  * Updated street from 'Bahnhofstrasse' to 'Bahnhofstrasse 33'
+  * CHROMAT_REDUCTION_MONTHS was set to 2, but there is no possibility to send that
+    in the BP interface (KATR1 is not used anymore, but hardcoded to -1)
+  * Company code relation - stored in tlgns_sap_bp_company_code - was not present,
+    now assigned bp to AD02
+    
+* ADN1208869, ADN Betonwerk Zumdorf (old pk -1470)
+  * CHROMAT_REDUCTION_MONTHS was set to 2, but there is no possibility to send that
+    in the BP interface (KATR1 is not used anymore, but hardcoded to -1)
+  * Company code relation - stored in tlgns_sap_bp_company_code - was not present,
+    now assigned bp to AD02
+  
+* ADN72824, HG COMMERCIALE Luzern (old pk -31352)
+  * SAP_IFC_ID was set to 'ADN0072824' and SAP_ID to 'ADN72824', a combination which is
+    not possible with current SAP import. Now both ids are set to 'ADN72824'
+  * Company code relation - stored in tlgns_sap_bp_company_code - was not present,
+    now assigned bp to AD02

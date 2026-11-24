@@ -1,0 +1,7 @@
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+  <table name="TLGNR_ARCHIVING_LOG_EVENT_BS" refData="true" description="Describes the different types of archive logging entries">
+    <column name="ARCHIVING_LOG_EVENT_CD" primaryKey="true" required="true" type="DECIMAL" size="12" description="PK."/>
+    <column name="EVENT_NAME" required="true" type="VARCHAR" size="100" description="Name of the archiving log event."/>
+  </table>
+</database>

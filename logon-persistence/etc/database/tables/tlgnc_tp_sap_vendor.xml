@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNC_TP_SAP_VENDOR"
+           description="Table storing 3rd Party SAP Vendors. An entry represents an SAP Partner and a role it can fulfill in an order (delivery). An SAP Partner can appear in multiple roles.">
+
+        <column name="TP_SAP_VENDOR_ID" required="true" primaryKey="true" type="DECIMAL" size="12"
+                description="PK. Id of the SAP Vendor appearing in a certain role (partner function)."/>
+        
+        <column name="SAP_TP_SAP_VENDOR_PF_CD" required="true" type="VARCHAR" size="2"
+                description="FK. Reference to the partner function."/>
+        
+        <column name="SAP_VENDOR_ID" required="true" type="DECIMAL" size="12"
+                description="FK. Reference to the SAP Vendor."/>
+        
+        <column name="ACTIVE_FLAG" required="true" type="BOOLEAN" 
+                description="Active flag of the 3rd Party SAP Vendor. Active = 1, Inactive = 0"/>
+       
+        <foreign-key foreignTable="TLGNR_SAP_TP_SAP_VENDOR_PF_BS" name="FK_TLGNC_TP_SAP_VENDOR_SAP_TP">
+            <reference local="SAP_TP_SAP_VENDOR_PF_CD" foreign="SAP_TP_SAP_VENDOR_PF_CD"/>
+        </foreign-key>
+        
+        <foreign-key foreignTable="TLGNS_SAP_VENDOR" name="FK_TLGNC_TP_SAP_VENDOR_SAP_VEN">
+            <reference local="SAP_VENDOR_ID" foreign="SAP_VENDOR_ID"/>
+        </foreign-key>
+
+        <unique name="UQ_TLGNC_TP_SAP_VENDOR_ID">
+            <unique-column name="TP_SAP_VENDOR_ID"/>
+            <unique-column name="SAP_TP_SAP_VENDOR_PF_CD"/>
+            <unique-column name="SAP_VENDOR_ID"/>
+        </unique>
+    </table>
+</database>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNR_SORG_TX" refData="true"
+           description="Reference data table for the Sales Organisation (aka VKO/VKORG). These values are used for example in delivery note PDF, and are language-dependent.">
+
+        <column name="SORG_CD" primaryKey="true" required="true" type="VARCHAR" size="4"
+                description="Part of PK. FK tlgnr_sorg_bs. For example S101, S128, S160, ... "/>"
+        <column name="LANG_CD" primaryKey="true" required="true" type="VARCHAR" size="2"
+                description="Part of PK. FK tlgnr_lang_bs. For example de, en, ..."/>
+
+        <column name="ADDRESS_NAME" type="VARCHAR" size="40"
+                description="Text to be used as line 1 on output documents (delivery note): the name of the firm. Example: Crh (Suddeutschland) GmbH"/>
+        <!-- ADDRESS_STREET      : Not language dependent, therefore on _BS -->
+        <!-- ADDRESS_COUNTRYCITY : Not language dependent, therefore on _BS -->
+
+        <!-- All these VKO fields (used on the delivery note PDF for example) can be localized into different languages. Move VKO_NAME or even the logo also into this table if localization is required! -->
+        <column name="LINE_PHONE" type="VARCHAR" size="40"
+                description="Line of text to be used as telephone contact information. Example: Telefon 07427 / 79263 oder 264 oder 384"/>
+        <column name="LINE_FAX" type="VARCHAR" size="40"
+                description="Line of text to be used as fax contact information. Example: Telefax 074727 79 381"/>
+        <column name="LINE_TAX" type="VARCHAR" size="40"
+                description="Line of text to be used as tax information. Example: Ust_ID-Nr: DE142395541"/>
+        <column name="LINE_EMAIL" type="VARCHAR" size="100"
+                description="Line of text to be used as email contact information. Example: Email help-fr@crh.com"/>
+        <column name="IMAGE_DEL_NOTE_GENERAL_INFO" type="VARCHAR" size="100"
+                description="Name of image to be used in Delivery Note as banner. Reference to TLGNC_IMAGE.IMAGE_NAME. Example: pdf_general_info_banner"/>
+
+        <foreign-key foreignTable="TLGNR_SORG_BS" name="FK_TLGNR_SORG_TX">
+            <reference local="SORG_CD" foreign="SORG_CD"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_LANG_BS" name="FK_TLGNR_SORG_LANG">
+            <reference local="LANG_CD" foreign="LANG_CD"/>
+        </foreign-key>
+    </table>
+</database>

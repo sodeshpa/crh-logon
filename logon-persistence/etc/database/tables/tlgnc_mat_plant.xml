@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNC_MAT_PLANT"
+           description="Additional Material data depending on Material+Plant which is not maintained in SAP (tlgns_sap_material_plant) but directly in Logon. See also tlgnc_mat_shippingpoint for Material+Shippingpoint(+Plant) dependent data.">
+
+        <!-- PK and identifiers -->
+        <column name="MAT_PLANT_ID" primaryKey="true" required="true" type="DECIMAL" size="12"
+                description="PK"/>
+        <column name="SAP_MATERIAL_ID" required="true" type="DECIMAL" size="12"
+                description="FK tlgns_sap_material. Material (Product) of this extended Logon Material-Plant data. Note, this is NOT the SAP Material Number, but the technical ID of that material in Logon DB. (SAP_MATERIAL_ID, PLANT_CD) is an alternative identifier."/>
+        <column name="PLANT_CD" required="true" type="VARCHAR" size="4"
+                description="FK tlgnr_plant_bs. (Production) plant for this extended Logon Material-Plant data. The system does not forbid to store Product+supply plant combination in this table (similar to what SAP does); if it makes sense or not is determined by the use case in the end."/>
+        <column name="PRIO_OVER_SAP_MAT_NORM_FLAG" required="true" type="BOOLEAN"
+                description="1 = data maintained in this table has priority over data in tlgns_sap_mat_plant_norm table. 0 (standard behavior) = If SAP mat norm has logo-data defined, these win over logo_x and logo_x_line1/2/3 fields. If nothing defined: fallback to tlgnc_mat_plant."/>
+        
+        <!-- Real extended material properties -->
+        <column name="BULK_DENSITY_KGPM3" type="DECIMAL" size="6,0"
+                description="Bulk density ('Schuettdichte') of the material produced at plant_cd in kg per cubic meter. The real value is measured periodically and published in quality assurance sheets. The value here is used by Logon to determine the max load amount in rail wagons: For certain materials in certain wagon types the limiting factor is not the max_net_load in tons, but the maximal loading volume. Examples: Normo 4 from Untervaz 1200, Normo 5R from Untervaz 1080, Normo 4 from Siggenthal 1180."/>
+
+        <!-- Cost attributes which cannot be received from SAP, because they are depending on the production plant (which is not really known to SAP), see ticket 40782
+             See https://aww.adnovum.ch/twiki/bin/view/CrhPegasus/ContributionMarginCalculation
+             for full overview on Cost/margin and various sources of cost elements.
+        -->
+        <column name="VARIABLE_PROD_COST_MAT" type="DECIMAL" size="11,2"
+                description="Current variable production cost of material (per 1 UOM). These are costs caused when producing the material, i.e. the lookup from the order/order_item is done by production plant. The UOM is implicitly the same as for the material received from SAP."/>
+        <column name="FUTURE_VARIABLE_PROD_COST_MAT" type="DECIMAL" size="11,2"
+                description="Future variable production cost of material (per 1 UOM)."/>
+        <column name="FUTURE_VALID_FROM_DAT" type="DATE"
+                description="Validity start date of future_variable_prod_cost_mat. Current costs are valid until before future_valid_from_dat. Moving 'future' into 'current' and updating the future_valid_from_dat is a manual task, done once per year. Logon compares delivery date of order with this date and decides which cost is to be used."/>
+        <column name="CURRENCY_CD" type="VARCHAR" size="5"
+                description="FK tlgnr_currency_bs. Currency for this Material+Plant. This does not just define the currency of (future-)variable_prod_cost_mat, but also the material valuation/prices in tlgns_sap_material_plant, e.g. val_standard_price/val_moving_avg_price. Exchange rates in tlgnc_currency_exch_rate must be respected when adding costs of various sources in one order_item."/>
+
+        <!-- Additional material-plant attributes, which are used mainly on PDF, but also in other places in logon -->
+        <column name="CPD_NUMBER" type="VARCHAR" size="30"
+                description="CPD number. Example: CPD-C0263"/>
+        <column name="CHROMAT_REDUCTION_MONTHS" type="DECIMAL" size="2"
+                description="No longer used! Value used on delivery note is currently taken directly from SAP shipto, see tlgns_sap_bp.CHROMAT_REDUCTION_MONTHS. Number of months, used for example in Delivery Note PDF in the text about chromat reduction (Bei sachgerechter, trockener Lagerung mind. x Monate ab Verladedatum chromatarm gemaess ChemRRV Anhang 2.16 und EU-Richtlinie 2003/53/EG)."/>
+        <column name="BRAND_SALES_NAME" type="VARCHAR" size="40"
+                description="For NGE the material description contains also information about production level (ex: 5_Normo4). In delivery note therefore it cannot be used directly,  material_description will only be shown if this field is not set. If brand_sales_name is set (ex.: Normo 4), it will be shown on delivery note."/>
+                            
+
+        <!-- Data used for Delivery Note PDF only -->
+        <column name="LOGO_1" type="VARCHAR" size="100"
+                description="Delivery Note PDF: If not null, reference image in TLGNC_IMAGE.IMAGE_NAME (referenced image without language code) will be displayed at the place of logo 1 by default (in case image with lang_cd extension where the lang_cd is the lang_cd of the shipto sap bp (such as logo_en, logo_fr, logo_it) is present in TLGNC_IMAGE, that image will be shown, not the image defined by this column)."/>
+        <column name="LOGO_1_Z1" type="VARCHAR" size="20"
+                description="CE Norm. Example: SN EN 197-1. In Delivery Note PDF, this text is written below the 'CE logo'. (Generally: Delivery Note PDF: First line of the text below the logo 1.)"/>
+        <column name="LOGO_1_Z2" type="VARCHAR" size="10"
+                description="Certification authority (German: Zertifikatsstelle). In the Delivery Note PDF, the 'CE logo' is shown only if this number exists, text is written below CE logo. (Generally: Delivery Note PDF: Second line of the text below the logo 1.)"/>
+        <column name="NATIONAL_NORM" type="VARCHAR" size="25"
+                description="National norm. Text to be used for 'national norm' on the delivery note PDF"/>     
+        
+                                        
+        <column name="LOGO_2" type="VARCHAR" size="100"
+                description="Delivery Note PDF: If not null, reference image in TLGNC_IMAGE.IMAGE_NAME (referenced image without language code) will be displayed at the place of logo 2 by default (in case image with lang_cd extension where the lang_cd is the lang_cd of the shipto sap bp (such as logo_en, logo_fr, logo_it) is present in TLGNC_IMAGE, that image will be shown, not the image defined by this column)."/>
+        <column name="LOGO_2_Z1" type="VARCHAR" size="20"
+                description="Delivery Note PDF: First line of the text below the logo 2."/>
+        <column name="LOGO_2_Z2" type="VARCHAR" size="20"
+                description="Delivery Note PDF: Second line of the text below the logo 2."/>
+        <column name="LOGO_2_Z3" type="VARCHAR" size="20"
+                description="Delivery Note PDF: Third line of the text below the logo 2."/>
+                
+        <column name="LOGO_3" type="VARCHAR" size="100"
+                description="Delivery Note PDF: If not null, reference image in TLGNC_IMAGE.IMAGE_NAME (referenced image without language code) will be displayed at the place of logo 3 by default (in case image with lang_cd extension where the lang_cd is the lang_cd of the shipto sap bp (such as logo_en, logo_fr, logo_it) is present in TLGNC_IMAGE, that image will be shown, not the image defined by this column)."/>
+        <column name="LOGO_3_Z1" type="VARCHAR" size="20"
+                description="Delivery Note PDF: First line of the text below the logo 3."/>
+        <column name="LOGO_3_Z2" type="VARCHAR" size="20"
+                description="Delivery Note PDF: Second line of the text below the logo 3."/>
+        <column name="LOGO_3_Z3" type="VARCHAR" size="20"
+                description="Delivery Note PDF: Third line of the text below the logo 3."/>
+                
+        <column name="LOGO_4" type="VARCHAR" size="100"
+                description="Delivery Note PDF: If not null, reference image in TLGNC_IMAGE.IMAGE_NAME (referenced image without language code) will be displayed at the place of logo 4 by default (in case image with lang_cd extension where the lang_cd is the lang_cd of the shipto sap bp (such as logo_en, logo_fr, logo_it) is present in TLGNC_IMAGE, that image will be shown, not the image defined by this column)."/>
+        <column name="LOGO_4_Z1" type="VARCHAR" size="15"
+                description="Delivery Note PDF: First line of the text below the logo 4."/>
+        <column name="LOGO_4_Z2" type="VARCHAR" size="15"
+                description="Delivery Note PDF: Second line of the text below the logo 4."/>
+        <column name="LOGO_4_Z3" type="VARCHAR" size="15"
+                description="Delivery Note PDF: Third line of the text below the logo 4."/>
+                                                                                
+        <column name="LOGO_5" type="VARCHAR" size="100"
+                description="Delivery Note PDF: If not null, reference image in TLGNC_IMAGE.IMAGE_NAME (referenced image without language code) will be displayed at the place of logo 5 by default (in case image with lang_cd extension where the lang_cd is the lang_cd of the shipto sap bp (such as logo_en, logo_fr, logo_it) is present in TLGNC_IMAGE, that image will be shown, not the image defined by this column)."/>
+        <column name="LOGO_5_Z1" type="VARCHAR" size="15"
+                description="Delivery Note PDF: First line of the text below the logo 5."/>
+        <column name="LOGO_5_Z2" type="VARCHAR" size="15"
+                description="Delivery Note PDF: Second line of the text below the logo 5."/>
+        <column name="LOGO_5_Z3" type="VARCHAR" size="15"
+                description="Delivery Note PDF: Third line of the text below the logo 5."/>
+                                
+        <column name="LOGO_6" type="VARCHAR" size="100"
+                description="Delivery Note PDF: If not null, reference image in TLGNC_IMAGE.IMAGE_NAME (referenced image without language code) will be displayed at the place of logo 6 by default (in case image with lang_cd extension where the lang_cd is the lang_cd of the shipto sap bp (such as logo_en, logo_fr, logo_it) is present in TLGNC_IMAGE, that image will be shown, not the image defined by this column)."/>
+        <column name="LOGO_6_Z1" type="VARCHAR" size="15"
+                description="Delivery Note PDF: First line of the text below the logo 6."/>
+        <column name="LOGO_6_Z2" type="VARCHAR" size="15"
+                description="Delivery Note PDF: Second line of the text below the logo 6."/>
+        <column name="LOGO_6_Z3" type="VARCHAR" size="15"
+                description="Delivery Note PDF: Third line of the text below the logo 6."/>
+                                
+        <column name="LOGO_GENERIC" type="VARCHAR" size="100"
+                description="Delivery Note PDF: Name of a Fly ash logo (without language code). Reference to TLGNC_IMAGE.IMAGE_NAME. Example: pdf_hydro_logo."/>
+        <column name="NORM_DESC" required="true" type="VARCHAR" size="40"
+                description="The norm description of the product. Introduced 14.07.2010 and replaces tlgns_sap_material.product_hierarchy_description in the application and is maintained manually."/>            
+                                
+        <column name="AUTOADD_SAP_MATERIAL_ID" type="DECIMAL" size="12"
+                description="Foreign key to TLGNS_SAP_MATERIAL, PALLET_ID stores the material ID, of a material which is a pallet. This pallet is used for the material defined in SAP_MATERIAL_ID."/>
+        <column name="AUTOADD_1_PER_N_OF_UOM" type="DECIMAL" size="12,4"
+                description="for n qty of uoms we add 1 autoadd_material"/>
+        <column name="AUTOADD_N_UOM_CD" type="VARCHAR" size="3"
+                description="uom to be respected for the autoadd material"/>
+        <column name="DEFAULT_PROD_PLANT_FLAG" required="true" type="BOOLEAN" default="0"
+                description="1 = This is the default production factory for the material. 0 (standard behavior) = Not a (default) producing factory"/>
+
+        
+        <foreign-key foreignTable="TLGNS_SAP_MATERIAL" name="FK_TLGNC_MAT_PLANT_MAT">
+            <reference local="SAP_MATERIAL_ID" foreign="SAP_MATERIAL_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_PLANT_BS" name="FK_TLGNC_MAT_PLANT_PLANT">
+            <reference local="PLANT_CD" foreign="PLANT_CD"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_CURRENCY_BS" name="FK_TLGNC_MAT_PLANT_CURRENCY">
+            <reference local="CURRENCY_CD" foreign="CURRENCY_CD"/>
+        </foreign-key>        
+        <foreign-key foreignTable="TLGNR_UOM_BS" name="FK_TLGNS_AUTOADD_MAT_UOM">
+            <reference local="AUTOADD_N_UOM_CD" foreign="UOM_CD"/>
+        </foreign-key>        
+        <foreign-key foreignTable="TLGNS_SAP_MATERIAL" name="FK_TLGNS_AUTOADD_SAP_MAT">
+            <reference local="AUTOADD_SAP_MATERIAL_ID" foreign="SAP_MATERIAL_ID"/>
+        </foreign-key> 
+
+        <unique name="UQ_TLGNC_MAT_PLANT">
+            <unique-column name="SAP_MATERIAL_ID"/>
+            <unique-column name="PLANT_CD"/>
+        </unique>
+    </table>
+</database>

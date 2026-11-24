@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNR_RETURN_QUANT_HANDLING_TX" refData="true"
+           description="Language dependent attributes of the the return quantity handling types/status.">
+
+        <column name="RETURN_QUANT_HANDLING_CD" primaryKey="true" required="true" type="DECIMAL" size="2"
+                description="Part of PK. FK to TLGNR_RETURN_QUANT_HANDLING_BS. Code of the Reference Data."/>
+        <column name="LANG_CD" primaryKey="true" required="true" type="VARCHAR" size="2"
+                description="Part of PK. FK to TLGNR_LANG_BS."/>
+        <column name="TXT" required="true" type="VARCHAR" size="60"
+                description="Description of the return quantity handling type/status in the language LANG_CD."/>
+
+        <foreign-key foreignTable="TLGNR_RETURN_QUANT_HANDLING_BS" name="FK_TLGNR_RETURN_QUANT_HAND_TX">
+            <reference local="RETURN_QUANT_HANDLING_CD" foreign="RETURN_QUANT_HANDLING_CD"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_LANG_BS" name="FK_TLGNR_RETURN_QUANT_HAND_LG">
+            <reference local="LANG_CD" foreign="LANG_CD"/>
+        </foreign-key>
+    </table>
+</database>

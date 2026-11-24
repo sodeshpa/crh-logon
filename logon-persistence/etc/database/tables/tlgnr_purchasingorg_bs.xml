@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNR_PURCHASINGORG_BS" refData="true"
+           description="Represents a Purchasing Organisation from SAP. In SAP, called EKORG.">
+
+        <column name="PURCHASINGORG_CD" primaryKey="true" required="true" type="VARCHAR" size="4"
+                description="PK. The purchasing organisation code as known in SAP (EKORG), e.g.: FR01, BG01"/>
+
+        <column name="PURCHASINGORG_NAME" required="true" type="VARCHAR" size="30"
+                description="Full name of the purchasing organisation which may be displayed in the application. Normally, only the code (purchasingorg_cd) is used and displayed however."/>
+        <!-- Technical Attributes -->
+        <column name="CTL_ACT_CD" required="true" type="BOOLEAN"
+                description="Active Flag. When new data is entered, only reference data with active flag are available for selection normally."/>
+
+      </table>
+</database>

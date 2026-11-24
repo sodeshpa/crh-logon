@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNC_CONF_SEQ_COUNTER"
+           description="desc">
+
+        <column name="CONF_SEQ_COUNTER_ID" primaryKey="true" required="true" type="DECIMAL" size="12"
+                description="PK"/>                     
+        <column name="SEQ_USAGE_CD" type="DECIMAL" size="2"
+                description="FK to TLGNR_SEQ_USAGE_BS. That table contains detailed descriptions about custom sequences."/>      
+        <column name="COMPANYCODE_CD" required="true" type="VARCHAR" size="4"
+                description="FK to tlgnr_companycode_bs. The country for which the counter is used. Major filter critieria"/>      
+        <column name="PLANT_CD" type="VARCHAR" size="4"
+        		description="FK to tlgnr_plant_bs. The plant for which the counter is used. (Minor, optional filter criteria)"/>      
+        <column name="PREFIX" type="VARCHAR" size="1"
+                description="If a prefix is defined, the value in 'Next' is padded with 0, and this Prefix is prepended."/>                        
+        <column name="RANGE_FROM" required="true" type="DECIMAL" size="11"
+                description="Start value (initial value, for when counter becomes active), or when rollover happens"/>
+        <column name="RANGE_TO" required="true" type="DECIMAL" size="11"
+                description="Maximum value. If value is exceeded, sequence starts with 'Range From' again."/>
+        <column name="VALID_FROM" required="true" type="DATE"
+                 description="The counter role is only valid after this date."/>
+        <column name="LAST_VALUE" type="DECIMAL" size="11"
+                description="Logon increments this value by 1 whenever it gets the next number from the sequence counter for a certain situation."/>
+        <column name="LOCKED" required="true" type="BOOLEAN"
+                description="Read/write lock. Lock must be acquired before loading the entity and released after committing the entity"/>
+        <column name="LOCKED_TS" type="TIMESTAMP"
+                description="Time of last locking. If this timestamp is older than a certain amount of time, the lock can be re-acquired"/>
+        
+        <foreign-key foreignTable="TLGNR_COMPANYCODE_BS" name="FK_TLGNR_COMPANYCODE">
+            <reference local="COMPANYCODE_CD" foreign="COMPANYCODE_CD"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_PLANT_BS" name="FK_TLGNR_PLANT_BS">
+            <reference local="PLANT_CD" foreign="PLANT_CD"/>
+        </foreign-key>    
+        <foreign-key foreignTable="TLGNR_SEQ_USAGE_BS" name="FK_TLGNR_SEQ_USAGE">
+            <reference local="SEQ_USAGE_CD" foreign="SEQ_USAGE_CD"/>
+        </foreign-key>         
+       
+        <!-- Only one entry per (company code, plant, date) allowed.
+             uma 29.12.2012, based on LOGON-5735 findings: This UQ constraints adds very little
+             value: You simply add 1 ms to the DATE, constraint is fulfilled, but the user is
+             fooled, because you can't see the millisecond in the User Interface....
+             If it constraint causes troubles in the future due to the nullable fields, simply
+             drop the UQ constraint, and make sure the application handles is properly.
+        -->
+        <unique name="UQ_CONF_SEQ_COMPCD_PLANT_VALID">
+            <unique-column name="COMPANYCODE_CD"/>
+            <unique-column name="PLANT_CD"/>
+            <unique-column name="VALID_FROM"/>
+        </unique>
+
+    </table>
+</database>

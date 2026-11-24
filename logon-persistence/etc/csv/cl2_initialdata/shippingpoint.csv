@@ -1,0 +1,88 @@
+# $Revision$
+# $Date$
+# Status: Reduced set of data, only Shippingpoints which were not already contained in 1.0
+# Changed column format to what WE need, because the others are loaded anyway manually.
+#PLANT_CD;SAP_SHIPPINGPOINT_NO;KNOWN_ALSO_IN_SAP_FLAG;SHIPPINGPOINT_NAME;SHIPPPOINT_TYPE_CD;SAP_SHIPPING_COND_CD;STORAGE_LOCATION;UIC_COUNTRY_CD;RAILWAY_STATION_NO;RAILWAY_STATION_LOADING_POINT;WEIGH_SYSTEM_SP_CD;LDS_SERVER;SHIPPINGPOINT_COMMENT;COORD_LAT;COORD_LON;COORD_FIX_FLAG;GEOFENCE_RADIUS;SEND_SAP_PLANT_CD;SEND_SAP_SHIPPINGPOINT_NO;EOL
+A161;A161;1;ecorec Oesterreich;0;01;F001;;;;0;;;0;0;0;50;;;1
+A171;A171;1;Crh Wien - cesta;0;01;F001;;;;0;;;0;0;0;50;;;1
+A171;A172;1;Crh Wien - zeleznica;1;02;F001;;;;0;;;0;0;0;50;;;1
+D1H1;D1H1;1;Lábatlan;0;01;F001;;;;0;;;0;0;0;50;;;1
+D1H2;D1H2;1;Miskolc;0;01;F001;;;;0;;;0;0;0;50;;;1
+D1H3;D1H3;1;Corporate HHu;0;01;F001;;;;0;;;0;0;0;50;;;1
+D1H4;D1H4;1;Lábatlan  shipping station (OZ;0;01;F001;;;;0;;;0;0;0;50;;;1
+G101;G101;1;Beli;0;01;F001;;;;0;;;0;0;0;50;;;1
+G102;G102;1;Pleven - Road;0;01;F001;;;;0;;;0;0;0;50;;;1
+G151;G151;1;Lom;0;01;F001;;;;0;;;0;0;0;50;;;1
+G152;G152;1;Kozloduj;0;01;F001;;;;0;;;0;0;0;50;;;1
+G161;G161;1;ECOREC BG;0;01;F001;;;;0;;;0;0;0;50;;;1
+G162;G162;1;GUMIREC BG;0;01;F001;;;;0;;;0;0;0;50;;;1
+G161;G903;1;ECOREC BG Sofia 1;0;01;F001;;;;0;;;0;0;0;50;;;1
+G161;G904;1;ECOREC BG Sofia 2;0;01;F001;;;;0;;;0;0;0;50;;;1
+G161;G905;1;ECOREC BG Plovdiv;0;01;F001;;;;0;;;0;0;0;50;;;1
+G161;G906;1;ECOREC BG Bourgas;0;01;F001;;;;0;;;0;0;0;50;;;1
+G161;G907;1;ECOREC BG Varna;0;01;F001;;;;0;;;0;0;0;50;;;1
+H131;H131;1;Békéscsaba átrakó;0;01;F001;;;;0;;;0;0;0;50;;;1
+H132;H132;1;Ercsi átrakó terminal;0;01;F001;;;;0;;;0;0;0;50;;;1
+H133;H133;1;Lábatlan  shipping station;0;01;F001;;;;0;;;0;0;0;50;;;1
+H134;H134;1;Miskolc átrakó terminal;0;01;F001;;;;0;;;0;0;0;50;;;1
+H151;H151;1;Cement central triangular;0;01;F001;;;;0;;;0;0;0;50;;;1
+H161;H161;1;Ecorec Lábatlan;0;01;F001;;;;0;;;0;0;0;50;;;1
+H411;H411;1;Dunaharaszti betonüzem;0;01;F001;;;;0;;;0;0;0;50;;;1
+K101;K101;1;Shipping point Rohoznik;0;01;F001;;;;0;;;0;0;0;50;;;1
+K102;K102;1;Shipping point Turna;0;01;F001;;;;0;;;0;0;0;50;;;1
+K103;K103;1;Bystré;0;01;F001;;;;0;;;0;0;0;50;;;1
+K101;K104;1;RO special binders;0;01;F001;;;;0;;;0;0;0;50;;;1
+K102;K105;1;TU special binders;0;01;F001;;;;0;;;0;0;0;50;;;1
+K101;K106;1;Ladce;0;01;F001;;;;0;;;0;0;0;50;;;1
+K101;K107;1;Horné Sŕnie;0;01;F001;;;;0;;;0;0;0;50;;;1
+K102;K108;1;Horné Sŕnie;0;01;F001;;;;0;;;0;0;0;50;;;1
+K102;K110;1;Nákladná vrtánica AC;0;01;F001;;;;0;;;0;0;0;50;;;1
+K102;K113;1;Zeleznicná vrátnica Z;0;01;F001;;;;0;;;0;0;0;50;;;1
+K102;K114;1;Nákladná vrátnica NA;0;01;F001;;;;0;;;0;0;0;50;;;1
+K102;K115;1;Skladové hospodárstvo;0;01;F001;;;;0;;;0;0;0;50;;;1
+K131;K131;1;Terminal vlkanova;0;01;F001;;;;0;;;0;0;0;50;;;1
+K151;K151;1;Shipping point cesta;0;01;F001;;;;0;;;0;0;0;50;;;1
+K161;K161;1;ecorec Slovensko;0;01;F001;;;;0;;;0;0;0;50;;;1
+K191;K191;1;Zmiesavacia stanica Trnava;0;01;F001;;;;0;;;0;0;0;50;;;1
+K161;K902;1;ecorec Slovensko ext stor PK;0;01;F001;;;;0;;;0;0;0;50;;;1
+K161;K903;1;ecorec Slovensko ext stor TZ;0;01;F001;;;;0;;;0;0;0;50;;;1
+K161;K904;1;ecorec Slovensko ext stor RH;0;01;F001;;;;0;;;0;0;0;50;;;1
+P171;P171;1;Crh Polska;0;01;F001;;;;0;;;0;0;0;50;;;1
+R101;R101;1;CEM Alesd;0;01;F001;;;;0;;;0;0;0;50;;;1
+R102;R102;1;CEM Campulung;0;01;F001;;;;0;;;0;0;0;50;;;1
+R103;R103;1;CEM Turda;0;01;F001;;;;0;;;0;0;0;50;;;1
+R131;R131;1;AUTO Terminal Progresul;0;01;F001;;;;0;;;0;0;0;50;;;1
+R132;R132;1;AUTO Terminal Livada;0;01;F001;;;;0;;;0;0;0;50;;;1
+R133;R133;1;AUTO Terminal Iasi;0;01;F001;;;;0;;;0;0;0;50;;;1
+R134;R134;1;AUTO Terminal Arad;0;01;F001;;;;0;;;0;0;0;50;;;1
+R151;R151;1;Depozit Port Constanta;8;03;F001;;;;0;;;0;0;0;50;;;1
+R152;R152;1;Depozit Port Braila;8;03;F001;;;;0;;;0;0;0;50;;;1
+R153;R153;1;Depozit Port Orsova;8;03;F001;;;;0;;;0;0;0;50;;;1
+R154;R154;1;Punct Frontiera Halmeuu;0;01;F001;;;;0;;;0;0;0;50;;;1
+R155;R155;1;Depozit Port Severin;8;03;F001;;;;0;;;0;0;0;50;;;1
+R156;R156;1;Terminal Ciment Terti;0;01;F001;;;;0;;;0;0;0;50;;;1
+R161;R161;1;AUTO Ecovalor Alesd;0;01;F001;;;;0;;;0;0;0;50;;;1
+R162;R162;1;AUTO Ecovalor Clung;0;01;F001;;;;0;;;0;0;0;50;;;1
+R191;R191;1;AUTO Blending Alesd;0;01;F001;;;;0;;;0;0;0;50;;;1
+R192;R192;1;AUTO Blending Pitesti;0;01;F001;;;;0;;;0;0;0;50;;;1
+R1G1;R1G1;1;Constantsa;0;01;F001;;;;0;;;0;0;0;50;;;1
+R312;R312;1;AUTO AGG Campulung;0;01;F001;;;;0;;;0;0;0;50;;;1
+R313;R313;1;AUTO AGG Turda;0;01;F001;;;;0;;;0;0;0;50;;;1
+R161;R903;1;AUTO Ecovalor Alesd Ex Storage;0;01;F001;;;;0;;;0;0;0;50;;;1
+S101;S101;1;Crh Serbia,Novi Popovac;0;01;F001;;;;0;;;0;0;0;50;;;1
+S151;S151;1;SD V;0;01;F001;;;;0;;;0;0;0;50;;;1
+S161;S161;1;ECOREC CS;0;01;F001;;;;0;;;0;0;0;50;;;1
+W101;W101;1;Koromačno;0;01;F001;;;;0;;;0;0;0;50;;;1
+W101;W102;1;Našicecement;0;01;F001;;;;0;;;0;0;0;50;;;1
+W101;W103;1;Cemex - Bakar;0;01;F001;;;;0;;;0;0;0;50;;;1
+W101;W104;1;Cemex - Zagreb;0;01;F001;;;;0;;;0;0;0;50;;;1
+W101;W105;1;Cemex - Split;0;01;F001;;;;0;;;0;0;0;50;;;1
+W131;W131;1;Terminal Koromačno;0;01;F001;;;;0;;;0;0;0;50;;;1
+W132;W132;1;Terminal Zadar;0;01;F001;;;;0;;;0;0;0;50;;;1
+W133;W133;1;Terminal Zagreb;0;01;F001;;;;0;;;0;0;0;50;;;1
+W134;W134;1;Terminal Jastrebarsko;0;01;F001;;;;0;;;0;0;0;50;;;1
+W135;W135;1;Terminal Plovanija;0;01;F001;;;;0;;;0;0;0;50;;;1
+W161;W161;1;ecorec AFR Koromačno;0;01;F001;;;;0;;;0;0;0;50;;;1
+W101;W201;1;Crh AFR Koromačno;0;01;F001;;;;0;;;0;0;0;50;;;1
+W304;W304;1;Agregat Koromačno;0;01;F001;;;;0;;;0;0;0;50;;;1
+W161;W902;1;External SL AFR;0;01;F001;;;;0;;;0;0;0;50;;;1

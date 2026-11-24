@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNC_FIREQ_MATERIAL_MIXDESIGN"
+           description="Mix design itself is created/maintained in FireQ (master of this data) and is like a bill of material - some sort of recipe which components the material is composed of. Since LOGON is not the master of this data it should be handled as reference data in some aspects but not technically! At the moment there is no direct FireQ interface in LOGON. All Mix Design updates/inserts are triggered by the LDS at start/end load and when completed orders are created.">
+           
+		<column name="MIX_DESIGN_ID" primaryKey="true" required="true" type="DECIMAL" size="12"
+			description="PK. Technical key, given by LOGON."/>	
+		<column name="SAP_MATERIAL_ID" required="true" type="DECIMAL" size="12"
+			description="FK tlgns_sap_material. The SAP Material to withc the Mix Design belongs."/>
+		<column name="PLANT_CD" required="true" type="VARCHAR" size="4"
+			description="FK tlgnr_plant_bs. Production Plant which produced this mix of materials (aggregate)."/>
+		<column name="MIX_DESIGN_CD" required="true" type="VARCHAR" size="18"
+			description="Combined Aggregate ID or RMX Mixdesign, unique."/>
+		<column name="AGG_RMX_CODE" required="true" type="VARCHAR" size="23"
+			description="Concrete / Aggregate Code."/>
+
+		<foreign-key foreignTable="TLGNS_SAP_MATERIAL" name="FK_TLGNC_FIREQ_MAT_MIXD_MAT">
+			<reference local="SAP_MATERIAL_ID" foreign="SAP_MATERIAL_ID"/>
+		</foreign-key>
+		<foreign-key foreignTable="TLGNR_PLANT_BS" name="FK_TLGNC_FIREQ_MAT_MIXD_PLANT">
+			<reference local="PLANT_CD" foreign="PLANT_CD"/>
+		</foreign-key>
+		
+		<unique name="UQ_TLGNC_FIREQ_MAT_MIXD_CD">
+			<unique-column name="MIX_DESIGN_CD"/>
+		</unique>
+		
+    </table>
+</database>

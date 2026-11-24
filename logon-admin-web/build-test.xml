@@ -1,0 +1,429 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Author            : AdNovum Informatik AG
+ Version Number    : $Revision$
+ Date of last edit : $Date$
+-->
+
+<project name="testing" default="test" basedir=".">
+    <description>defines test targets and tasks</description>
+
+    <!-- ================================================================ -->
+    <!--  define test specific classpaths (unit, integration, load,...)   -->
+    <!-- ================================================================ -->
+	<path id="jcan-test.path"> 
+		<fileset dir="${JCAN_TEST_HOME}/mpository">
+			<include name="ch/adnovum/jcan-test/jcan-test-selenium/1.14.0.0/jcan-test-selenium-1.14.0.0.jar"/>
+			<include name="ch/adnovum/jcan-test/jcan-test-common/1.14.0.0/jcan-test-common-1.14.0.0.jar"/>
+			<include name="ch/adnovum/jcan-log/jcan-log-api/1.8.1.0/jcan-log-api-1.8.1.0.jar"/>
+			<include name="org/apache/commons/commons-lang3/3.3.2/commons-lang3-3.3.2.jar"/>
+			<include name="junit/junit/4.12/junit-4.12.jar"/>
+			<include name="org/apache/velocity/velocity-engine-core/2.1/velocity-engine-core-2.1.jar"/>
+			<include name="org/slf4j/slf4j-api/1.7.26/slf4j-api-1.7.26.jar"/>
+			<include name="org/seleniumhq/selenium/selenium-java/3.13.0/selenium-java-3.13.0.jar"/>
+			<include name="org/seleniumhq/selenium/selenium-api/3.13.0/selenium-api-3.13.0.jar"/>
+			<include name="org/seleniumhq/selenium/selenium-firefox-driver/3.13.0/selenium-firefox-driver-3.13.0.jar"/>
+			<include name="org/seleniumhq/selenium/selenium-remote-driver/3.13.0/selenium-remote-driver-3.13.0.jar"/>
+			<include name="net/bytebuddy/byte-buddy/1.8.3/byte-buddy-1.8.3.jar"/>
+			<include name="org/apache/commons/commons-exec/1.3/commons-exec-1.3.jar"/>
+			<include name="commons-codec/commons-codec/1.10/commons-codec-1.10.jar"/>
+			<include name="commons-logging/commons-logging/1.2/commons-logging-1.2.jar"/>
+			<include name="com/google/code/gson/gson/2.8.4/gson-2.8.4.jar"/>
+			<include name="com/google/guava/guava/25.0-jre/guava-25.0-jre.jar"/>
+			<include name="org/apache/httpcomponents/httpclient/4.5.5/httpclient-4.5.5.jar"/>
+			<include name="org/apache/httpcomponents/httpcore/4.4.9/httpcore-4.4.9.jar"/>
+			<include name="com/squareup/okhttp3/okhttp/3.10.0/okhttp-3.10.0.jar"/>
+			<include name="com/squareup/okio/okio/1.14.1/okio-1.14.1.jar"/>
+			<include name="org/seleniumhq/selenium/selenium-support/3.13.0/selenium-support-3.13.0.jar"/>
+			<include name="io/github/bonigarcia/webdrivermanager/2.2.5/webdrivermanager-2.2.5.jar"/>
+			<include name="commons-io/commons-io/2.6/commons-io-2.6.jar"/>
+			<include name="org/rauschig/jarchivelib/0.8.0/jarchivelib-0.8.0.jar"/>
+			<include name="org/apache/commons/commons-compress/1.14/commons-compress-1.14.jar"/>
+			<include name="org/jsoup/jsoup/1.11.3/jsoup-1.11.3.jar"/>
+		</fileset>
+	</path>
+
+    <path id="test.compile.classpath">
+        <path refid="compile.classpath"/>
+    	<pathelement location="${subcomponent.common-web}/${build.dir.name}/test/classes"/>
+        <pathelement location="${classes.dir}"/>
+        <pathelement location="${junit.jar}"/>
+        <pathelement location="${hamcrest.jar}"/>
+		<path refid="jcan-test.path"/>
+		<!--pathelement location="${js.jar}"/-->
+
+    	<path refid="selenium.classpath"/>
+    	<path refid="compile.classpath"/>
+    </path>
+
+    <path id="test.unit.classpath">
+        <pathelement location="${commons-logging.jar}"/>
+        <pathelement location="${dom4j.jar}"/>
+        <pathelement location="${jdom.jar}"/>
+        <pathelement location="${test.build.etc.dir}"/>
+        <pathelement location="${test.classes.dir}"/>
+        <path refid="test.compile.classpath"/>
+    </path>
+
+    <path id="test.integration.classpath">
+    	<!-- <pathelement location="${js.jar}"/>
+        <pathelement location="${tidy.jar}"/>
+    	<pathelement location="${xercesImpl.jar}"/>
+    	<pathelement location="${xmlutil.jar}"/>
+    	<pathelement location="${xtype.jar}"/> -->
+         <pathelement location="${test.build.etc.dir}"/>
+        <path refid="test.unit.classpath"/>
+    </path>
+
+    <!-- ================================================================ -->
+    <!--  dummy targets, will be overridden when file is imported                -->
+    <!-- ================================================================ -->
+    <target name="build"/>
+
+
+    <!-- ================================================================ -->
+    <!--  test initialization, cleanup and default targets                -->
+    <!-- ================================================================ -->
+    <target name="init-test">
+    	<echo message="test compile cp: ${subcomponent.common-web}/test/classes"/>
+        <mkdir dir="${test.build.dir}"/>
+        <mkdir dir="${test.classes.dir}"/>
+        <mkdir dir="${test.lib.dir}"/>
+        <mkdir dir="${test.log.dir}"/>
+    	<mkdir dir="${test.build.etc.dir}" />
+        <mkdir dir="${test.reports.dir}"/>
+
+        <mkdir dir="${test.reports.pmd.dir}"/>
+        <mkdir dir="${test.reports.unit.dir}"/>
+        <mkdir dir="${test.reports.integration.dir}"/>
+        <mkdir dir="${test.reports.load.dir}"/>
+
+    	<!-- create log4j.properties -->
+        <copy todir="${test.build.etc.dir}">
+			<fileset dir="${test.etc.dir}">
+				<include name="log4j_tmpl.properties"/>
+			</fileset>
+        	<filterset>
+				<filter token="logpath" value="${test.log.dir}"/>
+			</filterset>
+			<mapper type="glob" from="*_tmpl.properties" to="*.properties"/>
+        </copy>
+
+    	<!-- convert the absolute path ${test.reports.integration.log.dir} to a relative path (strip ${basedir}) -->
+    	<path id="temp.path">
+    	    <pathelement location="${test.reports.integration.dir}/log" />
+    	</path>
+    	<pathconvert property="selenium.response.log.dir" refid="temp.path">
+    	    <globmapper from="${basedir}/*" to="./*" />
+    	</pathconvert>
+
+    	<copy file="${test.etc.dir}/test_tmpl.properties" tofile="${test.build.etc.dir}/test.properties" overwrite="true">
+    	        <filterchain>
+    	        <!-- See build.properties for values of selenium.xxx properties -->
+    	        <expandproperties />
+    	    </filterchain>
+    	</copy>
+    </target>
+
+    <target name="clean-test">
+        <delete dir="${test.reports.dir}"/>
+        <delete dir="${test.lib.dir}"/>
+        <delete dir="${test.classes.dir}"/>
+        <delete dir="${test.build.dir}"/>
+    </target>
+
+    <!-- ================================================================ -->
+    <!--  compile targets                                                 -->
+    <!-- ================================================================ -->
+    <target name="compile-test" depends="init-test">
+        <javac
+			source="${compile.source}"
+			target="${compile.target}"
+            destdir="${test.classes.dir}"
+            debug="${compile.debug}"
+            optimize="${compile.optimize}"
+            deprecation="${compile.deprecation}"
+            encoding="${compile.encoding}"
+            includeantruntime="no">
+            <src path="${test.unit.dir}"/>
+            <src path="${test.integration.dir}"/>
+            <include name="**/*.java"/>
+            <bootclasspath refid="compile.bootclasspath"/>
+            <classpath refid="test.compile.classpath"/>
+            <compilerarg line="-processor ch.adnovum.jcan.log.adntrace8.AdnTraceProcessor"/>
+        </javac>
+    </target>
+
+	<!-- ================================================================= -->
+	<!-- === java archives                                             === -->
+	<!-- ================================================================= -->
+	<target name="jars-test" depends="compile-test">
+		<echo message="*** building ${test-integration.jar}" />
+		<jar jarfile="${test-integration.jar}"
+		     basedir="${test.classes.dir}"
+		     index="true">
+			<include name="com/crh/logon/web/**" />
+			<manifest>
+				<attribute name="Manifest-Version"       value="1.0" />
+				<attribute name="Implementation-Title"   value="${ant.project.name} (commons classes)" />
+				<attribute name="Implementation-Vendor"  value="${vendor}" />
+				<attribute name="Implementation-Version" value="${build.version}" />
+				<attribute name="Build-Host"             value="${os.name} ${os.version}, ${os.arch}" />
+				<attribute name="Build-Environment"      value="Java ${java.version}, ${java.vendor}" />
+			</manifest>
+		</jar>
+	</target>
+
+    <!-- ================================================================ -->
+    <!--  run tests (defined in external file test.xml)                   -->
+    <!-- ================================================================ -->
+    <target name="test" depends="test-pmd, test-unit"
+            description="executes all automatic (non-interactive) tests">
+    </target>
+
+
+    <!-- ================================================================ -->
+    <!--  analyze source code quality                                     -->
+    <!-- ================================================================ -->
+    <target name="test-pmd" depends="init-test"
+            description="run source code quality analysis">
+        <taskdef name="pmd" classname="net.sourceforge.pmd.ant.PMDTask"/>
+        <echo file="${test.reports.pmd.dir}/pmd_report.xml"/>
+        <echo file="${test.reports.pmd.dir}/pmd_report.html"/>
+        <pmd rulesetfiles="${ANT_HOME}/adnovum/pmd/rulesets/AdnNightly.xml"
+             shortFilenames="yes"
+       	     failOnError="no"
+	         failuresPropertyName="test.pmd.failed">
+            <formatter type="xml" toFile="${test.reports.pmd.dir}/pmd_report.xml"/>
+            <formatter type="html" toFile="${test.reports.pmd.dir}/pmd_report.html"/>
+			<formatter type="text" toConsole="true"/>
+            <fileset dir="${src.dir}">
+                <include name="**/*.java"/>
+            </fileset>
+        </pmd>
+
+        <set-flag-file-if-property-set flagfile="${test.pmd.failed.flag}" propertyname="test.pmd.failed"
+			message="at least one test failed --> setting failure flag file" />
+		<fail if="test.pmd.failed" unless="central.pmd.fail.report" message="at least one of the pmd rules was violated"/>
+
+    </target>
+
+    <!-- backward compat reasons -->
+    <target name="pmd" depends="test-pmd"/>
+
+
+    <!-- ================================================================ -->
+    <!--  run unit tests                                                  -->
+    <!-- ================================================================ -->
+	<target name="test-unit" depends="compile-test"
+            description="performs unit tests">
+
+    	<!-- junit tests -->
+		<coverage enabled="${coverage.enabled}" destfile="${unit.coverage.file}">
+		    <junit fork="true" printsummary="true"
+		           showoutput="yes" haltonfailure="no"
+			       failureproperty="test.unit.failed" dir="${basedir}">
+				<formatter type="plain" usefile="false"/>
+		        <formatter type="xml" usefile="true"/>
+		        <batchtest todir="${test.reports.unit.dir}">
+		            <fileset dir="${test.unit.dir}">
+		                <include name="**/*Test*.java"/>
+		            </fileset>
+		        </batchtest>
+		    	<classpath refid="test.unit.classpath"/>
+		    </junit>
+		</coverage>
+		<junitreport todir="${test.reports.unit.dir}">
+		    <fileset dir="${test.reports.unit.dir}">
+		        <include name="TEST-*.xml"/>
+		    </fileset>
+		    <report format="frames" todir="${test.reports.unit.dir}"/>
+		</junitreport>
+		
+		<set-flag-file-if-property-set flagfile="${test.unit.failed.flag}" propertyname="test.unit.failed"
+			message="at least one test failed --> setting failure flag file"/>
+		<fail if="test.unit.failed" message="at least one of the tests failed"/>
+		<echo message="all tests successful"/>
+    </target>
+	
+    <!-- ================================================================ -->
+    <!--  macro definition for integration tests                          -->
+    <!-- ================================================================ -->
+	<macrodef name="test-int-macro">
+		<element name="batchtest-elements"/>
+		<sequential>
+	        <!-- test case properties -->
+			<property name="test.logConfigFile" value="${test.build.etc.dir}/log4j.properties" />
+			<property name="test.class" value="*Test*.java"/>
+			
+	        <!-- integration tests -->
+	        <junit fork="true" printsummary="true"
+	               showoutput="false" haltonfailure="no"
+	               failureproperty="test.integration.failed" dir="${basedir}">
+				<jvmarg value="-Xmx512m" />
+				<!-- test properties -->
+				<jvmarg value="-DsaveHtmlTo=${test.log.dir}" />
+				<jvmarg value="-Dhibernate.cfg=${hibernate.cfg}"/>
+				<jvmarg value="-Dlog4j.debug=true"/>
+
+	        	<formatter type="plain" usefile="false"/>
+	            <formatter type="xml" usefile="true"/>
+	        	<sysproperty key="test.logConfigFile" value="${test.logConfigFile}" />
+	        	<sysproperty key="responseLogDir" value="${test.reports.integration.dir}" />
+			<!--Gecko driver needs the proxy to be able to work in the NB-->
+			<sysproperty key="wdm.proxy" value="http://proxies.adnovum.ch:3128"/>
+	        	<batchtest-elements/>
+	            <classpath refid="test.integration.classpath"/>
+	        </junit>
+
+			<!-- additional logs -->
+			<if><available file="${subcomponent.admin-web}/build/test/log/integration/device"/><then>
+				<copy todir="${test.reports.integration.dir}/log/additionalLogs">
+					<fileset dir="${subcomponent.admin-web}/build/test/log/integration/device"/>
+				</copy>	
+			</then></if>
+
+	        <junitreport todir="${test.reports.integration.dir}">
+	            <fileset dir="${test.reports.integration.dir}">
+	                <include name="TEST-*.xml"/>
+	            </fileset>
+				<report format="frames" todir="${test.reports.integration.dir}" styledir="${masterbuild.dir}/test/etc">	            
+	            	<param name="log.dir" expression="log" />
+        	    </report> 
+	        </junitreport>
+
+	        <set-flag-file-if-property-set flagfile="${test.integration.failed.flag}" propertyname="test.integration.failed"
+	        	message="at least one test failed --> setting failure flag file" />
+	        <fail if="test.integration.failed" message="at least one of the tests failed"/>
+	        <echo message="all tests successful"/>
+
+		</sequential>
+	</macrodef>
+	
+    <!-- ================================================================ -->
+    <!--  run integration tests                                           -->
+    <!-- ================================================================ -->
+	<target name="test-integration" depends="compile-test" description="performs integration tests">
+		<test-int-macro>
+			<batchtest-elements>
+            <batchtest todir="${test.reports.integration.dir}">
+                <fileset dir="${test.integration.dir}">
+                    <include name="**/${test.class}"/>
+                	<!--Run separately see test-pda-workflow-part0&1&2-->
+                	<exclude name="**/DispatchSingleChParallelRoadOrderTest.java"/>
+                	<exclude name="**/CreateChParallelRoadOrderTest.java"/>
+                	<exclude name="**/VerifyChParallelRoadOrderTest.java"/>
+                	<!--Run separately see test-external-pda-workflow-part0&1&2-->
+                	<exclude name="**/CreateExternalOrderTest.java"/>
+                	<exclude name="**/DispatchExternalOrderTest.java"/>
+                	<!--Excluded classes-->
+                	<exclude name="**/UserAdminSeleniumTest.java"/>
+                	<exclude name="**/LogonSeleniumTestCase.java"/>
+                	<exclude name="**/TableBrowserTestDataSupport.java"/>
+                	<exclude name="**/PropertyTransferTest.java"/>
+                	<exclude name="**/CallCenterTestProperties.java"/>
+                	<exclude name="**/RoadWorkflowTestProperties.java"/>
+                	<exclude name="**/ExternalTestProperties.java"/>
+                	
+                	<!-- There classes are called by BimodalTestSuite only -->
+                	<exclude name="**/BimodalCreatingOrderTemplateTest.java"/>
+                	<exclude name="**/BimodalCreatingShippingpointTest.java"/>
+                	<exclude name="**/BimodalCreatingWagonTypeForShiptoTest.java"/>
+                	<exclude name="**/BimodalCreatingRoadOrderTest.java"/>
+                	<exclude name="**/BimodalCreatingEmptyWagonTest.java"/>
+                	<exclude name="**/BimodalDeliveringRailOrderTest.java"/>
+                	<exclude name="**/BimodalCreatingBulkPowerTruckTest.java"/>
+                	<exclude name="**/BimodalSchedulingLoadingRoadOrderTest.java"/>
+                	
+                	<!-- Exclude because of timeout -->
+                	<exclude name="**/admin/web/scheduling/*.java"/>
+                	
+                </fileset>
+            </batchtest>
+			</batchtest-elements>
+		</test-int-macro>
+	</target>
+
+	<target name="test-pda-workflow-part0" depends="compile-test"
+			description="performs selenium-testpart 0 of UC9013 Bulk Order With Parallel ">
+		<test-int-macro>
+			<batchtest-elements>
+            <batchtest todir="${test.reports.integration.dir}">
+                <fileset dir="${test.integration.dir}">
+                    <include name="**/CreateChParallelRoadOrderTest.java"/>
+                </fileset>
+            </batchtest>
+			</batchtest-elements>
+		</test-int-macro>
+	</target>
+	
+	<target name="test-pda-workflow-part1" depends="compile-test"
+			description="performs selenium-testpart 1 of UC9013 Bulk Order With Parallel ">
+		<test-int-macro>
+			<batchtest-elements>
+            <batchtest todir="${test.reports.integration.dir}">
+                <fileset dir="${test.integration.dir}">
+                    <include name="**/DispatchSingleChParallelRoadOrderTest.java"/>
+                </fileset>
+            </batchtest>
+			</batchtest-elements>
+		</test-int-macro>
+	</target>
+
+
+	<target name="test-pda-workflow-part3" depends="compile-test"
+			description="performs selenium-testpart 3 of UC9013 Bulk Order With Parallel ">
+		<test-int-macro>
+			<batchtest-elements>
+            <batchtest todir="${test.reports.integration.dir}">
+                <fileset dir="${test.integration.dir}">
+                    <include name="**/VerifyChParallelRoadOrderTest.java"/>
+                </fileset>
+            </batchtest>
+			</batchtest-elements>
+		</test-int-macro>
+	</target>
+
+	
+	<target name="test-external-pda-workflow-part0" depends="compile-test"
+			description="performs selenium-testpart 1 of external order, creates objects for external order, and creates order ">
+		<test-int-macro>
+			<batchtest-elements>
+            <batchtest todir="${test.reports.integration.dir}">
+                <fileset dir="${test.integration.dir}">
+                    <include name="**/CreateExternalOrderTest.java"/>
+                </fileset>
+            </batchtest>
+			</batchtest-elements>
+		</test-int-macro>
+	</target>
+
+
+	<target name="test-external-pda-workflow-part1" depends="compile-test"
+			description="performs selenium-testpart 3 of external order, dispatches the order to a truck, and transmits the order to the truck">
+		<test-int-macro>
+			<batchtest-elements>
+            <batchtest todir="${test.reports.integration.dir}">
+                <fileset dir="${test.integration.dir}">
+                    <include name="**/DispatchExternalOrderTest.java"/>
+                </fileset>
+            </batchtest>
+			</batchtest-elements>
+		</test-int-macro>
+	</target>		
+	
+	
+    <target name="print-classpath" depends="" description="">
+        <pathconvert pathsep="${line.separator}"
+                     property="pretty.print.classpath"
+                     refid="${input.classpath}" />
+        <echo>
+*************************************************
+* CLASSPATH: ${ant.project.name}
+*************************************************
+${pretty.print.classpath}
+*************************************************
+        </echo>
+    </target>
+	
+ </project>

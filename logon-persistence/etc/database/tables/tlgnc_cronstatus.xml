@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNC_CRONSTATUS"
+           description="Stores status information about various time-controlled background jobs.">
+        <column name="CRONSTATUS_ID" primaryKey="true" required="true" type="DECIMAL" size="12"
+                description="PK."/>
+        <column name="CRONSTATUS_NAME" required="true" type="VARCHAR" size="30"
+                description="Name of the cron job (unique). The same key is used as in application.xml."/>
+
+        <column name="LAST_START_TS" required="true" type="TIMESTAMP"
+                description="Set (and committed) by the job executor immediately when the job starts."/>
+        <column name="LAST_END_TS" required="true" type="TIMESTAMP"
+                description="Set (and committed) by the job executor when it finishes. The job executor must set this date even when the background job does nothing, or fails with an error. If start_ts &gt; end_ts, a process is running (to make this visible to an admin, to allow a controlled shutdown with no running background jobs)."/>
+        <column name="LAST_RUN_NUMBER" required="true" type="DECIMAL" size="12"
+                description="Used to mark log messages or imported records as belonging together: mark not just as a flag or timestamp, but possibly set records to the run_number, when it was processed (or attempted to process). Usage is optional by the job. If a background job is using this run_number, it must increment and commit it when it's started."/>
+
+        <!-- START: Backward compatibility columns -->
+        <column name="NEW_DATA_AVAILABLE_TS" required="false" type="TIMESTAMP"
+                description="Optional timestamp used to communicate with background job. Meaning is: if &gt; last_end_ts, there is data to be processed. If &lt; last_end_ts, nothing has changed and the background job can skip (without even setting last_start_ts, last_run_number). If null: not used to communicate with job; job will find out directly with a quick query if there are things to be done."/>
+        <!--   END: Backward compatibility columns -->
+
+        <unique name="UQ_TLGNC_CRONSTATUS_NAME">
+            <unique-column name="CRONSTATUS_NAME"/>
+        </unique>
+
+      </table>
+</database>

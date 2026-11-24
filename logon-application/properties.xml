@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Author            : AdNovum Informatik AG
+ Version Number    : $Revision$
+ Date of last edit : $Date$
+-->
+
+<project name="properties" basedir=".">
+    <property name="masterbuild.dir" location="${basedir}/.."/>
+    <import file="${masterbuild.dir}/properties.xml"/>
+
+    <!-- ================================================================ -->
+    <!--  referenced external libraries                                   -->
+    <!-- ================================================================ -->
+    <property name="espace.jar"                 location="${ESPACE2_HOME}/adn.struts.servlet23/lib/espace.jar"/>
+    <property name="jcan-commons.jar"           location="${JCAN_COMMONS_HOME}/lib/jcan-commons.jar"/>
+    <property name="jcan-log.jar"               location="${JCAN_LOG_HOME}/log/lib/jcan-log.jar"/>
+    <property name="jcan-log.jar"               location="${JCAN_LOG_HOME}/log/lib/jcan-log.jar"/>
+    <!--property name="tidy.jar"                   location="${JCAN_TEST_HOME}/lib/Tidy.jar"/>
+    <property name="grinder.jar"                location="${JCAN_TEST_HOME}/lib/grinder.jar"/>
+    <property name="js.jar"                     location="${JCAN_TEST_HOME}/lib/js.jar"/>
+    <property name="xercesImpl.jar"             location="${JCAN_TEST_HOME}/lib/xercesImpl.jar"/>
+    <property name="xmlutil.jar"                location="${JCAN_TEST_HOME}/lib/xmlutil.jar"/>
+    <property name="xtype.jar"                  location="${JCAN_TEST_HOME}/lib/xtype.jar"/>!-->
+    <property name="jdom.jar"                   location="${JDOM_HOME}/build/jdom.jar"/>
+    <property name="jdom-contrib.jar"           location="${JDOM_HOME}/dist-contrib/build/jdom-contrib.jar"/>
+    <property name="log4j.jar"                  location="${LOG4J_HOME}/dist/lib/log4j-1.2.8.jar"/>
+    <property name="servlet.jar"                location="${SERVLET_HOME}/lib/servlet.jar"/>
+    <property name="spring.jar"                 location="${SPRING_HOME}/dist/spring.jar"/>
+    <property name="aopalliance.jar"            location="${SPRING_HOME}/lib/aopalliance/aopalliance.jar"/>
+    <property name="jstl.jar"                   location="${STRUTS_HOME}/contrib/struts-el/lib/jstl.jar"/>
+    <property name="standard.jar"               location="${STRUTS_HOME}/contrib/struts-el/lib/standard.jar"/>
+    <property name="struts-el.jar"              location="${STRUTS_HOME}/contrib/struts-el/lib/struts-el.jar"/>
+    <property name="commons-beanutils.jar"      location="${MPOSITORY_DIR}/commons-beanutils/commons-beanutils/1.9.3/commons-beanutils-1.9.3.jar"/>
+    <property name="commons-digester.jar"       location="${STRUTS_HOME}/lib/commons-digester.jar"/>
+    <property name="commons-logging.jar"        location="${STRUTS_HOME}/lib/commons-logging.jar"/>
+    <property name="commons-logging.jar"        location="${STRUTS_HOME}/lib/commons-logging.jar"/>
+    <property name="commons-lang.jar"           location="${COMMONS_LANG_HOME}/commons-lang-2.3.jar"/>
+    <property name="struts.jar"                 location="${STRUTS_HOME}/lib/struts.jar"/>
+</project>

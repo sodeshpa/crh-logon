@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="VLGNC_RAIL_REPAIR" mappingType="view" skipSql="true">
+        <column name="RAIL_REP_COMPOSITE_ID" type="VARCHAR" size="81"/>
+        <column name="ORDER_REP_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="ORDER_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="ORDER_STATUS_CD" required="true" type="DECIMAL" size="2"/>
+        <column name="ORDER_STATUS_TXT" required="true" type="VARCHAR" size="50"/>
+        <column name="LANG_CD" required="true" type="VARCHAR" size="2"/>
+        <column name="WAGON_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="WAGON_NO" required="true" type="VARCHAR" size="12"/>
+        <column name="WAGON_KEEPER_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="WAGON_KEEPER_NAME" required="true" type="VARCHAR" size="40"/>
+        <column name="SHIPTO_SAP_ID" type="VARCHAR" size="10"/>
+        <column name="SHIPTO_SAP_BP_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="SHIPTO_NAME" type="VARCHAR" size="35"/>
+        <column name="ORDER_NO" type="DECIMAL" size="12"/>
+        <column name="CREATED" required="true" type="TIMESTAMP"/>
+        <column name="ARRIVED" type="DATE"/>
+        <column name="PLANT_ENTER" type="DATE"/>
+        <column name="PLANT_LEAVE" type="DATE"/>
+        <column name="WAGON_IDLE_TIME_MIN" type="DOUBLE"/>
+        <column name="DAMAGECODE" type="DECIMAL" size="12"/>
+        <column name="DAMAGECODE_TXT" type="VARCHAR" size="20"/>
+        <column name="MAINT_G10_MAIN_TYPE_TXT" type="VARCHAR" size="6"/>
+        <column name="MAINT_G20_MAIN_TYPE_TXT" type="VARCHAR" size="6"/>
+        <column name="MAINT_G30_MAIN_TYPE_TXT" type="VARCHAR" size="6"/>
+        <column name="MAINT_G40_MAIN_TYPE_TXT" type="VARCHAR" size="6"/>
+        <column name="MAINT_G42_MAIN_TYPE_TXT" type="VARCHAR" size="6"/>
+        <column name="MAINT_G43_MAIN_TYPE_TXT" type="VARCHAR" size="6"/>
+        <column name="MAINT_G48_MAIN_TYPE_TXT" type="VARCHAR" size="6"/>
+        <column name="MAINT_P3M_MAIN_TYPE_TXT" type="VARCHAR" size="6"/>
+        <column name="MAINT_P5_MAIN_TYPE_TXT" type="VARCHAR" size="6"/>
+        <column name="MAINT_C_MAIN_TYPE_TXT" type="VARCHAR" size="6"/>
+        <column name="REMARKS" type="VARCHAR" size="2000"/>
+        <column name="OFFER_DESIRED_FLAG" required="true" type="BOOLEAN"/>
+        <column name="OFFER_ACCEPT_DAT" type="DATE"/>
+        <column name="INVOICE_PAID_FLAG" required="true" type="BOOLEAN"/>
+        <column name="DOCUMENTATION_ACCEPT_FLAG" required="true" type="BOOLEAN"/>
+        <column name="HAS_OFFER_ATTACHMENT_FLAG" type="DOUBLE"/>
+        <column name="HAS_DOCU_ATTACHMENT_FLAG" type="DOUBLE"/>
+        <column name="HAS_INVOICE_ATTACHMENT_FLAG" type="DOUBLE"/>
+        <column name="COMBINED_ORDER_STATUS_FLAG" type="DECIMAL" size="2"/>
+    </table>
+</database>

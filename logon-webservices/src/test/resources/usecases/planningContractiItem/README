@@ -1,0 +1,9 @@
+LOGON-8101
+- creates multiple contract items belonging to the same contract having initially the planning flag OFF
+- sales area AD03-10-20
+   |- contract ADN-8101-01
+   |   |- contract item 10
+   |- contract ADN-8101-02
+       |- contract item 10
+       |- contract item 20
+

@@ -1,0 +1,40 @@
+	<servlet-mapping>
+		<servlet-name>action</servlet-name>
+		<url-pattern>*.do</url-pattern>
+	</servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>dwr</servlet-name>
+        <url-pattern>/dwr/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>BestellungChartServlet</servlet-name>
+        <url-pattern>/bestellungChart.servlet</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>DispoStyleServlet</servlet-name>
+        <url-pattern>/css/dispoColors.css</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>TruckLogChartServlet</servlet-name>
+        <url-pattern>/truckLogChart.servlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>GenericBlobServlet</servlet-name>
+        <url-pattern>/blob/*</url-pattern>
+    </servlet-mapping>      
+
+    <servlet-mapping>
+        <servlet-name>LitDictInfoServlet</servlet-name>
+        <url-pattern>/litDictInfo</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>PdfGeneratorServlet</servlet-name>
+        <url-pattern>/pdfGenerator.servlet</url-pattern>
+    </servlet-mapping>
+    

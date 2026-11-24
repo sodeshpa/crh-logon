@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNR_WAGON_TYPE_BS" refData="true"
+           description="Types of Wagons, e.g. CM_Uacs (54t), Pn_Uacs (54t), Fr_Uacs (60t), RhB_Uce (15t), Hbils, ... Wagon types are defined by Crh as subtypes of the UIC classification to differentiate wagons in more details (build, differences in unloading facilities, ...). Wagon types are used to determine which wagon can be sent to which shipto (Shiptos have restrictions/priorities for certain wagon types, see see tlgnc_shipto_wagon_type).">
+
+        <column name="WAGON_TYPE_CD" primaryKey="true" required="true" type="DECIMAL" size="2"
+                description="PK. Code of the Reference Data. The technical key was introduced because the type-name is given by Crh and may change."/>
+        <column name="WAGON_TYPE_NAME" required="true" type="VARCHAR" size="20"
+                description="Name of the type, used for display in the application. Alternative identifier, unique. Examples: CM_Uacs (54t), Pn_Uacs (54t), Fr_Uacs (60t), RhB_Uce (15t), Hbils, ..."/>
+
+        <column name="WAGON_UIC_CLASS_CD" required="true" type="VARCHAR" size="10"
+                description="(FK tlgnr_wagon_uic_class_bs?). UIC classification of the wagon type, made up of a class letter (in capitals) and several secondary code letters (in lower case), e.g. Uacs, Uce, Hbils, .... See http://en.wikipedia.org/wiki/UIC_classification_of_goods_wagons. However, Crh needs a finer distinction of wagons than offered by this classification. Field is not modelled as reference data (no FK) because there is no logic attached to it. For Logon, it's only a text. Change, if this should change in the future!"/>
+        <column name="AXIS_COUNT" required="true" type="DECIMAL" size="2"
+                description="Number of axis of the wagon. Has only informative character about the type and no logic in Logon attached to it. http://en.wikipedia.org/wiki/UIC_classification_of_goods_wagons suggests that values such as '>= 6 wheelsets' are possible. Unclear, if this is applicable to Crh's wagon types as well (or just for UIC classification). Change to text if needed."/>
+        <column name="WAGON_TRSP_CAT_CD" required="true" type="DECIMAL" size="2"
+                description="FK tlgnr_wagon_trsp_cat_bs. Category of the wagon. This is a higher level abstraction of class/code letters from UIC classification (see wagon_uic_class_cd), only the categogies which are relevant for Crh are distinguished, in a similar way as for truck/trailer transport categories. TODO 20090721/Crh/uma: It could be used to preselect the possible wagon types for a ShipTo (but this is not yet clear how, as the customer is not clearly marked what he can receive 'bulk' or 'bag' or 'pallets'. It needs to be verified if it could be done via the assigned materials which are marked as bulk/bag"/>
+        <column name="NR_CONTAINERS" type="DECIMAL" size="1" required="true"
+                description="Maximal number of containers on this wagon type, if wagon_trsp_cat_cd=container. 0 for non-container wagons."/><!-- For silo, there is no "nr_chambers" for wagons, as there is for truck/trailers! -->
+
+        <column name="MAX_GROSS_WEIGHT_T" type="DECIMAL" size="12,4" required="true"
+                description="Maximal gross weight. This is the legal max weight for the wagon from the railroad company, e.g. because of axle load. This is a limiting number when calculating the net load. Default is stored on wagon type, can be overwritten on wagon."/>
+        <column name="VOLUME_M3" type="DECIMAL" size="12,4"
+                description="Loading capacity of the wagon in cubic meters/Laderaum. Can be overwritten on wagon. For certain wagon-material combinations the volume is the limiting factor (instead of just max_gross_weight_t - tare), see the so-called 'Schuettdichte' of a material, tlgnc_mat_plant.bulk_density_kgpm3."/>
+        <column name="LIMIT_CREDIT_NOTE_T" type="DECIMAL" size="7,3"
+                description="Default stored on wagon type. Can be overwritten on wagon."/>
+
+        <!-- These fields are mandatory because without those we cannot determine the SAP material,
+             which we have to send to SAP/SBB for transportation (return/repair) orders -->
+        <column name="EMPTY_SAP_MATERIAL_NO" type="VARCHAR" size="18" required="true"
+                description="Non-enforced FK to SAP Material. SAP's material number is used, not Logon ID! Needed by SAP to determine the NHM product code which it has to send to the  railway company. The NHM code is always derived from the product which used in the material of the order item. If wagon is empty, a special SAP Material has to be set in the order item, defined by this field. The referenced SAP Material is maintained for each plant (if plant not defined: Logon uses S101/Siggenthal as hardcoded value), and tlgns_sap_material_plant.nhm_code must be identical for all."/>
+        <column name="MAINTENANCE_SAP_MATERIAL_NO" type="VARCHAR" size="18" required="true"
+                description="Non-enforced FK to SAP Material. SAP's material number is used, not Logon ID! Same purpose as EMPTY_SAP_MATERIAL_NO but for maintenance orders."/>
+        <column name="REPAIR_SAP_MATERIAL_NO" type="VARCHAR" size="18" required="true"
+                description="Non-enforced FK to SAP Material. SAP's material number is used, not Logon ID! Same purpose as EMPTY_SAP_MATERIAL_NO but for repair orders."/>
+        <column name="OPTIMIZATION_FLAG" required="true" type="BOOLEAN"
+                description="Flag if the wagon type is used by default on wagon optimization screen. 0 - not selected on rail car optimization screen by default, 1 - selected by default on rail car optimization screen"/>
+
+        <column name="CTL_ACT_CD" required="true" type="BOOLEAN"
+                description="Active Flag. When new data is entered, only reference data with active flag are available for selection normally."/>
+
+        <foreign-key foreignTable="TLGNR_WAGON_TRSP_CAT_BS" name="FK_TLGNR_WAGON_TYPE_TRSP_CAT">
+            <reference local="WAGON_TRSP_CAT_CD" foreign="WAGON_TRSP_CAT_CD"/>
+        </foreign-key>
+
+        <!-- The Name is used in the Display to select a type and must therefore be unique.
+             We also don't tolerate an inactive type with same name. If this is needed,
+             a) simply reactivate the old type, or
+             b) rename the old type first to some OLD1 name etc.-->
+        <unique name="UQ_TLGNR_WAGON_TYPE_NAME">
+            <unique-column name="WAGON_TYPE_NAME"/>
+        </unique>
+
+    </table>
+</database>

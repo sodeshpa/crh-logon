@@ -1,0 +1,445 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Author            : AdNovum Informatik AG
+ Version Number    : $Revision$
+ Date of last edit : $Date$
+-->
+
+
+<project name="logon" default="dist" basedir=".">
+    <description>${ant.project.name} project master build file</description>
+
+    <property name="masterbuild.dir" location="${basedir}"/>
+
+    <!-- ================================================================= -->
+    <!-- === externally defined                                        === -->
+    <!-- ================================================================= -->
+    <import file="./properties.xml"/>
+    <import file="./common.xml"/>
+
+    <!-- ================================================================ -->
+    <!--  externally defined tasks/targets                                -->
+    <!-- ================================================================ -->
+    <import file="./build-test.xml"/>
+
+    <!-- import of container/build.xml after build-test.xml because of    -->
+    <!-- the empty test targets in the container/build.xml                -->
+	<import file="${container.dir}/build.xml"/>
+
+	<!-- Import for 'environment' target to sync to windows machine and build package -->
+	<import file="${aal.basedir}/aal-environment.xml"/>
+
+
+
+    <!-- ================================================================ -->
+    <!--  initialization, cleanup and default targets                     -->
+    <!-- ================================================================ -->
+    <target name="all" depends="dist, test, docs"
+            description="build and test everything"/>
+
+    <target name="init" depends="buildjars" description="initialize environment and project structure ">
+        <mkdir dir="${build.dir}"/>
+        <echo message="build.version=${build.version.init}${line.separator}" file="${build.dir}/buildtime.properties"/>
+        <tstamp/>
+
+    <!-- Appweb 3 -->
+    <!-- Dump all dependencies of this subproject to a adndependency.component.xml file -->
+    <antcall target="dependencydump-moap2" inheritall="true"/>
+    <!-- Check the lifecycle of this file -->
+    <antcall target="lifecycle-check" inheritall="true"/>
+    <antcall target="dependencyspider" inheritall="true"/> 
+
+        <!-- create required directories -->
+      <mkdir dir="${build.dir}"/>
+    <mkdir dir="${relnotes.dir}"/>
+      <mkdir dir="${dist.dir}"/>
+      <mkdir dir="${generated.dir}"/>
+
+        <antcall target="setup"/>
+
+        <!-- initialize all subprojects -->
+        <antcall target="do-all">
+            <param name="ant.version" value="${ant.version}"/>
+            <param name="target" value="init"/>
+        </antcall>
+
+        <!-- check if precompilation is necessary -->
+        <condition property="j2ee.precompiled">
+            <istrue value="${DEPLOYMENT_COMPILED}" />
+        </condition>
+    </target>
+  
+    <target name="setup" depends="allproperties-checkUptodate" unless="allproperties-isUptodate">
+        <echo>updating ${all.properties}</echo>
+        <echoproperties destfile="${all.properties}"/>
+    </target>
+
+    <target name="allproperties-checkUptodate">
+        <uptodate property="allproperties-isUptodate" targetfile="${all.properties}">
+            <srcfiles refid="allproperties-sourcefiles"/>
+        </uptodate>
+    </target>
+
+    <target name="clean"
+            description="cleans all generated files and directories" >
+        <delete dir="${build.dir}"/>
+        <delete dir="container/${build.dir.name}"/>
+        <delete dir="${dist.dir}"/>
+        <antcall target="do-all">
+            <param name="target" value="clean"/>
+        </antcall>
+    </target>
+
+    <target name="clean-run"
+            description="cleans the run dir" >
+        <delete dir="${run.dir}"/>
+    </target>
+
+    <!-- ================================================================= -->
+    <!-- === java compilation/archives                                 === -->
+    <!-- ================================================================= -->
+    <!--target name="build" depends="init">
+        <antcall target="do-all" inheritall="true">
+            <param name="ant.version" value="${ant.version}"/>
+            <param name="target" value="build"/>
+        </antcall>
+    </target-->
+
+  <!--This change was necessary because build target is now included in the NB, and build from top level on a cleaned project is not working because of dependencies among the sub-projects. That way we do a dist instead of build on the top-level, NB will work again, and we don't need to change on build targets of the sub-projects-->
+
+  <target name="build" depends="dist"/>
+
+    <!-- ================================================================= -->
+    <!-- === distribution targets                                      === -->
+    <!-- ================================================================= -->
+    <target name="dist" description="builds all distributions targets">
+        <antcall target="init" inheritall="true"/>
+        <antcall target="do-all" inheritall="true">
+            <param name="ant.version" value="${ant.version}"/>
+            <param name="target" value="dist"/>
+        </antcall>
+        <copy todir="${dist.lib.dir}" verbose="true">
+            <fileset dir="${subcomponent.application}/${build.dir.name}/${dist.dir.name}/lib"/>
+        </copy>
+        <copy todir="${dist.etc.dir}" verbose="true">
+            <fileset file="${etc.dir}/logon.properties"/>
+            <fileset file="${etc.dir}/log4j.xml"/>
+        </copy>
+    </target>
+
+    <!-- NOTE: what we build here is only used for development (enables faster dev-cycles) -->
+    <target name="deploy" depends="init"
+            description="deploy this sub-project only">
+        <antcall target="do-all" inheritall="true">
+            <param name="ant.version" value="${ant.version}"/>
+            <param name="target" value="deploy"/>
+        </antcall>
+        <echo>locations:
+              http://localhost:${container.http.port}/logon-init-webapp/versionCheck
+              http://localhost:${container.http.port}/logon-order-webapp/bestellung/BestellungShipToEntry.do
+              http://localhost:${container.http.port}/logon-admin-webapp/tablebrowser/TableViewEntry.do
+              http://localhost:${container.http.port}/logon-cust-webapp/webbestellung/BestellungShipToEntry.do
+        </echo>
+    </target>
+
+    <!-- ================================================================ -->
+    <!-- source code tracing instrumentation targets                      -->
+    <!-- ================================================================ -->
+    <target name="adntrace2-instrument" depends="init"
+            description="instruments all sources and adds tracing">
+        <antcall target="do-all" inheritall="true">
+            <param name="target" value="adntrace2-instrument"/>
+        </antcall>
+    </target>
+
+    <target name="adntrace2-refresh" depends="init"
+            description="refreshes tracing in all sources. Does NOT ADD new tracing.">
+        <antcall target="do-all" inheritall="true">
+            <param name="target" value="adntrace2-refresh"/>
+        </antcall>
+    </target>
+
+    <!-- ================================================================ -->
+    <!--  java archives (JARs)                                            -->
+    <!-- ================================================================ -->
+    <target name="buildjars">
+        <mkdir dir="${run.dir}"/>
+        <mkdir dir="${run.dir}/buildlib"/>
+        <tstamp/>
+        <!-- class files for application -->
+        <jar jarfile="${adntrace2-templates.jar}"
+             basedir="${etc.dir}/adntrace2">
+            <manifest>
+                <attribute name="Manifest-Version" value="1.0"/>
+                <attribute name="Implementation-Title" value="${ant.project.name}"/>
+                <attribute name="Implementation-Vendor" value="${vendor}"/>
+                <attribute name="Implementation-Version" value="${version}"/>
+                <attribute name="Build-Date" value="${TODAY}"/>
+                <attribute name="Build-Stamp" value="${DSTAMP}${TSTAMP}"/>
+                <attribute name="Build-Environment" value="Java ${java.version}, ${java.vendor}"/>
+                <attribute name="Build-System" value="${os.name} ${os.version}, ${os.arch}"/>
+            </manifest>
+            <include name="**/*.vm"/>
+            <include name="**/*.properties"/>
+        </jar>
+    </target>
+
+    <!-- ================================================================ -->
+    <!--  generate documentation                                          -->
+    <!-- ================================================================ -->
+    <target name="docs" depends="build" unless="DONT_BUILD_DOCS"
+        description="generate all documentation">
+        <echo>javadocs are not generated. we don't provide anything to other projects.</echo>
+    </target>
+
+  <target name="relnotes" unless="DONT_BUILD_DOCS"
+      description="generate html releasenotes from changelog">
+    <taskdef resource="adnant-taskdefs.xml"/>
+    <mkdir dir="${dist.relnotes.dir}"/>
+
+    <property name="relnotegen.etc.dir" location="${ANT_HOME}/adnovum/relnotegen" />
+
+    <!-- register change log schema to be available via classpath -->
+    <xmlcatalog id="changeLogDTD">
+      <dtd
+        publicId="-//AdNovum, AG//DTD AdnChangeLog XML 1.0//EN"
+        location="${relnotegen.etc.dir}/AdnChangeLog.dtd"
+      />
+    </xmlcatalog>
+
+    <!-- generate XML representation of ChangeLog -->
+    <relnotegen
+      inputFile="ChangeLog"
+      outputFile="${relnotes.dir}/ChangeLog.xml"
+      failonerror="true"
+    />
+
+    <!-- validate for troubleshooting
+    <xmlvalidate
+      file="${relnotes.dir}/ChangeLog.xml"
+      failonerror="false"
+      warn="true">
+      <xmlcatalog refid="changeLogDTD"/>
+    </xmlvalidate>
+    -->
+
+    <!-- derive release notes in html format -->
+    <xslt
+      in="${relnotes.dir}/ChangeLog.xml"
+      out="${dist.relnotes.dir}/releasenotes.html"
+      style="${relnotegen.etc.dir}/ChangeLog.xsl">
+      <xmlcatalog refid="changeLogDTD"/>
+    </xslt>
+
+    <!-- copy all necessary files for frame maker releasnotes -->
+    <copy todir="${relnotes.dir}">
+      <fileset dir="${relnotegen.etc.dir}">
+        <include name="*.fm"/>
+        <include name="*.dtd"/>
+        <include name="README"/>
+      </fileset>
+    </copy>
+
+    <echo>${line.separator}
+    !!! FRAME MAKER RELEASE NOTES !!!
+    =================================${line.separator}
+      - All files have been copied to ${relnotes.dir}
+      - Please read the README in that folder for a detailed howto
+    </echo>
+
+  </target>
+
+    <target name="dist-doc" depends="docs, relnotes">
+    </target>
+    
+    <target name="package" description="Not build sub components, only package all distribution">
+        <antcall target="init" inheritall="true" />
+        <subant target="dist">
+            <fileset dir="logon-application" includes="build.xml"/>
+        </subant>
+        <copy todir="${dist.lib.dir}" verbose="true">
+            <fileset dir="${subcomponent.application}/${build.dir.name}/${dist.dir.name}/lib" />
+        </copy>
+        <copy todir="${dist.etc.dir}" verbose="true">
+            <fileset file="${etc.dir}/logon.properties" />
+            <fileset file="${etc.dir}/log4j.xml" />
+        </copy>
+    </target>
+    
+  <target name="redeploy" depends="dist, int-redeploy ">
+    <sleep seconds="15"/>
+        <subant target="load-metadata"  verbose="true" buildpath="${subcomponent.business}" failonerror="${failonerror}">
+            <property name="batchCall" value="true"/>
+         </subant>    
+  </target>
+
+    <!-- ================================================================ -->
+    <!--  parameterized subproject builds                                 -->
+    <!-- ================================================================ -->
+     <target name="do-all">
+        <property name="failonerror" value="true"/>  <!-- default value of failonerror is true -->
+        <subant target="${target}"  verbose="true" buildpathref="subcomponents.path" failonerror="${failonerror}">
+            <property name="batchCall" value="true"/>
+         </subant>
+    </target>
+
+
+  <!-- ================================================================ -->
+  <!--  cache-dependencies                                              -->
+  <!-- ================================================================ -->
+  <target name="cache-dependencies">
+    <cache-dep basedir="${EXT_PROJ_DIR}" todir="./.depcache">
+      <!-- exclude for base dir based copying-->
+      <excludepatternset>
+        <!-- <exclude name="ibm/websphere/**"/> -->
+      </excludepatternset>
+    </cache-dep>
+  </target>
+
+  <!-- ================================================================ -->
+  <!-- db related stuff                                                 -->
+  <!-- ================================================================ -->
+  <import file="${AAL_HOME}/aal/aal-db-oracle.xml"/>
+
+  <target name="collect-sql">
+    <ant antfile="${subcomponent.persistence}/build.xml" target="copy-sql" inheritAll="false"/>
+    <ant antfile="${subcomponent.webservices}/build.xml" target="copy-sql" inheritAll="false"/>
+    <copy todir="${build.dir}/sql">
+      <fileset dir="${subcomponent.persistence}/build/sql"/>
+    </copy>
+    <mkdir dir="${build.dir}/sql/create_sap"/>
+    <copy todir="${build.dir}/sql/create_sap">
+      <fileset dir="${subcomponent.webservices}/build/sql"/>
+    </copy>
+  </target>
+
+  <target name="db-coldstart" depends="collect-sql">
+	<!-- marius/CRHLOGON-177: Be aware, the following call directly accesses adnant-internals and
+		 might break upon future adnant upgrades. -->
+    <antcall target="aal-db-common.db-coldstart"/>
+  </target>
+
+  <target name="db-create" depends="db-info" description="# Create database objects"> 
+    <traceEnter comment="db-create" />
+
+    <echo message="creating SAP objects..." />
+    <sqlplus script="${db.run.dir}/objs_sap.sql"
+      user="${db.user.sap_username}"
+      password="${db.user.sap_password}" />
+
+    <echo message="creating common objects..." />
+    <sqlplus script="${db.run.dir}/objs.sql" />
+
+    <echo message="creating common initial data..." />
+    <sqlplus run.dir="${db.run.dir}/initialdata/" script="initialdata_2.2_all_clusters.sql" />
+
+    <echo message="creating cl1 initial data..." />
+    <sqlplus run.dir="${db.run.dir}/cl1_initialdata/" script="initialdata_cl1.sql" />
+
+    <traceLeave comment="db-create" />
+  </target>
+
+  <target name="db-load-test-data" unless="${db-load-test-data.skip}" description="executes ${db.run.dir}/install_adnovum_testdata.sql but does not call depended target collect-sql. Uses the db.connection.* properties in build-local. Call with -DfailOnError=false if desired.">
+    <property name="failOnError" value="true" />
+    <traceEnter comment="db-load-test-data" />
+    <echo message="installing AdNovum testdata" />
+    <sqlplus run.dir="${db.run.dir}/" script="install_adnovum_testdata.sql" failonerror="${failOnError}"/>
+    <sqlplus run.dir="${db.run.dir}/" script="loadtestdata_loadall.sql" failonerror="${failOnError}"/>  	
+    <traceLeave comment="db-load-test-data" />
+  </target>
+
+  <target name="db-drop" if="false"/>
+
+  <target name="db-insert-test-data-only" depends="collect-sql" unless="${db-load-test-data.skip}" description="executes ${db.run.dir}/install_adnovum_testdata.sql, take care of the properties in build-local.properties! Call with -DfailOnError=true if desired. Uses the db.connection.* properties in build-local.">
+    <property name="failOnError" value="false" />
+    <antcall target="db-load-test-data">
+      <param name="failOnError" value="${failOnError}"/>
+    </antcall>
+  </target>
+
+  <target name="db-patch" description="# Executes a sql patchfile to dev-maintained DBs. See usage with adnant db-patch-help.">
+    <ant antfile="${subcomponent.persistence}/build.xml" target="db-patch"/>
+  </target>
+
+  <target name="db-patch-generate" description="# Generates a sql patchfile to dev-maintained DBs. See usage with adnant db-patch-help.">
+    <ant antfile="${subcomponent.persistence}/build.xml" target="db-patch-generate"/>
+  </target>
+
+  <target name="db-patch-help" description="#db-patch howto">
+    <ant antfile="${subcomponent.persistence}/build.xml" target="db-patch-help"/>
+  </target>
+
+  <target name="environment" description="# Show current environment settings and offline sync scripts">
+    <property name="devenv.cygwin.env.proj"     location="${build.dir}/build/env-Windows_NT.proj" />
+    <property name="devenv.cygwin.rsync.script"   location="${build.dir}/build/devenv_rsync_cygwin.sh" />
+
+    <antcall target="aal-environment.environment">
+      <param name="encoding.check" value="false" />
+    </antcall>
+
+    <!-- Slim down the generated sync file because we don't actually need java dependencies for building packages -->
+    <copy tofile="${devenv.cygwin.rsync.script}.clean" file="${devenv.cygwin.rsync.script}" overwrite="true">
+            <filterchain>
+                <linecontainsregexp negate="true">
+                    <regexp pattern="sync.*(j|m|x)pository"/>
+                </linecontainsregexp>
+            </filterchain>
+    </copy>
+
+    <!-- Re-add the adnant dependency -->
+    <concat destfile="${devenv.cygwin.rsync.script}.clean" append="true">
+        <fileset file="${devenv.cygwin.rsync.script}"/>
+        <filterchain>
+            <linecontainsregexp>
+				<regexp pattern="sync.*adnant|gdi|oracle"/>  			
+			</linecontainsregexp>
+        </filterchain>
+    </concat>
+
+    <move file="${devenv.cygwin.rsync.script}.clean" tofile="${devenv.cygwin.rsync.script}" />
+
+    <!-- Use alternate ANT_OPTS because the ones for the build use too much memory. -->
+    <echo file="${devenv.cygwin.env.proj}" append="true">ANT_OPTS=${ANT_OPTS_CYGWIN}</echo>
+  </target>
+
+    <target name="quick-deploy" description="Deploys the web resources (js, css, jsp files) directly to jboss">
+        <web-resource-deploy projectname="logon-order-web"/>
+        <web-resource-deploy projectname="logon-admin-web"/>
+        <web-resource-deploy projectname="logon-cust-web"/>
+        <web-resource-deploy projectname="logon-terminal-web" failonmissing="false"/>
+    </target>
+
+    <macrodef name="web-resource-deploy">
+        <attribute name="projectname"/>
+        <attribute name="failonmissing" default="true"/>
+        <sequential>
+            <local name="project.deployment.dir"/>
+            <pathconvert property="project.deployment.dir" setonempty="false">
+                <dirset dir="${container.instance.dir}/tmp/vfs/deployment/" includes="deployment*/@{projectname}*.war-*"/>
+            </pathconvert>
+            <if>
+                <isset property="project.deployment.dir"/>
+                <then>
+                    <copy todir="${project.deployment.dir}" overwrite="true">
+                        <fileset dir="logon-common-web/src/main/webapp">
+                            <include name="**/*.css"/>
+                            <include name="**/*.jsp"/>
+                            <include name="**/*.js"/>
+                        </fileset>
+                        <fileset dir="@{projectname}/src/main/webapp">
+                            <include name="**/*.css"/>
+                            <include name="**/*.jsp"/>
+                            <include name="**/*.js"/>
+                        </fileset>
+                    </copy>
+                </then>
+                <elseif>
+                    <istrue value="@{failonmissing}"/>
+                    <then>
+                        <fail if="project.deployment.dir" message="Couldn't find the deployment dir for @{projectname}"/>
+                    </then>
+                </elseif>
+            </if>
+        </sequential>
+    </macrodef>
+</project>

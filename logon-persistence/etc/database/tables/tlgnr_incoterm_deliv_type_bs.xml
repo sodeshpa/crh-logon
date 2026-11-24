@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+	<table name="TLGNR_INCOTERM_DELIV_TYPE_BS" refData="true"
+			description="The valid SAP contract incoterm and delivery type pairs.">
+
+		<column name="INCOTERM_DELIV_TYPE_CD" primaryKey="true" required="true" type="DECIMAL" size="12"
+				description="PK. Surrogate key."/>
+		<column name="SAP_INCOTERM_CD" required="true" type="VARCHAR" size="3"
+				description="FK tlgnr_sap_incoterm_bs. SAP contract incoterm type."/>
+		<column name="DELIVERY_TYPE_CD" required="true" type="DECIMAL" size="2"
+				description="FK tlgnr_delivery_type_bs. LOGON delivery type."/>
+		<column name="SAREA_ID" required="true" type="DECIMAL" size="12"
+				description="FK tlgnc_sarea. LOGON Sales Area type."/>
+		<column name="CTL_ACT_CD" required="true" type="BOOLEAN"
+				description="Active Flag. When new data is entered, only reference data with active flag are available for selection normally."/>
+        
+		<foreign-key foreignTable="TLGNR_SAP_INCOTERM_BS" name="FK_TLGNR_INCOTERM_DELIV_INCOT">
+			<reference local="SAP_INCOTERM_CD" foreign="SAP_INCOTERM_CD"/>
+		</foreign-key>
+		
+		<foreign-key foreignTable="TLGNR_DELIVERY_TYPE_BS" name="FK_TLGNR_INCOTERM_DELIV_DELIV">
+			<reference local="DELIVERY_TYPE_CD" foreign="DELIVERY_TYPE_CD"/>
+		</foreign-key>
+
+		<foreign-key foreignTable="TLGNC_SAREA" name="FK_TLGNR_INCOTERM_DELIV_SAREA">
+			<reference local="SAREA_ID" foreign="SAREA_ID"/>
+		</foreign-key>
+        
+		<unique name="UQ_TLGNR_INCO_DELIV_ICD_DCD">
+			<unique-column name="SAP_INCOTERM_CD"/>
+			<unique-column name="DELIVERY_TYPE_CD"/>
+			<unique-column name="SAREA_ID"/>
+		</unique>
+		  
+	</table>
+</database>

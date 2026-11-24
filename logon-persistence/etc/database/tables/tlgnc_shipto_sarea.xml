@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNC_SHIPTO_SAREA"
+           description="The Sales Areas available for a shipto. From SAP, a soldto-shipto relation is always related to a sales area, and Logon is no different. Similar, tables typically refer to shipto-sarea instead of shipto directly.">
+
+        <column name="SHIPTO_SAREA_ID" primaryKey="true" required="true" type="DECIMAL" size="12"
+                description="PK"/>
+        <column name="SHIPTO_ID" required="true" type="DECIMAL" size="12"
+                description="FK tlgnc_shipto. The Ship-To."/>
+        <column name="SAREA_ID" required="true" type="DECIMAL" size="12"
+                description="FK TLGNC_SAREA. The Sales Area, which consists of Sales Organisation + Distribution Channel + Division."/>
+        <column name="FREE_DELIVERY_FLAG" required="true" type="BOOLEAN"
+                description="Controls whether free of charge delivery are POSSIBLE for orders based on this shipto. This is typically done for customers (defined per shipto-sarea) who frequently order big amounts, or for sample deliveries etc. If 1: In tlgnc_shipto_sarea_restr and during the order creation it is allowed to select no billto = free of charge delivery."/>
+        <column name="RELEASE_SAP_OPTIONAL_FLAG" required="true" type="BOOLEAN"
+                description="Controls whether 'Release to SAP' is automatic (0) or optional (1). If automatic: tlgnc_shipto_sarea_restr.hold_back_sap_flag is not editable, and always false. These two flags also effect order creation and editing of existing orders."/>
+        <column name="APPLY_SD_LEADTIME_CHK_FROM_MI" type="DECIMAL" size="4"
+                description="[min after midnight] Apply the same-day lead-time check for web orders with delivery to time larger than or equal to this value (of the same day). Earlier delivery to times are not possible. Must be larger than ALLOW_SD_WEB_ORDER_UNTIl_MI. This value is overrides TLGNC_SAREA.APPLY_SD_LEADTIME_CHK_FROM_MI."/>
+        <column name="APPLY_ND_LEADTIME_CHK_UNTIL_MI" type="DECIMAL" size="4"
+                description="[min after midnight] Apply the next-day lead-time check only for web orders with delivery to time smaller than this value (of the next day). This value is overrides TLGNC_SAREA.APPLY_ND_LEADTIME_CHK_UNTIL_MI."/>
+        <column name="DISTRIBUTION_DEST_CD" type="VARCHAR" required="true" size="4"
+                description="FK tlgnr_distribution_dest_bs, where selectable_for_shipto_flag=1. Distribution Destination type (outbound, interunit prod., interunit distribution) used for orders to this shipto (see tlgnc_order.distribution_dest_cd, in combination with normal/return-order logic for rail orders)."/>
+
+        <!-- The next columns needed for lead time validations -->
+        <column name="DBLT_ACTIVE_FLAG" required="true" type="BOOLEAN" default="0" description="0=inactive,1=active. Is distance based lead time check for delivery_from_dat active for customers."/>
+        <column name="SDLT_AND_NDLT_ACTIVE_FLAG" required="true" type="BOOLEAN" default="0" description="0=inactive,1=active. Is current day and next day lead time check active for delivery_to_dat for customers."/>
+        <column name="DBLT_DISTANCE_L1" required="false" type="DECIMAL" size="10" description="Lower distance limit for distance based lead time check for delivery_from_dat."/>
+        <column name="DBLT_DISTANCE_L2" required="false" type="DECIMAL" size="10" description="Upper distance limit for distance based lead time check for delivery_from_dat."/>
+        <column name="H1_EARLY_ORDER_LIMIT" required="false" type="DECIMAL" size="4" description="Defines 'if ordered before' rule for distance based lead time check for delivery_from_dat."/>
+        <column name="H2_EARLIEST_DELIVERY_FROM" required="false" type="DECIMAL" size="4" description="Earliest possible delivery from time for delivery_from_dat for distance based lead time check."/>
+        <column name="DBLT_OFFSET_D1" required="false" type="DECIMAL" size="4" description="Offset value for distance based lead time check."/>
+        <column name="DBLT_OFFSET_D2" required="false" type="DECIMAL" size="4" description="Offset value for distance based lead time check."/>
+        <column name="DBLT_OFFSET_D3" required="false" type="DECIMAL" size="4" description="Offset value for distance based lead time check."/>
+        <column name="DBLT_OFFSET_D4" required="false" type="DECIMAL" size="4" description="Offset value for distance based lead time check."/>
+        <column name="DBLT_OFFSET_D5" required="false" type="DECIMAL" size="4" description="Offset value for distance based lead time check."/>
+        <column name="DBLT_OFFSET_D6" required="false" type="DECIMAL" size="4" description="Offset value for distance based lead time check."/>
+
+        <foreign-key foreignTable="TLGNC_SHIPTO" name="FK_TLGNC_SHIPTO_SAREA_SHIPTO">
+            <reference local="SHIPTO_ID" foreign="SHIPTO_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNC_SAREA" name="FK_TLGNS_SHIPTO_SAREA_SAREA">
+            <reference local="SAREA_ID" foreign="SAREA_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_DISTRIBUTION_DEST_BS" name="FK_TLGNC_SHIPTO_SAREA_DIST">
+            <reference local="DISTRIBUTION_DEST_CD" foreign="DISTRIBUTION_DEST_CD"/>
+        </foreign-key>
+        
+        <unique name="UQ_TLGNC_SHIPTO_SAREA_ST_SAREA">
+            <unique-column name="SHIPTO_ID"/>
+            <unique-column name="SAREA_ID"/>
+        </unique>
+    </table>
+</database>

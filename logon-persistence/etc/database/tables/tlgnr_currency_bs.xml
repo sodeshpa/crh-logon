@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNR_CURRENCY_BS" refData="true"
+           description="Currencies. List of currencies which can be handled by Logon, and is a sub-set of the currencies known in SAP.">
+        <column name="CURRENCY_CD" primaryKey="true" required="true" type="VARCHAR" size="5"
+                description="PK. CHF, EUR, etc. SAP knows currency codes of length 5, therefore also allowing 5, although in practice only 3 are used."/>
+        <column name="CTL_ACT_CD" required="true" type="BOOLEAN"
+                description="Active Flag. When new data is entered, only reference data with active flag are available for selection normally."/>
+    </table>
+</database>

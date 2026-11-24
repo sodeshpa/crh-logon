@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+	<table name="TLGNR_MAP_QTY_RESTR_BS" refData="true"
+		description="Storing the contract types and order reasons for orders which are quantity restricted.">
+		
+		<column name="MAP_QTY_RESTR_ID" primaryKey="true" required="true" type="DECIMAL" size="12"
+			description="PK ID"/>
+		<column name="SAP_CONTRACT_TYPE_CD" type="VARCHAR" size="4" required="true"
+			description="FK and contract type"/>
+		<column name="AUGRU" type="VARCHAR" size="20"
+			description="Order reason from AUGRU"/>
+		<column name="QUANTITY_CONTROL_FLAG" required="true" type="BOOLEAN"
+			description="If value == 1 than quantity is restricted"/>
+        <column name="ADVANCE_PAYMENT_FLAG" required="true" type="BOOLEAN"
+                description="If value == 1 than contract is an advance payment contract"/>
+        <column name="CTL_ACT_CD" required="true" type="BOOLEAN"
+                description="Active Flag. When new data is entered, only reference data with active flag are available for selection normally."/>
+		
+		<foreign-key foreignTable="TLGNR_SAP_CONTRACT_TYPE_BS" name="FK_TLGNR_SAP_CONTRACT_TYPE_BS">
+			<reference local="SAP_CONTRACT_TYPE_CD" foreign="SAP_CONTRACT_TYPE_CD"/>
+		</foreign-key>
+	</table>
+</database>

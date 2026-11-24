@@ -1,0 +1,438 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Author            : AdNovum Informatik AG
+ Version Number    : $Revision$
+ Date of last edit : $Date$
+-->
+
+<project name="testing" default="init-test" basedir=".">
+    <description>defines test targets and tasks</description>
+
+	<property name="soapui.int.project.file" value="etc/soapui/integration-tests/integration-tests-soapui-project.xml"/>
+
+    <!-- ================================================================ -->
+    <!--  define test specific classpaths (unit, integration, load,...)   -->
+    <!-- ================================================================ -->
+	
+    <path id="test.compile.classpath">
+        <path refid="compile.classpath"/>
+        <pathelement location="${classes.dir}"/>
+        <pathelement location="${junit.jar}"/>
+        <pathelement location="${hamcrest.jar}"/>
+		<!--pathelement location="${js.jar}"/>-->
+    </path>
+
+    <path id="test.unit.classpath">
+        <pathelement location="${java.test.src.dir}/resources"/>
+        <pathelement location="${commons-logging.jar}"/>
+        <pathelement location="${dom4j.jar}"/>
+        <pathelement location="${jdom.jar}"/>
+        <pathelement location="${test.build.etc.dir}"/>
+        <pathelement location="${test.classes.dir}"/>
+        <fileset dir="${JBOSS_HOME}/dist-bin/client">
+            <include name="**/*.jar"/>
+        </fileset>
+        <path refid="compile.classpath"/>
+        <path refid="test.compile.classpath"/>
+    </path>
+	
+    <!-- ================================================================ -->
+    <!--  test initialization, cleanup and default targets                -->
+    <!-- ================================================================ -->
+    <target name="init-test">
+        <mkdir dir="${test.build.dir}"/>
+        <mkdir dir="${test.classes.dir}"/>
+        <mkdir dir="${test.lib.dir}"/>
+        <mkdir dir="${test.log.dir}"/>
+    	<mkdir dir="${test.build.etc.dir}" />
+        <mkdir dir="${test.reports.dir}"/>
+
+        <mkdir dir="${test.reports.pmd.dir}"/>
+        <mkdir dir="${test.reports.unit.dir}"/>
+        <mkdir dir="${test.reports.integration.dir}"/>
+        <mkdir dir="${test.reports.load.dir}"/>
+
+    </target>
+
+    <!-- ================================================================ -->
+    <!--  soapui testing										          -->
+    <!-- ================================================================ -->
+    <target name="start" description="start the soapui">
+		<copy todir="${basedir}" file="${SOAPUI_5_HOME}/bin/soapui.sh">
+		</copy>
+    	<chmod file="${basedir}/soapui.sh" perm="a+xw"/>
+		<exec executable="${basedir}/soapui.sh">
+		<env key="SOAPUI_HOME" path="${SOAPUI_5_HOME}" />
+	        <arg value="-w${basedir}/etc/soapui/TestPBE-workspace.xml"/>			
+		</exec>
+        <antcall target="patch"/>
+    </target>
+
+	<!-- ================================================================ -->
+    <!--  START ALL mockups                                               -->
+    <!-- ================================================================ -->	
+	<target name="start-all-mockup" description="Start all MOP MockupService on the ports and pathes specified in the project file." depends="compile-test">
+		<property environment="env" />
+		<propertyregex property="ant.opts" input="${ANT_OPTS}" select="\1" regexp="&quot;(.*)&quot;" casesensitive="true"/>
+		<copy todir="${dist.dir}/etc/soapui/" file="${SOAPUI_5_HOME}/bin/mockservicerunner.sh">
+		  <filterchain>
+  		    <tokenfilter>
+			<replacestring from="-Xms128m -Xmx1024m" to="${ant.opts}"/>
+		    </tokenfilter>				
+		  </filterchain>
+		</copy>
+		<chmod file="${dist.dir}/etc/soapui/mockservicerunner.sh" perm="a+xw"/>
+		<echo message="Starting mockups... "/>
+		<exec executable="${dist.dir}/etc/soapui/mockservicerunner.sh" spawn="true">
+			<env key="SOAPUI_HOME" path="${SOAPUI_5_HOME}" />
+			<env key="PATH" path="${JAVA_HOME}/bin:${env.PATH}" />
+			<arg value="${soapui.int.project.file}" />        
+		</exec>
+		<echo message="Wait 15 seconds until mock services start... "/>
+		<sleep seconds="15" />
+		<shellscript shell="sh">
+find  -name '*.log' -print |xargs grep  --binary-files=text "MockService" | sort | uniq
+		</shellscript>
+		<delete file="${dist.dir}/etc/soapui/mockservicerunner.sh"/>
+		<!--
+		TODO (mcico, 3.3.09): redirect the output of the log runner to a log file
+							   > ${test.log.dir}/mockrunner.log 2>&amp;1
+		-->
+	</target>
+
+	<!-- ================================================================ -->
+    <!--  START ALL mockups (in a headless environment)                   -->
+    <!-- ================================================================ -->	
+	<target name="start-all-mockup-headless" description="start MOP MockupService (headless)" depends="compile-test">
+		<property environment="env" />
+		<propertyregex property="ant.opts" input="${ANT_OPTS}" select="\1" regexp="&quot;(.*)&quot;" casesensitive="true"/>
+		<copy todir="${dist.dir}/etc/soapui/" file="${SOAPUI_5_HOME}/bin/mockservicerunner.sh">
+		  <filterchain>
+  		    <tokenfilter>
+			<replacestring from="-Xms128m -Xmx1024m" to="${ant.opts}"/>
+		    </tokenfilter>				
+		  </filterchain>
+		</copy>
+		<chmod file="${dist.dir}/etc/soapui/mockservicerunner.sh" perm="a+xw"/>
+		<echo message="Starting mockups... "/>
+		<exec executable="${dist.dir}/etc/soapui/mockservicerunner.sh" spawn="true">
+			<env key="SOAPUI_HOME" path="${SOAPUI_5_HOME}" />
+			<env key="PATH" path="${JAVA_HOME}/bin:${env.PATH}" />
+            <arg value="-Djava.awt.headless=true" />
+			<arg value="${soapui.int.project.file}" />
+		</exec>
+		<delete file="${dist.dir}/etc/soapui/mockservicerunner.sh"/>
+		<!--
+		TODO (mcico, 3.3.09): redirect the output of the log runner to a log file
+							   > ${test.log.dir}/mockrunner.log 2>&amp;1
+		-->
+	</target>
+			
+	<!-- ================================================================ -->
+    <!--  STOP ALL mockups                                                -->
+    <!-- ================================================================ -->	
+	<target name="stop-all-mockup" description="stop MOP MockupService" depends="">
+		<echo message="Stopping soapui mop mockups..." />
+		<taskdef resource="net/sf/antcontrib/antcontrib.properties" />
+		<!-- jps did not yield any processes -> removed. Here, processes blocking the mock services ports are searched and killed. -->
+		<shellscript shell="sh">
+echo fuser -v -k -n tcp `awk -F '&quot;' '/mockService.*port=/{print $2}' ${soapui.int.project.file} | grep '^[0-9]*$' | sort | uniq | xargs echo`; true
+     fuser -v -k -n tcp `awk -F '&quot;' '/mockService.*port=/{print $2}' ${soapui.int.project.file} | grep '^[0-9]*$' | sort | uniq | xargs echo`; true
+        </shellscript>
+	</target>
+
+
+    <!-- ================================================================ -->
+    <!--  FTP mockup -->
+    <!-- ================================================================ -->	
+
+	<target name="start-ftp-mockup" description="start FTP MockupService" depends="init-test">
+		<property environment="env" />
+		<exec executable="${APACHE_FTPSERVER_HOME}/bin/ftpd.sh" spawn="${jvm.spawn}">
+			<env key="PATH" path="${JAVA_HOME}/bin:${env.PATH}" />
+			<env key="FTPD_HOME" path="${APACHE_FTPSERVER_HOME}"/>
+			<env key="CLASSPATH" path="${dist.dir}/apache-ftpserver/conf"/>
+			<arg value="file://${dist.dir}/apache-ftpserver/conf/ftpd-sbb.xml" />
+		</exec>
+	</target>
+	
+	<target name="stop-ftp-mockup" description="stop FTP MockupService" depends="">
+		<echo message="Stopping FTP mockup..." />
+		<taskdef resource="net/sf/antcontrib/antcontrib.properties" />
+		<shellscript shell="sh">
+            APACHE_FTPSERVER_PID=`${JAVA_HOME}/bin/jps -vlmV | grep "org.apache.ftpserver" | grep "apache-ftpserver/conf/ftpd-sbb.xml" | awk '{print $1}'`
+
+            while [ -n "${APACHE_FTPSERVER_PID}" ]; do
+                echo "Stopping Apache FTP server on pid ${APACHE_FTPSERVER_PID} ..."
+                kill -9 ${APACHE_FTPSERVER_PID} 2>/dev/null
+                sleep 5
+			APACHE_FTPSERVER_PID=`${JAVA_HOME}/bin/jps -vlmV | grep "org.apache.ftpserver" | grep "apache-ftpserver/conf/ftpd-sbb.xml" | awk '{print $1}'`
+            done
+        </shellscript>
+	</target>
+
+    <!-- ================================================================ -->
+    <!--  macro definition for integration tests                          -->
+    <!-- ================================================================ -->
+	<macrodef name="test-int-macro">
+		<attribute name="testsuite"/>
+		<attribute name="endpoint" default="NOTSET"/>
+		<attribute name="testhosturl" default="NOTSET"/>	
+		<attribute name="runner" default="${SOAPUI_5_HOME}bin/testrunner.sh"/>	
+		<sequential>
+		
+			<echo>===================================================================================</echo>		
+			<echo/>
+			<echo>LOGON SIMULATOR</echo>
+			<echo/>	
+			<echo>Running soapUI Project: integration-tests</echo>
+			<echo/>	
+			<echo>Test Suite : "@{testsuite}"</echo>
+			<echo>Runner     : "@{runner}"</echo>
+			<echo/>
+			<echo >===================================================================================</echo>
+			<echo/>
+			<echo/>
+			<property environment="env" />
+			
+			<!-- invoking SoapUI to run testcases. 
+				-j enable reports,
+				-f report dir, 
+				-s testsuite name, 
+				-e soapui endpoint 
+			-->
+			<if>
+				<not>
+					<equals arg1="@{endpoint}" arg2="NOTSET" />
+				</not>
+				<then>
+					<echo>-----------------------------------------------------------------------------------------------
+					</echo>
+					<echo>INFO: test-int-macro had been called by specifying endpoint ->
+						all messages will sent to this endpoint
+					</echo>
+					<echo>endpoint="@{endpoint}"</echo>
+					<echo>-----------------------------------------------------------------------------------------------
+					</echo>
+					<exec resultproperty="test.integration.result" executable="@{runner}">
+						<env key="PATH" path="${JAVA_HOME}/bin:${env.PATH}" />
+						<arg value="-j" />
+						<arg value="-f" />
+						<arg value="${test.reports.integration.dir}/" />
+						<arg value="-s" />
+						<arg value="@{testsuite}" />
+						<arg value="-e" />
+						<arg value="@{endpoint}" />
+						<arg value="-t" />
+						<arg value="${basedir}/soapui-settings.xml" />						
+						<arg value="${soapui.int.project.file}" />
+						<arg value="-r" />
+					</exec>
+				</then>
+				<elseif>
+					<and>
+						<not>
+							<equals arg1="@{testhosturl}" arg2="NOTSET" />
+						</not>
+					</and>
+					<then>
+						<echo>-----------------------------------------------------------------------------------------------
+						</echo>
+						<echo>INFO: test-int-macro had been called by specifying
+							the test host url
+						</echo>
+						<echo>testhosturl is
+							@{testhosturl}
+						</echo>
+						<echo>The logon server path will be this, port and path will be taken from the project file.
+						</echo>
+						<echo>-----------------------------------------------------------------------------------------------
+						</echo>
+						<exec resultproperty="test.integration.result" executable="@{runner}">
+							<env key="PATH" path="${JAVA_HOME}/bin:${env.PATH}" />
+							<arg value="-j" />
+							<arg value="-f" />
+							<arg value="${test.reports.integration.dir}/" />
+							<arg value="-s" />
+							<arg value="@{testsuite}" />
+							<arg value="-Ptesthosturl=@{testhosturl}" />
+							<arg value="${soapui.int.project.file}" />
+						</exec>
+					</then>
+				</elseif>
+				<else>
+					<echo>-----------------------------------------------------------------------------------------------
+					</echo>
+					<echo>WARNING:test-int-macro had been called not specifying ANYTHING
+						the integration-test properties and each request can have different
+						port directives
+					</echo>
+					<echo>-----------------------------------------------------------------------------------------------
+					</echo>
+					<exec resultproperty="test.integration.result" executable="@{runner}">
+						<env key="PATH" path="${JAVA_HOME}/bin:${env.PATH}" />
+						<arg value="-j" />
+						<arg value="-f" />
+						<arg value="${test.reports.integration.dir}/" />
+						<arg value="-s" />
+						<arg value="@{testsuite}" />
+						<arg value="${soapui.int.project.file}" />
+					</exec>
+				</else>
+			</if>
+
+			<!-- catch exit code from SoapUI to detect failed test cases -->
+			<condition property="test.integration.failed" value="true">
+				<not>
+					<equals arg1="${test.integration.result}" arg2="0"/>
+				</not>
+			</condition>
+			<!-- integration tests:  --> 
+			
+			<junitreport todir="${test.reports.integration.dir}">
+				<fileset dir="${test.reports.integration.dir}">
+					<include name="TEST-*.xml"/>
+				</fileset>
+                <report format="frames" todir="${test.reports.integration.dir}" styledir="${masterbuild.dir}/test/etc">
+            	    <param name="TESTTYPE" expression="Integration" />
+           	    </report> 
+			</junitreport>
+
+			<set-flag-file-if-property-set flagfile="${test.integration.failed.flag}" propertyname="test.integration.failed"
+				message="at least one test failed --> setting failure flag file" />
+			<fail if="test.integration.failed" message="at least one of the tests failed"/>
+			<echo message="all tests successful"/>
+			
+		</sequential>
+	</macrodef>
+	
+	<!-- included in Nightly Build -->
+	<target name="test-integration" description="performs integration tests">
+		<!-- TODO boon, 20100713: NB is failing, needs investigation
+		<test-int-macro testsuite="PDA-initiated">			
+		</test-int-macro>
+		-->		
+	</target>
+	
+	<!-- included in Nightly Build -->
+	<target name="test-lds-cem-workflow" description="performs 'CEM Test Suite'/'Standard Bulk CEM workflow' expects LogonToLDSPort Mockservice to be running as that will update the property file to be used for further steps. A groovy script is supposed to store the received parameters.">
+				<test-int-macro testsuite="CEM Test Suite" testhosturl="${webservices.host.url}">			
+		</test-int-macro>
+	</target>
+	
+	<!-- included in Nightly Build -->
+	<target name="test-lds-cem-order-creation" 
+		description="performs 'Create CEM Test Suite'/* test cases standalone test suite. see description at https://aww.adnovum.ch/twiki/bin/view/CrhPegasus/HowToSoapUITest">
+				<test-int-macro testsuite="Create CEM Test Suite" endpoint="${ws.logon.ldsevent.consumer.url}">			
+		</test-int-macro>
+	</target>
+
+	<!-- included in Nightly Build -->
+	<target name="test-lds-create-completed-negative"
+		description="performs 'CreateCompleted negative'/* test that the correct error messages occur for CreateCompletedCustomerOrder">
+				<test-int-macro testsuite="CreateCompleted negative" endpoint="${ws.logon.ldsevent.consumer.url}">			
+		</test-int-macro>
+	</target>
+	
+	<!-- included in Nightly Build -->
+	<target name="test-external-pda-workflow-part2" description="performs soapui-testpart of external order">		
+		<test-int-macro testsuite="ExternalWorkFlowTest" endpoint="${ws.logon.mopevent.consumer.url}">			
+		</test-int-macro>	
+	</target>
+
+	<!-- included in Nightly Build -->
+	<target name="test-customer-portal" description="performs 'Customer Portal Test Suite'">		
+		<test-int-macro testsuite="Customer Portal Test Suite">			
+		</test-int-macro>	
+	</target>
+
+
+	<!-- Command line arguments see at https://www.soapui.org/test-automation/running-from-command-line/load-tests.html -->
+	<target name="test-load-ws" description="WS testing suite for load testing. Contains order creation requests and PDA login.">
+		<property name="testsuite" value="Load CEM Test Suite" />
+		<property name="JAVA" value="java" />	
+		<sequential>
+			<echo>===================================================================================</echo>		
+			<echo/>
+			<echo>LOGON SIMULATOR LOAD TEST</echo>
+			<echo/>	
+			<echo>Running soapUI Project: integration-tests</echo>
+			<echo/>	
+			<echo>Test Suite : "${testsuite}"</echo>
+			<echo/>
+			<echo >===================================================================================</echo>
+			<echo/>
+			<echo/>
+			<property environment="env" />
+					<exec resultproperty="test.integration.result" executable="${SOAPUI_5_HOME}bin/loadtestrunner.sh">
+						<env key="PATH" path="${JAVA_HOME}/bin:${env.PATH}" />
+						<arg value="-f" />
+						<arg value="${test.reports.integration.dir}/" />
+						<arg value="-s" />
+						<arg value="${testsuite}" />
+						<arg value="-e" />
+						<arg value="${ws.logon.ldsevent.consumer.url}" />
+						<arg value="-t" />
+						<arg value="${basedir}/soapui-settings.xml" />						
+						<arg value="${soapui.int.project.file}" />
+						<arg value="-r" />
+					</exec>
+
+			<!-- catch exit code from SoapUI to detect failed test cases -->
+			<condition property="test.integration.failed" value="true">
+				<not>
+					<equals arg1="${test.integration.result}" arg2="0"/>
+				</not>
+			</condition>
+			<!-- integration tests:  --> 
+			
+			<junitreport todir="${test.reports.integration.dir}">
+				<fileset dir="${test.reports.integration.dir}">
+					<include name="TEST-*.xml"/>
+				</fileset>
+                <report format="frames" todir="${test.reports.integration.dir}" styledir="${masterbuild.dir}/test/etc">
+            	    <param name="TESTTYPE" expression="Integration" />
+           	    </report> 
+			</junitreport>
+
+			<set-flag-file-if-property-set flagfile="${test.integration.failed.flag}" propertyname="test.integration.failed"
+				message="at least one test failed --> setting failure flag file" />
+			<fail if="test.integration.failed" message="at least one of the tests failed"/>
+			<echo message="all tests successful"/>		
+		</sequential>
+	</target>
+
+	<!--  Keep as report only the statistics, plain text file. -->
+	<target name="test-load-report" description="copies over load test related files to NB report area">
+		<echo message="Merge statistics.txts into one file ${subcomponent.test-load}/build/test/reports/load/statistics_all.txt" />	
+		<shellscript shell="sh">			
+		find ${test.reports.integration.dir} -name '*statistics.txt' -print | xargs grep . -h  >> ${subcomponent.test-load}/build/test/reports/load/statistics_all.txt
+		</shellscript>						
+	</target>
+
+    <!-- ================================================================ -->
+    <!--  compile targets                                                 -->
+    <!-- ================================================================ -->
+    <target name="compile-test" depends="init-test">
+        <!--javac
+			source="${compile.source}"
+			target="${compile.target}"
+            destdir="${test.classes.dir}"
+            debug="${compile.debug}"
+            optimize="${compile.optimize}"
+            deprecation="${compile.deprecation}"
+            encoding="${compile.encoding}"
+            includeantruntime="no">
+            <src path="${test.unit.dir}"/>
+            <include name="**/*.java"/>
+        	<bootclasspath refid="compile.bootclasspath"/>
+            <classpath refid="test.compile.classpath"/>
+        </javac-->
+    </target>
+	
+    <!-- ================================================================ -->
+    <!--  compatibility targets                                           -->
+    <!-- ================================================================ -->
+    <target name="test-pmd"    description="exists for compatibility issues" />
+    <target name="test-unit"   description="exists for compatibility issues" />
+ </project>

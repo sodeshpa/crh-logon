@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNC_MOPEVENT_HEADER_IN" description="Contains the base information of a Message sent from MOP to Logon. These fields either exist in all event types or are set to null where not applicable.">
+
+        <column name="MOPEVENT_HEADER_IN_ID" primaryKey="true" required="true" type="DECIMAL" size="12"
+                description="PK"/>
+        <column name="EVENT_NAME" required="true" type="VARCHAR" size="30"
+                description="Name of the event, that will be called. Event names are e.g.: login, changePIN, logout, ..."/>
+        <column name="GEO_X" type="DOUBLE"
+                description="X Coordinates of the PDA as received."/>
+        <column name="GEO_Y" type="DOUBLE"
+                description="Y Coordinates of the PDA."/>
+        <column name="PDA_NO" type="VARCHAR" size="100"
+                description="Identification Number of the PDA."/>
+        <column name="SENDER_TIME" type="DATE"
+                description="Date and time of the sending device."/>
+		<column name="TRUCK" type="VARCHAR" size="20"
+                description="License number of the truck."/>
+       	<column name="MOP_STATUS_CD" type="VARCHAR" size="10"
+                description="FK tlgnr_mop_status_bs. Contains a status-code and status-text about the executed event. Used as WebService response "/>
+        <column name="MOP_STATUS_CONTEXT_VALUE" type="VARCHAR" size="250"
+                description="additional status-text.e.g.on status 0/Mandatory Field Missing: there will be added a name."/>        
+		<column name="SESSION_NO" type="VARCHAR" size="50"
+                description="Session identifier, valid after sucessfull login."/>
+        <column name="SPEED" type="DECIMAL" size="12"
+                description="speed of truck in km/h."/>
+        <column name="COURSE" type="DECIMAL" size="12"
+                description="course of truck in degree (0-360). 0 = North"/>        
+       	<column name="GEO_TIME" type="DATE"
+                description="Date and time of the registered geo-position."/>           
+        <column name="ASSIGNMENT_ID" type="VARCHAR" size="20"
+                description="Non enforced FK to tlgnc_assignment. The assignment id from the input data."/>
+       	<foreign-key foreignTable="TLGNR_MOP_STATUS_BS" name="FK_TLGNR_MOP_STATUS_IN_BS">
+            <reference local="MOP_STATUS_CD" foreign="MOP_STATUS_CD"/>
+        </foreign-key>
+    </table>
+</database>

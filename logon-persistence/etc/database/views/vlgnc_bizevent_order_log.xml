@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="VLGNC_BIZEVENT_ORDER_LOG" mappingType="view" skipSql="true">
+        <column name="COMPOSITE_ID" type="VARCHAR" size="43"/>
+        <column name="BASE_ORDER_ID" type="DECIMAL" size="12"/>
+        <column name="BASE_ASSIGNMENT_ID" type="DECIMAL" size="12"/>
+        <column name="ORDER_ID" type="DECIMAL" size="12"/>
+        <column name="BIZEVENT_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="ASSIGNMENT_ID" type="DECIMAL" size="12"/>
+        <column name="EVENT_TS" required="true" type="TIMESTAMP"/>
+        <column name="DESCRIPTION" type="VARCHAR" size="200"/>
+        <column name="MOD_TS" required="true" type="TIMESTAMP"/>
+        <column name="CRE_TS" required="true" type="TIMESTAMP"/>
+        <column name="LANG_CD" required="true" type="VARCHAR" size="2"/>
+        <column name="BIZEVENT_TYPE_TXT" required="true" type="VARCHAR" size="50"/>
+        <column name="BIZEVENT_TYPE_CD" required="true" type="DECIMAL" size="3"/>
+        <column name="ORIGINAL_MOPEVENT_ID" type="DECIMAL" size="12"/>
+        <column name="INITIATOR" type="VARCHAR" size="81"/>
+        <column name="SPEED" type="DECIMAL" size="12"/>
+        <column name="COURSE" type="DECIMAL" size="12"/>
+        <column name="EVENT_NAME" type="VARCHAR" size="30"/>
+        <column name="TRUCK" type="VARCHAR" size="20"/>
+        <column name="GEO_X" type="DOUBLE"/>
+        <column name="GEO_Y" type="DOUBLE"/>
+        <column name="GEO_TIME" type="DATE"/>
+        <column name="WAGON_NO" type="VARCHAR" size="12"/>
+        <column name="TRUCK_PLATE_NO" type="VARCHAR" size="20"/>
+        <column name="CONTAINER_NO" type="VARCHAR" size="16"/>
+    </table>
+</database>

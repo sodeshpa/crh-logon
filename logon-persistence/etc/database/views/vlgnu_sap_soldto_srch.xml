@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="VLGNU_SAP_SOLDTO_SRCH" mappingType="view" skipSql="true">
+        <column name="SOLDTO_SAP_BP_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="SOLDTO_SAP_ID" type="VARCHAR" size="10"/>
+        <column name="SOLDTO_NAME" type="VARCHAR" size="35"/>
+    </table>
+</database>

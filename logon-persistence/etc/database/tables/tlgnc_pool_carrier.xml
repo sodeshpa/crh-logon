@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNC_POOL_CARRIER"
+           description="The Carriers (Spediteur, Transporteur, Vendor) which can handle orders assigned to a certain Pool. Pool:Carrier is M:N.">
+
+        <column name="POOL_CARRIER_ID" primaryKey="true" required="true" type="DECIMAL" size="12"
+                description="PK"/>
+        <column name="POOL_ID" required="true" type="DECIMAL" size="12"
+                description="FK tlgnc_pool. The Pool to which a Carrier is assigned."/>
+        <column name="CARRIER_ID" required="true" type="DECIMAL" size="12"
+                description="FK tlgnc_carrier. The Carrier (Spediteur, Transporteur, Vendor)."/>
+
+        <foreign-key foreignTable="TLGNC_POOL" name="FK_TLGNC_POOL_CARRIER_POOL">
+            <reference local="POOL_ID" foreign="POOL_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNC_CARRIER" name="FK_TLGNC_POOL_CARRIER_CARRIER">
+            <reference local="CARRIER_ID" foreign="CARRIER_ID"/>
+        </foreign-key>
+
+        <unique name="UQ_TLGNC_POOL_CARRIER">
+            <unique-column name="POOL_ID"/>
+            <unique-column name="CARRIER_ID"/>
+        </unique>
+    </table>
+</database>

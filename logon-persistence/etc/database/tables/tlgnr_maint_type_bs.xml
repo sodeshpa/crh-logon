@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNR_MAINT_TYPE_BS" refData="true"
+           description="Wagon maintenance types. Following actual European guideline, e.g. G1.0, G2.0, P5 etc.">
+        <column name="MAINT_TYPE_CD" required="true" type="VARCHAR" size="6" primaryKey="true"
+                description="PK Code of the reference data"/>
+        <column name="IS_REPAIR_FLAG" required="true" type="BOOLEAN"
+                description="Repair-Type Flag. In many places of the application it does not matter if a maintenance is a true (planned) maintenance, or actually an (unplanned) repair, but in some cases (transportation by the rail company) it does. Evaluation logic in tlgnc_order_rep_maint_type: If at least ONE type has IS_REPAIR_FLAG set, the whole order counts as repair."/>
+        <column name="CTL_ACT_CD" required="true" type="BOOLEAN"
+                description="Active Flag. When new data is entered, only reference data with active flag are available for selection normally."/>
+    </table>
+</database>

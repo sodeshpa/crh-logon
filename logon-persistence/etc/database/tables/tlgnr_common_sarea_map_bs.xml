@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNR_COMMON_SAREA_MAP_BS" refData="true"
+        description="The SAP common distribution channel and common division functionality in LOGON is
+implemented by a Sales Area to Sales Area mapping. Entries of this table are only used for
+business partner CRUD operations originating from the business partner SAP interface: Reference
+Sales Area information (tlgns_sap_bp_sarea and BP partner function tables) is duplicated for every
+sales area entry in this table.">
+        <column name="TLGNR_COMMON_SAREA_MAP_ID" primaryKey="true" required="true" type="DECIMAL" size="12"
+                description="PK. This is a LOGON-internal, technical identifier."/>
+
+        <column name="REF_SORG_CD" required="true" type="VARCHAR" size="4"
+                description="FK TLGNR_SORG_BS. Reference sales organization. As received in the BP interface."/>
+        <column name="REF_DISTRIBUTION_CHANNEL" required="true" type="VARCHAR" size="2"
+                description="Reference distribution channel. As received in the BP interface."/>
+        <column name="REF_DIVISION_CD" required="true" type="VARCHAR" size="2"
+                description="FK TLGNR_DIVISION_BS. Reference division. As received in the BP interface."/>
+
+        <column name="SORG_CD" required="true" type="VARCHAR" size="4"
+            description="FK TLGNR_SORG_BS. To be inserted/updated/deleted additionally in the sales area composed of SORG_CD, DISTRIBUTION_CHANNEL and DIVISION_CD."/>
+        <column name="DISTRIBUTION_CHANNEL" required="true" type="VARCHAR" size="2"
+                description="Reference distribution channel. To be inserted/updated/deleted additionally in the sales area composed of SORG_CD, DISTRIBUTION_CHANNEL and DIVISION_CD."/>
+        <column name="DIVISION_CD" required="true" type="VARCHAR" size="2"
+                description="FK TLGNR_DIVISION_BS. Reference division. To be inserted/updated/deleted additionally in the sales area composed of SORG_CD, DISTRIBUTION_CHANNEL and DIVISION_CD."/>
+
+        <column name="CTL_ACT_CD" required="true" type="BOOLEAN"
+                description="Active Flag. When new data is entered, only reference data with active flag are available for selection normally."/>
+
+        <foreign-key foreignTable="TLGNR_SORG_BS" name="FK_TLGNR_COMMON_SAREA_REF_SORG">
+            <reference local="REF_SORG_CD" foreign="SORG_CD"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_SORG_BS" name="FK_TLGNR_COMMON_SAREA_SORG">
+            <reference local="SORG_CD" foreign="SORG_CD"/>
+        </foreign-key>
+
+        <foreign-key foreignTable="TLGNR_DIVISION_BS" name="FK_TLGNR_COMMON_SAREA_REF_DIV">
+            <reference local="REF_DIVISION_CD" foreign="DIVISION_CD"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_DIVISION_BS" name="FK_TLGNR_COMMON_SAREA_DIV">
+            <reference local="DIVISION_CD" foreign="DIVISION_CD"/>
+        </foreign-key>
+
+        <unique name="UQ_TLGNR_COMMON_SAREA_SAREA">
+            <unique-column name="SORG_CD"/>
+            <unique-column name="DISTRIBUTION_CHANNEL"/>
+            <unique-column name="DIVISION_CD"/>
+        </unique>
+    </table>
+</database>

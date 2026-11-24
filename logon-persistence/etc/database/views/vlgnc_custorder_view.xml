@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="VLGNC_CUSTORDER_VIEW" mappingType="view" skipSql="true">
+        <column name="CUSTORDERVIEW_ID" type="VARCHAR" size="43"/>
+        <column name="CUSTORDER_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="CUSTORDER_NUMBER" required="true" type="DECIMAL" size="12"/>
+        <column name="CUSTORDER_STATUS_CD" required="true" type="DECIMAL" size="2"/>
+        <column name="POOL_ID" type="DECIMAL" size="12"/>
+        <column name="DELIVERY_FROM_DAT" required="true" type="DATE"/>
+        <column name="DELIVERY_TO_DAT" required="true" type="DATE"/>
+        <column name="COMM_CARRIER_ID" type="DECIMAL" size="12"/>
+        <column name="SHIPPINGPOINT_NAME" type="VARCHAR" size="80"/>
+        <column name="SHIPTO_NAME" type="VARCHAR" size="35"/>
+        <column name="SHIPTO_CITY" required="true" type="VARCHAR" size="35"/>
+        <column name="MATERIAL_NAME" required="true" type="VARCHAR" size="40"/>
+        <column name="LANG_CD" required="true" type="VARCHAR" size="2"/>
+        <column name="SOLDTO_NAME" type="VARCHAR" size="35"/>
+        <column name="SHIPTO_CITY_ADDRESS" type="VARCHAR" size="109"/>
+        <column name="EXACT_QUANTITY_ORDER_TOLERANCE" type="DECIMAL" size="10"/>
+        <column name="EXACT_CUSTORDER_QTY_FLAG" required="true" type="BOOLEAN"/>
+    </table>
+</database>

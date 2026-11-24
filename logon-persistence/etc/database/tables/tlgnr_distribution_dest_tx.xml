@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNR_DISTRIBUTION_DEST_TX" refData="true"
+           description="Language dependent attributes for Distribution Destination.">
+
+        <column name="DISTRIBUTION_DEST_CD" primaryKey="true" required="true" type="VARCHAR" size="4"
+                description="Part of PK. FK tlgnr_distribution_dest_bs. Code of the Reference Data."/>
+        <column name="LANG_CD" primaryKey="true" required="true" type="VARCHAR" size="2"
+                description="Part of PK. FK tlgnr_lang_bs."/>
+        <column name="TXT" required="true" type="VARCHAR" size="30"
+                description="Description of the code in the language lang_cd."/>
+
+        <foreign-key foreignTable="TLGNR_DISTRIBUTION_DEST_BS" name="FK_TLGNR_DISTRIBUTION_DEST_TX">
+            <reference local="DISTRIBUTION_DEST_CD" foreign="DISTRIBUTION_DEST_CD"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_LANG_BS" name="FK_TLGNR_DISTRIBUTION_DST_LANG">
+            <reference local="LANG_CD" foreign="LANG_CD"/>
+        </foreign-key>
+    </table>
+</database>

@@ -1,0 +1,78 @@
+	<servlet>
+		<servlet-name>action</servlet-name>
+		<servlet-class>com.crh.logon.web.servlets.SecureActionServlet</servlet-class>
+		<init-param>
+			<param-name>config</param-name>
+			<param-value>/WEB-INF/struts-config.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+    <servlet>
+        <servlet-name>dwr</servlet-name>
+        <description>Direct Web Remoter Servlet</description>
+        <servlet-class>org.directwebremoting.servlet.DwrServlet</servlet-class>
+#if ($systemproperties.dwrDebugEnabled == "true")
+        <init-param>
+            <param-name>debug</param-name>
+            <param-value>true</param-value>
+        </init-param>
+#end
+        <init-param>
+            <param-name>allowScriptTagRemoting</param-name>
+            <param-value>true</param-value>
+        </init-param>
+        <init-param>
+            <param-name>activeReverseAjaxEnabled</param-name>
+            <param-value>true</param-value>
+        </init-param>
+        <init-param>
+            <param-name>scriptCompressed</param-name>
+            <param-value>false</param-value>
+        </init-param>
+        <init-param>
+            <param-name>crossDomainSessionSecurity</param-name>
+            <param-value>false</param-value>
+        </init-param>
+        
+		<init-param>
+			<param-name>org.directwebremoting.extend.Remoter</param-name>
+			<param-value>com.crh.logon.web.ajax.DwrCustomRemoter</param-value>
+		</init-param>
+		
+        <load-on-startup>0</load-on-startup>
+    </servlet>
+
+    <servlet>
+        <servlet-name>BestellungChartServlet</servlet-name>
+        <servlet-class>com.crh.logon.web.servlets.BestellungChartServlet</servlet-class>
+    </servlet>
+    
+    <servlet>
+        <servlet-name>DispoStyleServlet</servlet-name>
+        <servlet-class>com.crh.logon.web.servlets.DispoStyleServlet</servlet-class>
+    </servlet>
+    
+    <servlet>
+        <servlet-name>TruckLogChartServlet</servlet-name>
+        <servlet-class>com.crh.logon.web.servlets.TruckLogChartServlet</servlet-class>
+    </servlet>
+        
+     <servlet>
+        <servlet-name>GenericBlobServlet</servlet-name>
+        <servlet-class>com.crh.logon.web.servlets.GenericBlobServlet</servlet-class>
+        <init-param>
+            <param-name>restricted</param-name>
+            <param-value>true</param-value>
+        </init-param>        
+    </servlet>
+    
+    <servlet>
+        <servlet-name>LitDictInfoServlet</servlet-name>
+        <servlet-class>com.crh.logon.web.servlets.LitDictInfoServlet</servlet-class>
+    </servlet>
+    
+    <servlet>
+        <servlet-name>PdfGeneratorServlet</servlet-name>
+        <servlet-class>com.crh.logon.order.web.servlets.PdfGeneratorServlet</servlet-class>
+    </servlet>

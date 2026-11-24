@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="VLGNC_DISPO_W_CONTAINER_LIST" mappingType="view" skipSql="true">
+        <column name="CONTAINER_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="CONTAINER_NO" required="true" type="VARCHAR" size="16"/>
+        <column name="CONTAINER_TYPE_CD" required="true" type="DECIMAL" size="2"/>
+        <column name="CONTAINER_NAME" required="true" type="VARCHAR" size="30"/>
+        <column name="CONTAINER_COMMENT" type="VARCHAR" size="250"/>
+        <column name="TARE_WEIGHT_T" type="DECIMAL" size="12,4"/>
+        <column name="CURRENT_WAGON_ID" type="DECIMAL" size="12"/>
+        <column name="MAX_NET_WEIGHT_T" required="true" type="DECIMAL" size="12,4"/>
+        <column name="LANG_CD" required="true" type="VARCHAR" size="2"/>
+        <column name="CONTAINER_TYPE_NAME" required="true" type="VARCHAR" size="40"/>
+        <column name="LOAD_ID" type="DECIMAL" size="12"/>
+        <column name="SAP_MATERIAL_ID" type="DECIMAL" size="12"/>
+        <column name="TARE_QUANTITY" type="DOUBLE"/>
+        <column name="NET_QUANTITY" type="DOUBLE"/>
+        <column name="NET_QUANTITY_UOM_CD" type="VARCHAR" size="3"/>
+        <column name="LOAD_ORDER_ID" type="DECIMAL" size="12"/>
+        <column name="PRODUCTION_PLANT_CD" type="VARCHAR" size="4"/>
+        <column name="LOADING_TS" type="DATE"/>
+        <column name="LOAD_CNT" type="DOUBLE"/>
+        <column name="MATERIAL_NAME" type="VARCHAR" size="40"/>
+        <column name="LOGON_PACKAGE_TYPE_CD" type="DECIMAL" size="2"/>
+        <column name="LAST_LOAD_ID" type="DECIMAL" size="12"/>
+        <column name="LAST_SAP_MATERIAL_ID" type="DECIMAL" size="12"/>
+        <column name="LAST_PRODUCTION_PLANT_CD" type="VARCHAR" size="4"/>
+        <column name="LAST_UNLOADING_TS" type="DATE"/>
+        <column name="LAST_MATERIAL_NAME" type="VARCHAR" size="40"/>
+        <column name="MAT_COMPAT_ID" type="DECIMAL" size="12"/>
+        <column name="INSIGNIFICANT_THRESHOLD_PERC" type="DECIMAL" size="4,1"/>
+        <column name="FORCE_IDENTICAL_THRESHOLD_PERC" type="DECIMAL" size="4,1"/>
+    </table>
+</database>

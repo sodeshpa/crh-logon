@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNC_DRIVER_WAITINGREASON"
+        description="Stores reasons for truck drivers waiting at shippingpoints or shiptos.">
+        
+        <column name="DRIVER_WAITINGREASON_ID" 
+        	primaryKey="true" required="true" type="DECIMAL" size="12"
+            description="PK"/>        
+        <column name="DRIVER_ID" 
+        	required="true" type="DECIMAL" size="12" 
+        	description="FK tlgnc_driver. Driver ID, to which this record is related."/>
+        <column name="SHIPPINGPOINT_ID" 
+        	type="DECIMAL" size="12"
+            description="FK tlgnc_shippingpoint. Either Shippingpoint or Shipto is set depending on if the driver had to wait on shippingpoint or shipto."/>
+        <column name="SHIPTO_ID" 
+        	type="DECIMAL" size="12"
+            description="FK tlgnc_shipto. Either Shippingpoint or Shipto is set depending on if the driver had to wait on shippingpoint or shipto."/>
+		<column name="waittime_min" 
+			type="DECIMAL" size="3"
+			description="timespan after which the reason had to be entered (configurable value)."/>
+		<column name="WAITINGTIME_REASON_CD"
+			required="true" type="DECIMAL" size="2"
+			description="FK TLGNR_WAITINGTIME_REASON. Reason for waiting."/>
+        <column name="EVENT_TS" type="TIMESTAMP" required="true" 
+                description="Creation Timestamp (Date and Time) of the event a) in the original system/PDA (if available/sent) or b) set to 'now' by Logon when receiving/storing the event. This is the main time information about when the event actually occurred."/>
+
+        <foreign-key foreignTable="TLGNC_DRIVER" name="FK_TLGNC_DRIVER_WAITING_DRIVER">
+            <reference local="DRIVER_ID" foreign="DRIVER_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNC_SHIPPINGPOINT" name="FK_TLGNC_DRIVER_WAITING_SPOINT">
+            <reference local="SHIPPINGPOINT_ID" foreign="SHIPPINGPOINT_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNC_SHIPTO" name="FK_TLGNC_DRIVER_WREASON_SHIPTO">
+            <reference local="SHIPTO_ID" foreign="SHIPTO_ID"/>
+        </foreign-key> 
+        <foreign-key foreignTable="TLGNR_WAITINGTIME_REASON_BS" name="FK_TLGNC_DRIVER_WTIME_REASON">
+              <reference local="WAITINGTIME_REASON_CD" foreign="WAITINGTIME_REASON_CD"/>
+        </foreign-key>
+    </table>
+</database>

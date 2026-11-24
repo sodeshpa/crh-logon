@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNS_SAP_MATERIAL_DESCRIPTION" description="Material Descriptions from SAP. Contains language-dependent descriptions for materials and is modelled like the _TX reference tables, i.e. with a compound primary kay (ID, LANG_CD).">
+    	<!-- modeled like the _tx reference tables -->
+        <column name="SAP_MATERIAL_ID" primaryKey="true" required="true" type="DECIMAL" size="12"
+                description="Part of PK. FK to TLGNS_SAP_MATERIAL."/>
+        <column name="LANG_CD" primaryKey="true" required="true" type="VARCHAR" size="2"
+                description="Part of PK. FK to TLGNR_LANG_BS. Language from SAP (material_short_texts (MAKT) / SPRAS_ISO). 'Z1' is mapped to 'de'."/>
+        <column name="TXT" required="true" type="VARCHAR" size="40"
+                description="Description of the material in the language LANG_CD from SAP (material_short_texts (MAKT) / MAKTX)."/>
+        <foreign-key foreignTable="TLGNS_SAP_MATERIAL" name="FK_TLGNS_SAP_MAT_DESC_MAT">
+            <reference local="SAP_MATERIAL_ID" foreign="SAP_MATERIAL_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_LANG_BS" name="FK_TLGNS_SAP_MAT_DESC_LANG">
+            <reference local="LANG_CD" foreign="LANG_CD"/>
+        </foreign-key>
+    </table>
+</database>

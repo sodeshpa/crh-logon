@@ -1,0 +1,75 @@
+<project name="logonjboss" basedir="./" default="all">
+
+	<!-- ============== configuration ============== -->
+
+	<property name="masterbuild.dir" location="${basedir}/../.." />
+	<property name="build.unit" location="${basedir}/../.." />
+
+	<import file="${build.unit}/properties.xml" />
+	<import file="../../common.xml" />
+
+	<property file="${build.unit}/config/env-local.proj" />
+	<property file="${masterbuild.dir}/config/env-${OS}.proj" />
+	<property file="${build.unit}/config/env.proj" />
+	<property file="${build.unit}/config/build-local.properties" />
+	<property file="${build.unit}/config/build.properties" />
+	<property name="pkg.version" value="${version}" />
+
+	<property name="build.dir" location="build" />
+
+	<target name="all" depends="build" />
+
+	<target name="clean">
+		<delete dir="${build.dir}" />
+	</target>
+
+	<target name="build">
+		<mkdir dir="${build.dir}/gen/int/" />
+		<mkdir dir="${build.dir}/gen/ext/" />
+
+		<copy todir="${build.dir}/gen/int/">
+			<fileset dir="./etc/pkg_template" />
+			<filterset>
+				<filter token="ZONE" value="int" />
+				<filter token="PKG_WIN_INSTALL_DIR" value="${PKG_WIN_INSTALL_DIR}" />
+
+			</filterset>
+		</copy>
+		<copy file="./etc/standalone_xml/standalone-int.xml" tofile="${build.dir}/gen/int/config/templates/standalone.xml" />
+
+		<copy todir="${build.dir}/gen/ext/">
+			<fileset dir="./etc/pkg_template" />
+			<filterset>
+				<filter token="ZONE" value="ext" />
+				<filter token="PKG_WIN_INSTALL_DIR" value="${PKG_WIN_INSTALL_DIR}" />
+			</filterset>
+		</copy>
+		<copy file="./etc/standalone_xml/standalone-ext.xml" tofile="${build.dir}/gen/ext/config/templates/standalone.xml" />
+
+		<zip destfile="${build.dir}/pkg/logon-jboss-int-${pkg.version}.zip">
+			<zipfileset dir="${build.dir}/gen/int/" prefix="logon-jboss-int-${pkg.version}" />
+			<zipfileset file="${ojdbc6.jar}" prefix="logon-jboss-int-${pkg.version}/ojdbc6/" />
+		</zip>
+
+		<zip destfile="${build.dir}/pkg/logon-jboss-ext-${pkg.version}.zip">
+			<zipfileset dir="${build.dir}/gen/ext/" prefix="logon-jboss-ext-${pkg.version}" />
+			<zipfileset file="${ojdbc6.jar}" prefix="logon-jboss-ext-${pkg.version}/ojdbc6/" />
+		</zip>
+	</target>
+
+
+	<target name="pkg-deploy">
+		<copy todir="${pkg.dest.dir}/">
+			<fileset dir="${build.dir}/pkg/" includes="logon-jboss-ext-${pkg.version}.zip, logon-jboss-int-${pkg.version}.zip">
+			</fileset>
+		</copy>
+		<property name="repoPathExt" value="com.crh.logon.app/logon-jboss/${version}/logon-jboss-${pkg.version}-ext.zip" />
+		<binrepo-publish sourceFile="${build.dir}/pkg/logon-jboss-ext-${pkg.version}.zip" targetPath="${repoPathExt}" />
+		<binrepo-deliver artifactPath="${repoPathExt}" />
+		<property name="repoPathInt" value="com.crh.logon.app/logon-jboss/${version}/logon-jboss-${pkg.version}-int.zip" />
+		<binrepo-publish sourceFile="${build.dir}/pkg/logon-jboss-int-${pkg.version}.zip" targetPath="${repoPathInt}" />
+		<binrepo-deliver artifactPath="${repoPathInt}" />
+	</target>
+
+
+</project>

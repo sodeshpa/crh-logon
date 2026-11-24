@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNR_AUDIT_BIZEVENT_CONFIG_TX" refData="true"
+           description="The table describes which fields of which tables are audited.">
+
+        <column name="AUDIT_BIZEVENT_CONFIG_CD" primaryKey="true" required="true" type="DECIMAL" size="12"
+                description="Part of PK. FK to TLGNR_AUDIT_CONFIG_BS ID of the Reference Data."/>
+        <column name="LANG_CD" primaryKey="true" required="true" type="VARCHAR" size="2"
+                description="Part of PK. FK to TLGNR_LANG_BS."/>                
+        <column name="TXT" required="true" type="VARCHAR" size="100"
+                description="Description of the field also "/>
+
+
+        <foreign-key foreignTable="TLGNR_AUDIT_BIZEVENT_CONFIG_BS" name="FK_TLGNR_AUDIT_BIZ_CONFIG_TX">
+            <reference local="AUDIT_BIZEVENT_CONFIG_CD" foreign="AUDIT_BIZEVENT_CONFIG_CD"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_LANG_BS" name="FK_TLGNR_AUDIT_CONFIG_LANG">
+            <reference local="LANG_CD" foreign="LANG_CD"/>
+        </foreign-key>        
+        
+    </table>
+</database>

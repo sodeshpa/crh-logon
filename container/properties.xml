@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Author            : AdNovum Informatik AG
+ Version Number    : $Revision$
+ Date of last edit : $Date$
+-->
+
+<project name="container-properties" basedir=".">
+	<property name="masterbuild.dir" location="${basedir}/.."/>
+	<import file="${masterbuild.dir}/properties.xml"/>
+	<taskdef resource="net/sf/antcontrib/antcontrib.properties"/>
+</project>

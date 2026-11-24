@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNR_ASSIGN_TR_STATUS_BS" refData="true"
+           description="Tells wether the assignment ist transmitted to driver/PDA/parallel or not (corresponds to pressing tranmit in dispatching)">
+        <column name="ASSIGN_TR_STATUS_CD" primaryKey="true" required="true" type="DECIMAL" size="2"
+                description="PK. 0=not transmitted, 1=transmitted"/>
+        <column name="CTL_ACT_CD" required="true" type="BOOLEAN"
+                description="Active Flag. When new data is entered, only reference data with active flag are available for selection normally."/>
+    </table>
+</database>

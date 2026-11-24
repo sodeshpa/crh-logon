@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="VLGNC_DISPO_ASSIGNMENT_LIST" mappingType="view" skipSql="true">
+        <column name="ASSIGNMENT_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="TRUCK_ID" type="DECIMAL" size="12"/>
+        <column name="MATERIAL_NAME" type="VARCHAR" size="40"/>
+        <column name="MATERIAL_UOM" type="VARCHAR" size="3"/>
+        <column name="MATERIAL_QUANTITY" type="DECIMAL" size="12,4"/>
+        <column name="ASSIGNMENT_DAT" required="true" type="DATE"/>
+        <column name="ASSIGN_STATUS_CD" required="true" type="DECIMAL" size="2"/>
+        <column name="ASSIGN_TR_STATUS_CD" required="true" type="DECIMAL" size="2"/>
+        <column name="ASSIGNMENT_TYPE_CD" required="true" type="DECIMAL" size="2"/>
+        <column name="LOAD_ORDER_ID" type="DECIMAL" size="12"/>
+        <column name="CARRIER_TRUCK_DRIVER_NOTE" type="VARCHAR" size="256"/>
+        <column name="CARRIER_DISPATCHING_NOTE" type="VARCHAR" size="256"/>
+        <column name="LANG_CD" type="VARCHAR" size="2"/>
+        <column name="BAG_STOCK_SHIPPINGPOINT_ID" type="DECIMAL" size="12"/>
+        <column name="SAP_VEHICLE_CHAR_CD" required="true" type="DECIMAL" size="2"/>
+        <column name="NR_CHAMBERS" type="DECIMAL" size="12"/>
+        <column name="ORDER_NUMBER" type="DECIMAL" size="12"/>
+    </table>
+</database>

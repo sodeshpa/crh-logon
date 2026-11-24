@@ -1,0 +1,10 @@
+generates:
+   - ServiceLocator
+   - ServiceLocatorTest
+   - Remote and Local interfaces
+
+NOTE:
+   - the interface must be named like this:
+        <ServiceName>
+   - the implementation must be named like this:
+        <ServiceName>Bean

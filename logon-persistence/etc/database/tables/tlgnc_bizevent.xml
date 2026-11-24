@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNC_BIZEVENT"
+           description="Contains all events which had a business-relevant effect on Logon, such as modifying the status or position of trucks, orders, etc. This is NOT an audit log, and it is complete only in the sense of 'best effort'. Consistency of a chain of events is not guaranteed because of for example possible loss of PDA events. By definition, existing events are NOT updated. A new event is written instead to correct a state caused by an older event.">
+
+        <column name="BIZEVENT_ID" primaryKey="true" required="true" type="DECIMAL" size="12"
+                description="PK. Only business relevant events are stored here, not all actions (not an audit log). The focus lies always on the newest event."/>
+        <column name="BIZEVENT_TYPE_CD" required="true" type="DECIMAL" size="3"
+                description="FK tlgnr_bizevent_type_bs. The type of event, such as New, Transmitted to pool, ..., Position, Pool ack, Set Silo, ... There are different sets of events: caused by the application (user action) and such from external systems (PDA, Parallel)."/>
+        <column name="DESCRIPTION" type="VARCHAR" size="200"
+                description="Human readable description of the event, in English. The text contained here should help interpreting a chain of events if shown in the UI, but must not be interpreted by the application."/>
+
+		<!-- please don't insert or remove any indexed column in front of truck_id, in order to keep the index names constant 
+		     the index is dropped and overridden in custom_overrides.sql --> 
+        <!-- Moveable things -->
+        <column name="TRUCK_ID" type="DECIMAL" size="12"
+                description="FK tlgnc_truck. The truck related to this event. When an event is written, current PDA/Driver to Truck assignments must be checked."/>
+        <column name="TRAILER_ID" type="DECIMAL" size="12"
+                description="FK tlgnc_trailer. The trailer related to this event. When an event is written, current truck/trailer assignments must be checked."/>
+        <column name="CONTAINER_ID" type="DECIMAL" size="12"
+                description="FK tlgnc_container. The container related to this event. When an event is written, current truck/trailer/wagon/container assignments must be checked, i.e. a container can lie on a trailer, which is connected to a truck. All 3 references must be set in this case."/>
+        <column name="WAGON_ID" type="DECIMAL" size="12"
+                description="FK tlgnc_wagon. The wagon related to this event. Wagon information of a bizevent comes from the application or from the rail operator via edifact, see tlgnc_edifact_header/data."/>
+        <column name="SIMPLE_VEHICLE_ID" type="DECIMAL" size="12"
+                description="FK tlgnc_simple_vehicle. The simple vehicle related to this event. Vehicle information of a bizevent comes from the application."/>
+        <!-- Silo: Is currently NOT considered a moveable thing (in UC Silostellung, it's more a material, it's setup only later. Position not needed in this UC. Maybe need to change later. -->
+
+        <!-- Order related things, transactional data-->
+        <column name="ORDER_ID" type="DECIMAL" size="12"
+                description="FK tlgnc_order. The order related to this event."/>
+        <column name="ASSIGNMENT_ID" type="DECIMAL" size="12"
+                description="FK tlgnc_assignment. The assignment related to this event."/>
+
+        <!-- Driver and Load ID are currently not added ON PURPOSE. If needed, check needs/advantages/alternatives carefully -->
+
+        <!-- Location related things -->
+        <column name="COORD_LAT" type="DOUBLE"
+                description="Latitude coordinates of the object(s) at the time the event occurred. Used for 'Letzte Kennung' of truck/trailer etc."/>
+        <column name="COORD_LON" type="DOUBLE"
+                description="Longitute coordinates of the object(s) at the time the event occurred. Used for 'Letzte Kennung' of truck/trailer etc."/>
+        <column name="RAILWAY_STATION_ID" type="DECIMAL" size="12"
+                description="FK tlgnc_railway_station. Railway station of the object(s) at the time the event occurred."/>
+        <column name="SHIPPINGPOINT_ID" type="DECIMAL" size="12"
+                description="FK tlgnc_shippingpoint. Reference is set if a shippingpoint is related to the event."/>
+        <column name="SHIPTO_ID" type="DECIMAL" size="12"
+                description="FK tlgnc_shipto. Reference is set if a shipto is related to the event."/>
+        <column name="COORD_TRUCK_HOMEBASE_FLAG" type="BOOLEAN"
+                description="Set to true(1), if the received coordinates match the homebase coordinats of the truck (if truck_id set). 0, if truck involved, but not its homebase. Null, if there is no truck involved."/>
+        <!-- Add coord_trailer_homebase_flag, if needed -->
+
+        <column name="EVENT_TS" type="TIMESTAMP" required="true"
+                description="Creation timestamp (date and time) of the event (a) in the original system/PDA (if available/sent) or b) set to 'now' by Logon when receiving/storing the event. This is the main time information about when the event actually occurred. Depending on the use case, events are either displayed sorted by when it happened (event_ts) or when we received (and processed) them, i.e. ctl_cre_ts, creation date in the logon system/DB."/>
+        <column name="ORIGINAL_MOPEVENT_ID" type="DECIMAL" size="12"
+                description="FK tlgnc_mopevent_header_id. The MOP event which caused this business event. Note, that one MOP event can potentially cause several Bizevents, depending on the necessary actions which are needed. This reference is for informal purposes mainly."/>
+
+        <foreign-key foreignTable="TLGNR_BIZEVENT_TYPE_BS" name="FK_TLGNC_BIZEVENT_TYPE">
+            <reference local="BIZEVENT_TYPE_CD" foreign="BIZEVENT_TYPE_CD"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNC_TRUCK" name="FK_TLGNC_BIZEVENT_TRUCK">
+            <reference local="TRUCK_ID" foreign="TRUCK_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNC_TRAILER" name="FK_TLGNC_BIZEVENT_TRAILER">
+            <reference local="TRAILER_ID" foreign="TRAILER_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNC_CONTAINER" name="FK_TLGNC_BIZEVENT_CONTAINER">
+            <reference local="CONTAINER_ID" foreign="CONTAINER_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNC_WAGON" name="FK_TLGNC_BIZEVENT_WAGON">
+            <reference local="WAGON_ID" foreign="WAGON_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNC_SIMPLE_VEHICLE" name="FK_TLGNC_BIZEVENT_S_VEHICLE">
+            <reference local="SIMPLE_VEHICLE_ID" foreign="SIMPLE_VEHICLE_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNC_ORDER" name="FK_TLGNC_BIZEVENT_ORDER">
+            <reference local="ORDER_ID" foreign="ORDER_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNC_ASSIGNMENT" name="FK_TLGNC_BIZEVENT_ASSIGNMENT">
+            <reference local="ASSIGNMENT_ID" foreign="ASSIGNMENT_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNC_RAILWAY_STATION" name="FK_TLGNC_BIZEVENT_RAILWAY_STAT">
+            <reference local="RAILWAY_STATION_ID" foreign="RAILWAY_STATION_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNC_SHIPPINGPOINT" name="FK_TLGNC_BIZEVENT_SHIPPPOINT">
+            <reference local="SHIPPINGPOINT_ID" foreign="SHIPPINGPOINT_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNC_SHIPTO" name="FK_TLGNC_BIZEVENT_SHIPTO">
+            <reference local="SHIPTO_ID" foreign="SHIPTO_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNC_MOPEVENT_HEADER_IN" name="FK_TLGNC_BIZEVENT_MOPEVENT">
+            <reference local="ORIGINAL_MOPEVENT_ID" foreign="MOPEVENT_HEADER_IN_ID"/>
+        </foreign-key>
+
+        <!-- Analysis happens typically ordered by timestamp -->
+        <index name="I_TLGNC_BIZEVENT_CTL_CRE_TS">
+          <index-column name="CTL_CRE_TS"/>
+        </index>
+        
+        <index name="I_TLGNC_BIZEVENT_ASSIGNMENT">
+          <index-column name="ORDER_ID"/>
+          <index-column name="ASSIGNMENT_ID"/>
+        </index>
+    
+    </table>
+</database>

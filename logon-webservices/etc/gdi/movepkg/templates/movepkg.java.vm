@@ -1,0 +1,9 @@
+#set ($contents = $include.readLines($file))
+#foreach ($line in $contents)
+#foreach ($key in $properties.keySet())
+#set ($line = $line.replace("$key", "$properties.get($key)"))
+#end
+$line.replace("implements ", "implements java.io.Serializable, ")
+#end
+
+

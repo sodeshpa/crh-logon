@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNR_WAGON_TYPE_TX" refData="true"
+           description="Language depending attributes for Wagon Types.">
+
+        <column name="WAGON_TYPE_CD" primaryKey="true" required="true" type="DECIMAL" size="2"
+                description="Part of PK. FK tlgnr_wagon_type_bs. Code of the Reference Data."/>
+        <column name="LANG_CD" primaryKey="true" required="true" type="VARCHAR" size="2"
+                description="Part of PK. FK tlgnr_lang_bs. For example de, en, ..."/>
+        <column name="TXT" required="true" type="VARCHAR" size="50"
+                description="Description of the Wagon Type in the language LANG_CD."/>
+
+        <foreign-key foreignTable="TLGNR_WAGON_TYPE_BS" name="FK_TLGNR_WAGON_TYPE_TX">
+            <reference local="WAGON_TYPE_CD" foreign="WAGON_TYPE_CD"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_LANG_BS" name="FK_TLGNR_WAGON_TYPE_LANG">
+            <reference local="LANG_CD" foreign="LANG_CD"/>
+        </foreign-key>
+    </table>
+</database>

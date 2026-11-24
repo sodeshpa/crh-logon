@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="VLGNC_CONTRACT_ITEM_QUANTITY" mappingType="view" skipSql="true">
+        <column name="COMPOSITE_ID" type="VARCHAR" size="163"/>
+        <column name="SAP_CONTRACT_ITEM_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="ORDER_NUMBER" type="DECIMAL" size="12"/>
+        <column name="ORDER_STATUS_CD" type="DECIMAL" size="2"/>
+        <column name="DELIVERY_TYPE_CD" type="DECIMAL" size="2"/>
+        <column name="PACKAGE_TYPE_CD" type="DECIMAL" size="2"/>
+        <column name="ORDER_ITEM_ID" type="DECIMAL" size="12"/>
+        <column name="ORDER_ITEM_NO" type="DECIMAL" size="3"/>
+        <column name="DELIVERED_QUANTITY" type="DECIMAL" size="12,4"/>
+        <column name="DELIVERED_UOM_CD" type="VARCHAR" size="3"/>
+        <column name="LOADED_QUANTITY" type="DECIMAL" size="12,4"/>
+        <column name="LOADED_UOM_CD" type="VARCHAR" size="3"/>
+        <column name="ORDERED_QUANTITY" type="DECIMAL" size="12,4"/>
+        <column name="ORDERED_UOM_CD" type="VARCHAR" size="3"/>
+        <column name="O2B_NUMERATOR_FOR_CONVERSION" type="DECIMAL" size="5"/>
+        <column name="O2B_DENOMINATOR_FOR_CONVERSION" type="DECIMAL" size="5"/>
+        <column name="D_FUZZY_QUANTITY_FLAG" type="BOOLEAN"/>
+        <column name="D_UOM_DIMENSION_CD" type="VARCHAR" size="3"/>
+        <column name="D_NUMERATOR_FOR_CONVERSION" type="DECIMAL" size="5"/>
+        <column name="D_DENOMINATOR_FOR_CONVERSION" type="DECIMAL" size="5"/>
+        <column name="L_FUZZY_QUANTITY_FLAG" type="BOOLEAN"/>
+        <column name="L_UOM_DIMENSION_CD" type="VARCHAR" size="3"/>
+        <column name="L_NUMERATOR_FOR_CONVERSION" type="DECIMAL" size="5"/>
+        <column name="L_DENOMINATOR_FOR_CONVERSION" type="DECIMAL" size="5"/>
+        <column name="O_FUZZY_QUANTITY_FLAG" type="BOOLEAN"/>
+        <column name="O_UOM_DIMENSION_CD" type="VARCHAR" size="3"/>
+        <column name="O_NUMERATOR_FOR_CONVERSION" type="DECIMAL" size="5"/>
+        <column name="O_DENOMINATOR_FOR_CONVERSION" type="DECIMAL" size="5"/>
+    </table>
+</database>

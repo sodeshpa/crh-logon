@@ -1,0 +1,426 @@
+# Provided by Crh on 04.12.2012;;;
+# This is CLUSTER 0. Data of Cluster 0 and Cluster 1 is identical in both clusters, currently even in their active flag (ctl_act_cd);;;
+# 05.12.2012, file updated by FBI;;;
+#SGROUP_CD;#SGROUP_NAME;#EMAIL_ADDRESSES;#CTL_ACT_CD
+B2A;CARSTEN WALDMANN;;1
+B91;Inge Huysegems;;1
+B92;Remco de Wilde;;1
+B93;Thijs Ingenhoven;;1
+B94;Michel Langeweg;;1
+B96;Andy Vancauwenberghe;;1
+B97;Eric Waeyenbergh;;1
+B99;VENDEUR PRESTATION;;1
+B9A;Ilse Libeert;;1
+B9B;Charline Martin;;1
+BA1;ROTHE David;;1
+BA2;GRAND EXPORT;;1
+BA3;POST Jean-Paul;;1
+BA4;CORVERS Gert;;1
+BA6;Vendeur ADV Bxl;;1
+BA8;SWALUE Clemens;;1
+BA9;GLORIEUX Isabelle;;1
+BAA;VAN DER VAERENT Rik;;1
+BAC;VERVOORT  Peter;;1
+BAE;MAGIS Marcel;;1
+BAF;AM Agg District 2;;1
+BAG;FUTORSKYJ Jean-Miche;;1
+BAH;Sales Mgr AGG BE;;1
+BAI;SWYSEN Christian;;1
+BAJ;AM Agg District 5;;1
+BB1;BE TSR N. Merksem;;1
+BB2;BE TSR N. St Truiden;;1
+BB3;BE DM North;;1
+BB4;BE TSR N. Hoeselt;;1
+BB5;BE TSR N. Herentals;;1
+BB6;BE TSR N. Kieldrecht;;1
+BB7;BE TSR N. Aarschot;;1
+BB8;BE Director;;1
+BB9;BE TSR ZWVL;;1
+BBA;BE DM West;;1
+BBB;BE TSR NWVL;;1
+BBC;BE TSR OVL;;1
+BBD;BE TSR S. Overijse;;1
+BBE;BE TSR S. Gemb/Quen.;;1
+BBF;BE TSR S. Ghlin;;1
+BBG;BE TSR S. Liège/Huy;;1
+BBH;BE TSR S. Dampremy;;1
+BBI;BE DM SOUTH;;1
+BBJ;BE TSR S. Brussel;;1
+C01;VA/S-Ostschweiz 01;;1
+C02;VA/S Ostschweiz 02;;1
+C03;VA/S Ostschweiz 03;;1
+C04;VA/S Ostschweiz 04;;1
+C05;VA/S Ostschweiz 05;;1
+C06;VA/S Ostschweiz 06;;1
+C07;VA/S Ostschweiz 07;;1
+C10;VA/S Ostschweiz 08;;1
+C13;VA/S Ostschweiz 09;;1
+C14;VA/S Ostschweiz 10;;1
+C30;N-Ostschweiz 01;;1
+C31;N-Ostschweiz 02;;1
+C32;N-Ostschweiz 03;;1
+C33;N-Ostschweiz 04;;1
+C34;N-Ostschweiz 05;;1
+C35;N-Ostschweiz 06;;1
+C36;N-Ostschweiz 07;;1
+C37;N-Ostschweiz 08;;1
+C38;N-Ostschweiz 09;;1
+C39;N-Ostschweiz 10;;1
+C40;Zürich 01;;1
+C41;Zürich 02;;1
+C42;Zürich 03;;1
+C43;Zürich 04;;1
+C44;Zürich 05;;1
+C45;Zürich 06;;1
+C46;Zürich 07;;1
+C47;Zürich 08;;1
+C48;Zürich 09;;1
+C49;Zürich 10;;1
+C50;Nordwest-CH 01;;1
+C51;Nordwest-CH 02;;1
+C52;Nordwest-CH 03;;1
+C53;Nordwest-CH 04;;1
+C54;Nordwest-CH 05;;1
+C55;Zentral-CH 01;;1
+C56;Zentral-CH 02;;1
+C57;Zentral-CH 03;;1
+C58;Zentral-CH 04;;1
+C59;Zentral-CH 05;;1
+C60;GE/VD 01;;1
+C61;GE/VD 02;;1
+C62;GE/VD 03;;1
+C63;GE/VD 04;;1
+C64;GE/VD 05;;1
+C65;GE/VD 06;;1
+C66;GE/VD 07;;1
+C67;GE/VD 08;;1
+C68;GE/VD 09;;1
+C69;GE/VD 10;;1
+C70;VS/VD-O/FR/NE/JU 01;;1
+C71;VS/VD-O/FR/NE/JU 02;;1
+C72;VS/VD-O/FR/NE/JU 03;;1
+C73;VS/VD-O/FR/NE/JU 04;;1
+C74;VS/VD-O/FR/NE/JU 05;;1
+C75;VS/VD-O/FR/NE/JU 06;;1
+C76;VS/VD-O/FR/NE/JU 07;;1
+C77;VS/VD-O/FR/NE/JU 08;;1
+C78;VS/VD-O/FR/NE/JU 09;;1
+C79;VS/VD-O/FR/NE/JU 10;;1
+C80;Sopraceneri 01;;1
+C81;Sopraceneri 02;;1
+C82;Sopraceneri 03;;1
+C83;Sopraceneri 04;;1
+C84;Sopraceneri 05;;1
+C85;Sottoceneri 01;;1
+C86;Sottoceneri 02;;1
+C87;Sottoceneri 03;;1
+C88;Sottoceneri 04;;1
+C89;Sottoceneri 05;;1
+C90;Grossprojekte 01;;1
+C91;Grossprojekte 02;;1
+C92;Grossprojekte 03;;1
+C93;Grossprojekte 04;;1
+C94;Grossprojekte 05;;1
+C95;Zementexporte ITA;;1
+C96;Zementexporte SGE;;1
+C97;Zementexporte FRA;;1
+C98;Zementexporte 1;;1
+C99;Zementexporte 2;;1
+CA1;AFR Schweiz;;1
+CA2;Verschiedene DL Schw;;1
+D01;CEM 01;;1
+D02;CEM 02;;1
+D03;CEM03;;1
+D04;CEM04;;1
+D05;CEM05;;1
+D06;CEM06;;1
+D07;CEM07;;1
+D08;CEM08;;1
+D09;CEM09;;1
+D10;CEM10;;1
+D11;AFR 01;;1
+D12;AFR 02;;1
+D13;AFR 03;;1
+D14;AFR 04;;1
+D15;AFR 05;;1
+D16;AFR 06;;1
+D17;AFR 07;;1
+D18;MIC 01;;1
+D19;MIC 02;;1
+D20;RMX 01;;1
+D21;RMX 02;;1
+D22;RMX 03;;1
+D23;RMX 04;;1
+D24;RMX 05;;1
+D25;RMX 06;;1
+D26;RMX 07;;1
+D27;RMX 08;;1
+D28;RMX 09;;1
+D29;RMX 10;;1
+D30;RMX 11;;1
+D31;RMX 12;;1
+D32;RMX 13;;1
+D33;RMX 14;;1
+D34;RMX 15;;1
+D35;RMX 16;;1
+D36;RMX 17;;1
+D37;RMX 18;;1
+D38;RMX 19;;1
+D39;RMX 20;;1
+D40;RMX 21;;1
+D41;RMX 22;;1
+D42;RMX 23;;1
+D43;RMX 24;;1
+D44;RMX 25;;1
+D45;RMX 26;;1
+D46;RMX 27;;1
+D47;RMX 28;;1
+D48;RMX 29;;1
+D49;RMX 30;;1
+D50;RMX 31;;1
+D51;RMX 32;;1
+D52;RMX 33;;1
+D53;RMX 34;;1
+D54;RMX 35;;1
+D55;RMX 36;;1
+D56;RMX 37;;1
+D57;RMX 38;;1
+D58;RMX 39;;1
+D59;RMX 40;;1
+D60;RMX 41;;1
+D61;RMX 42;;1
+D62;RMX 43;;1
+D63;RMX 44;;1
+D64;RMX 45;;1
+D70;AGG 01;;1
+D71;AGG 02;;1
+D72;AGG 03;;1
+D73;AGG 04;;1
+D74;AGG 05;;1
+D75;AGG 06;;1
+D76;AGG 07;;1
+D77;AGG 08;;1
+D78;AGG 09;;1
+D79;AGG 10;;1
+D80;AGG 11;;1
+D81;AGG 12;;1
+D82;AGG 13;;1
+D83;AGG 14;;1
+D84;AGG 15;;1
+D85;FA 01;;1
+D86;FA 02;;1
+D87;FA 03;;1
+DS1;Zement Süd-DE 01;;1
+DS2;Zement Süd-DE 02;;1
+DS3;Zement Süd-DE 03;;1
+DS4;Zement Süd-DE 04;;1
+DT1;Kies Beton Süd-DE 01;;1
+DT2;Kies Beton Süd-DE 02;;1
+DT3;Kies Beton Süd-DE 03;;1
+DT4;Kies Beton Süd-DE 04;;1
+DT5;Kies Beton Süd-DE 05;;1
+DT6;Kies Beton Süd-DE 06;;1
+DX1;AFR Süddeutschland;;1
+DX2;Verschiedene DL Süd-;;1
+F17;GLORIOD Sylvie;;1
+F18;CHABOD Alain;;1
+F19;COLIN Daniel;;1
+F20;LARRIVE Arnaud;;1
+F21;DARSIN Christophe;;1
+F22;DELAFOND Laurent;;1
+F25;PARRILLA Nathalie;;1
+F27;VAN MOORLEGHEM Fabie;;1
+F28;PETIT Jean Pierre;;1
+F29;GARNIER Bruno;;1
+F31;VALLERAND David;;1
+F34;ZANNINI Gianni;;1
+F35;MARCUS Alain;;1
+F36;SEVILLA Léonard;;1
+F38;FIEDLER Renaud;;1
+F39;RASSER Jean-Michel;;1
+F40;BAUER Pierre;;1
+F41;PENNERATH Cédric;;1
+F42;GUYON Christian;;1
+F43;HERLANT Denis;;1
+F45;LEROY Claude;;1
+F46;TANIS Xavier;;1
+F47;BUTEL Fédéric;;1
+F50;MORDACQ Didier;;1
+F52;DUPUY Philippe;;1
+F54;WIBAUT Gregory;;1
+F56;NOBELS Marc;;1
+F57;CAPEZIO Mimmo;;1
+F58;STENGEL Jean-Michel;;1
+F59;DANN Jean-Philippe;;1
+F60;SKWERES Serge;;1
+F61;JOST Claude;;1
+F63;PHILIPPE Jean-Louis;;1
+F64;LORRAIN Christian;;1
+F66;BICHON Maxime;;1
+F67;BENKHALIFA FARID;;1
+F68;PRAILLET Vincent;;1
+F69;DUFRENE Claude;;1
+F74;COUVELAERE J-Pierre;;1
+F75;FISCHER Vincent;;1
+F76;DE MATTEIS Pascal;;1
+F77;MAGERE Emmanuel;;1
+F78;JACOTTIN David;;1
+F79;BINDEL Patrick;;1
+F84;PELZER Xavier Marie;;1
+F86;FOURMAUX Guillaume;;1
+F87;PELLIER Sylvain;;1
+F88;QUENEL Patrice;;1
+F89;MICHALAK Muriel;;1
+F99;VENDEUR PRESTATION;;1
+F9A;Sébastien Partida;;1
+F9B;Michel Auzou;;1
+F9C;Laurence Bedu;;1
+F9E;Philippe Vandevenne;;1
+F9F;Nicolas Pfeiffer;;1
+F9G;FDOUCE;;1
+FA1;SOUFFLET Jean-Pascal;;1
+FA2;DEPOILLY Anne-Sophie;;1
+FA3;FREYSS Magali;;1
+FA4;GOIN Olivier;;1
+FA6;BOISRAME Emmanuel;;1
+FA7;LIEBTAG Philippe;;1
+FA8;MAILLARD Jean-Luc;;1
+FA9;LIZZI Hubert;;1
+FAA;FECAMP Dominique;;1
+FAC;CHIGNON Marc;;1
+FAE;LONCLE Bruno;;1
+FAF;LEROY Dominique;;1
+FAI;GUADAGNINI Bruno;;1
+FAL;BRIOT;;1
+FAM;VINCENT Denis;;1
+FAR;CARVALHO;;1
+FAS;DUMUR;;1
+FAT;GAILLARD;;1
+FAU;CIARELLA Christian;;1
+FAW;PIGE;;1
+FAY;BEGUET;;1
+FB1;COUPÉ;;1
+FB2;LAUDE Sebastien;;1
+FB3;HANSER;;1
+FB5;RODEMACQ;;1
+FB7;SCHILLINGER;;1
+FB9;HASSENFORDER;;1
+FBA;LYONNET;;1
+FBB;GUYOT;;1
+FBD;PARRET;;1
+FBF;MONGEOIS;;1
+FBH;BARTH;;1
+FBI;LE TETOUR;;1
+FBJ;LAPORTE;;1
+FBK;BONIN Alexandre;;1
+FBL;A. GRELLONI;;1
+FBM;PARODI;;1
+FBN;WORMS;;1
+FBP;NOVI;;1
+FBQ;BLOCH;;1
+FBR;GONICHON  Stéphane;;1
+FBS;HUET Roberto;;1
+FBT;DIDIER Frédéric;;1
+FBU;MADY;;1
+FBV;NADAH;;1
+FC0;DAVID Guillaume;;1
+FC5;CHAIX Olivier;;1
+FC6;GUIMARAES Daniel;;1
+FC7;BROSSARD GUILLAUME;;1
+FC8;GUELFUCCI VINCENT;;1
+FC9;BOURIN ALEXANDRE;;1
+FCA;DAVID SEBASTIEN;;1
+FCB;BOUSSON JEREMY;;1
+FCC;NIVESSE REGIS;;1
+FCD;RUBINO FELIX;;1
+FCE;VAISSIER CHRISTOPHE;;1
+FCF;BELANGER Timothée;;1
+FCG;ANDRE Valérie;;1
+FCH;DUPRE Benoit;;1
+FCI;VOISIN STEVENS;;1
+FCJ;VIGER SYLVAINE;;1
+FCK;LOZACH DAVID;;1
+FCL;CHOURAQUI SEBASTIEN;;1
+FCM;BAROUX CHRISTOPHE;;1
+FCO;SENS LORENE;;1
+FCP;LEITE JACQUES;;1
+FCQ;DUCROCQ GREGORY;;1
+FCR;ORLANDO Nicolas;;1
+FCS;DUBAR NICOLAS;;1
+FCT;LESTRADE DENYS;;1
+FCU;GRELLONI ALBERT;;1
+FCV;BIHRY LAURENT;;1
+FCY;BAHUET YOHAN;;1
+FD0;STOFFEL RAPHAEL;;1
+FD1;MUNSCH FRANCIS;;1
+FD3;BUGADA  ARNAUD;;1
+FD4;BEREZOWSKI Pierre;;1
+FD5;LECAREUX JOHANN;;1
+FD6;WOERLE MICHEL;;1
+FD7;RICHET HERVE;;1
+FE0;GRENIER DAVID;;1
+FE1;MORISSEAU Julien;;1
+FE2;TOURNOUX Vincent;;1
+FE3;BARTHELEMY Eric;;1
+FE4;MARTIN Christophe;;1
+FE5;NOEL Dominique;;1
+FE6;FOLLOT Thierry;;1
+FE7;CHARBONNEL FABIEN;;1
+FE8;PASCUAL Francisco;;1
+FNV;Amoroso;;1
+I03;Argento Enzo;;1
+I04;Beccaria Roberto;;1
+I06;Belloni Carlo;;1
+I07;Bertelli Andrea;;1
+I08;Bozzani Roberto;;1
+I09;Berrino Attilio;;1
+I10;Guarino Francesco;;1
+I12;Refaldi Carlo;;1
+I13;Copersito Alessandro;;1
+I14;Besozzi matteo;;1
+I16;Imprese;;1
+I18;Negri Lorenzo;;1
+I20;De Marchi Francesco;;1
+I22;Direzione Cemento;;1
+I24;Diversi;;1
+I25;Del Console Maurizio;;1
+I28;Frigerio Ambrogio;;1
+I29;Gadda Andrea;;1
+I30;Galbusera Stefano;;1
+I34;Lardo Egidio;;1
+I37;Speranza Stefano;;1
+I41;Mameli Antonio;;1
+I42;Massola Giulio;;1
+I43;Melina Sauro;;1
+I44;Merlini Giorgio;;1
+I45;Messina antonio;;1
+I46;Molinari luca;;1
+I50;Mariani Federico;;1
+I53;Candiani Paolo;;1
+I56;Alverdi Michele;;1
+I59;Boschiroli Dino;;1
+I61;Scotti Marco;;1
+I62;Sordelli Mauro;;1
+I63;Diani Moreno;;1
+I68;Cerri Osvaldo;;1
+I72;Fusine;;1
+I73;Costa;;1
+I74;Beccaria (Francia);;1
+I75;Rondini Mario;;1
+I77;Scagliotti Enzo;;1
+I82;Torricelli Erica;;1
+I84;Tomasetti Carmine;;1
+I85;NM;;1
+I93;Direzione BIO;;1
+IE0;AFR's SG;;1
+IE1;Bisi Bruno;;1
+IE2;Colavelli;;1
+L99;VENDEUR PRESTATION;;1
+N99;VENDEUR PRESTATION;;1
+NB1;NL TSR ZH;;1
+NB2;NL DM;;1
+NB3;NL TSR WBR;;1
+NM1;Secteur BCH;;1
+NM2;JORRYT MEENKS;;1
+NM3;GIOVANNI BARBARINI;;1
+NM4;REMY MORET;;1

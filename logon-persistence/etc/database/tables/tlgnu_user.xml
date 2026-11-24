@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNU_USER"
+           description="User table. Contains all users which are recognized by Logon. Users are classified by type (Crh, Customer, Vendor) and can have several differnt access types: internal (LDAP, see ldap_holspace), external (user name/password) or PDA login (user number/PIN). For external and PDA access type this table contains a password/PIN management.">
+
+        <column name="USER_ID" primaryKey="true" required="true" type="DECIMAL" size="12"
+                description="PK. This is also the 'uid' (used in the technical fields ctl_cre_uid, ctl_mod_uid) as well as the 'Principal' in the application. Unlike other applications, LOGON does not have a unique text login-name, but those depend on different access types."/>
+        <column name="PERSON_ID" required="true" type="DECIMAL" size="12"
+                description="FK tlgnc_person. The person data of this user. Person is mandatory for a user because of practical reasons: Logon does not have any common human readable 'loginname'; none of holspace, ext_login, pda_user_number is set for all users."/>
+        <column name="USER_TYPE_CD" required="true" type="DECIMAL" size="2"
+                description="FK tlgnr_user_type_bs. Type of User, e.g. Crh, Customer or Vendor. (Driver/PDA is not a user-type, but a login-type!)"/>
+
+        <!-- TODO markus/20081218: introduce CRH as a company and change SAP_BP_ID to not null?
+             SAP_BP_ID is the employer of the user, the company the user works for, currently NULL
+             for CRH users. Uma: dont think we want to add articifial BP just because of this.
+             Or, we would need to add the same logic for vendor. -->
+        <column name="SAP_BP_ID" type="DECIMAL" size="12"
+                description="FK tlgns_sap_bp. The customer (business partner soldto) the user belongs to. For users not accociated to a customer, sap_bp_id is null."/>
+        <column name="SAP_VENDOR_ID" type="DECIMAL" size="12"
+                description="FK tlgns_sap_vendor. For the vendor for vendor/driver user types"/>
+
+        <!-- Access type: Internal -->
+
+        <column name="LDAP_HOLSPACE" type="VARCHAR" size="255"
+                description="Login name for internal users, unique. This is the foreign key into the LDAP (Active Directory) of Crh and is null for users with only external or PDA access."/>
+        <column name="LDAP_ACTIVE_UNTIL_DAT" type="DATE"
+                description="TODO - Field added for Later use - Logon 2.0 or so. Make required then!! Purpose: The date until when the account (LDAP login) is active. Crh security guidelines demand that user accounts are periodically checked and reactivated for the users which are still entitled to use Crh infrastructure."/>
+
+        <!-- Access type: External -->
+
+        <column name="EXT_LOGIN_ACTIVE_FLAG" type="BOOLEAN"
+                description="True, if user is allowed for external access. Internal/External login-type is independent of the User type (Crh, Customer, Vendor). TODO: This should be replaced by EXT_LOGIN_ACTIVE_UNTIL_DAT, and used for automatic account expiry. Crh guidelines demand account aging/refreshing. For the PDA login it's less important, but for the account this should be don."/>
+        <column name="EXT_LOGIN_ACTIVE_UNTIL_DAT" type="DATE"
+                description="TODO - Field added for Later use - Logon 2.0 or so. Make required then!! Purpose: The date until when the account (ext login) is active. Crh security guidelines demand that user accounts are periodically checked and reactivated for the users which are still entitled to use Crh infrastructure."/>
+        <column name="EXT_LOGIN" type="VARCHAR" size="40"
+                description="External login name, unique. The system proposes an initial value based on user type and ID of BP/Vendor: &lt;ldap_holspace&gt; without the @..., c&lt;cust_id&gt;_xy, v&lt;vendor_id&gt;_xy, where xy is a combination of name/first name of the person, and cust_id/vendor_id the SAP_ID of the SAP_BP/SAP_VENDOR"/>
+        <column name="EXT_LOGIN_PWD" type="VARCHAR" size="512"
+                description="External login password. A password set by the user via the application is stored encrypted. Plain text passwords are currently allowed (migration of user accounts from 1.0 DB, and to allow direct modifications in Tablebrowser for administrator). May be disabled in the future because of security concerns."/>
+        <column name="EXT_LOGIN_PWD_VALID_TO_DAT" type="DATE"
+                description="The date till when the Password is valid. null = forever. After a password change, this date is set to sysdate + app.policy.PasswordLifeTime_d (see tlgnr_config)."/>
+        <column name="EXT_LOGIN_PWD_LOCKED_TS" type="DATE"
+                description="Date and Time in UTC+0 when the users external password was locked (null = unlocked). This state differs forom external login locked state (EXT_LOGIN_ACTIVE_FLAG = false) since when only the external password is locked then the user should be able to unlock her external password herself (the system sends an email whit the required steps to the address defined in tlgnc_person.email)."/>
+
+        <!-- Access type: PDA -->
+
+        <column name="PDA_USER_NO" type="DECIMAL" size="8"
+                description="The PDA user number, unique. It is treated as a real number (only digits allowed), and 2 = 0002 etc. Crh normally use the employee number as PDA user number. The older numbers are 5 digits, the newer 7 digits long."/>
+        <column name="PDA_LOGIN_ACTIVE_UNTIL_DAT" type="DATE"
+                description="TODO - Field added for later use - Logon 2.0 or so. Make required then!! Purpose: The date until when the account (PDA login) is active. Crh security guidelines demand that user accounts are periodically checked and reactivated for the users which are still entitled to use Crh infrastructure."/>
+        <column name="PDA_USER_RFIDOBJECT_ID" type="DECIMAL" size="12"
+                description="FK tlgnc_rfidobject. The RFID object of the User(link to the RFID tags)"/>
+        <column name="PDA_PIN" type="VARCHAR" size="512"
+                description="The PIN for the PDA of the given user. Initially plaintext, turns into hash value if changed by user on PDA."/>
+        <column name="PDA_PIN_VALID_TO_DAT" type="DATE"
+                description="The date till when the PIN is valid. null = forever. After a PIN change, this date is set to sysdate + app.policy.PINLifeTime_d (see tlgnr_config)."/>
+
+        <!-- Access type: Pickup Terminal (together with PDA_USER_NO -->
+
+        <column name="PICKUP_BARCODE_PASSCODE" type="VARCHAR" size="20"
+                description="Contains the additionally required information for the login pda_user_no + pickup_barcode_passcode in the case of bag/pickup terminal login. This is plain-text information; it is also written in human readable form on the user's badge."/>
+
+        <!-- Additional user data -->
+
+        <column name="PHOTO_IMAGE_ID" type="DECIMAL" size="12"
+                description="FK tlgnc_image. Image of the user. Purpose not really clear. Probably mainly meant for drivers (to print picture badges based on Logon data), but possible for other users as well."/>
+        <column name="SIGNATURE_ID" type="DECIMAL" size="12"
+                description="FK tlgnc_signature. Signature of this user, used on output documents such as Delivery Note. Not just drivers can have a signature, but also a sales person could have one, for example to sign order confirmations."/>
+        <column name="SIGNATURE_VALID_FLAG" type="BOOLEAN"
+                description="Flag to say if signature is still ok to be used, or should/must be replaced with another one on next possible occasion."/>
+        <column name="APPLICATION_LANG_CD" required="true" type="VARCHAR" size="2"
+                description="Language used by the user in the application, or when the application contacts a user via PDA. Null (=get from browser preferences) is not supported because of this PDA use case."/>
+
+        <column name="SEND_DAILY_REPORTS_FLAG" type="BOOLEAN" required="true"
+                description="When set to true, the user will receive daily reports by email (versandstatistik)."/>        
+
+        <!-- 20090407/uma: should a comment be possible as well? maybe makes sense, but is not in spec. Don't add for now in this case.
+        <column name="ADMIN_COMMENT" type="VARCHAR" size="200"
+                description="Comment about a user account, e.g. reason why a certain login has been inactivated etc. Comment is not visible to the user itself in the user-self-admin, only to a user administrator."/>
+        -->
+
+        <!-- LOGON-5396: Password reset token and supporting fields -->
+        <column name="EXT_PWD_RESETTOKEN_HASH" type="VARCHAR" size="512"
+		        description="Hash of the random token issued upon a password reset request for the user, or NULL if no token has ever been requested." />
+        <column name="EXT_PWD_RESETTOKEN_VALID_TO_TS" type="TIMESTAMP"
+		        description="The time after which the password reset token is no longer valid. If EXT_PWD_RESETTOKEN_HASH is not NULL then this must also be not NULL." />
+        <column name="EXT_PWD_LAST_RESET_ATTEMPT_TS" type="TIMESTAMP"
+		        description="The time of the most recent request of a reset token for the user, or NULL if no request has ever been made." />
+
+        <column name="TIMEZONE_CD" required="false" type="VARCHAR" size="32"
+                description="Timezone assigned to this user entity"/>
+
+        <foreign-key foreignTable="TLGNC_PERSON" name="FK_TLGNU_USER_PERSON_ID">
+            <reference local="PERSON_ID" foreign="PERSON_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_USER_TYPE_BS" name="FK_TLGNU_USER_USER_TYPE">
+            <reference local="USER_TYPE_CD" foreign="USER_TYPE_CD"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNS_SAP_BP" name="FK_TLGNU_USER_BP_ID">
+            <reference local="SAP_BP_ID" foreign="SAP_BP_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNS_SAP_VENDOR" name="FK_TLGNU_USER_VENDOR_ID">
+            <reference local="SAP_VENDOR_ID" foreign="SAP_VENDOR_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNC_RFIDOBJECT" name="FK_TLGNU_USER_PDA_USER_RFID">
+            <reference local="PDA_USER_RFIDOBJECT_ID" foreign="RFIDOBJECT_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNC_SIGNATURE" name="FK_TLGNU_USER_SIGNATURE">
+            <reference local="SIGNATURE_ID" foreign="SIGNATURE_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNC_IMAGE" name="FK_TLGNU_USER_PHOTO_IMAGE">
+            <reference local="PHOTO_IMAGE_ID" foreign="IMAGE_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_LANG_BS" name="FK_TLGNU_USER_APPL_LANG">
+            <reference local="APPLICATION_LANG_CD" foreign="LANG_CD"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_TIMEZONE_BS" name="FK_TLGNU_USER_TZ">
+            <reference local="TIMEZONE_CD" foreign="TIMEZONE_CD"/>
+        </foreign-key>
+
+        <!-- Maybe there will be a request that this uniqueness should not be
+             enforced, for example when having 1 active and n inactive users.
+             For those cases nina and uma suggest, that we do NOT want to have
+             inactive users with a duplicate login name/id, but rather _remove
+             the login names from the old users_ if needed.
+             Reason: Nobody is interested in them, and 'reactivating' is
+             something which should not have such dangerous sideeffects. -->
+        <unique name="UQ_TLGNU_USER_LDAP_HOLSPACE">
+            <unique-column name="LDAP_HOLSPACE"/>
+        </unique>
+        <unique name="UQ_TLGNU_USER_EXT_LOGIN">
+            <unique-column name="EXT_LOGIN"/>
+        </unique>
+        <unique name="UQ_TLGNU_USER_PDA_USER">
+            <unique-column name="PDA_USER_NO"/>
+        </unique>
+		<unique name="UQ_TLGNC_USER_RFIDOBJECT_ID">
+            <unique-column name="PDA_USER_RFIDOBJECT_ID"/>
+        </unique>
+        <!-- No need to make the passcode ALONE unique. PDA_USER_NO is unique!
+        <unique name="UQ_TLGNU_USER_BARCODE_PASS">
+            <unique-column name="PICKUP_BARCODE_PASSCODE"/>
+        </unique>
+        -->
+
+		<!-- LOGON-5396: Enforce uniqueness of password reset token. It must be possible to identify a user only by the token. -->
+		<unique name="UQ_TLGNC_USER_EXT_PWD_TOKEN">
+            <unique-column name="EXT_PWD_RESETTOKEN_HASH"/>
+        </unique>
+
+
+    </table>
+</database>

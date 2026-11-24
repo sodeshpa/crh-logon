@@ -1,0 +1,241 @@
+/*--------------dev settings start (comment out)---------------------*/
+
+/*td {
+	border: 1px solid red;
+}
+*/
+/*--------------general settings start---------------------*/
+
+* {
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+body {
+	margin-top: 25px;
+	margin-left: 40px;
+	margin-bottom:25px;
+	margin-right: 35px;
+	
+	color: black;
+    background-color: #FFFFFF;
+    font-family: Arial, "Sans-Serif";
+    font-size: 9px;
+}
+
+.page-container {
+	height: 792px;
+}
+
+.align-bottom {
+	vertical-align: bottom;
+}
+
+.align-top {
+	vertical-align: top;
+}
+
+table, tr {
+	width: 100%;
+}
+
+td {
+	text-align: left;
+}
+
+.no-overflow {
+	white-space: nowrap;
+	overflow: hidden;
+	line-height: 1.1;
+}
+
+.margin-top {
+	margin-top: 10px;
+}
+
+.margin-bottom {
+	margin-bottom: 10px;
+}
+
+.margin-bottom-5 {
+	margin-bottom: 5px;
+}
+
+.nowrap {
+	white-space: nowrap;
+}
+
+.ruler {
+	height: 1px;
+	background-color: black;
+}
+
+.border-bottom {
+	border-bottom: 1px solid black;
+}
+
+.right {
+	text-align: right;
+}
+
+.text6 {
+	font-size: 6px;
+}
+
+.text7 {
+	font-size: 7px;
+}
+
+.text8 {
+	font-size: 8px;
+}
+
+.text9 {
+	font-size: 9px;
+}
+
+.text10 {
+	font-size: 10px;
+}
+
+.text14 {
+	font-size: 14px;
+}
+
+.bold {
+	font-weight: bold;
+}
+
+/*----------------header start-----------------*/
+#sorg-data-main-table {
+	padding-bottom: 5px;
+}
+
+#sorg-data-address-container {
+	vertical-align: middle;
+}
+
+#title-table > tr > td {
+	width: 50%;
+	vertical-align: top;
+}
+
+#sorg-crh-logo {
+	width: 100px;
+	height: 45px;
+}
+
+#sorg-crh-logo-container {
+	width: 60%;
+	padding-right: 10px;
+	vertical-align: top;
+	text-align: right;
+}
+
+.title-right-section {
+	padding-left: 5px;
+}
+
+.title-left-section {
+	padding-right: 5px;
+}
+
+#order-header-table > tr > td {
+	width: 50%;
+	vertical-align: top;
+}
+
+.address-container {
+	vertical-align: top;
+	width: 33%;
+}
+
+.crossboundary-container {
+	margin-bottom: 2px;
+}
+
+.crossboundary-data {
+	vertical-align:bottom;
+	height: 100px;
+}
+
+.banner-image {
+	height: 100px;
+	width: 510px;
+}
+
+
+#address-table {
+	padding-top: 5px;
+	line-height: 1.1;
+}
+
+#address-table  table {
+	margin-bottom: 2px;
+}
+
+/*----------------body start-----------------*/
+.orderitem-container {
+	margin-bottom: 2px;
+}
+
+.orderitem-table {
+	line-height: 1.1;
+	margin-top: 2px;
+	margin-bottom: 2px;
+	width: 100%;
+}
+
+.orderitem-table td {
+	vertical-align: top;
+}
+
+.logo-image {
+	height: auto;
+	margin-right: 5px;
+}
+
+.logo-image-td {
+	vertical-align: bottom;
+	overflow: hidden;
+}
+
+.logo-text-container {
+	overflow: hidden;
+	margin-right: 5px;
+	font-size: 7px;
+}
+
+.logo-text-td {
+	vertical-align: top;
+}
+
+.logo-main-container {
+	width: auto;
+	overflow: hidden;
+}
+
+/*----------------footer start-----------------*/
+
+.signature-image {
+	max-width: 135px;
+	max-height: 75px;
+}
+
+#footer-data {
+	margin-top: 2px;
+	line-height: 1.1;
+}
+
+#signature-container > tr > td {
+	width: 33%;
+}
+
+#signature-fields > td {
+	height: 75px;
+}

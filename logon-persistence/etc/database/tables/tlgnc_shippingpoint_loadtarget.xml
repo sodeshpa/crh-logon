@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNC_SHIPPINGPOINT_LOADTARGET"
+           description="Expected load target information for a Material and Shippingpoint. Relevant for rail shippingpoints (wagons, maybe containers), but it could be used also for trucks: An entry defines how many loads (wagon, container,...) of a certain material are expected to be loaded per day at a shippingpoint. If no orders exist to be loaded, the system will consult this table and determine what pre-loading order could be created. If the number of loads loaded today (preloaded incl. used for customer orders) is reached, no pre-loading will happen anymore. The target_load_count can be exceeded but only by custom-orders, not with pre-loading orders.">
+
+        <!-- PK and identifiers -->
+        <column name="SHIPPINGPOINT_LOADTARGET_ID" primaryKey="true" required="true" type="DECIMAL" size="12"
+                description="PK"/>
+        <column name="SHIPPINGPOINT_ID" required="true" type="DECIMAL" size="12"
+                description="FK tlgnc_shippingpoint. Shippingpoint where this load target should the reached daily. Note, this is NOT the SAP Shippingpoint Number, but the technical ID of that shippingpoint in Logon DB."/>
+        <column name="SAP_MATERIAL_ID" required="true" type="DECIMAL" size="12"
+                description="FK tlgns_sap_material. Material (Product) of this load target. Note, this is NOT the SAP Material Number, but the technical ID of that material in Logon DB. (shippingpoint_id, sap_material_id, production_plant_cd, shippingpointpoin_id) is the business identifier for a record of this table, and must be unique."/>
+        <column name="PRODUCTION_PLANT_CD" required="true" type="VARCHAR" size="4"
+                description="Production Plant where the material is produced. In most cases this will be identical to tlgnc_shippingpoing.plant_cd (the supply plant), but it must be possible to express load targets for materials originally produced somewhere else."/>
+
+        <!-- The load target information -->
+        <column name="TARGET_LOAD_COUNT" type="DECIMAL" size="4" required="true"
+                description="Targeted number of loads defined by (load_quantity, load_uom_cd) of this material at the shippingpoint_id."/>
+        <column name="LOAD_UOM_CD" type="VARCHAR" size="3" required="true"
+                description="FK tlgnr_uom_bs. Unit of measure on which LOAD_QUANTITY is based. This can be a real UOM such as 'TO', but also a 'fuzzy' UOM such as 'LKW' (a full truck), 'CON' (container), 'BW' (wagon)."/>
+        <column name="LOAD_QUANTITY" type="DECIMAL" size="12,4" required="true"
+                description="Quantity of the material in units defined by LOAD_UOM_CD. Typical examples: 1 BW (for direct rail pre-loading), 54 TO (for Bimodal pre-loading)."/>
+        <column name="PRELOAD_COMMENT" type="VARCHAR" size="200"
+                description="Comment which will be sent to the weighing system (Parallel) in parameter orderComment when creating a pre-load order."/>
+        <!-- We could introduce 1 comment about the loadtarget rule for display in logon, and 1 for parallel.
+             But as there is no maintenance UI for this in Logon, just keep it simple, 1 comment is sufficient for now
+        -->
+
+        <foreign-key foreignTable="TLGNC_SHIPPINGPOINT" name="FK_TLGNC_SP_LOADTARGET_SP">
+            <reference local="SHIPPINGPOINT_ID" foreign="SHIPPINGPOINT_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNS_SAP_MATERIAL" name="FK_TLGNC_SP_LOADTARGET_MAT">
+            <reference local="SAP_MATERIAL_ID" foreign="SAP_MATERIAL_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_PLANT_BS" name="FK_TLGNC_SP_LOADTARGET_PLANT">
+            <reference local="PRODUCTION_PLANT_CD" foreign="PLANT_CD"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_UOM_BS" name="FK_TLGNC_SP_LOADTARGET_UOM">
+            <reference local="LOAD_UOM_CD" foreign="UOM_CD"/>
+        </foreign-key>
+
+    </table>
+</database>

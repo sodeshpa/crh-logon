@@ -1,0 +1,16 @@
+-- ${msg_warning_generated}
+-- prompt =========================================================================
+-- prompt === version: $gdi.version
+-- prompt === generated at: $gdi.generatedAt
+-- prompt === template: $cartridge.templatePath/$currentTemplate
+-- prompt =========================================================================
+
+#foreach ($curfile in $sorter.sort($allfiles))
+#set ($current = $inputmap.get($curfile))
+#foreach ($table in $current.database.tableArray)
+#set ($tableName = $table.name.stringValue)
+#foreach ($unique in $table.uniqueArray)
+$st.printf("ALTER TABLE %-32s DROP CONSTRAINT %s DROP INDEX", $tableName, $unique.name.stringValue);
+#end
+#end
+#end

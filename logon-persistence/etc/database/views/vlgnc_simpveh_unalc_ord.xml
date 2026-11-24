@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="VLGNC_SIMPVEH_UNALC_ORD" mappingType="view" skipSql="true">
+        <column name="ORDER_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="ORDER_NUMBER" type="DECIMAL" size="12"/>
+        <column name="POOL_ID" type="DECIMAL" size="12"/>
+        <column name="CUSTORDER_NUMBER" required="true" type="DECIMAL" size="12"/>
+        <column name="NOTE_DISPATCHING" type="VARCHAR" size="256"/>
+        <column name="PACKAGE_TYPE" type="VARCHAR" size="20"/>
+        <column name="MAT_DESC" required="true" type="VARCHAR" size="40"/>
+        <column name="ORDERED_QUANTITY" type="DECIMAL" size="12,4"/>
+        <column name="ORDERED_UOM_TXT" required="true" type="VARCHAR" size="20"/>
+        <column name="DELIVERY_FROM_DAT" required="true" type="DATE"/>
+        <column name="DELIVERY_TO_DAT" required="true" type="DATE"/>
+        <column name="SOLDTO_NAME" type="VARCHAR" size="35"/>
+        <column name="SHIPTO_NAME" type="VARCHAR" size="35"/>
+        <column name="CARRIER_NAME" required="true" type="VARCHAR" size="40"/>
+        <column name="LANG_CD" required="true" type="VARCHAR" size="2"/>
+    </table>
+</database>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNR_UOM_BS" refData="true"
+           description="Unit of Measurement, based on the base unit 1 ton / 1 piece / 1 hour specified in UOM_DIMENSION.">
+
+        <column name="UOM_CD" primaryKey="true" required="true" type="VARCHAR" size="3"
+                description="PK. Code of the Reference Data. If the UoM exists in SAP, then it's identical. Some values are used in Logon only."/>
+        <column name="CTL_ACT_CD" required="true" type="BOOLEAN"
+                description="Active Flag. When new data is entered, only reference data with active flag are available for selection normally."/>
+        <column name="NUMERATOR_FOR_CONVERSION" type="DECIMAL" size="5"
+                description="Nullable. Multiplier in respect to the base unit in UOM_DIMENSION_CD. Even for vague units (truck, railcar) a conversion and a uom_dimension is necessary; this is needed to estimate the amount for not-yet-dispatched orders. If null (e.g. at alternative UoM) then the UOM_DIMENSION_CD is also null. In this case the conversion to the base unit in UOM_DIMENSION_CD would be incorrect since the alternative UoM is material specific (global conversion not possible use tlgns_sap_material_alt_uom.numerator_for_conversion for conversion to the base unit of the material)"/>
+        <column name="DENOMINATOR_FOR_CONVERSION" type="DECIMAL" size="5"
+                description="Nullable. Divisor in respect to the base unit in UOM_DIMENSION_CD. Even for vague units (truck, railcar) a conversion and a uom_dimension is necessary; this is needed to estimate the amount for not-yet-dispatched orders. If null (e.g. at alternative UoM) then the UOM_DIMENSION_CD is also null. In this case the conversion to the base unit in UOM_DIMENSION_CD would be incorrect since the alternative UoM is material specific (global conversion not possible use tlgns_sap_material_alt_uom.denominator_for_conversion for conversion to the base unit of the material)"/>
+        <column name="CREATE_MULTI_ORDER_FLAG" required="true" type="BOOLEAN"
+                description="When creating an order and this flag is set, several orders will be created, depending on the order quantity. Example: 3 trucks will create 3 orders (true), but 2 BAGS or 4 TONS will still lead to only one order (false)"/>
+        <column name="AVAILABLE_IN_WEB_ORDER_FLAG" required="true" type="BOOLEAN"
+                description="1=unit of measure is shown to the customer when taking an order via web user interface."/>
+        <column name="FUZZY_QUANTITY_FLAG" required="true" type="BOOLEAN"
+                description="1=unit of measure is a so-called 'fuzzy' (or vague) UOM used for ordered_uom_cd. Examples: 1 Truck (LKW) is an UOM used in order taking, and counts as 28 tons until the order is actually dispatched to a real truck (and the net amount will become known by the truck type/loading). 1 Rail-wagon, 1 Container are just as fuzzy, even 1 PAL (because there could be 40 or 48 bags on it)."/>
+        <column name="UOM_DIMENSION_CD" type="VARCHAR" size="3"
+                description="FK tlgnr_uom_dimension_bs. Nullable. Code of UOM dimension in which UOM_CD is expressed (1 ton, 1 hour, 1 piece). 1 UOM_DIMENSION_CD * NUMERATUR / DENOMINATOR = 1 UOM_CD. If null (e.g. at alternative UoM) then the NUMERATOR_FOR_CONVERSION and DENOMINATOR_FOR_CONVERSION are also null. In this case the conversion to the base unit in UOM_DIMENSION_CD would be incorrect since the alternative UoM is material specific (global conversion not possible use tlgns_sap_material_alt_uom.numerator_for_conversion and denominator_for_conversion for conversion to the base unit of the material)"/>
+        <column name="SEND_TO_SAP" type="VARCHAR" size="3"
+                description="Code used by outgoing SAP interfaces. If null, uom_cd is sent to SAP (i.e. no override)."/>
+
+        <foreign-key foreignTable="TLGNR_UOM_DIMENSION_BS" name="FK_TLGNR_UOM_UOM_DIMENSION">
+            <reference local="UOM_DIMENSION_CD" foreign="UOM_DIMENSION_CD"/>
+        </foreign-key>
+    </table>
+</database>

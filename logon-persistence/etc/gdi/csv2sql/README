@@ -1,0 +1,19 @@
+This cartridge generates sql from csv files.
+
+There is a template for each type of cvs file. e.g.:
+
+'config.csv'                   is handeled by 'config.sql.vm'
+'user_person_driver_role.csv'  is handeled by 'user_person_driver_role.sql.vm'
+etc
+
+naming:
+
+- the generated sql files will be located in a directory according to
+the parent directory-name of the path in which the csv file resides
+- the generated sql files will be named according to the input-csv
+file with '.csv' replaced by '.sql' and 'insert_' as a prefix.
+
+example:
+
+in:    csv/refdata/config.csv
+out:   outputdir/refdata/insert_config.sql

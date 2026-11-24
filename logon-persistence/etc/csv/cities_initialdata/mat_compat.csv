@@ -1,0 +1,19 @@
+# $Revision$
+# $Date$
+# Status: Generated into INSERT OR UPDATE sql script by csv2sql generator. Do not change columns;;;;;#Based on Produkt_Kombatibilitaetsmatrix_Bahnverlad_V1.1_KorrMAM_ER_20100302.xls
+# ignored;#lookup in tlgns_sap_material;#decimal value;#decimal value;;
+# mat_compat_id;FROM_SAP_MATERIAL_NO;INSIGNIFICANT_THRESHOLD_PERC;FORCE_IDENTICAL_THRESHOLD_PERC;COMPAT_COMMENT;INCOMPAT_COMMENT
+;1404860;2.9;7;Normo 4->  Riteno 4N, Fluvio 4, Georoc;
+;1404863;2.9;7;Normo 5R->  Normo 4, Riteno 4N, Fluvio 4, Georoc;
+;1404839;2.9;7;Fluvio 4->  Georoc;
+;1404841;2.9;7;Fortico 5R->  Normo 5R, Normo 4, Riteno 4N, Georoc;Fluvio: Farbe, Flextremo 3R/4R: Wasseranspruch
+;1405002;2.9;7;Flextremo 3R->  (keine);Wasseranspruch, Festigkeiten
+;1404883;2.9;7;Flextremo 4R->  Flextremo 3R;
+;1404805;2.9;7;DORODUR H 50->  alle Georoc Produkte;
+;1404875;2.9;7;DOROPORT TB N, HRB 32.5 E->  alle Georoc Produkte;
+;1404893;2.9;7;Riteno 4N->  ;
+;1406491;2.9;7;Bisolvo 3R->  ;
+;1404843;2.9;7;Gottardo 310->  ;
+;1404834;2.9;7;Eternit Zement->  ;
+;1404870;2.9;7;Provato 3R->  ;
+;1410928;2.9;7;Provato 3R -TZ1->  (gleicher Zement wie Provato 3R);

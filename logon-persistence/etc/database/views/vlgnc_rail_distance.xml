@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="VLGNC_RAIL_DISTANCE" mappingType="view" skipSql="true">
+    	<column name="ROW_NUMBER" required="true" type="DECIMAL" size="12"/>
+    	<column name="RAIL_DISTANCE_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="DEP_STATION_NAME" required="true" type="VARCHAR" size="50"/>
+        <column name="DEP_STATION_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="ARR_STATION_NAME" required="true" type="VARCHAR" size="50"/>
+        <column name="ARR_STATION_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="TARIFF_DISTANCE_M" required="true" type="DECIMAL" size="10"/>
+    </table>
+</database>

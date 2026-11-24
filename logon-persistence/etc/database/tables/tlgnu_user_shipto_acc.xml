@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNU_USER_SHIPTO_ACC"
+           description="Access Control/Data restriction table. Defines the Ship-Tos (tlgns_sap_bp with bp_is_shipto=1) a user has access to.">
+
+        <column name="USER_SHIPTO_ACC_ID" primaryKey="true" required="true" type="DECIMAL" size="12"
+                description="PK"/>
+        <column name="USER_ID" required="true" type="DECIMAL" size="12"
+                description="FK tlgnu_user. The Logon user."/>
+        <column name="SHIPTO_SAP_BP_ID" required="true" type="DECIMAL" size="12"
+                description="FK tlgns_sap_bp. The Shipto for which access is granted. Technical hint: This must be the SAP shipto (tlgns_sap_bp), unless we would create a Logon shipto (tlgnc_shipto) for each shipto."/>
+		<column name="USER_SOLDTO_BP_ACC_ID" required="true" type="DECIMAL" size="12"
+                description="FK tlgnu_user_soldto_bp_acc. With this constraint, we enforce, that any shipto restriction requires that its soldto_bp is also restricted. I.e. you cannot create a shipto restriction, if there is not already a restriction on the respective soldto_bp."/>
+        <foreign-key foreignTable="TLGNS_SAP_BP" name="FK_TLGNU_USER_SHIPTO_ACC_SHIPT">
+            <reference local="SHIPTO_SAP_BP_ID" foreign="SAP_BP_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNU_USER" name="FK_TLGNU_USER_SHIPTO_ACC_USER">
+            <reference local="USER_ID" foreign="USER_ID"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNU_USER_SOLDTO_BP_ACC" name="FK_TLGNU_USER_SHIPT_ACC_SOLD">
+            <reference local="USER_SOLDTO_BP_ACC_ID" foreign="USER_SOLDTO_BP_ACC_ID"/>
+        </foreign-key>
+        <unique name="UQ_TLGNU_USER_SHIPTO_ACC">
+            <unique-column name="USER_ID"/>
+            <unique-column name="SHIPTO_SAP_BP_ID"/>
+            <unique-column name="USER_SOLDTO_BP_ACC_ID"/><!-- In rare cases a shipto is linked from SEVERAL Soldto. Therfore, UQ constraint must include Soldto -->
+        </unique>
+    </table>
+</database>

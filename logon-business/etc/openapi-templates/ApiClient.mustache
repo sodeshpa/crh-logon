@@ -1,0 +1,402 @@
+package {{invokerPackage}};
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+import java.time.OffsetDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Base64;
+import java.util.Collection;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Objects;
+import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+import javax.servlet.http.HttpServletResponse;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.apache.commons.lang.StringUtils;
+import org.apache.http.Header;
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.methods.HttpUriRequest;
+import org.apache.http.client.methods.RequestBuilder;
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.entity.ContentType;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.util.EntityUtils;
+
+{{>generatedAnnotation}}
+public class ApiClient {
+  public static final String DEFAULT_BASEPATH = "{{{basePath}}}";
+  private volatile String basePath = DEFAULT_BASEPATH;{{#authMethods}}{{#isBasic}}
+  private volatile String username = null;
+  private volatile String password = null;{{/isBasic}}{{#isApiKey}}
+  private volatile String apiKey = null;{{/isApiKey}}{{/authMethods}}
+
+  private final CloseableHttpClient httpClient;
+  private final ObjectMapper objectMapper;
+
+  private final DateTimeFormatter dateTimeFormatter;
+
+  public ApiClient(CloseableHttpClient httpClient, ObjectMapper objectMapper) {
+    this.httpClient = httpClient;
+    this.objectMapper = objectMapper;
+
+    dateTimeFormatter = DateTimeFormatter.ISO_INSTANT;
+  }
+
+  public CloseableHttpClient getCloseableHttpClient() {
+    return httpClient;
+  }
+
+  public String getBasePath() {
+    return basePath;
+  }
+
+  public ApiClient setBasePath(String basePath) {
+    this.basePath = basePath;
+    return this;
+  }{{#authMethods}}{{#isBasic}}
+
+  public void setUsername(String username) {
+    this.username = username;
+  }
+
+  public void setPassword(String password) {
+    this.password = password;
+  }{{/isBasic}}{{#isApiKey}}
+
+  public void setApiKey(String apiKey) {
+    this.apiKey = apiKey;
+  }{{/isApiKey}}{{/authMethods}}
+
+  /**
+   * Format the given parameter object into string.
+   * @param param an object to format
+   * @return the {@code String} version of the object
+   */
+  public String parameterToString(Object param) {
+    if (param == null) {
+      return "";
+    } else if (param instanceof Date) {
+      return dateTimeFormatter.format(((Date) param).toInstant());
+    } else if (param instanceof OffsetDateTime) {
+      return dateTimeFormatter.format((OffsetDateTime) param);
+    } else if (param instanceof Collection) {
+      StringBuilder b = new StringBuilder();
+      for(Object o : (Collection)param) {
+        if(b.length() > 0) {
+          b.append(",");
+        }
+        b.append(String.valueOf(o));
+      }
+      return b.toString();
+    } else {
+      return String.valueOf(param);
+    }
+  }
+
+  /*
+    Format to {@code Pair} objects.
+  */
+  public List<Pair> parameterToPairs(String collectionFormat, String name, Object value){
+    List<Pair> params = new ArrayList<Pair>();
+
+    // preconditions
+    if (name == null || name.isEmpty() || value == null) return params;
+
+    Collection valueCollection = null;
+    if (value instanceof Collection) {
+      valueCollection = (Collection) value;
+    } else {
+      params.add(new Pair(name, parameterToString(value)));
+      return params;
+    }
+
+    if (valueCollection.isEmpty()){
+      return params;
+    }
+
+    // get the collection format
+    collectionFormat = (collectionFormat == null || collectionFormat.isEmpty() ? "csv" : collectionFormat); // default: csv
+
+    // create the params based on the collection format
+    if (collectionFormat.equals("multi")) {
+      for (Object item : valueCollection) {
+        params.add(new Pair(name, parameterToString(item)));
+      }
+
+      return params;
+    }
+
+    String delimiter = ",";
+
+    if (collectionFormat.equals("csv")) {
+      delimiter = ",";
+    } else if (collectionFormat.equals("ssv")) {
+      delimiter = " ";
+    } else if (collectionFormat.equals("tsv")) {
+      delimiter = "\t";
+    } else if (collectionFormat.equals("pipes")) {
+      delimiter = "|";
+    }
+
+    StringBuilder sb = new StringBuilder() ;
+    for (Object item : valueCollection) {
+      sb.append(delimiter);
+      sb.append(parameterToString(item));
+    }
+
+    params.add(new Pair(name, sb.substring(1)));
+
+    return params;
+  }
+
+  /**
+   * Check if the given MIME is a JSON MIME.
+   * JSON MIME examples:
+   *   application/json
+   *   application/json; charset=UTF8
+   *   APPLICATION/JSON
+   *   application/vnd.company+json
+   * @param mime MIME (Multipurpose Internet Mail Extensions)
+   * @return True if the given MIME is JSON, false otherwise.
+   */
+  public boolean isJsonMime(String mime) {
+    String jsonMime = "(?i)^(application/json|[^;/ \t]+/[^;/ \t]+[+]json)[ \t]*(;.*)?$";
+    return mime != null && (mime.matches(jsonMime) || mime.equals("*/*"));
+  }
+
+  /**
+   * Select the Accept header's value from the given accepts array:
+   *   if JSON exists in the given array, use it;
+   *   otherwise use all of them (joining into a string)
+   *
+   * @param accepts The accepts array to select from
+   * @return The Accept header to use. If the given array is empty,
+   *   null will be returned (not to set the Accept header explicitly).
+   */
+  public String selectHeaderAccept(String[] accepts) {
+    if (accepts.length == 0) {
+      return null;
+    }
+    for (String accept : accepts) {
+      if (isJsonMime(accept)) {
+        return accept;
+      }
+    }
+    return StringUtils.join(accepts, ",");
+  }
+
+  /**
+   * Select the Content-Type header's value from the given array:
+   *   if JSON exists in the given array, use it;
+   *   otherwise use the first one of the array.
+   *
+   * @param contentTypes The Content-Type array to select from
+   * @return The Content-Type header to use. If the given array is empty,
+   *   JSON will be used.
+   */
+  public String selectHeaderContentType(String[] contentTypes) {
+    if (contentTypes.length == 0) {
+      return "application/json";
+    }
+    for (String contentType : contentTypes) {
+      if (isJsonMime(contentType)) {
+        return contentType;
+      }
+    }
+    return contentTypes[0];
+  }
+
+  /**
+   * Escape the given string to be used as URL query value.
+   * @param str a {@code String} to escape
+   * @return the escaped version of the {@code String}
+   */
+  public String escapeString(String str) {
+    try {
+      return URLEncoder.encode(str, "utf8").replaceAll("\\+", "%20");
+    } catch (UnsupportedEncodingException e) {
+      return str;
+    }
+  }
+
+  /**
+   * Serialize the given Java object into string entity according the given
+   * Content-Type (only JSON is supported for now).
+   * @param obj the object to serialize
+   * @param formParams the form parameters
+   * @param contentType the content type
+   * @return an {@code HttpEntity}
+   * @throws ApiException on failure to serialize
+   */
+  public HttpEntity serialize(Object obj, Map<String, Object> formParams, String contentType) throws ApiException {
+    if (!isJsonMime(contentType)) {
+      throw new IllegalArgumentException("not supported");
+    }
+
+    if (obj == null) {
+      return null;
+    }
+
+    try {
+      return new StringEntity(objectMapper.writeValueAsString(obj), ContentType.create(contentType, StandardCharsets.UTF_8));
+    }
+    catch (JsonProcessingException e) {
+      throw new ApiException(e);
+    }
+  }
+
+  /**
+   * Deserialize response body to Java object according to the Content-Type.
+   * @param <T> a Java type parameter
+   * @param response the response body to deserialize
+   * @param returnType a Java type to deserialize into
+   * @return a deserialized Java object
+   * @throws ApiException on failure to deserialize
+   */
+  public <T> T deserialize(HttpResponse response, TypeReference<T> returnType) throws ApiException, IOException {
+    if (response == null || returnType == null) {
+      return null;
+    }
+
+    HttpEntity entity = response.getEntity();
+
+    if ("byte[]".equals(returnType.getType().getTypeName())) {
+      return (T) EntityUtils.toByteArray(entity);
+    }
+
+    Header contentTypeHeader = entity.getContentType();
+    if (contentTypeHeader == null) {
+      throw new ApiException(500, "missing Content-Type in response");
+    }
+    if (!isJsonMime(contentTypeHeader.getValue())) {
+      throw new ApiException(500, "cannot deserialize");
+    }
+    Optional<NameValuePair> charsetHeader = Stream.of(contentTypeHeader.getElements())
+            .map(it -> it.getParameterByName("charset")).filter(Objects::nonNull).findFirst();
+    Charset charset = charsetHeader.map(NameValuePair::getValue).map(Charset::forName).orElse(StandardCharsets.UTF_8);
+    try (InputStream is = entity.getContent(); Reader reader = new InputStreamReader(is, charset)) {
+      return objectMapper.readValue(reader, returnType);
+    }
+  }
+
+  /**
+   * Invoke API by sending HTTP request with the given options.
+   *
+   * @param <T> a Java type parameter
+   * @param path The sub-path of the HTTP URL
+   * @param method The request method, one of "GET", "POST", "PUT", "HEAD" and "DELETE"
+   * @param queryParams The query parameters
+   * @param body The request body object
+   * @param headerParams The header parameters
+   * @param cookieParams The cookie parameters
+   * @param formParams The form parameters
+   * @param accept The request's Accept header
+   * @param contentType The request's Content-Type header
+   * @param authNames The authentications to apply
+   * @param returnType The return type into which to deserialize the response
+   * @return The response body in type of string
+   * @throws ApiException if the invocation failed
+   */
+  public <T> T invokeAPI(String path, String method, List<Pair> queryParams, Object body, Map<String, String> headerParams, Map<String, String> cookieParams, Map<String, Object> formParams, String accept, String contentType, String[] authNames, TypeReference<T> returnType) throws ApiException {
+    RequestBuilder requestBuilder = RequestBuilder.create(method)
+            .addHeader("Accept", accept)
+            .setUri(basePath + (basePath.endsWith("/") ? path.substring(1) : path));{{#authMethods}}{{#isBasic}}
+
+    if (username != null && password != null) {
+      requestBuilder.setHeader("Authorization", "Basic " +
+              Base64.getEncoder().encodeToString((username + ":" + password).getBytes(StandardCharsets.ISO_8859_1)));
+    }{{/isBasic}}{{#isApiKey}}
+
+    if (apiKey != null) { {{#isKeyInHeader}}
+      requestBuilder.addHeader("{{keyParamName}}", apiKey);{{/isKeyInHeader}}{{#isKeyInQuery}}
+      requestBuilder.addParameter("{{keyParamName}}", apiKey);{{/isKeyInQuery}}{{#isKeyInCookie}}
+      requestBuilder.addHeader("Cookie", "{{keyParamName}}=" + apiKey);{{/isKeyInCookie}}
+    }{{/isApiKey}}{{/authMethods}}
+
+    if (queryParams != null) {
+      for (Pair queryParam : queryParams) {
+        if (queryParam.getValue() != null) {
+          requestBuilder.addParameter(queryParam.getName(), queryParam.getValue());
+        }
+      }
+    }
+
+    for (Entry<String, String> headerParamsEnrty : headerParams.entrySet()) {
+      String value = headerParamsEnrty.getValue();
+      if (value != null) {
+        requestBuilder.addHeader(headerParamsEnrty.getKey(), value);
+      }
+    }
+
+    for (Entry<String, String> cookieParamsEntry : cookieParams.entrySet()) {
+      String value = cookieParamsEntry.getValue();
+      if (value != null) {
+        requestBuilder.addHeader("Cookie", cookieParamsEntry.getKey() + "=" + value);
+      }
+    }
+
+    HttpEntity entity = serialize(body, formParams, contentType);
+    requestBuilder.setEntity(entity);
+
+    HttpUriRequest request = requestBuilder.build();
+    try (CloseableHttpResponse response = httpClient.execute(request)) {
+
+      if (response == null) {
+        throw new ApiException("Response was null");
+      }
+      else if (response.getStatusLine().getStatusCode() == HttpServletResponse.SC_NO_CONTENT) {
+        return null;
+      }
+      else if (response.getStatusLine().getStatusCode() >= 200 && response.getStatusLine().getStatusCode() < 300) {
+        if (returnType == null)
+          return null;
+        else
+          return deserialize(response, returnType);
+      }
+      else {
+        String message = "error";
+        String respBody = null;
+        if (response.getEntity() != null) {
+          try {
+            respBody = EntityUtils.toString(entity);
+            message = respBody;
+          }
+          catch (RuntimeException e) {
+            // e.printStackTrace();
+          }
+        }
+        throw new ApiException(
+                response.getStatusLine().getStatusCode(),
+                message,
+                buildResponseHeaders(response),
+                respBody);
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+  }
+
+  private Map<String, List<String>> buildResponseHeaders(HttpResponse response) {
+    Map<String, List<String>> responseHeaders = new HashMap<>();
+    return Stream.of(response.getAllHeaders()).collect(Collectors.groupingBy(Header::getName, Collectors.mapping(Header::getValue, Collectors.toList())));
+  }
+
+}

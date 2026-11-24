@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<log:LKWVerladeAuftragLoeschen xmlns:log="http://194.11.246.115/LogonToPISrv">
+	<log:verladeauftrag_id>300</log:verladeauftrag_id>
+</log:LKWVerladeAuftragLoeschen>

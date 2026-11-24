@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="VLGNC_MATERIAL_COMPAT" mappingType="view" skipSql="true">
+        <column name="COMPOSITE_ID" type="VARCHAR" size="43"/>
+        <column name="MAT_COMPAT_MAT_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="LANG_CD" type="VARCHAR" size="2"/>
+        <column name="FROM_SAP_MATERIAL_NO" required="true" type="VARCHAR" size="18"/>
+        <column name="FROM_SAP_MATERIAL_TXT" type="VARCHAR" size="40"/>
+        <column name="TO_SAP_MATERIAL_NO" required="true" type="VARCHAR" size="18"/>
+        <column name="TO_SAP_MATERIAL_NAME" type="VARCHAR" size="40"/>
+        <column name="INSIGNIFICANT_THRESHOLD_PERC" required="true" type="DECIMAL" size="4,1"/>
+        <column name="FORCE_IDENTICAL_THRESHOLD_PERC" required="true" type="DECIMAL" size="4,1"/>
+        <column name="COMPAT_COMMENT" type="VARCHAR" size="200"/>
+        <column name="INCOMPAT_COMMENT" type="VARCHAR" size="200"/>
+        <column name="MAT_COMPAT_MAT_COMMENT" type="VARCHAR" size="200"/>
+        <column name="MAT_COMPAT_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="FROM_SAP_MATERIAL_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="TO_SAP_MATERIAL_ID" required="true" type="DECIMAL" size="12"/>
+    </table>
+</database>

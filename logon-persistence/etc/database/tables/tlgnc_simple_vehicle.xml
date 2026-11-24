@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNC_SIMPLE_VEHICLE"
+           description="Simple vehicles (currently ships, block trains) are used to deliver different types of orders and are owned by a carrier. Many of the fields have only informative character and are ignored by Logon.">
+    <!-- Technical -->
+        <column name="SIMPLE_VEHICLE_ID" primaryKey="true" required="true" type="DECIMAL" size="12"
+                description="PK"/>
+        <column name="CARRIER_ID" required="true" type="DECIMAL" size="12"
+                description="FK tlgnc_carrier. The carrier (in German: Transporteur, Spediteur, Lieferant) who owns the vehicle."/>
+        <column name="ACTIVE_FLAG" required="true" type="BOOLEAN"
+                description="0=inactive/deleted, 1=active."/>
+        <column name="PRIORITY" required="true" type="DECIMAL" size="3"
+                description="Range: 0-99. Used for ordering of the trucks. At the moment only used for ordering purposes. (later, i.e. at the moment out of scope, then also for the auto-scheduling functionality)."/> 
+                
+    <!-- Stammdaten -->
+        <column name="VEHICLE_NAME" required="true" type="VARCHAR" size="30"
+                description="Name (ID) of the vehicle as displayed in the UI, with formatting. This is typically a shortened form of carrier + some enumeration, but must also be unique for its type because it's used for display/selection in Logon. Example: Ernst 01."/>
+        <column name="VEHICLE_REG_NO" required="true" type="VARCHAR" size="20"
+                description="Vehicle registration number. Serves as alternative identifier for a vehicle and must therefore be unique per type."/>
+        <column name="SAP_VEHICLE_NO" required="false" type="VARCHAR" size="18"
+                description="SAP Number of the truck. Field is going to be used in export interfaces to SAP."/>
+        <column name="SAP_VEHICLE_TYPE_CD" type="VARCHAR" size="30"
+                description="SAP Vehicle Type. In contrast to truck not linked to reference data, just a manually entered string."/>
+
+        <column name="SIMPLE_VEHICLE_TYPE_CD" required="true" type="DECIMAL" size="2"
+                description="Type of the vehicle (ship, block train, ...)."/>
+        <column name="VEHICLE_UNIT_COUNT" type="VARCHAR" size="10"
+                description="Number of units (e.g. wagons of a block train AKA unit train). Has only informative character for the carrier and is ignored by Logon. No consistency check."/>
+        <column name="MAX_GROSS_WEIGHT_T" type="DECIMAL" size="12,4"
+                description="Maximal gross weight (vehicle+load). This is the legal max weight for the vehicle. Information only, no logic."/>
+        <column name="TARE_WEIGHT_T" required="true" type="DECIMAL" size="12,4"
+                description="Weight of the empty vehicle in tons. Information only, no logic."/>
+        <column name="VOLUME_M3" type="DECIMAL" size="12,4"
+                description="Loading volume of the vehicle in cubic meters.  Information only, no logic."/>
+        <column name="BRANDING_FLAG" type="BOOLEAN"
+                description="0=no, 1=yes, null=unkown/does not matter. Has only informative character for the carrier and is ignored by Logon."/><!-- null ok, as displayed in a dropdown -->
+
+        <column name="NR_CHAMBERS" type="DECIMAL" size="2" required="true"
+                description="Number of chambers."/> <!-- note that this is larger than for trucks! -->
+
+        <column name="SAP_VEHICLE_IS_INTERNAL_FLAG" type="BOOLEAN"
+                description="Internal means owned by Crh company => relevant for costs calculation in SAP Yes/no/Null not applicable. Copied value from tlgns_sap_vehicle."/>
+        <column name="COMPANYCODE_CD" type="VARCHAR" size="4"
+                description="FK to tlgnr_companycode_bs. Company code the vehicle belongs to. MUST be set if SAP_VEHICLE_IS_INTERNAL_FLAG is set."/>
+
+     <!-- Assignment and organizational -->
+        <column name="VEHICLE_COMMENT" type="VARCHAR" size="200"
+                description="Comment."/>
+        <column name="HOMEBASE_COORD_LAT" type="DOUBLE"
+                description="Latitude of the homebase of the vehicle. Information only, no logic."/>
+        <column name="HOMEBASE_COORD_LON" type="DOUBLE"
+                description="Longitute of the homebase of the truck. Information only, no logic."/>
+
+        <foreign-key foreignTable="TLGNC_CARRIER" name="FK_TLGNC_SIM_VEH_CARRIER">
+            <reference local="CARRIER_ID" foreign="CARRIER_ID"/>
+        </foreign-key>    
+        <foreign-key foreignTable="TLGNR_SIMPLE_VEHICLE_TYPE_BS" name="FK_TLGNC_SIM_VEH_SIM_VEH_TYPE">
+            <reference local="SIMPLE_VEHICLE_TYPE_CD" foreign="SIMPLE_VEHICLE_TYPE_CD"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_COMPANYCODE_BS" name="FK_SIMPLE_VEHIC_COMPANYCODE_BS">
+            <reference local="COMPANYCODE_CD" foreign="COMPANYCODE_CD"/>
+        </foreign-key>
+
+        <unique name="UQ_TLGNC_SIMPLE_VEHICLE_NAME">
+            <unique-column name="VEHICLE_NAME"/>
+        </unique>
+        <unique name="UQ_TLGNC_SIMPLE_VEHICLE_REG_NO">
+            <unique-column name="VEHICLE_REG_NO"/>
+        </unique>
+    </table>
+</database>

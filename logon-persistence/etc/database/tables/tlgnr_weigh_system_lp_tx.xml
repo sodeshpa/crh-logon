@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNR_WEIGH_SYSTEM_LP_TX" refData="true"
+           description="Language dependent attributes for Weighing System Types.">
+
+        <column name="WEIGH_SYSTEM_LP_CD" primaryKey="true" required="true" type="DECIMAL" size="2"
+                description="Part of PK. FK tlgnr_weigh_system_lp_bs. Code of the Reference Data."/>
+        <column name="LANG_CD" primaryKey="true" required="true" type="VARCHAR" size="2"
+                description="Part of PK. FK tlgnr_lang_bs."/>
+        <column name="TXT" required="true" type="VARCHAR" size="50"
+                description="Description of the code in the language lang_cd."/>
+
+        <foreign-key foreignTable="TLGNR_WEIGH_SYSTEM_LP_BS" name="FK_TLGNR_WEIGHSYS_LP_TX">
+            <reference local="WEIGH_SYSTEM_LP_CD" foreign="WEIGH_SYSTEM_LP_CD"/>
+        </foreign-key>
+        <foreign-key foreignTable="TLGNR_LANG_BS" name="FK_TLGNR_WEIGHSYS_LP_LANG">
+            <reference local="LANG_CD" foreign="LANG_CD"/>
+        </foreign-key>
+    </table>
+</database>

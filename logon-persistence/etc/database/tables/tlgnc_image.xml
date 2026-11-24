@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="TLGNC_IMAGE"
+           description="Stores images which are configurable by the administrator. Example: logos for output documents. Signatures are stored in a seperate table.">
+
+        <column name="IMAGE_ID" primaryKey="true" required="true" type="DECIMAL" size="12"
+                description="PK"/>
+        <column name="IMAGE_NAME" required="true" type="VARCHAR" size="100"
+                description="Human readable name/description of the image. This is used as an alternative identifier and must also be unique."/>
+        <column name="DATA" type="BLOB"
+                description="The binary data of the image"/>
+        <column name="DATA_MIME_TYPE_CD" required="true" type="DECIMAL" size="12"
+                description="FK tlgnr_mime_type_bs. The MIME type of the image, 1=image/gif, 2=image/jpeg, ..."/>
+
+        <foreign-key foreignTable="TLGNR_MIME_TYPE_BS" name="FK_TLGNC_IMAGE_DATA_MIME">
+            <reference local="DATA_MIME_TYPE_CD" foreign="MIME_TYPE_CD"/>
+        </foreign-key>
+
+        <unique name="UQ_TLGNC_IMAGE_IMAGE_NAME">
+            <unique-column name="IMAGE_NAME"/>
+        </unique>
+
+    </table>
+</database>

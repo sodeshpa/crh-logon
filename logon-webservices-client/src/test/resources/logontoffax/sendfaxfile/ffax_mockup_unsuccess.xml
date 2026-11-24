@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<off:SendFaxFile xmlns:off="http://www.officemaster.de/">
+	<argsNumber>wrong number</argsNumber>
+	<argsFileName />
+	<argbytFileStream />
+</off:SendFaxFile>

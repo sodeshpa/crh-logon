@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Author            : AdNovum Informatik AG
+ Version Number    : $Revision$
+ Date of last edit : $Date$
+-->
+
+<project name="properties" basedir=".">
+
+    <property name="masterbuild.dir"                location="${basedir}/.." />
+    <import file="${masterbuild.dir}/properties.xml"/>
+
+    <property name="client.dir.name"                value="client" />
+    <property name="ddl.dir.name"                   value="ddl" />
+    <property name="ddl.file.name"                  value="10_create_basictables_pk_fk.sql" />
+	<property name="ddl.temp.file.name"				value="create-entities-for-sap-staging-area.sql" />
+    <property name="entities.dir.name"              value="entities" />
+    <property name="origentities.dir.name"          value="origentities" />
+    <property name="ejb.dir.name"                   value="ejb" />
+    <property name="endorsed.dir.name"              value="endorsed" />
+    <property name="ext.dir.name"                   value="ext" />
+    <property name="generated.dir.name"             value="generated-src" />
+    <property name="resources.dir.name"             value="resources" />
+    <property name="service.dir.name"               value="service" />
+    <property name="stage.dir.name"                 value="stage" />
+    <property name="war.dir.name"                   value="war" />
+    <property name="wsdl.dir.name"                  value="wsdl" />
+    <property name="xsd.dir.name"                   value="xsd" />
+
+    <property name="axis2.stage.dir"                value="${build.dir}/${stage.dir.name}" />
+    <property name="classes.service.dir"            value="${classes.dir}/${service.dir.name}/classes" />
+    <property name="classes.client.dir"             value="${classes.dir}/${client.dir.name}/classes" />
+    <property name="classes.origentities.dir"       value="${classes.dir}/${origentities.dir.name}/classes" />
+    <property name="classes.ejbs.dir"				value="${classes.dir}/${ejb.dir.name}/classes" />
+    <property name="ext.dir"						value="${classes.dir}/${ext.dir.name}" />
+	<property name="endorsed.jars.dir"				value="${classes.dir}/${endorsed.dir.name}" />
+    <property name="etc.entities.dir"               value="${etc.dir}/${entities.dir.name}" />
+    <property name="generated.src.dir"              value="${build.dir}/${generated.dir.name}" />
+    <property name="generated.ser.dir"              value="${generated.src.dir}/${service.dir.name}" />
+    <property name="generated.cli.dir"              value="${generated.src.dir}/${client.dir.name}" />
+    <property name="generated.ent.dir"              value="${generated.src.dir}/${entities.dir.name}" />    
+    <property name="generated.ddl.dir"              value="${generated.src.dir}/${ddl.dir.name}" />    
+    <property name="generated.ddl.stage.dir"        value="${generated.ddl.dir}/${stage.dir.name}" />    
+    <property name="generated.xsd.dir"              value="${generated.src.dir}/xsd" />
+	<property name="generated.wsdl.dir"				value="${generated.src.dir}/wsdl" />
+    <property name="generated.ser.res.dir"          value="${generated.ser.dir}/${resources.dir.name}" />
+    <property name="generated.cli.res.dir"          value="${generated.cli.dir}/${resources.dir.name}" />
+    <property name="generated.ser.src.dir"          value="${generated.ser.dir}/${src.dir.name}" />
+    <property name="generated.cli.src.dir"          value="${generated.cli.dir}/${src.dir.name}" />
+    <property name="generated.ent.src.dir"          value="${generated.ent.dir}/${src.dir.name}" />
+    <property name="war.dir"                        value="${build.dir}/${war.dir.name}" />
+    <property name="wsdl.dir"                       value="${etc.dir}/${wsdl.dir.name}" />
+    <property name="xsd.dir"                        value="${etc.dir}/${xsd.dir.name}" />
+    <property name="xsd.original.dir"               value="${xsd.dir}/original" />
+
+	<property name="xmlbeans.stage.dir"				value="${classes.dir}/${service.dir.name}/${stage.dir.name}" />
+    <property name="xmlbeans.logon.jar.name"        value="xmlbeans-logon.jar" />
+    <property name="xmlbeans.logon.jar.loc"         value="${lib.dir}/${xmlbeans.logon.jar.name}" />
+
+    <property name="webservices.client.jar.name"    value="logon-client.jar" />
+    <property name="webservices.client.jar.loc"     location="${lib.dir}/${webservices.client.jar.name}" />
+    <property name="webservices.entities.jar.loc"   location="${lib.dir}/${webservices.entities.jar.name}" />
+    <property name="webservices.ejbs.jar.loc"       location="${lib.dir}/${webservices.ejbs.jar.name}" />
+    <property name="webservices.ent.jar.tmp.name"   value="logon-webservices-persistence-tmp.jar" />
+    <property name="webservices.ent.jar.tmp.loc"    location="${lib.dir}/${webservices.ent.jar.tmp.name}" />
+	<property name="webservices-client.jar.loc" 	location="${subcomponent.webservices-client}/${build.dir.name}/lib/${project-webservices-client.jar.name}"/>
+
+    <property name="jboss.deploy.dir"               location="${masterbuild.dir}/run/server/${ant.project.name}/deploy" />
+
+	<property name="webservices.package.prefix"		value="com.crh.logon.webservices" />
+
+	<property name="test-integration.jar"			location="${test.lib.dir}/test-integration.jar"/>
+</project>

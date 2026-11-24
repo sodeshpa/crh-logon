@@ -1,0 +1,458 @@
+# project initially based on MOAP 1.2.1.0 project template
+
+Contents
+========
+1.  How to set up a development environment?
+2.  How to add the project to Eclipse
+3.  About the project structure
+4.  Samples and patterns (How to add a service, an action, ...)
+5a. How to create a new patch file for a new version
+5b. How to add database columns and configuration variables
+6.  How to maintain the eventbeans?
+7.  How to insert tracing code? (minimal survival guide)
+8.  How to syntax check (and execute) JPA QL?
+9.  How to run static-tests (JS and CSS):
+10. Helper scripts
+
+
+How to set up a development environment?
+========================================
+
+0. switch to development environment with:
+
+       cp config/build-local_tmpl.properties config/build-local.properties
+
+1. In the file
+       logon-persistence/etc/csv/testdata/config.csv
+   add a key 'mail.test.to' for the instance 'adnovum.dev.<login>' (e.g.
+   'adnovum.dev.marius') with your own e-mail address (see existing entries).
+   This ensures that mails sent by the application from your instance are only
+   sent to yourself and not to everyone on the mailing list.
+   -> See for example change TEST458.
+
+2. then build the whole project by calling "adnant" on the top level
+
+3. deploy and run the project
+   1. call "adnant container-coldstart" on the toplevel
+      - installs a container
+      - configures a container setup for the project
+      - starts server, will not return as long as the app server is running.
+        (Easy app server status check, easy restart with ctrl-c)
+
+   2. deploy the project
+      - call 'adnant int-deploy' (or another 'xxx-deploy' target for a different zone)
+	  (See https://aww.adnovum.ch/confluence/display/HolcimPegasus/HolcimEnvironmentEBM
+	  for an overview of the different zones. If you are not sure, 'int-deploy' is
+	  probably OK.
+
+
+How to add the project to Eclipse
+=================================
+
+ 1. execute this on the top level of the project:
+     adnant init
+
+The LOGON app consists of several modules which are subprojects.
+It is convenient to add them all as separate projects to Eclipse:
+
+ 2. File > Import ... > General > Existing Projects into Workspace
+ 3. Set root directory: /home/<user>/projects/logon <Tab>
+ 4. All subprojects should appear. Select all and finish.
+
+In order to add the project itself to Eclipse do the following:
+
+ 5. File > New Project... > General > Project > Next
+ 6. Project name: logon > Finish
+
+Now, configure a new working set:
+
+ 7. Project -> Build Working Sets -> Select Working Set...
+    click New, select java, next
+ 8. working set name: logon
+    working set contents: select all subprojects that belong to logon
+    -> click finish
+ 9. select logon, click ok
+
+10. open the package explorer menu (in package explorer, upper right
+    corner, click on arrow which points down), 'configure working sets'
+
+11. select logon, click ok
+
+Logon is now conveniently available under the logon working set
+
+
+About the project structure:
+============================
+
+The project consists of the following sub-projects:
+
+logon-init-web                   Provides a servlet to reload the configuration
+logon-admin-web                  Web UI for the administration part
+logon-cust-web                   Web UI for 'webbestellung' and password change
+logon-order-web                  Web UI for the order part
+logon-terminal-web               UI for the touch screen terminal
+
+logon-webservices                (WS server) all SAP interfaces
+logon-webservices-mop-incoming   (WS server) WS service for mobile devices
+logon-webservices-pws-incoming   (WS server) WS service for the parallel weighting system
+logon-webservices-client         (WS client) logon as a client of other web services (fax, sms, logon->PDA)
+
+logon-common-web                 Functionality common to all web subprojects
+
+logon-business                   Business tier (services as EBJs)
+logon-persistence                DB Model, patches, configuration, and refdata
+
+logon-common                     Functionality common to all subprojects
+
+logon-security                   Login modules for all packages (dmz/dev/lan)
+
+logon-application                takes all components, builds the ear
+
+logon-simulator                  For manual testing of web services using SoapUI
+logon-test-load                  Tools for load testing the application
+
+
+You can enable/disable the build of each of these subprojects by way
+of adjusting your config/build-local.properties file:
+
+---
+# uncomment if you do want to omit a component to build:
+omit.subcomponent.webservices=true
+omit.subcomponent.webservices-mop-incoming=true
+---
+
+please be aware that some subprojects depend on other subprojects.
+
+                            depends on:
+-------------------------------------------------------------------------
+logon-common:               -
+logon-common-web:           logon-common
+logon-persistence:          logon-common
+logon-business:             logon-common, logon-persistence
+logon-admin-web:            logon-common, logon-common-web, logon-business
+logon-cust-web:             logon-common, logon-common-web, logon-business
+logon-init-web:             logon-common, logon-common-web, logon-business
+logon-order-web:            logon-common, logon-common-web, logon-business
+logon-terminal-web:         logon-common, logon-common-web, logon-business
+logon-webservices:          logon-common
+logon-webservices-mop-incoming:      logon-common, logon-persistence
+logon-webservices-pws-incoming:      logon-common, logon-persistence
+logon-webservices-client:   logon-common, logon-persistence
+logon-security:				logon-common, logon-business
+logon-simulator:			-
+logon-test-load:            -
+logon-application:          *
+
+
+Samples and patterns:
+=====================
+
+Here are some hint on how to find answers to questuions such as:
+
+- How do I add a new Service, Actions, etc.
+
+
+Add a new Service:
+------------------
+
+- create a new java file like this, replacing 'SalesArea' with the name you want:
+	@Stateless
+	public class SalesAreaServiceBean extends SalesAreaServiceDispatcher
+	(don't care if the referred dispatcher is not existing)
+- cd logon-business; aa generate -> this will generate the dispatcher and the service interface
+- you can build the whole project, should compile
+
+Add a new EntryAction/Action/Form:
+----------------------------------
+
+- IMPORTANT: every screen should have a corresponding EntryAction/Action
+   - the entryactions *only* care about things that are displayed on the screen
+     (fetches data, makes sure all the refdata, etc. is around to display)
+   - the normal actions handle user actions (user clicks on save, delete, etc)
+
+- to add a new EntryAction/Action/Form-Combo
+   - copy paste&rename: FunctionOneEntryAction -> YourEntryActio
+   - copy paste&rename: FunctionOneAction -> YourAction
+   - copy paste&rename: FunctionOneForm -> YourForm
+   - make sure that you adjust *all* the xdoclet annotations as well
+   - do NOT edit struts-config.xml, web.xml, etc: These are generated with xdoclet
+
+How to add a new view:
+----------------------
+
+The views should be named like this:
+
+    VLGN[R|C|U|S]_SOMENAME(without_VIEW at the end)
+
+-> choose R|C|U|S depending on the use case (Refdata, Common, User, SAP)
+
+Steps:
+
+- add the new view to the DB and to logon-persistence/etc/sql/custom_views.sql
+- make sure that the *first* attribute of the view is a unique identifier!
+  if you don't have a single id with this property, you can do something like this:
+
+  CREATE OR REPLACE FORCE VIEW VLGNR_SHIPTO_TYPE" (...) AS
+  SELECT
+    bs.SHIPTO_TYPE_CD || '_' || tx.LANG_CD COMPOSITE_ID,
+    ...
+
+- then:
+   cd logon-persistence
+   adnant oraviews
+     -> this will update the files in 'logon-persistence/etc/database/views', by generating
+     the definition xmls to the views (including your new one) in the database set in
+     db.connection.url. These definition xmls will be the base for generating entity classes.
+
+- adnant clean dist in logon-persistence.
+  Execute the grant for ulgn02 for your new view, found in
+    logon-persistence/build/generated/gdi/schema2ddlentities/sql/create/45_gen_grant_privileges.sql
+
+- build the project and if you're satisfied, check in the new file in 'logon-persistence/etc/database/views'
+
+  Please check in ONLY the modified view-mapping file where you expect changes!
+  Reason: adnant oraviews depends on the DB, and the Dev DB may be different
+  than a fresh DB built from SVN head. This periodic clean/update is currently
+  done together with releases to the customer. Soon, a Nightly Build task will
+  display differences
+
+
+About properties and config
+---------------------------
+
+NOTE: LogonProperties are defined in the properties files 'logon.properties'
+and 'buildtime.properties'
+
+it contains properties which are either defined at build time or can not
+be defined in the database, such as which 'instance' the application is
+running as.
+
+All other configuration parameters are retrieved from the DB and are
+accessible through ConfigBean (accessible through ConfigService)
+
+NOTE: ConfigBean contains the application configuration values (which are
+retrieved from the DB). ServiceSupport offers getConfigBean() to get this
+bean. ConfigBean values can be overriden by setting system properties. e.g.
+    -Dapp.default.shippingpoint_shipto.GeofenceRadius_m=somevalue
+
+You can look at the current configuration like this:
+
+http://localhost:8080/logon/init/versionCheck
+
+You can use this screen also to change the configuration or to update
+the configuration if it was changed on the DB.
+
+How to add a property: Whenever you add (or change, delete) properties:
+
+1. add the property to: logon-persistence/etc/csv/refdata/config.csv
+2. adnant dist in logon-persistence
+3. execute the generated ./logon-persistence/build/generated/gdi/csv2sql/refdata/insert_config.sql
+
+
+How to create a new patch file for a new version
+=======================================================
+
+Run logon-persistence/etc/sql/patch/create_new_patch.sh.
+
+
+How to add database columns and configuration variables
+=======================================================
+(mail from emoke on 1-Oct-2012)
+
+DB CHANGES
+-----------------------
+(Probably it's described in the README, probably not, we usually suggest
+to take a look at ChangeLog entries how people do such things.)
+
+Adding a new field is basically very easy, currently what you need to do is:
+
+1. edit the xml file of the table, add manually the fields, write a
+meaningful comment (in your case tlgnu_user.xml)
+
+2. run adnant clean dist in logon-persistence -> this will do for you
+several things listed below
+
+2a. this will regenerate
+/logon-persistence/build/generated/gdi/adxml2ddl/sql/create/10_gen_create_tables.sql
+and all the other sql files present in
+/logon-persistence/build/generated/gdi/adxml2ddl/sql/create. If you
+added foreign key, then things are generated into other files, like fk.
+etc. etc.
+
+2b. this will regenerate the Entity which belongs to the table in your
+case UserEntity
+
+3. here comes tool of Urs
+-- Patching the entities for the main schema
+-- HINT: look at helper tool "logon-persistence/logon_alter_db.sh" !
+this helps to find all related rows which need to be added into the
+current patch which is patch_above_2.1.0 from those files which were
+generated by step 2a.
+
+4. if you added a column to a table having some initial data, modify
+the initial data scripts, input files for all clusters (files like
+sarea.sql.vm, sarea.csv, tlgnc_sarea.sql etc).
+
+Commits you can use as pattern:
+PERSIST1905 (very simple fields added, no foreign keys or things like
+that, I hope yours is like that).
+r11192 - initial data (sarea)
+r11193 - initial data (sap material)
+
+
+CONFIG VALUES
+-----------------------
+
+For adding config value PERSIST1720
+Here you need to add the config value to a csv file, after generation
+(adnant clean dist) you will find our insert statements in
+/logon/logon-persistence/build/generated/gdi/csv2sql/refdata/insert_config.sql
+WATCH OUT there is also one in testdata folder, where adnovum configs
+are stored. We need those too.
+
+In the patch you don't need to add the new config inserts as they are
+loaded, see in patch_above_2.1.0.0
+
+-- Holcim Prod & Quality environment, AdNovum integration environment:
+@@../../refdata/insert_config.sql
+-- AdNovum Test environment ('dev'):
+-- @@../../testdata/insert_config.sql -- DO NOT EXECUTE AS PART OF A
+PATCH, always execute manually!
+
+
+WARNING
+-----------------------
+1. If you have committed the xml/csv file's changes, don't forget to
+update all dev databases we have for Logon:
+see https://aww.adnovum.ch/twiki/bin/view/HolcimPegasus/LogonDatabasesOverview
+for up-to-date information
+
+2. Currently the login module is in state, when there is a generated
+login module for dev environment and there is the normal one. I did not
+really read you ticket through, but probably you will need to do things
+in the login module, so I'd rather talk to the those people who are
+familiar with the login module like Lajos(lajos), and Sanyi (bartha).
+Perhaps changing the user table requires other things also not just
+these described above. I'm sure Urs will anyway know if you need to do
+such things where you need to be careful. Let's hope that the steps
+described above are enough. :)
+
+
+
+
+How to maintain the eventbeans?
+===============================
+
+1. edit eventbeans.xml manually, if you want to make structural changes in MOP events.
+2. execute adnant dist to generate event bean classes (like LoadOrder.java) out of it
+
+How to insert tracing code? (minimal survival guide)
+===========================
+
+You can 'instrument' your code with:
+
+    adnant adntrace2-instrument
+
+or more selectively:
+
+    adnant -Dclass=YourClassNameHere adntrace2-instrument
+    adnant -Dmethod=YourMethodNameHere adntrace2-instrument
+
+If you only want to 'refresh' already existing tracing code, you can use:
+
+    adnant adntrace2-refresh
+
+This doesn't add any new tracing code, it only refreshes existing
+tracing code which is helpful when parameters have changed.
+
+adntrace2 directives in java source code:
+
+    @adnlog.notrace
+    No instrumentation for this method. This tag has no attributes.
+
+    @adnlog.exclude-all
+    Deselects all parameters and return value from tracing.
+
+    @adnlog.exclude parameter1, return
+    Deselects specific parameters and/or return value. This example would exclude the
+    parameter with identifier "parameter1" and the return value.
+
+How to use soapUI
+--------------------------------------------------------------------------------
+1.  start soapUI (the target is only availabe in the logon-webservices-client and logon-webservices-mop-incoming component)
+    adnant start-soapui
+
+2.1 Open tests for logon-webservices-mop-incoming
+    logon-webservices-mop-incoming/src/test/resources/mop-incoming-soapui-project.xml
+    adnant test-soapui (to run the tests inside the soapui project)
+
+2.2 Open one of the logon-webservices-client test cases (go inside the logon-webservices-client folder)
+	adnant filter-soapui-project-template (this creates the soapui project files from the templates)
+    logon-webservices-client/build/test/etc/logon-ws-client-soapui-project.xml
+    logon-webservices-client/build/test/etc/mop-gateway-soapui-project.xml
+    The template files (test/mockup/*_template.xml cannot be edited with the soapui, use the generate files and remerge the your changes (ask zsolt about this ;))
+    Both files contain mock services for the services logon is a client (sms, paralell, fax, mop, ...)
+
+3.  Start working on the test, there is a good User Guide on the soapUI homepage
+    http://www.soapui.org/userguide/index.html
+
+4.  Make sure you saved all the tests before you close soapui again
+    Commit the changes of the soapui project files (there is a place where your username is encoded, but this is not critical)
+
+Running integration-tests:
+----------------------------------
+adnant test-integration
+	from top-level of the project: runs all the integration-tests of all of the sub-projects
+	from a specific sub-project: runs all the integration-tests of the sub-project
+adnant test-integration -Dtest.class=YourSeleniumTest.java
+	runs a certain integration-test YourSeleniumTest (path must be given at this point, will be improved soon)
+	e.g. ~/projects/logon/logon-admin-web> adnant test-integration -Dtest.class=ShippingpointTest.java
+
+
+NOTE:
+  - The README must provide a simple jumpstart into the development setup of the project. It targets
+    engineers being familiar with the adnovum development environment and focuses on project specifics.
+
+  - To use coverage set the property "coverage.enabled" in your build.properties (see uncommented
+    section) or simply call adnant with the command line argument "-Dcoverage.enabled=true"
+    e.g.
+    adnant -Dcoverage.enabled=true
+    adnant test-unit -Dcoverage.enabled=true
+    adnant test-integration -Dcoverage.enabled=true (this uses container and DB already to be started)
+
+  - 'adnant container-start' and 'adnant container-coldstart' will NOT return as long as the app server is
+    running. To stop the server, simply press 'ctrl-c'.
+
+  - To start the container spawned simply set jvm.spawn=true in your build-local.properties.
+
+How to syntax check (and execute) JPA QL?
+=========================================
+If you have to write JPA QL queries, you will want to syntax check them without
+having to build the application. There's a jpaconsole for this:
+
+1. start the jpaconsole from project top level:
+   cd $HOME/projects/logon
+   adnant jpaconsole
+2. start an editor with two files, editor should poll for the 2nd file
+   x $HOME/projects/logon/etc/gdi/jpaconsole/cartridge/templates/createQuery4all.vm \
+     /tmp/jpaconsole/createQuery4all.vm&
+3. Replace the JPA query in the first file and save. JPA console will execute that
+   query. Find the hibernate-generated SQL in the jpaconsole log. Find syntax error
+   information also in the jpaconsole.
+
+
+How to run static-tests (JS and CSS):
+=========================================
+JavaScript (JSHint):
+	adnant test-static-js
+		performs a full static test on all the JS files in the project
+	adnant test-static-js-run -Dfile=/absolute/path/to/file/which/you/want/to/check.js -DoutputLogFile=/path/to/the/output/file/test-static-js.log
+		performs the static check on a specific file; does not overwrite the existing log, so delete the old one!
+CSS (CSSLint):
+	adnant test-static-css
+		performs a full static test on all the CSS files in the project
+
+Helper scripts
+==============
+
+See at etc/tools/README.

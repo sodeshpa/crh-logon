@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="VLGNC_ITRACK_REPORT" mappingType="view" skipSql="true">
+        <column name="ORDER_NUMBER" type="DECIMAL" size="12"/>
+        <column name="SAREA_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="SAREA_SAREA_DISPLAY_LONGNAME" required="true" type="VARCHAR" size="30"/>
+        <column name="SOLDTO_SAP_BP_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="SOLDTO_SAP_ID" type="VARCHAR" size="10"/>
+        <column name="SOLDTO_NAME1" type="VARCHAR" size="35"/>
+        <column name="SHIPTO_SAP_BP_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="SHIPTO_SAP_ID" type="VARCHAR" size="10"/>
+        <column name="SHIPTO_NAME1" type="VARCHAR" size="35"/>
+        <column name="SP_PLANT_CD" type="VARCHAR" size="4"/>
+        <column name="SP_PLANT_NAME" type="VARCHAR" size="80"/>
+        <column name="SP_SHIPPINGPOINT_ID" type="DECIMAL" size="12"/>
+        <column name="SP_SAP_SHIPPINGPOINT_NO" type="VARCHAR" size="4"/>
+        <column name="SP_SHIPPINGPOINT_NAME" type="VARCHAR" size="80"/>
+        <column name="COMM_CARRIER_ID" type="DECIMAL" size="12"/>
+        <column name="COMM_CARRIER_V_SAP_ID" type="VARCHAR" size="10"/>
+        <column name="COMM_CARRIER_DISPLAY_NAME" type="VARCHAR" size="40"/>
+        <column name="EXEC_CARRIER_ID" type="DECIMAL" size="12"/>
+        <column name="EXEC_CARRIER_V_SAP_ID" type="VARCHAR" size="10"/>
+        <column name="EXEC_CARRIER_DISPLAY_NAME" type="VARCHAR" size="40"/>
+        <column name="TRUCK_PLATE_NO" type="VARCHAR" size="20"/>
+        <column name="DELIVERY_FROM_DAT" required="true" type="DATE"/>
+        <column name="DELIVERY_TO_DAT" required="true" type="DATE"/>
+        <column name="UNLOADING_TIME" type="DATE"/>
+        <column name="DIFF_VS_DEL_FROM" type="DECIMAL" size="12"/>
+        <column name="DIFF_VS_DEL_TO" type="DECIMAL" size="12"/>
+        <column name="TOLL_FEE" type="DECIMAL" size="12,4"/>
+        <column name="ITRACK_DISTANCE_KM" type="DECIMAL" size="12"/>
+        <column name="FLOW_TYPE" required="true" type="VARCHAR" size="2" />
+        <column name="SAREA_SORG_CD" required="true" type="VARCHAR" size="4" />
+        <column name="LOAD_START_DATE" type="DATE" />
+        <column name="LOAD_END_DATE" type="DATE" />
+    </table>
+</database>

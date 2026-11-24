@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database">
+<database name="Logon" xmlns="http://db.apache.org/schemas">
+    <table name="VLGNC_RAILCAR_OPT_OPEN_ORDERS" mappingType="view" skipSql="true">
+        <column name="COMPOSITE_ID" type="VARCHAR" size="84"/>
+        <column name="ORDER_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="ORDER_NUMBER" type="DECIMAL" size="12"/>
+        <column name="DELIVERY_FROM_DAT" required="true" type="DATE"/>
+        <column name="DELIVERY_TO_DAT" required="true" type="DATE"/>
+        <column name="ORDER_STATUS_CD" required="true" type="DECIMAL" size="2"/>
+        <column name="SHIPPINGPOINT_ID" type="DECIMAL" size="12"/>
+        <column name="DELIVERY_TYPE_CD" required="true" type="DECIMAL" size="2"/>
+        <column name="SHIPTO_SAP_BP_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="SHIPPINGPOINT_NAME" type="VARCHAR" size="80"/>
+        <column name="SHIPTO_NAME" type="VARCHAR" size="35"/>
+        <column name="LANG_CD" type="VARCHAR" size="2"/>
+        <column name="STATUS_TXT" type="VARCHAR" size="50"/>
+        <column name="SHIPTO_ID" required="true" type="DECIMAL" size="12"/>
+        <column name="RAIL_TIMETABLE_ID" type="DECIMAL" size="12"/>
+        <column name="ARR_RAILWAY_STATION_ID" type="DECIMAL" size="12"/>
+        <column name="DEP_RAILWAY_STATION_ID" type="DECIMAL" size="12"/>
+        <column name="ARR_SWITCHING_TIME_MIN" type="DECIMAL" size="4"/>
+        <column name="DEP_SWITCHING_TIME_MIN" type="DECIMAL" size="4"/>
+        <column name="ARR_OFFSET_DAYS" type="DECIMAL" size="2"/>
+        <column name="ARR_RAILWAY_STATION_NO" type="VARCHAR" size="6"/>
+        <column name="ARR_RAILWAY_STATION_NAME" type="VARCHAR" size="50"/>
+        <column name="SORT_FROM_DAT" type="TIMESTAMP"/>
+        <column name="SORT_TO_DAT" type="TIMESTAMP"/>
+        <column name="ORDERED_QUANTITY" type="DECIMAL" size="12,4"/>
+        <column name="ORDERED_UOM_CD" type="VARCHAR" size="3"/>
+        <column name="MATERIAL_DESCRIPTION" required="true" type="VARCHAR" size="40"/>
+        <column name="LAST_DEPARTURE" type="TIMESTAMP"/>
+        <column name="MIN_EVALUATION_PRIORITY" type="DOUBLE"/>
+        <column name="COUNT_WAGON_TYPES" type="DOUBLE"/>
+    </table>
+</database>
